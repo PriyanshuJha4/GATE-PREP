@@ -358,3 +358,7 @@ code { overflow-wrap: anywhere; }
 .install-text { flex: 1; min-width: 200px; display: grid; gap: 2px; font-size: 14px; }
 .install-actions { display: flex; gap: 8px; }
 @media (display-mode: standalone) { .install-card { display: none; } }
+
+.concept { margin-top: 32px; padding-top: 8px; border-top: 1px solid var(--border); scroll-margin-top: 72px; }
+.concept:first-child { border-top: 0; margin-top: 0; }
+.key-points { padding-left: 1.2em; }

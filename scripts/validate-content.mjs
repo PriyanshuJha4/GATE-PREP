@@ -48,6 +48,31 @@ function checkQuiz(rel, data) {
   );
 }
 
+function checkConcepts(rel, data) {
+  if (!Array.isArray(data.sections) || data.sections.length === 0) {
+    return fail(`${rel}: needs a "sections" array, e.g. "sections": [{ "id", "title", "content", "questions": [...] }]`);
+  }
+  const ids = new Set();
+  data.sections.forEach((s, i) => {
+    const where = `${rel} › ${s.title || `section ${i + 1}`}`;
+    if (!s.title) fail(`${rel}: section ${i + 1} needs a "title"`);
+    const id = String(s.id || `section-${i + 1}`);
+    if (id === 'intro') fail(`${rel}: section id "intro" is reserved, use another id`);
+    if (ids.has(id)) fail(`${rel}: duplicate section id "${id}"`);
+    ids.add(id);
+    if (s.content != null && typeof s.content !== 'string') fail(`${where}: "content" must be a string (Markdown)`);
+    if (s.questions == null) return;
+    if (!Array.isArray(s.questions)) return fail(`${where}: "questions" must be an array`);
+    const qids = new Set();
+    s.questions.forEach((q, qi) => {
+      checkQuestion(`${where} › Q${qi + 1}`, q);
+      const qid = String(q.id ?? qi + 1);
+      if (qids.has(qid)) fail(`${where}: duplicate question id "${qid}"`);
+      qids.add(qid);
+    });
+  });
+}
+
 function checkSyllabus(rel, data) {
   if (!Array.isArray(data.subjects)) return fail(`${rel}: needs a "subjects" array`);
   const seen = new Set();
@@ -78,6 +103,7 @@ function checkJson(p) {
   }
   const name = path.basename(p);
   if (name === 'practice-questions.json') checkQuiz(rel, data);
+  if (name === 'concepts.json') checkConcepts(rel, data);
   if (name === 'syllabus.json') checkSyllabus(rel, data);
 }
 

@@ -1,0 +1,3349 @@
+{
+
+ "sections": [
+  {
+   "id": "ch1",
+   "title": "Chapter 1 — C Fundamentals: Structure, Tokens, Constants, Number Systems",
+   "short": "C Fundamentals",
+   "content": "### 1.1 Structure of a C program\n```c\n#include <stdio.h>      // preprocessor directive (handled BEFORE compilation)\n\nint main() {            // execution always begins at main()\n    printf(\"Hello\");    // statement\n    return 0;           // 0 = successful termination\n}\n```\n\n### 1.2 Tokens\nA C program is a sequence of **tokens**. The six categories are: **keywords, identifiers, constants, string literals, operators, punctuators**.\n\n`int x = 10;` has 5 tokens: `int`, `x`, `=`, `10`, `;`\n\n> **Maximal munch rule:** the lexer always builds the *longest* possible token. So `a+++b` is `a ++ + b`, not `a + ++ b`, and `x+++++y` is a syntax error (`x ++ ++ + y`).\n\n### 1.3 Keywords (32 in C89; C99 adds `inline`, `restrict`, `_Bool`, `_Complex`, `_Imaginary`)\n`auto break case char const continue default do double else enum extern float for goto if int long register return short signed sizeof static struct switch typedef union unsigned void volatile while`\n\nKeywords cannot be used as identifiers.\n\n### 1.4 Identifiers\nNames for variables, functions, arrays, structures, etc.\n- May contain letters, digits and `_`\n- Cannot **begin** with a digit\n- Cannot be a keyword\n- **Case-sensitive**: `count`, `Count`, `COUNT` are three different identifiers\n\n### 1.5 Constants\n| Kind | Examples | Notes |\n|---|---|---|\n| Integer (decimal) | `10`, `10u`, `10L`, `10UL` | suffixes `u/U`, `l/L`, `ll/LL` |\n| Integer (octal) | `012` = 10 | leading `0`; digits 8 and 9 are **invalid** (`08`, `09` are errors) |\n| Integer (hex) | `0x1A` = 26 | prefix `0x` / `0X` |\n| Floating | `3.14` (double), `3.14f` (float), `1e3` | `1e3` is a **floating** constant, not an integer |\n| Character | `'A'` | type is **`int`** in C (so `sizeof('A') == sizeof(int)`) |\n| String literal | `\"ABC\"` | array of `char` ending in `'\\0'` (4 bytes for \"ABC\") |\n\n`'A'` (character constant) ≠ `\"A\"` (string literal, 2 bytes: `'A'`, `'\\0'`).\n\n**Escape sequences:** `\\n` newline, `\\t` tab, `\\\\`, `\\'`, `\\\"`, `\\0` null, `\\ooo` octal (`'\\101'` = 65), `\\xhh` hex (`'\\x41'` = 65).\n\n### 1.6 Variables\n```c\nint x;          // declaration (definition inside a function)\nint x = 10;     // declaration + initialization\nint a, b, c;    // multiple declarations\n```\n\n### 1.7 Number systems and conversions\n| System | Base | Digits | In C |\n|---|---|---|---|\n| Binary | 2 | 0,1 | (`0b1011` is a GCC/C23 extension, not classic C) |\n| Octal | 8 | 0–7 | `012` |\n| Decimal | 10 | 0–9 | `10` |\n| Hexadecimal | 16 | 0–9, A–F | `0x1A` |\n\n- `1011₂ = 1×8 + 0×4 + 1×2 + 1 = 11`\n- **Binary ↔ Octal:** group **3 bits**: `101 101₂ = 55₈`\n- **Binary ↔ Hex:** group **4 bits**: `1010 1111₂ = AF₁₆`\n- `3 bits → 1 octal digit`, `4 bits → 1 hex digit`\n\n### 1.8 Comments\n`/* ... */` (all C) and `// ...` (C99 onward). Comments do not nest.",
+   "questions": [
+    {
+     "id": "1.1",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following is a valid C identifier?",
+     "options": [
+      "`2fast`",
+      "`my-var`",
+      "`_count`",
+      "`int`"
+     ],
+     "answer": 2,
+     "solution": "`2fast` starts with a digit, `my-var` contains `-` (it would be `my - var`), `int` is a keyword."
+    },
+    {
+     "id": "1.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int x = 012 + 0x1A + 10;\n    printf(\"%d\", x);\n}\n```",
+     "options": [
+      "`46`",
+      "`48`",
+      "`36`",
+      "Compile error"
+     ],
+     "answer": 0,
+     "solution": "`012` is octal = 10, `0x1A` = 26, so 10 + 26 + 10 = 46.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "1.3",
+     "type": "msq",
+     "marks": 1,
+     "question": "Which of the following is/are **NOT** a valid integer constant in C?",
+     "options": [
+      "`089`",
+      "`0x1G`",
+      "`0xFFu`",
+      "`1e3`"
+     ],
+     "answer": [
+      0,
+      1,
+      3
+     ],
+     "solution": "`089` has digits 8/9 in an octal constant; `0x1G` has a non-hex digit; `1e3` is a *floating* constant. `0xFFu` is a valid unsigned hex integer constant."
+    },
+    {
+     "id": "1.4",
+     "type": "nat",
+     "marks": 1,
+     "question": "The octal equivalent of the hexadecimal number `0x3F` is ______.",
+     "answer": 77,
+     "solution": "`3F = 0011 1111`; regroup in 3 bits: `111 111` → `77₈` (= 63 decimal)."
+    },
+    {
+     "id": "1.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "Assume `sizeof(int) == 4`. What is the output?\n\n```c\nint main() {\n    printf(\"%zu %zu\", sizeof('A'), sizeof(\"A\"));\n}\n```",
+     "options": [
+      "`1 2`",
+      "`4 1`",
+      "`4 2`",
+      "`1 1`"
+     ],
+     "answer": 2,
+     "solution": "In C a character constant has type `int` (4 bytes). `\"A\"` is `{'A','\\0'}` = 2 bytes.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "1.6",
+     "type": "nat",
+     "marks": 1,
+     "question": "The number of tokens in the statement `printf(\"%d\", a+++b);` is ______.",
+     "answer": 10,
+     "solution": "`printf` `(` `\"%d\"` `,` `a` `++` `+` `b` `)` `;` = 10 tokens (maximal munch splits `a+++b` as `a ++ + b`)."
+    },
+    {
+     "id": "1.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%zu\", sizeof(\"A\\n\\0B\"));\n}\n```",
+     "options": [
+      "`5`",
+      "`2`",
+      "`4`",
+      "`6`"
+     ],
+     "answer": 0,
+     "solution": "Characters: `A`, `\\n`, `\\0`, `B` plus the implicit terminating `\\0` = 5 bytes. `sizeof` counts every byte; `strlen` would stop at the first `\\0` and give 2.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "1.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%d\", 010 + 10);\n}\n```",
+     "options": [
+      "`20`",
+      "`10`",
+      "Compile error",
+      "`18`"
+     ],
+     "answer": 3,
+     "solution": "`010` is octal = 8; 8 + 10 = 18.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "1.9",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%d %d\", '\\101', '\\x41');\n}\n```",
+     "options": [
+      "`65 65`",
+      "`101 41`",
+      "`65 41`",
+      "`81 65`"
+     ],
+     "answer": 0,
+     "solution": "`\\101` is octal escape = 65 and `\\x41` is hex escape = 65 (the ASCII code of `'A'`).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "1.10",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which statement about `main()` is true?",
+     "options": [
+      "Execution begins at the first function defined in the file",
+      "Execution begins at `main()` irrespective of where it is defined",
+      "`main` must be the last function in the file",
+      "`main` cannot call other functions"
+     ],
+     "answer": 1,
+     "solution": "The runtime starts the program at `main()`; its position in the file is irrelevant (declare functions before use)."
+    }
+   ]
+  },
+  {
+   "id": "ch2",
+   "title": "Chapter 2 — Data Types, Ranges and Overflow",
+   "short": "Data Types",
+   "content": "### 2.1 Fundamental types\n`char`, `int`, `float`, `double`, `void`; modifiers `short`, `long`, `long long`, `signed`, `unsigned`.\n\n### 2.2 Sizes (implementation-dependent!)\nThe standard only guarantees: `sizeof(char) == 1` (always, by definition) and\n`sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)`.\n\n| Type | Typical size (bytes) | Notes |\n|---|---|---|\n| `char` | 1 | 1 byte is *not necessarily* 8 bits (`CHAR_BIT`) |\n| `short` | 2 | |\n| `int` | 4 | 2 on very old 16-bit compilers |\n| `long` | 4 (Windows/32-bit) or 8 (64-bit Linux) | |\n| `long long` | 8 | |\n| `float` | 4 | IEEE-754: 1 sign + 8 exp + 23 mantissa |\n| `double` | 8 | IEEE-754: 1 sign + 11 exp + 52 mantissa |\n| pointer | 4 (32-bit) / 8 (64-bit) | same for all object pointers on common machines |\n\n> **GATE trap:** do not assume sizes unless the question states them. Most GATE questions say \"assume int = 4 bytes, pointer = 4 bytes (or 8)\".\n\n### 2.3 Ranges\n- **n-bit unsigned:** `0` to `2ⁿ − 1`\n- **n-bit signed (two's complement):** `−2ⁿ⁻¹` to `2ⁿ⁻¹ − 1`\n- 8-bit signed: −128..127 | 16-bit signed: −32768..32767 | 32-bit signed: −2³¹..2³¹−1\n\n**Two's complement:** `−x = ~x + 1`, and therefore `~x = −x − 1` (e.g. `~5 = −6`, `~−5 = 4`).\n\n### 2.4 Overflow rules\n| Case | Result |\n|---|---|\n| **Unsigned** overflow/underflow | Well-defined: wraps modulo 2ⁿ (`(unsigned)−1 == UINT_MAX`) |\n| **Signed** integer overflow | **Undefined behaviour** |\n| Converting an out-of-range value to a signed type | Implementation-defined |\n| Right shift of a negative signed value | Implementation-defined |\n\n### 2.5 `char`\n`char` holds an integer character code. Whether plain `char` is signed or unsigned is **implementation-defined**; use `signed char`/`unsigned char` when it matters. `'A' + 1` is the integer 66.\n\n### 2.6 Floating point\n`float < double < long double` in precision (exact formats are implementation-dependent).\n- Most decimal fractions (0.1, 0.2) have no exact binary representation, so **never compare floating values with `==`**.\n- `0.1` is a `double` constant; `0.1f` is `float`. `float f = 0.1; f == 0.1` is **false** (f was rounded to float precision).\n- `0.1 + 0.2 == 0.3` is false for doubles.\n- Integer division by zero is UB; floating division by zero (IEEE-754) gives `inf`/`nan`.\n\n### 2.7 Type qualifiers\n`const`, `volatile`, `restrict` (see Chapter 17). `_Bool`/`bool` (`<stdbool.h>`) holds only 0 or 1 (any non-zero converts to 1).",
+   "questions": [
+    {
+     "id": "2.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    unsigned char c = 255;\n    c++;\n    printf(\"%d\", c);\n}\n```",
+     "options": [
+      "`255`",
+      "`256`",
+      "`-1`",
+      "`0`"
+     ],
+     "answer": 3,
+     "solution": "`c++` makes 256, which wraps modulo 256 → 0 (unsigned wrap is well-defined).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "2.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "Assume 32-bit `int`. What is printed?\n\n```c\nint main() {\n    unsigned int a = 5;\n    int b = -10;\n    if (a > b) printf(\"A\");\n    else       printf(\"B\");\n}\n```",
+     "options": [
+      "`A`",
+      "`AB`",
+      "`B`",
+      "Undefined behaviour"
+     ],
+     "answer": 2,
+     "solution": "`b` is converted to `unsigned` (4294967286), so `5 > 4294967286` is false. Signed/unsigned mixing → signed operand becomes unsigned.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "2.3",
+     "type": "nat",
+     "marks": 1,
+     "question": "The minimum value representable in a 12-bit two's-complement signed integer is ______.",
+     "answer": -2048,
+     "solution": "`−2¹¹ = −2048`."
+    },
+    {
+     "id": "2.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "Assume 32-bit `int`. What is printed?\n\n```c\nint main() {\n    unsigned int x = 0;\n    x--;\n    printf(\"%u\", x);\n}\n```",
+     "options": [
+      "`-1`",
+      "`4294967295`",
+      "`0`",
+      "`2147483647`"
+     ],
+     "answer": 1,
+     "solution": "Unsigned underflow wraps: `0 − 1 = 2³² − 1`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "2.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    float f = 0.1;\n    if (f == 0.1) printf(\"Equal\");\n    else          printf(\"Not equal\");\n}\n```",
+     "options": [
+      "`Not equal`",
+      "`Equal`",
+      "Compile error",
+      "Undefined behaviour"
+     ],
+     "answer": 0,
+     "solution": "`0.1` is a double; `f` holds the nearest *float* to 0.1, which differs from the nearest double. The float is promoted to double before comparing.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "2.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    char c = 'A';\n    printf(\"%d %c\", c + 1, c + 1);\n}\n```",
+     "options": [
+      "`65 A`",
+      "`66 66`",
+      "`66 B`",
+      "`B 66`"
+     ],
+     "answer": 2,
+     "solution": "`c + 1` is an `int` 66; `%c` prints the character with that code.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "2.7",
+     "type": "nat",
+     "marks": 1,
+     "question": "A 10-bit two's-complement system: (largest positive value) + (smallest negative value) = ______.",
+     "answer": -1,
+     "solution": "Largest = 2⁹−1 = 511, smallest = −2⁹ = −512; sum = −1."
+    },
+    {
+     "id": "2.8",
+     "type": "mcq",
+     "marks": 1,
+     "question": "What does the C standard say about `int a = INT_MAX; a = a + 1;`?",
+     "options": [
+      "`a` wraps to INT_MIN",
+      "Undefined behaviour",
+      "Implementation-defined",
+      "Unspecified"
+     ],
+     "answer": 1,
+     "solution": "Signed overflow is UB. Only unsigned arithmetic is guaranteed to wrap."
+    },
+    {
+     "id": "2.9",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following is **always** true according to the C standard?",
+     "options": [
+      "`sizeof(int) == 4`",
+      "`sizeof(char) == 1`",
+      "`sizeof(long) > sizeof(int)`",
+      "`sizeof(float) == 4`"
+     ],
+     "answer": 1,
+     "solution": "Only `sizeof(char) == 1` is guaranteed. The others are implementation-dependent (`long` may equal `int`)."
+    },
+    {
+     "id": "2.10",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    unsigned short s = 65535;\n    s += 2;\n    printf(\"%u\", s);\n}\n```",
+     "options": [
+      "`65537`",
+      "`0`",
+      "`1`",
+      "`2`"
+     ],
+     "answer": 2,
+     "solution": "`s + 2` is computed as int = 65537, then converted back to `unsigned short`: 65537 mod 65536 = 1.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "2.11",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    unsigned char u = -1;\n    printf(\"%d\", u);\n}\n```",
+     "options": [
+      "`-1`",
+      "`255`",
+      "`256`",
+      "`1`"
+     ],
+     "answer": 1,
+     "solution": "−1 converted to `unsigned char` = 256 − 1 = 255.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "2.12",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    double a = 0.1 + 0.2;\n    if (a == 0.3) printf(\"yes\");\n    else          printf(\"no\");\n}\n```",
+     "options": [
+      "`no`",
+      "`yes`",
+      "`0.3`",
+      "Compile error"
+     ],
+     "answer": 0,
+     "solution": "0.1 and 0.2 are not exactly representable; the sum is 0.30000000000000004, not the double nearest 0.3.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    }
+   ]
+  },
+  {
+   "id": "ch3",
+   "title": "Chapter 3 — Operators, Precedence and Expression Evaluation",
+   "short": "Operators",
+   "content": "### 3.1 Precedence and associativity (high → low)\n| Level | Operators | Associativity |\n|---|---|---|\n| 1 | `()` `[]` `->` `.` , postfix `++ --` | L → R |\n| 2 | prefix `++ --`, unary `+ -`, `! ~`, `(type)`, `*` (deref), `&`, `sizeof` | **R → L** |\n| 3 | `* / %` | L → R |\n| 4 | `+ -` | L → R |\n| 5 | `<< >>` | L → R |\n| 6 | `< <= > >=` | L → R |\n| 7 | `== !=` | L → R |\n| 8 | `&` | L → R |\n| 9 | `^` | L → R |\n| 10 | `\\|` | L → R |\n| 11 | `&&` | L → R |\n| 12 | `\\|\\|` | L → R |\n| 13 | `?:` | **R → L** |\n| 14 | `= += -= *= /= %= <<= >>= &= ^= \\|=` | **R → L** |\n| 15 | `,` | L → R |\n\n*(Postfix `++`/`--` sit in the same top group as `()` `[]` `->` `.`.)*\n\n**Mnemonic:** Call → Post → Unary → Multiply → Add → Shift → Relational → Equality → Bitwise(& ^ \\|) → Logical(&& \\|\\|) → Conditional → Assignment → Comma.\n\n**Classic precedence traps**\n- `x & 1 == 0` is `x & (1 == 0)` — `==` binds tighter than `&`. Always parenthesize: `(x & 1) == 0`.\n- `*p++` is `*(p++)`; `*p.roll` is `*(p.roll)`; use `p->roll` or `(*p).roll`.\n- Unary `*` (dereference) is *not* multiplication.\n\n### 3.2 Integer division and modulo\n- Both operands integers → **integer division**; either operand floating → floating division.\n- Result is **truncated toward zero** (C99): `-7 / 2 = -3`.\n- `a % b` has the **sign of the dividend**: `-7 % 2 = -1`, `7 % -2 = 1`, and `(a/b)*b + a%b == a` always.\n- `a % 1 == 0`; for positive operands `0 <= a % b < b`.\n\n### 3.3 `!`, relational and logical operators\n- `!x` is 1 if x is 0 else 0 (so `!5 == 0`, `!!5 == 1`). Result of `! < > == != && ||` is always **0 or 1** (type `int`).\n- Truth: `0` is false, **any non-zero is true**.\n- Relational operators **do not chain**: `a < b < c` means `(a < b) < c` — compares 0/1 with c. So `3 > 2 > 1` is `1 > 1` = 0.\n\n### 3.4 Short-circuit evaluation\n- `A && B`: if A is false, B is **not evaluated**.\n- `A || B`: if A is true, B is **not evaluated**.\n- `&&` binds tighter than `||`: `a || b && c` = `a || (b && c)`.\n- There is a sequence point after the left operand of `&&`, `||`, `?:` and `,`, so side effects there are well-defined.\n\n### 3.5 Assignment operators\n`=  +=  -=  *=  /=  %=  <<=  >>=  &=  ^=  |=`\n- Assignment is an **expression** whose value is the assigned value: `y = (x = 10)` gives both 10.\n- `x op= y` is `x = x op (y)` — the **whole right side** is grouped: `x *= 2 + 3` is `x = x * (2+3)`.\n- Right-to-left: `a = b = c = 5`.\n- `x /= 5` with ints is integer division.\n\n### 3.6 Increment / decrement\n- `++x` (pre): increment, then use the new value. `x++` (post): use the old value, increment afterwards.\n- Modifying the same object twice (or modifying and reading it) between sequence points is **undefined** (see Chapter 6).\n- The operand must be a modifiable lvalue: `5++`, `(a+b)++`, `++(x++)` are errors.\n\n### 3.7 Conditional (ternary) operator `?:`\n`cond ? e1 : e2` evaluates `cond`, then **only one** of `e1`/`e2`. Right-associative:\n`a ? b : c ? d : e` = `a ? b : (c ? d : e)`.\n\n### 3.8 Comma operator\nEvaluates left → right, value is the **rightmost** expression. Lowest precedence: `a = 1, 2;` is `(a = 1), 2;` → a = 1. Commas separating function arguments or declarators are **not** comma operators.\n\n### 3.9 `sizeof`\n- Unary operator (not a function), result type `size_t`, measured in bytes.\n- Operand is **not evaluated** (except variable-length arrays): `sizeof(i++)` does not change `i`.\n- `sizeof(char) == 1` always. `sizeof(array)` = whole array; `sizeof(pointer)` = pointer size; `sizeof(*p)` = size of the pointed-to type.",
+   "questions": [
+    {
+     "id": "3.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a = 2, b = 3, c = 4;\n    printf(\"%d\", a + b * c % 3);\n}\n```",
+     "options": [
+      "`5`",
+      "`2`",
+      "`14`",
+      "`0`"
+     ],
+     "answer": 1,
+     "solution": "`b*c = 12`, `12 % 3 = 0` (same level, L→R), `a + 0 = 2`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%d %d %d\", -7 / 2, -7 % 2, 7 % -2);\n}\n```",
+     "options": [
+      "`-4 1 -1`",
+      "`-3 -1 1`",
+      "`-3 1 1`",
+      "`-3 -1 -1`"
+     ],
+     "answer": 1,
+     "solution": "Division truncates toward zero; `%` takes the sign of the dividend: −7%2 = −1, 7%−2 = 1.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int x = 7 / 2 * 2.0;\n    printf(\"%d\", x);\n}\n```",
+     "options": [
+      "`7`",
+      "`3`",
+      "`8`",
+      "`6`"
+     ],
+     "answer": 3,
+     "solution": "`7/2 = 3` (integer), `3 * 2.0 = 6.0`, converted to int 6.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i = 0, j = 0, k = 0;\n    if (i++ || j++ && k++) { }\n    printf(\"%d %d %d\", i, j, k);\n}\n```",
+     "options": [
+      "`1 0 0`",
+      "`1 1 1`",
+      "`0 1 0`",
+      "`1 1 0`"
+     ],
+     "answer": 3,
+     "solution": "`&&` binds tighter: `i++ || (j++ && k++)`. `i++` is 0 (false) → evaluate `j++ && k++`; `j++` is 0 → `k++` is skipped. So i=1, j=1, k=0.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a = 5, b = 10;\n    printf(\"%d\", a > b ? a : b > 7 ? 100 : 200);\n}\n```",
+     "options": [
+      "`5`",
+      "`200`",
+      "`100`",
+      "`10`"
+     ],
+     "answer": 2,
+     "solution": "Right-associative: `a>b ? a : (b>7 ? 100 : 200)`. `5>10` is false, `10>7` is true → 100.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a, b;\n    a = 1, 2;\n    b = (1, 2);\n    printf(\"%d %d\", a, b);\n}\n```",
+     "options": [
+      "`2 2`",
+      "`1 1`",
+      "`2 1`",
+      "`1 2`"
+     ],
+     "answer": 3,
+     "solution": "`a = 1, 2;` parses as `(a = 1), 2;` since `=` has higher precedence than `,`. `b = (1,2)` takes the rightmost value 2.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%d %d\", 3 > 2 > 1, 1 < 2 < 3);\n}\n```",
+     "options": [
+      "`1 1`",
+      "`0 1`",
+      "`0 0`",
+      "`1 0`"
+     ],
+     "answer": 1,
+     "solution": "`3>2>1` = `(1)>1` = 0. `1<2<3` = `(1)<3` = 1.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    int x = 4;\n    if (x & 1 == 0) printf(\"EVEN\");\n    else            printf(\"ODD\");\n}\n```",
+     "options": [
+      "`EVEN`",
+      "`ODD`",
+      "Compile error",
+      "No output"
+     ],
+     "answer": 1,
+     "solution": "`1 == 0` is evaluated first (0), so the test is `x & 0` = 0 → false → prints ODD even though x is even.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.9",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int x = 10;\n    x *= 2 + 3;\n    x -= 4 % 3;\n    printf(\"%d\", x);\n}\n```",
+     "options": [
+      "`22`",
+      "`46`",
+      "`50`",
+      "`49`"
+     ],
+     "answer": 3,
+     "solution": "`x *= 2+3` → x = 10*5 = 50; `x -= 4%3` → 50 − 1 = 49.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.10",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a = 5, b = 3;\n    int c = a+++b;\n    printf(\"%d %d %d\", a, b, c);\n}\n```",
+     "options": [
+      "`5 4 9`",
+      "`6 3 8`",
+      "`5 3 8`",
+      "`6 3 9`"
+     ],
+     "answer": 1,
+     "solution": "Maximal munch: `a++ + b` = 5 + 3 = 8; then a becomes 6.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.11",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i = 5;\n    printf(\"%zu %d\", sizeof(i++), i);\n}\n```",
+     "options": [
+      "`4 6`",
+      "`8 5`",
+      "`4 5`",
+      "`1 5`"
+     ],
+     "answer": 2,
+     "solution": "`sizeof` does not evaluate its operand, so `i` stays 5 (type `int` → 4 bytes).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.12",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a, b, c;\n    a = b = c = 5;\n    a += b -= c *= 2;\n    printf(\"%d %d %d\", a, b, c);\n}\n```",
+     "options": [
+      "`10 -5 10`",
+      "`0 -5 10`",
+      "`0 5 10`",
+      "`5 -5 10`"
+     ],
+     "answer": 1,
+     "solution": "Right-to-left: `c *= 2` → c=10; `b -= 10` → b=−5; `a += −5` → a=0.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "3.13",
+     "type": "nat",
+     "marks": 1,
+     "question": "The value of `!5 + !0 + !!7` is ______.",
+     "answer": 2,
+     "solution": "0 + 1 + 1 = 2."
+    }
+   ]
+  },
+  {
+   "id": "ch4",
+   "title": "Chapter 4 — Type Conversion, Promotion and Casting",
+   "short": "Type Conversion",
+   "content": "### 4.1 Implicit conversion\nThe compiler converts types automatically in assignments and expressions.\n```c\nint a = 5;  float b = a;   // int → float\n```\n\n### 4.2 Explicit cast\n`(type) expression`. A cast has **higher precedence than `/`** and **does not change the variable**, only the value of that expression.\n```c\n(int)(7.8/2)  // 3.9 → 3\n(int)7.8/2    // 7/2 → 3   (cast applies to 7.8 only)\n```\n\n### 4.3 Integer promotion\nIn expressions, `char`, `short` (and `_Bool`, bit-fields) are first promoted to `int` (or `unsigned int` if `int` cannot hold all values).\n```c\nchar a = 100, b = 100;\na + b      // int 200 — no overflow of char during the addition\nsizeof(a+b) // 4\n```\nPromotion also affects bitwise operators: for `unsigned char c = 0xF0;`, `~c` is `~(int)240 = -241`.\n\n### 4.4 Usual arithmetic conversions (for binary operators)\n1. Promote both operands (integer promotion).\n2. If one is `long double` → both `long double`; else `double`; else `float`.\n3. Otherwise (both integer): if types are same, done; if signedness matches, convert to the type with greater rank; if the **unsigned** operand has rank ≥ signed operand, convert to unsigned; etc.\n\nQuick ladder: `int < unsigned int < long < unsigned long < long long < unsigned long long < float < double < long double`.\n\n**Rule of thumb:** *signed + unsigned of the same size → unsigned*. So `-1 < 0u` is **false** (−1 becomes `UINT_MAX`).\n\n### 4.5 Float ↔ int\n- Float → int: **truncation toward zero** (`7.8 → 7`, `−7.8 → −7`, never rounds). If the value does not fit, UB.\n- Int → float: may lose precision for large values.\n- `float x = 5/2;` → `5/2 = 2` first, then `x = 2.0` (not 2.5).\n\n### 4.6 Types of constants\n`1` int, `1L` long, `1U` unsigned, `1.0` double, `1.0f` float, `'a'` **int**, `\"a\"` `char[2]`.\n\n> The type of an expression matters as much as its value.",
+   "questions": [
+    {
+     "id": "4.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    float x = 5 / 2;\n    printf(\"%.1f\", x);\n}\n```",
+     "options": [
+      "`2.5`",
+      "`3.0`",
+      "`0.0`",
+      "`2.0`"
+     ],
+     "answer": 3,
+     "solution": "Integer division happens first: 5/2 = 2; then converted to 2.0.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    char a = 100, b = 100;\n    printf(\"%d %zu\", a + b, sizeof(a + b));\n}\n```",
+     "options": [
+      "`-56 4`",
+      "`200 1`",
+      "`200 4`",
+      "`-56 1`"
+     ],
+     "answer": 2,
+     "solution": "`a` and `b` are promoted to int before `+`; result is int 200 and `sizeof(int)` = 4.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%d %d\", (int)(7.8 / 2), (int)7.8 / 2 * 2);\n}\n```",
+     "options": [
+      "`3 7`",
+      "`4 6`",
+      "`4 7`",
+      "`3 6`"
+     ],
+     "answer": 3,
+     "solution": "`(int)(3.9) = 3`. In the second, `(int)7.8 = 7`, `7/2 = 3`, `3*2 = 6`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%.1f\", 1/2 + 1/2.0);\n}\n```",
+     "options": [
+      "`1.0`",
+      "`0.5`",
+      "`0.0`",
+      "`1.5`"
+     ],
+     "answer": 1,
+     "solution": "`1/2 = 0` (int division), `1/2.0 = 0.5`; sum 0.5.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output? (64-bit `long long`)\n\n```c\nint main() {\n    int a = 100000;\n    long long b = (long long)a * a;\n    printf(\"%lld\", b);\n}\n```",
+     "options": [
+      "`10000000000`",
+      "`1410065408`",
+      "`100000`",
+      "Compile error"
+     ],
+     "answer": 0,
+     "solution": "The cast is applied to `a` first, so the multiplication is done in `long long`. Without the cast, `a*a` would overflow `int` (UB).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%d %d\", (int)-3.9, (int)(-3.9 + 0.5));\n}\n```",
+     "options": [
+      "`-4 -3`",
+      "`-3 -4`",
+      "`-3 -3`",
+      "`-4 -4`"
+     ],
+     "answer": 2,
+     "solution": "Truncation toward zero: −3.9 → −3; −3.4 → −3.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "On a typical 64-bit Linux machine (int 4, long 8, float 4, double 8), the output is:\n\n```c\nint main() {\n    printf(\"%zu %zu %zu %zu\", sizeof('A'), sizeof(1.5), sizeof(1.5f), sizeof(1L));\n}\n```",
+     "options": [
+      "`1 8 4 8`",
+      "`4 8 4 8`",
+      "`4 4 4 4`",
+      "`4 8 8 8`"
+     ],
+     "answer": 1,
+     "solution": "`'A'` is int (4), `1.5` double (8), `1.5f` float (4), `1L` long (8).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    if (-1 < 0u) printf(\"yes\");\n    else         printf(\"no\");\n}\n```",
+     "options": [
+      "`yes`",
+      "Compile error",
+      "Undefined behaviour",
+      "`no`"
+     ],
+     "answer": 3,
+     "solution": "`-1` is converted to `unsigned int` (UINT_MAX) which is not less than 0.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.9",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output? (32-bit int)\n\n```c\nint main() {\n    unsigned char c = 0xF0;\n    printf(\"%d %d\", ~c, (unsigned char)~c);\n}\n```",
+     "options": [
+      "`15 15`",
+      "`240 15`",
+      "`-241 15`",
+      "`-241 -241`"
+     ],
+     "answer": 2,
+     "solution": "`c` promotes to int 240; `~240 = −241`. Casting `~c` back to `unsigned char` keeps the low 8 bits: 0x0F = 15.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.10",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i = 3.99;\n    float f = 7/2 + 7/2.0;\n    printf(\"%d %.1f\", i, f);\n}\n```",
+     "options": [
+      "`4 6.5`",
+      "`3 7.0`",
+      "`3 6.5`",
+      "`3 6.0`"
+     ],
+     "answer": 2,
+     "solution": "Assigning 3.99 to int truncates to 3. `7/2 = 3`, `7/2.0 = 3.5` → 6.5.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.11",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    char c = 'a' + 1;\n    printf(\"%c %d\", c, c);\n}\n```",
+     "options": [
+      "`a 97`",
+      "`b 97`",
+      "`98 b`",
+      "`b 98`"
+     ],
+     "answer": 3,
+     "solution": "`'a'` = 97; +1 = 98 = `'b'`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "4.12",
+     "type": "mcq",
+     "marks": 1,
+     "question": "What is the type of the expression `'a' + 1L + 2.0f`?",
+     "options": [
+      "int",
+      "long",
+      "float",
+      "double"
+     ],
+     "answer": 2,
+     "solution": "`'a'` → int; `int + long` → long; `long + float` → float (any floating type outranks any integer type). `2.0f` is float, not double."
+    }
+   ]
+  },
+  {
+   "id": "ch5",
+   "title": "Chapter 5 — Bitwise Operators and Bit Manipulation",
+   "short": "Bitwise",
+   "content": "### 5.1 The six bitwise operators\n| Op | Name | Rule |\n|---|---|---|\n| `&` | AND | 1 only if both bits are 1 |\n| `\\|` | OR | 0 only if both bits are 0 |\n| `^` | XOR | 1 if bits **differ** |\n| `~` | NOT | flips every bit; `~x = −x − 1` (two's complement) |\n| `<<` | left shift | fills with 0s on the right |\n| `>>` | right shift | unsigned → zeros come in; negative signed → implementation-defined |\n\nDo not confuse `&`/`|`/`~` with `&&`/`||`/`!`.\n\nExamples: `5 & 3 = 1`, `5 | 3 = 7`, `5 ^ 3 = 6`, `~5 = −6`, `~(−5) = 4`, `5 << 2 = 20`, `20 >> 2 = 5`.\n\n### 5.2 Shift facts\n- For non-negative values without overflow: `x << n = x × 2ⁿ`, `x >> n = ⌊x / 2ⁿ⌋`.\n- Shifting by a count **≥ width of the (promoted) type**, or by a negative count, is **UB**.\n- Left-shifting a signed value into/over the sign bit is UB (use `1u << 31`).\n\n### 5.3 Identities\n```\nx & 0 = 0    x | 0 = x    x ^ 0 = x\nx & x = x    x | x = x    x ^ x = 0\nx ^ x ^ x = x     a ^ b ^ a = b\na + b = (a ^ b) + 2*(a & b) = (a | b) + (a & b)\n```\n\n### 5.4 Essential bit tricks\n| Task | Code |\n|---|---|\n| Test bit k | `(x >> k) & 1` or `x & (1<<k)` |\n| Set bit k | `x \\|= (1 << k)` |\n| Clear bit k | `x &= ~(1 << k)` |\n| Toggle bit k | `x ^= (1 << k)` |\n| Is odd? | `x & 1` |\n| Clear lowest set bit | `x & (x − 1)` |\n| Isolate lowest set bit | `x & −x` |\n| Power of two (x>0) | `(x & (x − 1)) == 0` |\n| Count set bits (Kernighan) | `while (x) { x &= x−1; c++; }` — loops once per set bit |\n| Swap without temp | `a ^= b; b ^= a; a ^= b;` (fails if both refer to the same object) |\n| Multiply/divide by 2ⁿ | `x << n` / `x >> n` |\n| Lowercase ↔ uppercase | `c ^ 32`, `c \\| 32`, `c & ~32` (ASCII letters) |\n\n### 5.5 Promotion warning\nOperands smaller than `int` are promoted first, so `~c` for `unsigned char c` is a negative int; mask or cast back when needed.",
+   "questions": [
+    {
+     "id": "5.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%d %d %d %d\", 5 & 3, 5 | 3, 5 ^ 3, ~5);\n}\n```",
+     "options": [
+      "`1 7 6 -6`",
+      "`1 7 6 -5`",
+      "`1 7 6 6`",
+      "`3 7 6 -6`"
+     ],
+     "answer": 0,
+     "solution": "101 & 011 = 001; 101 | 011 = 111; 101 ^ 011 = 110; ~5 = −6.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "5.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the value printed?\n\n```c\nint main() {\n    unsigned int x = 181;   // 10110101\n    int c = 0;\n    while (x) { x = x & (x - 1); c++; }\n    printf(\"%d\", c);\n}\n```",
+     "options": [
+      "`4`",
+      "`6`",
+      "`8`",
+      "`5`"
+     ],
+     "answer": 3,
+     "solution": "Each iteration clears the lowest set bit, so the loop runs once per 1-bit. 181 = 10110101 has five 1s.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "5.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a = 5, b = 9;\n    a ^= b; b ^= a; a ^= b;\n    printf(\"%d %d\", a, b);\n}\n```",
+     "options": [
+      "`5 9`",
+      "`0 0`",
+      "`9 5`",
+      "`12 5`"
+     ],
+     "answer": 2,
+     "solution": "XOR swap: a=5^9=12, b=9^12=5, a=12^5=9.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "5.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int x = 12;\n    printf(\"%d\", x & -x);\n}\n```",
+     "options": [
+      "`12`",
+      "`4`",
+      "`8`",
+      "`0`"
+     ],
+     "answer": 1,
+     "solution": "`x & −x` isolates the lowest set bit; 12 = 1100 → 0100 = 4.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "5.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output? (32-bit int)\n\n```c\nint main() {\n    printf(\"%u\", 1u << 31);\n}\n```",
+     "options": [
+      "`-2147483648`",
+      "`0`",
+      "`2147483647`",
+      "`2147483648`"
+     ],
+     "answer": 3,
+     "solution": "Using `1u` avoids signed-overflow UB; bit 31 set = 2³¹.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "5.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output? (32-bit int)\n\n```c\nint main() {\n    printf(\"%d %u\", ~0, ~0u);\n}\n```",
+     "options": [
+      "`-1 -1`",
+      "`-1 2147483647`",
+      "`-1 4294967295`",
+      "`0 4294967295`"
+     ],
+     "answer": 2,
+     "solution": "`~0` flips all bits: all ones is −1 in two's complement and UINT_MAX when unsigned.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "5.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int x = 0x0F;\n    printf(\"%d\", (x << 4) | (x >> 4));\n}\n```",
+     "options": [
+      "`15`",
+      "`240`",
+      "`255`",
+      "`0`"
+     ],
+     "answer": 1,
+     "solution": "`0x0F << 4 = 0xF0`, `0x0F >> 4 = 0`; OR = 0xF0 = 240.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "5.8",
+     "type": "nat",
+     "marks": 1,
+     "question": "How many integers x in the range 1..100 satisfy `(x & (x - 1)) == 0`?",
+     "answer": 7,
+     "solution": "Powers of two in range: 1, 2, 4, 8, 16, 32, 64."
+    },
+    {
+     "id": "5.9",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What are the three values printed?\n\n```c\nint main() {\n    int x = 10;          // 1010\n    x ^= (1 << 2);  printf(\"%d \", x);\n    x |= 1;         printf(\"%d \", x);\n    x &= ~(1 << 3); printf(\"%d\", x);\n}\n```",
+     "options": [
+      "`14 15 7`",
+      "`14 15 15`",
+      "`6 7 7`",
+      "`14 15 8`"
+     ],
+     "answer": 0,
+     "solution": "1010 ^ 0100 = 1110 (14); | 0001 = 1111 (15); & ~1000 = 0111 (7).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "5.10",
+     "type": "mcq",
+     "marks": 1,
+     "question": "What does `f` compute for non-negative `x`?\n\n```c\nint f(unsigned x) {\n    int c = 0;\n    while (x) { c += x & 1; x >>= 1; }\n    return c;\n}\n```",
+     "options": [
+      "Number of bits in x",
+      "Number of 1-bits in x",
+      "Position of the highest set bit",
+      "x mod 2"
+     ],
+     "answer": 1,
+     "solution": "It adds the LSB each time and shifts right: a population count. (Check: f(255) = 8)."
+    },
+    {
+     "id": "5.11",
+     "type": "nat",
+     "marks": 1,
+     "question": "The value of `5 ^ 3 ^ 5` is ______.",
+     "answer": 3,
+     "solution": "XOR is associative/commutative and `a ^ a = 0`: 5^5^3 = 0^3 = 3."
+    },
+    {
+     "id": "5.12",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    unsigned int x = 0x80000000;\n    printf(\"%u\", x >> 31);\n}\n```",
+     "options": [
+      "`0`",
+      "`31`",
+      "`-1`",
+      "`1`"
+     ],
+     "answer": 3,
+     "solution": "For unsigned values `>>` is a logical shift: the top bit moves to bit 0.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "5.13",
+     "type": "nat",
+     "marks": 1,
+     "question": "For `a = 12`, `b = 10`, the value of `(a & b) * 2 + (a ^ b)` is ______.",
+     "answer": 22,
+     "solution": "`a + b = 2(a&b) + (a^b)`: (8)·2 + 6 = 22 = 12 + 10."
+    }
+   ]
+  },
+  {
+   "id": "ch6",
+   "title": "Chapter 6 — Undefined, Unspecified and Implementation-Defined Behaviour; Sequence Points",
+   "short": "UB & Sequence Points",
+   "content": "**Before computing any output, ask: \"Is this code even well-defined?\"**\n\n### 6.1 The three categories\n| Category | Meaning | Examples |\n|---|---|---|\n| **Undefined behaviour (UB)** | The standard imposes **no** requirements; anything may happen | signed overflow, out-of-bounds access, NULL dereference, use after `free`, modifying an object twice without a sequence point, division by zero (integers), shifting by ≥ width, modifying a string literal, reading an uninitialized *automatic* variable (indeterminate value) |\n| **Unspecified behaviour** | Several outcomes allowed; implementation need **not** document which | order of evaluation of function arguments, order of evaluation of operands of `+`, `f() + g()` |\n| **Implementation-defined** | Implementation picks one outcome and **documents** it | `sizeof(int)`, signedness of plain `char`, right shift of negative signed values, signed conversion of an out-of-range value |\n\n`undefined ≠ unspecified ≠ implementation-defined`. When you spot UB: **STOP calculating** — the answer is \"undefined / compiler dependent / no deterministic output\".\n\n### 6.2 Sequence points (summary)\nA *sequence point* is a point where all earlier side effects are complete and no later ones have begun. They occur:\n- at the end of a **full expression** (`;`, the controlling expression of `if/while/for/switch`, `return` expression)\n- after the first operand of `&&`, `||`, `?:`, and `,` (the comma **operator**)\n- after all arguments of a function call have been evaluated (before the call), and at function return\n\nBetween two sequence points an object may be modified **at most once**, and if it is modified, its prior value may be read **only to determine the new value**. Otherwise → UB.\n\n| Expression | Verdict |\n|---|---|\n| `i = i++;` `i = i++ + ++i;` `a[i] = i++;` `i++ + i++;` | UB |\n| `printf(\"%d %d\", i++, i++);` | UB / unspecified order — no portable answer |\n| `i++ && i++` | defined (sequence point at `&&`) |\n| `(i++, i++)` | defined (comma operator) |\n| `x = (y = 5) + 1;` | defined |\n| `f() + g()` | defined but **order of calls unspecified** |\n\n### 6.3 Evaluation order\nNever assume left-to-right for operands of `+ - * / == &` or for function arguments. Only `&&`, `||`, `?:` and `,` guarantee left-to-right.\n\n### 6.4 Quick UB list for GATE\n1. Array index out of bounds (including writing `a[n]`). *Forming* the one-past-the-end pointer is fine; dereferencing it is UB.\n2. Dereferencing NULL / wild / dangling pointer.\n3. Signed integer overflow (`INT_MAX + 1`).\n4. Integer division by zero (`x / 0`, `x % 0`).\n5. Unsequenced modification of a scalar.\n6. Using an indeterminate (uninitialized local) value.\n7. Modifying a string literal or a `const` object through a cast.\n8. `free()` of a pointer not from `malloc`, or double free.\n9. Mismatched `printf` format specifier / missing arguments.\n10. Shifts with a count ≥ width or negative.\n11. Reading a **global/static** variable that was not initialized → *well-defined* (it is 0).",
+   "questions": [
+    {
+     "id": "6.1",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following is **correctly** classified?",
+     "options": [
+      "Signed integer overflow — implementation-defined",
+      "Right shift of a negative signed int — undefined",
+      "Order of evaluation of function arguments — unspecified",
+      "`sizeof(int)` — undefined"
+     ],
+     "answer": 2,
+     "solution": "(A) is UB, (B) is implementation-defined, (D) is implementation-defined."
+    },
+    {
+     "id": "6.2",
+     "type": "mcq",
+     "marks": 2,
+     "question": "After `int i = 5; i = i++ + ++i;` the value of `i` is:",
+     "options": [
+      "12",
+      "13",
+      "14",
+      "Undefined — no portable answer"
+     ],
+     "answer": 3,
+     "solution": "`i` is modified twice between sequence points → UB. Never pick a number."
+    },
+    {
+     "id": "6.3",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following expressions has **well-defined** behaviour (`int x = 0, a[5];`)?",
+     "options": [
+      "`x = x++;`",
+      "`x = x++ + x++;`",
+      "`x++ && x++;`",
+      "`a[x] = x++;`"
+     ],
+     "answer": 2,
+     "solution": "`&&` introduces a sequence point after its left operand. (A), (B), (D) modify and read `x` unsequenced."
+    },
+    {
+     "id": "6.4",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following is **NOT** undefined behaviour?",
+     "options": [
+      "Accessing `a[5]` where `int a[5];`",
+      "Reading an uninitialized *global* `int g;`",
+      "`INT_MAX + 1`",
+      "Calling `free(p)` twice on the same `p`"
+     ],
+     "answer": 1,
+     "solution": "Objects with static storage duration are zero-initialized, so reading them is fine."
+    },
+    {
+     "id": "6.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i = 1;\n    int r = (i++, i++) + 0;\n    printf(\"%d %d\", r, i);\n}\n```",
+     "options": [
+      "`2 3`",
+      "`1 3`",
+      "`2 2`",
+      "`1 2`"
+     ],
+     "answer": 0,
+     "solution": "Comma operator: first `i++` yields 1 (i=2), second `i++` yields 2 (i=3). Value of the comma expression is 2.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "6.6",
+     "type": "mcq",
+     "marks": 2,
+     "question": "In `int a = f() + g();` where `f` prints 'F' and `g` prints 'G', the possible output(s):",
+     "options": [
+      "Always FG",
+      "Always GF",
+      "FG or GF — compiler dependent",
+      "Undefined behaviour"
+     ],
+     "answer": 2,
+     "solution": "Order of evaluation of operands of `+` is unspecified. The calls do not overlap (function calls are indeterminately sequenced), so it is *not* UB — just unspecified."
+    },
+    {
+     "id": "6.7",
+     "type": "mcq",
+     "marks": 1,
+     "question": "`printf(\"%d\", 5 / 0);` — what does the C standard say?",
+     "options": [
+      "Prints 0",
+      "Prints infinity",
+      "Undefined behaviour",
+      "Implementation-defined"
+     ],
+     "answer": 2,
+     "solution": "Integer division by zero is UB. (Floating division by zero is separately defined by IEEE-754 on most platforms.)"
+    },
+    {
+     "id": "6.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "With the global declaration `int x = 5;`, which of the following statements is **guaranteed** to print `5`?",
+     "options": [
+      "`printf(\"%d\", x++ + x);`",
+      "`printf(\"%d\", x == 5 ? x : 0);`",
+      "`printf(\"%d\", x = x++);`",
+      "`printf(\"%d %d\", x, x++);`"
+     ],
+     "answer": 1,
+     "solution": "(A), (C), (D) read/modify `x` unsequenced → UB. In (B) `x == 5` is the first operand of `?:` (sequence point) and only `x` is read afterwards → prints 5."
+    },
+    {
+     "id": "6.9",
+     "type": "mcq",
+     "marks": 1,
+     "question": "State TRUE or FALSE: \"If a program contains undefined behaviour, the C standard guarantees the program will crash.\"",
+     "options": [
+      "TRUE",
+      "FALSE"
+     ],
+     "answer": 1,
+     "solution": "UB means *no* guarantees at all — it may crash, print garbage, appear to work, or be optimized away."
+    }
+   ]
+  },
+  {
+   "id": "ch7",
+   "title": "Chapter 7 — Control Flow: if, switch, Loops, break, continue, goto",
+   "short": "Control Flow",
+   "content": "### 7.1 `if` / `if-else`\n```c\nif (cond) stmt1; else stmt2;\n```\n- Condition is any scalar: **0 = false, non-zero = true** (`if (-10)` is true).\n- `if (x = 5)` is an **assignment** (always true here), not a comparison.\n- **Dangling else:** `else` binds to the **nearest** unmatched `if`, regardless of indentation.\n- A stray `;` after `if (...)`, `for (...)`, `while (...)` makes an empty body.\n\n### 7.2 `switch`\n```c\nswitch (expr) {          // expr must be an integer type (int, char, enum…), not float\n    case 1: ...; break;  // case labels must be integer CONSTANT expressions, distinct\n    default: ...;        // can appear anywhere; executed only if no case matches\n}\n```\n- **No automatic `break`** → execution **falls through** into later cases (including `default` if it follows).\n- If no case matches and there is a `default` in the middle, execution starts there and continues downward.\n- `break` leaves the `switch`; `continue` inside a switch applies to the enclosing loop.\n\n### 7.3 Loops\n| Loop | Test | Minimum executions |\n|---|---|---|\n| `for (init; cond; update)` | before body | 0 |\n| `while (cond)` | before body | 0 |\n| `do { } while (cond);` | after body | **1** |\n\n`for` order: `init → cond → body → update → cond → body → …`. Any of the three parts may be empty; `for(;;)` is an infinite loop (empty condition = true).\n\n### 7.4 `break` and `continue`\n- `break`: exits the **nearest** enclosing loop or switch only.\n- `continue`: skips the rest of the current iteration. In a `for` loop the **update expression still runs**; in `while`/`do-while` control goes to the condition test.\n\n### 7.5 `goto`\n`goto label;` jumps to `label:` in the same function. Legal but rarely used; jumping into the scope of a variable-length array is invalid.\n\n### 7.6 Counting loop iterations (very common in GATE)\n| Pattern | Executions of body |\n|---|---|\n| `for (i=0; i<n; i++)` | n |\n| `for (i=0; i<n; i+=k)` | ⌈n/k⌉ |\n| `for (i=1; i<=n; i*=2)` | ⌊log₂ n⌋ + 1 |\n| `for (i=n; i>0; i/=2)` | ⌊log₂ n⌋ + 1 |\n| nested `for i<n { for j<n }` | n² |\n| `for i<n { for j<i }` | n(n−1)/2 |\n| `for (i=1;i<=n;i*=2) for (j=0;j<i;j++)` | 1+2+4+…≤n ≈ 2n−1 for n a power of 2 |\n\n**Floating-point loop counters** (e.g. `for (f=0; f!=1.0; f+=0.1)`) may never hit the exact value → infinite loop.",
+   "questions": [
+    {
+     "id": "7.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    switch (2) {\n        case 1: printf(\"1\");\n        case 2: printf(\"2\");\n        case 3: printf(\"3\"); break;\n        default: printf(\"D\");\n    }\n}\n```",
+     "options": [
+      "`2`",
+      "`123`",
+      "`23`",
+      "`3`"
+     ],
+     "answer": 2,
+     "solution": "Matches `case 2`, then falls through `case 3` until `break`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "7.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    switch (5) {\n        default: printf(\"D\");\n        case 1:  printf(\"1\"); break;\n        case 2:  printf(\"2\");\n    }\n}\n```",
+     "options": [
+      "`D`",
+      "`D1`",
+      "`D12`",
+      "No output"
+     ],
+     "answer": 1,
+     "solution": "No case matches 5 → jump to `default`, which falls through into `case 1` and stops at its `break`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "7.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i;\n    for (i = 0; i < 5; i++) {\n        if (i == 2) continue;\n        printf(\"%d\", i);\n    }\n}\n```",
+     "options": [
+      "`0134`",
+      "`01234`",
+      "`0123`",
+      "`014`"
+     ],
+     "answer": 0,
+     "solution": "`continue` skips only the print for i=2; `i++` still executes.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "7.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i;\n    for (i = 0; i < 3; i++);\n    printf(\"%d\", i);\n}\n```",
+     "options": [
+      "`3`",
+      "`0`",
+      "`2`",
+      "`012`"
+     ],
+     "answer": 0,
+     "solution": "The stray `;` makes the body empty; after the loop `i` = 3.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "7.5",
+     "type": "nat",
+     "marks": 2,
+     "question": "The value of `cnt` printed is ______.\n\n```c\nint main() {\n    int i, j, cnt = 0;\n    for (i = 1; i <= 16; i *= 2)\n        for (j = 0; j < i; j++)\n            cnt++;\n    printf(\"%d\", cnt);\n}\n```",
+     "answer": 31,
+     "solution": "i = 1,2,4,8,16 → inner runs 1+2+4+8+16 = 31 times.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "7.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i = 3;\n    while (i--) printf(\"%d\", i);\n}\n```",
+     "options": [
+      "`321`",
+      "`210`",
+      "`3210`",
+      "`10`"
+     ],
+     "answer": 1,
+     "solution": "Test uses the old value, then decrements: tests 3,2,1 pass (prints 2,1,0), test 0 fails.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "7.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i = 10;\n    do { printf(\"%d\", i); } while (i < 5);\n}\n```",
+     "options": [
+      "No output",
+      "Infinite loop",
+      "`10`",
+      "`11`"
+     ],
+     "answer": 2,
+     "solution": "`do-while` executes its body once before testing.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "7.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a = 1, b = 0;\n    if (a)\n        if (b) printf(\"X\");\n        else   printf(\"Y\");\n}\n```",
+     "options": [
+      "`Y`",
+      "`X`",
+      "`XY`",
+      "No output"
+     ],
+     "answer": 0,
+     "solution": "`else` pairs with the nearest `if (b)`. Since a=1 and b=0, prints Y.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "7.9",
+     "type": "nat",
+     "marks": 2,
+     "question": "Numbers in 1..100 divisible by 3 **or** 5: the final value of `cnt` is ______.\n\n```c\nint main() {\n    int i, cnt = 0;\n    for (i = 1; i <= 100; i++)\n        if (i % 3 == 0 || i % 5 == 0) cnt++;\n    printf(\"%d\", cnt);\n}\n```",
+     "answer": 47,
+     "solution": "33 + 20 − 6 (multiples of 15) = 47.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "7.10",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i = 0, x = 0;\n    for (;;) {\n        if (++i > 5) break;\n        if (i % 2) continue;\n        x += i;\n    }\n    printf(\"%d\", x);\n}\n```",
+     "options": [
+      "`9`",
+      "`6`",
+      "`15`",
+      "`12`"
+     ],
+     "answer": 1,
+     "solution": "Even i in 1..5: 2 + 4 = 6; the loop breaks at i = 6.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "7.11",
+     "type": "nat",
+     "marks": 2,
+     "question": "Why is this loop a bad idea, and what is printed? (the guard `n < 20` is only a safety net)\n\n```c\nint main() {\n    float f; int n = 0;\n    for (f = 0.0f; f != 1.0f && n < 20; f += 0.1f) n++;\n    printf(\"%d\", n);\n}\n```",
+     "answer": 20,
+     "solution": "Adding 0.1f ten times gives about 1.0000001, never exactly 1.0f, so `f != 1.0f` never becomes false and only the guard stops the loop. Never use `==`/`!=` on floating counters.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    }
+   ]
+  },
+  {
+   "id": "ch8",
+   "title": "Chapter 8 — Input / Output: printf, scanf and Friends",
+   "short": "Input / Output",
+   "content": "### 8.1 `printf` format specifiers\n| Spec | Type | Spec | Type |\n|---|---|---|---|\n| `%d` / `%i` | `int` | `%u` | `unsigned int` |\n| `%ld` / `%lld` | `long` / `long long` | `%lu` / `%zu` | `unsigned long` / `size_t` |\n| `%f` | `double` (default 6 decimals) | `%e` / `%g` | scientific / shortest |\n| `%c` | `char` (as character) | `%s` | `char *` string |\n| `%x` / `%X` | unsigned hex | `%o` | unsigned octal |\n| `%p` | pointer (`void *`) | `%%` | a literal `%` |\n\n**Field options:** `%5d` (width 5, right-aligned), `%-5d` (left-aligned), `%05d` (zero-padded), `%.2f` (2 decimals), `%.3s` (at most 3 chars of a string), `%*d` (width taken from an argument).\n\n- **`printf` returns the number of characters printed** (negative on error): `printf(\"%d\", printf(\"123\"))` prints `1233`.\n- Using the wrong specifier or passing too few arguments is **UB**.\n- `%d` with `'A'` prints 65; `%c` with 65 prints `A`; `%u` with `−1` prints `4294967295` (32-bit).\n- `puts(s)` appends a newline; `putchar(c)` prints one char.\n\n### 8.2 `scanf`\n- Needs **addresses**: `scanf(\"%d\", &x);`. For arrays of char, the array name already decays to an address: `scanf(\"%19s\", s);` (no `&`).\n- `%d %f %c %s`: for `double` use **`%lf`** in `scanf` (but `%f` in `printf`); `%f` in scanf expects `float *`.\n- `%s` stops at whitespace; `%c` reads **one character including whitespace/newline** — the classic trap after `scanf(\"%d\")` leaves the `'\\n'` in the buffer. Use `\" %c\"` (leading space) to skip whitespace.\n- **Return value:** number of items successfully assigned (or `EOF`). `scanf(\"%d%d\", &a, &b)` returns 2 when both are read.\n- `%*d` reads and **discards** an integer; `%3d` reads at most 3 characters.\n\n### 8.3 Character I/O\n`getchar()`, `putchar()`, `fgetc/fputc`, `gets` (removed in C11 — unsafe), `fgets(buf, n, fp)` reads at most n−1 chars and keeps the `'\\n'`.\n`getchar()` returns **`int`** so that `EOF` (−1) can be distinguished from valid chars.",
+   "questions": [
+    {
+     "id": "8.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%d\", printf(\"%d\", 123));\n}\n```",
+     "options": [
+      "`3123`",
+      "`123`",
+      "`1234`",
+      "`1233`"
+     ],
+     "answer": 3,
+     "solution": "The inner `printf` prints `123` and returns 3; the outer then prints `3`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "8.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output? (shown with `|` separators)\n\n```c\nint main() {\n    printf(\"%5d|%-5d|%05d\", 42, 42, 42);\n}\n```\n\n*(`·` stands for a space, `|` is a literal bar.)*",
+     "options": [
+      "`42|42|42`",
+      "`···42|···42|00042`",
+      "`42···|42···|00042`",
+      "`···42|42···|00042`"
+     ],
+     "answer": 3,
+     "solution": "Width 5 right-justified, left-justified, and zero-padded.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "8.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%.2f %x %o %c %.3s\", 3.14159, 255, 8, 65, \"GATE2027\");\n}\n```",
+     "options": [
+      "`3.14 ff 8 A GAT`",
+      "`3.14 ff 10 A GAT`",
+      "`3.14 ff 10 65 GAT`",
+      "`3.14 ff 10 A GATE2027`"
+     ],
+     "answer": 1,
+     "solution": "Two decimals, hex of 255 = ff, octal of 8 = 10, char 65 = A, at most 3 chars of the string.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "8.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    printf(\"%s|%d|%c\", \"GATE\" + 1, '0', \"abc\"[1]);\n}\n```",
+     "options": [
+      "`GATE|48|b`",
+      "`ATE|0|b`",
+      "`ATE|48|a`",
+      "`ATE|48|b`"
+     ],
+     "answer": 3,
+     "solution": "`\"GATE\"+1` points to `ATE`. `'0'` is ASCII 48. `\"abc\"[1]` is `'b'`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "8.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "Input is `10 20`. What is printed?\n\n```c\nint main() {\n    int a, b;\n    int n = scanf(\"%d %d\", &a, &b);\n    printf(\"%d %d\", n, a + b);\n}\n```",
+     "options": [
+      "`2 30`",
+      "`30 2`",
+      "`1 30`",
+      "`2 1020`"
+     ],
+     "answer": 0,
+     "solution": "`scanf` returns the number of successful conversions = 2.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "8.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "Input is the two lines `5` and `A`. What is printed?\n\n```c\nint main() {\n    int n; char c;\n    scanf(\"%d\", &n);\n    scanf(\"%c\", &c);\n    printf(\"%d\", c);\n}\n```",
+     "options": [
+      "`65`",
+      "`5`",
+      "`10`",
+      "`0`"
+     ],
+     "answer": 2,
+     "solution": "`%d` leaves the newline in the buffer; `%c` reads that `'\\n'` (ASCII 10), not `'A'`. Fix: `scanf(\" %c\", &c)`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "8.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "Input is `abc`. What does the program print?\n\n```c\nint main() {\n    int x = 99;\n    int r = scanf(\"%d\", &x);\n    printf(\"%d %d\", r, x);\n}\n```",
+     "options": [
+      "`0 0`",
+      "`1 99`",
+      "`-1 99`",
+      "`0 99`"
+     ],
+     "answer": 3,
+     "solution": "No conversion succeeds: `scanf` returns 0 and leaves `x` untouched.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "8.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output? (32-bit `int`)\n\n```c\nint main() {\n    printf(\"%u %d\", -1, 077);\n}\n```",
+     "options": [
+      "`-1 63`",
+      "`4294967295 77`",
+      "`4294967295 63`",
+      "`-1 77`"
+     ],
+     "answer": 2,
+     "solution": "−1 reinterpreted as unsigned; `077` is octal 63.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "8.9",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which statement about `scanf(\"%s\", s)` with `char s[20];` is correct?",
+     "options": [
+      "It needs `&s`",
+      "It reads a whole line including spaces",
+      "It stops at the first whitespace and can overflow `s` for long input",
+      "It returns the string length"
+     ],
+     "answer": 2,
+     "solution": "`s` already decays to `char *`; `%s` stops at whitespace; no bounds check unless a width is given (`%19s`)."
+    },
+    {
+     "id": "8.10",
+     "type": "mcq",
+     "marks": 1,
+     "question": "In `scanf`, to read a `double` you must use:",
+     "options": [
+      "`%f`",
+      "`%lf`",
+      "`%d`",
+      "`%e` only"
+     ],
+     "answer": 1,
+     "solution": "`scanf` `%f` stores a `float`; `%lf` stores a `double`. (`printf` uses `%f` for both because floats are promoted to double.)"
+    }
+   ]
+  },
+  {
+   "id": "ch9",
+   "title": "Chapter 9 — Functions, Parameter Passing and Recursion",
+   "short": "Functions & Recursion",
+   "content": "### 9.1 Declaration, definition, call\n```c\nint add(int, int);              // declaration / prototype\nint add(int a, int b) { return a + b; }   // definition\nx = add(2, 3);                  // call\n```\n- A function must be declared before use (C99+); in old C an undeclared function is assumed to return `int`.\n- `void f(void)` = no parameters; `void f()` = *unspecified* parameters in old C.\n- Return type `void` → no value. Falling off the end of a non-void function and using the result is UB.\n\n### 9.2 Everything in C is pass-by-value\n```c\nvoid f(int x)  { x = 100; }       // caller's variable unchanged\nvoid g(int *p) { *p = 100; }      // g(&x) changes x ... but the pointer itself is still a COPY\n```\n- To modify the caller's *pointer* you need a pointer to pointer (`int **`).\n- **Arrays** are passed as pointers to their first element: `void f(int a[])` ≡ `void f(int *a)`, so `sizeof(a)` inside is the size of a **pointer**. Changes to elements are visible to the caller.\n- **Structures** are passed (and returned) by value — the whole struct is copied (arrays inside it are copied too).\n\n### 9.3 Recursion\nEvery recursive function needs a **base case** and a **recursive case** that progresses toward it. Each active call has its own **stack frame** (parameters, locals, return address) → space cost = depth.\n\n| Recurrence | Time |\n|---|---|\n| `T(n) = T(n−1) + O(1)` | O(n) |\n| `T(n) = T(n−1) + O(n)` | O(n²) |\n| `T(n) = 2T(n−1) + O(1)` | O(2ⁿ) |\n| `T(n) = T(n/2) + O(1)` | O(log n) |\n| `T(n) = 2T(n/2) + O(n)` | O(n log n) |\n| `T(n) = T(n−1) + T(n−2) + O(1)` | O(φⁿ) ≈ O(1.618ⁿ) |\n\n**Tracing technique:** write each call with its arguments; record what is printed *before* the recursive call (pre-order) and *after* it (post-order) separately.\n\n- Tail recursion: the recursive call is the last action (no pending work); compilers may reuse the frame, but C does **not** guarantee tail-call optimization.\n- Missing/unreachable base case → infinite recursion → stack overflow.\n\n**Number of calls** for naive Fibonacci with base cases `f(0)=f(1)=1`: `C(n) = 1 + C(n−1) + C(n−2)`, C(0)=C(1)=1 → 1, 1, 3, 5, 9, 15, 25 …\n\n### 9.3a Famous recursive functions\n- Factorial: `n * fact(n−1)`\n- GCD: `gcd(a,b) = b == 0 ? a : gcd(b, a % b)`\n- Power: `pow(x, n)` with `n/2` splitting → O(log n)\n- Ackermann: `A(0,n)=n+1; A(m,0)=A(m−1,1); A(m,n)=A(m−1, A(m,n−1))`; `A(2,2)=7`\n- Tower of Hanoi: `2ⁿ − 1` moves.\n\n### 9.4 Variadic functions (awareness)\n`int printf(const char *fmt, ...)` uses `<stdarg.h>` (`va_list`, `va_start`, `va_arg`, `va_end`). The callee cannot know the number/types of arguments — which is why wrong format specifiers are UB.\n\n### 9.5 `main` and `exit`\n`return n;` from `main` ≡ `exit(n)`. `exit()` flushes buffers and runs `atexit` handlers; `_exit/abort` do not.",
+   "questions": [
+    {
+     "id": "9.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nvoid f(int x) { x = 100; }\nint main() {\n    int a = 5;\n    f(a);\n    printf(\"%d\", a);\n}\n```",
+     "options": [
+      "`100`",
+      "`0`",
+      "`5`",
+      "Compile error"
+     ],
+     "answer": 2,
+     "solution": "`x` is a copy of `a`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "9.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nvoid swap(int *a, int *b) { int t = *a; *a = *b; *b = t; }\nint main() {\n    int x = 3, y = 7;\n    swap(&x, &y);\n    printf(\"%d %d\", x, y);\n}\n```",
+     "options": [
+      "`3 7`",
+      "`7 7`",
+      "`7 3`",
+      "`3 3`"
+     ],
+     "answer": 2,
+     "solution": "Addresses are passed, so the caller's variables are swapped.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "9.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint f(int n) {\n    if (n <= 1) return 1;\n    return f(n - 1) + f(n - 2);\n}\nint main() { printf(\"%d\", f(6)); }\n```",
+     "options": [
+      "`8`",
+      "`13`",
+      "`21`",
+      "`12`"
+     ],
+     "answer": 1,
+     "solution": "f(2)=2, f(3)=3, f(4)=5, f(5)=8, f(6)=13.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "9.4",
+     "type": "nat",
+     "marks": 2,
+     "question": "For the function above, how many calls to `f` (including the first) are made by `f(5)`?",
+     "answer": 15,
+     "solution": "C(n) = 1 + C(n−1) + C(n−2) with C(0)=C(1)=1 → 1,1,3,5,9,15."
+    },
+    {
+     "id": "9.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nvoid f(int n) {\n    if (n > 0) {\n        f(n - 1);\n        printf(\"%d\", n);\n        f(n - 1);\n    }\n}\nint main() { f(3); }\n```",
+     "options": [
+      "`1213121`",
+      "`123`",
+      "`321`",
+      "`121`"
+     ],
+     "answer": 0,
+     "solution": "Each f(k) prints f(k−1), k, f(k−1): f(1)=1, f(2)=121, f(3)=1213121.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "9.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nvoid f(int n) {\n    if (n == 0) return;\n    printf(\"%d \", n);\n    f(n - 1);\n    printf(\"%d \", n);\n}\nint main() { f(3); }\n```",
+     "options": [
+      "`3 2 1`",
+      "`3 2 1 1 2 3`",
+      "`1 2 3`",
+      "`1 2 3 3 2 1`"
+     ],
+     "answer": 1,
+     "solution": "Pre-order prints on the way down (3 2 1), post-order on the way back (1 2 3).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "9.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What does `f(1234)` return?\n\n```c\nint f(int x) {\n    if (x == 0) return 0;\n    return x % 10 + f(x / 10);\n}\nint main() { printf(\"%d\", f(1234)); }\n```",
+     "options": [
+      "`1234`",
+      "`24`",
+      "`4`",
+      "`10`"
+     ],
+     "answer": 3,
+     "solution": "Sum of the digits: 4+3+2+1.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "9.8",
+     "type": "nat",
+     "marks": 2,
+     "question": "The value of `A(2, 2)` is ______.\n\n```c\nint A(int m, int n) {\n    if (m == 0) return n + 1;\n    if (n == 0) return A(m - 1, 1);\n    return A(m - 1, A(m, n - 1));\n}\nint main() { printf(\"%d\", A(2, 2)); }\n```",
+     "answer": 7,
+     "solution": "A(2,n) = 2n + 3, so A(2,2) = 7.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "9.9",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "Assume `sizeof(int)=4`, 64-bit pointers. What is printed?\n\n```c\nvoid f(int a[10]) { printf(\"%zu \", sizeof(a)); }\nint main() {\n    int a[10];\n    f(a);\n    printf(\"%zu\", sizeof(a));\n}\n```",
+     "options": [
+      "`40 40`",
+      "`8 8`",
+      "`4 40`",
+      "`8 40`"
+     ],
+     "answer": 3,
+     "solution": "Inside `f`, `a` is really `int *` (8 bytes). In `main` it is a real array (40 bytes).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "9.10",
+     "type": "nat",
+     "marks": 1,
+     "question": "With `f(1) = 0` and `f(n) = 1 + f(n/2)` (integer division), the value returned by `f(64)` is ______.",
+     "answer": 6,
+     "solution": "64 → 32 → 16 → 8 → 4 → 2 → 1: six halvings."
+    },
+    {
+     "id": "9.11",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint f(int n) { return n > 0 ? n + f(n - 1) : 0; }\nint main() { printf(\"%d\", f(5)); }\n```",
+     "options": [
+      "`10`",
+      "`15`",
+      "`14`",
+      "`5`"
+     ],
+     "answer": 1,
+     "solution": "5+4+3+2+1+0.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "9.12",
+     "type": "mcq",
+     "marks": 1,
+     "question": "The time complexity of `void g(int n) { if (n <= 1) return; g(n-1); g(n-1); }` is:",
+     "options": [
+      "O(n)",
+      "O(n²)",
+      "O(2ⁿ)",
+      "O(log n)"
+     ],
+     "answer": 2,
+     "solution": "T(n) = 2T(n−1) + 1 → 2ⁿ."
+    },
+    {
+     "id": "9.13",
+     "type": "mcq",
+     "marks": 1,
+     "question": "A recursive function lacking a base case will typically:",
+     "options": [
+      "Return 0",
+      "Run forever with constant stack",
+      "Overflow the stack (crash)",
+      "Be rejected by the compiler"
+     ],
+     "answer": 2,
+     "solution": "Each call pushes a new frame; the stack is finite."
+    }
+   ]
+  },
+  {
+   "id": "ch10",
+   "title": "Chapter 10 — Storage Classes, Scope, Lifetime and Linkage",
+   "short": "Storage Classes",
+   "content": "Four **independent** properties of an identifier/object — never mix them up:\n\n| Property | Question it answers | Values |\n|---|---|---|\n| **Scope** | Where can the name be used? | block, file, function (labels), function-prototype |\n| **Storage duration (lifetime)** | How long does the object exist? | automatic, static, allocated (heap), thread |\n| **Linkage** | Do declarations in different places refer to the same entity? | none, internal, external |\n| **Type** | What is it? | … |\n\n`scope ≠ lifetime`, `scope ≠ linkage`.\n\n### 10.1 Storage-class specifiers\n| Specifier | Where | Lifetime | Linkage | Default init |\n|---|---|---|---|---|\n| `auto` (default for locals) | block | automatic: block entry → exit | none | **indeterminate** (garbage) |\n| `register` | block | automatic | none | indeterminate; **cannot take `&`** of it |\n| `static` local | block | **whole program** (initialized once) | none | **0** |\n| `static` global/function | file | whole program | **internal** (this file only) | 0 |\n| global (no specifier) | file | whole program | **external** | **0** |\n| `extern` | declares an object/function defined elsewhere | — | external | — |\n\n- `static` locals are initialized **once**, before the program starts, with a **constant expression**, and keep their value between calls.\n- Globals and statics are zero-initialized; automatic locals are **not**.\n- `extern int x;` is a *declaration*; `int x;` at file scope is a *definition* (tentative).\n- Only one definition of an external object across the program (one-definition rule); any number of declarations.\n\n### 10.2 Scope rules\n- **Block scope:** a name declared in `{ }` is visible from its declaration to the end of the block; an inner declaration **hides** (shadows) an outer one.\n- **File scope:** declared outside all functions → visible from the declaration to the end of the file.\n- A local with the same name as a global hides the global (use `extern int x;` inside the block to reach it).\n- C99: `for (int i = 0; …)` — `i` has scope limited to the loop.\n- Labels have function scope (usable by `goto` before or after definition).\n\n### 10.3 Lifetime examples\n```c\nint *f(void) { int x = 5; return &x; }     // dangling: x's lifetime ended\nint *g(void) { static int x = 5; return &x; } // OK: static lifetime\n```\n`static` local: **block scope + static lifetime** — the key GATE combination.\n\n### 10.4 Declaration vs definition\nDeclaration tells the compiler about a name/type; definition allocates storage (object) or supplies the body (function). `extern int x;` → declaration only. `int x = 5;` → definition.",
+   "questions": [
+    {
+     "id": "10.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nvoid f() {\n    static int c = 0;\n    int a = 0;\n    c++; a++;\n    printf(\"%d %d \", c, a);\n}\nint main() { f(); f(); f(); }\n```",
+     "options": [
+      "`1 1 2 1 3 1`",
+      "`1 1 1 1 1 1`",
+      "`1 1 2 2 3 3`",
+      "`1 1 1 2 1 3`"
+     ],
+     "answer": 0,
+     "solution": "`c` is static (initialized once, persists); `a` is re-created as 0 on each call.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "10.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint g;\nint main() {\n    printf(\"%d\", g);\n}\n```",
+     "options": [
+      "Garbage value",
+      "Compile error",
+      "`1`",
+      "`0`"
+     ],
+     "answer": 3,
+     "solution": "Globals have static storage duration → zero-initialized.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "10.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint x = 5;\nint main() {\n    int x = 10;\n    {\n        int x = 20;\n        printf(\"%d \", x);\n    }\n    printf(\"%d \", x);\n}\n```",
+     "options": [
+      "`20 5`",
+      "`10 20`",
+      "`20 10`",
+      "`20 20`"
+     ],
+     "answer": 2,
+     "solution": "Each inner declaration hides the outer one within its block.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "10.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint f() {\n    static int x = 5;\n    x += 1;\n    return x;\n}\nint main() { printf(\"%d\", f() + f()); }\n```",
+     "options": [
+      "`12`",
+      "`14`",
+      "`13`",
+      "`11`"
+     ],
+     "answer": 2,
+     "solution": "Calls return 6 and 7 (in either order — the sum is the same). `x` is initialized only once.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "10.5",
+     "type": "mcq",
+     "marks": 1,
+     "question": "A `static` local variable has:",
+     "options": [
+      "Block scope and automatic lifetime",
+      "Block scope and static lifetime",
+      "File scope and static lifetime",
+      "File scope and automatic lifetime"
+     ],
+     "answer": 1,
+     "solution": "It can be named only inside its block but lives for the whole program."
+    },
+    {
+     "id": "10.6",
+     "type": "mcq",
+     "marks": 1,
+     "question": "A global declared `static int x;` in file `a.c` can be accessed from `b.c` via `extern int x;`.",
+     "options": [
+      "True",
+      "False — it has internal linkage"
+     ],
+     "answer": 1,
+     "solution": "`static` at file scope gives internal linkage — the name is private to its translation unit."
+    },
+    {
+     "id": "10.7",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which declaration makes `&x` illegal?",
+     "options": [
+      "`static int x;`",
+      "`register int x;`",
+      "`auto int x;`",
+      "`extern int x;`"
+     ],
+     "answer": 1,
+     "solution": "A `register` object has no guaranteed address, so the address-of operator cannot be applied."
+    },
+    {
+     "id": "10.8",
+     "type": "mcq",
+     "marks": 2,
+     "question": "Which function returns a valid pointer that stays usable after the call?\n\n```c\nint *f1() { int x = 1; return &x; }\nint *f2() { static int x = 1; return &x; }\nint *f3() { int x = 1; static int *p; p = &x; return p; }\n```",
+     "options": [
+      "f1 only",
+      "f2 only",
+      "f1 and f3",
+      "f2 and f3"
+     ],
+     "answer": 1,
+     "solution": "f1 and f3 return the address of an automatic variable whose lifetime ends at return (dangling). f2's variable is static."
+    },
+    {
+     "id": "10.9",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i = 5;\n    for (int i = 0; i < 2; i++) printf(\"%d\", i);\n    printf(\"%d\", i);\n}\n```",
+     "options": [
+      "`01`",
+      "`015`",
+      "`010`",
+      "`005`"
+     ],
+     "answer": 1,
+     "solution": "The loop's `i` shadows the outer one only inside the `for`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "10.10",
+     "type": "mcq",
+     "marks": 1,
+     "question": "What is the difference in the **default initial value** of `int a;` declared (i) at file scope, (ii) inside a function, (iii) as `static` inside a function?",
+     "options": [
+      "0, 0, 0",
+      "0, garbage, 0",
+      "garbage, garbage, 0",
+      "0, garbage, garbage"
+     ],
+     "answer": 1,
+     "solution": "Static storage duration (file scope or `static`) → 0; automatic → indeterminate."
+    }
+   ]
+  },
+  {
+   "id": "ch11",
+   "title": "Chapter 11 — Arrays (1-D, Multi-Dimensional, Address Calculation)",
+   "short": "Arrays",
+   "content": "### 11.1 Basics\n```c\nint a[5];                   // valid indexes 0..4 — a[5] is out of bounds (UB)\nint a[5] = {1,2,3,4,5};\nint a[5] = {1,2};           // rest are zero → 1 2 0 0 0\nint a[]  = {10,20,30,40};   // size inferred = 4\nint a[5] = {[2] = 7};       // C99 designated initializer → 0 0 7 0 0\nint a[5] = {0};             // all zeros\n```\nNumber of elements: `sizeof(a) / sizeof(a[0])`  (works only on a real array, not on a pointer/parameter).\nThere is no bounds checking in C.\n\n### 11.2 Array ≠ pointer (decay)\nIn most expressions an array name **decays** to a pointer to its first element (`a` ⟶ `&a[0]`, type `int *`). The exceptions are:\n1. operand of **`sizeof`** → total array size\n2. operand of **`&`** → pointer to the **whole array** (`int (*)[5]`)\n3. a string literal used to **initialize** a char array\n\n`sizeof(a)` = array size; `sizeof(a + 0)` = pointer size. `&a` and `a` have the same address but different types (`&a + 1` skips the whole array).\n\n### 11.3 Indexing = pointer arithmetic\n`a[i]` ≡ `*(a + i)` ≡ `*(i + a)` ≡ `i[a]`.\nFor `int a[2][3]`:\n- `a[i][j]` ≡ `*(*(a+i)+j)`\n- `a` has type `int (*)[3]`; `a+1` moves by **one row** (3 ints)\n- `*a` / `a[0]` has type `int *`; `*a + 1` moves by one int.\n- `sizeof(a)` = 24, `sizeof(a[0])` = 12, `sizeof(a[0][0])` = 4 (with 4-byte int).\n\n### 11.4 Row-major storage and address formulas\nC stores multi-dimensional arrays in **row-major order**.\n- `A[R][C]`, base `B`, element size `w`: `addr(A[i][j]) = B + (i·C + j)·w`\n- 3-D `A[X][Y][Z]`: `addr(A[i][j][k]) = B + ((i·Y + j)·Z + k)·w`\n- 1-D with lower bound `L`: `addr(A[i]) = B + (i − L)·w`\n- (Column-major, e.g. Fortran: `B + (j·R + i)·w`.)\n\n### 11.5 Passing arrays\n`void f(int a[])`, `void f(int *a)` are identical. For 2-D, all dimensions except the first must be given: `void f(int a[][4])` ≡ `void f(int (*a)[4])`.\nArrays can't be assigned or compared with `=`/`==`; structs containing arrays can be copied by assignment.\n\n### 11.6 Variable-length arrays (C99)\n`int a[n];` with runtime `n` has automatic lifetime; `sizeof(a)` is evaluated at run time.",
+   "questions": [
+    {
+     "id": "11.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a[5] = {1, 2};\n    int s = 0, i;\n    for (i = 0; i < 5; i++) s += a[i];\n    printf(\"%d %d\", s, a[3]);\n}\n```",
+     "options": [
+      "`3 2`",
+      "`3 garbage value`",
+      "`3 0`",
+      "`5 0`"
+     ],
+     "answer": 2,
+     "solution": "Remaining elements are zero-initialized.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "11.2",
+     "type": "nat",
+     "marks": 2,
+     "question": "An array `int A[10][20]` is stored row-major with base address 1000 and `int` = 4 bytes. The address of `A[3][4]` is ______.",
+     "answer": 1256,
+     "solution": "1000 + (3·20 + 4)·4 = 1000 + 256 = 1256."
+    },
+    {
+     "id": "11.3",
+     "type": "nat",
+     "marks": 2,
+     "question": "A 3-D array `int A[5][6][7]` is stored row-major, base address 0, element size 2 bytes. The address of `A[2][3][4]` is ______.",
+     "answer": 218,
+     "solution": "((2·6 + 3)·7 + 4)·2 = (15·7 + 4)·2 = 109·2 = 218."
+    },
+    {
+     "id": "11.4",
+     "type": "nat",
+     "marks": 1,
+     "question": "A 1-D array `A[−5 .. 20]` (inclusive) has base address 500 and element size 4. The address of `A[7]` is ______.",
+     "answer": 548,
+     "solution": "500 + (7 − (−5))·4 = 500 + 48 = 548."
+    },
+    {
+     "id": "11.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "Assume 4-byte `int`. What is the output?\n\n```c\nint main() {\n    int a[2][3] = {{1,2,3},{4,5,6}};\n    printf(\"%d %d %d %zu %zu\", *(a[1] + 1), **a, a[1][2], sizeof(a[0]), sizeof(a));\n}\n```",
+     "options": [
+      "`5 1 6 12 24`",
+      "`4 1 6 12 24`",
+      "`5 1 6 24 24`",
+      "`5 1 6 12 12`"
+     ],
+     "answer": 0,
+     "solution": "`a[1]+1` → a[1][1] = 5; `**a` = a[0][0] = 1; a[1][2] = 6; a row = 12 bytes; whole array = 24 bytes.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "11.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output (64-bit)?\n\n```c\nint main() {\n    int a[2][3];\n    printf(\"%ld %ld\", (char *)(a + 1) - (char *)a, (char *)(*a + 1) - (char *)a);\n}\n```",
+     "options": [
+      "`4 4`",
+      "`12 12`",
+      "`3 1`",
+      "`12 4`"
+     ],
+     "answer": 3,
+     "solution": "`a+1` advances one row (3 ints = 12 bytes); `*a + 1` advances one int (4 bytes).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "11.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a[] = {10, 20, 30};\n    printf(\"%d %d %d\", 2[a], *(a + 1), (&a[2])[-1]);\n}\n```",
+     "options": [
+      "Compile error",
+      "`30 20 30`",
+      "`30 30 20`",
+      "`30 20 20`"
+     ],
+     "answer": 3,
+     "solution": "`2[a]` ≡ `a[2]`; `*(a+1)` = a[1]; `(&a[2])[-1]` = `*(&a[2] − 1)` = a[1].\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "11.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output (4-byte int, 8-byte pointers)?\n\n```c\nint main() {\n    int a[10];\n    int *p = a;\n    printf(\"%zu %zu %zu\", sizeof(a), sizeof(p), sizeof(a + 0));\n}\n```",
+     "options": [
+      "`40 8 40`",
+      "`40 40 8`",
+      "`40 8 8`",
+      "`8 8 8`"
+     ],
+     "answer": 2,
+     "solution": "`sizeof(a)` is the array; `a + 0` is an expression so `a` decays to a pointer.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "11.9",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nvoid inc(int a[], int n) { for (int i = 0; i < n; i++) a[i]++; }\nint main() {\n    int a[3] = {1, 2, 3};\n    inc(a, 3);\n    printf(\"%d%d%d\", a[0], a[1], a[2]);\n}\n```",
+     "options": [
+      "`234`",
+      "`123`",
+      "`124`",
+      "`345`"
+     ],
+     "answer": 0,
+     "solution": "The array is passed as a pointer, so the callee modifies the caller's elements.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "11.10",
+     "type": "mcq",
+     "marks": 1,
+     "question": "For `int a[5]; int *p = &a[0];` which statement is **false**?",
+     "options": [
+      "`a[2]` and `*(p+2)` denote the same object",
+      "`a = p;` is legal",
+      "`sizeof(a)` ≠ `sizeof(p)` (in general)",
+      "`&a[0] == a`"
+     ],
+     "answer": 1,
+     "solution": "An array name is not a modifiable lvalue; it cannot be assigned."
+    },
+    {
+     "id": "11.11",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following correctly accesses `m[i][j]` for `int m[3][4]` inside a function that receives `m`?",
+     "options": [
+      "`void f(int a[][])`",
+      "`void f(int a[][4])`",
+      "`void f(int **a)`",
+      "`void f(int a[3][])`"
+     ],
+     "answer": 1,
+     "solution": "All but the first dimension must be specified; `int **` is a pointer to pointers, not to a 2-D array."
+    },
+    {
+     "id": "11.12",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a[4] = {5, 6, 7, 8};\n    int *p = a + 3;\n    int *q = a;\n    printf(\"%ld %d\", p - q, *(p - 1));\n}\n```",
+     "options": [
+      "`12 7`",
+      "`3 7`",
+      "`3 8`",
+      "`4 7`"
+     ],
+     "answer": 1,
+     "solution": "Pointer subtraction gives the element distance (3), not bytes.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    }
+   ]
+  },
+  {
+   "id": "ch12",
+   "title": "Chapter 12 — Pointers: Arithmetic, Operators, Pitfalls",
+   "short": "Pointers",
+   "content": "### 12.1 Basics\n```c\nint x = 10;\nint *p = &x;     // p holds the address of x\n*p = 20;         // x is now 20  (dereference = access the object p points to)\nint **pp = &p;   // *pp == p, **pp == x\n```\n`*&x == x`, `&*p == p` (when p is valid).\n\n### 12.2 Pointer arithmetic is **type-scaled**\n`p + n` advances by `n × sizeof(*p)` bytes.\n- `int *p` at address 1000 → `p+1` = 1004; `double *` → 1008; `char *` → 1001.\n- `float *p = 2000; p + 5` → 2020.\n- `p − q` (same array) = **number of elements** between them (type `ptrdiff_t`), not bytes.\n- Only **same-array** pointers (or one-past-the-end) may be subtracted or compared with `< >`.\n- Adding two pointers is illegal; pointer + integer, pointer − integer, pointer − pointer are legal.\n- `p[i]` ≡ `*(p + i)`.\n\n### 12.3 The four unary-operator combinations (memorize!)\n| Expression | Means | Effect |\n|---|---|---|\n| `*p++` | `*(p++)` | value at old p; **pointer** moves on |\n| `(*p)++` | | value at p returned, then the **pointed object** is incremented |\n| `++*p` | `++(*p)` | pointed object incremented, new value returned |\n| `*++p` | `*(++p)` | pointer moves first, then dereferenced |\n\nPostfix and prefix `++` / `*` / `&`: postfix is higher than unary; unary operators associate right-to-left.\n\n### 12.4 Special pointers\n| Kind | Description |\n|---|---|\n| **NULL pointer** | points to no object; comparing with 0/NULL is true; dereference = UB. `NULL` ≠ `'\\0'` conceptually (not simply \"address 0\"). |\n| **Wild pointer** | uninitialized pointer — indeterminate value |\n| **Dangling pointer** | points to an object whose lifetime ended (after `free`, or to a returned local) |\n| **`void *`** | generic object pointer; implicit conversion to/from any object pointer type in C; cannot be dereferenced; arithmetic on it is non-standard (GCC allows, step = 1) |\n| **Pointer to pointer** | `int **pp` |\n\n### 12.5 Pointers and strings / pointer to struct\n`char *s = \"abc\";` — `s` points to a read-only literal. `p->m` ≡ `(*p).m` (`*p.m` would mean `*(p.m)`).\n\n### 12.6 Pointer casts\nConversion does not change the object, only how it is interpreted. `(char *)p + 1` moves 1 byte; `(int *)p + 1` moves `sizeof(int)`. Accessing an object through an incompatible type violates **strict aliasing** (UB), except through `char *`.\n\n### 12.7 Dereference checklist\nWhen you see `*p`, ask: initialized? non-NULL? points to a live object? correct type? within bounds? properly aligned? If any answer is \"no\" → UB.\n\n### 12.8 Memory-map of a pointer-using program\nPointer variable itself (`p`) lives wherever the variable lives (stack/global); the object it points to may live in stack, heap, or static storage.",
+   "questions": [
+    {
+     "id": "12.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is printed? (values shown after each step)\n\n```c\nint main() {\n    int a[] = {10, 20, 30, 40};\n    int *p = a;\n    int x = *p++;     // x, p→a[1]\n    int y = (*p)++;   // y, a[1]++\n    int z = ++*p;     // z\n    int w = *++p;     // w, p→a[2]\n    printf(\"%d %d %d %d %d\", x, y, z, w, a[1]);\n}\n```",
+     "options": [
+      "`10 20 22 30 22`",
+      "`10 20 21 30 22`",
+      "`10 20 22 40 22`",
+      "`10 21 22 30 22`"
+     ],
+     "answer": 0,
+     "solution": "x=10 (p→a[1]); y=20 and a[1]=21; z: a[1]=22 → z=22; `*++p` → p→a[2] → w=30; a[1] = 22.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "12.2",
+     "type": "nat",
+     "marks": 1,
+     "question": "A `float *p` holds the address 2000 (4-byte float). The value of `p + 5` is ______.",
+     "answer": 2020,
+     "solution": "2000 + 5 × 4."
+    },
+    {
+     "id": "12.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output (64-bit `long` for `%ld`)?\n\n```c\nint main() {\n    int a[10];\n    int *p = &a[7], *q = &a[2];\n    printf(\"%ld %ld\", p - q, (char *)p - (char *)q);\n}\n```",
+     "options": [
+      "`5 5`",
+      "`5 20`",
+      "`20 5`",
+      "`20 20`"
+     ],
+     "answer": 1,
+     "solution": "Element distance 5; byte distance 5×4 = 20.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "12.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int x = 10;\n    int *p = &x;\n    int **pp = &p;\n    **pp += 5;\n    *p *= 2;\n    printf(\"%d %d\", x, **pp);\n}\n```",
+     "options": [
+      "`30 30`",
+      "`15 15`",
+      "`20 20`",
+      "`30 15`"
+     ],
+     "answer": 0,
+     "solution": "x = 10 → 15 → 30.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "12.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a[] = {1, 2, 3, 4};\n    int *p[] = {a, a + 1, a + 2, a + 3};\n    int **pp = p;\n    pp++;\n    printf(\"%ld %ld %d\\n\", pp - p, *pp - a, **pp);\n    *pp++;\n    printf(\"%ld %ld %d\", pp - p, *pp - a, **pp);\n}\n```\n\n*(`↵` marks the newline between the two printed lines.)*",
+     "options": [
+      "`1 1 2 ↵ 1 1 2`",
+      "`1 1 2 ↵ 2 2 3`",
+      "`1 1 2 ↵ 2 2 2`",
+      "`1 1 3 ↵ 2 2 3`"
+     ],
+     "answer": 1,
+     "solution": "After `pp++`, pp points to p[1] → pp−p = 1, `*pp − a` = 1, `**pp` = a[1] = 2. The statement `*pp++;` simply advances pp to p[2] → 2 2 3.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "12.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int x = 5;\n    printf(\"%d\", *&*&x);\n}\n```",
+     "options": [
+      "Compile error",
+      "`5`",
+      "Garbage value",
+      "Address of x"
+     ],
+     "answer": 1,
+     "solution": "`&x` then `*` returns to x; repeated → x.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "12.7",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following is **illegal** in standard C (all pointers `int *p, *q; int a[10];` valid and in the same array)?",
+     "options": [
+      "`p - q`",
+      "`p + q`",
+      "`p + 3`",
+      "`p < q`"
+     ],
+     "answer": 1,
+     "solution": "Adding two pointers has no meaning."
+    },
+    {
+     "id": "12.8",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Identify the dangerous statement(s):\n\n```c\nint *p1;                       // (1)\nint *p2 = NULL;                // (2)\nint x = 3; int *p3 = &x;       // (3)\n*p1 = 5;                       // (4)\n*p3 = 5;                       // (5)\n```",
+     "options": [
+      "(4) only",
+      "(4) and (5)",
+      "(2) and (4)",
+      "(1) and (4)"
+     ],
+     "answer": 0,
+     "solution": "`p1` is an uninitialized (wild) automatic pointer; `*p1 = 5` is UB. (1) itself is just a declaration."
+    },
+    {
+     "id": "12.9",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a[] = {1, 2, 3, 4, 5};\n    int *p = a + 4;\n    int s = 0;\n    for (;;) {\n        s += *p;\n        if (p == a) break;\n        p--;\n    }\n    printf(\"%d\", s);\n}\n```",
+     "options": [
+      "`15`",
+      "`14`",
+      "`10`",
+      "Undefined behaviour"
+     ],
+     "answer": 0,
+     "solution": "p walks from a[4] down to a[0]; the break test happens *before* decrementing past the start. (A `while (p >= a) ... p--` version would form the invalid pointer `a-1` — UB.)\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "12.10",
+     "type": "mcq",
+     "marks": 1,
+     "question": "`void *p = &x;` `p++;` — which is correct in **strictly standard** C?",
+     "options": [
+      "p advances by `sizeof(x)`",
+      "p advances by 1 byte",
+      "It is not allowed (no size for `void`); GCC accepts it as an extension",
+      "p becomes NULL"
+     ],
+     "answer": 2,
+     "solution": "Pointer arithmetic needs a complete object type; GCC treats `void *` arithmetic as `char *` arithmetic as an extension."
+    },
+    {
+     "id": "12.11",
+     "type": "mcq",
+     "marks": 1,
+     "question": "What is wrong with this function?\n\n```c\nint *f() {\n    int a[3] = {1, 2, 3};\n    return a;\n}\n```",
+     "options": [
+      "Nothing",
+      "Returns a dangling pointer to an automatic array",
+      "Cannot return a pointer",
+      "`a` must be `static const`"
+     ],
+     "answer": 1,
+     "solution": "`a` ceases to exist when `f` returns."
+    },
+    {
+     "id": "12.12",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nvoid change(int *p) { p = (int *)malloc(sizeof(int)); *p = 99; }\nint main() {\n    int x = 1;\n    int *q = &x;\n    change(q);\n    printf(\"%d\", *q);\n}\n```",
+     "options": [
+      "`99`",
+      "Compile error",
+      "Segmentation fault",
+      "`1`"
+     ],
+     "answer": 3,
+     "solution": "The pointer is passed by value; reassigning `p` inside doesn't affect `q` (and the malloc'd block leaks).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    }
+   ]
+  },
+  {
+   "id": "ch13",
+   "title": "Chapter 13 — Complex Declarations, Function Pointers, const / volatile / restrict",
+   "short": "Declarations & const",
+   "content": "### 13.1 Reading declarations (right-left / spiral rule)\nStart at the identifier, go right (`[]`, `()`) until a `)` or end, then go left (`*`, type).\n| Declaration | Meaning |\n|---|---|\n| `int *p;` | p is a pointer to int |\n| `int **p;` | pointer to pointer to int |\n| `int *p[5];` | **array** of 5 pointers to int (`[]` binds tighter than `*`) |\n| `int (*p)[5];` | **pointer to an array** of 5 ints |\n| `int *f();` | function returning `int *` |\n| `int (*fp)(int, int);` | **pointer to function** (two ints) returning int |\n| `int (*fp[3])(int);` | array of 3 pointers to functions(int) returning int |\n| `int (*f(int))[5];` | function(int) returning pointer to array of 5 int |\n| `char *(*fp)(char *);` | pointer to function(char *) returning `char *` |\n\n`sizeof(*p)` for `int (*p)[5]` is 20; `p + 1` skips 20 bytes.\n\n### 13.2 `typedef`\nCreates an **alias** (not a new type). `typedef int (*op)(int,int);  op f;` makes `f` a function pointer. `typedef struct node { int d; struct node *n; } Node;`.\n\n### 13.3 Function pointers\n```c\nint add(int a, int b) { return a + b; }\nint (*fp)(int, int) = add;     // or &add\nfp(2, 3);                      // ≡ (*fp)(2, 3)\nint (*op[2])(int,int) = { add, sub };   // dispatch table: op[1](5,3)\n```\n- Function name decays to a pointer to the function; no arithmetic on function pointers.\n- **Callbacks:** `void apply(int (*f)(int), int *a, int n)`; `qsort(base, n, size, cmp)` takes a comparator pointer.\n\n### 13.4 `const`\n| Declaration | p changeable? | `*p` changeable via p? |\n|---|---|---|\n| `const int *p;` / `int const *p;` | yes | **no** |\n| `int * const p = &x;` | **no** | yes |\n| `const int * const p = &x;` | no | no |\n\nRule: `const` applies to what is **immediately to its left** (or right if nothing on the left). Modifying a truly `const` object (even via a cast) is **UB**.\n\n### 13.5 `volatile`\nTells the compiler the object may change outside the program's control (memory-mapped I/O, signal handlers, other threads) → every access must really occur; it must not cache the value in a register or eliminate \"redundant\" reads/writes. Does **not** provide atomicity or ordering.\n\n### 13.6 `restrict` (C99)\nA promise that, during the lifetime of the pointer, the pointed-to object is accessed only through that pointer (or pointers derived from it). Enables optimizations; breaking the promise → UB. Example: `memcpy(void *restrict d, const void *restrict s, size_t n)` vs `memmove` (which allows overlap).\n\n### 13.7 `inline` (C99) and `static inline`\nA hint to the compiler; no semantic difference except linkage rules.",
+   "questions": [
+    {
+     "id": "13.1",
+     "type": "mcq",
+     "marks": 1,
+     "question": "In `int (*a[5])(int);` the identifier `a` is:",
+     "options": [
+      "a pointer to an array of 5 function pointers",
+      "an array of 5 pointers to functions taking int and returning int",
+      "a function returning an array of pointers",
+      "a pointer to a function returning an array of 5 ints"
+     ],
+     "answer": 1,
+     "solution": "`a[5]` first → array of 5; `*` → pointers; `(int)` → to functions with an int parameter."
+    },
+    {
+     "id": "13.2",
+     "type": "mcq",
+     "marks": 2,
+     "question": "Match: (P) `int *p[5];`  (Q) `int (*p)[5];`  (R) `int *p();`  (S) `int (*p)();`",
+     "options": [
+      "P: array of ptrs, Q: ptr to array, R: function returning ptr, S: ptr to function",
+      "P: ptr to array, Q: array of ptrs, R: ptr to function, S: function returning ptr",
+      "P: array of ptrs, Q: ptr to array, R: ptr to function, S: function returning ptr",
+      "all four are the same"
+     ],
+     "answer": 0,
+     "solution": "Parentheses decide binding; see table 13.1."
+    },
+    {
+     "id": "13.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output (4-byte `int`, 8-byte pointer)?\n\n```c\nint main() {\n    int a[5];\n    int (*p)[5] = &a;\n    int *q[5];\n    printf(\"%zu %zu %zu\", sizeof(*p), sizeof(p), sizeof(q));\n}\n```",
+     "options": [
+      "`20 20 40`",
+      "`20 8 20`",
+      "`8 8 8`",
+      "`20 8 40`"
+     ],
+     "answer": 3,
+     "solution": "`*p` is the whole int[5] = 20 bytes; `p` is a pointer; `q` is 5 pointers = 40 bytes.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "13.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint add(int a, int b) { return a + b; }\nint sub(int a, int b) { return a - b; }\nint main() {\n    int (*op[2])(int, int) = { add, sub };\n    printf(\"%d %d\", op[0](5, 3), (*op[1])(5, 3));\n}\n```",
+     "options": [
+      "`2 8`",
+      "`8 8`",
+      "Compile error",
+      "`8 2`"
+     ],
+     "answer": 3,
+     "solution": "`op[0]` is add, `op[1]` is sub.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "13.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint f(int x) { return x * 2; }\nint main() {\n    int (*fp)(int) = f;\n    printf(\"%d\", fp(fp(3)));\n}\n```",
+     "options": [
+      "`6`",
+      "`9`",
+      "`3`",
+      "`12`"
+     ],
+     "answer": 3,
+     "solution": "f(f(3)) = f(6) = 12.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "13.6",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Given `int x = 5, y = 6; const int *p = &x; int * const q = &x;` which statement is **valid**?",
+     "options": [
+      "`*p = 10;`",
+      "`p = &y;`",
+      "`q = &y;`",
+      "`const` cannot be applied to pointers"
+     ],
+     "answer": 1,
+     "solution": "`p` may be re-pointed but `*p` is read-only through p; `q` itself is const (but `*q = 10` would be fine)."
+    },
+    {
+     "id": "13.7",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which declaration makes **both** the pointer and the pointed-to int unmodifiable via the pointer?",
+     "options": [
+      "`const int *p`",
+      "`int * const p`",
+      "`const int * const p`",
+      "`int const * p`"
+     ],
+     "answer": 2,
+     "solution": "Both `const`s are present."
+    },
+    {
+     "id": "13.8",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following correctly declares `fp` as a pointer to a function that takes `int` and returns a pointer to `char`?",
+     "options": [
+      "`char *fp(int);`",
+      "`char (*fp)(int);`",
+      "`char *(*fp)(int);`",
+      "`char **fp(int);`"
+     ],
+     "answer": 2,
+     "solution": "`(*fp)` → pointer; `(int)` → function taking int; `char *` → returns char pointer."
+    },
+    {
+     "id": "13.9",
+     "type": "mcq",
+     "marks": 1,
+     "question": "What is the effect of `volatile`?",
+     "options": [
+      "The variable is stored in ROM",
+      "The compiler must not optimize away or cache accesses to the variable",
+      "The variable becomes thread-safe",
+      "The variable is zero-initialized"
+     ],
+     "answer": 1,
+     "solution": "Typical use: memory-mapped registers and variables modified by interrupt/signal handlers."
+    },
+    {
+     "id": "13.10",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    const int x = 5;\n    int *p = (int *)&x;\n    // *p = 10;   // would be UB: modifying a const object\n    printf(\"%d\", x);\n}\n```",
+     "options": [
+      "`5`",
+      "`10`",
+      "Compile error",
+      "Undefined behaviour"
+     ],
+     "answer": 0,
+     "solution": "The write is commented out; the point of the question is that un-commenting it is **undefined behaviour** (the compiler may keep `x` in ROM or fold it as 5).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    }
+   ]
+  },
+  {
+   "id": "ch14",
+   "title": "Chapter 14 — Strings and the string.h Library",
+   "short": "Strings",
+   "content": "### 14.1 What a C string is\nNo built-in string type: a string is a `char` array terminated by `'\\0'` (value 0).\n```c\nchar s[] = \"GATE\";     // G A T E \\0  → sizeof(s) = 5, strlen(s) = 4\nchar t[10] = \"GATE\";   // sizeof 10, strlen 4 (rest zero-filled)\nchar *p = \"GATE\";      // p points to a read-only literal; sizeof(p) = pointer size\nchar a[3] = {'a','b','c'};  // character array, NOT a string (no '\\0')\nchar b[3] = \"abc\";          // allowed in C (no room for '\\0') but then not a string\n```\n- `'A'` is an `int` constant (4 bytes); `\"A\"` is `char[2]`; `'\\0'` is 0; `'0'` is 48; `\"0\"` is `{'0','\\0'}`.\n- `sizeof(\"GATE\") = 5` (includes `'\\0'`); `strlen(\"GATE\") = 4` (excludes it).\n- Embedded `'\\0'` ends the string for `strlen`: `strlen(\"ab\\0cd\") = 2`, `sizeof(\"ab\\0cd\") = 6`.\n- **Modifying a string literal is UB** (`char *p = \"abc\"; p[0] = 'X';`). `char s[] = \"abc\"; s[0] = 'X';` is fine (a modifiable copy).\n- `\"abc\"[1]` is `'b'`; `*(\"abc\"+1)` is `'b'`.\n\n### 14.2 Library functions\n| Function | What it does | Notes |\n|---|---|---|\n| `strlen(s)` | length without `'\\0'` | returns `size_t` (unsigned!) — `strlen(a) - strlen(b)` is never negative |\n| `strcpy(d, s)` | copies including `'\\0'` | no bounds check → buffer overflow |\n| `strncpy(d, s, n)` | copies ≤ n chars, **pads with `'\\0'` if s shorter**; does **not** add `'\\0'` if `strlen(s) ≥ n` | |\n| `strcat(d, s)` | appends s to d | d needs `strlen(d)+strlen(s)+1` bytes |\n| `strncat(d, s, n)` | appends ≤ n chars **and always adds `'\\0'`** | |\n| `strcmp(a, b)` | `<0`, `0`, `>0` (lexicographic, by unsigned char) | only the **sign** is guaranteed; use `==0` for equality, never `a == b` (compares addresses) |\n| `strncmp` | compare ≤ n chars | |\n| `strchr/strrchr(s,c)` | first / last occurrence; NULL if absent | |\n| `strstr(h, n)` | substring search | |\n| `memcpy / memmove / memset` | raw byte ops; `memmove` handles overlap, `memcpy` does not | |\n| `atoi / strtol` | string → integer | |\n\n### 14.3 `sizeof` vs `strlen`\n```c\nchar s[] = \"GATE\";   sizeof(s) = 5   strlen(s) = 4\nchar *p = s;         sizeof(p) = 8   strlen(p) = 4\n```\n\n### 14.4 Typical loops\n```c\nint len(char *s) { int n = 0; while (*s++) n++; return n; }\nvoid rev(char *s) { char *e = s + strlen(s) - 1; while (s < e) { char t=*s; *s++=*e; *e--=t; } }\n```\n`*s++` returns the char then advances; `while (*s)` stops at `'\\0'`.\n\n### 14.5 Pitfalls\n- `if (s1 == s2)` compares addresses, not contents.\n- `char *p; strcpy(p, \"x\");` — uninitialized destination.\n- `strcpy` overlap, destination too small, missing `'\\0'`.\n- `scanf(\"%s\")` without width.",
+   "questions": [
+    {
+     "id": "14.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output (64-bit)?\n\n```c\nint main() {\n    char s[] = \"GATE\";\n    char t[10] = \"GATE\";\n    char *p = \"GATE\";\n    printf(\"%zu %zu %zu | %zu %zu %zu\", sizeof(s), sizeof(t), sizeof(p), strlen(s), strlen(t), strlen(p));\n}\n```",
+     "options": [
+      "`4 10 8 | 4 4 4`",
+      "`5 10 8 | 5 5 5`",
+      "`5 10 4 | 4 4 4`",
+      "`5 10 8 | 4 4 4`"
+     ],
+     "answer": 3,
+     "solution": "`sizeof` is the storage; `strlen` counts characters before the first `\\0`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "14.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    char s[] = \"ab\\0cd\";\n    printf(\"%zu %zu\", strlen(s), sizeof(s));\n}\n```",
+     "options": [
+      "`5 6`",
+      "`2 6`",
+      "`2 5`",
+      "`2 2`"
+     ],
+     "answer": 1,
+     "solution": "`strlen` stops at the embedded `\\0`; `sizeof` counts all 6 bytes (a b \\0 c d \\0).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "14.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    char *p = \"GATE\";\n    printf(\"%c\", *p++ + 1);\n}\n```",
+     "options": [
+      "`G`",
+      "`H`",
+      "`A`",
+      "`71`"
+     ],
+     "answer": 1,
+     "solution": "`*p++` is `'G'` (71); +1 gives 72 = `'H'`; printed with `%c`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "14.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    char s[] = \"GATE2027\";\n    printf(\"%s|\", s + 2);\n    s[4] = '\\0';\n    printf(\"%s|%zu\", s, strlen(s));\n}\n```",
+     "options": [
+      "`GATE2027|GATE|4`",
+      "`TE2027|GATE|8`",
+      "`TE2027|GATE2027|8`",
+      "`TE2027|GATE|4`"
+     ],
+     "answer": 3,
+     "solution": "`s+2` → \"TE2027\". After `s[4] = '\\0'` the string is \"GATE\".\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "14.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the value printed?\n\n```c\nint len(char *s) { int n = 0; while (*s++) n++; return n; }\nint main() { printf(\"%d\", len(\"GATE\")); }\n```",
+     "options": [
+      "`5`",
+      "`3`",
+      "`4`",
+      "`0`"
+     ],
+     "answer": 2,
+     "solution": "The loop stops when `*s` is `'\\0'`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "14.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    char s[20] = \"abc\";\n    strcat(s, \"def\");\n    printf(\"%zu %s\", strlen(s), s);\n}\n```",
+     "options": [
+      "`3 abc`",
+      "`7 abcdef`",
+      "`6 abcdef`",
+      "`6 abc`"
+     ],
+     "answer": 2,
+     "solution": "`strcat` appends at the old `'\\0'`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "14.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    char a[] = \"abc\", b[] = \"abc\";\n    printf(\"%d %d\", a == b, strcmp(a, b) == 0);\n}\n```",
+     "options": [
+      "`0 1`",
+      "`1 1`",
+      "`1 0`",
+      "`0 0`"
+     ],
+     "answer": 0,
+     "solution": "`a == b` compares two different addresses → 0; `strcmp` compares contents.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "14.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output? (note `strlen` returns an **unsigned** type)\n\n```c\nint main() {\n    if (strlen(\"ab\") - strlen(\"abcd\") > 0) printf(\"positive\");\n    else printf(\"not positive\");\n}\n```",
+     "options": [
+      "`not positive`",
+      "`positive`",
+      "Compile error",
+      "No output"
+     ],
+     "answer": 1,
+     "solution": "`2u − 4u` wraps around to a huge `size_t`, which is > 0.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "14.9",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which line(s) is/are undefined behaviour?\n\n```c\nchar *p = \"hello\";      // (1)\np[0] = 'H';              // (2)\nchar s[] = \"hello\";      // (3)\ns[0] = 'H';              // (4)\n```",
+     "options": [
+      "(2) only",
+      "(2) and (4)",
+      "(1) and (2)",
+      "None"
+     ],
+     "answer": 0,
+     "solution": "Writing to a string literal is UB; `s` is a modifiable array copy."
+    },
+    {
+     "id": "14.10",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    char s[8];\n    strncpy(s, \"ABCDEFGH\", 4);\n    s[4] = '\\0';\n    printf(\"%s\", s);\n}\n```",
+     "options": [
+      "`ABCDEFGH`",
+      "`ABC`",
+      "Compile error",
+      "`ABCD`"
+     ],
+     "answer": 3,
+     "solution": "`strncpy` copied 4 chars without a terminator; we add it manually. (Without line 4 the result would be unreliable.)\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "14.11",
+     "type": "mcq",
+     "marks": 1,
+     "question": "What does this function do?\n\n```c\nvoid f(char *s) {\n    char *e = s + strlen(s) - 1;\n    while (s < e) { char t = *s; *s++ = *e; *e-- = t; }\n}\n```",
+     "options": [
+      "Copies s to itself",
+      "Reverses the string in place",
+      "Sorts the characters",
+      "Converts to upper case"
+     ],
+     "answer": 1,
+     "solution": "Swaps the two ends and moves inward."
+    },
+    {
+     "id": "14.12",
+     "type": "nat",
+     "marks": 1,
+     "question": "What is printed?\n\n```c\nint main() {\n    char s[] = \"GATE\";\n    printf(\"%zu\", sizeof(s) - strlen(s));\n}\n```",
+     "answer": 1,
+     "solution": "5 − 4 = 1, the terminating `'\\0'`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    }
+   ]
+  },
+  {
+   "id": "ch15",
+   "title": "Chapter 15 — Structures, Unions, Enums, typedef, Bit-fields, Padding",
+   "short": "Structures & Unions",
+   "content": "### 15.1 Structures\n```c\nstruct Student { int roll; char grade; float marks; };\nstruct Student s;   s.roll = 1;\nstruct Student *p = &s;   p->roll ≡ (*p).roll\n```\n- Members have **separate storage** (all hold values simultaneously). Members are laid out in **declaration order**.\n- Structure assignment copies all members (including arrays inside); structs are passed/returned **by value**.\n- Structs cannot be compared with `==`.\n- A struct may contain a **pointer to itself** (`struct node *next;`) but not an instance of itself.\n\n### 15.2 Padding and alignment (GATE favourite)\nEach member is aligned to a multiple of **its own size** (the usual rule, for scalar types). The struct's total size is rounded up to a multiple of the **largest member alignment**.\n```c\nstruct A { char a; int b;  char c; };  // a@0, pad 3, b@4, c@8, pad 3  → 12\nstruct B { int b; char a; char c; };   // b@0, a@4, c@5, pad 2         → 8\nstruct C { char a; char c; int b; };   //                              → 8\nstruct D { char c; double d; int i; }; // c@0 pad7, d@8, i@16 pad4    → 24 (double aligned to 8)\n```\n**Reordering members (largest first) minimizes padding.** `sizeof(struct)` ≥ sum of member sizes. Unless the question says \"packed\", assume natural alignment.\n\n### 15.3 Unions\nAll members **share the same storage** starting at offset 0. Size = size of the largest member, rounded up to the strictest member alignment.\n```c\nunion U { int i; char c[5]; double d; };   // max(4,5,8)=8, align 8 → 8\nunion V { char c[5]; int i; };             // 5 → rounded up to 8 (align 4 → multiple of 4 → 8)\n```\nWriting one member and reading another reinterprets the bytes (`u.i = 0x41424344; u.c` → `'D'` on little-endian — implementation-defined layout).\n\n| Struct | Union |\n|---|---|\n| Separate storage per member | One shared storage |\n| Size ≥ sum of members | Size = largest member (+padding) |\n| All members usable simultaneously | Only the last-written member is meaningful |\n\n### 15.4 `enum`\n```c\nenum day { SUN, MON, TUE };      // 0, 1, 2\nenum { A, B = 5, C, D = 2, E };  // 0, 5, 6, 2, 3\n```\nEnumerators are **integer constants** (type `int`); successive values continue +1 from the previous. Two enumerators may share a value. `enum` variables are implementation-defined integer types.\n\n### 15.5 `typedef`\nAlias for a type; no new type. `typedef unsigned int uint;`, `typedef struct node Node;`.\n\n### 15.6 Bit-fields\n```c\nstruct { unsigned a : 3; unsigned b : 5; unsigned c : 1; } x;   // typically 4 bytes\n```\nPacking/ordering are implementation-defined; cannot take the address of a bit-field; signedness of plain `int` bit-fields is implementation-defined.\n\n### 15.7 Endianness\nLittle-endian (x86): least significant byte at the lowest address. `int x = 0x12345678;` → bytes `78 56 34 12`. Big-endian: `12 34 56 78`.\n\n### 15.8 Struct arrays and pointer arithmetic\n`struct S arr[3]; struct S *p = arr; p + 1` advances by `sizeof(struct S)` (padding included).",
+   "questions": [
+    {
+     "id": "15.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "Assume `char`=1, `short`=2, `int`=4, `double`=8 with natural alignment. `sizeof` for each struct:\n\n```c\nstruct A { char a; int b;  char c; };\nstruct B { int b; char a; char c; };\nstruct C { char a; short b; char c; int d; };\nstruct D { char c; double d; int i; };\nint main() {\n    printf(\"%zu %zu %zu %zu\", sizeof(struct A), sizeof(struct B), sizeof(struct C), sizeof(struct D));\n}\n```",
+     "options": [
+      "`6 6 8 13`",
+      "`12 12 12 24`",
+      "`12 8 12 24`",
+      "`12 8 12 16`"
+     ],
+     "answer": 2,
+     "solution": "A: 1+3pad+4+1+3pad=12; B: 4+1+1+2pad=8; C: a@0, pad1, b@2, c@4, pad3, d@8 → 12; D: 1+7pad+8+4+4pad=24.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "15.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output (64-bit, natural alignment)?\n\n```c\nunion U { int i; char c[5]; double d; };\nunion V { char c[5]; int i; };\nint main() { printf(\"%zu %zu\", sizeof(union U), sizeof(union V)); }\n```",
+     "options": [
+      "`8 5`",
+      "`16 8`",
+      "`8 8`",
+      "`5 5`"
+     ],
+     "answer": 2,
+     "solution": "U: max size 8, alignment 8 → 8. V: size 5 rounded up to a multiple of 4 → 8.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "15.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "On a little-endian machine, what is printed?\n\n```c\nunion T { int i; char c; };\nint main() {\n    union T u;\n    u.i = 0x41424344;\n    printf(\"%c\", u.c);\n}\n```",
+     "options": [
+      "`A`",
+      "`B`",
+      "`D`",
+      "`44`"
+     ],
+     "answer": 2,
+     "solution": "The least significant byte 0x44 (`'D'`) is stored at the lowest address, which is where `u.c` lives.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "15.4",
+     "type": "nat",
+     "marks": 2,
+     "question": "The value of `A + B + C + D + E` is ______.\n\n```c\nenum { A, B = 5, C, D = 2, E };\n```",
+     "answer": 16,
+     "solution": "A=0, B=5, C=6, D=2, E=3 → 16."
+    },
+    {
+     "id": "15.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nstruct P { int x, y; };\nvoid f(struct P p) { p.x = 100; }\nint main() {\n    struct P a = {1, 2};\n    f(a);\n    printf(\"%d %d\", a.x, a.y);\n}\n```",
+     "options": [
+      "`1 2`",
+      "`100 2`",
+      "`100 0`",
+      "Compile error"
+     ],
+     "answer": 0,
+     "solution": "Structures are passed by value.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "15.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nstruct P { int x, y; };\nint main() {\n    struct P a = {1, 2}, *p = &a;\n    p->x += 10;\n    (*p).y *= 3;\n    printf(\"%d %d\", a.x, a.y);\n}\n```",
+     "options": [
+      "`11 2`",
+      "`11 6`",
+      "`1 6`",
+      "`10 6`"
+     ],
+     "answer": 1,
+     "solution": "`p->x` ≡ `(*p).x`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "15.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output (4-byte int, natural alignment)?\n\n```c\nstruct S { int a; char b; };\nint main() {\n    struct S arr[3];\n    printf(\"%zu %ld\", sizeof(arr), (char *)&arr[1] - (char *)arr);\n}\n```",
+     "options": [
+      "`15 5`",
+      "`24 5`",
+      "`24 8`",
+      "`12 8`"
+     ],
+     "answer": 2,
+     "solution": "`sizeof(struct S)` = 8 (4 + 1 + 3 padding).\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "15.8",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following is **not allowed** in C?",
+     "options": [
+      "`struct N { int d; struct N *next; };`",
+      "`struct N { int d; struct N next; };`",
+      "`typedef struct N Node;`",
+      "`struct N a = {1, NULL};`"
+     ],
+     "answer": 1,
+     "solution": "A struct cannot contain an instance of itself (infinite size); a pointer to itself is fine."
+    },
+    {
+     "id": "15.9",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "Assume a struct `{unsigned a:3; unsigned b:5;}` on GCC/x86. Its `sizeof` is:\n\n```c\nstruct F { unsigned a : 3; unsigned b : 5; };\nint main() { printf(\"%zu\", sizeof(struct F)); }\n```",
+     "options": [
+      "`1`",
+      "`2`",
+      "`8`",
+      "`4`"
+     ],
+     "answer": 3,
+     "solution": "Both fit inside one `unsigned int` storage unit (4 bytes). (Implementation-defined in general.)\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "15.10",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nenum color { RED, GREEN = 4, BLUE };\nint main() {\n    enum color c = BLUE;\n    printf(\"%d %d\", c, RED);\n}\n```",
+     "options": [
+      "`2 0`",
+      "`5 1`",
+      "`4 0`",
+      "`5 0`"
+     ],
+     "answer": 3,
+     "solution": "BLUE follows GREEN (4) → 5.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "15.11",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which statement about unions is **false**?",
+     "options": [
+      "All members share storage",
+      "The size is at least that of the largest member",
+      "All members can safely hold different values simultaneously",
+      "A union may contain a struct"
+     ],
+     "answer": 2,
+     "solution": "Writing one member overwrites the others."
+    }
+   ]
+  },
+  {
+   "id": "ch16",
+   "title": "Chapter 16 — Dynamic Memory Allocation",
+   "short": "Dynamic Memory",
+   "content": "Header: `<stdlib.h>`. Allocated on the **heap**; lifetime lasts until `free`.\n\n| Function | Behaviour |\n|---|---|\n| `malloc(n)` | allocates `n` bytes, **uninitialized**; returns `void *` or `NULL` |\n| `calloc(k, sz)` | allocates `k*sz` bytes, **zeroed**; returns `NULL` on failure |\n| `realloc(p, n)` | resizes; may **move** the block (old pointer invalid if it does); `realloc(NULL, n)` ≡ `malloc(n)`; on failure returns `NULL` and the original block stays valid |\n| `free(p)` | releases the block; `free(NULL)` is a no-op; freeing twice or a non-heap pointer → UB |\n\n```c\nint *a = malloc(n * sizeof *a);        // idiom: sizeof *a, no cast needed in C\nif (!a) { /* handle failure */ }\nint *t = realloc(a, 2*n*sizeof *a);    // never write a = realloc(a, ...) directly\nif (t) a = t;\nfree(a); a = NULL;                     // avoid dangling pointer\n```\n\n### Problems\n| Problem | Description |\n|---|---|\n| **Memory leak** | last pointer to a heap block lost / never freed (e.g. `p = malloc(..); p = malloc(..);`) |\n| **Dangling pointer** | pointer to freed (or out-of-scope) memory |\n| **Double free** | `free(p)` twice → UB |\n| **Use after free** | UB |\n| **Heap overflow** | writing beyond the allocated size |\n| **Wild pointer** | uninitialized pointer |\n\n### Dynamic 2-D arrays\n1. **Array of row pointers:** `int **a = malloc(R*sizeof *a); for i: a[i] = malloc(C*sizeof **a);` → `R+1` `malloc` calls; rows not contiguous; free each row, then `a`.\n2. **Single contiguous block:** `int (*a)[C] = malloc(R * sizeof *a);` then `a[i][j]` works; or `int *a = malloc(R*C*sizeof *a)` with `a[i*C + j]`.\n\n### Linked structures\n`struct node { int data; struct node *next; };` — allocate nodes with `malloc(sizeof(struct node))`; `NULL` terminates the list.\nCommon GATE tasks: reverse a list, insert/delete, count nodes, recursive traversal (print after the recursive call to print in reverse).",
+   "questions": [
+    {
+     "id": "16.1",
+     "type": "mcq",
+     "marks": 1,
+     "question": "What is the effect of this code?\n\n```c\nint *p = malloc(sizeof(int));\np = malloc(sizeof(int));\nfree(p);\n```",
+     "options": [
+      "No problem",
+      "One memory leak",
+      "Double free",
+      "Compile error"
+     ],
+     "answer": 1,
+     "solution": "The first block's only pointer was overwritten and never freed."
+    },
+    {
+     "id": "16.2",
+     "type": "nat",
+     "marks": 1,
+     "question": "How many `malloc` calls are required to create an `R × C` matrix as an array of `R` row pointers (one for each row plus the pointer array)? For R = 10:",
+     "answer": 11,
+     "solution": "1 for the array of pointers + 10 for the rows."
+    },
+    {
+     "id": "16.3",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which statement about `calloc(n, sizeof(int))` vs `malloc(n * sizeof(int))` is correct?",
+     "options": [
+      "`malloc` zero-initializes, `calloc` does not",
+      "`calloc` zero-initializes the allocated bytes, `malloc` leaves them indeterminate",
+      "Both zero-initialize",
+      "`calloc` allocates from the stack"
+     ],
+     "answer": 1,
+     "solution": "Core difference between the two."
+    },
+    {
+     "id": "16.4",
+     "type": "mcq",
+     "marks": 1,
+     "question": "What is the problem in this snippet?\n\n```c\nint *p = malloc(sizeof(int));\n*p = 5;\nfree(p);\nprintf(\"%d\", *p);\n```",
+     "options": [
+      "Memory leak",
+      "Use after free — undefined behaviour",
+      "Double free",
+      "Nothing"
+     ],
+     "answer": 1,
+     "solution": "`p` dangles after `free`."
+    },
+    {
+     "id": "16.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What does this function print for the list 1→2→3→4 (head = node 1)?\n\n```c\nstruct node { int d; struct node *next; };\nvoid f(struct node *h) {\n    if (!h) return;\n    f(h->next);\n    printf(\"%d \", h->d);\n}\n```",
+     "options": [
+      "`1 2 3 4`",
+      "`4 3 2 1`",
+      "`4 3 2`",
+      "`3 2 1`"
+     ],
+     "answer": 1,
+     "solution": "The print occurs after the recursive call → the list is printed in reverse."
+    },
+    {
+     "id": "16.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is printed?\n\n```c\nstruct node { int d; struct node *next; };\nint main() {\n    struct node *h = NULL, *t;\n    for (int i = 1; i <= 4; i++) {\n        t = malloc(sizeof *t);\n        t->d = i; t->next = h; h = t;\n    }\n    for (t = h; t; t = t->next) printf(\"%d\", t->d);\n}\n```",
+     "options": [
+      "`1234`",
+      "`4321`",
+      "`1`",
+      "Segmentation fault"
+     ],
+     "answer": 1,
+     "solution": "Each node is inserted at the head, so the list is 4→3→2→1.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "16.7",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which is the safest way to grow an allocated array?",
+     "options": [
+      "`p = realloc(p, n);`",
+      "`int *t = realloc(p, n); if (t) p = t;`",
+      "`free(p); p = malloc(n);` (data kept)",
+      "`realloc(p, n);` ignoring the result"
+     ],
+     "answer": 1,
+     "solution": "If `realloc` fails it returns NULL; assigning directly would lose (leak) the original block. The result must always be used because the block may move."
+    },
+    {
+     "id": "16.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int *a = calloc(5, sizeof(int));\n    int s = 0;\n    for (int i = 0; i < 5; i++) s += a[i];\n    printf(\"%d\", s);\n    free(a);\n}\n```",
+     "options": [
+      "`0`",
+      "Garbage value",
+      "`5`",
+      "Segmentation fault"
+     ],
+     "answer": 0,
+     "solution": "`calloc` zeroes the memory.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "16.9",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which call is **safe**?",
+     "options": [
+      "`free(p); free(p);`",
+      "`free(NULL);`",
+      "`int x; free(&x);`",
+      "`char *s = \"hi\"; free(s);`"
+     ],
+     "answer": 1,
+     "solution": "`free(NULL)` does nothing; the others free memory not obtained from the allocator (or twice)."
+    }
+   ]
+  },
+  {
+   "id": "ch17",
+   "title": "Chapter 17 — The Preprocessor and Macros",
+   "short": "Preprocessor",
+   "content": "The preprocessor runs **before compilation** and does pure **text substitution** (no type checking, no evaluation).\n\n### 17.1 Directives\n`#include <file>` / `\"file\"`, `#define`, `#undef`, `#if`, `#ifdef`, `#ifndef`, `#elif`, `#else`, `#endif`, `#error`, `#pragma`.\nInclude guard: `#ifndef H_ #define H_ … #endif`.\n\n### 17.2 Object-like macros\n`#define N 10` — **no `=` and no trailing `;`** (a trailing `;` becomes part of the replacement).\n`#define M N+1` then `M*2` → `N+1*2` → `10+1*2` = 12 (missing parentheses).\n\n### 17.3 Function-like macros — always mentally expand!\n```c\n#define SQ(x)  x*x          // SQ(2+3) → 2+3*2+3 = 11   (not 25)\n#define SQ2(x) ((x)*(x))    // SQ2(2+3) = 25, but SQ2(i++) evaluates i++ TWICE → UB\n#define MAX(a,b) ((a)>(b)?(a):(b))   // MAX(i++, j++) increments one of them twice\n```\nRules: parenthesize **each parameter** and the **whole body**; arguments with side effects are evaluated as many times as the parameter appears; macro name followed immediately by `(`; no recursion (a macro is not re-expanded inside its own expansion).\n\n### 17.4 Multi-statement macros\n`#define SWAP(a,b) t=a; a=b; b=t;` used as `if (c) SWAP(x,y);` only guards the first statement. Use `do { ... } while (0)`.\n\n### 17.5 `#` and `##`\n- `#x` **stringizes** the argument: `#define STR(x) #x` → `STR(hello)` = `\"hello\"`.\n- `a ## b` **pastes** tokens: `#define CAT(a,b) a##b` → `CAT(12,34)` = `1234`.\n\n### 17.6 Macro vs function\n| Macro | Function |\n|---|---|\n| Text substitution, no call overhead | Real call: pushes a frame |\n| No type checking | Type checked |\n| Arguments re-evaluated | Evaluated once |\n| Code size grows with each use | Single copy |\n| Cannot take its address | Can |\n\n### 17.7 Conditional compilation\n`#ifdef DEBUG … #endif`, `#if defined(X) && X > 2`. Code in a false branch is removed before compilation.\nPredefined: `__LINE__`, `__FILE__`, `__DATE__`, `__TIME__`, `__STDC__`.",
+   "questions": [
+    {
+     "id": "17.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\n#define SQ(x) x*x\nint main() { printf(\"%d\", SQ(2 + 3)); }\n```",
+     "options": [
+      "`25`",
+      "`11`",
+      "`10`",
+      "`15`"
+     ],
+     "answer": 1,
+     "solution": "Expands to `2+3*2+3` = 2 + 6 + 3 = 11.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "17.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\n#define PRODUCT(a,b) a*b\nint main() { printf(\"%d\", PRODUCT(1+2, 3+4)); }\n```",
+     "options": [
+      "`21`",
+      "`10`",
+      "`12`",
+      "`11`"
+     ],
+     "answer": 3,
+     "solution": "`1+2*3+4` = 1 + 6 + 4 = 11.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "17.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\n#define A 2\n#define B A+3\nint main() { printf(\"%d\", B*B); }\n```",
+     "options": [
+      "`25`",
+      "`12`",
+      "`11`",
+      "`10`"
+     ],
+     "answer": 2,
+     "solution": "`B*B` → `A+3*A+3` → `2+3*2+3` = 11.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "17.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is printed?\n\n```c\n#define MAX(a,b) ((a)>(b)?(a):(b))\nint main() {\n    int i = 2, j = 3;\n    int m = MAX(i++, j++);\n    printf(\"%d %d %d\", m, i, j);\n}\n```",
+     "options": [
+      "`3 3 4`",
+      "`3 3 5`",
+      "`4 4 5`",
+      "`4 3 5`"
+     ],
+     "answer": 3,
+     "solution": "Expands to `((i++)>(j++)?(i++):(j++))`. The condition (2>3) is false (sequence point after it), so `j++` runs again: m = 4, j = 5, and i was incremented once → 3.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "17.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\n#define STR(x) #x\n#define CAT(a,b) a##b\nint main() { printf(\"%s %d\", STR(hello), CAT(12, 34)); }\n```",
+     "options": [
+      "`hello 46`",
+      "`hello 12`",
+      "Compile error",
+      "`hello 1234`"
+     ],
+     "answer": 3,
+     "solution": "`#x` turns the argument into a string; `##` pastes tokens.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "17.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\n#define M N+1\n#define N 5\nint main() { printf(\"%d\", M * 2); }\n```",
+     "options": [
+      "`7`",
+      "`12`",
+      "`10`",
+      "Compile error"
+     ],
+     "answer": 0,
+     "solution": "`M*2` → `N+1*2` → `5+1*2` = 7.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "17.7",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following is the best definition of a macro that squares its argument?",
+     "options": [
+      "`#define SQ(x) x*x`",
+      "`#define SQ(x) (x*x)`",
+      "`#define SQ(x) ((x)*(x))`",
+      "`#define SQ(x) (x)*(x)`"
+     ],
+     "answer": 2,
+     "solution": "Parenthesize every use of the parameter and the whole body."
+    },
+    {
+     "id": "17.8",
+     "type": "mcq",
+     "marks": 1,
+     "question": "What is the problem with `#define N 10;` used as `int a[N];`?",
+     "options": [
+      "None",
+      "It expands to `int a[10;];` — syntax error",
+      "`N` is not allowed in array sizes",
+      "`N` has type float"
+     ],
+     "answer": 1,
+     "solution": "The semicolon is part of the replacement text."
+    },
+    {
+     "id": "17.9",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which statement about macros is **false**?",
+     "options": [
+      "They are processed before compilation",
+      "Their arguments are type-checked",
+      "Their arguments can be evaluated more than once",
+      "You cannot take the address of a macro"
+     ],
+     "answer": 1,
+     "solution": "Macros are pure text substitution; no type checking."
+    },
+    {
+     "id": "17.10",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is printed?\n\n```c\n#define DEBUG\nint main() {\n#ifdef DEBUG\n    printf(\"A\");\n#else\n    printf(\"B\");\n#endif\n#ifndef RELEASE\n    printf(\"C\");\n#endif\n}\n```",
+     "options": [
+      "`AC`",
+      "`A`",
+      "`AB`",
+      "`ABC`"
+     ],
+     "answer": 0,
+     "solution": "DEBUG is defined, RELEASE is not.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    }
+   ]
+  },
+  {
+   "id": "ch18",
+   "title": "Chapter 18 — Memory Model, Stack Frames and Runtime Behaviour",
+   "short": "Memory Model",
+   "content": "### 18.1 Typical process layout (low → high address)\n```\n┌───────────────────────┐ low addresses\n│ Code / Text           │  machine instructions (read-only)\n│ Read-only data        │  string literals, const globals\n│ Initialized data      │  globals/statics with non-zero initializers\n│ BSS                   │  globals/statics zero-initialized / uninitialized\n│ Heap  ↓ grows upward  │  malloc/calloc/realloc\n│          …            │\n│ Stack ↑ grows downward│  frames: parameters, locals, return address\n└───────────────────────┘ high addresses\n```\nExact layout and growth direction are **platform-dependent**.\n\n### 18.2 Where does it live?\n| Item | Region |\n|---|---|\n| Ordinary local variable, parameter | **Stack** |\n| `static` local, global | Data / BSS |\n| `malloc`'d block | **Heap** |\n| String literal `\"abc\"` | Read-only data |\n| Function code | Text |\n| `char s[] = \"abc\"` (local) | **Stack** (copy of the literal) |\n| `char *p = \"abc\"` (local) | `p` on stack, literal in read-only data |\n\n### 18.3 Stack frame (activation record)\nCreated at each call: return address, saved registers/frame pointer, parameters, local automatic variables. Destroyed on return.\n- Recursion creates **one frame per active call** → recursion depth `d` costs O(d) stack space (times the frame size).\n- Deep recursion or huge local arrays → **stack overflow**.\n- `fact(n)` with base case `n==0` has **n+1** frames at its deepest.\n- Tail-call optimization is not guaranteed by C.\n\n### 18.4 Lifetimes recap\n- Automatic: until the block ends.\n- Static: whole program.\n- Allocated: until `free`.\n- Returning the address of an automatic object ⇒ dangling pointer.\n\n### 18.5 Compilation pipeline\n`source → preprocessor → compiler → assembler → object file(s) → linker (+libraries) → executable → loader → process`. Compile-time errors: syntax, type errors. Link-time errors: undefined/multiple-defined symbols. Run-time errors: segfault, division by zero (SIGFPE).",
+   "questions": [
+    {
+     "id": "18.1",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Match each item with its memory region — (P) local `int x;` (Q) `static int y = 5;` (R) `malloc(10)` block (S) string literal `\"abc\"`.",
+     "options": [
+      "P: stack, Q: data, R: heap, S: read-only data",
+      "P: heap, Q: stack, R: data, S: stack",
+      "P: stack, Q: stack, R: heap, S: stack",
+      "P: data, Q: data, R: heap, S: heap"
+     ],
+     "answer": 0,
+     "solution": "Standard layout; see table 18.2."
+    },
+    {
+     "id": "18.2",
+     "type": "nat",
+     "marks": 1,
+     "question": "For `int fact(int n) { if (n == 0) return 1; return n * fact(n-1); }`, the maximum number of simultaneously active activation records of `fact` for the call `fact(5)` (not counting `main`) is ______.",
+     "answer": 6,
+     "solution": "Calls for n = 5,4,3,2,1,0 are all active at the deepest point."
+    },
+    {
+     "id": "18.3",
+     "type": "mcq",
+     "marks": 1,
+     "question": "The space complexity (stack) of the recursive `fact(n)` is:",
+     "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n²)"
+     ],
+     "answer": 2,
+     "solution": "One frame per recursion level."
+    },
+    {
+     "id": "18.4",
+     "type": "mcq",
+     "marks": 2,
+     "question": "A function `void f(int n) { int a[100]; if (n > 0) f(n - 1); }` is called as `f(1000)`. The stack space used is proportional to:",
+     "options": [
+      "100",
+      "1000",
+      "100 × 1000",
+      "1000²"
+     ],
+     "answer": 2,
+     "solution": "Each of the 1001 frames contains its own `int a[100]`."
+    },
+    {
+     "id": "18.5",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which of the following would normally be a **compile-time** error rather than a run-time error?",
+     "options": [
+      "Dereferencing NULL",
+      "Using an undeclared variable",
+      "Division by zero in a variable expression",
+      "Stack overflow"
+     ],
+     "answer": 1,
+     "solution": "Undeclared identifiers are caught by the compiler."
+    },
+    {
+     "id": "18.6",
+     "type": "mcq",
+     "marks": 1,
+     "question": "A linker error such as \"undefined reference to `foo`\" means:",
+     "options": [
+      "Syntax error in `foo`",
+      "`foo` was declared/called but no definition was linked",
+      "`foo` was defined twice",
+      "Type mismatch in a call"
+     ],
+     "answer": 1,
+     "solution": "The object files reference a symbol that no object file/library defines."
+    },
+    {
+     "id": "18.7",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Where are the following stored? `char s[] = \"hi\";` inside `main` and `char *p = \"hi\";` inside `main`.",
+     "options": [
+      "`s` on stack (own copy); `p` on stack pointing to read-only data",
+      "Both on heap",
+      "`s` read-only; `p` on stack with its own copy",
+      "Both in the data segment"
+     ],
+     "answer": 0,
+     "solution": "The array is a modifiable local copy; the pointer variable is a local that points at the literal."
+    }
+   ]
+  },
+  {
+   "id": "ch19",
+   "title": "Chapter 19 — Command-Line Arguments, Files and Standard Library Odds & Ends",
+   "short": "CLI, Files & Misc",
+   "content": "### 19.1 Command-line arguments\n```c\nint main(int argc, char *argv[])     // ≡ char **argv\n```\n- `argc` = number of arguments **including the program name**.\n- `argv[0]` = program name, `argv[1..argc-1]` = arguments (strings), `argv[argc] == NULL`.\n- `./a.out 10 20 30` → `argc = 4`, `argv[3]` is `\"30\"`, `atoi(argv[1]) = 10`.\n\n### 19.2 File I/O (`<stdio.h>`)\n```c\nFILE *fp = fopen(\"data.txt\", \"r\");   // NULL on failure\nfclose(fp);\n```\n| Mode | Meaning |\n|---|---|\n| `\"r\"` | read; file must exist |\n| `\"w\"` | write; **truncates** to zero length / creates |\n| `\"a\"` | append; writes always go to the end / creates |\n| `\"r+\"` | read+write, file must exist, no truncation |\n| `\"w+\"` | read+write, truncates/creates |\n| `\"a+\"` | read + append |\nAdd `b` for binary (`\"rb\"`).\n\n| Function | Purpose |\n|---|---|\n| `fgetc / fputc / getc / putc` | one char (`fgetc` returns `int`; `EOF` = −1) |\n| `fgets(buf, n, fp)` / `fputs` | line I/O (`fgets` keeps `'\\n'`, reads ≤ n−1 chars) |\n| `fscanf / fprintf` | formatted I/O |\n| `fread / fwrite(ptr, size, count, fp)` | binary blocks; return items transferred |\n| `fseek(fp, off, SEEK_SET/CUR/END)`, `ftell`, `rewind` | positioning |\n| `feof(fp)` | true only **after** a read hit end-of-file |\n\n**`while (!feof(fp))` pitfall:** `feof` becomes true only after a failed read, so the loop body runs once too often. Test the **return value** of the read function instead: `while (fscanf(fp, \"%d\", &x) == 1)` or `while ((c = fgetc(fp)) != EOF)`.\n\n`stdin`, `stdout`, `stderr` are predefined `FILE *`; `printf(...)` ≡ `fprintf(stdout, ...)`. `stdout` is line-buffered/fully buffered, `stderr` unbuffered.\n\n### 19.3 Useful `<stdlib.h>` / `<ctype.h>` / `<math.h>`\n`atoi`, `strtol`, `abs`, `rand/srand`, `exit`, `qsort`, `bsearch`; `isalpha/isdigit/toupper/tolower`; `sqrt/pow/floor/ceil` (`ceil(−2.5) = −2`, `floor(−2.5) = −3`).",
+   "questions": [
+    {
+     "id": "19.1",
+     "type": "mcq",
+     "marks": 1,
+     "question": "A program is run as `./a.out 10 20 30`. What does `printf(\"%d %s\", argc, argv[argc - 1]);` print?",
+     "options": [
+      "`3 30`",
+      "`4 30`",
+      "`4 ./a.out`",
+      "`3 20`"
+     ],
+     "answer": 1,
+     "solution": "`argc` counts the program name: 4. `argv[3]` is `\"30\"`."
+    },
+    {
+     "id": "19.2",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Which `fopen` mode **destroys** the existing contents of a file?",
+     "options": [
+      "`\"r\"`",
+      "`\"a\"`",
+      "`\"w\"`",
+      "`\"r+\"`"
+     ],
+     "answer": 2,
+     "solution": "`\"w\"` truncates to zero length."
+    },
+    {
+     "id": "19.3",
+     "type": "nat",
+     "marks": 2,
+     "question": "A file contains the single number `5` followed by a newline. The loop below reads it. How many times does the body execute?\n\n```c\nint x;\nwhile (!feof(fp)) {\n    fscanf(fp, \"%d\", &x);\n    printf(\"%d \", x);\n}\n```",
+     "answer": 2,
+     "solution": "After reading `5`, EOF has not yet been *detected* (the newline remains). The second `fscanf` fails, sets EOF and leaves `x` = 5 — so `5` is printed twice. Always test the return value of `fscanf`."
+    },
+    {
+     "id": "19.4",
+     "type": "mcq",
+     "marks": 1,
+     "question": "`fgetc` returns `int` rather than `char` because:",
+     "options": [
+      "`char` is too small for ASCII",
+      "It must be able to return `EOF` (−1), which must be distinguishable from any valid character",
+      "For alignment",
+      "Historical reasons only"
+     ],
+     "answer": 1,
+     "solution": "With a `char` result, a legitimate byte 0xFF could be confused with EOF."
+    },
+    {
+     "id": "19.5",
+     "type": "mcq",
+     "marks": 1,
+     "question": "`fseek(fp, 0, SEEK_END); long n = ftell(fp);` computes:",
+     "options": [
+      "The number of lines",
+      "The file size in bytes (for a binary-mode file)",
+      "The position of the first byte",
+      "The number of words"
+     ],
+     "answer": 1,
+     "solution": "Seek to the end, then the offset equals the length."
+    },
+    {
+     "id": "19.6",
+     "type": "mcq",
+     "marks": 1,
+     "question": "Assuming `fopen` succeeds, which statement about `fgets(buf, 5, fp)` is true?",
+     "options": [
+      "Reads exactly 5 characters",
+      "Reads at most 4 characters and appends `'\\0'`, stopping early after a newline",
+      "Strips the newline",
+      "Reads a whole line regardless of length"
+     ],
+     "answer": 1,
+     "solution": "`fgets` reads at most n−1 chars, keeps the newline if read, and NUL-terminates."
+    }
+   ]
+  },
+  {
+   "id": "ch20",
+   "title": "Chapter 20 — C Code for Data Structures & Algorithms: GATE-Style Tracing",
+   "short": "DS Code Tracing",
+   "content": "GATE's *Programming and Data Structures* section tests C code on arrays, lists, stacks, queues, trees and recursion. The C skills are the same; the traps are different:\n\n| Pattern | What to watch |\n|---|---|\n| **Array rotation / reversal** | loop bounds (`i < n/2`), indexes `n-1-i` |\n| **Binary search** | `mid = (lo+hi)/2`, `lo = mid+1`, `hi = mid-1`; iterations ≤ ⌊log₂ n⌋ + 1 |\n| **Bubble sort** | swaps = number of inversions; comparisons n(n−1)/2 (without early exit) |\n| **In-place matrix transpose** | swapping for all `i, j` (both triangles) undoes itself — loop only `j > i` |\n| **Linked list** | pointer re-linking order; save `next` before overwriting |\n| **Stack / queue with arrays** | `top = -1` empty; circular queue uses `(rear+1) % n`; full vs empty ambiguity |\n| **BST** | inorder → sorted; preorder → root first |\n| **Recursion on lists/trees** | print before vs after the recursive call |\n| **Hidden UB** | out-of-bounds in loops `i <= n`; uninitialized accumulators |\n\n**Always** run a small case by hand (n = 2, 3) before generalizing.",
+   "questions": [
+    {
+     "id": "20.1",
+     "type": "nat",
+     "marks": 2,
+     "question": "Binary search for the key 13 in the sorted array `a[i] = i` (16 elements). The value of `c` printed (number of loop iterations) is ______.\n\n```c\nint main() {\n    int a[16], i;\n    for (i = 0; i < 16; i++) a[i] = i;\n    int lo = 0, hi = 15, key = 13, c = 0;\n    while (lo <= hi) {\n        int mid = (lo + hi) / 2;\n        c++;\n        if (a[mid] == key) break;\n        else if (a[mid] < key) lo = mid + 1;\n        else hi = mid - 1;\n    }\n    printf(\"%d\", c);\n}\n```",
+     "answer": 3,
+     "solution": "Probes: mid = (0+15)/2 = 7 → lo = 8; mid = (8+15)/2 = 11 → lo = 12; mid = (12+15)/2 = 13 → found. 3 iterations.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "20.2",
+     "type": "nat",
+     "marks": 2,
+     "question": "How many swaps does this bubble sort perform on `{5, 4, 3, 2, 1}`?\n\n```c\nint main() {\n    int a[] = {5, 4, 3, 2, 1}, n = 5, sw = 0;\n    for (int i = 0; i < n - 1; i++)\n        for (int j = 0; j < n - 1 - i; j++)\n            if (a[j] > a[j + 1]) { int t = a[j]; a[j] = a[j + 1]; a[j + 1] = t; sw++; }\n    printf(\"%d\", sw);\n}\n```",
+     "answer": 10,
+     "solution": "Swaps = number of inversions = 5·4/2 = 10 for a reverse-sorted array.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "20.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What does the program print?\n\n```c\nint main() {\n    int a[3][3] = {{1,2,3},{4,5,6},{7,8,9}};\n    for (int i = 0; i < 3; i++)\n        for (int j = 0; j < 3; j++) {\n            int t = a[i][j]; a[i][j] = a[j][i]; a[j][i] = t;\n        }\n    for (int i = 0; i < 3; i++) printf(\"%d%d%d \", a[i][0], a[i][1], a[i][2]);\n}\n```",
+     "options": [
+      "`123 456 789`",
+      "`147 258 369`",
+      "`321 654 987`",
+      "`789 456 123`"
+     ],
+     "answer": 0,
+     "solution": "Each off-diagonal pair is swapped twice (once from each triangle), restoring the original matrix.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "20.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is printed? (inorder and preorder of a BST built by inserting 5, 3, 8, 1, 4)\n\n```c\nstruct N { int k; struct N *l, *r; };\nstruct N *ins(struct N *t, int k) {\n    if (!t) { t = calloc(1, sizeof *t); t->k = k; return t; }\n    if (k < t->k) t->l = ins(t->l, k); else t->r = ins(t->r, k);\n    return t;\n}\nvoid in(struct N *t)  { if (t) { in(t->l);  printf(\"%d\", t->k); in(t->r); } }\nvoid pre(struct N *t) { if (t) { printf(\"%d\", t->k); pre(t->l); pre(t->r); } }\nint main() {\n    struct N *root = NULL; int v[] = {5, 3, 8, 1, 4};\n    for (int i = 0; i < 5; i++) root = ins(root, v[i]);\n    in(root); printf(\" \"); pre(root);\n}\n```",
+     "options": [
+      "`13458 51348`",
+      "`13458 53148`",
+      "`53148 13458`",
+      "`13458 53418`"
+     ],
+     "answer": 1,
+     "solution": "Inorder of a BST is sorted; preorder visits root first: 5, then left subtree (3,1,4), then 8.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "20.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What does `f` print for the list 1→2→3→4?\n\n```c\nstruct node { int d; struct node *next; };\nstruct node *rev(struct node *h) {\n    struct node *prev = NULL, *cur = h, *nx;\n    while (cur) { nx = cur->next; cur->next = prev; prev = cur; cur = nx; }\n    return prev;\n}\nint main() {\n    struct node *h = NULL, *t;\n    for (int i = 4; i >= 1; i--) { t = malloc(sizeof *t); t->d = i; t->next = h; h = t; }\n    h = rev(h);\n    for (t = h; t; t = t->next) printf(\"%d\", t->d);\n}\n```",
+     "options": [
+      "`1234`",
+      "`4`",
+      "`4321`",
+      "`1432`"
+     ],
+     "answer": 2,
+     "solution": "Standard iterative reversal.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "20.6",
+     "type": "nat",
+     "marks": 2,
+     "question": "How many primes are printed/counted (Sieve of Eratosthenes up to 50)?\n\n```c\nint main() {\n    char comp[51] = {0};\n    int cnt = 0;\n    for (int i = 2; i <= 50; i++) {\n        if (!comp[i]) {\n            cnt++;\n            for (int j = 2 * i; j <= 50; j += i) comp[j] = 1;\n        }\n    }\n    printf(\"%d\", cnt);\n}\n```",
+     "answer": 15,
+     "solution": "Primes ≤ 50: 2,3,5,7,11,13,17,19,23,29,31,37,41,43,47.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "20.7",
+     "type": "nat",
+     "marks": 2,
+     "question": "What does `f(6)` return? (Collatz steps)\n\n```c\nint f(int n) {\n    int c = 0;\n    while (n > 1) { n = (n % 2) ? 3 * n + 1 : n / 2; c++; }\n    return c;\n}\nint main() { printf(\"%d\", f(6)); }\n```",
+     "answer": 8,
+     "solution": "6→3→10→5→16→8→4→2→1: 8 steps.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "20.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "Array stack operations: what is printed?\n\n```c\nint st[10], top = -1;\nvoid push(int x) { st[++top] = x; }\nint  pop(void)   { return st[top--]; }\nint main() {\n    push(1); push(2); push(3);\n    printf(\"%d \", pop());\n    push(4);\n    printf(\"%d \", pop());\n    int a = pop();\n    int b = pop();\n    printf(\"%d %d\", a, b);\n}\n```",
+     "options": [
+      "`3 4 2 1`",
+      "`3 4 1 2`",
+      "`3 2 4 1`",
+      "`3 4 3 2`"
+     ],
+     "answer": 0,
+     "solution": "push 1,2,3; pop → 3; push 4; pop → 4; then pop → 2, pop → 1. (Never write two `pop()` calls inside one `printf` — argument evaluation order is unspecified.)\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "20.9",
+     "type": "mcq",
+     "marks": 1,
+     "question": "A circular queue of capacity 5 uses `rear = (rear + 1) % 5` for insertion and `front = (front + 1) % 5` for deletion, starting with `front = rear = 0` (queue empty when `front == rear`). After 4 insertions and 2 deletions, the number of elements is:",
+     "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "answer": 1,
+     "solution": "4 − 2 = 2. (Note: with the `front == rear` empty test the queue can hold at most 4 elements.)"
+    },
+    {
+     "id": "20.10",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a[] = {3, 0, 1, 2}, i = 0, c = 0;\n    do { i = a[i]; c++; } while (i != 0);\n    printf(\"%d\", c);\n}\n```",
+     "options": [
+      "`3`",
+      "`5`",
+      "Infinite loop",
+      "`4`"
+     ],
+     "answer": 3,
+     "solution": "i: 0→3→2→1→0 — four iterations.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    }
+   ]
+  },
+  {
+   "id": "ch21",
+   "title": "Chapter 21 — Mixed Timed Mock Test (Chapters 1–20)",
+   "short": "Mock Test",
+   "content": "**Instructions:** 16 questions, 25 marks, **about 45 minutes** (GATE pace ≈ 1.8 min per mark). Attempt without opening the solutions. Assume a typical GATE-style machine unless stated: `char` 1, `short` 2, `int` 4, `long` 8, pointer 8, little-endian, two's complement, ASCII. After the test, log every wrong answer in your Mistake Notebook (template in Chapter 22).",
+   "questions": [
+    {
+     "id": "21.1",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int x = 5, *p = &x;\n    printf(\"%d\", *p ** p + 1);\n}\n```",
+     "options": [
+      "Compile error",
+      "`25`",
+      "`11`",
+      "`26`"
+     ],
+     "answer": 3,
+     "solution": "`*p ** p` = `(*p) * (*p)` = 25; +1 → 26.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.2",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a = 1, b = 2, c = 3;\n    printf(\"%d\", a < b && b < c || !a);\n}\n```",
+     "options": [
+      "`0`",
+      "`1`",
+      "`2`",
+      "Compile error"
+     ],
+     "answer": 1,
+     "solution": "`(1 && 1) || 0` = 1.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.3",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint f(int n) {\n    static int c = 0;\n    if (n == 0) return c;\n    c += n;\n    return f(n - 1);\n}\nint main() { printf(\"%d\", f(4)); }\n```",
+     "options": [
+      "`10`",
+      "`0`",
+      "`4`",
+      "`6`"
+     ],
+     "answer": 0,
+     "solution": "`c` accumulates 4+3+2+1 = 10 and is returned at the base case.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.4",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    char *s = \"GATE2027\";\n    printf(\"%c\", *(s + strlen(s) / 2));\n}\n```",
+     "options": [
+      "`2`",
+      "`E`",
+      "`0`",
+      "`7`"
+     ],
+     "answer": 0,
+     "solution": "`strlen` = 8 → index 4 → `'2'`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.5",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a[3][3] = {1,2,3,4,5,6,7,8,9};\n    int (*p)[3] = a;\n    printf(\"%d\", (*(p + 1))[2] + p[2][0]);\n}\n```",
+     "options": [
+      "`12`",
+      "`13`",
+      "`11`",
+      "`15`"
+     ],
+     "answer": 1,
+     "solution": "`(*(p+1))[2]` = a[1][2] = 6; `p[2][0]` = 7 → 13.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.6",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nvoid f(int *a, int n) {\n    if (n == 0) return;\n    f(a + 1, n - 1);\n    printf(\"%d\", *a);\n}\nint main() { int a[] = {1, 2, 3}; f(a, 3); }\n```",
+     "options": [
+      "`123`",
+      "`312`",
+      "`213`",
+      "`321`"
+     ],
+     "answer": 3,
+     "solution": "Printing happens after the recursive call, so elements print in reverse.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.7",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What does `f(255)` return?\n\n```c\nint f(int x) { return x ? 1 + f(x & (x - 1)) : 0; }\nint main() { printf(\"%d\", f(255)); }\n```",
+     "options": [
+      "`8`",
+      "`255`",
+      "`7`",
+      "`1`"
+     ],
+     "answer": 0,
+     "solution": "Counts set bits recursively: 8.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.8",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\nint main() {\n    for (int i = 0; i < 3; i++) {\n        switch (i) {\n            case 0: continue;\n            case 1: printf(\"a\");\n            case 2: printf(\"b\"); break;\n        }\n        printf(\"c\");\n    }\n}\n```",
+     "options": [
+      "`cabcbc`",
+      "`abcbc`",
+      "`abcc`",
+      "`abbcc`"
+     ],
+     "answer": 1,
+     "solution": "i=0: `continue`. i=1: prints a, falls into b, `break`, then c. i=2: prints b, break, then c.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.9",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    char *p = \"GATE\";\n    char *q = p + 3;\n    printf(\"%ld %c\", q - p, *q);\n}\n```",
+     "options": [
+      "`3 T`",
+      "`4 E`",
+      "`3 A`",
+      "`3 E`"
+     ],
+     "answer": 3,
+     "solution": "Pointer difference is 3 elements; `*q` is `'E'`.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.10",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int a[3][4];\n    printf(\"%zu %zu\", sizeof(a) / sizeof(a[0]), sizeof(a[0]) / sizeof(a[0][0]));\n}\n```",
+     "options": [
+      "`12 4`",
+      "`3 12`",
+      "`3 4`",
+      "`4 3`"
+     ],
+     "answer": 2,
+     "solution": "Number of rows and number of columns.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.11",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int x = 2;\n    x <<= 3 + 1;\n    printf(\"%d\", x);\n}\n```",
+     "options": [
+      "`16`",
+      "`8`",
+      "`5`",
+      "`32`"
+     ],
+     "answer": 3,
+     "solution": "`x <<= 3+1` is `x = x << 4` = 32.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.12",
+     "type": "mcq",
+     "marks": 2,
+     "question": "What is wrong with the loop `for (unsigned i = 3; i >= 0; i--) { ... }`?",
+     "options": [
+      "Nothing",
+      "Infinite loop: an unsigned value is always ≥ 0 and wraps around",
+      "It executes 0 times",
+      "Compile-time error"
+     ],
+     "answer": 1,
+     "solution": "After i = 0, `i--` wraps to UINT_MAX, which is still ≥ 0."
+    },
+    {
+     "id": "21.13",
+     "type": "mcq",
+     "marks": 2,
+     "question": "Which of the following is **not** a valid way to access element `(i, j)` of `int m[R][C]` (in-bounds)?",
+     "options": [
+      "`m[i][j]`",
+      "`*(*(m + i) + j)`",
+      "`*(m[i] + j)`",
+      "`*(m + i * C + j)`"
+     ],
+     "answer": 3,
+     "solution": "`m + i*C + j` moves by *rows* (each of C ints), not by ints, and `*` of it yields an array that decays — wrong type/offset. Use `*(*m + i*C + j)` for flat access."
+    },
+    {
+     "id": "21.14",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 1,
+     "question": "What is the output?\n\n```c\nint main() {\n    int i = 0;\n    int a[3] = {10, 20, 30};\n    int s = 0;\n    s += a[i++];\n    s += a[i++];\n    s += a[i++];\n    printf(\"%d %d\", s, i);\n}\n```",
+     "options": [
+      "`60 3`",
+      "`60 1`",
+      "`30 3`",
+      "Undefined behaviour"
+     ],
+     "answer": 0,
+     "solution": "Three separate statements — each `i++` is sequenced. s = 10 + 20 + 30.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.15",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "Assume natural alignment. What is `sizeof(struct S)`?\n\n```c\nstruct S { char c; long l; short s; };\nint main() { printf(\"%zu\", sizeof(struct S)); }\n```",
+     "options": [
+      "`24`",
+      "`16`",
+      "`11`",
+      "`32`"
+     ],
+     "answer": 0,
+     "solution": "c@0, pad 7, l@8, s@16, pad 6 (to a multiple of 8) = 24.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    },
+    {
+     "id": "21.16",
+     "type": "mcq",
+     "tag": "OUTPUT",
+     "marks": 2,
+     "question": "What is the output?\n\n```c\n#define DOUBLE(x) x + x\nint main() { printf(\"%d\", DOUBLE(3) * DOUBLE(3)); }\n```",
+     "options": [
+      "`15`",
+      "`36`",
+      "`18`",
+      "`12`"
+     ],
+     "answer": 0,
+     "solution": "`3 + 3 * 3 + 3` = 3 + 9 + 3 = 15.\n\n✅ *Output verified by compiling and running it (gcc 13).*"
+    }
+   ]
+  },
+  {
+   "id": "ch22",
+   "title": "Chapter 22 — Revision Pack: Tracing Method, Traps, Micro-Rules, Cheat-Sheet, Mistake Notebook",
+   "short": "Revision Pack",
+   "content": "### 22.1 The 10-step GATE code-tracing method\nUse this on **every** C code question:\n1. Write the initial values.\n2. Identify scopes (globals, shadowing, `static`).\n3. Identify **types** of every variable and sub-expression.\n4. Resolve parentheses.\n5. Resolve precedence and associativity.\n6. Check evaluation order / side effects (any UB? unsequenced `++`?).\n7. Check array bounds.\n8. Check pointer validity (initialized, non-NULL, live object).\n9. Check integer overflow / type conversion / promotion.\n10. **Only then** compute the output.\n\n> Don't ask \"What is the output?\" first. Ask **\"Is this code even well-defined?\"** — that one habit saves marks.\n\n### 22.2 The 30 most dangerous traps\n1. Array ≠ pointer\n2. `sizeof(array)` ≠ `sizeof(pointer)` (also for array parameters)\n3. `strlen` ≠ `sizeof`\n4. `i++` ≠ `++i`\n5. `*p++` ≠ `(*p)++`\n6. `*++p` ≠ `++*p`\n7. `struct` ≠ `union`\n8. scope ≠ lifetime\n9. scope ≠ linkage\n10. `static` local ≠ ordinary local\n11. `malloc` ≠ `calloc`\n12. `NULL` ≠ `'\\0'` ≠ `\"0\"` ≠ `'0'`\n13. assignment `=` ≠ comparison `==`\n14. `&&` ≠ `&`\n15. `||` ≠ `|`\n16. `!` ≠ `~`\n17. `break` ≠ `continue`\n18. `while` ≠ `do-while`\n19. Pointer arithmetic is **type-scaled**\n20. Signed overflow → UB (unsigned wraps)\n21. Out-of-bounds access → UB\n22. Unsequenced side effects → UB\n23. Evaluation order is not always left-to-right\n24. Structure padding exists (`sizeof` ≥ sum of members)\n25. Arguments are passed **by value**\n26. The pointer itself is passed by value (reassigning it inside a function is invisible outside)\n27. Macro expansion changes meaning (parenthesize; side effects repeated)\n28. `realloc` may move memory\n29. A freed pointer dangles\n30. Not every non-zero value is 1 — but `! < > == != && ||` always yield exactly 0 or 1\n\nExtra traps worth adding to your list: `x & 1 == 0` precedence; `a+++b`; `'A'` is `int`; unsigned-vs-signed comparison; `strlen` returns unsigned; `for(...);` empty body; `switch` fall-through and `default` in the middle; dangling `else`; `%c` after `%d` in `scanf`; `while(!feof(fp))`; `char` signedness; float `==`; `printf` returns a count; integer division/modulo with negatives.\n\n### 22.3 The 20 must-memorize micro-rules\n1. `a[i] = *(a + i)` 2. `i[a] = a[i]` 3. `p[i] = *(p + i)`\n4. `p + 1` moves by the size of the pointed-to type\n5. `sizeof(array)` = total array storage; 6. `sizeof(pointer)` = pointer storage\n7. `strlen` excludes `'\\0'`; 8. `sizeof(\"literal\")` includes `'\\0'`\n9. 0 → false, non-zero → true\n10. `&&` and `||` short-circuit\n11. C passes arguments by value\n12. `static` local retains its value\n13. Struct members have separate storage; 14. union members share storage\n15. `malloc` → uninitialized; 16. `calloc` → zeroed\n17. `free` → lifetime ends\n18. Array indexing starts at 0\n19. `do-while` executes at least once\n20. `break` exits the nearest loop/switch\n\n### 22.4 Mental-model layers (apply to every question)\n`VALUE → TYPE → ADDRESS → LIFETIME → SCOPE → LINKAGE → EVALUATION ORDER → DEFINED / UNSPECIFIED / IMPLEMENTATION-DEFINED / UNDEFINED`\n\n### 22.5 One-page cheat-sheet\n**Sizes (typical):** char 1, short 2, int 4, long 4/8, long long 8, float 4, double 8, pointer 4/8.\n**Ranges:** unsigned `0..2ⁿ−1`; signed `−2ⁿ⁻¹..2ⁿ⁻¹−1`; `~x = −x−1`.\n**Precedence (short):** `() [] -> . post++` > `unary ! ~ * & sizeof (cast) pre++` > `* / %` > `+ -` > `<< >>` > `< <= > >=` > `== !=` > `&` > `^` > `|` > `&&` > `||` > `?:` > `= op=` > `,`.\n**Division/modulo:** truncate toward zero; `%` takes sign of dividend.\n**Conversions:** int→float: float; float→double: double; signed+unsigned (same rank) → unsigned; float→int truncates.\n**Address of `A[i][j]`:** `B + (i·C + j)·w`; 3-D: `B + ((i·Y + j)·Z + k)·w`.\n**Pointer arithmetic:** `p ± n` → `± n·sizeof(*p)`; `p − q` → elements.\n**Bit tricks:** `x&(x−1)` clears lowest 1; `x&−x` isolates lowest 1; power of two ⇔ `x>0 && !(x&(x−1))`; `a+b = (a^b) + 2(a&b)`.\n**Padding:** align each member to its size; round total to the largest alignment. **Union:** max member, rounded to max alignment.\n**Strings:** `strlen` ≠ `sizeof`; `\"abc\"[i]`; modifying a literal = UB; `strcmp == 0` for equality.\n**printf:** returns #chars; `%d %u %ld %lld %zu %f %c %s %x %o %p`; wrong specifier = UB.\n**scanf:** needs `&`; returns #items; `%c` reads whitespace; use `\" %c\"`.\n**Recursion:** frames = depth; `T(n)=T(n−1)+1 → n`; `2T(n−1)+1 → 2ⁿ`; `T(n/2)+1 → log n`; `2T(n/2)+n → n log n`; fib calls `C(n) = 1 + C(n−1) + C(n−2)`.\n**Loops:** `i*=2` → log₂; nested triangular → n(n−1)/2; harmonic-type loops → n log n.\n**Dynamic memory:** `malloc/calloc/realloc/free`; leaks, dangling, double free; `realloc` via temp pointer.\n**Macros:** expand textually; parenthesize; `#`, `##`; side effects repeated.\n**UB list:** overflow(signed), OOB, NULL/dangling/wild deref, `/0`, unsequenced modification, shift ≥ width, string-literal write, bad format specifier, double free.\n\n### 22.6 Master study tree (tick each box)\n- [ ] **A. Fundamentals** — structure, tokens, keywords, identifiers, constants, variables, data types, modifiers, qualifiers (Ch 1–2)\n- [ ] **B. Operators** — arithmetic, relational, logical, assignment, inc/dec, conditional, bitwise, comma, sizeof, precedence, associativity (Ch 3, 5)\n- [ ] **C. Conversions & UB** — implicit/explicit, promotions, usual arithmetic conversions, UB/unspecified/impl-defined, sequence points (Ch 4, 6)\n- [ ] **D. Control flow** — if, nested if, switch/fall-through, for, while, do-while, break, continue, goto (Ch 7)\n- [ ] **E. I/O** — printf, scanf, format specifiers, return values, getchar/putchar, files, command line (Ch 8, 19)\n- [ ] **F. Functions** — declaration, definition, parameters, return, pass-by-value, pointer parameters, recursion, function pointers (Ch 9, 13)\n- [ ] **G. Storage & scope** — auto, static, extern, register, scope, lifetime, linkage, declaration vs definition (Ch 10)\n- [ ] **H. Arrays** — 1-D, 2-D, multi-D, row-major, indexing, decay, array vs pointer, sizeof (Ch 11)\n- [ ] **I. Pointers** — `&`, `*`, arithmetic, subtraction, comparison, pointer-to-pointer, void/NULL/wild/dangling, array of pointers, pointer to array, function pointer (Ch 12–13)\n- [ ] **J. Strings** — char arrays, `'\\0'`, literals, `strlen/strcpy/strncpy/strcat/strcmp`, pointer relationship (Ch 14)\n- [ ] **K. Struct / union** — declaration, `.` vs `->`, padding, alignment, union, struct vs union, typedef, enum, bit-fields (Ch 15)\n- [ ] **L. Dynamic memory** — malloc/calloc/realloc/free, leaks, dangling, dynamic arrays and 2-D arrays, linked structures (Ch 16, 20)\n- [ ] **M. Preprocessor** — `#include`, `#define`, macros, expansion, conditional compilation (Ch 17)\n- [ ] **N. Advanced** — const, volatile, restrict, aliasing, alignment, object lifetime, memory model, stack frames (Ch 13, 18)\n\n### 22.7 How GATE typically asks C (patterns to practise)\n1. **Output tracing** with pointers + arrays (`*p++`, 2-D arrays, `a[i][j] ≡ *(*(a+i)+j)`).\n2. **Recursion tracing** (print before/after recursive call; return values; counting calls).\n3. **Static / scope / lifetime** (`static` counters, shadowing, globals).\n4. **Operators & side effects** (`++`, `&&`/`||` short-circuit, comma, ternary, precedence traps).\n5. **`sizeof` / struct padding / union size / array address calculation** (NAT).\n6. **Macros** with side effects or missing parentheses.\n7. **Strings** (`strlen`, loops with `*s++`, in-place reversal, palindromes).\n8. **Bit manipulation** (`x & (x−1)`, shifts, XOR tricks).\n9. **Linked list / array / matrix routines** (what does this function do? number of iterations?).\n10. **UB-detection** (\"which of the following is true?\" statements about C semantics).\n\n### 22.8 Your 4-notebook system\n| Notebook | Purpose |\n|---|---|\n| 📘 **1 — Concepts** | This file's Chapters 1–20 (concept parts) |\n| 📕 **2 — Practice + PYQs** | For every topic: concept → 10–20 basic → 10–20 GATE-level → PYQs → timed mixed set. Don't peek at solutions immediately |\n| 📓 **3 — Mistake Notebook** | One entry per wrong/lucky answer (template below) |\n| 📗 **4 — Formula + Revision + Shortcuts** | Only rules, identities, pointer relationships, precedence, bit tricks, complexity patterns, traps, PYQ patterns → becomes your 30–60 minute final revision |\n\n**Mistake-notebook template (copy for each mistake):**\n```\nQuestion:\nMy answer:\nCorrect answer:\nWhy I was wrong:\nConcept tested:\nTrap:\nCorrect rule:\nHow I will recognize it next time (trigger):\nDate re-solved / result:\n```\n*Example —* **Mistake:** treated `sizeof(a)` as `sizeof(pointer)`. **Correct rule:** an array decays to a pointer in expressions, but *not* as the operand of `sizeof` (or `&`). **Trigger:** whenever I see `sizeof(array)`, STOP and check whether it is a real array or a function parameter.\n\n### 22.9 Strategy\n**Learn → Solve → Analyze → Record mistakes → Re-solve → Revise.** Don't try to finish by reading once. For every code question — especially PYQs — first check *well-definedness*, then trace with the 10-step method. Revisit the Mistake Notebook weekly, and re-attempt Chapter 21's mock after 7 and 21 days.\n\n\n---\n\n*End of notebook. Good luck — target: zero silly mistakes in C.*"
+  }
+ ]
+}
