@@ -1,0 +1,18 @@
+{
+  "title": "Operating Systems practice questions",
+  "chapters": [
+    {
+      "title": "Deadlock",
+      "questions": [
+        {
+          "type": "nat",
+          "question": "Three processes each need $2$ units of the same resource type. What is the minimum number of units that guarantees no deadlock?",
+          "answer": 4,
+          "solution": "Worst case each holds $1$ unit. Minimum $= n(k-1)+1 = 3(2-1)+1 = 4$.",
+          "source": "Sample question (replace me)",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}

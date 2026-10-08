@@ -1,0 +1,18 @@
+{
+  "title": "Discrete Mathematics practice questions",
+  "chapters": [
+    {
+      "title": "Graph Theory",
+      "questions": [
+        {
+          "type": "nat",
+          "question": "How many edges does the complete graph $K_6$ have?",
+          "answer": 15,
+          "solution": "$\\binom{6}{2} = \\dfrac{6\\cdot5}{2} = 15$.",
+          "source": "Sample question (replace me)",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}

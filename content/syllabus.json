@@ -1,0 +1,353 @@
+{
+  "title": "GATE 2027 CSE",
+  "subjects": [
+    {
+      "slug": "c-programming",
+      "title": "C Programming",
+      "topics": [
+        {
+          "title": "Data Types and Operators"
+        },
+        {
+          "title": "Control Flow Statements"
+        },
+        {
+          "title": "Functions & Storage"
+        },
+        {
+          "title": "Arrays and Pointers"
+        },
+        {
+          "title": "String in C Programming"
+        },
+        {
+          "title": "Structure and Union"
+        },
+        {
+          "title": "Miscellaneous Topics",
+          "detail": "Recursion"
+        }
+      ]
+    },
+    {
+      "slug": "data-structures",
+      "title": "Data Structures",
+      "topics": [
+        {
+          "title": "Introduction to DSA"
+        },
+        {
+          "title": "Arrays, Stacks, Queues, Linked Lists"
+        },
+        {
+          "title": "Trees",
+          "detail": "Binary Search Trees"
+        },
+        {
+          "title": "Binary Heaps"
+        },
+        {
+          "title": "Graphs"
+        },
+        {
+          "title": "Hashing"
+        }
+      ]
+    },
+    {
+      "slug": "coa",
+      "title": "COA",
+      "topics": [
+        {
+          "title": "Introduction of COA"
+        },
+        {
+          "title": "Instruction Set and Addressing Modes"
+        },
+        {
+          "title": "Floating Point & Number Representation and Arithmetic"
+        },
+        {
+          "title": "ALU & Control Unit",
+          "detail": "Hardwired and Microprogrammed"
+        },
+        {
+          "title": "Instruction Pipelining & Pipeline Hazards"
+        },
+        {
+          "title": "Cache Memory & Memory Interfacing / Hierarchy"
+        },
+        {
+          "title": "I/O Interface",
+          "detail": "Interrupt and DMA"
+        }
+      ],
+      "note": "Secondary storage / magnetic disks have been removed from the official outline."
+    },
+    {
+      "slug": "algorithms",
+      "title": "Algorithms",
+      "topics": [
+        {
+          "title": "Analysis of Algorithm",
+          "detail": "Asymptotic Worst Case Time and Space Complexity"
+        },
+        {
+          "title": "Design Strategies",
+          "detail": "Divide-and-Conquer, Greedy Method, Dynamic Programming"
+        },
+        {
+          "title": "Searching, Sorting, Hashing"
+        },
+        {
+          "title": "Graph Algorithms",
+          "detail": "Traversals, Minimum Spanning Trees, Shortest Paths"
+        },
+        {
+          "title": "Heap Algorithms"
+        },
+        {
+          "title": "Backtracking & Branch Bound"
+        }
+      ]
+    },
+    {
+      "slug": "digital-logic",
+      "title": "Digital Logic",
+      "topics": [
+        {
+          "title": "Boolean Algebra and Minimization",
+          "detail": "Algebraic Technique, Karnaugh Map, Tabular Method"
+        },
+        {
+          "title": "Design of Combinational Circuits"
+        },
+        {
+          "title": "Sequential Logic Circuits"
+        },
+        {
+          "title": "Number System & Representation"
+        }
+      ]
+    },
+    {
+      "slug": "discrete-mathematics",
+      "title": "Discrete Mathematics",
+      "topics": [
+        {
+          "title": "Graph Theory",
+          "detail": "Connectivity, Matching, Colouring"
+        },
+        {
+          "title": "Mathematical Logic",
+          "detail": "Propositional and First Order Logic"
+        },
+        {
+          "title": "Set Theory",
+          "detail": "Sets, Relations, Functions, Partial Orders and Lattices, Monoids, Groups"
+        },
+        {
+          "title": "Combinatorics",
+          "detail": "Counting, Recurrence Relations, Generating Functions"
+        }
+      ]
+    },
+    {
+      "slug": "engineering-mathematics",
+      "title": "Engineering Mathematics",
+      "topics": [
+        {
+          "title": "Probability: Random Variables and Distributions",
+          "detail": "Uniform, Normal, Exponential, Poisson and Binomial"
+        },
+        {
+          "title": "Statistics: Mean, Median, Mode, Standard Deviation"
+        },
+        {
+          "title": "Conditional Probability and Bayes Theorem"
+        },
+        {
+          "title": "Limits, Continuity and Differentiability"
+        },
+        {
+          "title": "Maxima and Minima, Mean Value Theorem"
+        },
+        {
+          "title": "Integration"
+        },
+        {
+          "title": "Matrices and Determinants"
+        },
+        {
+          "title": "System of Linear Equations"
+        },
+        {
+          "title": "Eigenvalues and Eigenvectors, LU Decomposition"
+        }
+      ]
+    },
+    {
+      "slug": "aptitude",
+      "title": "Aptitude",
+      "topics": [
+        {
+          "title": "Verbal: Basic English Grammar"
+        },
+        {
+          "title": "Verbal: Basic Vocabulary"
+        },
+        {
+          "title": "Verbal: Reading and Comprehension"
+        },
+        {
+          "title": "Verbal: Narrative Sequencing"
+        },
+        {
+          "title": "Quantitative: Data Interpretation"
+        },
+        {
+          "title": "Quantitative: Numerical Computation & Estimation"
+        },
+        {
+          "title": "Quantitative: Mensuration and Geometry"
+        },
+        {
+          "title": "Quantitative: Elementary Statistics and Probability"
+        },
+        {
+          "title": "Analytical Aptitude",
+          "detail": "Logic: deduction, induction, analogy, numerical relations, reasoning"
+        },
+        {
+          "title": "Spatial Aptitude",
+          "detail": "Transformation of shapes (2D and 3D)"
+        }
+      ]
+    },
+    {
+      "slug": "toc",
+      "title": "TOC",
+      "topics": [
+        {
+          "title": "Finite Automata & Regular Expressions"
+        },
+        {
+          "title": "Push Down Automata & Context-Free Grammars"
+        },
+        {
+          "title": "Regular & Context-Free Languages, Pumping Lemma"
+        },
+        {
+          "title": "Turing Machines and Undecidability"
+        }
+      ]
+    },
+    {
+      "slug": "dbms",
+      "title": "DBMS",
+      "topics": [
+        {
+          "title": "ER Model"
+        },
+        {
+          "title": "Relational Model",
+          "detail": "Relational Algebra, Tuple Calculus, SQL"
+        },
+        {
+          "title": "FD's & Normalization",
+          "detail": "Integrity Constraints, Normal Forms"
+        },
+        {
+          "title": "Query Language"
+        },
+        {
+          "title": "File Organization & Indexing",
+          "detail": "B and B+ trees"
+        },
+        {
+          "title": "Transaction & Concurrency Control"
+        }
+      ]
+    },
+    {
+      "slug": "computer-networks",
+      "title": "Computer Networks",
+      "topics": [
+        {
+          "title": "Principles of Layering & Basics of Switching",
+          "detail": "Circuit, Packet, Virtual Circuit, and Performance Metrics"
+        },
+        {
+          "title": "Data Link Layer",
+          "detail": "Error Detection, Medium Access Control, Ethernet"
+        },
+        {
+          "title": "Routing",
+          "detail": "Distance Vector and Link State Routing"
+        },
+        {
+          "title": "IPv4 Addressing, Fragmentation, CIDR, NAT"
+        },
+        {
+          "title": "TCP & UDP",
+          "detail": "Flow Control, Congestion Control, Socket API"
+        },
+        {
+          "title": "Application Layer Protocols",
+          "detail": "DNS and HTTP"
+        }
+      ],
+      "note": "Standalone OSI stack overview, ARP, ICMP, DHCP, FTP and SMTP are no longer listed explicitly in the core curriculum."
+    },
+    {
+      "slug": "compiler-design",
+      "title": "Compiler Design",
+      "topics": [
+        {
+          "title": "Lexical Analysis & Syntax Analysis",
+          "detail": "Parsing"
+        },
+        {
+          "title": "Syntax Directed Translation"
+        },
+        {
+          "title": "Runtime Environments"
+        },
+        {
+          "title": "Intermediate Code Generation & Code Optimization",
+          "detail": "Local optimization, data flow analyses: constant propagation, liveness analysis, common subexpression elimination"
+        }
+      ]
+    },
+    {
+      "slug": "operating-systems",
+      "title": "Operating Systems",
+      "topics": [
+        {
+          "title": "Introduction and Background"
+        },
+        {
+          "title": "Process Management, Threads, Inter-process Communication"
+        },
+        {
+          "title": "CPU Scheduling and I/O Scheduling"
+        },
+        {
+          "title": "Process Synchronization & Concurrency"
+        },
+        {
+          "title": "Deadlock"
+        },
+        {
+          "title": "Memory Management & Virtual Memory"
+        },
+        {
+          "title": "File System & Device Management"
+        },
+        {
+          "title": "System Calls"
+        }
+      ]
+    }
+  ]
+}

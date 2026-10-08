@@ -1,0 +1,60 @@
+{
+  "title": "Template with every question type",
+  "chapters": [
+    {
+      "title": "Chapter name",
+      "questions": [
+        {
+          "question": "MCQ: one correct option. Inline math like $x^2$ works.",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answer": 1,
+          "solution": "Why B is correct.",
+          "marks": 1,
+          "source": "GATE 2022"
+        },
+        {
+          "type": "msq",
+          "question": "MSQ: one or more correct options.",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "A and C are correct.",
+          "marks": 2
+        },
+        {
+          "type": "nat",
+          "question": "NAT: type a number.",
+          "answer": 42,
+          "solution": "Working here."
+        },
+        {
+          "type": "nat",
+          "question": "NAT with an accepted range.",
+          "answer": 4.5,
+          "range": [
+            4.4,
+            4.6
+          ],
+          "solution": "Working here."
+        },
+        {
+          "question": "Self-check question (no options).",
+          "answer": "Final answer text",
+          "solution": "Step by step solution."
+        }
+      ]
+    }
+  ]
+}

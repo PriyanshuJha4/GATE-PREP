@@ -1,0 +1,18 @@
+{
+  "title": "TOC practice questions",
+  "chapters": [
+    {
+      "title": "Finite Automata",
+      "questions": [
+        {
+          "type": "nat",
+          "question": "What is the minimum number of states in a DFA over $\\{a,b\\}$ that accepts all strings ending in $ab$?",
+          "answer": 3,
+          "solution": "Three states are needed: start (no progress), seen `a`, and seen `ab` (accepting).",
+          "source": "Sample question (replace me)",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}

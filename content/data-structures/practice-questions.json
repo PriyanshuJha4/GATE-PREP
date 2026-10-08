@@ -1,0 +1,23 @@
+{
+  "title": "Data Structures practice questions",
+  "chapters": [
+    {
+      "title": "Trees",
+      "questions": [
+        {
+          "question": "In a binary tree whose root is at height $0$, the maximum number of nodes in a tree of height $h$ is:",
+          "options": [
+            "$2^h$",
+            "$2^{h+1}-1$",
+            "$2^h-1$",
+            "$2h+1$"
+          ],
+          "answer": 1,
+          "solution": "Level $i$ has at most $2^i$ nodes, so the total is $\\sum_{i=0}^{h}2^i = 2^{h+1}-1$.",
+          "source": "Sample question (replace me)",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}

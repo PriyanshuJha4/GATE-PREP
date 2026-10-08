@@ -1,0 +1,23 @@
+{
+  "title": "COA practice questions",
+  "chapters": [
+    {
+      "title": "Number Representation",
+      "questions": [
+        {
+          "question": "The range of integers that can be represented in $8$-bit two's complement is:",
+          "options": [
+            "$0$ to $255$",
+            "$-127$ to $127$",
+            "$-128$ to $127$",
+            "$-255$ to $255$"
+          ],
+          "answer": 2,
+          "solution": "For $n$ bits: $-2^{n-1}$ to $2^{n-1}-1$, i.e. $-128$ to $127$.",
+          "source": "Sample question (replace me)",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}

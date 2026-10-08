@@ -1,0 +1,18 @@
+{
+  "title": "Compiler Design practice questions",
+  "chapters": [
+    {
+      "title": "Lexical Analysis",
+      "questions": [
+        {
+          "type": "nat",
+          "question": "How many tokens does the lexical analyser produce for this C statement?\n\n```c\nint a = b + 10;\n```",
+          "answer": 7,
+          "solution": "Tokens: `int`, `a`, `=`, `b`, `+`, `10`, `;` = $7$.",
+          "source": "Sample question (replace me)",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Aptitude practice questions",
+  "chapters": [
+    {
+      "title": "Quantitative Aptitude",
+      "questions": [
+        {
+          "type": "nat",
+          "question": "What is $20\\%$ of $50\\%$ of $400$?",
+          "answer": 40,
+          "solution": "$0.5 \\times 400 = 200$, and $0.2 \\times 200 = 40$.",
+          "source": "Sample question (replace me)",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}

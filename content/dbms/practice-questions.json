@@ -1,0 +1,23 @@
+{
+  "title": "DBMS practice questions",
+  "chapters": [
+    {
+      "title": "Normalization",
+      "questions": [
+        {
+          "question": "Relation $R(A,B,C)$ has FDs $A \\to B$ and $B \\to C$. The highest normal form of $R$ is:",
+          "options": [
+            "1NF",
+            "2NF",
+            "3NF",
+            "BCNF"
+          ],
+          "answer": 1,
+          "solution": "$A^+ = \\{A,B,C\\}$, so $A$ is the only key. There is no partial dependency (the key is a single attribute), so $R$ is in 2NF. But $B \\to C$ has a non-prime $C$ and non-superkey $B$ (a transitive dependency), so it is not in 3NF.",
+          "source": "Sample question (replace me)",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}

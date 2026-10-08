@@ -1,0 +1,1592 @@
+{
+  "title": "C Programming practice questions",
+  "chapters": [
+    {
+      "title": "Data Types and Operators",
+      "questions": [
+        {
+          "id": "dt-01",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following declarations:\n\n- **P:** signed short x;\n\n- **Q:** unsigned long long int x;\n\nWhich of the given declarations is/are CORRECT?",
+          "options": [
+            "Only P",
+            "Only Q",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 2,
+          "solution": "Both `signed short x;` and `unsigned long long int x;` (C99) are valid declarations.",
+          "title": "Declaration Validity"
+        },
+        {
+          "id": "dt-02",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    int x = 32769;\n    printf(\"%d\", x);\n    return 0;\n}\n```\n\nAssume integer is of 2 bytes.\n\nThe value printed is:",
+          "answer": -32767,
+          "solution": "A 2-byte signed int holds $-32768$ to $32767$. $32769$ wraps around: $32769-65536=-32767$.",
+          "title": "Integer Overflow"
+        },
+        {
+          "id": "dt-03",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    char ch = 141;\n    printf(\"%d\", ch);\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": -115,
+          "solution": "`char` is signed 8-bit here (range $-128$ to $127$). $141-256=-115$.",
+          "title": "Character Data Type"
+        },
+        {
+          "id": "dt-04",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    char ch = -134;\n    printf(\"%c\", ch);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "A",
+            "Garbage",
+            "Compiler Error",
+            "z"
+          ],
+          "answer": 3,
+          "solution": "$-134+256=122$, which is the ASCII code of `z`.",
+          "title": "Character Overflow"
+        },
+        {
+          "id": "dt-05",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    char ch = 125;\n    ch = ch + 6;\n    printf(\"%d\", ch);\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": -125,
+          "solution": "$125+6=131$ does not fit in a signed char, so it wraps to $131-256=-125$.",
+          "title": "Character Arithmetic"
+        },
+        {
+          "id": "dt-06",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    int x = -32769;\n    printf(\"%d\", x);\n    return 0;\n}\n```\n\nAssume integer is of 2 bytes.\n\nThe output is:",
+          "answer": 32767,
+          "solution": "$-32769$ is below $-32768$, so it wraps: $-32769+65536=32767$.",
+          "title": "Negative Integer Overflow"
+        },
+        {
+          "id": "dt-07",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following statements:\n\nP: C standard specifies a fixed number of bytes for every data type.\n\nQ: The size order for int, short and long data types is:\n\nshort < int < long\n\nWhich of the following statements is/are CORRECT?",
+          "options": [
+            "Only P",
+            "Only Q",
+            "Neither P nor Q",
+            "Both P and Q"
+          ],
+          "answer": 2,
+          "solution": "**P** is false: the C standard does not fix sizes of types. **Q** is false: the standard only guarantees `short ≤ int ≤ long`, not strict `<`. So neither is correct.",
+          "title": "C Data-Type Size Rules"
+        },
+        {
+          "id": "dt-08",
+          "source": "DPP",
+          "type": "msq",
+          "question": "Which of the following is/are valid declarations of a signed short integer?",
+          "options": [
+            "short int a;",
+            "short a;",
+            "signed short a;",
+            "signed short int a;"
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "All four forms declare a signed short integer (`short`, `short int`, `signed short`, `signed short int` mean the same).",
+          "title": "Valid Signed Short Declarations"
+        },
+        {
+          "id": "dt-09",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main(void)\n{\n    int a;\n    a = 2 * 6 / 5 + 3.0 / 2 + 1;\n    printf(\"%d\", a);\n    return 0;\n}\n```\n\nThe value of a is:",
+          "options": [
+            "4.9",
+            "4.0",
+            "4.5",
+            "4"
+          ],
+          "answer": 3,
+          "solution": "`2*6/5` = 12/5 = 2 (integer division). Then $2+1.5+1=4.5$, which is truncated to `4` when stored in `int a`.",
+          "title": "Mixed Integer and Floating-Point Arithmetic"
+        },
+        {
+          "id": "dt-10",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main(void)\n{\n    int a;\n    a = 16.0 / 4 * 5 % 3;\n    printf(\"%d\", a);\n    return 0;\n}\n```\n\nThe value of a printed is:",
+          "options": [
+            "Compiler error",
+            "8.0",
+            "2",
+            "8"
+          ],
+          "answer": 0,
+          "solution": "`%` works only on integer operands. `16.0/4*5` is a `double`, so `%` gives a compile-time error.",
+          "title": "Modulus and Floating-Point Operand"
+        },
+        {
+          "id": "dt-11",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid main()\n{\n    int a;\n    a = 32 > 24 > 13 > 10 > 8 > -1 > 0;\n    printf(\"%d\", a);\n}\n```\n\nThe output is:",
+          "answer": 1,
+          "solution": "Relational operators associate left to right: `((((((32>24)>13)>10)>8)>-1)>0)` = `1>13`=0, `0>10`=0, `0>8`=0, `0>-1`=1, `1>0`=1.",
+          "title": "Chained Relational Operators"
+        },
+        {
+          "id": "dt-12",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid main()\n{\n    int a;\n    a = 25 > 15 > 0 != 12 < 45 > 42 != 65;\n    printf(\"%d\", a);\n}\n```\n\nThe output is:",
+          "answer": 1,
+          "solution": "Relational operators bind tighter than `!=`. So it is `(((25>15)>0) != ((12<45)>42)) != 65` = `(1 != 0) != 65` = `1 != 65` = **1**.",
+          "title": "Complex Relational Expression"
+        },
+        {
+          "id": "dt-13",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid main()\n{\n    int a = 0, b = 1;\n    a = (a = 5) && (b = 0);\n    printf(\"%d\", a);\n    printf(\"%d\", b);\n}\n```\n\nThe output is:",
+          "options": [
+            "50",
+            "00",
+            "10",
+            "Compiler error"
+          ],
+          "answer": 1,
+          "solution": "`(a=5)` is true, so `(b=0)` is evaluated and makes the `&&` false. So `a=0` and `b=0`, giving `00`.",
+          "title": "Logical AND and Assignment"
+        },
+        {
+          "id": "dt-14",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following statements:\n\nP: The precedence of the modulus operator is higher than the multiplication or division operator.\n\nQ: The result of the modulus operator contains the sign of the second operand.\n\nWhich of the following statements is/are INCORRECT?",
+          "options": [
+            "Only P",
+            "Only Q",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 2,
+          "solution": "**P** is incorrect: `%` has the **same** precedence as `*` and `/`. **Q** is incorrect: the result takes the sign of the **first** operand (dividend). Both statements are incorrect.",
+          "title": "Precedence of Modulus Operator"
+        },
+        {
+          "id": "dt-15",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid main()\n{\n    int a = 2022;\n    printf(\"%d%d%d\",\n           a != 2024,\n           a = 2023,\n           a == 2021);\n}\n```\n\nThe output is:",
+          "options": [
+            "020220",
+            "020231",
+            "002021",
+            "120230"
+          ],
+          "answer": 3,
+          "solution": "The order of evaluating function arguments is unspecified. With the usual right-to-left evaluation (gcc): `a==2021`→0, `a=2023`→2023, `a!=2024`→1, printed left to right as `1`,`2023`,`0`.",
+          "title": "printf() Argument Evaluation"
+        },
+        {
+          "id": "dt-16",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid main()\n{\n    int x = -2023;\n    printf(\"%d\", ~(x = x + 5));\n}\n```\n\nThe output is:",
+          "answer": 2017,
+          "solution": "`x = -2023+5 = -2018`. In two's complement `~n = -n-1`, so `~(-2018) = 2017`.",
+          "title": "Bitwise NOT and Assignment"
+        },
+        {
+          "id": "pyq-01",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "The number of tokens in the following C statement is?\n\n```c\nprintf(\"i = %d, &i = %x\", i, &i);\n```",
+          "options": [
+            "3",
+            "26",
+            "10",
+            "21"
+          ],
+          "answer": 2,
+          "solution": "Tokens: `printf`, `(`, the string literal, `,`, `i`, `,`, `&`, `i`, `)`, `;` = **10**."
+        }
+      ]
+    },
+    {
+      "title": "Control Flow Statements",
+      "questions": [
+        {
+          "id": "cf-01",
+          "source": "DPP",
+          "type": "text",
+          "question": "```c\n#include <stdio.h>\nint main(void) {\n    int i=2, j=3, k=4;\n    if (i<j?1:0);\n    else\n        printf(\"GATE\");\n    printf(\"Wallah2023\");\n    return 0;\n}\n```\n\nThe output of the program is ______.",
+          "answer": "Wallah2023",
+          "solution": "`i<j` is true, so the empty `if` body runs and the `else` is skipped. Only `printf(\"Wallah2023\")` runs.\n\n> **Source note:** the source shows `if(...)` directly followed by `else`, which does not compile. An empty statement `;` after the `if` condition is assumed here."
+        },
+        {
+          "id": "cf-02",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nvoid main(){\n    int a, b, c, d;\n    a=2; b=-1; c=3; d=-4;\n    if(a=b-c-d)\n        printf(\"%d%d%d\", a++, b--, c++);\n    else\n        printf(\"%d%d%d\", c--,++a,++b);\n}\n```\n\nThe output is:",
+          "options": [
+            "1 -2 4",
+            "3 1 0",
+            "2 1 -3",
+            "3 3 0"
+          ],
+          "answer": 1,
+          "solution": "`a = b-c-d = -1-3+4 = 0`, so the `else` branch runs: `c--`→3, `++a`→1, `++b`→0. Output `310`."
+        },
+        {
+          "id": "cf-03",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main(void) {\n    int a=3>2?0?0:1:5;\n    if(a==a-1)\n    else\n        printf(\"GATE 2023\");\n    printf(\"GATE WALLAH\");\n    return 0;\n}\n```\n\nThe output of the program is:",
+          "options": [
+            "GATE 2023",
+            "GATE WALLAH",
+            "Compiler error",
+            "Garbage value"
+          ],
+          "answer": 2,
+          "solution": "`if(a==a-1)` is followed directly by `else`, so there is no statement for the `if`. This is a syntax error, so the program does not compile.\n\n> If an empty `;` was intended, the output would be `GATE 2023GATE WALLAH`, which is not among the options."
+        },
+        {
+          "id": "cf-04",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nvoid main(){\n    int a;\n    a = printf(\"GATE Wallah 2023\");\n    if(a%4==0)\n        a=a+5;\n    else\n        a=a-5;\n    printf(\"%d\", a++);\n}\n```\n\nThe value of a at the end of the program is ______.",
+          "answer": 22,
+          "solution": "`printf` returns the number of characters printed: `GATE Wallah 2023` has 16, so `a=16`. `16%4==0`, so `a=21`. `printf(\"%d\", a++)` prints 21 and then `a` becomes **22**."
+        },
+        {
+          "id": "cf-05",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nvoid main(){\n    int i, j, k;\n    j=4;\n    k=0;\n    i=j<k?k:j--;\n    if(j<i)\n        j=j+k-1;\n    if(j==i);\n    else\n        j=j-i;\n    j=j+-k;\n    printf(\"%d\", j+k-1);\n}\n```\n\nThe output is ______.",
+          "answer": -3,
+          "solution": "`i = j<k ? k : j--` gives `i=4`, `j=3`. `j<i` so `j = 3+0-1 = 2`. `j==i` is false so `j = 2-4 = -2`. `j = j + -k = -2`. Output `j+k-1 = -3`.\n\n> **Source note:** the source shows `if(...)` directly followed by `else`, which does not compile. An empty statement `;` after the `if` condition is assumed here."
+        },
+        {
+          "id": "cf-06",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include<stdio.h>\nint main()\n{\n    int a=19, b=20;\n    if(a++<b--)\n        printf(\"%d\",a+++--b);\n    else\n        printf(\"%d\", ++a+--b);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 38,
+          "solution": "`a++<b--` is `19<20` (true), then `a=20`, `b=19`. `a+++--b` = `a++ + --b` = `20 + 18` = **38**."
+        },
+        {
+          "id": "cf-07",
+          "source": "DPP",
+          "type": "text",
+          "question": "```c\n#include<stdio.h>\nvoid main()\n{\n    int a=0;\n    printf(\"%d\", a);\n    if(a=2){\n        printf(\"Hi\");\n        printf(\"%d\",a);\n    }\n    else{\n        printf(\"Bye\");\n        printf(\"%d\", a);\n    }\n}\n```\n\nThe output string is:\n\n- (a) 0Hi22\n- (b) 0Hi20\n- (c) 0Bye0\n- (d) 0Hi00",
+          "answer": "0Hi2",
+          "solution": "`a` is printed (0), then `a=2` is true so `Hi` and `2` are printed: **`0Hi2`**.\n\n> **Source note:** none of the listed options (`0Hi22`, `0Hi20`, `0Bye0`, `0Hi00`) matches this code exactly; check the original question."
+        },
+        {
+          "id": "cf-08",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\nvoid main()\n{\n    int a=0, b=0;\n    a=(a=4)||(b=1);\n    if(a&&b)\n        printf(\"CProgramming\");\n    else\n        printf(\"PankajSharma\");\n    printf(\"%d\",b);\n}\n```\n\nThe output is:",
+          "options": [
+            "CProgramming0",
+            "CProgramming1",
+            "PankajSharma0",
+            "PankajSharma1"
+          ],
+          "answer": 2,
+          "solution": "`(a=4)` is true, so `||` short-circuits: `b` stays 0 and `a` becomes 1. `a&&b` is false, so it prints `PankajSharma` and then `0`."
+        },
+        {
+          "id": "cf-09",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include<stdio.h>\nint main()\n{\n    int i=3;\n    for(;i++<=9;++i);\n    printf(\"%d\",i);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 12,
+          "solution": "Trace: `i=3`: test `3<=9` (true, i=4), update `++i` → 5; test (true, i=6) → 7; test (true, i=8) → 9; test `9<=9` (true, i=10) → 11; test `11<=9` false and `i` becomes 12. Output **12**. (In the source the keyword is written `For`; it must be lowercase `for`.)"
+        },
+        {
+          "id": "cf-10",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include<stdio.h>\nint main()\n{\n    int i=3;\n    {\n        for(;i++<=9;++i)\n        {\n            if(i>8) break;\n        }\n        printf(\"best hai GATE Wallah\");\n        return 0;\n    }\n}\n```\n\nThe number of times printf() executed is ______.",
+          "answer": 1,
+          "solution": "The `printf` is outside the loop, so it executes exactly once."
+        },
+        {
+          "id": "cf-11",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\nint main()\n{\n    int a=0, b=1;\n    for(;b;printf(\"%d\\t\", a))\n    {\n        b=a++<=3;\n    }\n    return 0;\n}\n```\n\nThe output sequence is:",
+          "options": [
+            "0 1 2 3 4",
+            "0 1 2 3",
+            "1 2 3 4",
+            "1 2 3 4 5"
+          ],
+          "answer": 3,
+          "solution": "`printf` in the update part runs after every body execution. `a` becomes 1,2,3,4,5 (the loop stops when `b=a++<=3` becomes 0), so the output is `1 2 3 4 5`."
+        },
+        {
+          "id": "cf-12",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\nint main()\n{\n    int i=0;\n    for(i=2;i<=n;i*=2)\n    {\n        printf(\"GATE WALLAH 2024\");\n    }\n    return 0;\n}\n```\n\nThe number of times printf() executed is approximated as:",
+          "options": [
+            "2n",
+            "log₂ n",
+            "log₂ log₂ n",
+            "2"
+          ],
+          "answer": 1,
+          "solution": "`i` doubles each time (2, 4, 8, ...) until it exceeds `n`, so the loop runs about $\\log_2 n$ times."
+        },
+        {
+          "id": "cf-13",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int i;\n    for(i=printf(\"GATE\");i<printf(\"Wallah2023\");)\n    {\n        if(i%2==-0)\n            i=i-1;\n        else\n            i=i+2;\n    }\n    return 0;\n}\n```\n\nThe number of times \"Wallah2023\" is printed is:",
+          "options": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": 2,
+          "solution": "`i` starts at 4 (`printf(\"GATE\")` returns 4). The condition `i < printf(\"Wallah2023\")` (10) prints once per test. i: 4→3→5→7→9→11. The condition is evaluated 6 times, so `Wallah2023` is printed **6** times."
+        },
+        {
+          "id": "cf-14",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int i, j, n;\n    for(i=1;i<=n;i++)\n        for(j=1;j<=n;j++)\n            printf(\"GATE Wallah\");\n    return 0;\n}\n```\n\nHow many times will printf() be executed when n=32?",
+          "options": [
+            "128",
+            "1024",
+            "512",
+            "256"
+          ],
+          "answer": 1,
+          "solution": "Two nested loops of $n$ iterations each run $n^2=32^2=1024$ times."
+        },
+        {
+          "id": "cf-15",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int i, j, n, count=0;\n    for(i=1;i<=n;i++)\n        for(j=1;j<=i;j++)\n            count+=1;\n    printf(\"%d\", count);\n    return 0;\n}\n```\n\nWhen n=31, the output is ______.",
+          "answer": 496,
+          "solution": "Total = $1+2+\\dots+31 = \\dfrac{31\\cdot32}{2} = 496$."
+        },
+        {
+          "id": "cf-16",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int a,i;\n    a=12.5/5+31.2/2*5-5;\n    for(i=a;i<90;i=i+3)\n    {\n        printf(\"%c\\t\", i+32);\n    }\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "107 110 113 116 119",
+            "KLMNO",
+            "knqtw",
+            "Garbage values"
+          ],
+          "answer": 2,
+          "solution": "`a = 2.5 + 78 - 5 = 75.5`, stored as `75`. Loop prints `i+32` as characters for i = 75, 78, 81, 84, 87 → 107, 110, 113, 116, 119 = `k n q t w`."
+        },
+        {
+          "id": "cf-17",
+          "source": "DPP",
+          "type": "text",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int a=7, b=8;\n    while(++b & a--)\n    {\n        printf(\"HI!\");\n    }\n    printf(\"%d\\t%d\", a, b);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": "HI! printed 7 times, then -1 16",
+          "solution": "`while(++b & a--)` runs while the bitwise AND is non-zero. It prints `HI!` 7 times, then the final values are printed: `a = -1`, `b = 16`.\n\nOutput: `HI!HI!HI!HI!HI!HI!HI!-1<tab>16`."
+        },
+        {
+          "id": "cf-18",
+          "source": "DPP",
+          "type": "text",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int a=5, b=10;\n    while(b++)\n    {\n        while(++b & a--)\n        {\n            b=b-a;\n            a=a+b;\n        }\n    }\n    printf(\"%d\\t%d\", a, b);\n    return 0;\n}\n```\n\nThe output is:\n\n- (a) 3 0\n- (b) 4 2\n- (c) 3 2\n- (d) 4 1",
+          "answer": "The program never terminates (infinite loop)",
+          "solution": "Tracing the nested loops, `a` and `b` become `-1` and `-9` and the inner loop condition `(++b & a--)` stays non-zero forever, so the program never terminates.\n\n> **Source note:** none of the listed options (`3 0`, `4 2`, `3 2`, `4 1`) is reachable; check the original question."
+        },
+        {
+          "id": "cf-19",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\nint main()\n{\n    int a=1, b=2;\n    do\n    {\n        while(a++<2);\n        switch (b)\n        {\n            case 0: b=b-1;\n                    break;\n            case 1: b=b-2;\n                    break;\n            default: b=b-3;\n                     break;\n        }\n    }\n    while(a++<2);\n    return 0;\n}\n```\n\nThe number of times the printf() executed is ______.",
+          "answer": 0,
+          "solution": "The given code contains **no** `printf` statement, so it is executed 0 times.\n\n> **Source note:** the question text mentions `printf()` but the code has none; a line may be missing in the source."
+        },
+        {
+          "id": "cf-20",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int a,b;\n    a=printf(\"GATE\")>printf(\"Wallah\")\n      ?printf(\"2023\"):printf(\"Hi!!\");\n    b=a-1;\n    while(a>b)\n    {\n        switch(b){\n            case 1:b=-a;\n            case 2:b=a--;\n            default:b=--a;\n        }\n    }\n    printf(\"%d%d\", a, b);\n    return 0;\n}\n```\n\nThe output string is:",
+          "options": [
+            "GATEWallahHi!!33",
+            "GATEWallah202303",
+            "GATEWallah202330",
+            "GATEWallahHi!!00"
+          ],
+          "answer": 0,
+          "solution": "`printf(\"GATE\")`=4, `printf(\"Wallah\")`=6, `4>6` is false so `printf(\"Hi!!\")` runs and returns 4: `a=4`, `b=3`. In the loop `default: b=--a` gives `a=3`, `b=3`, and the loop stops. Output `GATEWallahHi!!33`."
+        },
+        {
+          "id": "cf-21",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int i=16;\n    do\n    {\n        i=i-2;\n        printf(\"%d\",i);\n    }\n    while(i++);\n    return 0;\n}\n```\n\nThe sum of all printed values of i is ______.",
+          "answer": 105,
+          "solution": "It prints 14, 13, 12, ..., 1, 0. Sum = $\\dfrac{14\\cdot15}{2} = 105$."
+        },
+        {
+          "id": "cf-22",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int a, b;\n    while (a!=b)\n    {\n        b=b*2;\n        a=a/2;\n        if(b>a) break;\n    }\n    return 0;\n}\n```\n\nIf a = 2^m and b = 2^n where m-n is even and positive, the number of times the loop runs is:",
+          "options": [
+            "(m-n)/2",
+            "floor((m-n)/2)+1",
+            "(n-m)/2",
+            "floor((n-m)/2)+1"
+          ],
+          "answer": 0,
+          "solution": "Each iteration halves `a` (exponent $m$ decreases by 1) and doubles `b` (exponent $n$ increases by 1). They become equal after $\\dfrac{m-n}{2}$ iterations."
+        },
+        {
+          "id": "cf-23",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int x=5, y=10;\n    if(printf(\"GATE\")-3){\n        while(x--)\n            y=y+x;\n    }\n    else\n        y=y-x;\n    return 0;\n}\n```\n\nThe value of y at the end of the program is ______.",
+          "answer": 20,
+          "solution": "`printf(\"GATE\")` returns 4, so `4-3=1` is true. `while(x--)` adds x = 4, 3, 2, 1, 0 to `y`: $10+4+3+2+1+0=20$."
+        },
+        {
+          "id": "cf-24",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int x=5, y=5;\n    while(x-=y++<10){\n        printf(\"GATE WALLAH\\n\");\n    }\n    return 0;\n}\n```\n\nThe number of times \"GATE WALLAH\" is printed is ______.",
+          "answer": 4,
+          "solution": "`x -= (y++<10)` subtracts 1 each time while `y<10`: x = 4, 3, 2, 1 (each non-zero, so the body runs), then x = 0 stops the loop. The message is printed **4** times."
+        },
+        {
+          "id": "cf-25",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nvoid main()\n{\n    int i=0;\n    switch(i)\n    {\n        case 0: i=i+1;\n        case 1: i=i+3;\n        case 2: i=i*2;\n                break;\n        default: i=i+5;\n    }\n}\n```\n\nThe value of i is ______.",
+          "answer": 8,
+          "solution": "`case 0`: i=1 → falls through `case 1`: i=4 → falls through `case 2`: i=8, then `break`."
+        },
+        {
+          "id": "cf-26",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nvoid main()\n{\n    int a, b, c, d, e;\n    b=1; c=1; d=2; e=-1;\n    a=b++&&c--||d++&&e--;\n    switch(c)\n    {\n        case 0: a=a+1;\n        case 1: a=a-1;\n        default: a=a-2;\n    }\n}\n```\n\nThe final value of (a+b+c+d+e) is ______.",
+          "answer": 2,
+          "solution": "`b++&&c--` is `1&&1` (true) so the `||` short-circuits: `a=1`, `b=2`, `c=0`, `d=2`, `e=-1`. `switch(c)` with `c=0`: `a=2`, then `a=1`, then `a=-1`. Sum = $-1+2+0+2-1=2$."
+        },
+        {
+          "id": "cf-27",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main(void)\n{\n    int x;\n    scanf(\"%d\", &x);\n    switch(x)\n    {\n        case 0: x=x+1;\n                break;\n        default: x=x-1;\n        case 1: x=x-11;\n        case 2: x=x+128;\n                break;\n    }\n    printf(\"%c\", x);\n    return 0;\n}\n```\n\nWhat is the output when x=-4?",
+          "options": [
+            "p",
+            "M",
+            "Garbage",
+            "ERROR"
+          ],
+          "answer": 0,
+          "solution": "`x=-4` goes to `default`: -5, then falls through: `-5-11=-16`, `-16+128=112`, which is the ASCII code of `p`."
+        },
+        {
+          "id": "cf-28",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main(void)\n{\n    int q, r=0;\n    q=2*3/6+2.0/5+0.2*3;\n    r=-q--;\n    switch(q-r)\n    {\n        case 0: printf(\"Hello\"); break;\n        case 1: printf(\"Hi\"); break;\n        case 2: printf(\"best hai\"); break;\n        case 3: printf(\"GATE Wallah\");\n        default: printf(\"2023\");\n    }\n    return 0;\n}\n```\n\nThe output of the program is:",
+          "options": [
+            "Hibest haiGATE Wallah",
+            "best haiGATE Wallah",
+            "GATE Wallah2023",
+            "GATE Wallah"
+          ],
+          "answer": 2,
+          "solution": "`q = 1 + 0.4 + 0.6 = 2` (stored in int). `r = -q-- = -2`, `q=1`. `q-r = 3` → prints `GATE Wallah`, falls through to `default` and prints `2023`."
+        },
+        {
+          "id": "cf-29",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\nint main()\n{\n    int j=10, p=0;\n    for(;j>0;)\n    {\n        switch(j)\n        {\n            case 1: p+=3;\n            case 2: p+=5;\n                    break;\n            default: p-=8;\n            case 3: p-=7;\n                    break;\n        }\n        j=j-3;\n        printf(\"%d\\t\",p);\n    }\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "-15 -30 -42 -45",
+            "-15 -45 -30 -42",
+            "-15 -30 -42 -39",
+            "-15 -30 -45 -37"
+          ],
+          "answer": 3,
+          "solution": "j=10: default (-8) then case 3 (-7): p=-15. j=7: p=-30. j=4: p=-45. j=1: case 1 (+3) then case 2 (+5): p=-37. Output `-15 -30 -45 -37`."
+        },
+        {
+          "id": "cf-30",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include<stdio.h>\nint main()\n{\n    int x;\n    for(x=0; x<32; x++)\n    {\n        switch(x)\n        {\n            case 0: x=x+2;\n            case 1: x=x+5;\n            case 2: x=x+1;\n            default:\n                x=x+7;\n        }\n        printf(\"%d\\t\",x);\n    }\n    return 0;\n}\n```\n\nThe sum of the values printed is ______.",
+          "answer": 69,
+          "solution": "x=0: +2 +5 +1 +7 = 15 (printed). Then x=16: default +7 = 23. Then x=24: +7 = 31. Then x=32 ends. Sum = 15+23+31 = **69**."
+        },
+        {
+          "id": "cf-31",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following two statements:\n\nP: Case label can be integer or character or floating point numbers.\n\nQ: Only one default is allowed in switch-case structure.\n\nQuestion: Which of the following statements are INCORRECT?",
+          "options": [
+            "Both P and Q",
+            "Only P",
+            "Only Q",
+            "Neither P or Q"
+          ],
+          "answer": 2,
+          "solution": "**P** is false: case labels must be integer constant expressions (no floating point). **Q** is true: only one `default` is allowed."
+        },
+        {
+          "id": "cf-32",
+          "source": "DPP",
+          "type": "text",
+          "question": "```c\n#include<stdio.h>\nint main()\n{\n    int x=4, y=5;\n    x=x=y=5;\n    switch(1)\n    {\n        x=x+11;\n    }\n    printf(\"%d\", ++x);\n    return 0;\n}\n```\n\nThe output is:\n\n- (a) 0\n- (b) 1\n- (c) 11\n- (d) Compiler Error",
+          "answer": "6",
+          "solution": "`switch(1)` has no `case` label, so `x=x+11` is never executed. `x=5`, and `++x` prints **6**.\n\n> **Source note:** 6 is not among the listed options (0, 1, 11, Compiler Error); check the original question."
+        },
+        {
+          "id": "pyq-02",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "What will be the output of the following C program segment?\n\n```c\nchar inchar = 'A';\nswitch (inchar)\n{\ncase 'A' :\nprintf (\"choice A \\n\") ;\ncase 'B' :\nprintf (\"choice B \") ;\ncase 'C' :\ncase 'D' :\ncase 'E' :\ndefault:\nprintf (\"No Choice\") ;\n}\n```",
+          "options": [
+            "No choice",
+            "Choice A",
+            "Choice A Choice B No choice",
+            "Program gives no output as it is erroneous"
+          ],
+          "answer": 2,
+          "solution": "There is no `break`, so execution falls through from `case 'A'` to the end: `choice A`, `choice B`, `No Choice`."
+        },
+        {
+          "id": "pyq-08",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C program. The program computes\n\n```c\nvoid main()\n{\n  int x, y, m, n;\n  scanf (\"%d %d\", &x, &y);\n  /* x > 0 and y > 0 */\n  m = x; n = y;\n  while (m != n)\n  {\n    if (m > n)\n      m = m - n;\n    else\n      n = n - m;\n  }\n  printf(\"%d\", n);\n}\n```",
+          "options": [
+            "x + y using repeated subtraction",
+            "x mod y using repeated subtraction",
+            "the greatest common divisor of x & y",
+            "the least common multiple of x & y"
+          ],
+          "answer": 2,
+          "solution": "This is Euclid's subtraction algorithm for the **GCD**."
+        },
+        {
+          "id": "pyq-30",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C function.\n\n```c\nint fun1 (int n){\n  int i, j, k, p, q = 0;\n  for (i = 1; i < n; ++i)\n  {\n    p = 0;\n    for (j = n; j > 1; j = j/2)\n      ++p;\n    for (k = 1; k < p; k = k*2)\n      ++q;\n  }\n  return q;\n}\n```\n\nWhich one of the following most closely approximates the return value of the function `fun1`?",
+          "options": [
+            "$n^3$",
+            "$n(\\log n)^2$",
+            "$n \\log n$",
+            "$n \\log(\\log n)$"
+          ],
+          "answer": 3,
+          "solution": "`p ≈ log n`; the `k` loop runs about $\\log p = \\log\\log n$ times; the outer loop runs $n$ times. So $q \\approx n\\log\\log n$."
+        },
+        {
+          "id": "pyq-34",
+          "source": "Practice PDF",
+          "type": "nat",
+          "question": "Consider the following C program:\n\n```c\n# include <stdio.h>\nint main( )\n{\n  int i, j, k = 0;\n  j = 2 * 3 / 4 + 2.0 / 5 + 8 / 5;\n  k -= -j;\n  for(i = 0; i < 5; i++)\n  {\n    switch(i + k)\n    {\n      case 1:\n      case 2: printf(\"\\n%d\", i + k);\n      case 3: printf(\"\\n%d\", i + k);\n      default: printf(\"\\n%d\", i + k);\n    }\n  }\n  return 0;\n}\n```\n\nThe number of times the printf statement is executed is ______.",
+          "answer": 8,
+          "solution": "`j = 1 + 0.4 + 1 = 2.4` → `j=2`, so `k = 2`. For `i+k` = 2, 3, 4, 5, 6 the printf counts are 3, 2, 1, 1, 1 = **8**.\n\n> **Note:** the PDF key lists 10, but running this exact code executes `printf` 8 times. Please double check the original question."
+        }
+      ]
+    },
+    {
+      "title": "Functions and Storage Classes",
+      "questions": [
+        {
+          "id": "fs-01",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint f2(int a){\n    int b=0;\n    b=b+5;\n    return a*b;\n}\nint f1 (int a) {\n    int b;\n    b=f2(a);\n    print(-9);\n    return 0;\n}\nint main(){\n    int i, a=5, b=4;\n    for(i=0;i<2;i++){\n        b-=f1(a)-f2(a);\n        printf(\"%d\\t\", b);\n    }\n    return 0;\n}\n```\n\nWhich of the following is correct?",
+          "options": [
+            "Compilation error",
+            "\"GATE Wallah\" will be printed infinite number of times.",
+            "\"GATE Wallah\" will be printed 5 times.",
+            "\"GATE Wallah\" will be printed 4 times."
+          ],
+          "answer": 0,
+          "solution": "`print` is never defined (implicit declaration only), so the program fails to build: compilation/linking error."
+        },
+        {
+          "id": "fs-02",
+          "source": "DPP",
+          "type": "text",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nvoid print(int n) {\n    for(n++;n++;n++);\n    printf(\"GATE Wallah\");\n}\nint main(){\n    void print();\n    void print();\n    print(-9);\n    return 0;\n}\n```\n\nThe output is-",
+          "answer": "GATE Wallah",
+          "solution": "`for(n++;n++;n++);` stops when `n++` evaluates to 0 (n goes -8, -6, ..., 0), so the loop ends and `GATE Wallah` is printed once."
+        },
+        {
+          "id": "fs-03",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program.\n\n```c\n#include<stdio.h>\nvoid f(int n){\n    switch (n<<1+n){\n        default: printf(\"Sresth\");\n        case 4: printf(\"Parakram\");\n        case 3: printf(\"2024\");\n        break;\n        case 2: printf(\"2025\");\n    }\n}\nint main(){\n    f(1);\n    return 0;\n}\n```\n\nThe sum of the printed values is",
+          "answer": 2024,
+          "solution": "`n<<1+n` = `1<<(1+1)` = 4 → `case 4`: prints `Parakram`, falls through to `case 3`: prints `2024`, then `break`. The only number printed is **2024**."
+        },
+        {
+          "id": "fs-04",
+          "source": "DPP",
+          "type": "text",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid f(){\n    int x;\n    x=10<5?printf(\"%d\", printf(\"GATE\")):printf(\"\")?printf(\"2024\"):printf(\"%d \", printf(\"Wallah Parakram\"));\n}\nint main() {\n    f();\n    return 0;\n}\n```\n\nThe output is-",
+          "answer": "Wallah Parakram15 ",
+          "solution": "`10<5` is false, so the else part runs: `printf(\"\")` returns 0 (false), so `printf(\"%d \", printf(\"Wallah Parakram\"))` runs. The inner call prints `Wallah Parakram` and returns 15, so the output is `Wallah Parakram15 `."
+        },
+        {
+          "id": "fs-05",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint f(int b, int a) {\n    int x;\n    x=a<<b;\n    b=x*a--;\n    return a+b-x;\n}\nint main() {\n    printf(\"%d\", f(1,2));\n    return 0;\n}\n```\n\nThe value printed is",
+          "answer": 5,
+          "solution": "`x = 2<<1 = 4`. `b = x*a-- = 4*2 = 8` and `a` becomes 1. Return `a+b-x = 1+8-4 = 5`."
+        },
+        {
+          "id": "fs-06",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint r(int num){\n    return --num;\n}\nint main(){\n    int n=4;\n    for (r(n); r(n++); r(--n))\n        printf(\"%d\\t\", r(--n));\n    return 0;\n}\n```\n\nThe output is-",
+          "options": [
+            "123",
+            "1234",
+            "321",
+            "4321"
+          ],
+          "answer": 2,
+          "solution": "Tracing `r()` calls: the loop body prints `3 2 1`."
+        },
+        {
+          "id": "fs-07",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main(){\n    int a=2, i;\n    static int b=a++;\n    for(i=0;i<a+b;i++)\n        printf(\"GATE Wallah\");\n    return 0;\n}\n```\n\nWhich of the following is/are CORRECT?",
+          "options": [
+            "GATE Wallah is printed 3 times.",
+            "GATE Wallah is printed 4 times.",
+            "GATE Wallah is printed 5 times.",
+            "Compilation Error."
+          ],
+          "answer": 3,
+          "solution": "A `static` variable must be initialised with a constant expression. `a++` is not constant, so this is a compile-time error."
+        },
+        {
+          "id": "fs-08",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nvoid main(){\n    extern int a;\n    extern int a;\n    extern int a;\n    printf(\"%d\", a);\n}\nint a=15;\n```\n\nThe output is-",
+          "options": [
+            "Garbage value",
+            "Compilation error",
+            "15",
+            "No output"
+          ],
+          "answer": 2,
+          "solution": "Repeated `extern` declarations are allowed; it refers to the global `a=15`."
+        },
+        {
+          "id": "fs-09",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint func(int a, int b){\n    static int p=9, q=21;\n    if(a>b){\n        a=a-p++;\n        b=b+q--;\n        return a+b;\n    }else{\n        return p-q;\n    }\n}\nint main(){\n    int i=2, j=-2;\n    for(;j<3;j++)\n        printf(\"%d\\t\",func(i,j));\n    return 0;\n}\n```\n\nThe sum of the values printed is",
+          "answer": 38,
+          "solution": "Printed values: 12, 11, 10, 9, -4. Sum = **38**."
+        },
+        {
+          "id": "fs-10",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid f() {\n    static int a=3;\n    int b=5;\n    a-=b++;\n    printf(\"%d\\t%d\\n\",a,b);\n}\nint main()\n{\n    static int a=2;\n    int b=1;\n    a+=3;\n    f();\n    f();\n    printf(\"%d\\t%d\", a,b);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "`-2 6`  \n`-7 6`  \n`5 1`",
+            "`-2 6`  \n`-7 7`  \n`5 1`",
+            "`-2 5`  \n`-7 6`  \n`5 1`",
+            "Compilation error"
+          ],
+          "answer": 0,
+          "solution": "Static `a` in `f` goes 3-5=-2, then -2-6=-7, `b` is printed after `b++` (6 both times). `main` prints its own `a=5`, `b=1`."
+        },
+        {
+          "id": "fs-11",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint i=1;\nint f() {\n    static int i=2;\n    return i++;\n}\nint main()\n{\n    extern int i;\n    char a='B';\n    printf(\"%d\", a+f()+f()+i);\n    return 0;\n}\n```\n\nThe output is",
+          "answer": 72,
+          "solution": "`'B'` = 66. `f()` returns 2 then 3. `extern int i` in `main` refers to the global `i=1`. Total = 66+2+3+1 = **72**."
+        },
+        {
+          "id": "fs-12",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nstatic int j;\nstatic int j=3;\nint f(){\n    auto int i=2;\n    return i+++--j;\n}\nint main()\n{\n    char a='B';\n    printf(\"%d\", a+f()+f());\n    return 0;\n}\n```\n\nThe output is-",
+          "options": [
+            "68",
+            "72",
+            "73",
+            "None"
+          ],
+          "answer": 2,
+          "solution": "`'B'`=66. First call: `i++ + --j` = 2+2 = 4; second call: 2+1 = 3. Total = 66+4+3 = **73**."
+        },
+        {
+          "id": "fs-13",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint f(){\n    static int i=5;\n    return i--;\n}\nint main()\n{\n    for(f();f();printf(\"GATE Wallah\"))\n        printf(\"Pankaj Sharma\");\n    return 0;\n}\n```\n\nThe number of times printf() is executed is",
+          "answer": 8,
+          "solution": "Initial `f()` call makes `i=4`. The condition `f()` returns 4, 3, 2, 1 (true) then 0 (stops). Each of the 4 iterations executes 2 `printf`s: **8**."
+        },
+        {
+          "id": "fs-14",
+          "source": "DPP",
+          "type": "msq",
+          "question": "Which of the following statement(s) is/are CORRECT?",
+          "options": [
+            "A static variable has internal linkage.",
+            "Static variables are stored in the data segment.",
+            "Auto variables are stored in the heap segment.",
+            "Register variables behave as auto variables by default."
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "(b) is true: static variables live in the data segment. (d) is true: `register` is only a hint, so such variables behave like `auto` variables. (c) is false (auto variables are on the stack). (a) is true only for file-scope `static`; a local `static` has no linkage."
+        },
+        {
+          "id": "pyq-04",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "The value of j at the end of the execution of the following C program.\n\n```c\nint incr (int i)\n{\n  static int count = 0;\n  count = count + i;\n  return (count);\n}\nmain ()\n{\n  int i,j;\n  for (i = 0; i <= 4; i++)\n    j = incr(i);\n}\n```",
+          "options": [
+            "10",
+            "4",
+            "6",
+            "7"
+          ],
+          "answer": 0,
+          "solution": "`count` is static: 0, 1, 3, 6, 10. The last call returns **10**."
+        },
+        {
+          "id": "pyq-09",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C program:\n\n```c\ndouble foo (double); /* Line 1 */\nint main () {\n  double da, db;\n  // input da\n  db = foo (da);\n}\ndouble foo (double a) {\n  return a;\n}\n```\n\nThe above code compiled without any error or warning. If Line 1 is deleted, the above code will show:",
+          "options": [
+            "no compile warning or error",
+            "some compiler-warnings not leading to unintended results",
+            "some compiler-warnings due to type-mismatch eventually leading to unintended results",
+            "compiler errors"
+          ],
+          "answer": 3,
+          "solution": "Without the prototype, `foo` is implicitly declared as returning `int`, which conflicts with the later definition returning `double`: **compile error** (conflicting types)."
+        },
+        {
+          "id": "pyq-10",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider line number 3 of the following C program.\n\n```c\nint main ( ) { /* Line 1 */\n  int i, n;     /* Line 2 */\n  fro (i = 0, i < n, i++); /* Line 3 */\n}\n```\n\nIdentify the compiler's response about this line while creating the object-module:",
+          "options": [
+            "No compilation error",
+            "Only a lexical error",
+            "Only syntactic errors",
+            "Both lexical and syntactic errors"
+          ],
+          "answer": 0,
+          "solution": "`fro (i=0, i<n, i++);` is a syntactically valid function call with three arguments. There is no lexical or syntax error; the undefined function `fro` is only reported at link time, not while creating the object module.\n\n> **Note:** the PDF key lists (c) for this question. The official GATE key is (a); please double check."
+        },
+        {
+          "id": "pyq-20",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C function:\n\n```c\nvoid swap (int a, int b)\n{\n  int temp;\n  temp = a;\n  a = b;\n  b = temp;\n}\n```\n\nIn order to exchange the values of two variables `x` and `y`:",
+          "options": [
+            "call swap (x, y)",
+            "call swap (&x, &y)",
+            "swap (x, y) cannot be used as it does not return any value",
+            "swap (x, y) cannot be used as the parameters are passed by value"
+          ],
+          "answer": 3,
+          "solution": "C passes arguments by value, so `swap` changes only its own copies."
+        },
+        {
+          "id": "pyq-25",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C program.\n\n```c\nint a, b, c = 0;\nvoid prtFun (void);\nint main ()\n{\n  static int a = 1; /* line 1 */\n  prtFun();\n  a += 1;\n  prtFun();\n  printf (\"\\n %d %d \", a, b);\n}\nvoid prtFun (void)\n{\n  static int a = 2; /* line 2 */\n  int b = 1;\n  a += ++b;\n  printf (\" \\n %d %d \", a, b);\n}\n```\n\nWhat output will be generated by the given code segment?",
+          "options": [
+            "3 1  \n4 1  \n4 2",
+            "4 2  \n6 1  \n6 1",
+            "4 2  \n6 2  \n2 0",
+            "3 1  \n5 2  \n5 2"
+          ],
+          "answer": 2,
+          "solution": "First `prtFun`: `a=2+2=4`, `b=2`. Second: `a=4+2=6`, `b=2`. `main` prints its static `a=2` and the global `b=0`."
+        },
+        {
+          "id": "pyq-26",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the same program as in the previous question.\n\n```c\nint a, b, c = 0;\nvoid prtFun (void);\nint main ()\n{\n  auto int a = 1; /* line 1 */\n  prtFun();\n  a += 1;\n  prtFun();\n  printf (\"\\n %d %d \", a, b);\n}\nvoid prtFun (void)\n{\n  register int a = 2; /* line 2 */\n  int b = 1;\n  a += ++b;\n  printf (\" \\n %d %d \", a, b);\n}\n```\n\nWhat output will be generated if Line 1 is replaced by `auto int a = 1;` and Line 2 by `register int a = 2;`?",
+          "options": [
+            "3 1  \n4 1  \n4 2",
+            "4 2  \n6 1  \n6 1",
+            "4 2  \n6 2  \n2 0",
+            "4 2  \n4 2  \n2 0"
+          ],
+          "answer": 3,
+          "solution": "`register` makes `a` re-initialise to 2 on every call, so both calls print `4 2`. `main` prints `a=2` and global `b=0`."
+        },
+        {
+          "id": "pyq-28",
+          "source": "Practice PDF",
+          "type": "nat",
+          "question": "The output of the following C program is ______.\n\n```c\n#include <stdio.h>\nvoid f1(int a, int b)\n{\n  int c;\n  c = a; a = b; b = c;\n}\nvoid f2(int *a, int *b)\n{\n  int c;\n  c = *a; *a = *b; *b = c;\n}\nint main()\n{\n  int a = 4, b = 5, c = 6;\n  f1 (a, b);\n  f2 (&b, &c);\n  printf(\"%d\", c - a - b);\n}\n```",
+          "answer": -5,
+          "solution": "`f1` swaps copies (no effect). `f2` swaps `b` and `c`: `b=6`, `c=5`. Output $5-4-6=-5$."
+        },
+        {
+          "id": "pyq-35",
+          "source": "Practice PDF",
+          "type": "nat",
+          "question": "Consider the following C program.\n\n```c\n#include<stdio.h>\nint f1(void);\nint f2(void);\nint f3(void);\nint x = 10;\nint main( )\n{\n  int x = 1;\n  x += f1() + f2() + f3() + f2();\n  printf(\"%d\", x);\n  return 0;\n}\nint f1() { int x = 25; x++; return x; }\nint f2() { static int x = 50; x++; return x; }\nint f3() { x *= 10; return x; }\n```\n\nThe output of the program is ______.",
+          "answer": 230,
+          "solution": "f1()=26, f2()=51 (first), f3()=100 (global `x`: 10×10), f2()=52. Sum = 1+26+51+100+52 = **230**."
+        },
+        {
+          "id": "pyq-36",
+          "source": "Practice PDF",
+          "type": "nat",
+          "question": "Consider the C program below.\n\n```c\n#include<stdio.h>\nint *A, stkTop;\nint stkFunc (int opcode, int val)\n{\n  static int size = 0, stkTop = 0;\n  switch (opcode)\n  {\n    case -1: size = val; break;\n    case  0: if (stkTop < size) A[stkTop++] = val; break;\n    default: if (stkTop) return A[--stkTop];\n  }\n  return -1;\n}\nint main()\n{\n  int B[20]; A = B; stkTop = -1;\n  stkFunc(-1, 10);\n  stkFunc(0, 5);\n  stkFunc(0, 10);\n  printf(\"%d\\n\", stkFunc(1, 0) + stkFunc(1, 0));\n}\n```\n\nThe output of the program is ______.",
+          "answer": 15,
+          "solution": "`stkFunc(-1,10)` sets size = 10, then 5 and 10 are pushed onto the stack. Two pops return 10 and 5: sum = **15**.\n\n> **Note:** the PDF text of this question was garbled (the pop line and the last call). It has been restored to the original GATE version."
+        }
+      ]
+    },
+    {
+      "title": "Arrays and Pointers",
+      "questions": [
+        {
+          "id": "ap-01",
+          "source": "DPP",
+          "type": "msq",
+          "question": "Which of the following declarations are INVALID?",
+          "options": [
+            "int b[][4];",
+            "int b[];",
+            "int b[2][][2]={1,2,3,4};",
+            "int b[][2][2]={1,2,3,4};"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Only the **first** dimension can be omitted, and only when an initializer is present. (a) and (b) have no initializer, (c) omits a middle dimension. (d) is valid."
+        },
+        {
+          "id": "ap-02",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following two statements:\n\nP: int a[3]={1,2,3}; printf(\"%d\", *a++);\n\nQ: int a[3]={1,2,3}; int *p=a; printf(\"%d\", *p++);\n\nWhich of the following statements is/are CORRECT?",
+          "options": [
+            "P only.",
+            "Q only.",
+            "Both P and Q.",
+            "Neither P nor Q."
+          ],
+          "answer": 1,
+          "solution": "An array name is not a modifiable lvalue, so `*a++` in **P** is an error. `p` is a pointer variable, so `*p++` in **Q** is fine."
+        },
+        {
+          "id": "ap-03",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main(void)\n{\n    int a[5]={5,10,15};\n    printf(\"%d\", 1[a]);\n    return 0;\n}\n```\n\nThe output is-",
+          "options": [
+            "5",
+            "10",
+            "Garbage value",
+            "Compilation error"
+          ],
+          "answer": 1,
+          "solution": "`1[a]` is the same as `a[1]`, which is 10."
+        },
+        {
+          "id": "ap-04",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main(void)\n{\n    int 5[a]={5,10,15};\n    printf(\"%d\", 1[a]);\n    return 0;\n}\n```\n\nThe output is-",
+          "options": [
+            "5",
+            "10",
+            "Garbage value",
+            "Compilation error"
+          ],
+          "answer": 3,
+          "solution": "`int 5[a]` is not a valid declaration, so it is a compile-time error."
+        },
+        {
+          "id": "ap-05",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main(void) {\n    int a[5]={5, 10, 15, 20, 25};\n    printf(\"%u\", a);\n    printf(\"%u\", *(a+3));\n    printf(\"%u\", a+2);\n    printf(\"%u\", *(a+2)+6);\n    printf(\"%u\", *(a+*(a+1)-6));\n    return 0;\n}\n```\n\nAssuming the base address of the array to be 1000 and integer size as two bytes the output is-",
+          "options": [
+            "1000 20 1004 21 25",
+            "5 20 15 21 25",
+            "1000 20 1002 21 24",
+            "Compilation error"
+          ],
+          "answer": 0,
+          "solution": "`a`=1000, `*(a+3)`=20, `a+2`=1000+2·2=1004, `*(a+2)+6`=21, `*(a+*(a+1)-6)`=`*(a+4)`=25."
+        },
+        {
+          "id": "ap-06",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main(void)\n{\n    int a[5]={5,10,15,20,25};\n    printf(\"%u\\t\", *(1+a));\n    printf(\"%u\\t\", &a+1);\n    return 0;\n}\n```\n\nAssuming the base address of the array to be 1000 and integer size as four bytes the output is-",
+          "options": [
+            "1004 1020",
+            "10 1016",
+            "10 1020",
+            "1004 1016"
+          ],
+          "answer": 2,
+          "solution": "`*(1+a)`=10. `&a+1` skips the whole array: 1000 + 5·4 = 1020."
+        },
+        {
+          "id": "pyq-05",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following declaration of a two-dimensional array in C:\n\n`char a[100][100];`\n\nAssuming that the main memory is byte-addressable and that the array is stored starting from memory address 0, the address of `a[40][50]` is",
+          "options": [
+            "4040",
+            "4050",
+            "5040",
+            "5050"
+          ],
+          "answer": 1,
+          "solution": "Row-major: $40\\times100+50=4050$ bytes (each `char` is 1 byte)."
+        },
+        {
+          "id": "pyq-11",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider these two functions and two statements S1 and S2 about them.\n\n```c\nint work1(int *a, int i, int j)\n{\n  int x = a[i+2];\n  a[j] = x+1;\n  return a[i+2] - 3;\n}\nint work2(int *a, int i, int j)\n{\n  int t1 = i+2;\n  int t2 = a[t1];\n  a[j] = t2+1;\n  return t2 - 3;\n}\n```\n\n**S1:** The transformation from work1 to work2 is valid, i.e., for any program state and input arguments, work2 will compute the same output and have the same effect on program state as work1.\n\n**S2:** All the transformations applied to work1 to get work2 will always improve the performance (i.e. reduce CPU time) of work2 compared to work1.",
+          "options": [
+            "S1 is false and S2 is false",
+            "S1 is false and S2 is true",
+            "S1 is true and S2 is false",
+            "S1 is true and S2 is true"
+          ],
+          "answer": 0,
+          "solution": "**S1 is false:** if `j == i+2`, then `a[j] = x+1` changes `a[i+2]`, so `work1` returns `x+1-3` but `work2` returns `x-3` (aliasing). **S2 is false:** the word \"always\" makes it false; the transformation need not reduce CPU time.\n\n> **Note:** the PDF key lists (d). By the aliasing argument above the answer is (a); please double check."
+        },
+        {
+          "id": "pyq-17",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "The most appropriate matching for the following pairs is:\n\n- **X:** `m = malloc(5); m = NULL;`\n- **Y:** `free(n); n->value = 5;`\n- **Z:** `char *p; *p = 'a';`\n\nwith: **1:** using dangling pointers, **2:** using uninitialized pointers, **3:** lost memory",
+          "options": [
+            "X-1, Y-3, Z-2",
+            "X-2, Y-1, Z-3",
+            "X-3, Y-2, Z-1",
+            "X-3, Y-1, Z-2"
+          ],
+          "answer": 3,
+          "solution": "X loses the only pointer to the allocated block (**lost memory**). Y uses a pointer after `free` (**dangling pointer**). Z writes through a pointer that was never initialised (**uninitialized pointer**)."
+        },
+        {
+          "id": "pyq-19",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Assume the following C variable declaration:\n\n`int *A[10], B[10][10];`\n\nOf the following expressions: **I.** `A[2]`  **II.** `A[2][3]`  **III.** `B[1]`  **IV.** `B[2][3]`\n\nwhich will not give compile-time errors if used as left hand sides of assignment statements in a C program?",
+          "options": [
+            "I, II, and IV only",
+            "II, III, and IV only",
+            "II and IV only",
+            "IV only"
+          ],
+          "answer": 0,
+          "solution": "`A[2]` is a pointer lvalue, `A[2][3]` and `B[2][3]` are `int` lvalues. `B[1]` is an array and cannot be assigned. So I, II, IV."
+        },
+        {
+          "id": "pyq-21",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "What does the following C statement declare?\n\n```c\nint (* f) (int * );\n```",
+          "options": [
+            "A function that takes an integer pointer as argument and returns an integer",
+            "A function that takes an integer as argument and returns an integer pointer",
+            "A pointer to a function that takes an integer pointer as argument and returns an integer",
+            "A function that takes an integer pointer as argument and returns a function pointer"
+          ],
+          "answer": 2,
+          "solution": "`(*f)` makes `f` a pointer; `(int *)` is its parameter list; the return type is `int`."
+        },
+        {
+          "id": "pyq-22",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "What does the following program print?\n\n```c\n#include<stdio.h>\nvoid f(int *p, int *q)\n{\n  p = q;\n  *p = 2;\n}\nint i = 0, j = 1;\nint main()\n{\n  f(&i, &j);\n  printf(\"%d %d \\n\", i, j);\n  getchar();\n  return 0;\n}\n```",
+          "options": [
+            "2 2",
+            "2 1",
+            "0 1",
+            "0 2"
+          ],
+          "answer": 3,
+          "solution": "`p = q` only changes the local copy of the pointer, so `*p = 2` writes to `j`. Output `0 2`."
+        },
+        {
+          "id": "pyq-27",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "What is printed by the following C program?\n\n```c\nint f(int x, int *py, int **ppz)\n{\n  int y, z;\n  **ppz += 1;\n  z = **ppz;\n  *py += 2;\n  y = *py;\n  x += 3;\n  return x + y + z;\n}\nvoid main()\n{\n  int c, *b, **a;\n  c = 4; b = &c; a = &b;\n  printf( \"%d\", f(c, b, a));\n  getchar();\n}\n```",
+          "options": [
+            "18",
+            "19",
+            "21",
+            "22"
+          ],
+          "answer": 1,
+          "solution": "`x = 4` (copy of `c`), `c` becomes 5 (`z=5`), then 7 (`y=7`). `x = 4+3 = 7`. Return $7+7+5=19$."
+        },
+        {
+          "id": "pyq-29",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "What is the output of the following C code? Assume that the address of `x` is 2000 (in decimal) and an integer requires four bytes of memory.\n\n```c\nint main()\n{\n  unsigned int x[4][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}};\n  printf(\"%u, %u, %u\", x+3, *(x+3), *(x+2)+3);\n}\n```",
+          "options": [
+            "2036, 2036, 2036",
+            "2012, 4, 2204",
+            "2036, 10, 10",
+            "2012, 4, 6"
+          ],
+          "answer": 0,
+          "solution": "Each row is 3·4 = 12 bytes. `x+3` = 2000+36 = 2036; `*(x+3)` is the row address, also 2036; `*(x+2)+3` = 2024 + 3·4 = 2036."
+        },
+        {
+          "id": "pyq-32",
+          "source": "Practice PDF",
+          "type": "text",
+          "question": "Consider the following C program. The output of the program is ______.\n\n```c\n#include<stdio.h>\nint main( )\n{\n  static int a[ ] = {10, 20, 30, 40, 50};\n  static int *p[ ] = {a, a+3, a+4, a+1, a+2};\n  int **ptr = p;\n  ptr++;\n  printf (\"%d%d\", ptr-p, **ptr);\n}\n```",
+          "answer": "140",
+          "solution": "After `ptr++`, `ptr-p = 1` and `**ptr = *(a+3) = 40`. Output `140`."
+        }
+      ]
+    },
+    {
+      "title": "Strings in C",
+      "questions": [
+        {
+          "id": "pyq-23",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "What does the following fragment of C program print?\n\n```c\nchar c[] = \"GATE2011\";\nchar *p = c;\nprintf(\"%s\", p + p[3] - p[1]);\n```",
+          "options": [
+            "GATE2011",
+            "E2011",
+            "2011",
+            "011"
+          ],
+          "answer": 2,
+          "solution": "`p[3]='E'` (69) and `p[1]='A'` (65), so the pointer moves by 4 and prints from index 4: `2011`."
+        },
+        {
+          "id": "pyq-24",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C program segment:\n\n```c\nchar p[20];\nchar *s = \"string\";\nint length = strlen(s);\nint i;\nfor (i = 0; i < length; i++)\n  p[i] = s[length - i];\nprintf(\"%s\", p);\n```\n\nThe output of the program is",
+          "options": [
+            "gnirts",
+            "gnirt",
+            "string",
+            "no output is printed"
+          ],
+          "answer": 3,
+          "solution": "For `i=0`, `p[0] = s[6] = '\\0'`, so `p` is an empty string and nothing is printed."
+        },
+        {
+          "id": "pyq-31",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C program segment.\n\n```c\n#include <stdio.h>\nint main( )\n{\n  char s1[7] = \"1234\", *p;\n  p = s1 + 2;\n  *p = '0';\n  printf (\"%s\", s1);\n}\n```\n\nWhat will be printed by the program?",
+          "options": [
+            "12",
+            "120400",
+            "1204",
+            "1034"
+          ],
+          "answer": 2,
+          "solution": "`p` points to the third character, which becomes `'0'`: `1204`."
+        }
+      ]
+    },
+    {
+      "title": "Structures and Unions",
+      "questions": [
+        {
+          "id": "su-01",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nunion u{\n    int a;\n    char b;\n    double d[2];\n};\nint main()\n{\n    union u ul;\n    printf(\"%d\", (int)sizeof(ul));\n    return 0;\n}\n```\n\nAssume that objects of the type int, char and double occupy 2 bytes, 1 bytes and 4 bytes, respectively. The memory requirement for variable ul is (in bytes).",
+          "answer": 8,
+          "solution": "A union takes the size of its largest member: `double d[2]` = 2×4 = **8** bytes."
+        },
+        {
+          "id": "su-02",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following C declaration:\n\n```c\nstruct s{\n    long a[3];\n    union u{\n        int y;\n        float z;\n    }u;\n}s;\n```\n\nAssume that objects of the type int, float and long occupy 2 bytes, 4 bytes and 8 bytes, respectively. The memory requirement for variable s is (in bytes).",
+          "answer": 28,
+          "solution": "`long a[3]` = 24 bytes, plus the union (max of 2 and 4 = 4): **28** bytes."
+        },
+        {
+          "id": "su-03",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nstruct s{\n    char a, b;\n};\nvoid f(struct s *p){\n    p->a+=2;\n    p->b-=1;\n}\nint main()\n{\n    struct s s1, s2, *q;\n    s1.a='A'; s1.b='C';\n    q=&s1;\n    f(q);\n    printf(\"%c\\t%c\",s1.a, s1.b);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "CB",
+            "AC",
+            "Compilation error",
+            "Garbage values"
+          ],
+          "answer": 0,
+          "solution": "The function receives a pointer, so it changes `s1`: `'A'+2='C'` and `'C'-1='B'`. Output `C B`."
+        },
+        {
+          "id": "su-04",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nstruct s{\n    char a, b;\n};\nvoid f(struct s s1){\n    s1.a+=3;\n    s1.b-=1;\n}\nint main()\n{\n    struct s s1;\n    s1.a='A'; s1.b='C';\n    f(s1);\n    printf(\"%c\\t%c\",s1.a, s1.b);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "CB",
+            "AC",
+            "Compilation error",
+            "Garbage values"
+          ],
+          "answer": 1,
+          "solution": "The structure is passed by value, so the original is unchanged: `A C`."
+        },
+        {
+          "id": "su-05",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nstruct s{\n    char a, b;\n};\nvoid f(struct s s1){\n    s1.a+=32;\n    s1.b+=32;\n}\nvoid g(struct s *p){\n    static count=2;\n    p->a+= count++;\n    p->b+=++count;\n}\nint main()\n{\n    struct s s1, s2;\n    s1.a='A'; s1.b='C';\n    s2.a='B'; s2.b='D';\n    f(s1);\n    for(int i=0;i<2;i++)g(&s2);\n    printf(\"%c\\t%c\", s1.a, s1.b);\n    printf(\"\\t%c\\t%c\",s2.a, s2.b);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "acBD",
+            "ACBD",
+            "ACHN",
+            "acBN"
+          ],
+          "answer": 2,
+          "solution": "`f` works on a copy (no change). `g` is called twice on `s2`: the static `count` makes `'B'` become `'H'` and `'D'` become `'N'`. Output `A C H N`."
+        },
+        {
+          "id": "su-06",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nstruct days{\n    char *q;\n}s[]={\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"};\nint main()\n{\n    struct days *p=s;\n    p=p+3;\n    printf(\"%c\", *p++->q);\n    printf(\"%c\", *++p->q);\n    p=p-2;\n    printf(\"%s\",p->q);\n    return 0;\n}\n```\n\nThe output string printed is:",
+          "options": [
+            "WhWednesday",
+            "WTTuesday",
+            "WTWednesday",
+            "WhTuesday"
+          ],
+          "answer": 3,
+          "solution": "`*p++->q` prints `'W'` (from \"Wednesday\") and moves `p` to Thursday. `*++p->q` advances Thursday's string pointer to \"hursday\" and prints `'h'`. `p=p-2` points to Tuesday, so `Tuesday` is printed. Output `WhTuesday`."
+        },
+        {
+          "id": "su-07",
+          "source": "DPP",
+          "type": "msq",
+          "question": "Which of the following statements are INCORRECT?",
+          "options": [
+            "Functions cannot be defined inside the structure.",
+            "Structure variable of the same structure type can be defined inside a structure.",
+            "A function may not contain a structure defined in it.",
+            "Existing structure cannot be contained in another structure."
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "(a) is a true statement (C structures cannot contain function definitions). (b) is incorrect (a structure cannot contain itself, only a pointer to itself). (c) is incorrect (a function can define a structure inside it). (d) is incorrect (an existing structure can be nested in another)."
+        },
+        {
+          "id": "su-08",
+          "source": "DPP",
+          "type": "nat",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nstruct t\n{\n    char sname[20];\n};\nint main ()\n{\n    struct t t1, t2;\n    strcpy(t1.sname, \"GATEWallah\"); //line a\n    t2.sname=\"GATE2023\"; //line b\n    printf(\"%s\", t1.sname); //line c\n    printf(\"%s\", t2.sname); //line d\n    return 0;\n}\n```\n\nThe number of lines with error among lines a,b,c,d are",
+          "answer": 1,
+          "solution": "Only **line b** is an error: an array cannot be assigned with `=`; use `strcpy`. Lines a, c and d are fine."
+        },
+        {
+          "id": "pyq-16",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "The following C declaration\n\n```c\nstruct node\n{\n  int i;\n  float j;\n};\nstruct node *s[10];\n```\n\ndefines `s` to be",
+          "options": [
+            "An array, each element of which is a pointer to a structure of type node",
+            "A structure of 2 fields, each field being a pointer to an array of 10 elements",
+            "A structure of 3 fields: an integer, a float, and an array of 10 elements",
+            "An array, each element of which is a structure of type node"
+          ],
+          "answer": 0,
+          "solution": "`struct node *s[10]` is an array of 10 pointers to `struct node`."
+        },
+        {
+          "id": "pyq-18",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C declaration.\n\n```c\nstruct {\n  short s[5];\n  union {\n    float y;\n    long z;\n  } u;\n} t;\n```\n\nAssume that objects of the type short, float and long occupy 2 bytes, 4 bytes and 8 bytes, respectively. The memory requirement for variable `t`, ignoring alignment considerations, is",
+          "options": [
+            "22 bytes",
+            "14 bytes",
+            "18 bytes",
+            "10 bytes"
+          ],
+          "answer": 2,
+          "solution": "`short s[5]` = 10 bytes; the union takes the max of 4 and 8 = 8 bytes. Total = **18** bytes."
+        }
+      ]
+    },
+    {
+      "title": "Recursion",
+      "questions": [
+        {
+          "id": "rc-01",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint f(int n)\n{\n    if(n<2) return n;\n    return f(n/3)+3;\n}\n```\n\nThe value returned by f(27) is",
+          "answer": 10,
+          "solution": "$f(27)=f(9)+3=f(3)+6=f(1)+9=1+9=10$."
+        },
+        {
+          "id": "rc-02",
+          "source": "DPP",
+          "type": "text",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nstatic int i;\nextern int i=3;\nvoid f(int n)\n{\n    if(n)\n    {\n        printf(\"%d\\t\", i++);\n        f(n-1);\n    }\n}\nint main()\n{\n    f(4);\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "3 4 5 6",
+          "solution": "`i` is a global-linked variable initialised to 3. The function prints `i++` four times: 3, 4, 5, 6."
+        },
+        {
+          "id": "rc-03",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nvoid f(int n){\n    static int i=3;\n    if(n%2){\n        n+=i--;\n        printf(\"%d\\t\", n);\n        f(n-1);\n    }\n    n++;\n    printf(\"%d\\t\", n);\n}\n```\n\nThe sum of the values printed when f(5) is called is",
+          "answer": 45,
+          "solution": "The printed values are 8, 9, 9, 10, 9. Sum = **45**."
+        },
+        {
+          "id": "rc-04",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint func(int a, int b)\n{\n    if (a<b)\n        return a+b;\n    else\n        return 1+func(a-1, b+1);\n}\n```\n\nThe value returned by func(4,2) is",
+          "answer": 8,
+          "solution": "func(4,2) → 1+func(3,3) → 2+func(2,4) → 2 + (2+4) = 8."
+        },
+        {
+          "id": "rc-05",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following function:\n\n```c\nvoid arc(int n){\n    if (n<=2)\n        return;\n    else {\n        arc(n-2);\n        printf(\"%d\\t\", n-1);\n        arc(n-3);\n        printf(\"%d\\t\", n-2);\n    }\n}\n```\n\nThe output printed when arc(7) is called-",
+          "options": [
+            "62143325",
+            "23412365",
+            "21436325",
+            "52363421"
+          ],
+          "answer": 2,
+          "solution": "Tracing `arc(7)` gives `2 1 4 3 6 3 2 5`."
+        },
+        {
+          "id": "rc-06",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nvoid print(int n)\n{\n    printf(\"GATE Wallah\\n\");\n    if(n++==0) return;\n    print(n++);\n}\nint main()\n{\n    void print();\n    void print();\n    print(-4);\n    return 0;\n}\n```\n\nWhich of the following is correct?",
+          "options": [
+            "Compilation error",
+            "\"GATE Wallah\" will be printed infinite number of times.",
+            "\"GATE Wallah\" will be printed 4 times.",
+            "\"GATE Wallah\" will be printed 5 times."
+          ],
+          "answer": 3,
+          "solution": "`n` takes the values -4, -3, -2, -1, 0 (each call does `n++` twice); `GATE Wallah` is printed at every call, and the recursion stops when `n++==0` is true at n=0. That is **5** prints."
+        },
+        {
+          "id": "rc-07",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\nvoid arc()\n{\n    int a;\n    static int b;\n    a=b;\n    printf(\"%d\\t%d\\t\", a++, b++);\n    if(a<=3)\n        arc();\n}\n```\n\nWhen arc() is called from main, the output is:",
+          "options": [
+            "00112233",
+            "11223344",
+            "01122334",
+            "12233445"
+          ],
+          "answer": 0,
+          "solution": "With the static `b` the pairs printed are `0 0`, `1 1`, `2 2`, `3 3`: output `00112233`."
+        },
+        {
+          "id": "rc-08",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint arc(int i, int j)\n{\n    if(i<2) return j+2;\n    else if(j<2) return arc(i-1, 1);\n    else return arc(i-1, arc(i,j-2));\n}\n```\n\nThe value returned by arc(2,6) is",
+          "answer": 9,
+          "solution": "`arc(1, j) = j+2`. `arc(2,0) = arc(1,1) = 3`, `arc(2,2) = arc(1,3) = 5`, `arc(2,4) = arc(1,5) = 7`, `arc(2,6) = arc(1,7) = **9**`."
+        },
+        {
+          "id": "rc-09",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint func(int a)\n{\n    static int b=1;\n    b=b+a;\n    if((b%a)%2!=0) return a+func(b+a);\n    return b-a;\n}\n```\n\nThe value returned by func(5) is",
+          "answer": 11,
+          "solution": "`static b` accumulates: b = 6 → `(6%5)%2 = 1 ≠ 0` → `5 + func(11)`; b = 17 → `(17%11)%2 = 0` → returns 17-11 = 6. Result = 5+6 = **11**."
+        },
+        {
+          "id": "rc-10",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following function:\n\n```c\nvoid func(int n)\n{\n    if(n>0){\n        func(n-1);\n        printf(\"%d\\t\", n);\n    }\n    printf(\"%d\\t\", n-1);\n}\n```\n\nThe output printed by func(2) is-",
+          "options": [
+            "-11021",
+            "-110212",
+            "-1102-21",
+            "-11021"
+          ],
+          "answer": 0,
+          "solution": "`func(2)` prints `-1 1 0 2 1`, i.e. `-11021`. Options (a) and (d) are identical in the source; (a) is marked."
+        },
+        {
+          "id": "rc-11",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint func(int n)\n{\n    if(n>0){\n        return func(n/2)+func(n/4)+1;\n    }\n    return n+1;\n}\n```\n\nThe value returned by func(6) is",
+          "answer": 9,
+          "solution": "`func(0)=1`. `func(1)=func(0)+func(0)+1=3`. `func(3)=func(1)+func(0)+1=5`. `func(6)=func(3)+func(1)+1=5+3+1=`**9**."
+        },
+        {
+          "id": "rc-12",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint func(int n)\n{\n    if(n>0){\n        return 3*func(n/4)+1;\n    }\n    return n;\n}\n```\n\nThe value returned by func(24) is",
+          "answer": 13,
+          "solution": "func(24) = 3·func(6)+1 = 3(3·func(1)+1)+1; func(1) = 3·func(0)+1 = 1, func(6) = 4, so func(24) = 13."
+        },
+        {
+          "id": "rc-13",
+          "source": "DPP",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint func(int n)\n{\n    static int k=0;\n    if(n>0){\n        k++;\n        return 2*func(n/2)+k;\n    }\n    return n+k--;\n}\n```\n\nThe value returned by func(8) is",
+          "answer": 109,
+          "solution": "`k` increments on each of the 4 calls (n=8,4,2,1) and `func(0)` returns `0+k--=4`. On the way back (gcc reads `k` after the recursive call, i.e. 3): func(1)=2·4+3... giving 11, func(2)=25, func(4)=53, func(8)=**109**.\n\n> The order of evaluating `func(n/2)` and `k` is unspecified in C; the usual answer assumes `k` is read after the call."
+        },
+        {
+          "id": "rc-14",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following function:\n\n```c\nint func(int n, int i)\n{\n    if(n==0) return 0;\n    else if(n%2){\n        return func(n/2, 2*i)+i;\n    }else return func(n/2, 2*i)-i;\n}\n```\n\nThe value returned by func(14, 1) is-",
+          "options": [
+            "1",
+            "13",
+            "15",
+            "0"
+          ],
+          "answer": 1,
+          "solution": "`func(14,1)=func(7,2)-1`, `func(7,2)=func(3,4)+2`, `func(3,4)=func(1,8)+4`, `func(1,8)=func(0,16)+8=8`. So 8+4=12, 12+2=14, 14-1=**13**."
+        },
+        {
+          "id": "rc-15",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following function:\n\n```c\nint func(int n)\n{\n    static int i=0;\n    if(n/2){\n        i--;\n        return func(n/2)+i;\n    }else return i;\n}\n```\n\nThe value returned by func(7) is-",
+          "options": [
+            "-6",
+            "-12",
+            "-18",
+            "-21"
+          ],
+          "answer": 0,
+          "solution": "`i` is decremented at n=7 and n=3 (to -2). At n=1 the function returns `i=-2`. Then `-2 + (-2) = -4` and `-4 + (-2) = `**-6**."
+        },
+        {
+          "id": "rc-16",
+          "source": "DPP",
+          "type": "mcq",
+          "question": "Consider the following function:\n\n```c\nvoid display()\n{\n    static int i;\n    if(i<=printf(\"GATE24\")) {\n        i=i+2;\n        display();\n    }\n}\nint main()\n{\n    int i=0;\n    for(i=0;i<3;i++)\n        display();\n    return 0;\n}\n```\n\nThe number of times printf() executed is-",
+          "options": [
+            "6",
+            "5",
+            "7",
+            "9"
+          ],
+          "answer": 2,
+          "solution": "`display()` is called until `i` exceeds the length of `GATE24` (6). In total the `printf` executes **7** times."
+        },
+        {
+          "id": "pyq-03",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C function definition:\n\n```c\nint Trial (int a, int b, int c)\n{\n  if ((a >= b) && (c < b)) return b;\n  else if (a >= b) return Trial (a,c,b);\n  else return Trial (b,a,c);\n}\n```\n\nThe function Trial:",
+          "options": [
+            "Finds the maximum of a, b, and c",
+            "Finds the minimum of a, b and c",
+            "Finds the middle number of a, b, c",
+            "None of the above"
+          ],
+          "answer": 2,
+          "solution": "The function returns `b` only when `a >= b > c`; otherwise it permutes the arguments. So it returns the **middle** (median) value."
+        },
+        {
+          "id": "pyq-06",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C program. What does it print?\n\n```c\nvoid foo(int n, int sum)\n{\n  int k = 0, j = 0;\n  if (n == 0) return;\n  k = n % 10; j = n / 10;\n  sum = sum + k;\n  foo (j, sum);\n  printf (\"%d,\", k);\n}\nint main ()\n{\n  int a = 2048, sum = 0;\n  foo (a, sum);\n  printf (\"%d\\n\", sum);\n}\n```",
+          "options": [
+            "8, 4, 0, 2, 14",
+            "8, 4, 0, 2, 0",
+            "2, 0, 4, 8, 14",
+            "2, 0, 4, 8, 0"
+          ],
+          "answer": 3,
+          "solution": "`k` is printed after the recursive call, so digits come out as 2, 0, 4, 8. `sum` is passed by value, so `main`'s `sum` stays **0**."
+        },
+        {
+          "id": "pyq-07",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C function. The value returned by `f(1)` is\n\n```c\nint f(int n)\n{\n  static int i = 1;\n  if (n >= 5) return n;\n  n = n+i;\n  i++;\n  return f(n);\n}\n```",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "answer": 2,
+          "solution": "f(1): n=2, i=2 → f(2): n=4, i=3 → f(4): n=7, i=4 → f(7) returns **7**."
+        },
+        {
+          "id": "pyq-12",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following C function. What is the value of `f(5)`?\n\n```c\nint f(int n)\n{\n  static int r = 0;\n  if (n <= 0) return 1;\n  if (n > 3)\n  {\n    r = n;\n    return f(n-2)+2;\n  }\n  return f(n-1)+r;\n}\n```",
+          "options": [
+            "5",
+            "7",
+            "9",
+            "18"
+          ],
+          "answer": 3,
+          "solution": "f(5): r=5 → f(3)+2; f(3)=f(2)+5; f(2)=f(1)+5; f(1)=f(0)+5=6. So f(2)=11, f(3)=16, f(5)=**18**."
+        },
+        {
+          "id": "pyq-13",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following recursive C function that takes two arguments.\n\nWhat is the return value of the function `foo` when it is called as `foo(345, 10)`?\n\n```c\nunsigned int foo(unsigned int n, unsigned int r) {\n  if (n > 0) return (n%r + foo (n/r, r ));\n  else return 0;\n}\n```",
+          "options": [
+            "345",
+            "12",
+            "5",
+            "3"
+          ],
+          "answer": 1,
+          "solution": "It sums the digits of `n` in base `r`: 3+4+5 = **12**."
+        },
+        {
+          "id": "pyq-14",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "For the same function `foo` as in the previous question, what is the return value of `foo(513, 2)`?\n\n```c\nunsigned int foo(unsigned int n, unsigned int r) {\n  if (n > 0) return (n%r + foo (n/r, r ));\n  else return 0;\n}\n```",
+          "options": [
+            "9",
+            "8",
+            "5",
+            "2"
+          ],
+          "answer": 3,
+          "solution": "It counts the 1-bits of 513 (= 1000000001₂): **2**."
+        },
+        {
+          "id": "pyq-15",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Choose the correct option to fill `?1` and `?2` so that the program below prints an input string in reverse order. Assume that the input string is terminated by a newline character.\n\n```c\nvoid reverse(void)\n{\n  int c;\n  if (?1) reverse();\n  ?2\n}\nmain(){\n  printf (\"Enter Text \") ; printf (\"\\n\") ;\n  reverse(); printf (\"\\n\") ;\n}\n```",
+          "options": [
+            "?1 is `(getchar() != '\\n')` and ?2 is `getchar(c);`",
+            "?1 is `((c = getchar()) != '\\n')` and ?2 is `getchar(c);`",
+            "?1 is `(c != '\\n')` and ?2 is `putchar(c);`",
+            "?1 is `((c = getchar()) != '\\n')` and ?2 is `putchar(c);`"
+          ],
+          "answer": 3,
+          "solution": "The character must be read into `c` before the recursive call (`c = getchar()`), and printed **after** the call returns (`putchar(c)`), which reverses the order."
+        },
+        {
+          "id": "pyq-33",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following recursive C function.\n\n```c\nvoid get (int n)\n{\n  if (n < 1) return;\n  get (n-1);\n  get (n-3);\n  printf (\"%d\", n);\n}\n```\n\nIf `get(6)` is called in `main`, how many times will the `get()` function be invoked before returning to `main`?",
+          "options": [
+            "15",
+            "25",
+            "35",
+            "45"
+          ],
+          "answer": 1,
+          "solution": "Let $T(n)=1+T(n-1)+T(n-3)$ with $T(n)=1$ for $n<1$: T(1)=3, T(2)=5, T(3)=7, T(4)=11, T(5)=17, T(6)=**25**."
+        },
+        {
+          "id": "pyq-37",
+          "source": "Practice PDF",
+          "type": "nat",
+          "question": "Consider the following C function.\n\n```c\nint fun(int n){\n  int x = 1, k;\n  if (n == 1) return x;\n  for (k = 1; k < n; ++k)\n    x = x + fun(k) * fun(n - k);\n  return x;\n}\n```\n\nThe return value of `fun(5)` is ______.",
+          "answer": 51,
+          "solution": "fun(1)=1, fun(2)=2, fun(3)=5, fun(4)=15, fun(5)=1+(1·15+2·5+5·2+15·1) = **51**."
+        },
+        {
+          "id": "pyq-38",
+          "source": "Practice PDF",
+          "type": "mcq",
+          "question": "Consider the following function written in the C programming language.\n\n```c\nvoid foo (char *a)\n{\n  if (*a && *a != ' ')\n  {\n    foo (a+1);\n    putchar (*a);\n  }\n}\n```\n\nThe output of the above function on input \"ABCD EFGH\" is",
+          "options": [
+            "ABCD EFGH",
+            "ABCD",
+            "HGFE DCBA",
+            "DCBA"
+          ],
+          "answer": 3,
+          "solution": "The recursion stops at the space. Characters are printed after the recursive call, so `ABCD` is printed reversed: `DCBA`."
+        }
+      ]
+    }
+  ]
+}

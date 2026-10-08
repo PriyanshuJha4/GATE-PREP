@@ -1,0 +1,23 @@
+{
+  "title": "Algorithms practice questions",
+  "chapters": [
+    {
+      "title": "Analysis of Algorithms",
+      "questions": [
+        {
+          "question": "The solution of $T(n) = 2T(n/2) + n$ with $T(1)=1$ is:",
+          "options": [
+            "$\\Theta(n)$",
+            "$\\Theta(n\\log n)$",
+            "$\\Theta(n^2)$",
+            "$\\Theta(\\log n)$"
+          ],
+          "answer": 1,
+          "solution": "Master theorem: $a=2, b=2, f(n)=n=\\Theta(n^{\\log_b a})$ (case 2), so $T(n)=\\Theta(n\\log n)$.",
+          "source": "Sample question (replace me)",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}

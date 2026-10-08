@@ -1,0 +1,27 @@
+{
+  "title": "Digital Logic practice questions",
+  "chapters": [
+    {
+      "title": "Boolean Algebra",
+      "questions": [
+        {
+          "type": "msq",
+          "question": "Which of the following are **universal** gates?",
+          "options": [
+            "AND",
+            "OR",
+            "NAND",
+            "NOR"
+          ],
+          "answer": [
+            2,
+            3
+          ],
+          "solution": "NAND and NOR can each implement every Boolean function on their own.",
+          "source": "Sample question (replace me)",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}
