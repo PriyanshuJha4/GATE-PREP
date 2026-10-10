@@ -1,0 +1,61 @@
+{
+  "title": "Operating Systems — Concepts",
+  "sections": [
+    {
+      "id": "introduction-and-background",
+      "title": "Chapter 1 — Introduction and Background",
+      "short": "Introduction and Background",
+      "content": "## Introduction and Background\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "process-management-threads-inter-process-communication",
+      "title": "Chapter 2 — Process Management, Threads, Inter-process Communication",
+      "short": "Process Management, Threads, Inter-process Communication",
+      "content": "## Process Management, Threads, Inter-process Communication\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "cpu-scheduling-and-i-o-scheduling",
+      "title": "Chapter 3 — CPU Scheduling and I/O Scheduling",
+      "short": "CPU Scheduling and I/O Scheduling",
+      "content": "## CPU Scheduling and I/O Scheduling\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "process-synchronization-concurrency",
+      "title": "Chapter 4 — Process Synchronization & Concurrency",
+      "short": "Process Synchronization & Concurrency",
+      "content": "## Process Synchronization & Concurrency\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "deadlock",
+      "title": "Chapter 5 — Deadlock",
+      "short": "Deadlock",
+      "content": "## Deadlock\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "memory-management-virtual-memory",
+      "title": "Chapter 6 — Memory Management & Virtual Memory",
+      "short": "Memory Management & Virtual Memory",
+      "content": "## Memory Management & Virtual Memory\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "file-system-device-management",
+      "title": "Chapter 7 — File System & Device Management",
+      "short": "File System & Device Management",
+      "content": "## File System & Device Management\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "system-calls",
+      "title": "Chapter 8 — System Calls",
+      "short": "System Calls",
+      "content": "## System Calls\n\n_Notes yet to be added._",
+      "questions": []
+    }
+  ]
+}

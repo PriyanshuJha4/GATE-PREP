@@ -5,6 +5,7 @@
       "title": "Graph Theory",
       "questions": [
         {
+          "id": "discrete-mathematics-p-01-01",
           "type": "nat",
           "question": "How many edges does the complete graph $K_6$ have?",
           "answer": 15,

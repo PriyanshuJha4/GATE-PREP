@@ -6,26 +6,33 @@
       "title": "C Programming",
       "topics": [
         {
-          "title": "Data Types and Operators"
+          "title": "Data Types and Operators",
+          "id": "c-programming-data-types-and-operators"
         },
         {
-          "title": "Control Flow Statements"
+          "title": "Control Flow Statements",
+          "id": "c-programming-control-flow-statements"
         },
         {
-          "title": "Functions & Storage"
+          "title": "Functions & Storage",
+          "id": "c-programming-functions-and-storage"
         },
         {
-          "title": "Arrays and Pointers"
+          "title": "Arrays and Pointers",
+          "id": "c-programming-arrays-and-pointers"
         },
         {
-          "title": "String in C Programming"
+          "title": "String in C Programming",
+          "id": "c-programming-string-in-c-programming"
         },
         {
-          "title": "Structure and Union"
+          "title": "Structure and Union",
+          "id": "c-programming-structure-and-union"
         },
         {
           "title": "Miscellaneous Topics",
-          "detail": "Recursion"
+          "detail": "Recursion",
+          "id": "c-programming-miscellaneous-topics"
         }
       ]
     },
@@ -34,23 +41,29 @@
       "title": "Data Structures",
       "topics": [
         {
-          "title": "Introduction to DSA"
+          "title": "Introduction to DSA",
+          "id": "data-structures-introduction-to-dsa"
         },
         {
-          "title": "Arrays, Stacks, Queues, Linked Lists"
+          "title": "Arrays, Stacks, Queues, Linked Lists",
+          "id": "data-structures-arrays-stacks-queues-linked-lists"
         },
         {
           "title": "Trees",
-          "detail": "Binary Search Trees"
+          "detail": "Binary Search Trees",
+          "id": "data-structures-trees"
         },
         {
-          "title": "Binary Heaps"
+          "title": "Binary Heaps",
+          "id": "data-structures-binary-heaps"
         },
         {
-          "title": "Graphs"
+          "title": "Graphs",
+          "id": "data-structures-graphs"
         },
         {
-          "title": "Hashing"
+          "title": "Hashing",
+          "id": "data-structures-hashing"
         }
       ]
     },
@@ -59,27 +72,34 @@
       "title": "COA",
       "topics": [
         {
-          "title": "Introduction of COA"
+          "title": "Introduction of COA",
+          "id": "coa-introduction-of-coa"
         },
         {
-          "title": "Instruction Set and Addressing Modes"
+          "title": "Instruction Set and Addressing Modes",
+          "id": "coa-instruction-set-and-addressing-modes"
         },
         {
-          "title": "Floating Point & Number Representation and Arithmetic"
+          "title": "Floating Point & Number Representation and Arithmetic",
+          "id": "coa-floating-point-and-number-representation-and-arithmetic"
         },
         {
           "title": "ALU & Control Unit",
-          "detail": "Hardwired and Microprogrammed"
+          "detail": "Hardwired and Microprogrammed",
+          "id": "coa-alu-and-control-unit"
         },
         {
-          "title": "Instruction Pipelining & Pipeline Hazards"
+          "title": "Instruction Pipelining & Pipeline Hazards",
+          "id": "coa-instruction-pipelining-and-pipeline-hazards"
         },
         {
-          "title": "Cache Memory & Memory Interfacing / Hierarchy"
+          "title": "Cache Memory & Memory Interfacing / Hierarchy",
+          "id": "coa-cache-memory-and-memory-interfacing-hierarchy"
         },
         {
           "title": "I/O Interface",
-          "detail": "Interrupt and DMA"
+          "detail": "Interrupt and DMA",
+          "id": "coa-i-o-interface"
         }
       ],
       "note": "Secondary storage / magnetic disks have been removed from the official outline."
@@ -90,24 +110,30 @@
       "topics": [
         {
           "title": "Analysis of Algorithm",
-          "detail": "Asymptotic Worst Case Time and Space Complexity"
+          "detail": "Asymptotic Worst Case Time and Space Complexity",
+          "id": "algorithms-analysis-of-algorithm"
         },
         {
           "title": "Design Strategies",
-          "detail": "Divide-and-Conquer, Greedy Method, Dynamic Programming"
+          "detail": "Divide-and-Conquer, Greedy Method, Dynamic Programming",
+          "id": "algorithms-design-strategies"
         },
         {
-          "title": "Searching, Sorting, Hashing"
+          "title": "Searching, Sorting, Hashing",
+          "id": "algorithms-searching-sorting-hashing"
         },
         {
           "title": "Graph Algorithms",
-          "detail": "Traversals, Minimum Spanning Trees, Shortest Paths"
+          "detail": "Traversals, Minimum Spanning Trees, Shortest Paths",
+          "id": "algorithms-graph-algorithms"
         },
         {
-          "title": "Heap Algorithms"
+          "title": "Heap Algorithms",
+          "id": "algorithms-heap-algorithms"
         },
         {
-          "title": "Backtracking & Branch Bound"
+          "title": "Backtracking & Branch Bound",
+          "id": "algorithms-backtracking-and-branch-bound"
         }
       ]
     },
@@ -117,16 +143,20 @@
       "topics": [
         {
           "title": "Boolean Algebra and Minimization",
-          "detail": "Algebraic Technique, Karnaugh Map, Tabular Method"
+          "detail": "Algebraic Technique, Karnaugh Map, Tabular Method",
+          "id": "digital-logic-boolean-algebra-and-minimization"
         },
         {
-          "title": "Design of Combinational Circuits"
+          "title": "Design of Combinational Circuits",
+          "id": "digital-logic-design-of-combinational-circuits"
         },
         {
-          "title": "Sequential Logic Circuits"
+          "title": "Sequential Logic Circuits",
+          "id": "digital-logic-sequential-logic-circuits"
         },
         {
-          "title": "Number System & Representation"
+          "title": "Number System & Representation",
+          "id": "digital-logic-number-system-and-representation"
         }
       ]
     },
@@ -136,19 +166,23 @@
       "topics": [
         {
           "title": "Graph Theory",
-          "detail": "Connectivity, Matching, Colouring"
+          "detail": "Connectivity, Matching, Colouring",
+          "id": "discrete-mathematics-graph-theory"
         },
         {
           "title": "Mathematical Logic",
-          "detail": "Propositional and First Order Logic"
+          "detail": "Propositional and First Order Logic",
+          "id": "discrete-mathematics-mathematical-logic"
         },
         {
           "title": "Set Theory",
-          "detail": "Sets, Relations, Functions, Partial Orders and Lattices, Monoids, Groups"
+          "detail": "Sets, Relations, Functions, Partial Orders and Lattices, Monoids, Groups",
+          "id": "discrete-mathematics-set-theory"
         },
         {
           "title": "Combinatorics",
-          "detail": "Counting, Recurrence Relations, Generating Functions"
+          "detail": "Counting, Recurrence Relations, Generating Functions",
+          "id": "discrete-mathematics-combinatorics"
         }
       ]
     },
@@ -158,31 +192,40 @@
       "topics": [
         {
           "title": "Probability: Random Variables and Distributions",
-          "detail": "Uniform, Normal, Exponential, Poisson and Binomial"
+          "detail": "Uniform, Normal, Exponential, Poisson and Binomial",
+          "id": "engineering-mathematics-probability-random-variables-and-distributions"
         },
         {
-          "title": "Statistics: Mean, Median, Mode, Standard Deviation"
+          "title": "Statistics: Mean, Median, Mode, Standard Deviation",
+          "id": "engineering-mathematics-statistics-mean-median-mode-standard-deviation"
         },
         {
-          "title": "Conditional Probability and Bayes Theorem"
+          "title": "Conditional Probability and Bayes Theorem",
+          "id": "engineering-mathematics-conditional-probability-and-bayes-theorem"
         },
         {
-          "title": "Limits, Continuity and Differentiability"
+          "title": "Limits, Continuity and Differentiability",
+          "id": "engineering-mathematics-limits-continuity-and-differentiability"
         },
         {
-          "title": "Maxima and Minima, Mean Value Theorem"
+          "title": "Maxima and Minima, Mean Value Theorem",
+          "id": "engineering-mathematics-maxima-and-minima-mean-value-theorem"
         },
         {
-          "title": "Integration"
+          "title": "Integration",
+          "id": "engineering-mathematics-integration"
         },
         {
-          "title": "Matrices and Determinants"
+          "title": "Matrices and Determinants",
+          "id": "engineering-mathematics-matrices-and-determinants"
         },
         {
-          "title": "System of Linear Equations"
+          "title": "System of Linear Equations",
+          "id": "engineering-mathematics-system-of-linear-equations"
         },
         {
-          "title": "Eigenvalues and Eigenvectors, LU Decomposition"
+          "title": "Eigenvalues and Eigenvectors, LU Decomposition",
+          "id": "engineering-mathematics-eigenvalues-and-eigenvectors-lu-decomposition"
         }
       ]
     },
@@ -191,36 +234,46 @@
       "title": "Aptitude",
       "topics": [
         {
-          "title": "Verbal: Basic English Grammar"
+          "title": "Verbal: Basic English Grammar",
+          "id": "aptitude-verbal-basic-english-grammar"
         },
         {
-          "title": "Verbal: Basic Vocabulary"
+          "title": "Verbal: Basic Vocabulary",
+          "id": "aptitude-verbal-basic-vocabulary"
         },
         {
-          "title": "Verbal: Reading and Comprehension"
+          "title": "Verbal: Reading and Comprehension",
+          "id": "aptitude-verbal-reading-and-comprehension"
         },
         {
-          "title": "Verbal: Narrative Sequencing"
+          "title": "Verbal: Narrative Sequencing",
+          "id": "aptitude-verbal-narrative-sequencing"
         },
         {
-          "title": "Quantitative: Data Interpretation"
+          "title": "Quantitative: Data Interpretation",
+          "id": "aptitude-quantitative-data-interpretation"
         },
         {
-          "title": "Quantitative: Numerical Computation & Estimation"
+          "title": "Quantitative: Numerical Computation & Estimation",
+          "id": "aptitude-quantitative-numerical-computation-and-estimation"
         },
         {
-          "title": "Quantitative: Mensuration and Geometry"
+          "title": "Quantitative: Mensuration and Geometry",
+          "id": "aptitude-quantitative-mensuration-and-geometry"
         },
         {
-          "title": "Quantitative: Elementary Statistics and Probability"
+          "title": "Quantitative: Elementary Statistics and Probability",
+          "id": "aptitude-quantitative-elementary-statistics-and-probability"
         },
         {
           "title": "Analytical Aptitude",
-          "detail": "Logic: deduction, induction, analogy, numerical relations, reasoning"
+          "detail": "Logic: deduction, induction, analogy, numerical relations, reasoning",
+          "id": "aptitude-analytical-aptitude"
         },
         {
           "title": "Spatial Aptitude",
-          "detail": "Transformation of shapes (2D and 3D)"
+          "detail": "Transformation of shapes (2D and 3D)",
+          "id": "aptitude-spatial-aptitude"
         }
       ]
     },
@@ -229,16 +282,20 @@
       "title": "TOC",
       "topics": [
         {
-          "title": "Finite Automata & Regular Expressions"
+          "title": "Finite Automata & Regular Expressions",
+          "id": "toc-finite-automata-and-regular-expressions"
         },
         {
-          "title": "Push Down Automata & Context-Free Grammars"
+          "title": "Push Down Automata & Context-Free Grammars",
+          "id": "toc-push-down-automata-and-context-free-grammars"
         },
         {
-          "title": "Regular & Context-Free Languages, Pumping Lemma"
+          "title": "Regular & Context-Free Languages, Pumping Lemma",
+          "id": "toc-regular-and-context-free-languages-pumping-lemma"
         },
         {
-          "title": "Turing Machines and Undecidability"
+          "title": "Turing Machines and Undecidability",
+          "id": "toc-turing-machines-and-undecidability"
         }
       ]
     },
@@ -247,25 +304,31 @@
       "title": "DBMS",
       "topics": [
         {
-          "title": "ER Model"
+          "title": "ER Model",
+          "id": "dbms-er-model"
         },
         {
           "title": "Relational Model",
-          "detail": "Relational Algebra, Tuple Calculus, SQL"
+          "detail": "Relational Algebra, Tuple Calculus, SQL",
+          "id": "dbms-relational-model"
         },
         {
           "title": "FD's & Normalization",
-          "detail": "Integrity Constraints, Normal Forms"
+          "detail": "Integrity Constraints, Normal Forms",
+          "id": "dbms-fd-s-and-normalization"
         },
         {
-          "title": "Query Language"
+          "title": "Query Language",
+          "id": "dbms-query-language"
         },
         {
           "title": "File Organization & Indexing",
-          "detail": "B and B+ trees"
+          "detail": "B and B+ trees",
+          "id": "dbms-file-organization-and-indexing"
         },
         {
-          "title": "Transaction & Concurrency Control"
+          "title": "Transaction & Concurrency Control",
+          "id": "dbms-transaction-and-concurrency-control"
         }
       ]
     },
@@ -275,26 +338,32 @@
       "topics": [
         {
           "title": "Principles of Layering & Basics of Switching",
-          "detail": "Circuit, Packet, Virtual Circuit, and Performance Metrics"
+          "detail": "Circuit, Packet, Virtual Circuit, and Performance Metrics",
+          "id": "computer-networks-principles-of-layering-and-basics-of-switching"
         },
         {
           "title": "Data Link Layer",
-          "detail": "Error Detection, Medium Access Control, Ethernet"
+          "detail": "Error Detection, Medium Access Control, Ethernet",
+          "id": "computer-networks-data-link-layer"
         },
         {
           "title": "Routing",
-          "detail": "Distance Vector and Link State Routing"
+          "detail": "Distance Vector and Link State Routing",
+          "id": "computer-networks-routing"
         },
         {
-          "title": "IPv4 Addressing, Fragmentation, CIDR, NAT"
+          "title": "IPv4 Addressing, Fragmentation, CIDR, NAT",
+          "id": "computer-networks-ipv4-addressing-fragmentation-cidr-nat"
         },
         {
           "title": "TCP & UDP",
-          "detail": "Flow Control, Congestion Control, Socket API"
+          "detail": "Flow Control, Congestion Control, Socket API",
+          "id": "computer-networks-tcp-and-udp"
         },
         {
           "title": "Application Layer Protocols",
-          "detail": "DNS and HTTP"
+          "detail": "DNS and HTTP",
+          "id": "computer-networks-application-layer-protocols"
         }
       ],
       "note": "Standalone OSI stack overview, ARP, ICMP, DHCP, FTP and SMTP are no longer listed explicitly in the core curriculum."
@@ -305,17 +374,21 @@
       "topics": [
         {
           "title": "Lexical Analysis & Syntax Analysis",
-          "detail": "Parsing"
+          "detail": "Parsing",
+          "id": "compiler-design-lexical-analysis-and-syntax-analysis"
         },
         {
-          "title": "Syntax Directed Translation"
+          "title": "Syntax Directed Translation",
+          "id": "compiler-design-syntax-directed-translation"
         },
         {
-          "title": "Runtime Environments"
+          "title": "Runtime Environments",
+          "id": "compiler-design-runtime-environments"
         },
         {
           "title": "Intermediate Code Generation & Code Optimization",
-          "detail": "Local optimization, data flow analyses: constant propagation, liveness analysis, common subexpression elimination"
+          "detail": "Local optimization, data flow analyses: constant propagation, liveness analysis, common subexpression elimination",
+          "id": "compiler-design-intermediate-code-generation-and-code-optimization"
         }
       ]
     },
@@ -324,28 +397,36 @@
       "title": "Operating Systems",
       "topics": [
         {
-          "title": "Introduction and Background"
+          "title": "Introduction and Background",
+          "id": "operating-systems-introduction-and-background"
         },
         {
-          "title": "Process Management, Threads, Inter-process Communication"
+          "title": "Process Management, Threads, Inter-process Communication",
+          "id": "operating-systems-process-management-threads-inter-process-communication"
         },
         {
-          "title": "CPU Scheduling and I/O Scheduling"
+          "title": "CPU Scheduling and I/O Scheduling",
+          "id": "operating-systems-cpu-scheduling-and-i-o-scheduling"
         },
         {
-          "title": "Process Synchronization & Concurrency"
+          "title": "Process Synchronization & Concurrency",
+          "id": "operating-systems-process-synchronization-and-concurrency"
         },
         {
-          "title": "Deadlock"
+          "title": "Deadlock",
+          "id": "operating-systems-deadlock"
         },
         {
-          "title": "Memory Management & Virtual Memory"
+          "title": "Memory Management & Virtual Memory",
+          "id": "operating-systems-memory-management-and-virtual-memory"
         },
         {
-          "title": "File System & Device Management"
+          "title": "File System & Device Management",
+          "id": "operating-systems-file-system-and-device-management"
         },
         {
-          "title": "System Calls"
+          "title": "System Calls",
+          "id": "operating-systems-system-calls"
         }
       ]
     }

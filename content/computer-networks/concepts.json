@@ -1,0 +1,47 @@
+{
+  "title": "Computer Networks — Concepts",
+  "sections": [
+    {
+      "id": "principles-of-layering-basics-of-switching",
+      "title": "Chapter 1 — Principles of Layering & Basics of Switching",
+      "short": "Principles of Layering & Basics of Switching",
+      "content": "## Principles of Layering & Basics of Switching\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "data-link-layer",
+      "title": "Chapter 2 — Data Link Layer",
+      "short": "Data Link Layer",
+      "content": "## Data Link Layer\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "routing",
+      "title": "Chapter 3 — Routing",
+      "short": "Routing",
+      "content": "## Routing\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "ipv4-addressing-fragmentation-cidr-nat",
+      "title": "Chapter 4 — IPv4 Addressing, Fragmentation, CIDR, NAT",
+      "short": "IPv4 Addressing, Fragmentation, CIDR, NAT",
+      "content": "## IPv4 Addressing, Fragmentation, CIDR, NAT\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "tcp-udp",
+      "title": "Chapter 5 — TCP & UDP",
+      "short": "TCP & UDP",
+      "content": "## TCP & UDP\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "application-layer-protocols",
+      "title": "Chapter 6 — Application Layer Protocols",
+      "short": "Application Layer Protocols",
+      "content": "## Application Layer Protocols\n\n_Notes yet to be added._",
+      "questions": []
+    }
+  ]
+}

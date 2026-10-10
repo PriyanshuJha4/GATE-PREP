@@ -3,7 +3,7 @@ import { getAllParams, getDoc, getSubject } from '@/lib/content';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import Quiz from '@/components/Quiz';
 import DownloadButton from '@/components/DownloadButton';
-import concepts from '@/components/concepts';import Concepts from '@/components/concepts';
+import Concepts from '@/components/concepts';
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -33,7 +33,10 @@ export default function CategoryPage({ params }) {
       </header>
 
       {doc.type === 'quiz' ? (
-  <Quiz data={doc.data} subject={subject.slug} />
+ <Quiz
+  data={doc.data}
+  subject={`${subject.slug}:${doc.categorySlug}`}
+/>
 ) : doc.type === 'concepts' ? (
   <Concepts data={doc.data} />
 ) : (

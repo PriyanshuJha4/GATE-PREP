@@ -1,0 +1,54 @@
+{
+  "title": "COA — Concepts",
+  "sections": [
+    {
+      "id": "introduction-of-coa",
+      "title": "Chapter 1 — Introduction of COA",
+      "short": "Introduction of COA",
+      "content": "## Introduction of COA\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "instruction-set-and-addressing-modes",
+      "title": "Chapter 2 — Instruction Set and Addressing Modes",
+      "short": "Instruction Set and Addressing Modes",
+      "content": "## Instruction Set and Addressing Modes\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "floating-point-number-representation-and-arithmetic",
+      "title": "Chapter 3 — Floating Point & Number Representation and Arithmetic",
+      "short": "Floating Point & Number Representation and Arithmetic",
+      "content": "## Floating Point & Number Representation and Arithmetic\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "alu-control-unit",
+      "title": "Chapter 4 — ALU & Control Unit",
+      "short": "ALU & Control Unit",
+      "content": "## ALU & Control Unit\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "instruction-pipelining-pipeline-hazards",
+      "title": "Chapter 5 — Instruction Pipelining & Pipeline Hazards",
+      "short": "Instruction Pipelining & Pipeline Hazards",
+      "content": "## Instruction Pipelining & Pipeline Hazards\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "cache-memory-memory-interfacing-hierarchy",
+      "title": "Chapter 6 — Cache Memory & Memory Interfacing / Hierarchy",
+      "short": "Cache Memory & Memory Interfacing / Hierarchy",
+      "content": "## Cache Memory & Memory Interfacing / Hierarchy\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "i-o-interface",
+      "title": "Chapter 7 — I/O Interface",
+      "short": "I/O Interface",
+      "content": "## I/O Interface\n\n_Notes yet to be added._",
+      "questions": []
+    }
+  ]
+}

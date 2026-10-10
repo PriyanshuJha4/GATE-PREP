@@ -1,0 +1,33 @@
+{
+  "title": "Compiler Design — Concepts",
+  "sections": [
+    {
+      "id": "lexical-analysis-syntax-analysis",
+      "title": "Chapter 1 — Lexical Analysis & Syntax Analysis",
+      "short": "Lexical Analysis & Syntax Analysis",
+      "content": "## Lexical Analysis & Syntax Analysis\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "syntax-directed-translation",
+      "title": "Chapter 2 — Syntax Directed Translation",
+      "short": "Syntax Directed Translation",
+      "content": "## Syntax Directed Translation\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "runtime-environments",
+      "title": "Chapter 3 — Runtime Environments",
+      "short": "Runtime Environments",
+      "content": "## Runtime Environments\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "intermediate-code-generation-code-optimization",
+      "title": "Chapter 4 — Intermediate Code Generation & Code Optimization",
+      "short": "Intermediate Code Generation & Code Optimization",
+      "content": "## Intermediate Code Generation & Code Optimization\n\n_Notes yet to be added._",
+      "questions": []
+    }
+  ]
+}

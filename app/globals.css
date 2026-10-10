@@ -128,6 +128,8 @@ code { overflow-wrap: anywhere; }
 .nav-link:hover { background: var(--bg-hover); color: var(--text); }
 .nav-link.active { background: var(--accent-soft); color: var(--text); font-weight: 600; }
 .nav-home { color: var(--text); font-weight: 600; }
+.nav-quick { gap: 10px; }
+.nav-quick svg { flex: none; color: var(--muted); }
 .nav-empty { padding: 8px 12px; font-size: 13.5px; color: var(--muted); }
 
 .overlay { display: none; }
@@ -362,3 +364,13 @@ code { overflow-wrap: anywhere; }
 .concept { margin-top: 32px; padding-top: 8px; border-top: 1px solid var(--border); scroll-margin-top: 72px; }
 .concept:first-child { border-top: 0; margin-top: 0; }
 .key-points { padding-left: 1.2em; }
+
+/* ---------- Quick Links ---------- */
+.quick-grid { display: grid; gap: 16px; margin-top: 24px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.quick-card { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border-radius: 14px; border: 1px solid var(--border); text-decoration: none; color: var(--text); transition: background .15s ease, border-color .15s ease; }
+.quick-card:hover { background: var(--bg-soft); border-color: var(--accent); }
+.quick-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 600; font-size: 16px; }
+.quick-title svg { flex: none; color: var(--muted); }
+.quick-card:hover .quick-title svg { color: var(--accent); }
+.quick-desc { font-size: 14px; }
+.quick-host { margin-top: 6px; font-size: 12.5px; color: var(--muted); font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

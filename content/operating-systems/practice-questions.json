@@ -5,6 +5,7 @@
       "title": "Deadlock",
       "questions": [
         {
+          "id": "operating-systems-p-01-01",
           "type": "nat",
           "question": "Three processes each need $2$ units of the same resource type. What is the minimum number of units that guarantees no deadlock?",
           "answer": 4,

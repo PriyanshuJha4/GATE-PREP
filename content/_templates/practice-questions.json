@@ -1,58 +1,43 @@
 {
-  "title": "Template with every question type",
+  "title": "C Programming Practice Questions",
   "chapters": [
     {
-      "title": "Chapter name",
+      "title": "Data Types and Operators",
       "questions": [
         {
-          "question": "MCQ: one correct option. Inline math like $x^2$ works.",
+          "id": "practice-dt-001",
+          "title": "Operator Precedence",
+          "type": "mcq",
+          "question": "What is the value of `2 + 3 * 4` in C?",
           "options": [
-            "Option A",
-            "Option B",
-            "Option C",
-            "Option D"
+            "20",
+            "14",
+            "24",
+            "9"
           ],
           "answer": 1,
-          "solution": "Why B is correct.",
+          "solution": "Multiplication has higher precedence than addition. Thus, 2 + (3 * 4) = 14.",
           "marks": 1,
-          "source": "GATE 2022"
+          "source": "Practice"
         },
         {
-          "type": "msq",
-          "question": "MSQ: one or more correct options.",
-          "options": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "answer": [
-            0,
-            2
-          ],
-          "solution": "A and C are correct.",
-          "marks": 2
-        },
-        {
+          "id": "practice-dt-002",
+          "title": "Bitwise Operators",
           "type": "nat",
-          "question": "NAT: type a number.",
-          "answer": 42,
-          "solution": "Working here."
+          "question": "For positive integers, what is the value of `5 & 3`?",
+          "answer": 1,
+          "solution": "5 is 0101 and 3 is 0011 in binary. Their bitwise AND is 0001, which equals 1.",
+          "marks": 1,
+          "source": "Practice"
         },
         {
-          "type": "nat",
-          "question": "NAT with an accepted range.",
-          "answer": 4.5,
-          "range": [
-            4.4,
-            4.6
-          ],
-          "solution": "Working here."
-        },
-        {
-          "question": "Self-check question (no options).",
-          "answer": "Final answer text",
-          "solution": "Step by step solution."
+          "id": "practice-dt-003",
+          "title": "Self-check",
+          "question": "Explain the difference between implicit conversion and explicit type casting.",
+          "answer": "Implicit conversion is performed automatically according to C's conversion rules. Explicit type casting is requested by the programmer using a cast expression.",
+          "solution": "For example, `double d = 5;` uses implicit conversion, whereas `double d = (double)x;` uses an explicit cast.",
+          "marks": 2,
+          "source": "Practice"
         }
       ]
     }

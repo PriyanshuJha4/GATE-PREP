@@ -5,6 +5,7 @@
       "title": "Normalization",
       "questions": [
         {
+          "id": "dbms-p-01-01",
           "question": "Relation $R(A,B,C)$ has FDs $A \\to B$ and $B \\to C$. The highest normal form of $R$ is:",
           "options": [
             "1NF",

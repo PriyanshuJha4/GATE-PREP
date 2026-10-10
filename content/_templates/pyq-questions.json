@@ -1,0 +1,36 @@
+{
+  "title": "C Programming GATE Previous Year Questions",
+  "chapters": [
+    {
+      "title": "Data Types and Operators",
+      "questions": [
+        {
+          "id": "pyq-dt-001",
+          "title": "Integer Division",
+          "type": "mcq",
+          "question": "What is the value of `17 / 5` when both operands are of type int in C?",
+          "options": [
+            "2",
+            "3",
+            "3.4",
+            "4"
+          ],
+          "answer": 1,
+          "solution": "Integer division discards the fractional part. Therefore, 17 / 5 evaluates to 3.",
+          "marks": 1,
+          "source": "Practice example — not a verified GATE PYQ"
+        },
+        {
+          "id": "pyq-dt-002",
+          "title": "Numerical Answer",
+          "type": "nat",
+          "question": "Evaluate `29 % 6`.",
+          "answer": 5,
+          "solution": "29 = 6 × 4 + 5, so the remainder is 5.",
+          "marks": 1,
+          "source": "Practice example — not a verified GATE PYQ"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "title": "<Subject> — Concepts",
+  "intro": "Optional. Markdown shown under the 'Intro' tab. Delete this key if you do not need an Intro tab.",
+  "sections": [
+    {
+      "id": "integer-types",
+      "title": "Chapter 1 — Integer Data Types",
+      "short": "Integer Types",
+      "summary": "Optional one-line summary shown under the heading.",
+      "content": "## Integer Data Types\n\nC provides `char`, `short`, `int`, `long` and `long long`.\n\n```c\nint x = 10;\nprintf(\"%d\", x);\n```\n\nMath works too: $x^2$ and $$\\frac{a}{b}$$.",
+      "keyPoints": [
+        "Optional bullet 1",
+        "Optional bullet 2"
+      ],
+      "questions": [
+        {
+          "id": "integer-types-q1",
+          "title": "Optional title",
+          "type": "mcq",
+          "question": "Which operator returns the size of a type in C?",
+          "options": [
+            "+",
+            "sizeof",
+            "&&",
+            "%"
+          ],
+          "answer": 1,
+          "solution": "`sizeof` returns the size in bytes.",
+          "marks": 1,
+          "source": "Practice"
+        },
+        {
+          "id": "integer-types-q2",
+          "type": "msq",
+          "question": "Which are integer types?",
+          "options": [
+            "`int`",
+            "`float`",
+            "`char`",
+            "`double`"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "`int` and `char` are integer types.",
+          "marks": 2
+        },
+        {
+          "id": "integer-types-q3",
+          "type": "nat",
+          "question": "Value of `10 / 3` in C (int) is ______.",
+          "answer": 3,
+          "solution": "Integer division truncates."
+        }
+      ]
+    },
+    {
+      "id": "type-conversion",
+      "title": "Chapter 2 — Type Conversion",
+      "short": "Type Conversion",
+      "content": "## Type Conversion\n\nImplicit conversion is automatic; a cast such as `(float)x` is explicit.",
+      "questions": []
+    }
+  ]
+}

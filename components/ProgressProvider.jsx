@@ -5,7 +5,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 // Everything is saved in this browser only (localStorage).
 // Use "Backup & restore" on the dashboard to move it between devices.
 const TOPIC_KEY = 'gate-progress-v1'; // ticked syllabus topics
-const RESULT_KEY = 'gate-questions-v1'; // question results: "subject:id" -> 'c' (correct) | 'w' (wrong)
+const RESULT_KEY = 'gate-questions-v1'; // question results: "subject:category:id" -> 'c' | 'w'
+
 const Ctx = createContext(null);
 
 function save(key, value) {
@@ -16,7 +17,14 @@ function save(key, value) {
 function load(key) {
   try {
     const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : {};
+    const data = raw ? JSON.parse(raw) : {};
+    if (key !== RESULT_KEY) return data;
+    // Migrate old practice keys "subject:id" -> "subject:practice:id".
+    const out = {};
+    for (const [k, v] of Object.entries(data)) {
+      out[k.split(':').length === 2 ? k.replace(':', ':practice:') : k] = v;
+    }
+    return out;
   } catch {
     return {};
   }
@@ -103,30 +111,71 @@ export function ProgressProvider({ syllabus, questionIndex, children }) {
     return { total, done: count, percent: total ? Math.round((count / total) * 100) : 0, bySubject };
   }, [syllabus, done]);
 
-  // Practice-question progress per subject and per chapter
+
+  // Question progress grouped by subject and category
   const qstats = useMemo(() => {
     const bySubject = {};
+    const byCategory = {};
     const all = { total: 0, solved: 0, correct: 0, wrong: 0 };
-    for (const [slug, chapters] of Object.entries(questionIndex || {})) {
-      const sub = { total: 0, solved: 0, correct: 0, wrong: 0, chapters: [] };
+
+    for (const [groupKey, chapters] of Object.entries(questionIndex || {})) {
+      const separator = groupKey.lastIndexOf(':');
+      const subject = groupKey.slice(0, separator);
+      const category = groupKey.slice(separator + 1);
+
+      const categoryStats = {
+        total: 0,
+        solved: 0,
+        correct: 0,
+        wrong: 0,
+        chapters: [],
+      };
+
       for (const ch of chapters) {
-        const c = { title: ch.title, total: ch.questions.length, solved: 0, correct: 0, wrong: 0 };
+        const chapterStats = {
+          title: ch.title,
+          total: ch.questions.length,
+          solved: 0,
+          correct: 0,
+          wrong: 0,
+        };
+
         for (const q of ch.questions) {
-          const r = results[`${slug}:${q.id}`];
-          if (r === 'c') c.correct++;
-          if (r === 'w') c.wrong++;
+          const key = `${subject}:${category}:${q.id}`;
+          const result = results[key];
+
+          if (result === 'c') chapterStats.correct++;
+          if (result === 'w') chapterStats.wrong++;
         }
-        c.solved = c.correct + c.wrong;
-        sub.chapters.push(c);
-        sub.total += c.total;
-        sub.solved += c.solved;
-        sub.correct += c.correct;
-        sub.wrong += c.wrong;
+
+        chapterStats.solved =
+          chapterStats.correct + chapterStats.wrong;
+
+        categoryStats.chapters.push(chapterStats);
+        categoryStats.total += chapterStats.total;
+        categoryStats.solved += chapterStats.solved;
+        categoryStats.correct += chapterStats.correct;
+        categoryStats.wrong += chapterStats.wrong;
       }
-      bySubject[slug] = sub;
-      for (const k of Object.keys(all)) all[k] += sub[k];
+
+      byCategory[groupKey] = categoryStats;
+
+      if (!bySubject[subject]) {
+        bySubject[subject] = {
+          total: 0,
+          solved: 0,
+          correct: 0,
+          wrong: 0,
+        };
+      }
+
+      for (const key of Object.keys(all)) {
+        all[key] += categoryStats[key];
+        bySubject[subject][key] += categoryStats[key];
+      }
     }
-    return { ...all, bySubject };
+
+    return { ...all, bySubject, byCategory };
   }, [questionIndex, results]);
 
   const value = useMemo(

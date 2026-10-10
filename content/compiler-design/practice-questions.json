@@ -5,6 +5,7 @@
       "title": "Lexical Analysis",
       "questions": [
         {
+          "id": "compiler-design-p-01-01",
           "type": "nat",
           "question": "How many tokens does the lexical analyser produce for this C statement?\n\n```c\nint a = b + 10;\n```",
           "answer": 7,

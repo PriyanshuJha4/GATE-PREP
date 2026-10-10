@@ -1,0 +1,33 @@
+{
+  "title": "Digital Logic — Concepts",
+  "sections": [
+    {
+      "id": "boolean-algebra-and-minimization",
+      "title": "Chapter 1 — Boolean Algebra and Minimization",
+      "short": "Boolean Algebra and Minimization",
+      "content": "## Boolean Algebra and Minimization\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "design-of-combinational-circuits",
+      "title": "Chapter 2 — Design of Combinational Circuits",
+      "short": "Design of Combinational Circuits",
+      "content": "## Design of Combinational Circuits\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "sequential-logic-circuits",
+      "title": "Chapter 3 — Sequential Logic Circuits",
+      "short": "Sequential Logic Circuits",
+      "content": "## Sequential Logic Circuits\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "number-system-representation",
+      "title": "Chapter 4 — Number System & Representation",
+      "short": "Number System & Representation",
+      "content": "## Number System & Representation\n\n_Notes yet to be added._",
+      "questions": []
+    }
+  ]
+}

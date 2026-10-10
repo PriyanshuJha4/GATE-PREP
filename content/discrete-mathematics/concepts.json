@@ -1,0 +1,33 @@
+{
+  "title": "Discrete Mathematics — Concepts",
+  "sections": [
+    {
+      "id": "graph-theory",
+      "title": "Chapter 1 — Graph Theory",
+      "short": "Graph Theory",
+      "content": "## Graph Theory\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "mathematical-logic",
+      "title": "Chapter 2 — Mathematical Logic",
+      "short": "Mathematical Logic",
+      "content": "## Mathematical Logic\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "set-theory",
+      "title": "Chapter 3 — Set Theory",
+      "short": "Set Theory",
+      "content": "## Set Theory\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "combinatorics",
+      "title": "Chapter 4 — Combinatorics",
+      "short": "Combinatorics",
+      "content": "## Combinatorics\n\n_Notes yet to be added._",
+      "questions": []
+    }
+  ]
+}

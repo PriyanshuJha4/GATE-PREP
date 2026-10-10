@@ -1,0 +1,33 @@
+{
+  "title": "TOC — Concepts",
+  "sections": [
+    {
+      "id": "finite-automata-regular-expressions",
+      "title": "Chapter 1 — Finite Automata & Regular Expressions",
+      "short": "Finite Automata & Regular Expressions",
+      "content": "## Finite Automata & Regular Expressions\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "push-down-automata-context-free-grammars",
+      "title": "Chapter 2 — Push Down Automata & Context-Free Grammars",
+      "short": "Push Down Automata & Context-Free Grammars",
+      "content": "## Push Down Automata & Context-Free Grammars\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "regular-context-free-languages-pumping-lemma",
+      "title": "Chapter 3 — Regular & Context-Free Languages, Pumping Lemma",
+      "short": "Regular & Context-Free Languages, Pumping Lemma",
+      "content": "## Regular & Context-Free Languages, Pumping Lemma\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "turing-machines-and-undecidability",
+      "title": "Chapter 4 — Turing Machines and Undecidability",
+      "short": "Turing Machines and Undecidability",
+      "content": "## Turing Machines and Undecidability\n\n_Notes yet to be added._",
+      "questions": []
+    }
+  ]
+}

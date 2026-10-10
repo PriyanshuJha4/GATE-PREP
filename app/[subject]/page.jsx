@@ -25,7 +25,10 @@ export default function SubjectPage({ params }) {
       {subject.description && <p className="muted">{subject.description}</p>}
       {subject.categories.length === 0 && (
         <p className="empty">
-          No files yet. Add <code>concepts.md</code>, <code>short-notes.md</code>, <code>mistakes.md</code> or{' '}
+         <p className="empty">
+  No content available yet. Add the required JSON files
+  to <code>content/{subject.slug}/</code>.
+</p>
           <code>practice-questions.json</code> to <code>content/{subject.slug}/</code>.
         </p>
       )}

@@ -5,6 +5,7 @@
       "title": "IP Addressing",
       "questions": [
         {
+          "id": "computer-networks-p-01-01",
           "type": "nat",
           "question": "A network uses the prefix `/26`. How many usable host addresses are there per subnet?",
           "answer": 62,

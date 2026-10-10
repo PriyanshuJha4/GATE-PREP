@@ -13,40 +13,44 @@ npm run build      # static site in ./out
 
 ```
 content/
-  syllabus.json            <- dashboard checklist (subjects, topics, order)
-  _templates/              <- copy-paste templates (not shown on the site)
-  c-programming/
-    concepts.md            <- Concepts notes
-    short-notes.md         <- Short notes: formulas, shortcuts, quick revision
-    mistakes.md            <- Mistakes log (table)
-    practice-questions.json<- Practice questions (quiz)
-  data-structures/ ... (one folder per subject, same 4 files)
+  syllabus.json              <- dashboard checklist (subjects, topics, order)
+  _templates/                <- copy-paste templates (validated, not shown on the site)
+  <subject>/                 <- one folder per subject, exactly these 4 files:
+    concepts.json            <- Concepts notes (chapters as "sections", optional questions per chapter)
+    practice-questions.json  <- Practice questions
+    dpp-questions.json       <- DPP questions
+    pyq-questions.json       <- Previous year questions
 ```
 
-Every subject folder already contains skeleton files with your syllabus topics as headings.
+Every subject listed in `syllabus.json` must have its folder and all 4 files (`npm run validate` enforces this).
+Copy the matching file from `content/_templates/` to start a new one.
+
+## concepts.json format
+
+```json
+{
+  "title": "Subject — Concepts",
+  "intro": "optional markdown (shows an Intro tab)",
+  "sections": [
+    {
+      "id": "unique-id", "title": "Chapter 1 — Title", "short": "Tab label",
+      "summary": "optional", "content": "markdown ...", "keyPoints": ["optional"],
+      "questions": [ /* same format as practice-questions.json, optional */ ]
+    }
+  ]
+}
+```
+
+Use a top-level `"sections"` array (not `"chapters"`). Math: `$x^2$` / `$$...$$`; code blocks, tables and checklists work; raw HTML is not rendered.
+Question progress for Practice, DPP and PYQ is tracked on the dashboard; questions inside concepts.json are for in-page revision only.
 
 ## Importing your content
 
-1. **Concepts / Short notes / Mistakes log**: open the file in `content/<subject>/`, paste or write Markdown, save.
-   - Math: `$x^2$` inline, `$$ ... $$` block. Tables, checklists, code blocks all work.
-   - Have notes in another app? Export or copy as Markdown and paste over the file.
-2. **Practice questions**: edit `practice-questions.json` (format below). Large question banks: ask an AI to convert them (prompt below).
-3. **Syllabus / topics**: edit `content/syllabus.json`. Keep a topic title unchanged to keep its ticked state.
-4. **New subject**: add it to `syllabus.json` and create `content/<slug>/` with any of the files.
-5. Commit and push to GitHub; Vercel redeploys automatically.
-
-Run `npm run validate` after editing JSON. It reports the exact file and question that is wrong.
-
-## Replacing a notes file with your real one
-
-Just overwrite the file, keeping the **exact name**, e.g. `content/c-programming/concepts.md`. The sidebar link "Concepts" opens it automatically; no code change is needed.
-
-- `npm run dev`: save the file and refresh the page (restart `npm run dev` if the old text still shows).
-- Vercel: commit and push; the site rebuilds by itself.
-- Math: `$...$` and `$$...$$`. A literal dollar sign must be written `\$`.
-- Images: put them in `public/images/` and write `![](/images/pic.png)`.
-- Raw HTML tags are not rendered; use Markdown.
-- The same applies to `short-notes.md`, `mistakes.md` and `practice-questions.json`.
+1. Overwrite the JSON file in `content/<subject>/` (keep the exact file name), then run `npm run validate`.
+2. **Syllabus / topics**: edit `content/syllabus.json`. Keep a topic title unchanged to keep its ticked state.
+3. **New subject**: add it to `syllabus.json`, create `content/<slug>/` with the 4 files.
+4. Commit and push to GitHub; Vercel redeploys automatically.
+5. JSON: every LaTeX backslash must be doubled (`"\\frac{1}{2}"`), newline is `\n`. Images: put in `public/images/` and use `![](/images/pic.png)`.
 
 ## Practice question format
 
@@ -70,7 +74,7 @@ Just overwrite the file, keeping the **exact name**, e.g. `content/c-programming
 
 - `answer` for MCQ is the **0-based** option index (A = 0, B = 1 ...). For MSQ it is a list of indexes.
 - In JSON, every LaTeX backslash must be doubled: `"\\frac{1}{2}"`. Newline inside a string is `\n`. Code blocks go inside the string with triple backticks.
-- Marks and source are optional and show as small tags.
+- Marks and source are optional and show as small tags. Use `"type"` (not `"kind"`); a question without options and not `nat` is a self-check question.
 
 ### Prompt to convert questions with an AI
 
@@ -82,7 +86,7 @@ Paste the example from above plus your questions, copy the result into `practice
 
 Every subject that has `practice-questions.json` shows a **Practice questions** block on the dashboard: solved / correct / wrong counts, a chapter list, and one row per question with ✓ (correct) and ✗ (wrong) buttons. Tap a question title to open it directly in the Practice page. Inside the Practice page a question is marked automatically when you answer it (MCQ, MSQ, NAT), or you can use **My result** for self-check questions. Give each question a unique `"id"` (e.g. `"cf-05"`) so saved results survive re-ordering. `"title"` is optional and is shown in the dashboard list.
 
-C Programming already contains 130 questions in 7 chapters (from your PDF and DOCX). A few questions carry a **Note** in their solution where the source had a problem (missing `;`, options that do not match the code, or an answer key that disagrees with the code). Please review those.
+C Programming already contains 130 practice questions in 7 chapters. A few questions carry a **Note** in their solution where the source had a problem (missing `;`, options that do not match the code, or an answer key that disagrees with the code). Please review those.
 
 ## Progress tracking
 

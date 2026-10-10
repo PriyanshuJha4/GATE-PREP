@@ -1,0 +1,47 @@
+{
+  "title": "Algorithms — Concepts",
+  "sections": [
+    {
+      "id": "analysis-of-algorithm",
+      "title": "Chapter 1 — Analysis of Algorithm",
+      "short": "Analysis of Algorithm",
+      "content": "## Analysis of Algorithm\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "design-strategies",
+      "title": "Chapter 2 — Design Strategies",
+      "short": "Design Strategies",
+      "content": "## Design Strategies\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "searching-sorting-hashing",
+      "title": "Chapter 3 — Searching, Sorting, Hashing",
+      "short": "Searching, Sorting, Hashing",
+      "content": "## Searching, Sorting, Hashing\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "graph-algorithms",
+      "title": "Chapter 4 — Graph Algorithms",
+      "short": "Graph Algorithms",
+      "content": "## Graph Algorithms\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "heap-algorithms",
+      "title": "Chapter 5 — Heap Algorithms",
+      "short": "Heap Algorithms",
+      "content": "## Heap Algorithms\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "backtracking-branch-bound",
+      "title": "Chapter 6 — Backtracking & Branch Bound",
+      "short": "Backtracking & Branch Bound",
+      "content": "## Backtracking & Branch Bound\n\n_Notes yet to be added._",
+      "questions": []
+    }
+  ]
+}

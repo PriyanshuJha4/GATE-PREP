@@ -1,0 +1,876 @@
+{
+  "sections": [
+    {
+      "id": "la-matrices",
+      "title": "Linear Algebra — Matrices",
+      "short": "LA: Matrices",
+      "summary": "Types of matrices, operations, transpose, inverse, rank, trace.",
+      "content": "## 1. Basics and special matrices\n\nAn $m\\times n$ matrix has $m$ rows and $n$ columns. $A+B$ needs equal order. $AB$ is defined only when (columns of $A$) = (rows of $B$): $A_{m\\times n}B_{n\\times p}=C_{m\\times p}$. In general $AB\\ne BA$.\n\n| Type | Condition |\n|---|---|\n| Symmetric | $A^T=A$ |\n| Skew-symmetric | $A^T=-A$ (diagonal is all 0) |\n| Orthogonal | $A^TA=AA^T=I$, so $A^{-1}=A^T$, $\\det A=\\pm1$ |\n| Idempotent | $A^2=A$ |\n| Involutory | $A^2=I$ |\n| Nilpotent | $A^k=0$ for some $k$ |\n| Diagonal / Triangular | non-diagonal / one side of the diagonal is 0 |\n| Hermitian / Unitary | $A^H=A$ / $A^HA=I$ (complex analogues) |\n\nEvery square matrix splits uniquely as $A=\\tfrac12(A+A^T)+\\tfrac12(A-A^T)$ = symmetric + skew-symmetric.\n\n## 2. Transpose, inverse and trace rules\n\n$$(AB)^T=B^TA^T,\\qquad (AB)^{-1}=B^{-1}A^{-1},\\qquad (A^T)^{-1}=(A^{-1})^T$$\n\n$$\\operatorname{tr}(A)=\\sum a_{ii},\\qquad \\operatorname{tr}(AB)=\\operatorname{tr}(BA),\\qquad \\operatorname{tr}(A)=\\sum\\lambda_i$$\n\nFor any real $A$: $A^TA$ and $AA^T$ are symmetric, and so is $A+A^T$; $A-A^T$ is skew-symmetric.\n\n## 3. Inverse\n\n$A^{-1}=\\dfrac{\\operatorname{adj}(A)}{\\det A}$ exists iff $\\det A\\neq0$ (non-singular). For $2\\times2$:\n\n$$\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}^{-1}=\\frac1{ad-bc}\\begin{bmatrix}d&-b\\\\-c&a\\end{bmatrix}$$\n\nGauss–Jordan method: row-reduce $[A\\,|\\,I]$ to $[I\\,|\\,A^{-1}]$.\n\n## 4. Rank\n\nRank = number of non-zero rows in row-echelon form = number of linearly independent rows = number of independent columns.\n\n- $\\operatorname{rank}(A)\\le\\min(m,n)$, $\\operatorname{rank}(A)=\\operatorname{rank}(A^T)$\n- $\\operatorname{rank}(AB)\\le\\min(\\operatorname{rank}A,\\operatorname{rank}B)$\n- Row operations do not change rank\n- Full rank square matrix $\\iff$ invertible $\\iff\\det\\ne0$\n- Rank–nullity: $\\operatorname{rank}(A)+\\operatorname{nullity}(A)=n$ (number of columns)\n- Idempotent matrix: $\\operatorname{rank}=\\operatorname{trace}$\n- A nilpotent $n\\times n$ matrix with $A^2=0$ has $\\operatorname{rank}\\le n/2$\n\n**Exam tip (Hinglish):** Rank nikalne ke liye hamesha row-echelon form banao. Order wale sawaal me pehle dekho ki product defined hai ya nahi.\n",
+      "keyPoints": [
+        "$(AB)^T=B^TA^T$ and $(AB)^{-1}=B^{-1}A^{-1}$ (order reverses)",
+        "$\\operatorname{tr}(AB)=\\operatorname{tr}(BA)$; trace = sum of eigenvalues",
+        "Orthogonal matrix: $A^{-1}=A^T$, $\\det=\\pm1$",
+        "Idempotent: rank = trace",
+        "Rank–nullity: rank + nullity = number of columns",
+        "$A^TA$ and $AA^T$ are always symmetric"
+      ],
+      "questions": [
+        {
+          "id": "la-m-c1",
+          "title": "Order of product",
+          "type": "mcq",
+          "question": "If $A$ is $3\\times4$ and $B$ is $4\\times2$, the order of $AB$ is",
+          "options": [
+            "$3\\times2$",
+            "$4\\times4$",
+            "$2\\times3$",
+            "$AB$ is not defined"
+          ],
+          "answer": 0,
+          "solution": "Inner orders match (4 and 4), result takes the outer orders: $3\\times2$.",
+          "marks": 1
+        },
+        {
+          "id": "la-m-c2",
+          "title": "Transpose of triple product",
+          "type": "mcq",
+          "question": "$(ABC)^T$ equals",
+          "options": [
+            "$A^TB^TC^T$",
+            "$C^TB^TA^T$",
+            "$B^TA^TC^T$",
+            "$ABC$"
+          ],
+          "answer": 1,
+          "solution": "Transpose reverses the order of the product.",
+          "marks": 1
+        },
+        {
+          "id": "la-m-c3",
+          "title": "Always symmetric",
+          "type": "msq",
+          "question": "Which of the following are symmetric for every real square matrix $A$?",
+          "options": [
+            "$A+A^T$",
+            "$A-A^T$",
+            "$AA^T$",
+            "$A^TA$"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "$(A+A^T)^T=A+A^T$, $(AA^T)^T=AA^T$, $(A^TA)^T=A^TA$. But $(A-A^T)^T=-(A-A^T)$, which is skew-symmetric.",
+          "marks": 2
+        }
+      ]
+    },
+    {
+      "id": "la-determinants",
+      "title": "Linear Algebra — Determinants",
+      "short": "LA: Determinants",
+      "summary": "Properties, cofactor expansion, adjoint, special determinants.",
+      "content": "## 1. Computing a determinant\n\n- $2\\times2$: $\\begin{vmatrix}a&b\\\\c&d\\end{vmatrix}=ad-bc$\n- $3\\times3$: expand along any row/column using cofactors $C_{ij}=(-1)^{i+j}M_{ij}$: $\\det A=\\sum_j a_{ij}C_{ij}$\n- Triangular (or diagonal) matrix: $\\det$ = product of diagonal entries\n- Gaussian elimination to triangular form: $O(n^3)$ (cofactor expansion is $O(n!)$)\n\n## 2. Properties (most tested)\n\n| Operation | Effect on $\\det$ |\n|---|---|\n| Swap two rows/columns | sign changes |\n| Multiply one row by $k$ | $\\det$ multiplied by $k$ |\n| Add multiple of one row to another | unchanged |\n| Two equal / proportional rows | $\\det=0$ |\n| Zero row or column | $\\det=0$ |\n\n$$\\det(AB)=\\det A\\det B,\\quad \\det A^T=\\det A,\\quad \\det(kA)=k^n\\det A,\\quad \\det(A^{-1})=\\frac1{\\det A}$$\n\n- Skew-symmetric matrix of **odd** order: $\\det=0$\n- Orthogonal: $\\det=\\pm1$; nilpotent: $\\det=0$; idempotent: $\\det\\in\\{0,1\\}$\n- $\\det A=\\prod\\lambda_i$ (product of eigenvalues)\n- Block triangular: $\\det\\begin{bmatrix}P&Q\\\\0&R\\end{bmatrix}=\\det P\\det R$\n\n## 3. Adjoint\n\n$$A\\,\\operatorname{adj}(A)=\\operatorname{adj}(A)\\,A=\\det(A)\\,I,\\qquad \\det(\\operatorname{adj}A)=(\\det A)^{n-1}$$\n\n$$\\operatorname{adj}(\\operatorname{adj}A)=(\\det A)^{n-2}A,\\qquad \\det(\\operatorname{adj}(\\operatorname{adj}A))=(\\det A)^{(n-1)^2}$$\n\n## 4. Special determinants\n\n- Vandermonde: $\\begin{vmatrix}1&x_1&x_1^2\\\\1&x_2&x_2^2\\\\1&x_3&x_3^2\\end{vmatrix}=(x_2-x_1)(x_3-x_1)(x_3-x_2)$\n- Circulant $\\begin{vmatrix}a&b&c\\\\b&c&a\\\\c&a&b\\end{vmatrix}=-(a^3+b^3+c^3-3abc)$, which is 0 when $a+b+c=0$\n- Cramer's rule: for $Ax=b$ with $\\det A\\ne0$, $x_i=\\det A_i/\\det A$ ($A_i$ = $A$ with column $i$ replaced by $b$)\n\n**Exam tip (Hinglish):** Scalar multiple me $k^n$ aata hai, sirf $k$ nahi. Adjoint wale sawaal me hamesha $n$ ki value dhyan se lo.\n",
+      "keyPoints": [
+        "$\\det(kA)=k^n\\det A$",
+        "$\\det(\\operatorname{adj}A)=(\\det A)^{n-1}$",
+        "Row swap flips the sign; row replacement keeps $\\det$ unchanged",
+        "Skew-symmetric of odd order has $\\det=0$",
+        "$\\det A=$ product of eigenvalues",
+        "Vandermonde: product of $(x_j-x_i)$ for $i<j$"
+      ],
+      "questions": [
+        {
+          "id": "la-d-c1",
+          "title": "Scalar multiple",
+          "type": "mcq",
+          "question": "$A$ is a $3\\times3$ matrix with $\\det A=4$. Then $\\det(2A)$ is",
+          "options": [
+            "8",
+            "16",
+            "32",
+            "64"
+          ],
+          "answer": 2,
+          "solution": "$\\det(2A)=2^3\\det A=8\\cdot4=32$.",
+          "marks": 1
+        },
+        {
+          "id": "la-d-c2",
+          "title": "Determinant of adjoint",
+          "type": "mcq",
+          "question": "$A$ is a $4\\times4$ matrix with $\\det A=5$. Then $\\det(\\operatorname{adj}A)$ is",
+          "options": [
+            "5",
+            "25",
+            "125",
+            "625"
+          ],
+          "answer": 2,
+          "solution": "$\\det(\\operatorname{adj}A)=(\\det A)^{n-1}=5^3=125$.",
+          "marks": 1
+        },
+        {
+          "id": "la-d-c3",
+          "title": "Skew-symmetric",
+          "type": "mcq",
+          "question": "The determinant of a real $3\\times3$ skew-symmetric matrix is",
+          "options": [
+            "always $0$",
+            "always $1$",
+            "always positive",
+            "can be any real number"
+          ],
+          "answer": 0,
+          "solution": "$\\det A=\\det A^T=\\det(-A)=(-1)^3\\det A=-\\det A\\Rightarrow\\det A=0$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "la-systems",
+      "title": "Linear Algebra — Systems of Linear Equations",
+      "short": "LA: Linear Systems",
+      "summary": "Consistency, rank test, homogeneous systems, null space, Gaussian elimination.",
+      "content": "## 1. Setup\n\n$Ax=b$ with $A$ of order $m\\times n$ (m equations, n unknowns). The augmented matrix is $[A\\,|\\,b]$.\n\n## 2. Rouché–Capelli (rank) test\n\nLet $r=\\operatorname{rank}(A)$ and $r'=\\operatorname{rank}[A\\,|\\,b]$.\n\n| Condition | Result |\n|---|---|\n| $r\\ne r'$ | inconsistent, **no solution** |\n| $r=r'=n$ | **unique** solution |\n| $r=r'<n$ | **infinitely many** solutions, with $n-r$ free variables |\n\nA linear system over $\\mathbb R$ never has exactly 2 (or any finite number $>1$) of solutions.\n\n## 3. Homogeneous system $Ax=0$\n\n- Always consistent (trivial solution $x=0$).\n- Non-trivial solution exists iff $\\operatorname{rank}(A)<n$. For square $A$: iff $\\det A=0$.\n- If $m<n$ (fewer equations than unknowns), a non-trivial solution always exists.\n- Solutions form a subspace (null space) of dimension $n-\\operatorname{rank}(A)$.\n- Solution of $Ax=b$ = particular solution + any vector of the null space.\n\n## 4. Vector space facts\n\n- Vectors $v_1,\\dots,v_k$ are independent iff the matrix with these as columns has rank $k$.\n- $Ax=b$ is solvable for **every** $b$ iff $\\operatorname{rank}(A)=m$ (full row rank).\n- For square $A$: unique solution for every $b$ iff $\\det A\\ne0$.\n- Dimension of column space = dimension of row space = rank.\n\n## 5. Methods\n\n- **Gaussian elimination**: reduce to row echelon form, back-substitute. Cost $\\approx n^3/3$ multiplications.\n- **Gauss–Jordan**: reduce to reduced row echelon form, about $n^3/2$ operations.\n- **Cramer's rule**: for square non-singular systems; practical only for small $n$.\n\n**Exam tip (Hinglish):** Parameter wale sawaal me augmented matrix ko echelon form me laao, phir last row se rank compare karo: $0=\\text{non-zero}$ aaye to inconsistent.\n",
+      "keyPoints": [
+        "Consistent iff $\\operatorname{rank}A=\\operatorname{rank}[A|b]$",
+        "Unique iff rank $=n$; infinite iff rank $<n$ (free variables $=n-r$)",
+        "Homogeneous system with $m<n$ always has a non-trivial solution",
+        "Nullity $=n-\\operatorname{rank}$",
+        "$Ax=b$ solvable for all $b$ iff rank $=m$",
+        "A linear system has 0, 1 or infinitely many solutions, never exactly 2"
+      ],
+      "questions": [
+        {
+          "id": "la-s-c1",
+          "title": "Homogeneous 3x4",
+          "type": "mcq",
+          "question": "A homogeneous system $Ax=0$ has $A$ of order $3\\times4$. Then the system",
+          "options": [
+            "has only the trivial solution",
+            "has at least one non-trivial solution",
+            "has no solution",
+            "has exactly one solution"
+          ],
+          "answer": 1,
+          "solution": "$\\operatorname{rank}A\\le3<4$, so nullity $\\ge1$. A non-trivial solution always exists.",
+          "marks": 1
+        },
+        {
+          "id": "la-s-c2",
+          "title": "Rank mismatch",
+          "type": "mcq",
+          "question": "For $Ax=b$, $\\operatorname{rank}(A)=2$ and $\\operatorname{rank}[A|b]=3$. The system has",
+          "options": [
+            "a unique solution",
+            "infinitely many solutions",
+            "no solution",
+            "exactly two solutions"
+          ],
+          "answer": 2,
+          "solution": "Ranks differ, so the system is inconsistent.",
+          "marks": 1
+        },
+        {
+          "id": "la-s-c3",
+          "title": "Square singular consistent",
+          "type": "mcq",
+          "question": "$A$ is $3\\times3$ with rank 2 and $Ax=b$ is consistent. The number of solutions is",
+          "options": [
+            "0",
+            "1",
+            "infinitely many",
+            "3"
+          ],
+          "answer": 2,
+          "solution": "$r=r'=2<3=n$, so there is $3-2=1$ free variable: infinitely many solutions.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "la-eigen",
+      "title": "Linear Algebra — Eigenvalues and Eigenvectors",
+      "short": "LA: Eigen",
+      "summary": "Characteristic polynomial, properties, Cayley–Hamilton, diagonalization.",
+      "content": "## 1. Definition\n\n$Av=\\lambda v$ with $v\\ne0$. Eigenvalues are roots of the characteristic equation $\\det(A-\\lambda I)=0$. For $2\\times2$: $\\lambda^2-\\operatorname{tr}(A)\\lambda+\\det(A)=0$.\n\nFor eigenvalue $\\lambda$, eigenvectors are the non-zero solutions of $(A-\\lambda I)v=0$.\n\n## 2. Key properties\n\n- $\\sum\\lambda_i=\\operatorname{tr}(A)$, $\\prod\\lambda_i=\\det(A)$\n- $A$ is singular iff 0 is an eigenvalue\n- Eigenvalues of: $A^k\\to\\lambda^k$, $A^{-1}\\to1/\\lambda$, $A+cI\\to\\lambda+c$, $cA\\to c\\lambda$, $p(A)\\to p(\\lambda)$, $A^T\\to$ same as $A$\n- Triangular / diagonal matrix: eigenvalues are the diagonal entries\n- $AB$ and $BA$ have the same non-zero eigenvalues\n- Eigenvectors for **distinct** eigenvalues are linearly independent\n\n| Matrix type | Eigenvalues |\n|---|---|\n| Real symmetric | all real |\n| Real skew-symmetric | purely imaginary or 0 |\n| Orthogonal / Unitary | $|\\lambda|=1$ |\n| Idempotent ($A^2=A$) | 0 or 1 |\n| Involutory ($A^2=I$) | $\\pm1$ |\n| Nilpotent | 0 |\n| Positive definite | all $>0$ |\n\n## 3. Cayley–Hamilton theorem\n\nEvery square matrix satisfies its own characteristic equation: if $p(\\lambda)=\\det(A-\\lambda I)$ then $p(A)=0$. It gives $A^{-1}$ and higher powers without computing them directly. Example: $A^2-5A+6I=0\\Rightarrow A^{-1}=\\frac{5I-A}{6}$.\n\n## 4. Diagonalization\n\n- Algebraic multiplicity (AM) = multiplicity of $\\lambda$ as a root. Geometric multiplicity (GM) = $\\dim\\ker(A-\\lambda I)$. Always $1\\le GM\\le AM$.\n- $A$ is diagonalizable iff $GM=AM$ for every eigenvalue (iff $n$ independent eigenvectors). Distinct eigenvalues guarantee this.\n- Then $A=PDP^{-1}$ and $A^k=PD^kP^{-1}$.\n- Real symmetric matrices are always **orthogonally** diagonalizable ($A=QDQ^T$).\n- Example of a non-diagonalizable matrix: $\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}$ (AM = 2, GM = 1).\n\n**Exam tip (Hinglish):** Sawaal me poori matrix nahi maangte to trace aur determinant se kaam chalao. $f(A)$ ke eigenvalues $f(\\lambda)$ hote hain.\n",
+      "keyPoints": [
+        "$\\sum\\lambda=\\operatorname{tr}A$ and $\\prod\\lambda=\\det A$",
+        "Eigenvalues of $p(A)$ are $p(\\lambda)$",
+        "Cayley–Hamilton: $p(A)=0$",
+        "Diagonalizable iff GM = AM for all eigenvalues",
+        "Real symmetric: real eigenvalues, orthogonal eigenvectors",
+        "Singular iff 0 is an eigenvalue"
+      ],
+      "questions": [
+        {
+          "id": "la-e-c1",
+          "title": "Eigenvalues of 2x2",
+          "type": "mcq",
+          "question": "The eigenvalues of $\\begin{bmatrix}4&1\\\\2&3\\end{bmatrix}$ are",
+          "options": [
+            "1 and 6",
+            "2 and 5",
+            "3 and 4",
+            "$-2$ and $-5$"
+          ],
+          "answer": 1,
+          "solution": "$\\lambda^2-7\\lambda+10=0\\Rightarrow\\lambda=2,5$.",
+          "marks": 1
+        },
+        {
+          "id": "la-e-c2",
+          "title": "Eigenvalues of polynomial",
+          "type": "mcq",
+          "question": "$A$ has eigenvalues $1,2,3$. The eigenvalues of $A^2-A$ are",
+          "options": [
+            "$0,2,6$",
+            "$1,4,9$",
+            "$0,1,2$",
+            "$2,4,6$"
+          ],
+          "answer": 0,
+          "solution": "$f(\\lambda)=\\lambda^2-\\lambda$ gives $0,\\ 2,\\ 6$.",
+          "marks": 1
+        },
+        {
+          "id": "la-e-c3",
+          "title": "Symmetric matrix",
+          "type": "mcq",
+          "question": "All eigenvalues of a real symmetric matrix are",
+          "options": [
+            "real",
+            "positive",
+            "integers",
+            "purely imaginary"
+          ],
+          "answer": 0,
+          "solution": "A real symmetric (Hermitian) matrix always has real eigenvalues. Positivity needs positive definiteness.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "la-lu",
+      "title": "Linear Algebra — LU Decomposition",
+      "short": "LA: LU",
+      "summary": "Doolittle/Crout, pivoting, solving systems, determinant from U, complexity.",
+      "content": "## 1. Idea\n\nFactor a square matrix as $A=LU$ where $L$ is lower triangular and $U$ is upper triangular. This is Gaussian elimination recorded as a matrix product.\n\n- **Doolittle**: $L$ has 1s on the diagonal.\n- **Crout**: $U$ has 1s on the diagonal.\n- **Cholesky**: $A=LL^T$ for symmetric positive definite $A$.\n- $A=LDU$ with unit-diagonal $L,U$ and diagonal $D$.\n\n## 2. Existence\n\n- $A=LU$ without row exchanges exists if all **leading principal minors** are non-zero (then it is unique for unit-diagonal $L$).\n- If a pivot becomes 0, row exchanges are needed: $PA=LU$ ($P$ = permutation matrix). This exists for every non-singular matrix.\n- Example needing pivoting: $\\begin{bmatrix}0&1\\\\1&2\\end{bmatrix}$ (first pivot is 0).\n\n## 3. Worked example\n\n$$A=\\begin{bmatrix}2&1&1\\\\4&3&3\\\\8&7&9\\end{bmatrix}=\\underbrace{\\begin{bmatrix}1&0&0\\\\2&1&0\\\\4&3&1\\end{bmatrix}}_{L}\\underbrace{\\begin{bmatrix}2&1&1\\\\0&1&1\\\\0&0&2\\end{bmatrix}}_{U}$$\n\nMultipliers: $l_{21}=4/2=2$, $l_{31}=8/2=4$; after step 1 the second column pivot is 1, so $l_{32}=3/1=3$.\n\n## 4. Using LU\n\n- Solve $Ax=b$: solve $Ly=b$ by **forward substitution**, then $Ux=y$ by **back substitution**; each is $O(n^2)$.\n- Factorization costs $\\approx\\tfrac13n^3$ multiplications ($\\tfrac23n^3$ flops), i.e. $O(n^3)$. Factor once, solve many right-hand sides cheaply.\n- $\\det A=\\prod u_{ii}$ (Doolittle, no pivoting). With pivoting multiply by $(-1)^{\\text{number of swaps}}$.\n- Inverse can be found by solving $n$ systems $Ax_i=e_i$.\n\n**Exam tip (Hinglish):** U ka diagonal product = determinant. L ke neeche ke entries wahi multipliers hain jo elimination me use hue.\n",
+      "keyPoints": [
+        "$A=LU$; Doolittle: $L$ has unit diagonal",
+        "Exists without pivoting if all leading principal minors $\\ne0$",
+        "$PA=LU$ exists for every non-singular $A$",
+        "$\\det A=\\prod u_{ii}$ (times $(-1)^{\\#swaps}$ with pivoting)",
+        "Factorization $O(n^3)$; each solve $O(n^2)$",
+        "Cholesky $A=LL^T$ needs symmetric positive definite"
+      ],
+      "questions": [
+        {
+          "id": "la-l-c1",
+          "title": "Needs pivoting",
+          "type": "mcq",
+          "question": "Which matrix needs a row exchange before an LU factorization can be computed?",
+          "options": [
+            "$\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}$",
+            "$\\begin{bmatrix}0&1\\\\1&2\\end{bmatrix}$",
+            "$\\begin{bmatrix}2&0\\\\0&3\\end{bmatrix}$",
+            "$\\begin{bmatrix}1&0\\\\2&1\\end{bmatrix}$"
+          ],
+          "answer": 1,
+          "solution": "The $(1,1)$ entry is 0 yet the matrix is invertible, so a row exchange is required.",
+          "marks": 1
+        },
+        {
+          "id": "la-l-c2",
+          "title": "Doolittle diagonal",
+          "type": "mcq",
+          "question": "In Doolittle's LU decomposition, the diagonal entries of $L$ are",
+          "options": [
+            "all 0",
+            "all 1",
+            "equal to those of $U$",
+            "arbitrary"
+          ],
+          "answer": 1,
+          "solution": "By definition $L$ is unit lower triangular in Doolittle's method.",
+          "marks": 1
+        },
+        {
+          "id": "la-l-c3",
+          "title": "Solving with LU",
+          "type": "mcq",
+          "question": "Once $A=LU$ is known, $Ax=b$ is solved by",
+          "options": [
+            "backward substitution, then forward substitution",
+            "forward substitution on $Ly=b$, then backward substitution on $Ux=y$",
+            "computing $A^{-1}$ explicitly",
+            "Cramer's rule"
+          ],
+          "answer": 1,
+          "solution": "$Ax=LUx=b$. Put $y=Ux$; solve $Ly=b$ (forward), then $Ux=y$ (backward).",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "cal-limits",
+      "title": "Calculus — Limits",
+      "short": "Calc: Limits",
+      "summary": "Standard limits, indeterminate forms, L'Hôpital, series expansions, growth rates.",
+      "content": "## 1. Basics\n\n$\\lim_{x\\to a}f(x)=L$ exists iff the left-hand limit and right-hand limit both exist and are equal. Limit laws: sum, product, quotient (denominator limit $\\ne0$), composition.\n\n**Squeeze theorem:** if $g(x)\\le f(x)\\le h(x)$ near $a$ and $g,h\\to L$, then $f\\to L$.\n\n## 2. Standard limits (memorize)\n\n| Limit | Value |\n|---|---|\n| $\\lim_{x\\to0}\\frac{\\sin x}{x}$, $\\frac{\\tan x}{x}$, $\\frac{\\sin^{-1}x}{x}$ | $1$ |\n| $\\lim_{x\\to0}\\frac{1-\\cos x}{x^2}$ | $\\tfrac12$ |\n| $\\lim_{x\\to0}\\frac{e^x-1}{x}$, $\\ \\frac{\\ln(1+x)}{x}$ | $1$ |\n| $\\lim_{x\\to0}\\frac{a^x-1}{x}$ | $\\ln a$ |\n| $\\lim_{x\\to a}\\frac{x^n-a^n}{x-a}$ | $n\\,a^{n-1}$ |\n| $\\lim_{x\\to\\infty}\\left(1+\\frac1x\\right)^x$, $\\ \\lim_{x\\to0}(1+x)^{1/x}$ | $e$ |\n| $\\lim_{x\\to\\infty}\\left(1+\\frac ax\\right)^x$ | $e^a$ |\n| $\\lim_{x\\to0^+}x\\ln x$ | $0$ |\n\n## 3. Indeterminate forms and L'Hôpital's rule\n\nIndeterminate: $\\frac00,\\ \\frac\\infty\\infty,\\ 0\\cdot\\infty,\\ \\infty-\\infty,\\ 1^\\infty,\\ 0^0,\\ \\infty^0$.\n\n**L'Hôpital:** if $\\frac{f}{g}$ is $\\frac00$ or $\\frac\\infty\\infty$ at $a$ and $\\lim\\frac{f'}{g'}$ exists, then $\\lim\\frac fg=\\lim\\frac{f'}{g'}$ (repeat if needed). For $1^\\infty$, $0^0$, $\\infty^0$ take $\\ln$ first: $\\lim f^g=e^{\\lim g\\ln f}$.\n\n## 4. Series (fastest way for $0/0$ limits)\n\n$$\\sin x=x-\\tfrac{x^3}{6}+\\dots,\\quad \\cos x=1-\\tfrac{x^2}{2}+\\tfrac{x^4}{24}-\\dots,\\quad e^x=1+x+\\tfrac{x^2}{2}+\\dots,\\quad \\ln(1+x)=x-\\tfrac{x^2}{2}+\\dots$$\n\n## 5. Limits at infinity and growth order\n\n- Rational function $\\frac{P(x)}{Q(x)}$ as $x\\to\\infty$: compare degrees. Equal degrees → ratio of leading coefficients; deg P < deg Q → 0; deg P > deg Q → $\\pm\\infty$.\n- Growth: $\\ln x\\ll x^a\\ll e^x\\ll x!\\ll x^x$ as $x\\to\\infty$ (this order is also used in algorithm analysis).\n- $\\lim_{x\\to0}\\frac{|x|}{x}$ does **not** exist (left $=-1$, right $=+1$).\n\n**Exam tip (Hinglish):** $0/0$ me L'Hôpital ya Taylor series use karo; $1^\\infty$ me $e^{\\lim g(f-1)}$ shortcut lagao.\n",
+      "keyPoints": [
+        "$\\sin x/x\\to1$, $(1-\\cos x)/x^2\\to\\frac12$, $(e^x-1)/x\\to1$",
+        "$(1+a/x)^x\\to e^a$; $1^\\infty$ form: $\\lim f^g=e^{\\lim g(f-1)}$",
+        "L'Hôpital only for $0/0$ or $\\infty/\\infty$",
+        "Use Taylor series for $0/0$ limits",
+        "Growth: $\\ln x\\ll x^a\\ll e^x\\ll x!\\ll x^x$",
+        "Limit exists iff left limit = right limit"
+      ],
+      "questions": [
+        {
+          "id": "cal-l-c1",
+          "title": "sin(3x)/x",
+          "type": "mcq",
+          "question": "$\\displaystyle\\lim_{x\\to0}\\frac{\\sin3x}{x}$ equals",
+          "options": [
+            "0",
+            "1",
+            "3",
+            "$\\infty$"
+          ],
+          "answer": 2,
+          "solution": "$\\frac{\\sin3x}{x}=3\\cdot\\frac{\\sin3x}{3x}\\to3\\cdot1=3$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-l-c2",
+          "title": "(1+2/x)^x",
+          "type": "mcq",
+          "question": "$\\displaystyle\\lim_{x\\to\\infty}\\left(1+\\frac2x\\right)^x$ equals",
+          "options": [
+            "$e$",
+            "$e^2$",
+            "2",
+            "1"
+          ],
+          "answer": 1,
+          "solution": "Using $(1+a/x)^x\\to e^a$ with $a=2$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-l-c3",
+          "title": "(1-cos x)/x^2",
+          "type": "mcq",
+          "question": "$\\displaystyle\\lim_{x\\to0}\\frac{1-\\cos x}{x^2}$ equals",
+          "options": [
+            "0",
+            "$\\tfrac12$",
+            "1",
+            "2"
+          ],
+          "answer": 1,
+          "solution": "$1-\\cos x\\approx x^2/2$, so the limit is $\\frac12$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "cal-cont-diff",
+      "title": "Calculus — Continuity and Differentiability",
+      "short": "Calc: Continuity",
+      "summary": "Continuity, types of discontinuity, differentiability, differentiation rules.",
+      "content": "## 1. Continuity\n\n$f$ is continuous at $a$ iff $\\lim_{x\\to a^-}f(x)=\\lim_{x\\to a^+}f(x)=f(a)$.\n\nTypes of discontinuity:\n- **Removable**: limit exists but $\\ne f(a)$ or $f(a)$ undefined (e.g. $\\frac{x^2-1}{x-1}$ at 1)\n- **Jump**: left and right limits exist but differ (e.g. $\\lfloor x\\rfloor$)\n- **Infinite**: limit is $\\pm\\infty$ (e.g. $1/x$ at 0)\n- **Oscillatory**: no limit (e.g. $\\sin(1/x)$ at 0)\n\nSums, products, compositions of continuous functions are continuous; polynomials, $e^x$, $\\sin x$, $\\cos x$ are continuous everywhere.\n\n**On a closed interval $[a,b]$**, a continuous $f$ is bounded, attains its maximum and minimum (Extreme Value Theorem) and takes every value between $f(a)$ and $f(b)$ (Intermediate Value Theorem).\n\n## 2. Differentiability\n\n$f'(a)=\\lim_{h\\to0}\\frac{f(a+h)-f(a)}{h}$ exists iff left derivative = right derivative.\n\n- Differentiable $\\Rightarrow$ continuous. **Converse is false**: $|x|$ is continuous at 0 but not differentiable.\n- Non-differentiable points: corners ($|x|$), cusps ($x^{2/3}$), vertical tangents ($x^{1/3}$), discontinuities.\n- $f(x)=x\\sin\\frac1x$ ($f(0)=0$): continuous at 0, not differentiable. $f(x)=x^2\\sin\\frac1x$: differentiable at 0 with $f'(0)=0$ but $f'$ is not continuous at 0.\n- $f(x)=x|x|$ is differentiable at 0 ($f'(0)=0$) but not twice differentiable.\n- $f(x)=|x-1|+|x-2|$ is not differentiable at exactly $x=1$ and $x=2$.\n\n## 3. Piecewise functions\n\nFor $f=g(x)$ on $x\\le a$ and $h(x)$ on $x>a$: continuity needs $g(a)=h(a)$; differentiability additionally needs $g'(a)=h'(a)$.\n\n## 4. Differentiation rules\n\n$(uv)'=u'v+uv'$, $\\left(\\frac uv\\right)'=\\frac{u'v-uv'}{v^2}$, chain rule $(f\\circ g)'=f'(g)g'$.\n\n| $f$ | $f'$ |\n|---|---|\n| $x^n$ | $nx^{n-1}$ |\n| $e^x$, $a^x$ | $e^x$, $a^x\\ln a$ |\n| $\\ln x$ | $1/x$ |\n| $\\sin x$, $\\cos x$, $\\tan x$ | $\\cos x$, $-\\sin x$, $\\sec^2x$ |\n| $\\sin^{-1}x$, $\\tan^{-1}x$ | $\\frac1{\\sqrt{1-x^2}}$, $\\frac1{1+x^2}$ |\n| $x^x$ | $x^x(1+\\ln x)$ (logarithmic differentiation) |\n\nImplicit differentiation: differentiate both sides w.r.t. $x$. For $x^2+y^2=r^2$: $\\frac{dy}{dx}=-\\frac xy$.\n\n**Exam tip (Hinglish):** Piecewise function me pehle continuity ka equation likho, phir derivative barabar karo. Do unknown = do equations.\n",
+      "keyPoints": [
+        "Differentiable $\\Rightarrow$ continuous, not conversely",
+        "Piecewise: continuity $g(a)=h(a)$, differentiability $g'(a)=h'(a)$",
+        "Continuous on $[a,b]$ $\\Rightarrow$ bounded, attains max/min, IVT holds",
+        "$\\frac{d}{dx}x^x=x^x(1+\\ln x)$",
+        "$|x|$: continuous but not differentiable at 0",
+        "Four discontinuity types: removable, jump, infinite, oscillatory"
+      ],
+      "questions": [
+        {
+          "id": "cal-c-c1",
+          "title": "|x| at 0",
+          "type": "mcq",
+          "question": "The function $f(x)=|x|$ at $x=0$ is",
+          "options": [
+            "discontinuous",
+            "continuous but not differentiable",
+            "differentiable but not continuous",
+            "both continuous and differentiable"
+          ],
+          "answer": 1,
+          "solution": "Left derivative $-1$, right derivative $+1$ (corner), yet $\\lim_{x\\to0}|x|=0=f(0)$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-c-c2",
+          "title": "Implication",
+          "type": "mcq",
+          "question": "Which statement is always true?",
+          "options": [
+            "Continuous $\\Rightarrow$ differentiable",
+            "Differentiable $\\Rightarrow$ continuous",
+            "Continuous $\\Leftrightarrow$ differentiable",
+            "Differentiable $\\Rightarrow$ derivative is continuous"
+          ],
+          "answer": 1,
+          "solution": "Differentiability at a point implies continuity there. The rest are false (e.g. $|x|$, and $x^2\\sin(1/x)$).",
+          "marks": 1
+        },
+        {
+          "id": "cal-c-c3",
+          "title": "Removable discontinuity",
+          "type": "mcq",
+          "question": "$f(x)=\\frac{x^2-1}{x-1}$ for $x\\neq1$ and $f(1)=k$. $f$ is continuous at $x=1$ iff $k=$",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "undefined"
+          ],
+          "answer": 2,
+          "solution": "$\\lim_{x\\to1}(x+1)=2$, so $k=2$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "cal-extrema",
+      "title": "Calculus — Maxima and Minima",
+      "short": "Calc: Max/Min",
+      "summary": "Critical points, first and second derivative tests, global extrema, two-variable case.",
+      "content": "## 1. Single variable\n\n**Critical points:** $f'(c)=0$ or $f'(c)$ does not exist.\n\n**First derivative test:** $f'$ changes $+\\to-$ at $c$: local max; $-\\to+$: local min; no sign change: neither.\n\n**Second derivative test** (when $f'(c)=0$): $f''(c)>0$ local min; $f''(c)<0$ local max; $f''(c)=0$ inconclusive (use the first derivative test or higher derivatives).\n\n**Point of inflection:** concavity changes, $f''(c)=0$ (e.g. $x^3$ at 0).\n\n**Global extrema on $[a,b]$:** evaluate $f$ at all critical points inside $(a,b)$ and at the endpoints; compare. (Guaranteed to exist for continuous $f$.)\n\n## 2. Useful quick results\n\n- $ax^2+bx+c$ ($a>0$): minimum $c-\\frac{b^2}{4a}$ at $x=-\\frac b{2a}$\n- $a\\sin x+b\\cos x$ has range $[-\\sqrt{a^2+b^2},\\sqrt{a^2+b^2}]$\n- AM–GM: $x+\\frac kx\\ge2\\sqrt k$ for $x>0$, equality at $x=\\sqrt k$\n- Rectangle with fixed perimeter: max area is a square\n- $f(x)=xe^{-x}$: maximum at $x=1$\n- $f(x)=x^4-4x^3$: $f'=4x^2(x-3)$, so $x=3$ is a minimum but $x=0$ is **not** an extremum (no sign change)\n\n## 3. Two variables $f(x,y)$\n\nStationary point: $f_x=f_y=0$. Let $D=f_{xx}f_{yy}-f_{xy}^2$.\n\n| Condition | Nature |\n|---|---|\n| $D>0,\\ f_{xx}>0$ | local minimum |\n| $D>0,\\ f_{xx}<0$ | local maximum |\n| $D<0$ | saddle point |\n| $D=0$ | inconclusive |\n\nExample: $f=x^2-y^2$ has a saddle at the origin; $f=x^2+y^2-2x-4y+7=(x-1)^2+(y-2)^2+2$ has minimum value 2 at $(1,2)$.\n\n**Exam tip (Hinglish):** Closed interval me hamesha endpoints bhi check karo. $f''=0$ aaye to second derivative test fail ho jata hai.\n",
+      "keyPoints": [
+        "Critical points: $f'=0$ or undefined",
+        "$f''>0$ min, $f''<0$ max, $f''=0$ inconclusive",
+        "Closed interval: compare critical points and endpoints",
+        "$a\\sin x+b\\cos x$ has max $\\sqrt{a^2+b^2}$",
+        "$x+k/x\\ge2\\sqrt k$ for $x>0$",
+        "Two variables: $D=f_{xx}f_{yy}-f_{xy}^2$; $D<0$ saddle"
+      ],
+      "questions": [
+        {
+          "id": "cal-m-c1",
+          "title": "Quadratic minimum",
+          "type": "mcq",
+          "question": "The minimum value of $f(x)=x^2-4x+7$ is",
+          "options": [
+            "7",
+            "3",
+            "$-3$",
+            "0"
+          ],
+          "answer": 1,
+          "solution": "$f'(x)=2x-4=0\\Rightarrow x=2$, $f(2)=4-8+7=3$ (and $f''=2>0$).",
+          "marks": 1
+        },
+        {
+          "id": "cal-m-c2",
+          "title": "x cubed at 0",
+          "type": "mcq",
+          "question": "For $f(x)=x^3$, the point $x=0$ is",
+          "options": [
+            "a local minimum",
+            "a local maximum",
+            "neither a max nor min (inflection)",
+            "a global minimum"
+          ],
+          "answer": 2,
+          "solution": "$f'(0)=0$ but $f'=3x^2\\ge0$ never changes sign. It is an inflection point.",
+          "marks": 1
+        },
+        {
+          "id": "cal-m-c3",
+          "title": "Inconclusive test",
+          "type": "mcq",
+          "question": "If $f'(c)=0$ and $f''(c)=0$, the second derivative test",
+          "options": [
+            "shows a local maximum",
+            "shows a local minimum",
+            "is inconclusive",
+            "shows an inflection point"
+          ],
+          "answer": 2,
+          "solution": "No conclusion can be drawn; use the first derivative test or higher-order derivatives.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "cal-mvt",
+      "title": "Calculus — Mean Value Theorem",
+      "short": "Calc: MVT",
+      "summary": "Rolle, Lagrange, Cauchy, IVT, applications and Taylor's theorem.",
+      "content": "## 1. Rolle's theorem\n\nIf $f$ is (i) continuous on $[a,b]$, (ii) differentiable on $(a,b)$, (iii) $f(a)=f(b)$, then there is $c\\in(a,b)$ with $f'(c)=0$.\n\n*Consequence:* between two real roots of $f$ there is a root of $f'$. A polynomial of degree $n$ with $n$ distinct real roots has $n-1$ real roots of $f'$.\n\n## 2. Lagrange's Mean Value Theorem (LMVT)\n\nIf $f$ is continuous on $[a,b]$ and differentiable on $(a,b)$, there exists $c\\in(a,b)$ with\n\n$$f'(c)=\\frac{f(b)-f(a)}{b-a}$$\n\n(Geometrically: some tangent is parallel to the chord.) Rolle is the special case $f(a)=f(b)$.\n\nExamples: $f=x^2$ on $[1,3]$ gives $c=2$. $f=x^3$ on $[0,2]$: $3c^2=4\\Rightarrow c=\\frac2{\\sqrt3}\\approx1.1547$.\n\n## 3. Cauchy's MVT\n\nIf $f,g$ are continuous on $[a,b]$, differentiable on $(a,b)$ and $g'\\ne0$: $\\ \\dfrac{f'(c)}{g'(c)}=\\dfrac{f(b)-f(a)}{g(b)-g(a)}$.\n\n## 4. Applications\n\n- $f'(x)=0$ on an interval $\\Rightarrow f$ is constant; $f'>0\\Rightarrow$ strictly increasing.\n- Bounds: if $|f'(x)|\\le M$ then $|f(b)-f(a)|\\le M|b-a|$ (e.g. $|\\sin a-\\sin b|\\le|a-b|$).\n- Inequalities: $\\ln(1+x)<x$ and $e^x>1+x$ for $x>0$.\n- **Intermediate Value Theorem:** continuous $f$ on $[a,b]$ takes every value between $f(a)$ and $f(b)$. If $f(a)f(b)<0$ there is a root in $(a,b)$.\n\n## 5. Taylor / Maclaurin (generalised MVT)\n\n$$f(x)=f(a)+f'(a)(x-a)+\\frac{f''(a)}{2!}(x-a)^2+\\dots+\\frac{f^{(n)}(a)}{n!}(x-a)^n+R_n$$\n\n**Conditions matter:** $f(x)=|x|$ on $[-1,1]$ has $f(-1)=f(1)$ but no point with $f'(c)=0$, because $f$ is not differentiable at 0.\n\n**Exam tip (Hinglish):** Rolle ke liye teeno conditions chahiye. Derivative ka bound dekh kar function ki value ka upper bound nikalna MVT ka favourite sawaal hai.\n",
+      "keyPoints": [
+        "Rolle: continuous, differentiable, $f(a)=f(b)\\Rightarrow f'(c)=0$",
+        "LMVT: $f'(c)=\\frac{f(b)-f(a)}{b-a}$",
+        "$|f'|\\le M\\Rightarrow|f(b)-f(a)|\\le M|b-a|$",
+        "IVT: sign change $\\Rightarrow$ root exists",
+        "Rolle implies $n$ distinct roots of $p$ give $n-1$ roots of $p'$",
+        "All hypotheses (continuity and differentiability) are necessary"
+      ],
+      "questions": [
+        {
+          "id": "cal-t-c1",
+          "title": "LMVT value of c",
+          "type": "mcq",
+          "question": "For $f(x)=x^2$ on $[1,3]$, the value of $c$ guaranteed by LMVT is",
+          "options": [
+            "1.5",
+            "2",
+            "2.5",
+            "$\\sqrt3$"
+          ],
+          "answer": 1,
+          "solution": "$f'(c)=2c=\\frac{9-1}{2}=4\\Rightarrow c=2$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-t-c2",
+          "title": "Not needed for Rolle",
+          "type": "mcq",
+          "question": "Which condition is NOT required by Rolle's theorem?",
+          "options": [
+            "$f$ continuous on $[a,b]$",
+            "$f$ differentiable on $(a,b)$",
+            "$f(a)=f(b)$",
+            "$f'(x)\\ne0$ on $(a,b)$"
+          ],
+          "answer": 3,
+          "solution": "Rolle's theorem concludes $f'(c)=0$; requiring $f'\\ne0$ would contradict it.",
+          "marks": 1
+        },
+        {
+          "id": "cal-t-c3",
+          "title": "Failure of Rolle",
+          "type": "mcq",
+          "question": "$f(x)=|x|$ on $[-1,1]$ has $f(-1)=f(1)$, but no $c$ with $f'(c)=0$. This is because",
+          "options": [
+            "$f$ is not continuous",
+            "$f$ is not differentiable at 0",
+            "$f(a)\\ne f(b)$",
+            "the interval is not closed"
+          ],
+          "answer": 1,
+          "solution": "$f$ is continuous but has a corner at $x=0$, so the differentiability hypothesis fails.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "cal-integration",
+      "title": "Calculus — Integration",
+      "short": "Calc: Integration",
+      "summary": "Techniques, definite integral properties, improper integrals, Leibniz rule, Riemann sums.",
+      "content": "## 1. Standard integrals\n\n$\\int x^ndx=\\frac{x^{n+1}}{n+1}$ ($n\\ne-1$), $\\int\\frac{dx}x=\\ln|x|$, $\\int e^xdx=e^x$, $\\int a^xdx=\\frac{a^x}{\\ln a}$, $\\int\\sin x=-\\cos x$, $\\int\\cos x=\\sin x$, $\\int\\sec^2x=\\tan x$, $\\int\\frac{dx}{1+x^2}=\\tan^{-1}x$, $\\int\\frac{dx}{\\sqrt{1-x^2}}=\\sin^{-1}x$.\n\n## 2. Techniques\n\n- **Substitution:** $\\int f(g(x))g'(x)dx=\\int f(u)du$\n- **By parts:** $\\int u\\,dv=uv-\\int v\\,du$ (choose $u$ by ILATE: Inverse trig, Log, Algebraic, Trig, Exponential). Example: $\\int xe^xdx=(x-1)e^x$\n- **Partial fractions** for rational functions\n- $\\int e^x(f(x)+f'(x))dx=e^xf(x)$\n\n## 3. Definite integral properties\n\n$$\\int_a^bf=-\\int_b^af,\\qquad \\int_a^bf(x)dx=\\int_a^bf(a+b-x)dx$$\n\n- Even $f$: $\\int_{-a}^af=2\\int_0^af$. Odd $f$: $\\int_{-a}^af=0$.\n- Periodic with period $T$: $\\int_0^{nT}f=n\\int_0^Tf$.\n- $\\int_0^{\\pi/2}\\frac{\\sin x}{\\sin x+\\cos x}dx=\\frac\\pi4$ (by the $a+b-x$ trick).\n- $\\int_a^b|f|$: split at the points where $f$ changes sign.\n\n## 4. Wallis / Gamma results\n\n$\\int_0^{\\pi/2}\\sin^nx\\,dx$: $n=1:1,\\ n=2:\\frac\\pi4,\\ n=3:\\frac23,\\ n=4:\\frac{3\\pi}{16},\\ n=5:\\frac8{15}$.\n\n$\\int_0^\\infty x^ne^{-x}dx=n!$ and $\\int_0^\\infty e^{-x^2}dx=\\frac{\\sqrt\\pi}2$.\n\n## 5. Improper integrals\n\n- $\\int_1^\\infty\\frac{dx}{x^p}$ converges iff $p>1$ (value $\\frac1{p-1}$).\n- $\\int_0^1\\frac{dx}{x^p}$ converges iff $p<1$ (value $\\frac1{1-p}$). So $\\int_0^1\\frac{dx}{\\sqrt x}=2$ but $\\int_0^1\\frac{dx}x$ diverges.\n\n## 6. Other results\n\n- **Fundamental theorem:** $\\frac{d}{dx}\\int_a^xf(t)dt=f(x)$.\n- **Leibniz rule:** $\\frac{d}{dx}\\int_{a(x)}^{b(x)}f(t)dt=f(b(x))b'(x)-f(a(x))a'(x)$.\n- **Average value** of $f$ on $[a,b]$: $\\frac1{b-a}\\int_a^bf$.\n- **Riemann sum:** $\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^nf\\!\\left(\\frac kn\\right)=\\int_0^1f(x)dx$.\n- Numerical: trapezoidal rule is exact for degree $\\le1$; Simpson's $\\tfrac13$ rule is exact for degree $\\le3$.\n\n**Exam tip (Hinglish):** Symmetric limits dikhein to pehle even/odd check karo. $|f|$ ke integral me sign change wale point par todo.\n",
+      "keyPoints": [
+        "Even: $2\\int_0^a$; odd: $0$ on $[-a,a]$",
+        "$\\int_0^a f(x)dx=\\int_0^af(a-x)dx$",
+        "$\\int_1^\\infty x^{-p}$ converges iff $p>1$; $\\int_0^1x^{-p}$ iff $p<1$",
+        "$\\int_0^\\infty x^ne^{-x}dx=n!$",
+        "Leibniz: $f(b)b'-f(a)a'$",
+        "$\\lim\\frac1n\\sum f(k/n)=\\int_0^1f$"
+      ],
+      "questions": [
+        {
+          "id": "cal-i-c1",
+          "title": "By parts",
+          "type": "mcq",
+          "question": "$\\displaystyle\\int_0^1xe^x\\,dx$ equals",
+          "options": [
+            "$0$",
+            "$1$",
+            "$e$",
+            "$e-1$"
+          ],
+          "answer": 1,
+          "solution": "$\\int xe^xdx=(x-1)e^x$. So $[(x-1)e^x]_0^1=0-(-1)=1$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-i-c2",
+          "title": "Odd function",
+          "type": "mcq",
+          "question": "$\\displaystyle\\int_{-\\pi}^{\\pi}x^3\\cos x\\,dx$ equals",
+          "options": [
+            "$0$",
+            "$\\pi$",
+            "$2\\pi$",
+            "$\\pi^4$"
+          ],
+          "answer": 0,
+          "solution": "$x^3\\cos x$ is odd, so the integral over a symmetric interval is 0.",
+          "marks": 1
+        },
+        {
+          "id": "cal-i-c3",
+          "title": "Improper integral",
+          "type": "mcq",
+          "question": "$\\displaystyle\\int_1^\\infty\\frac{dx}{x^2}$ equals",
+          "options": [
+            "$\\frac12$",
+            "$1$",
+            "$2$",
+            "diverges"
+          ],
+          "answer": 1,
+          "solution": "$\\left[-\\frac1x\\right]_1^\\infty=0+1=1$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "ps-probability",
+      "title": "Probability and Statistics — Probability, Conditional Probability and Bayes",
+      "short": "PS: Probability & Bayes",
+      "summary": "Axioms, independence, conditional probability, total probability, Bayes' theorem.",
+      "content": "## 1. Axioms and basic rules\n\n$0\\le P(A)\\le1$, $P(S)=1$, additivity for mutually exclusive events.\n\n$$P(A\\cup B)=P(A)+P(B)-P(A\\cap B),\\qquad P(A')=1-P(A)$$\n\n$$P(A\\cup B\\cup C)=\\sum P(A)-\\sum P(A\\cap B)+P(A\\cap B\\cap C)$$\n\nClassical probability: $\\dfrac{\\text{favourable outcomes}}{\\text{total equally likely outcomes}}$ (use $\\binom nr$ for selections). \"At least one\" $=1-P(\\text{none})$.\n\n## 2. Conditional probability and independence\n\n$$P(A|B)=\\frac{P(A\\cap B)}{P(B)},\\qquad P(A\\cap B)=P(A)P(B|A)$$\n\n- $A,B$ independent iff $P(A\\cap B)=P(A)P(B)$ iff $P(A|B)=P(A)$. Then $A$ and $B'$ (and $A'$ and $B'$) are also independent.\n- **Mutually exclusive** events with positive probability are **dependent** ($P(A\\cap B)=0\\ne P(A)P(B)$). Mutually exclusive and independent are different ideas.\n- $P(A|B)\\ne P(B|A)$ in general.\n\n## 3. Total probability and Bayes' theorem\n\nIf $B_1,\\dots,B_n$ partition the sample space:\n\n$$P(A)=\\sum_iP(A|B_i)P(B_i),\\qquad P(B_i|A)=\\frac{P(A|B_i)P(B_i)}{\\sum_jP(A|B_j)P(B_j)}$$\n\n**Medical test example:** prevalence 1%, sensitivity 99%, false-positive rate 5%:\n\n$$P(D|+)=\\frac{0.99\\times0.01}{0.99\\times0.01+0.05\\times0.99}=\\frac{0.0099}{0.0594}=\\frac16\\approx0.167$$\n\n(Even a good test gives a modest posterior when the disease is rare: the base rate matters.)\n\n## 4. Classic results\n\n- Two dice: $P(\\text{sum}=7)=\\frac16$.\n- Two children, at least one boy: $P(\\text{both boys})=\\frac13$.\n- Drawing without replacement: use $\\binom nr$ or multiply conditional probabilities.\n- Birthday paradox: probability of a repeated birthday exceeds $\\frac12$ for 23 people.\n\n**Exam tip (Hinglish):** Bayes me pehle tree banao: har branch ka probability likho, phir \"given\" wale event ko denominator me rakho.\n",
+      "keyPoints": [
+        "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$",
+        "Independent: $P(A\\cap B)=P(A)P(B)$",
+        "Mutually exclusive (non-zero prob.) $\\Rightarrow$ dependent",
+        "Total probability: $P(A)=\\sum P(A|B_i)P(B_i)$",
+        "Bayes: posterior $\\propto$ likelihood $\\times$ prior",
+        "At least one $=1-P(\\text{none})$"
+      ],
+      "questions": [
+        {
+          "id": "ps-p-c1",
+          "title": "Union of independent",
+          "type": "mcq",
+          "question": "$A,B$ are independent, $P(A)=0.4$, $P(B)=0.5$. Then $P(A\\cup B)=$",
+          "options": [
+            "0.9",
+            "0.7",
+            "0.2",
+            "0.45"
+          ],
+          "answer": 1,
+          "solution": "$P(A\\cap B)=0.2$; $P(A\\cup B)=0.4+0.5-0.2=0.7$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-p-c2",
+          "title": "Dice sum",
+          "type": "mcq",
+          "question": "Two fair dice are thrown. $P(\\text{sum}=7)=$",
+          "options": [
+            "$\\frac1{12}$",
+            "$\\frac16$",
+            "$\\frac19$",
+            "$\\frac7{36}$"
+          ],
+          "answer": 1,
+          "solution": "Favourable: $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$ = 6 out of 36, i.e. $\\frac16$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-p-c3",
+          "title": "Mutually exclusive",
+          "type": "mcq",
+          "question": "Two events with positive probability are mutually exclusive. They are",
+          "options": [
+            "independent",
+            "dependent",
+            "complementary",
+            "equal"
+          ],
+          "answer": 1,
+          "solution": "$P(A\\cap B)=0$ but $P(A)P(B)>0$, so they are dependent.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "ps-random-variables",
+      "title": "Probability and Statistics — Random Variables",
+      "short": "PS: Random Variables",
+      "summary": "PMF, PDF, CDF, expectation, variance, covariance, Markov and Chebyshev inequalities.",
+      "content": "## 1. PMF, PDF and CDF\n\n- **Discrete:** PMF $p(x)=P(X=x)$, $p\\ge0$, $\\sum p(x)=1$.\n- **Continuous:** PDF $f(x)\\ge0$, $\\int_{-\\infty}^\\infty f=1$, $P(a\\le X\\le b)=\\int_a^bf$. For any single value $P(X=a)=0$.\n- **CDF:** $F(x)=P(X\\le x)$. Non-decreasing, right continuous, $F(-\\infty)=0$, $F(\\infty)=1$. For continuous $X$: $f=F'$. $P(a<X\\le b)=F(b)-F(a)$.\n\n## 2. Expectation and variance\n\n$$E[X]=\\sum xp(x)\\ \\text{ or }\\ \\int xf(x)dx,\\qquad E[g(X)]=\\sum g(x)p(x)\\ \\text{ or }\\ \\int g(x)f(x)dx$$\n\n$$\\operatorname{Var}(X)=E[X^2]-(E[X])^2,\\qquad \\sigma=\\sqrt{\\operatorname{Var}}$$\n\n- $E[aX+b]=aE[X]+b$, $\\ \\operatorname{Var}(aX+b)=a^2\\operatorname{Var}(X)$\n- $E[X+Y]=E[X]+E[Y]$ **always** (even if dependent)\n- $\\operatorname{Var}(X+Y)=\\operatorname{Var}X+\\operatorname{Var}Y+2\\operatorname{Cov}(X,Y)$\n- $\\operatorname{Cov}(X,Y)=E[XY]-E[X]E[Y]$\n- Independent $\\Rightarrow$ $E[XY]=E[X]E[Y]$ and $\\operatorname{Cov}=0$ (uncorrelated). **Converse is false.**\n- Median $m$ of a continuous variable: $F(m)=\\frac12$.\n\n## 3. Linearity with indicator variables\n\nWrite a count as a sum of indicators and add expectations. Example: the expected number of fixed points of a random permutation of $n$ items is $n\\cdot\\frac1n=1$.\n\n## 4. Inequalities\n\n- **Markov** ($X\\ge0$, $a>0$): $P(X\\ge a)\\le\\dfrac{E[X]}{a}$\n- **Chebyshev:** $P(|X-\\mu|\\ge k\\sigma)\\le\\dfrac1{k^2}$, so $P(|X-\\mu|<k\\sigma)\\ge1-\\frac1{k^2}$\n\n## 5. Joint distributions\n\nMarginal: sum/integrate the joint over the other variable. Independent iff joint = product of marginals. Law of total expectation: $E[X]=E[E[X|Y]]$.\n\n**Exam tip (Hinglish):** Constant $c$ nikalne ke liye total probability = 1 lagao. Variance hamesha $E[X^2]-E[X]^2$ se nikalo.\n",
+      "keyPoints": [
+        "$\\operatorname{Var}X=E[X^2]-E[X]^2$",
+        "$\\operatorname{Var}(aX+b)=a^2\\operatorname{Var}X$",
+        "$E[X+Y]=E[X]+E[Y]$ always",
+        "Independent $\\Rightarrow$ uncorrelated, not conversely",
+        "Markov: $P(X\\ge a)\\le E[X]/a$; Chebyshev: $1/k^2$",
+        "Continuous: $P(X=a)=0$, $f=F'$"
+      ],
+      "questions": [
+        {
+          "id": "ps-r-c1",
+          "title": "Find the constant",
+          "type": "mcq",
+          "question": "$p(x)=cx$ for $x=1,2,3,4$ is a valid PMF. Then $c=$",
+          "options": [
+            "$\\frac1{4}$",
+            "$\\frac1{10}$",
+            "$\\frac1{6}$",
+            "$\\frac1{5}$"
+          ],
+          "answer": 1,
+          "solution": "$c(1+2+3+4)=1\\Rightarrow c=\\frac1{10}$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-r-c2",
+          "title": "Linear transformation",
+          "type": "mcq",
+          "question": "If $E[X]=4$, then $E[2X+3]=$",
+          "options": [
+            "8",
+            "11",
+            "7",
+            "14"
+          ],
+          "answer": 1,
+          "solution": "$E[2X+3]=2\\cdot4+3=11$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-r-c3",
+          "title": "Point probability",
+          "type": "mcq",
+          "question": "For a continuous random variable $X$ and any real $a$, $P(X=a)=$",
+          "options": [
+            "$f(a)$",
+            "$F(a)$",
+            "0",
+            "1"
+          ],
+          "answer": 2,
+          "solution": "A single point has zero length, so its probability is 0 (the density $f(a)$ is not a probability).",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "ps-descriptive",
+      "title": "Probability and Statistics — Mean, Median, Mode and Standard Deviation",
+      "short": "PS: Mean/Median/SD",
+      "summary": "Measures of central tendency and dispersion, effect of shifting and scaling, combined groups.",
+      "content": "## 1. Central tendency\n\n- **Mean** $\\bar x=\\frac1n\\sum x_i$\n- **Median:** middle value of sorted data (average of the two middle values if $n$ is even)\n- **Mode:** most frequent value (may be non-unique or absent)\n- Symmetric distribution: mean = median = mode (if unimodal).\n- For moderately skewed data: $\\text{Mode}\\approx3\\,\\text{Median}-2\\,\\text{Mean}$ (i.e. mean − mode ≈ 3(mean − median)).\n- Median is robust to outliers; mean is not.\n\n## 2. Dispersion\n\n- Range = max − min\n- **Population variance** $\\sigma^2=\\frac1N\\sum(x_i-\\mu)^2=\\frac1N\\sum x_i^2-\\mu^2$\n- **Sample variance** $s^2=\\frac1{n-1}\\sum(x_i-\\bar x)^2$ (divide by $n-1$)\n- Standard deviation = $\\sqrt{\\text{variance}}$\n- Coefficient of variation $=\\dfrac{\\sigma}{\\mu}\\times100\\%$\n- For the first $n$ natural numbers: mean $\\frac{n+1}2$, variance $\\frac{n^2-1}{12}$.\n\n## 3. Effect of transformations\n\nFor $y_i=ax_i+b$: $\\ \\bar y=a\\bar x+b$, $\\ \\sigma_y=|a|\\sigma_x$, $\\ \\sigma_y^2=a^2\\sigma_x^2$.\n\nAdding a constant shifts the mean but leaves variance and SD unchanged. Multiplying by $a$ multiplies SD by $|a|$.\n\n## 4. Useful facts\n\n- $\\sum(x_i-\\bar x)=0$.\n- Mean minimizes $\\sum(x_i-c)^2$; median minimizes $\\sum|x_i-c|$.\n- Combined mean of two groups: $\\bar x=\\dfrac{n_1\\bar x_1+n_2\\bar x_2}{n_1+n_2}$.\n- Combined variance: $\\sigma^2=\\dfrac{n_1(\\sigma_1^2+d_1^2)+n_2(\\sigma_2^2+d_2^2)}{n_1+n_2}$ with $d_i=\\bar x_i-\\bar x$.\n- Grouped data median: $L+\\dfrac{N/2-F}{f}h$; mode: $L+\\dfrac{f_1-f_0}{2f_1-f_0-f_2}h$.\n\n**Worked example:** data $2,4,4,4,5,5,7,9$: mean 5, median 4.5, mode 4, population variance $\\frac{9+1+1+1+0+0+4+16}{8}=4$, SD $=2$.\n\n**Exam tip (Hinglish):** Pehle dekho population hai ya sample: sample me $n-1$ se divide hota hai. Shift se SD nahi badalta, scaling se badalta hai.\n",
+      "keyPoints": [
+        "Adding $b$: mean $+b$, SD unchanged",
+        "Multiplying by $a$: mean $\\times a$, SD $\\times|a|$",
+        "Mode $\\approx3\\,$Median$-2\\,$Mean",
+        "Sample variance divides by $n-1$",
+        "Median is robust to outliers",
+        "First $n$ naturals: variance $=(n^2-1)/12$"
+      ],
+      "questions": [
+        {
+          "id": "ps-d-c1",
+          "title": "SD of dataset",
+          "type": "mcq",
+          "question": "The population standard deviation of $2,4,4,4,5,5,7,9$ is",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "solution": "Mean $=5$, $\\sum(x-5)^2=32$, variance $=32/8=4$, SD $=2$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-d-c2",
+          "title": "Adding a constant",
+          "type": "mcq",
+          "question": "Each observation is increased by 10. Then",
+          "options": [
+            "mean and SD both increase by 10",
+            "mean increases by 10, SD unchanged",
+            "SD increases by 10, mean unchanged",
+            "both unchanged"
+          ],
+          "answer": 1,
+          "solution": "A shift moves the mean but does not change spread.",
+          "marks": 1
+        },
+        {
+          "id": "ps-d-c3",
+          "title": "Empirical relation",
+          "type": "mcq",
+          "question": "For a moderately skewed distribution, mean = 30 and median = 28. The approximate mode is",
+          "options": [
+            "24",
+            "26",
+            "29",
+            "32"
+          ],
+          "answer": 0,
+          "solution": "Mode $\\approx3(28)-2(30)=84-60=24$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "ps-distributions",
+      "title": "Probability and Statistics — Uniform, Normal, Exponential, Poisson and Binomial",
+      "short": "PS: Distributions",
+      "summary": "Formulas, mean/variance, memoryless property, normal tables, relations between distributions.",
+      "content": "## 1. Summary table\n\n| Distribution | PMF / PDF | Mean | Variance |\n|---|---|---|---|\n| Bernoulli($p$) | $P(1)=p,\\ P(0)=1-p$ | $p$ | $p(1-p)$ |\n| Binomial($n,p$) | $\\binom nk p^k(1-p)^{n-k}$ | $np$ | $np(1-p)$ |\n| Poisson($\\lambda$) | $e^{-\\lambda}\\lambda^k/k!$ | $\\lambda$ | $\\lambda$ |\n| Geometric($p$) (trials to first success) | $(1-p)^{k-1}p$ | $\\frac1p$ | $\\frac{1-p}{p^2}$ |\n| Discrete uniform $1..n$ | $\\frac1n$ | $\\frac{n+1}2$ | $\\frac{n^2-1}{12}$ |\n| Uniform($a,b$) | $\\frac1{b-a}$ on $[a,b]$ | $\\frac{a+b}2$ | $\\frac{(b-a)^2}{12}$ |\n| Exponential($\\lambda$) | $\\lambda e^{-\\lambda x}$, $x\\ge0$ | $\\frac1\\lambda$ | $\\frac1{\\lambda^2}$ |\n| Normal($\\mu,\\sigma^2$) | $\\frac1{\\sigma\\sqrt{2\\pi}}e^{-(x-\\mu)^2/2\\sigma^2}$ | $\\mu$ | $\\sigma^2$ |\n\n## 2. Binomial and Poisson\n\n- Binomial: number of successes in $n$ independent trials. Sum of independent Binomial($n_i$,$p$) is Binomial($\\sum n_i,p$). Mean $>$ variance.\n- Poisson: counts of rare events; **mean = variance = $\\lambda$**. Sum of independent Poissons is Poisson($\\lambda_1+\\lambda_2$). Binomial($n,p$) $\\approx$ Poisson($np$) for large $n$, small $p$.\n- Poisson process of rate $r$: number of events in time $t$ is Poisson($rt$); the waiting time between events is Exponential($r$).\n\n## 3. Exponential and uniform\n\n- CDF: $F(x)=1-e^{-\\lambda x}$, so $P(X>x)=e^{-\\lambda x}$.\n- **Memoryless:** $P(X>s+t\\,|\\,X>s)=P(X>t)=e^{-\\lambda t}$. The geometric distribution is the only memoryless discrete distribution.\n- Minimum of independent Exp($\\lambda_1$), Exp($\\lambda_2$) is Exp($\\lambda_1+\\lambda_2$).\n- Uniform: $P(c<X<d)=\\frac{d-c}{b-a}$.\n\n## 4. Normal distribution\n\n- Bell-shaped, symmetric about $\\mu$; mean = median = mode $=\\mu$.\n- Standardize: $Z=\\dfrac{X-\\mu}{\\sigma}\\sim N(0,1)$.\n- $\\Phi(0)=0.5$, $\\Phi(1)=0.8413$, $\\Phi(1.96)=0.975$, $\\Phi(-z)=1-\\Phi(z)$.\n- Empirical rule: $P(|Z|<1)=0.6827$, $P(|Z|<2)=0.9545$, $P(|Z|<3)=0.9973$.\n- Linear combination of independent normals is normal: $aX+bY\\sim N(a\\mu_X+b\\mu_Y,\\ a^2\\sigma_X^2+b^2\\sigma_Y^2)$.\n- Binomial($n,p$) $\\approx N(np,\\,np(1-p))$ for large $n$ (central limit theorem).\n\n**Exam tip (Hinglish):** Normal wale sawaal me pehle $Z$ me convert karo. Poisson me $\\lambda$ time ke saath scale hota hai: 30 min ka $\\lambda=$ rate $\\times0.5$.\n",
+      "keyPoints": [
+        "Binomial: $np$, $np(1-p)$; Poisson: mean = variance = $\\lambda$",
+        "Exponential: mean $1/\\lambda$, memoryless",
+        "Uniform$(a,b)$: variance $(b-a)^2/12$",
+        "Normal: standardize $Z=(X-\\mu)/\\sigma$; $\\Phi(-z)=1-\\Phi(z)$",
+        "Sum of independent normals: means add, variances add",
+        "Poisson process: counts Poisson, gaps exponential"
+      ],
+      "questions": [
+        {
+          "id": "ps-b-c1",
+          "title": "Binomial moments",
+          "type": "mcq",
+          "question": "$X\\sim\\text{Binomial}(10,0.5)$. Its mean and variance are",
+          "options": [
+            "5 and 5",
+            "5 and 2.5",
+            "2.5 and 5",
+            "10 and 2.5"
+          ],
+          "answer": 1,
+          "solution": "$np=5$ and $np(1-p)=2.5$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-b-c2",
+          "title": "Poisson variance",
+          "type": "mcq",
+          "question": "For $X\\sim\\text{Poisson}(3)$, $\\operatorname{Var}(X)=$",
+          "options": [
+            "$\\sqrt3$",
+            "3",
+            "9",
+            "$\\frac13$"
+          ],
+          "answer": 1,
+          "solution": "Poisson has variance equal to its mean.",
+          "marks": 1
+        },
+        {
+          "id": "ps-b-c3",
+          "title": "Exponential rate",
+          "type": "mcq",
+          "question": "An exponential random variable has mean 5. Its rate parameter $\\lambda$ is",
+          "options": [
+            "5",
+            "$\\frac15$",
+            "25",
+            "$\\frac1{25}$"
+          ],
+          "answer": 1,
+          "solution": "Mean $=1/\\lambda=5\\Rightarrow\\lambda=\\frac15$.",
+          "marks": 1
+        }
+      ]
+    }
+  ]
+}

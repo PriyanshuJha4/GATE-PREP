@@ -1,0 +1,47 @@
+{
+  "title": "DBMS — Concepts",
+  "sections": [
+    {
+      "id": "er-model",
+      "title": "Chapter 1 — ER Model",
+      "short": "ER Model",
+      "content": "## ER Model\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "relational-model",
+      "title": "Chapter 2 — Relational Model",
+      "short": "Relational Model",
+      "content": "## Relational Model\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "fd-s-normalization",
+      "title": "Chapter 3 — FD's & Normalization",
+      "short": "FD's & Normalization",
+      "content": "## FD's & Normalization\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "query-language",
+      "title": "Chapter 4 — Query Language",
+      "short": "Query Language",
+      "content": "## Query Language\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "file-organization-indexing",
+      "title": "Chapter 5 — File Organization & Indexing",
+      "short": "File Organization & Indexing",
+      "content": "## File Organization & Indexing\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "transaction-concurrency-control",
+      "title": "Chapter 6 — Transaction & Concurrency Control",
+      "short": "Transaction & Concurrency Control",
+      "content": "## Transaction & Concurrency Control\n\n_Notes yet to be added._",
+      "questions": []
+    }
+  ]
+}

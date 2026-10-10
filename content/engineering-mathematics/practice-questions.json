@@ -1,20 +1,1432 @@
 {
-  "title": "Engineering Mathematics practice questions",
+  "title": "Engineering Mathematics — Practice Questions",
   "chapters": [
     {
-      "title": "Linear Algebra",
+      "title": "Linear Algebra — Matrices",
       "questions": [
         {
-          "question": "The eigenvalues of $\\begin{pmatrix}1 & 2\\\\ 2 & 1\\end{pmatrix}$ are:",
+          "id": "la-m-01",
+          "title": "Rank of rank-1 matrix",
+          "type": "nat",
+          "question": "The rank of $\\begin{bmatrix}1&2&3\\\\2&4&6\\\\3&6&9\\end{bmatrix}$ is ______.",
+          "answer": 1,
+          "solution": "$R_2-2R_1$ and $R_3-3R_1$ give two zero rows. Only one non-zero row remains, so rank = 1.",
+          "marks": 1
+        },
+        {
+          "id": "la-m-02",
+          "title": "Rank of 3x3 matrix",
+          "type": "mcq",
+          "question": "The rank of $\\begin{bmatrix}1&2&3\\\\4&5&6\\\\7&8&9\\end{bmatrix}$ is",
           "options": [
-            "$1, 1$",
-            "$3, -1$",
-            "$2, 0$",
-            "$3, 1$"
+            "1",
+            "2",
+            "3",
+            "0"
           ],
           "answer": 1,
-          "solution": "Trace $=2$ and determinant $=-3$, so $\\lambda^2 - 2\\lambda - 3 = 0$, giving $\\lambda = 3, -1$.",
-          "source": "Sample question (replace me)",
+          "solution": "$R_3-2R_2+R_1=0$ (so $R_3=2R_2-R_1$), but $R_1,R_2$ are independent. Rank = 2.",
+          "marks": 1
+        },
+        {
+          "id": "la-m-03",
+          "title": "Entry of inverse",
+          "type": "mcq",
+          "question": "For $A=\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}$, the $(1,2)$ entry of $A^{-1}$ is",
+          "options": [
+            "$-2$",
+            "$1$",
+            "$1.5$",
+            "$-0.5$"
+          ],
+          "answer": 1,
+          "solution": "$\\det A=-2$ and $A^{-1}=\\frac1{-2}\\begin{bmatrix}4&-2\\\\-3&1\\end{bmatrix}=\\begin{bmatrix}-2&1\\\\1.5&-0.5\\end{bmatrix}$. The $(1,2)$ entry is $1$.",
+          "marks": 1
+        },
+        {
+          "id": "la-m-04",
+          "title": "Determinant of orthogonal matrix",
+          "type": "mcq",
+          "question": "If $A$ is a real orthogonal matrix, then $\\det(A)$ is",
+          "options": [
+            "only $1$",
+            "$+1$ or $-1$",
+            "$0$",
+            "any real number"
+          ],
+          "answer": 1,
+          "solution": "$A^TA=I\\Rightarrow\\det(A)^2=1\\Rightarrow\\det A=\\pm1$.",
+          "marks": 1
+        },
+        {
+          "id": "la-m-05",
+          "title": "Rank of idempotent",
+          "type": "nat",
+          "question": "A $3\\times3$ real matrix $A$ satisfies $A^2=A$ and $\\operatorname{trace}(A)=2$. The rank of $A$ is ______.",
+          "answer": 2,
+          "solution": "Eigenvalues of an idempotent matrix are 0 or 1, and it is diagonalizable. So rank = number of eigenvalues equal to 1 = trace = 2.",
+          "marks": 1
+        },
+        {
+          "id": "la-m-06",
+          "title": "Maximum rank of nilpotent",
+          "type": "mcq",
+          "question": "A real $4\\times4$ matrix $A\\ne0$ satisfies $A^2=0$. The maximum possible rank of $A$ is",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 1,
+          "solution": "$A^2=0$ means column space $\\subseteq$ null space, so $r\\le 4-r\\Rightarrow r\\le2$. Rank 2 is attainable, e.g. $\\begin{bmatrix}0&I_2\\\\0&0\\end{bmatrix}$.",
+          "marks": 1
+        },
+        {
+          "id": "la-m-07",
+          "title": "True statements",
+          "type": "msq",
+          "question": "For $n\\times n$ matrices $A,B$, which statements are TRUE?",
+          "options": [
+            "$\\operatorname{tr}(AB)=\\operatorname{tr}(BA)$",
+            "$(A+B)^2=A^2+2AB+B^2$ always",
+            "$(AB)^{-1}=B^{-1}A^{-1}$ when both are invertible",
+            "$\\det(A+B)=\\det A+\\det B$ always"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "(A) true. (B) false since $AB\\ne BA$ in general. (C) true. (D) false, determinant is not additive.",
+          "marks": 2
+        }
+      ]
+    },
+    {
+      "title": "Linear Algebra — Determinants",
+      "questions": [
+        {
+          "id": "la-d-01",
+          "title": "3x3 determinant",
+          "type": "nat",
+          "question": "The value of $\\begin{vmatrix}1&2&3\\\\4&5&6\\\\7&8&10\\end{vmatrix}$ is ______.",
+          "answer": -3,
+          "solution": "$1(50-48)-2(40-42)+3(32-35)=2+4-9=-3$.",
+          "marks": 1
+        },
+        {
+          "id": "la-d-02",
+          "title": "Vandermonde",
+          "type": "nat",
+          "question": "The value of $\\begin{vmatrix}1&1&1\\\\1&2&4\\\\1&3&9\\end{vmatrix}$ is ______.",
+          "answer": 2,
+          "solution": "Vandermonde with $x=1,2,3$: $(2-1)(3-1)(3-2)=2$.",
+          "marks": 1
+        },
+        {
+          "id": "la-d-03",
+          "title": "Combined determinant",
+          "type": "mcq",
+          "question": "$A,B$ are $3\\times3$ with $\\det A=2$, $\\det B=3$. Then $\\det(2A^{-1}B^T)$ is",
+          "options": [
+            "6",
+            "12",
+            "18",
+            "24"
+          ],
+          "answer": 1,
+          "solution": "$\\det(2A^{-1}B^T)=2^3\\cdot\\frac12\\cdot3=12$.",
+          "marks": 1
+        },
+        {
+          "id": "la-d-04",
+          "title": "Circulant determinant",
+          "type": "mcq",
+          "question": "If $a+b+c=0$, then $\\begin{vmatrix}a&b&c\\\\b&c&a\\\\c&a&b\\end{vmatrix}$ equals",
+          "options": [
+            "$abc$",
+            "$a^3+b^3+c^3$",
+            "$0$",
+            "$3abc$"
+          ],
+          "answer": 2,
+          "solution": "Add all columns into the first: every entry becomes $a+b+c=0$, so a zero column appears and $\\det=0$.",
+          "marks": 1
+        },
+        {
+          "id": "la-d-05",
+          "title": "Determinant statements",
+          "type": "msq",
+          "question": "Which statements are TRUE for $n\\times n$ real matrices?",
+          "options": [
+            "$\\det(AB)=\\det(BA)$",
+            "$\\det(A+B)=\\det A+\\det B$",
+            "$\\det(A^T)=\\det(A)$",
+            "$\\det(kA)=k\\det A$"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "$\\det(AB)=\\det A\\det B=\\det(BA)$ and $\\det A^T=\\det A$. The other two are false: $\\det(kA)=k^n\\det A$, and $\\det$ is not additive.",
+          "marks": 2
+        },
+        {
+          "id": "la-d-06",
+          "title": "Adjoint of adjoint",
+          "type": "nat",
+          "question": "$A$ is a $3\\times3$ matrix with $\\det A=2$. Then $\\det(\\operatorname{adj}(\\operatorname{adj}A))$ is ______.",
+          "answer": 16,
+          "solution": "$\\det(\\operatorname{adj}(\\operatorname{adj}A))=(\\det A)^{(n-1)^2}=2^{4}=16$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Linear Algebra — Systems of Linear Equations",
+      "questions": [
+        {
+          "id": "la-s-01",
+          "title": "Parametric system",
+          "type": "mcq",
+          "question": "Consider $x+y+z=6,\\; x+2y+3z=10,\\; x+2y+\\lambda z=\\mu$. The system has infinitely many solutions for",
+          "options": [
+            "$\\lambda=3,\\ \\mu=10$",
+            "$\\lambda=3,\\ \\mu\\ne10$",
+            "$\\lambda\\ne3$, any $\\mu$",
+            "$\\lambda=2,\\ \\mu=10$"
+          ],
+          "answer": 0,
+          "solution": "$R_3-R_2$ gives $(\\lambda-3)z=\\mu-10$. If $\\lambda=3$ and $\\mu=10$, it becomes $0=0$ (rank 2 < 3), so infinite solutions. If $\\lambda=3,\\mu\\ne10$: no solution. If $\\lambda\\ne3$: unique solution.",
+          "marks": 1
+        },
+        {
+          "id": "la-s-02",
+          "title": "Nullity",
+          "type": "nat",
+          "question": "$A$ is a $4\\times6$ real matrix with rank 3. The dimension of the null space of $A$ is ______.",
+          "answer": 3,
+          "solution": "Rank–nullity: nullity $=n-\\operatorname{rank}=6-3=3$.",
+          "marks": 1
+        },
+        {
+          "id": "la-s-03",
+          "title": "Solvable for all b",
+          "type": "mcq",
+          "question": "$A$ is $m\\times n$ with rank $r$. $Ax=b$ has a solution for every $b\\in\\mathbb R^m$ iff",
+          "options": [
+            "$r=n$",
+            "$r=m$",
+            "$m=n$",
+            "$r<m$"
+          ],
+          "answer": 1,
+          "solution": "Column space must be all of $\\mathbb R^m$, so $\\operatorname{rank}A=m$ (full row rank).",
+          "marks": 1
+        },
+        {
+          "id": "la-s-04",
+          "title": "Dimension of span",
+          "type": "nat",
+          "question": "The dimension of the span of $(1,2,3),\\ (2,4,6),\\ (1,0,1)$ is ______.",
+          "answer": 2,
+          "solution": "$(2,4,6)=2(1,2,3)$, so only $(1,2,3)$ and $(1,0,1)$ are independent. Dimension = 2.",
+          "marks": 1
+        },
+        {
+          "id": "la-s-05",
+          "title": "Homogeneous square system",
+          "type": "msq",
+          "question": "$A$ is an $n\\times n$ matrix. Which statements about $Ax=0$ are TRUE?",
+          "options": [
+            "It is always consistent",
+            "It has a non-trivial solution iff $\\det A=0$",
+            "Its solution set is a subspace of $\\mathbb R^n$",
+            "Its solution is unique iff $A$ is singular"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "(A),(B),(C) are standard. (D) is false: uniqueness (only the zero solution) happens iff $A$ is non-singular.",
+          "marks": 2
+        },
+        {
+          "id": "la-s-06",
+          "title": "Impossible count",
+          "type": "mcq",
+          "question": "Which number of solutions is IMPOSSIBLE for a system of linear equations over $\\mathbb R$?",
+          "options": [
+            "Exactly two",
+            "Exactly one",
+            "None",
+            "Infinitely many"
+          ],
+          "answer": 0,
+          "solution": "If two distinct solutions $x_1,x_2$ exist, every point $x_1+t(x_2-x_1)$ is also a solution, giving infinitely many.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Linear Algebra — Eigenvalues and Eigenvectors",
+      "questions": [
+        {
+          "id": "la-e-01",
+          "title": "Sum of squares of eigenvalues",
+          "type": "nat",
+          "question": "For $A=\\begin{bmatrix}2&1&0\\\\1&2&0\\\\0&0&3\\end{bmatrix}$, the sum of squares of the eigenvalues is ______.",
+          "answer": 19,
+          "solution": "Eigenvalues: $1,3$ (from the top block) and $3$. Sum of squares $=1+9+9=19$. Equivalently $\\operatorname{tr}(A^2)=5+5+9=19$.",
+          "marks": 1
+        },
+        {
+          "id": "la-e-02",
+          "title": "Non-diagonalizable",
+          "type": "mcq",
+          "question": "The matrix $\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}$",
+          "options": [
+            "is diagonalizable",
+            "has eigenvalues 0 and 1",
+            "is not diagonalizable",
+            "has an eigenvalue $-1$"
+          ],
+          "answer": 2,
+          "solution": "Only eigenvalue 1 with AM = 2, but $(A-I)v=0$ gives just one independent eigenvector (GM = 1). Not diagonalizable.",
+          "marks": 1
+        },
+        {
+          "id": "la-e-03",
+          "title": "Cayley-Hamilton value",
+          "type": "nat",
+          "question": "A $2\\times2$ matrix $A$ has eigenvalues 2 and 3. The value of $\\det(A^2-5A+6I)$ is ______.",
+          "answer": 0,
+          "solution": "The characteristic polynomial is $\\lambda^2-5\\lambda+6$. By Cayley–Hamilton $A^2-5A+6I=0$, so its determinant is 0.",
+          "marks": 1
+        },
+        {
+          "id": "la-e-04",
+          "title": "Eigenvector",
+          "type": "mcq",
+          "question": "For $A=\\begin{bmatrix}1&2\\\\2&1\\end{bmatrix}$, an eigenvector for the eigenvalue $3$ is",
+          "options": [
+            "$(1,1)$",
+            "$(1,-1)$",
+            "$(2,-1)$",
+            "$(1,0)$"
+          ],
+          "answer": 0,
+          "solution": "$A(1,1)^T=(3,3)^T=3(1,1)^T$. For the other eigenvalue $-1$, the eigenvector is $(1,-1)$.",
+          "marks": 1
+        },
+        {
+          "id": "la-e-05",
+          "title": "Missing eigenvalue",
+          "type": "nat",
+          "question": "A $4\\times4$ matrix has trace 10 and three of its eigenvalues are $1,2,3$. The fourth eigenvalue is ______.",
+          "answer": 4,
+          "solution": "Sum of eigenvalues $=10\\Rightarrow x=10-6=4$.",
+          "marks": 1
+        },
+        {
+          "id": "la-e-06",
+          "title": "Symmetric matrix facts",
+          "type": "msq",
+          "question": "$A$ is a real symmetric matrix. Which statements are TRUE?",
+          "options": [
+            "All eigenvalues are real",
+            "Eigenvectors of distinct eigenvalues are orthogonal",
+            "All eigenvalues are positive",
+            "$A$ is diagonalizable by an orthogonal matrix"
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "Spectral theorem gives (A), (B), (D). Positivity holds only for positive definite matrices.",
+          "marks": 2
+        },
+        {
+          "id": "la-e-07",
+          "title": "Inverse via Cayley-Hamilton",
+          "type": "mcq",
+          "question": "A square matrix satisfies $A^2-5A+6I=0$. Then $A^{-1}$ equals",
+          "options": [
+            "$\\frac{5I-A}{6}$",
+            "$\\frac{A-5I}{6}$",
+            "$\\frac{5I+A}{6}$",
+            "$6(5I-A)$"
+          ],
+          "answer": 0,
+          "solution": "$A^2-5A+6I=0\\Rightarrow A(5I-A)=6I\\Rightarrow A^{-1}=\\frac{5I-A}{6}$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Linear Algebra — LU Decomposition",
+      "questions": [
+        {
+          "id": "la-l-01",
+          "title": "Determinant from U",
+          "type": "nat",
+          "question": "For $A=\\begin{bmatrix}2&1&1\\\\4&3&3\\\\8&7&9\\end{bmatrix}$, $\\det A$ computed through its LU decomposition is ______.",
+          "answer": 4,
+          "solution": "$U$ has diagonal $2,1,2$, so $\\det A=2\\cdot1\\cdot2=4$ (and $\\det L=1$).",
+          "marks": 1
+        },
+        {
+          "id": "la-l-02",
+          "title": "Entry of L",
+          "type": "nat",
+          "question": "In Doolittle's decomposition of the same matrix $A=\\begin{bmatrix}2&1&1\\\\4&3&3\\\\8&7&9\\end{bmatrix}$, the entry $l_{32}$ is ______.",
+          "answer": 3,
+          "solution": "After eliminating column 1: row 2 $=(0,1,1)$, row 3 $=(0,3,5)$. So $l_{32}=3/1=3$.",
+          "marks": 1
+        },
+        {
+          "id": "la-l-03",
+          "title": "Complexity",
+          "type": "mcq",
+          "question": "The time complexity of LU factorization of an $n\\times n$ matrix (Gaussian elimination) is",
+          "options": [
+            "$O(n)$",
+            "$O(n^2)$",
+            "$O(n^3)$",
+            "$O(2^n)$"
+          ],
+          "answer": 2,
+          "solution": "About $n^3/3$ multiplications, so $O(n^3)$.",
+          "marks": 1
+        },
+        {
+          "id": "la-l-04",
+          "title": "Solve with new b",
+          "type": "mcq",
+          "question": "After computing $A=LU$, the cost of solving $Ax=b$ for one new vector $b$ is",
+          "options": [
+            "$O(n)$",
+            "$O(n^2)$",
+            "$O(n^3)$",
+            "$O(n^4)$"
+          ],
+          "answer": 1,
+          "solution": "One forward and one backward substitution, each $O(n^2)$.",
+          "marks": 1
+        },
+        {
+          "id": "la-l-05",
+          "title": "LU statements",
+          "type": "msq",
+          "question": "Which statements about LU decomposition are TRUE?",
+          "options": [
+            "$PA=LU$ exists for every non-singular matrix $A$",
+            "$A=LU$ (no row exchange) exists for every non-singular matrix",
+            "$\\det A=\\prod u_{ii}$ when $L$ has unit diagonal and no pivoting is used",
+            "For a non-singular $A$, the Doolittle factorization (when it exists) is unique"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "(B) is false: $\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix}$ is non-singular but has no LU without a row exchange.",
+          "marks": 2
+        },
+        {
+          "id": "la-l-06",
+          "title": "U22 entry",
+          "type": "nat",
+          "question": "For $A=\\begin{bmatrix}1&2\\\\3&10\\end{bmatrix}$ with $A=LU$ (Doolittle), the entry $u_{22}$ is ______.",
+          "answer": 4,
+          "solution": "$l_{21}=3$, so $u_{22}=10-3\\cdot2=4$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Calculus — Limits",
+      "questions": [
+        {
+          "id": "cal-l-01",
+          "title": "Taylor limit",
+          "type": "nat",
+          "question": "$\\displaystyle\\lim_{x\\to0}\\frac{e^x-1-x}{x^2}=$ ______",
+          "answer": 0.5,
+          "solution": "$e^x-1-x=\\frac{x^2}{2}+\\frac{x^3}{6}+\\dots$, so the limit is $\\frac12$. (L'Hôpital twice gives $\\frac{e^x}{2}\\to\\frac12$.)",
+          "marks": 1,
+          "range": [
+            0.49,
+            0.51
+          ]
+        },
+        {
+          "id": "cal-l-02",
+          "title": "Rational limit at infinity",
+          "type": "mcq",
+          "question": "$\\displaystyle\\lim_{x\\to\\infty}\\frac{3x^2+2x}{5x^2-1}$ equals",
+          "options": [
+            "0",
+            "$\\frac35$",
+            "$\\frac23$",
+            "$\\infty$"
+          ],
+          "answer": 1,
+          "solution": "Equal degrees: ratio of leading coefficients $=3/5$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-l-03",
+          "title": "(sin x - x)/x^3",
+          "type": "mcq",
+          "question": "$\\displaystyle\\lim_{x\\to0}\\frac{\\sin x-x}{x^3}$ equals",
+          "options": [
+            "0",
+            "$-\\frac16$",
+            "$\\frac16$",
+            "$-\\frac12$"
+          ],
+          "answer": 1,
+          "solution": "$\\sin x-x=-\\frac{x^3}{6}+\\dots$, so the limit is $-\\frac16$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-l-04",
+          "title": "1^infinity form",
+          "type": "mcq",
+          "question": "$\\displaystyle\\lim_{x\\to0}(1+3x)^{1/x}$ equals",
+          "options": [
+            "$e$",
+            "$e^3$",
+            "3",
+            "$\\frac13$"
+          ],
+          "answer": 1,
+          "solution": "$\\lim=e^{\\lim\\frac{3x}{x}}=e^3$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-l-05",
+          "title": "|x|/x",
+          "type": "mcq",
+          "question": "$\\displaystyle\\lim_{x\\to0}\\frac{|x|}{x}$",
+          "options": [
+            "is 1",
+            "is $-1$",
+            "is 0",
+            "does not exist"
+          ],
+          "answer": 3,
+          "solution": "Right limit $=1$, left limit $=-1$; they differ.",
+          "marks": 1
+        },
+        {
+          "id": "cal-l-06",
+          "title": "Factor limit",
+          "type": "nat",
+          "question": "$\\displaystyle\\lim_{x\\to1}\\frac{x^3-1}{x^2-1}=$ ______",
+          "answer": 1.5,
+          "solution": "$\\frac{(x-1)(x^2+x+1)}{(x-1)(x+1)}\\to\\frac{3}{2}$.",
+          "marks": 1,
+          "range": [
+            1.49,
+            1.51
+          ]
+        },
+        {
+          "id": "cal-l-07",
+          "title": "Limits equal to 1",
+          "type": "msq",
+          "question": "Which of the following limits equal 1?",
+          "options": [
+            "$\\lim_{x\\to0}\\frac{\\sin x}{x}$",
+            "$\\lim_{x\\to\\infty}\\left(1+\\frac1x\\right)^x$",
+            "$\\lim_{x\\to0}\\frac{\\ln(1+x)}{x}$",
+            "$\\lim_{x\\to0}\\frac{1-\\cos x}{x^2}$"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "(A) 1, (B) $e$, (C) 1, (D) $\\frac12$.",
+          "marks": 2
+        },
+        {
+          "id": "cal-l-08",
+          "title": "x ln x",
+          "type": "mcq",
+          "question": "$\\displaystyle\\lim_{x\\to0^+}x\\ln x$ equals",
+          "options": [
+            "$-\\infty$",
+            "0",
+            "1",
+            "$\\infty$"
+          ],
+          "answer": 1,
+          "solution": "Write $\\frac{\\ln x}{1/x}$ ($\\frac{-\\infty}{\\infty}$) and apply L'Hôpital: $\\frac{1/x}{-1/x^2}=-x\\to0$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Calculus — Continuity and Differentiability",
+      "questions": [
+        {
+          "id": "cal-c-01",
+          "title": "Piecewise differentiable",
+          "type": "nat",
+          "question": "$f(x)=x^2$ for $x\\le1$ and $f(x)=ax+b$ for $x>1$ is differentiable at $x=1$. Then $a+b=$ ______",
+          "answer": 1,
+          "solution": "Continuity: $a+b=1$. Differentiability: $a=2\\cdot1=2$. So $b=-1$ and $a+b=1$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-c-02",
+          "title": "x|x|",
+          "type": "mcq",
+          "question": "The function $f(x)=x|x|$ at $x=0$ is",
+          "options": [
+            "continuous but not differentiable",
+            "differentiable with $f'(0)=0$",
+            "discontinuous",
+            "twice differentiable"
+          ],
+          "answer": 1,
+          "solution": "$f'(0)=\\lim\\frac{h|h|}{h}=\\lim|h|=0$. But $f'(x)=2|x|$ is not differentiable at 0, so $f$ is not twice differentiable.",
+          "marks": 1
+        },
+        {
+          "id": "cal-c-03",
+          "title": "Derivative of x^x",
+          "type": "nat",
+          "question": "If $f(x)=x^x$ ($x>0$), then $f'(1)=$ ______",
+          "answer": 1,
+          "solution": "$f'(x)=x^x(1+\\ln x)$, so $f'(1)=1\\cdot(1+0)=1$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-c-04",
+          "title": "x sin(1/x)",
+          "type": "mcq",
+          "question": "$f(x)=x\\sin\\frac1x$ for $x\\ne0$, $f(0)=0$. At $x=0$, $f$ is",
+          "options": [
+            "discontinuous",
+            "continuous but not differentiable",
+            "differentiable",
+            "not defined"
+          ],
+          "answer": 1,
+          "solution": "$|x\\sin\\frac1x|\\le|x|\\to0$ (continuous). But $\\frac{f(h)}{h}=\\sin\\frac1h$ has no limit, so not differentiable.",
+          "marks": 1
+        },
+        {
+          "id": "cal-c-05",
+          "title": "Implicit differentiation",
+          "type": "nat",
+          "question": "For the curve $x^2+y^2=25$, the value of $\\frac{dy}{dx}$ at $(3,4)$ is ______",
+          "answer": -0.75,
+          "solution": "$2x+2y\\,y'=0\\Rightarrow y'=-x/y=-3/4=-0.75$.",
+          "marks": 1,
+          "range": [
+            -0.76,
+            -0.74
+          ]
+        },
+        {
+          "id": "cal-c-06",
+          "title": "Non-differentiable at 0",
+          "type": "msq",
+          "question": "Which functions are NOT differentiable at $x=0$?",
+          "options": [
+            "$|x|$",
+            "$x^2$",
+            "$x^{1/3}$",
+            "$|x|^3$"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "$|x|$ has a corner; $x^{1/3}$ has a vertical tangent (derivative $\\to\\infty$). $x^2$ and $|x|^3$ are differentiable at 0.",
+          "marks": 2
+        },
+        {
+          "id": "cal-c-07",
+          "title": "Count non-differentiable points",
+          "type": "nat",
+          "question": "The number of points where $f(x)=|x-1|+|x-2|$ is NOT differentiable is ______",
+          "answer": 2,
+          "solution": "Corners occur where each modulus term vanishes: $x=1$ and $x=2$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Calculus — Maxima and Minima",
+      "questions": [
+        {
+          "id": "cal-m-01",
+          "title": "AM-GM minimum",
+          "type": "nat",
+          "question": "The minimum value of $x+\\frac4x$ for $x>0$ is ______",
+          "answer": 4,
+          "solution": "$f'=1-\\frac4{x^2}=0\\Rightarrow x=2$ and $f(2)=2+2=4$. (AM–GM: $x+\\frac4x\\ge2\\sqrt4=4$.)",
+          "marks": 1
+        },
+        {
+          "id": "cal-m-02",
+          "title": "Global max on interval",
+          "type": "nat",
+          "question": "The maximum value of $f(x)=x^3-3x$ on $[-2,2]$ is ______",
+          "answer": 2,
+          "solution": "$f'=3x^2-3=0\\Rightarrow x=\\pm1$. $f(-2)=-2$, $f(-1)=2$, $f(1)=-2$, $f(2)=2$. Maximum = 2.",
+          "marks": 1
+        },
+        {
+          "id": "cal-m-03",
+          "title": "x e^-x",
+          "type": "mcq",
+          "question": "$f(x)=xe^{-x}$ attains its maximum at $x=$",
+          "options": [
+            "0",
+            "1",
+            "$e$",
+            "$\\infty$"
+          ],
+          "answer": 1,
+          "solution": "$f'=e^{-x}(1-x)=0\\Rightarrow x=1$; $f'$ changes $+\\to-$, so it is a maximum with value $1/e$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-m-04",
+          "title": "Range of sin+cos combo",
+          "type": "mcq",
+          "question": "The maximum value of $3\\sin x+4\\cos x$ is",
+          "options": [
+            "3",
+            "4",
+            "5",
+            "7"
+          ],
+          "answer": 2,
+          "solution": "Maximum of $a\\sin x+b\\cos x$ is $\\sqrt{a^2+b^2}=\\sqrt{25}=5$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-m-05",
+          "title": "Count local extrema",
+          "type": "nat",
+          "question": "The number of local extrema of $f(x)=x^4-4x^3$ is ______",
+          "answer": 1,
+          "solution": "$f'=4x^3-12x^2=4x^2(x-3)$. At $x=0$, $f'$ does not change sign (inflection). At $x=3$, $f'$ changes $-\\to+$: one local minimum. Total = 1.",
+          "marks": 1
+        },
+        {
+          "id": "cal-m-06",
+          "title": "Two variable minimum",
+          "type": "mcq",
+          "question": "The minimum value of $f(x,y)=x^2+y^2-2x-4y+7$ is",
+          "options": [
+            "0",
+            "2",
+            "5",
+            "7"
+          ],
+          "answer": 1,
+          "solution": "$f=(x-1)^2+(y-2)^2+2\\ge2$, with equality at $(1,2)$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-m-07",
+          "title": "Saddle point",
+          "type": "mcq",
+          "question": "The origin is what kind of stationary point of $f(x,y)=x^2-y^2$?",
+          "options": [
+            "local minimum",
+            "local maximum",
+            "saddle point",
+            "not a stationary point"
+          ],
+          "answer": 2,
+          "solution": "$f_{xx}=2,\\ f_{yy}=-2,\\ f_{xy}=0\\Rightarrow D=-4<0$: saddle point.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Calculus — Mean Value Theorem",
+      "questions": [
+        {
+          "id": "cal-t-01",
+          "title": "Rolle value",
+          "type": "nat",
+          "question": "Rolle's theorem is applied to $f(x)=x^3-3x$ on $[0,\\sqrt3]$. The value of $c$ is ______",
+          "answer": 1,
+          "solution": "$f(0)=0=f(\\sqrt3)$. $f'(c)=3c^2-3=0\\Rightarrow c=1\\in(0,\\sqrt3)$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-t-02",
+          "title": "LMVT value for cubic",
+          "type": "nat",
+          "question": "For $f(x)=x^3$ on $[0,2]$, the value of $c$ from LMVT (correct to 2 decimals) is ______",
+          "answer": 1.15,
+          "solution": "$3c^2=\\frac{8-0}{2}=4\\Rightarrow c=\\frac{2}{\\sqrt3}\\approx1.1547$.",
+          "marks": 1,
+          "range": [
+            1.15,
+            1.16
+          ]
+        },
+        {
+          "id": "cal-t-03",
+          "title": "Bound from derivative",
+          "type": "nat",
+          "question": "$f$ is differentiable on $\\mathbb R$, $f(0)=0$ and $f'(x)\\le2$ for all $x$. The maximum possible value of $f(3)$ is ______",
+          "answer": 6,
+          "solution": "LMVT: $f(3)-f(0)=3f'(c)\\le6$. The bound is attained by $f(x)=2x$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-t-04",
+          "title": "Inequality via MVT",
+          "type": "mcq",
+          "question": "For $x>0$, which is TRUE?",
+          "options": [
+            "$\\ln(1+x)>x$",
+            "$\\ln(1+x)<x$",
+            "$\\ln(1+x)=x$",
+            "$\\sin x>x$"
+          ],
+          "answer": 1,
+          "solution": "LMVT on $\\ln(1+t)$ over $[0,x]$: $\\ln(1+x)=\\frac{x}{1+c}<x$ for $c>0$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-t-05",
+          "title": "IVT root location",
+          "type": "mcq",
+          "question": "$f(x)=x^3-x-1$ has a real root in the interval",
+          "options": [
+            "$(-1,0)$",
+            "$(0,1)$",
+            "$(1,2)$",
+            "$(2,3)$"
+          ],
+          "answer": 2,
+          "solution": "$f(1)=-1<0$ and $f(2)=5>0$, so by IVT a root lies in $(1,2)$. On the other intervals $f$ does not change sign.",
+          "marks": 1
+        },
+        {
+          "id": "cal-t-06",
+          "title": "Roots of derivative",
+          "type": "nat",
+          "question": "A degree-5 polynomial $p(x)$ has 5 distinct real roots. The number of real roots of $p'(x)$ is ______",
+          "answer": 4,
+          "solution": "By Rolle there is a root of $p'$ between each consecutive pair, giving at least 4. $p'$ has degree 4, so exactly 4.",
+          "marks": 1
+        },
+        {
+          "id": "cal-t-07",
+          "title": "LMVT hypotheses",
+          "type": "msq",
+          "question": "Which conditions guarantee the LMVT conclusion on $[a,b]$?",
+          "options": [
+            "$f$ continuous on $[a,b]$ and differentiable on $(a,b)$",
+            "$f$ differentiable on $[a,b]$",
+            "$f$ continuous on $(a,b)$ only",
+            "$f(a)=f(b)$ must hold"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "(A) is the exact hypothesis. (B) is stronger and implies (A). (C) is insufficient; (D) is Rolle's condition and not needed for LMVT.",
+          "marks": 2
+        }
+      ]
+    },
+    {
+      "title": "Calculus — Integration",
+      "questions": [
+        {
+          "id": "cal-i-01",
+          "title": "Wallis integral",
+          "type": "nat",
+          "question": "$\\displaystyle\\int_0^{\\pi/2}\\sin^3x\\,dx=$ ______ (up to 2 decimals)",
+          "answer": 0.67,
+          "solution": "$\\int\\sin^3x=\\int(1-\\cos^2x)\\sin x\\,dx$. With $u=\\cos x$: $\\left[-\\cos x+\\frac{\\cos^3x}3\\right]_0^{\\pi/2}=0-(-1+\\frac13)=\\frac23\\approx0.67$.",
+          "marks": 1,
+          "range": [
+            0.66,
+            0.67
+          ]
+        },
+        {
+          "id": "cal-i-02",
+          "title": "King property",
+          "type": "mcq",
+          "question": "$\\displaystyle\\int_0^{\\pi/2}\\frac{\\sin x}{\\sin x+\\cos x}dx$ equals",
+          "options": [
+            "$0$",
+            "$\\frac\\pi4$",
+            "$\\frac\\pi2$",
+            "$1$"
+          ],
+          "answer": 1,
+          "solution": "Let $I$ be the integral. Replacing $x\\to\\frac\\pi2-x$ gives the $\\cos$ version, so $2I=\\int_0^{\\pi/2}1\\,dx=\\frac\\pi2$, hence $I=\\frac\\pi4$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-i-03",
+          "title": "Integral of modulus",
+          "type": "nat",
+          "question": "$\\displaystyle\\int_0^2|x-1|\\,dx=$ ______",
+          "answer": 1,
+          "solution": "Split at $x=1$: $\\int_0^1(1-x)dx+\\int_1^2(x-1)dx=\\frac12+\\frac12=1$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-i-04",
+          "title": "Gamma integral",
+          "type": "mcq",
+          "question": "$\\displaystyle\\int_0^\\infty x^2e^{-x}dx$ equals",
+          "options": [
+            "1",
+            "2",
+            "$\\frac12$",
+            "$e$"
+          ],
+          "answer": 1,
+          "solution": "$\\int_0^\\infty x^ne^{-x}dx=n!$, so for $n=2$ the value is $2$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-i-05",
+          "title": "Leibniz rule",
+          "type": "mcq",
+          "question": "$\\dfrac{d}{dx}\\displaystyle\\int_0^{x^2}\\sin t\\,dt$ equals",
+          "options": [
+            "$\\sin x^2$",
+            "$2x\\sin x^2$",
+            "$2x\\cos x^2$",
+            "$\\cos x^2-1$"
+          ],
+          "answer": 1,
+          "solution": "$f(b(x))\\,b'(x)=\\sin(x^2)\\cdot2x$.",
+          "marks": 1
+        },
+        {
+          "id": "cal-i-06",
+          "title": "Improper at 0",
+          "type": "mcq",
+          "question": "$\\displaystyle\\int_0^1\\frac{dx}{\\sqrt x}$ equals",
+          "options": [
+            "diverges",
+            "1",
+            "2",
+            "$\\frac12$"
+          ],
+          "answer": 2,
+          "solution": "$[2\\sqrt x]_0^1=2$ (converges since $p=\\frac12<1$).",
+          "marks": 1
+        },
+        {
+          "id": "cal-i-07",
+          "title": "Riemann sum limit",
+          "type": "nat",
+          "question": "$\\displaystyle\\lim_{n\\to\\infty}\\frac1n\\sum_{k=1}^{n}\\left(\\frac kn\\right)^2=$ ______ (up to 2 decimals)",
+          "answer": 0.33,
+          "solution": "It equals $\\int_0^1x^2dx=\\frac13\\approx0.33$.",
+          "marks": 1,
+          "range": [
+            0.33,
+            0.34
+          ]
+        },
+        {
+          "id": "cal-i-08",
+          "title": "Convergent integrals",
+          "type": "msq",
+          "question": "Which improper integrals converge?",
+          "options": [
+            "$\\int_1^\\infty\\frac{dx}x$",
+            "$\\int_1^\\infty\\frac{dx}{x^{1.5}}$",
+            "$\\int_0^1\\frac{dx}x$",
+            "$\\int_0^1\\frac{dx}{\\sqrt x}$"
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "$\\int_1^\\infty x^{-p}$ converges iff $p>1$ (B only). $\\int_0^1x^{-p}$ converges iff $p<1$ (D only).",
+          "marks": 2
+        }
+      ]
+    },
+    {
+      "title": "Probability and Statistics — Probability, Conditional Probability and Bayes",
+      "questions": [
+        {
+          "id": "ps-p-01",
+          "title": "Total probability",
+          "type": "nat",
+          "question": "$P(A)=0.6$, $P(B|A)=0.5$, $P(B|A')=0.2$. Then $P(B)=$ ______",
+          "answer": 0.38,
+          "solution": "$P(B)=0.5(0.6)+0.2(0.4)=0.30+0.08=0.38$.",
+          "marks": 1,
+          "range": [
+            0.379,
+            0.381
+          ]
+        },
+        {
+          "id": "ps-p-02",
+          "title": "Bayes medical test",
+          "type": "mcq",
+          "question": "A disease has prevalence 1%. A test is positive for 99% of patients and for 5% of healthy people. If a person tests positive, the probability of disease is",
+          "options": [
+            "0.99",
+            "0.5",
+            "$\\frac16$",
+            "0.05"
+          ],
+          "answer": 2,
+          "solution": "$P(D|+)=\\frac{0.99\\cdot0.01}{0.99\\cdot0.01+0.05\\cdot0.99}=\\frac{0.0099}{0.0594}=\\frac16$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-p-03",
+          "title": "Conditional on at least one head",
+          "type": "nat",
+          "question": "A fair coin is tossed 3 times. Given at least one head, the probability of exactly two heads is (2 decimals) ______",
+          "answer": 0.43,
+          "solution": "$P(\\text{exactly 2 H})=\\frac38$ and $P(\\ge1\\text{H})=\\frac78$, so the answer is $\\frac37\\approx0.43$.",
+          "marks": 1,
+          "range": [
+            0.42,
+            0.43
+          ]
+        },
+        {
+          "id": "ps-p-04",
+          "title": "Two children",
+          "type": "mcq",
+          "question": "A family has two children. Given that at least one is a boy, the probability that both are boys is",
+          "options": [
+            "$\\frac12$",
+            "$\\frac13$",
+            "$\\frac14$",
+            "$\\frac23$"
+          ],
+          "answer": 1,
+          "solution": "Sample space $\\{BB,BG,GB\\}$ (equally likely) after conditioning. Both boys: $\\frac13$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-p-05",
+          "title": "Balls without replacement",
+          "type": "mcq",
+          "question": "A bag has 3 red and 2 blue balls. Two are drawn without replacement. The probability that both have the same colour is",
+          "options": [
+            "0.3",
+            "0.4",
+            "0.5",
+            "0.6"
+          ],
+          "answer": 1,
+          "solution": "$\\frac{\\binom32+\\binom22}{\\binom52}=\\frac{3+1}{10}=0.4$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-p-06",
+          "title": "Conditional from union",
+          "type": "nat",
+          "question": "$P(A)=0.5$, $P(B)=0.4$, $P(A\\cup B)=0.7$. Then $P(A|B)=$ ______",
+          "answer": 0.5,
+          "solution": "$P(A\\cap B)=0.5+0.4-0.7=0.2$; $P(A|B)=\\frac{0.2}{0.4}=0.5$. (Also $=P(A)$, so they are independent.)",
+          "marks": 1,
+          "range": [
+            0.499,
+            0.501
+          ]
+        },
+        {
+          "id": "ps-p-07",
+          "title": "Probability statements",
+          "type": "msq",
+          "question": "Which statements are TRUE?",
+          "options": [
+            "$P(A|B)=P(B|A)$ always",
+            "If $A,B$ are independent, so are $A$ and $B'$",
+            "$P(A\\cup B)\\le P(A)+P(B)$",
+            "Mutually exclusive events with positive probabilities can be independent"
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "(A) false, (D) false: $P(A\\cap B)=0\\ne P(A)P(B)$. (B) and (C) are standard.",
+          "marks": 2
+        },
+        {
+          "id": "ps-p-08",
+          "title": "Two bags",
+          "type": "nat",
+          "question": "Bag 1 has 2 red and 3 blue balls; Bag 2 has 4 red and 1 blue. A bag is chosen at random and a ball drawn. $P(\\text{red})=$ ______",
+          "answer": 0.6,
+          "solution": "$P(R)=\\frac12\\cdot\\frac25+\\frac12\\cdot\\frac45=0.2+0.4=0.6$.",
+          "marks": 1,
+          "range": [
+            0.599,
+            0.601
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Probability and Statistics — Random Variables",
+      "questions": [
+        {
+          "id": "ps-r-01",
+          "title": "Variance of discrete RV",
+          "type": "nat",
+          "question": "$X$ takes values $0,1,2$ with probabilities $0.2,0.5,0.3$. $\\operatorname{Var}(X)=$ ______",
+          "answer": 0.49,
+          "solution": "$E[X]=0.5+0.6=1.1$, $E[X^2]=0.5+1.2=1.7$, $\\operatorname{Var}=1.7-1.21=0.49$.",
+          "marks": 1,
+          "range": [
+            0.489,
+            0.491
+          ]
+        },
+        {
+          "id": "ps-r-02",
+          "title": "Mean of continuous RV",
+          "type": "nat",
+          "question": "$f(x)=kx^2$ on $[0,3]$ and 0 elsewhere. $E[X]=$ ______",
+          "answer": 2.25,
+          "solution": "$\\int_0^3kx^2=9k=1\\Rightarrow k=\\frac19$. $E[X]=\\int_0^3\\frac{x^3}{9}dx=\\frac{81}{36}=2.25$.",
+          "marks": 1,
+          "range": [
+            2.249,
+            2.251
+          ]
+        },
+        {
+          "id": "ps-r-03",
+          "title": "Probability from PDF",
+          "type": "nat",
+          "question": "$f(x)=2x$ on $[0,1]$. $P(X>\\frac12)=$ ______",
+          "answer": 0.75,
+          "solution": "$P=\\int_{1/2}^12x\\,dx=1-\\frac14=0.75$.",
+          "marks": 1,
+          "range": [
+            0.749,
+            0.751
+          ]
+        },
+        {
+          "id": "ps-r-04",
+          "title": "Variance of combination",
+          "type": "mcq",
+          "question": "$X,Y$ are independent with $\\operatorname{Var}X=4$, $\\operatorname{Var}Y=9$. $\\operatorname{Var}(2X-Y)=$",
+          "options": [
+            "7",
+            "25",
+            "17",
+            "1"
+          ],
+          "answer": 1,
+          "solution": "$4\\operatorname{Var}X+\\operatorname{Var}Y=16+9=25$ (the sign of $Y$ does not matter).",
+          "marks": 1
+        },
+        {
+          "id": "ps-r-05",
+          "title": "Fixed points",
+          "type": "nat",
+          "question": "The expected number of fixed points of a uniformly random permutation of $n$ elements ($n\\ge1$) is ______",
+          "answer": 1,
+          "solution": "Let $I_i=1$ if element $i$ is fixed. $E[I_i]=\\frac1n$. Sum over $n$ elements $=1$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-r-06",
+          "title": "Chebyshev bound",
+          "type": "mcq",
+          "question": "A variable has mean 50 and standard deviation 5. By Chebyshev, a lower bound for $P(40<X<60)$ is",
+          "options": [
+            "0.75",
+            "0.5",
+            "0.95",
+            "0.25"
+          ],
+          "answer": 0,
+          "solution": "Here $k=2$ (10 = 2σ): $P\\ge1-\\frac14=0.75$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-r-07",
+          "title": "Independence and covariance",
+          "type": "msq",
+          "question": "Which statements are TRUE?",
+          "options": [
+            "Independent $\\Rightarrow$ uncorrelated",
+            "Uncorrelated $\\Rightarrow$ independent",
+            "$\\operatorname{Var}X=E[X^2]-(E[X])^2$",
+            "$E[XY]=E[X]E[Y]$ for all $X,Y$"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "Uncorrelated does not imply independent (e.g. $X$ symmetric and $Y=X^2$). $E[XY]=E[X]E[Y]$ needs independence (or zero covariance).",
+          "marks": 2
+        },
+        {
+          "id": "ps-r-08",
+          "title": "Markov bound",
+          "type": "nat",
+          "question": "$X\\ge0$ with $E[X]=3$. By Markov's inequality, the best upper bound for $P(X\\ge12)$ is ______",
+          "answer": 0.25,
+          "solution": "$P(X\\ge12)\\le\\frac{3}{12}=0.25$.",
+          "marks": 1,
+          "range": [
+            0.249,
+            0.251
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Probability and Statistics — Mean, Median, Mode and Standard Deviation",
+      "questions": [
+        {
+          "id": "ps-d-01",
+          "title": "Median",
+          "type": "nat",
+          "question": "The median of $3,7,1,9,5,8$ is ______",
+          "answer": 6,
+          "solution": "Sorted: $1,3,5,7,8,9$. Median $=\\frac{5+7}2=6$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-d-02",
+          "title": "Variance of 1..10",
+          "type": "nat",
+          "question": "The population variance of the numbers $1,2,\\dots,10$ is ______",
+          "answer": 8.25,
+          "solution": "$\\frac{n^2-1}{12}=\\frac{99}{12}=8.25$.",
+          "marks": 1,
+          "range": [
+            8.24,
+            8.26
+          ]
+        },
+        {
+          "id": "ps-d-03",
+          "title": "Combined mean",
+          "type": "nat",
+          "question": "Group A has 10 observations with mean 20 and Group B has 30 observations with mean 40. The combined mean is ______",
+          "answer": 35,
+          "solution": "$\\frac{10\\cdot20+30\\cdot40}{40}=\\frac{1400}{40}=35$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-d-04",
+          "title": "Linear transformation",
+          "type": "mcq",
+          "question": "Data has SD 5. Each value $x$ is replaced by $3-2x$. The new SD is",
+          "options": [
+            "10",
+            "$-10$",
+            "13",
+            "5"
+          ],
+          "answer": 0,
+          "solution": "$\\sigma_y=|-2|\\cdot5=10$ (SD is never negative; the shift $+3$ does not matter).",
+          "marks": 1
+        },
+        {
+          "id": "ps-d-05",
+          "title": "Robust measure",
+          "type": "mcq",
+          "question": "Which measure is LEAST affected by extreme outliers?",
+          "options": [
+            "Mean",
+            "Median",
+            "Standard deviation",
+            "Range"
+          ],
+          "answer": 1,
+          "solution": "The median depends only on the middle position.",
+          "marks": 1
+        },
+        {
+          "id": "ps-d-06",
+          "title": "Sample variance",
+          "type": "nat",
+          "question": "The sample variance (divisor $n-1$) of $1,2,3,4,5$ is ______",
+          "answer": 2.5,
+          "solution": "Mean $=3$; $\\sum(x-3)^2=10$; $s^2=\\frac{10}{4}=2.5$.",
+          "marks": 1,
+          "range": [
+            2.49,
+            2.51
+          ]
+        },
+        {
+          "id": "ps-d-07",
+          "title": "True statements",
+          "type": "msq",
+          "question": "Which statements are TRUE for a dataset?",
+          "options": [
+            "$\\sum(x_i-\\bar x)=0$",
+            "The mean minimizes $\\sum(x_i-c)^2$",
+            "The median minimizes $\\sum|x_i-c|$",
+            "The mode is always unique"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "A dataset can be bimodal or have no repeated value, so (D) is false.",
+          "marks": 2
+        },
+        {
+          "id": "ps-d-08",
+          "title": "Coefficient of variation",
+          "type": "nat",
+          "question": "A dataset has mean 50 and standard deviation 10. The coefficient of variation (in %) is ______",
+          "answer": 20,
+          "solution": "$\\frac{10}{50}\\times100=20\\%$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "title": "Probability and Statistics — Uniform, Normal, Exponential, Poisson and Binomial",
+      "questions": [
+        {
+          "id": "ps-b-01",
+          "title": "Binomial probability",
+          "type": "nat",
+          "question": "$X\\sim\\text{Binomial}(5,\\,0.5)$. $P(X=2)=$ ______",
+          "answer": 0.3125,
+          "solution": "$\\binom52\\left(\\frac12\\right)^5=\\frac{10}{32}=0.3125$.",
+          "marks": 1,
+          "range": [
+            0.312,
+            0.313
+          ]
+        },
+        {
+          "id": "ps-b-02",
+          "title": "Poisson zero",
+          "type": "nat",
+          "question": "$X\\sim\\text{Poisson}(2)$. $P(X=0)=$ ______ (3 decimals)",
+          "answer": 0.135,
+          "solution": "$e^{-2}=0.1353$.",
+          "marks": 1,
+          "range": [
+            0.135,
+            0.136
+          ]
+        },
+        {
+          "id": "ps-b-03",
+          "title": "Exponential tail",
+          "type": "nat",
+          "question": "$X$ is exponential with rate $\\lambda=0.5$. $P(X>2)=$ ______ (3 decimals)",
+          "answer": 0.368,
+          "solution": "$e^{-0.5\\cdot2}=e^{-1}=0.3679$.",
+          "marks": 1,
+          "range": [
+            0.367,
+            0.369
+          ]
+        },
+        {
+          "id": "ps-b-04",
+          "title": "Memoryless",
+          "type": "mcq",
+          "question": "$X\\sim\\text{Exp}(\\lambda)$. Then $P(X>5\\,|\\,X>3)=$",
+          "options": [
+            "$e^{-5\\lambda}$",
+            "$e^{-2\\lambda}$",
+            "$e^{-3\\lambda}$",
+            "$1-e^{-2\\lambda}$"
+          ],
+          "answer": 1,
+          "solution": "Memorylessness: $P(X>3+2\\,|\\,X>3)=P(X>2)=e^{-2\\lambda}$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-b-05",
+          "title": "Uniform variance",
+          "type": "nat",
+          "question": "$X\\sim\\text{Uniform}(2,10)$. $\\operatorname{Var}(X)=$ ______ (2 decimals)",
+          "answer": 5.33,
+          "solution": "$\\frac{(10-2)^2}{12}=\\frac{64}{12}=5.33$.",
+          "marks": 1,
+          "range": [
+            5.33,
+            5.34
+          ]
+        },
+        {
+          "id": "ps-b-06",
+          "title": "Normal tail",
+          "type": "mcq",
+          "question": "$X\\sim N(50,100)$. Using $\\Phi(1)=0.8413$, $P(X>60)=$",
+          "options": [
+            "0.1587",
+            "0.3413",
+            "0.8413",
+            "0.0228"
+          ],
+          "answer": 0,
+          "solution": "$Z=\\frac{60-50}{10}=1$, so $P=1-\\Phi(1)=0.1587$.",
+          "marks": 1
+        },
+        {
+          "id": "ps-b-07",
+          "title": "Sum of normals",
+          "type": "nat",
+          "question": "$X\\sim N(2,4)$ and $Y\\sim N(3,5)$ are independent. The variance of $2X-Y$ is ______",
+          "answer": 21,
+          "solution": "$\\operatorname{Var}(2X-Y)=4\\cdot4+5=21$ (the mean is $4-3=1$).",
+          "marks": 1
+        },
+        {
+          "id": "ps-b-08",
+          "title": "Distribution facts",
+          "type": "msq",
+          "question": "Which statements are TRUE?",
+          "options": [
+            "Poisson has mean equal to variance",
+            "The exponential distribution is memoryless",
+            "The normal distribution is skewed",
+            "The geometric distribution is memoryless"
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "The normal distribution is symmetric (zero skewness).",
+          "marks": 2
+        },
+        {
+          "id": "ps-b-09",
+          "title": "Find n",
+          "type": "nat",
+          "question": "A binomial random variable has mean 6 and variance 4.2. The number of trials $n$ is ______",
+          "answer": 20,
+          "solution": "$1-p=\\frac{4.2}{6}=0.7\\Rightarrow p=0.3$, and $n=\\frac{6}{0.3}=20$.",
           "marks": 1
         }
       ]

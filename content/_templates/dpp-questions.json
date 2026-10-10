@@ -1,0 +1,56 @@
+{
+  "title": "C Programming DPP Questions",
+  "chapters": [
+    {
+      "title": "Data Types and Operators",
+      "questions": [
+        {
+          "id": "dpp-dt-001",
+          "title": "Integer Division",
+          "type": "mcq",
+          "question": "What is the output of `printf(\"%d\", 7 / 2);`?",
+          "options": [
+            "3",
+            "3.5",
+            "4",
+            "Compilation error"
+          ],
+          "answer": 0,
+          "solution": "Both operands are integers, so integer division discards the fractional part. The result is 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dt-002",
+          "title": "Multiple Correct Options",
+          "type": "msq",
+          "question": "Which of the following are relational operators in C?",
+          "options": [
+            "==",
+            "<=",
+            "&&",
+            "!="
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "==, <= and != are relational/equality operators. && is a logical AND operator.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dt-003",
+          "title": "Numerical Answer",
+          "type": "nat",
+          "question": "Evaluate the expression: 17 % 5",
+          "answer": 2,
+          "solution": "The remainder when 17 is divided by 5 is 2.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    }
+  ]
+}
