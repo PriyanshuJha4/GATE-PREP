@@ -1,4 +1,1810 @@
 {
-  "title": "engineering-mathematics - DPP",
-  "chapters": []
+  "title": "Engineering Mathematics DPP Questions",
+  "chapters": [
+    {
+      "title": "Linear Algebra",
+      "questions": [
+        {
+          "id": "dpp-em-la-001",
+          "type": "mcq",
+          "question": "Consider $M=\\begin{pmatrix}1&1&1\\\\ 1&1&1\\\\ 1&1&1\\end{pmatrix}$. The eigenvalues of $M$ are",
+          "options": [
+            "$0, 1, 2$",
+            "$0, 0, 3$",
+            "$1, 1, 1$",
+            "$-1, 1, 3$"
+          ],
+          "answer": 1,
+          "solution": "$M$ has rank 1, so two eigenvalues are $0$. The trace is $3$, so the third eigenvalue is $3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-002",
+          "type": "mcq",
+          "question": "A $3 \\times 3$ matrix $M$ has $\\text{Tr}[M]=6$, $\\text{Tr}[M^{2}]=26$, $\\text{Tr}[M^{3}]=90$. Which of the following can be a possible set of eigenvalues of $M$?",
+          "options": [
+            "$\\{1, 1, 4\\}$",
+            "$\\{-1, 0, 7\\}$",
+            "$\\{-1, 3, 4\\}$",
+            "$\\{2, 2, 2\\}$"
+          ],
+          "answer": 2,
+          "solution": "$\\text{Tr}(M^k)=\\sum\\lambda_i^k$. For $\\{-1,3,4\\}$: sum $=6$, squares $=1+9+16=26$, cubes $=-1+27+64=90$. The other sets fail the $\\text{Tr}(M^2)$ test.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-003",
+          "type": "mcq",
+          "question": "The eigenvalues of the matrix $A=\\begin{pmatrix}1&2&3\\\\ 2&4&6\\\\ 3&6&9\\end{pmatrix}$ are",
+          "options": [
+            "$(1, 4, 9)$",
+            "$(0, 7, 7)$",
+            "$(0, 1, 13)$",
+            "$(0, 0, 14)$"
+          ],
+          "answer": 3,
+          "solution": "$A=vv^T$ with $v=(1,2,3)^T$ has rank 1, so two eigenvalues are $0$ and the third equals the trace $1+4+9=14$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-004",
+          "type": "mcq",
+          "question": "The eigenvalues of the anti-symmetric matrix $A=\\begin{pmatrix}0&-n_{3}&n_{2}\\\\ n_{3}&0&-n_{1}\\\\ -n_{2}&n_{1}&0\\end{pmatrix}$, where $n_{1}, n_{2}, n_{3}$ are components of a unit vector, are",
+          "options": [
+            "$0, -i, i$",
+            "$0, 1, -1$",
+            "$0, 1+i, -1-i$",
+            "$0, 0, 0$"
+          ],
+          "answer": 0,
+          "solution": "$\\det(A-\\lambda I)=-\\lambda(\\lambda^2+n_1^2+n_2^2+n_3^2)=-\\lambda(\\lambda^2+1)$, so $\\lambda=0,\\pm i$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-005",
+          "type": "mcq",
+          "question": "A $2 \\times 2$ matrix $A$ has eigenvalues $e^{i\\pi/5}$ and $e^{i\\pi/6}$. The smallest value of $n$ such that $A^{n}=I$ is",
+          "options": [
+            "$20$",
+            "$30$",
+            "$60$",
+            "$120$"
+          ],
+          "answer": 2,
+          "solution": "We need $e^{in\\pi/5}=1$, so $n$ is a multiple of $10$, and $e^{in\\pi/6}=1$, so $n$ is a multiple of $12$. $\\text{lcm}(10,12)=60$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-006",
+          "type": "mcq",
+          "question": "Given a $2 \\times 2$ unitary matrix satisfying $U^{\\dagger}U = UU^{\\dagger} = I$ with $\\det U = e^{i\\varphi}$, one can construct a unitary matrix $V$ ($V^{\\dagger}V = VV^{\\dagger} = I$) with $\\det V = 1$ from it by",
+          "options": [
+            "Multiplying $U$ by $e^{-i\\varphi/2}$",
+            "Multiplying a single element of $U$ by $e^{-i\\varphi}$",
+            "Multiplying any row or column by $e^{-i\\varphi/2}$",
+            "Multiplying $U$ by $e^{-i\\varphi}$"
+          ],
+          "answer": 0,
+          "solution": "For a $2\\times2$ matrix $\\det(cU)=c^2\\det U$. With $c=e^{-i\\varphi/2}$: $\\det V=e^{-i\\varphi}e^{i\\varphi}=1$, and a phase factor keeps $V$ unitary.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-007",
+          "type": "mcq",
+          "question": "Consider an $n \\times n$ ($n>1$) matrix $A$, in which $A_{ij}$ is the product of the indices $i$ and $j$ (namely $A_{ij}=ij$). The matrix $A$",
+          "options": [
+            "has one degenerate eigenvalue with degeneracy $(n-1)$",
+            "has two degenerate eigenvalues with degeneracies $2$ and $(n-2)$",
+            "has one degenerate eigenvalue with degeneracy $n$",
+            "does not have any degenerate eigenvalues"
+          ],
+          "answer": 0,
+          "solution": "$A=vv^T$ with $v=(1,2,\\dots,n)^T$ has rank 1. Eigenvalue $0$ has multiplicity $n-1$, and the remaining eigenvalue is $\\sum i^2=\\frac{n(n+1)(2n+1)}{6}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-008",
+          "type": "mcq",
+          "question": "Consider the matrix $M=\\begin{pmatrix}0&2i&3i\\\\ -2i&0&6i\\\\ -3i&-6i&0\\end{pmatrix}$. The eigenvalues of $M$ are",
+          "options": [
+            "$-5, -2, 7$",
+            "$-7, 0, 7$",
+            "$4i, 2i, 2i$",
+            "$2, 3, 6$"
+          ],
+          "answer": 1,
+          "solution": "$M=iK$ with $K$ real anti-symmetric. $K$ has eigenvalues $0,\\pm i\\sqrt{2^2+3^2+6^2}=0,\\pm 7i$. Multiplying by $i$ gives $0,\\mp 7$, i.e. $-7,0,7$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-009",
+          "type": "mcq",
+          "question": "The matrices $A=\\begin{pmatrix}0&-1&0\\\\ 1&0&0\\\\ 0&0&0\\end{pmatrix}$, $B=\\begin{pmatrix}0&0&1\\\\ 0&0&0\\\\ 0&0&0\\end{pmatrix}$, and $C=\\begin{pmatrix}0&0&0\\\\ 0&0&1\\\\ 0&0&0\\end{pmatrix}$ satisfy the commutation relations",
+          "options": [
+            "$[A,B]=B+C$, $[B,C]=0$, $[C,A]=B+C$",
+            "$[A,B]=C$, $[B,C]=A$, $[C,A]=B$",
+            "$[A,B]=B$, $[B,C]=0$, $[C,A]=A$",
+            "$[A,B]=C$, $[B,C]=0$, $[C,A]=B$"
+          ],
+          "answer": 3,
+          "solution": "Direct multiplication gives $AB=C,\\ BA=0$, so $[A,B]=C$. $BC=CB=0$, so $[B,C]=0$. $CA=0,\\ AC=-B$, so $[C,A]=B$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-010",
+          "type": "mcq",
+          "question": "The column vector $\\begin{pmatrix}a\\\\ b\\\\ a\\end{pmatrix}$ is a simultaneous eigenvector of $A=\\begin{pmatrix}0&0&1\\\\ 0&1&0\\\\ 1&0&0\\end{pmatrix}$ and $B=\\begin{pmatrix}0&1&1\\\\ 1&0&1\\\\ 1&1&0\\end{pmatrix}$ if",
+          "options": [
+            "$b=0$ or $a=0$",
+            "$b=a$ or $b=-2a$",
+            "$b=2a$ or $b=-a$",
+            "$b=a/2$ or $b=-a/2$"
+          ],
+          "answer": 1,
+          "solution": "$A v=v$ for every such $v$. $Bv=(a+b,\\,2a,\\,a+b)^T=\\lambda(a,b,a)^T$ gives $\\lambda=1+b/a$ and $2a=\\lambda b$. With $t=b/a$: $t^2+t-2=0$, so $t=1$ or $t=-2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-011",
+          "type": "mcq",
+          "question": "For any operator $A$, $i(A^{\\dagger}-A)$ is:",
+          "options": [
+            "Hermitian",
+            "Anti-Hermitian",
+            "Unitary",
+            "Orthogonal"
+          ],
+          "answer": 0,
+          "solution": "$\\big(i(A^\\dagger-A)\\big)^\\dagger=-i(A-A^\\dagger)=i(A^\\dagger-A)$, so it is Hermitian.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-012",
+          "type": "mcq",
+          "question": "If two matrices $A$ and $B$ can be diagonalized simultaneously, which of the following is true?",
+          "options": [
+            "$A^{2}B = B^{2}A$",
+            "$A^{2}B^{2} = B^{2}A$",
+            "$AB = BA$",
+            "$AB^{2}AB = BABA^{2}$"
+          ],
+          "answer": 2,
+          "solution": "Matrices diagonalizable by the same basis are diagonal in it, and diagonal matrices commute. Hence $AB=BA$. The other relations do not hold in general.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-013",
+          "type": "mcq",
+          "question": "Which one of the following is the inverse of the matrix $\\begin{pmatrix}1&-1\\\\ 0&1\\end{pmatrix}$?",
+          "options": [
+            "$\\begin{pmatrix}1&1\\\\ -1&1\\end{pmatrix}$",
+            "$\\begin{pmatrix}1&1\\\\ 0&1\\end{pmatrix}$",
+            "$\\begin{pmatrix}1&0\\\\ 1&1\\end{pmatrix}$",
+            "$\\begin{pmatrix}-1&1\\\\ 0&-1\\end{pmatrix}$"
+          ],
+          "answer": 1,
+          "solution": "$\\det=1$, so $A^{-1}=\\text{adj}(A)=\\begin{pmatrix}1&1\\\\0&1\\end{pmatrix}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-014",
+          "type": "mcq",
+          "question": "A $3 \\times 3$ matrix has eigenvalues $0$, $2+i$ and $2-i$. Which one of the following statements is correct?",
+          "options": [
+            "The matrix is hermitian",
+            "The matrix is unitary",
+            "The inverse of the matrix exists",
+            "The determinant of the matrix is zero"
+          ],
+          "answer": 3,
+          "solution": "$\\det=\\prod\\lambda_i=0$. Not Hermitian (complex eigenvalues), not unitary ($|2+i|\\ne1$), and not invertible.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-015",
+          "type": "mcq",
+          "question": "A real traceless $4 \\times 4$ unitary matrix has two eigenvalues $-1$ and $1$. The other eigenvalues are",
+          "options": [
+            "Zero and $+2$",
+            "$-1$ and $+1$",
+            "Zero and $+1$",
+            "$+1$ and $+1$"
+          ],
+          "answer": 1,
+          "solution": "Unitary means $|\\lambda|=1$, which rules out $0$ and $2$. Trace $0$ requires $\\lambda_3+\\lambda_4=0$, so the other two are $-1$ and $+1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-016",
+          "type": "mcq",
+          "question": "The eigenvalues of the matrix $\\begin{pmatrix}1&i\\\\ -i&1\\end{pmatrix}$ are",
+          "options": [
+            "$+1$ and $+1$",
+            "Zero and $+1$",
+            "Zero and $+2$",
+            "$-1$ and $+1$"
+          ],
+          "answer": 2,
+          "solution": "Trace $=2$, $\\det=1-(i)(-i)=0$. So $\\lambda^2-2\\lambda=0$ gives $\\lambda=0,2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-017",
+          "type": "mcq",
+          "question": "If $A$ is a $3 \\times 3$ matrix with determinant 2, then the determinant of $\\text{adj}[\\text{adj}[\\text{adj}(A^{-1})]]$ is equal to",
+          "options": [
+            "$1/512$",
+            "$1/1024$",
+            "$1/128$",
+            "$1/256$"
+          ],
+          "answer": 3,
+          "solution": "For an $n\\times n$ matrix, $\\det(\\text{adj}M)=(\\det M)^{n-1}$. With $n=3$: $\\det A^{-1}=\\tfrac12$, then $(\\tfrac12)^2=\\tfrac14$, then $(\\tfrac14)^2=\\tfrac1{16}$, then $(\\tfrac1{16})^2=\\tfrac1{256}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-018",
+          "type": "mcq",
+          "question": "The eigenvalues of $(A^{4}+3A-2I)$ where $A = \\begin{pmatrix}1&1&1\\\\ 0&2&1\\\\ 0&0&3\\end{pmatrix}$ are",
+          "options": [
+            "$2, 20, 88$",
+            "$1, 2, 3$",
+            "$2, 20, 3$",
+            "$1, 20, 88$"
+          ],
+          "answer": 0,
+          "solution": "$A$ is triangular with eigenvalues $1,2,3$. Apply $p(\\lambda)=\\lambda^4+3\\lambda-2$: $p(1)=2$, $p(2)=20$, $p(3)=88$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-019",
+          "type": "mcq",
+          "question": "Eigenvalues of matrix $\\begin{pmatrix}0&1&0&0\\\\ 1&0&0&0\\\\ 0&0&0&-2i\\\\ 0&0&2i&0\\end{pmatrix}$ are",
+          "options": [
+            "$-2, -1, 1, 2$",
+            "$-1, 1, 0, 2$",
+            "$1, 0, 2, 3$",
+            "$-1, 1, 0, 3$"
+          ],
+          "answer": 0,
+          "solution": "The matrix is block diagonal. The first block has eigenvalues $\\pm1$ and the second block has eigenvalues $\\pm2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-020",
+          "type": "mcq",
+          "question": "A linear transformation $T$, defined as $T\\begin{pmatrix}x_{1}\\\\ x_{2}\\\\ x_{3}\\end{pmatrix} = \\begin{pmatrix}x_{1}+x_{2}\\\\ x_{2}-x_{3}\\end{pmatrix}$, transforms a vector $\\vec{x}$ from a three-dimensional space to a two-dimensional real space. The transformation matrix $T$ is",
+          "options": [
+            "$\\begin{pmatrix}1&1&0\\\\ 0&1&-1\\end{pmatrix}$",
+            "$\\begin{pmatrix}1&0&0\\\\ 0&1&0\\end{pmatrix}$",
+            "$\\begin{pmatrix}1&1&1\\\\ -1&1&1\\end{pmatrix}$",
+            "$\\begin{pmatrix}1&0&0\\\\ 0&0&1\\end{pmatrix}$"
+          ],
+          "answer": 0,
+          "solution": "Read off the coefficients of $x_1,x_2,x_3$ in each output row: $(1,1,0)$ and $(0,1,-1)$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-021",
+          "type": "mcq",
+          "question": "One of the eigenvalues of the matrix $\\begin{pmatrix}2&3&0\\\\ 3&2&0\\\\ 0&0&1\\end{pmatrix}$ is $5$. The other two eigenvalues are",
+          "options": [
+            "$0$ and $0$",
+            "$1$ and $1$",
+            "$1$ and $-1$",
+            "$-1$ and $-1$"
+          ],
+          "answer": 2,
+          "solution": "The $2\\times2$ block has eigenvalues $2\\pm3=5,-1$, and the last diagonal entry gives $1$. The others are $1$ and $-1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-022",
+          "type": "mcq",
+          "question": "The normalized eigenvector corresponding to the eigenvalue 5 (of the matrix in the previous question) is:",
+          "options": [
+            "$\\frac{1}{\\sqrt{2}}\\begin{pmatrix}0\\\\ -1\\\\ 1\\end{pmatrix}$",
+            "$\\frac{1}{\\sqrt{2}}\\begin{pmatrix}-1\\\\ 1\\\\ 0\\end{pmatrix}$",
+            "$\\frac{1}{\\sqrt{2}}\\begin{pmatrix}1\\\\ 0\\\\ -1\\end{pmatrix}$",
+            "$\\frac{1}{\\sqrt{2}}\\begin{pmatrix}1\\\\ 1\\\\ 0\\end{pmatrix}$"
+          ],
+          "answer": 3,
+          "solution": "For $\\lambda=5$ the block gives $-3x+3y=0$, so $x=y$ and $z=0$. Normalised: $\\frac1{\\sqrt2}(1,1,0)^T$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-023",
+          "type": "mcq",
+          "question": "The eigenvalues of a matrix are $i$, $2i$, and $3i$. The matrix is",
+          "options": [
+            "Unitary",
+            "Anti-Unitary",
+            "Hermitian",
+            "Anti-Hermitian"
+          ],
+          "answer": 3,
+          "solution": "Purely imaginary eigenvalues are the signature of an anti-Hermitian matrix (Hermitian: real; unitary: $|\\lambda|=1$).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-024",
+          "type": "mcq",
+          "question": "The eigenvalues and eigenvectors of the matrix $\\begin{bmatrix}5&4\\\\ 1&2\\end{bmatrix}$ are",
+          "options": [
+            "$6, 1$ and $\\begin{bmatrix}4\\\\ 1\\end{bmatrix}, \\begin{bmatrix}1\\\\ -1\\end{bmatrix}$",
+            "$2, 5$ and $\\begin{bmatrix}4\\\\ 1\\end{bmatrix}, \\begin{bmatrix}1\\\\ -1\\end{bmatrix}$",
+            "$6, 1$ and $\\begin{bmatrix}4\\\\ 1\\end{bmatrix}, \\begin{bmatrix}1\\\\ -1\\end{bmatrix}$",
+            "$2, 5$ and $\\begin{bmatrix}4\\\\ 1\\end{bmatrix}, \\begin{bmatrix}1\\\\ -1\\end{bmatrix}$"
+          ],
+          "answer": 0,
+          "solution": "Trace $=7$, $\\det=6$, so $\\lambda=6,1$. For $\\lambda=6$: $-x+4y=0$ gives $(4,1)^T$. For $\\lambda=1$: $x+y=0$ gives $(1,-1)^T$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-025",
+          "type": "mcq",
+          "question": "Consider a vector $\\vec{p}=2\\hat{i}+3\\hat{j}+2\\hat{k}$ in the coordinate system $(\\hat{i},\\hat{j},\\hat{k})$. The axes are rotated anti-clockwise about Y-axis by an angle of $60^{\\circ}$. The vector $\\vec{p}$ in the rotated coordinate system $(\\hat{i}^{\\prime},\\hat{j}^{\\prime},\\hat{k}^{\\prime})$ is",
+          "options": [
+            "$(1-\\sqrt{3})\\hat{i}^{\\prime}+3\\hat{j}^{\\prime}+(1+\\sqrt{3})\\hat{k}^{\\prime}$",
+            "$(1+\\sqrt{3})\\hat{i}^{\\prime}+3\\hat{j}^{\\prime}+(1-\\sqrt{3})\\hat{k}^{\\prime}$",
+            "$(1-\\sqrt{3})\\hat{i}^{\\prime}+(3+\\sqrt{3})\\hat{j}^{\\prime}+2\\hat{k}^{\\prime}$",
+            "$(1-\\sqrt{3})\\hat{i}^{\\prime}+(3-\\sqrt{3})\\hat{j}^{\\prime}+2\\hat{k}^{\\prime}$"
+          ],
+          "answer": 0,
+          "solution": "With $\\hat i'=(\\cos\\theta,0,-\\sin\\theta)$, $\\hat j'=\\hat j$, $\\hat k'=(\\sin\\theta,0,\\cos\\theta)$ and $\\theta=60^\\circ$: $x'=2\\cos\\theta-2\\sin\\theta=1-\\sqrt3$, $y'=3$, $z'=2\\sin\\theta+2\\cos\\theta=1+\\sqrt3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-026",
+          "type": "msq",
+          "question": "For arbitrary matrices $E, F, G$ and $H$, if $EF-FE=0$, then $\\text{Trace}(EFGH)$ is equal to (one or more options may be correct)",
+          "options": [
+            "$\\text{Trace}(HFEG)$",
+            "$\\text{Trace}(E)\\text{Trace}(F)\\text{Trace}(G)\\text{Trace}(H)$",
+            "$\\text{Trace}(GFEH)$",
+            "$\\text{Trace}(EGHF)$"
+          ],
+          "answer": [
+            0,
+            3
+          ],
+          "solution": "Using $\\text{Tr}(XY)=\\text{Tr}(YX)$ and $FE=EF$: $\\text{Tr}(HFEG)=\\text{Tr}(FEGH)=\\text{Tr}(EFGH)$ and $\\text{Tr}(EGHF)=\\text{Tr}(FEGH)=\\text{Tr}(EFGH)$. $\\text{Tr}(GFEH)=\\text{Tr}(EFHG)$ differs in general because $HG\\neq GH$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-027",
+          "type": "mcq",
+          "question": "A unitary matrix $\\begin{bmatrix}ae^{i\\alpha}&b\\\\ ce^{i\\beta}&d\\end{bmatrix}$ is given, where $a, b, c, d, \\alpha$ and $\\beta$ are real. The inverse of the matrix is",
+          "options": [
+            "$\\begin{bmatrix}ae^{i\\alpha}&-ce^{i\\beta}\\\\ b&d\\end{bmatrix}$",
+            "$\\begin{bmatrix}ae^{i\\alpha}&ce^{i\\beta}\\\\ b&d\\end{bmatrix}$",
+            "$\\begin{bmatrix}ae^{i\\alpha}&b\\\\ ce^{i\\beta}&d\\end{bmatrix}$",
+            "$\\begin{bmatrix}ae^{-i\\alpha}&ce^{-i\\beta}\\\\ b&d\\end{bmatrix}$"
+          ],
+          "answer": 3,
+          "solution": "For a unitary matrix $U^{-1}=U^\\dagger$ (conjugate transpose). Since $a,b,c,d$ are real, $U^\\dagger=\\begin{bmatrix}ae^{-i\\alpha}&ce^{-i\\beta}\\\\ b&d\\end{bmatrix}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-028",
+          "type": "mcq",
+          "question": "The eigenvalues of the matrix $A=\\begin{bmatrix}0&i\\\\ i&0\\end{bmatrix}$ are",
+          "options": [
+            "Real and Distinct",
+            "Complex and Distinct",
+            "Complex and Coinciding",
+            "Real and Coinciding"
+          ],
+          "answer": 1,
+          "solution": "$\\det(A-\\lambda I)=\\lambda^2-i^2=\\lambda^2+1=0$, so $\\lambda=\\pm i$: complex and distinct.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-029",
+          "type": "mcq",
+          "question": "The eigenvalues of the matrix $\\begin{pmatrix}2&3&0\\\\ 3&2&0\\\\ 0&0&1\\end{pmatrix}$ are",
+          "options": [
+            "$5, 2, -2$",
+            "$-5, -1, 1$",
+            "$5, 1, -1$",
+            "$-5, 1, 1$"
+          ],
+          "answer": 2,
+          "solution": "The $2\\times2$ block gives $2\\pm3=5,-1$, and the remaining diagonal entry gives $1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-030",
+          "type": "mcq",
+          "question": "Two matrices $A$ and $B$ are said to be similar if $B=P^{-1}AP$ for some invertible matrix $P$. Which of the following statements is NOT TRUE?",
+          "options": [
+            "$\\text{Det } A = \\text{Det } B$",
+            "Trace of $A$ = Trace of $B$",
+            "$A$ and $B$ have the same eigenvectors",
+            "$A$ and $B$ have the same eigenvalues"
+          ],
+          "answer": 2,
+          "solution": "Similar matrices share determinant, trace and eigenvalues (same characteristic polynomial), but eigenvectors change: if $Av=\\lambda v$ then $B(P^{-1}v)=\\lambda(P^{-1}v)$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-031",
+          "type": "mcq",
+          "question": "A $3 \\times 3$ matrix has elements such that its trace is 11 and its determinant is 36. The eigenvalues of the matrix are all known to be positive integers. The largest eigenvalue of the matrix is:",
+          "options": [
+            "$18$",
+            "$12$",
+            "$9$",
+            "$6$"
+          ],
+          "answer": 3,
+          "solution": "We need positive integers with sum $11$ and product $36$. The only triple is $\\{2,3,6\\}$, so the largest is $6$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-032",
+          "type": "mcq",
+          "question": "The eigenvalues of the matrix $\\begin{pmatrix}0&1&0\\\\ 1&0&1\\\\ 0&1&0\\end{pmatrix}$ are",
+          "options": [
+            "$0, 1, 1$",
+            "$0, -\\sqrt{2}, \\sqrt{2}$",
+            "$\\frac{1}{\\sqrt{2}}, \\frac{1}{\\sqrt{2}}, 0$",
+            "$\\sqrt{2}, \\sqrt{2}, 0$"
+          ],
+          "answer": 1,
+          "solution": "$\\det(A-\\lambda I)=-\\lambda^3+2\\lambda=-\\lambda(\\lambda^2-2)$, so $\\lambda=0,\\pm\\sqrt2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-033",
+          "type": "nat",
+          "question": "The degenerate eigenvalue of the matrix $M=\\begin{pmatrix}4&-1&-1\\\\ -1&4&-1\\\\ -1&-1&4\\end{pmatrix}$ is:",
+          "answer": 5,
+          "solution": "$M=5I-J$, where $J$ is the all-ones matrix with eigenvalues $3,0,0$. So the eigenvalues of $M$ are $2,5,5$ and the degenerate one is $5$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-034",
+          "type": "mcq",
+          "question": "The matrix $A = \\frac{1}{\\sqrt{3}}\\begin{bmatrix}1&1+i\\\\ 1-i&-1\\end{bmatrix}$ is",
+          "options": [
+            "Orthogonal",
+            "Symmetric",
+            "Anti-Symmetric",
+            "Unitary"
+          ],
+          "answer": 3,
+          "solution": "$A$ is Hermitian and a direct multiplication gives $A^2=I$, so $A^\\dagger A=A^2=I$: $A$ is unitary. It is not real, so it is not orthogonal, and $A^T\\neq\\pm A$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-035",
+          "type": "mcq",
+          "question": "Which of the following is INCORRECT for the matrix $M=\\begin{pmatrix}0&1\\\\ 1&0\\end{pmatrix}$?",
+          "options": [
+            "It is its own inverse",
+            "It is its own transpose",
+            "It is non-orthogonal",
+            "It has eigenvalues $\\pm 1$"
+          ],
+          "answer": 2,
+          "solution": "$M^2=I$ and $M^T=M$, so $M^TM=I$: $M$ is orthogonal. Hence 'non-orthogonal' is the incorrect statement. The eigenvalues are $\\pm1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-036",
+          "type": "mcq",
+          "question": "The symmetric part of $P=\\begin{pmatrix}a\\\\ b\\end{pmatrix}\\begin{pmatrix}a-2 & b\\end{pmatrix}$ is:",
+          "options": [
+            "$\\begin{pmatrix}a^{2}-2&ba-1\\\\ ba-1&b^{2}-2\\end{pmatrix}$",
+            "$\\begin{pmatrix}a(a-1)&b\\\\ b&b^{2}\\end{pmatrix}$",
+            "$\\begin{pmatrix}a(a-1)&b(a-1)\\\\ b(a-1)&b^{2}\\end{pmatrix}$",
+            "$\\begin{pmatrix}a(a-2)&b(a-1)\\\\ b(a-1)&b^{2}\\end{pmatrix}$"
+          ],
+          "answer": 3,
+          "solution": "$P=\\begin{pmatrix}a(a-2)&ab\\\\ b(a-2)&b^2\\end{pmatrix}$. Symmetric part $=\\tfrac12(P+P^T)$ has off-diagonal entry $\\tfrac12(ab+ab-2b)=b(a-1)$, giving $\\begin{pmatrix}a(a-2)&b(a-1)\\\\ b(a-1)&b^2\\end{pmatrix}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-037",
+          "type": "mcq",
+          "question": "$\\begin{pmatrix}x&y\\end{pmatrix}\\begin{pmatrix}5&-7\\\\ 7&3\\end{pmatrix}\\begin{pmatrix}x\\\\ y\\end{pmatrix}=15$. The matrix equation above represents:",
+          "options": [
+            "A circle of radius $\\sqrt{15}$",
+            "An ellipse of semi major axis $\\sqrt{5}$",
+            "An ellipse of semi major axis $5$",
+            "A hyperbola"
+          ],
+          "answer": 1,
+          "solution": "Expanding: $5x^2+(-7+7)xy+3y^2=15$, i.e. $\\frac{x^2}{3}+\\frac{y^2}{5}=1$. This is an ellipse with semi-axes $\\sqrt3$ and $\\sqrt5$, so the semi-major axis is $\\sqrt5$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-038",
+          "type": "mcq",
+          "question": "The product $PQ$ of any two real, symmetric matrices $P$ and $Q$ is:",
+          "options": [
+            "Symmetric for all $P$ and $Q$",
+            "Never symmetric",
+            "Symmetric if $PQ=QP$",
+            "Antisymmetric for all $P$ and $Q$"
+          ],
+          "answer": 2,
+          "solution": "$(PQ)^T=Q^TP^T=QP$. So $PQ$ is symmetric exactly when $PQ=QP$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-039",
+          "type": "mcq",
+          "question": "A matrix is given by $M=\\frac{1}{\\sqrt{2}}\\begin{pmatrix}i&1\\\\ 1&i\\end{pmatrix}$. The eigenvalues of $M$ are",
+          "options": [
+            "Real and positive",
+            "Purely imaginary with modulus 1",
+            "Complex with modulus 1",
+            "Real and negative"
+          ],
+          "answer": 2,
+          "solution": "$M=\\frac{1}{\\sqrt2}(iI+X)$ with $X=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$, so $\\lambda=\\frac{i\\pm1}{\\sqrt2}$, which has modulus $1$ and is neither real nor purely imaginary.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-040",
+          "type": "mcq",
+          "question": "Given two $(n \\times n)$ matrices $\\hat{P}$ and $\\hat{Q}$ such that $\\hat{P}$ is hermitian and $\\hat{Q}$ is skew (anti)-hermitian. Which one of the following combinations of $\\hat{P}$ and $\\hat{Q}$ is necessarily a Hermitian matrix?",
+          "options": [
+            "$\\hat{P}\\hat{Q}$",
+            "$i\\hat{P}\\hat{Q}$",
+            "$\\hat{P}+i\\hat{Q}$",
+            "$\\hat{P}+i\\hat{Q}$"
+          ],
+          "answer": 2,
+          "solution": "$(P+iQ)^\\dagger=P^\\dagger-iQ^\\dagger=P-i(-Q)=P+iQ$, so it is Hermitian. For $PQ$: $(PQ)^\\dagger=-QP$, and for $iPQ$: $(iPQ)^\\dagger=iQP$; neither equals the original in general.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-041",
+          "type": "mcq",
+          "question": "The inverse of the matrix $M=\\begin{pmatrix}0&1&1\\\\ 0&0&1\\\\ 1&0&0\\end{pmatrix}$ is (where $I$ is the identity matrix)",
+          "options": [
+            "$M-I$",
+            "$M^{2}-I$",
+            "$I-M^{2}$",
+            "$I-M$"
+          ],
+          "answer": 1,
+          "solution": "The characteristic polynomial is $\\lambda^3-\\lambda-1$. By Cayley-Hamilton $M^3-M-I=0$, so $M(M^2-I)=I$ and $M^{-1}=M^2-I$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-042",
+          "type": "mcq",
+          "question": "The normalized eigenvectors of the matrix $N=\\begin{bmatrix}0&-i\\\\ i&0\\end{bmatrix}$ are $\\beta_{1}$ and $\\beta_{2}$ with the eigenvalues $\\lambda_{1}$ and $\\lambda_{2}$ respectively ($\\lambda_{1}>\\lambda_{2}$). If the eigenvector $\\alpha = \\frac{1}{\\sqrt{2}}\\begin{bmatrix}1\\\\ 1\\end{bmatrix}$ is expressed as $\\alpha = P\\beta_{1} + Q\\beta_{2}$. Find the constants $P$ and $Q$.",
+          "options": [
+            "$\\frac{1+i}{2}, \\frac{1-i}{2}$",
+            "$\\frac{2+i}{2}, \\frac{1+i}{2}$",
+            "$\\frac{1+i}{3}, \\frac{1-i}{4}$",
+            "$\\frac{i}{2}, \\frac{1+i}{2}$"
+          ],
+          "answer": 0,
+          "solution": "$\\lambda_1=1$ with $\\beta_1=\\frac1{\\sqrt2}(-i,1)^T$, and $\\lambda_2=-1$ with $\\beta_2=\\frac1{\\sqrt2}(i,1)^T$. Solving $P+Q=1$ and $-iP+iQ=1$ gives $P=\\frac{1+i}{2}$, $Q=\\frac{1-i}{2}$ (check: $|P|^2+|Q|^2=1$).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-043",
+          "type": "mcq",
+          "question": "The trace of a $2 \\times 2$ matrix is 4 and its determinant is 8. If one of the eigenvalues is $2(1+i)$, the other eigenvalue is",
+          "options": [
+            "$2(1-i)$",
+            "$2(1+i)$",
+            "$(1+2i)$",
+            "$(1-2i)$"
+          ],
+          "answer": 0,
+          "solution": "Sum of eigenvalues $=4$, so the other is $4-2(1+i)=2(1-i)$. Check: product $=4(1+1)=8$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-044",
+          "type": "mcq",
+          "question": "The eigenvalues of the matrix representing the following pair of linear equations: $x+iy=0$, $ix+y=0$ are",
+          "options": [
+            "$1+i, 1+i$",
+            "$1-i, 1-i$",
+            "$1, i$",
+            "$1+i, 1-i$"
+          ],
+          "answer": 3,
+          "solution": "The matrix is $\\begin{pmatrix}1&i\\\\ i&1\\end{pmatrix}$. $(1-\\lambda)^2-i^2=0$, so $(1-\\lambda)^2=-1$ and $\\lambda=1\\pm i$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-la-045",
+          "type": "mcq",
+          "question": "For the given set of equations: $x+y=1$, $y+z=1$, $x+z=1$. Which one of the following statements is correct?",
+          "options": [
+            "Equations are inconsistent",
+            "Equations are consistent and a single non-trivial solution exists",
+            "Equations are consistent and many solutions exist",
+            "Equations are consistent and only a trivial solution exists"
+          ],
+          "answer": 1,
+          "solution": "The coefficient matrix has $\\det=2\\neq0$, so there is a unique solution: $x=y=z=\\tfrac12$. It is non-trivial because the system is non-homogeneous (the trivial solution $0$ does not satisfy it).",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Probability: Fundamentals of Probability",
+      "questions": [
+        {
+          "id": "dpp-em-pf-001",
+          "type": "mcq",
+          "question": "If there are 6 girls and 5 boys who sit in a row, then the probability that no two boys sit together is:",
+          "options": [
+            "$\\frac{6!\\,6!}{2!\\,11!}$",
+            "$\\frac{7!\\,5!}{2!\\,11!}$",
+            "$\\frac{6!\\,7!}{2!\\,11!}$",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Arrange the 6 girls in $6!$ ways. The 5 boys go into 5 of the 7 gaps: ${}^7P_5=\\frac{7!}{2!}$ ways. Probability $=\\frac{6!\\,7!}{2!\\,11!}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-002",
+          "type": "mcq",
+          "question": "Twelve balls are distributed among three boxes. The probability that the first box contains 3 balls is:",
+          "options": [
+            "$\\frac{220}{27}\\left(\\frac{2}{3}\\right)^{9}$",
+            "$\\frac{9}{110}\\left(\\frac{2}{3}\\right)^{10}$",
+            "$\\frac{{}^{12}C_{3}}{12^{3}}\\cdot 2^{9}$",
+            "$\\frac{{}^{12}C_{3}}{3^{12}}$"
+          ],
+          "answer": 0,
+          "solution": "Each ball independently goes to box 1 with probability $\\tfrac13$. $P={}^{12}C_3\\left(\\tfrac13\\right)^3\\left(\\tfrac23\\right)^9=\\frac{220}{27}\\left(\\frac23\\right)^9$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-003",
+          "type": "mcq",
+          "question": "A cricket club has 15 members of whom only 5 can bowl. If the names of 15 members are put into a box and 11 are drawn at random, then the probability of obtaining an eleven containing at least 3 bowlers is:",
+          "options": [
+            "$7/13$",
+            "$6/13$",
+            "$11/15$",
+            "$12/13$"
+          ],
+          "answer": 3,
+          "solution": "Equivalently, the 4 members left out contain at most 2 bowlers. $P=\\frac{\\binom{10}{4}+5\\binom{10}{3}+\\binom52\\binom{10}{2}}{\\binom{15}{4}}=\\frac{210+600+450}{1365}=\\frac{12}{13}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-004",
+          "type": "mcq",
+          "question": "Three integers are chosen at random from the first 20 integers. The probability that their product is even is:",
+          "options": [
+            "$2/19$",
+            "$3/29$",
+            "$17/19$",
+            "$4/29$"
+          ],
+          "answer": 2,
+          "solution": "$P=1-P(\\text{all odd})=1-\\frac{\\binom{10}{3}}{\\binom{20}{3}}=1-\\frac{120}{1140}=\\frac{17}{19}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-005",
+          "type": "mcq",
+          "question": "One hundred cards are numbered from 1 to 100. The probability that a randomly chosen card has a digit 5 is:",
+          "options": [
+            "$1/100$",
+            "$9/100$",
+            "$19/100$",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Units digit 5: 10 cards. Tens digit 5 (50-59): 10 cards. Card 55 is counted twice, so $10+10-1=19$ cards. $P=\\frac{19}{100}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-006",
+          "type": "mcq",
+          "question": "Three six faced dice are tossed together, then the probability that exactly two of the three numbers are equal is:",
+          "options": [
+            "$165/216$",
+            "$177/216$",
+            "$51/216$",
+            "$90/216$"
+          ],
+          "answer": 3,
+          "solution": "Choose the repeated value (6 ways), the other value (5 ways), and the odd die's position (3 ways): $6\\cdot5\\cdot3=90$. $P=\\frac{90}{216}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-007",
+          "type": "nat",
+          "question": "If the letters of the word 'REGULATIONS' are arranged at random, find the probability that there will be exactly 4 letters between R and E. (Give the answer as a decimal rounded to 4 places.)",
+          "answer": 0.1091,
+          "tolerance": 0.0005,
+          "solution": "All 11 letters are distinct. The positions of R and E must be $(i,i+5)$ with $i=1,\\dots,6$, and R, E can be swapped: $12$ position pairs. The other 9 letters can be arranged in $9!$ ways. $P=\\frac{12\\cdot9!}{11!}=\\frac{6}{55}\\approx0.1091$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-008",
+          "type": "mcq",
+          "question": "$2n$ boys are randomly divided into two subgroups containing $n$ boys each. The probability that the two tallest boys are in different groups is:",
+          "options": [
+            "$\\frac{n}{2n-1}$",
+            "$\\frac{n-1}{2n-1}$",
+            "$\\frac{2n-1}{4n^{2}}$",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "Fix the tallest boy in a group. The second tallest takes one of the other $2n-1$ places, and $n$ of these are in the other group. $P=\\frac{n}{2n-1}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-009",
+          "type": "mcq",
+          "question": "In a bag there are three tickets numbered 1, 2, 3. A ticket is drawn at random and put back, and this is done four times. The probability that the sum of the numbers is even is:",
+          "options": [
+            "$41/81$",
+            "$39/81$",
+            "$40/81$",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "The sum is even iff the number of odd draws is even. $P(\\text{odd})=\\tfrac23$, $P(\\text{even})=\\tfrac13$. $P=\\left(\\tfrac13\\right)^4+\\binom42\\left(\\tfrac23\\right)^2\\left(\\tfrac13\\right)^2+\\left(\\tfrac23\\right)^4=\\frac{1+24+16}{81}=\\frac{41}{81}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-010",
+          "type": "mcq",
+          "question": "A pack of cards consists of 15 cards numbered 1 to 15. Three cards are drawn at random with replacement. Then, the probability of getting 2 odd and one even numbered card is:",
+          "options": [
+            "$348/1125$",
+            "$398/1125$",
+            "$448/1125$",
+            "$498/1125$"
+          ],
+          "answer": 2,
+          "solution": "There are 8 odd and 7 even cards. $P=3\\left(\\tfrac{8}{15}\\right)^2\\left(\\tfrac{7}{15}\\right)=\\frac{1344}{3375}=\\frac{448}{1125}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-011",
+          "type": "mcq",
+          "question": "Three persons A, B and C are to speak at a function along with five others. If they all speak in random order, the probability that A speaks before B and B speaks before C is:",
+          "options": [
+            "$3/8$",
+            "$1/6$",
+            "$3/5$",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "All $3!$ relative orders of A, B, C are equally likely, and only one of them is A, B, C. $P=\\frac16$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-012",
+          "type": "mcq",
+          "question": "An elevator starts with $m$ passengers and stops at $n$ floors ($m\\le n$). The probability that no two passengers alight at the same floor is:",
+          "options": [
+            "$\\frac{{}^{n}P_{m}}{m^{n}}$",
+            "$\\frac{{}^{n}P_{m}}{n^{m}}$",
+            "$\\frac{{}^{n}C_{m}}{m^{n}}$",
+            "$\\frac{{}^{n}C_{m}}{n^{m}}$"
+          ],
+          "answer": 1,
+          "solution": "Total outcomes: each of the $m$ passengers picks one of $n$ floors, so $n^m$. Favourable: distinct floors for all, ${}^nP_m$. $P=\\frac{{}^nP_m}{n^m}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-013",
+          "type": "mcq",
+          "question": "There are $n$ persons sitting in a row. Two of them are selected at random. The probability that the two selected persons are not together is:",
+          "options": [
+            "$\\frac{2}{n}$",
+            "$1-\\frac{2}{n}$",
+            "$\\frac{n(n-1)}{(n+1)(n+2)}$",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "There are $n-1$ adjacent pairs among $\\binom n2$ pairs. $P(\\text{together})=\\frac{n-1}{n(n-1)/2}=\\frac2n$, so $P(\\text{not together})=1-\\frac2n$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-014",
+          "type": "mcq",
+          "question": "A and B play a game where each is asked to select a number from 1 to 25. If the two numbers match, both of them win a prize. The probability that they will not win a prize in a single trial is:",
+          "options": [
+            "$1/25$",
+            "$24/25$",
+            "$2/25$",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "$P(\\text{match})=\\frac{25}{25\\cdot25}=\\frac1{25}$, so $P(\\text{no prize})=\\frac{24}{25}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-015",
+          "type": "mcq",
+          "question": "Fifteen persons among whom are A and B, sit down randomly at a round table. The probability that there are 4 persons between A and B is:",
+          "options": [
+            "$\\frac{9!}{14!}$",
+            "$\\frac{10!}{14!}$",
+            "$\\frac{9!}{15!}$",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "Fix A. B can sit in 2 of the other 14 seats (4 persons between them on either side). $P=\\frac{2}{14}=\\frac17$ (equivalently $\\frac{2\\cdot13!}{14!}$), which matches none of the first three options.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-016",
+          "type": "mcq",
+          "question": "The probability that the $13^{th}$ day of a randomly chosen month is a second Saturday is:",
+          "options": [
+            "$1/7$",
+            "$1/12$",
+            "$1/84$",
+            "$19/84$"
+          ],
+          "answer": 0,
+          "solution": "The second Saturday falls between the 8th and 14th. So the 13th is the second Saturday iff the 13th is a Saturday, which has probability $\\frac17$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-017",
+          "type": "mcq",
+          "question": "Three of the six vertices of a regular hexagon are chosen at random. The probability that the triangle with these three vertices is equilateral is:",
+          "options": [
+            "$1/2$",
+            "$1/5$",
+            "$1/10$",
+            "$1/20$"
+          ],
+          "answer": 2,
+          "solution": "There are $\\binom63=20$ triangles and only 2 are equilateral (alternate vertices). $P=\\frac{2}{20}=\\frac1{10}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-pf-018",
+          "type": "mcq",
+          "question": "The probability that out of 10 persons, all born in April, at least two have the same birthday is:",
+          "options": [
+            "$\\frac{{}^{30}C_{10}}{(30)^{10}}$",
+            "$1-\\frac{{}^{30}C_{10}}{30!}$",
+            "$\\frac{(30)^{10}-{}^{30}C_{10}}{(30)^{10}}$",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "$P=1-P(\\text{all different})=1-\\frac{{}^{30}P_{10}}{30^{10}}=\\frac{30^{10}-{}^{30}P_{10}}{30^{10}}$. It uses permutations ${}^{30}P_{10}$, not combinations, so none of the three given expressions is correct.",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Probability: Classification of Events",
+      "questions": [
+        {
+          "id": "dpp-em-ce-001",
+          "type": "mcq",
+          "question": "If the probability that A and B will die within a year are $p$ and $q$ respectively (independently), then the probability that only one of them will be alive at the end of the year is:",
+          "options": [
+            "$p+q$",
+            "$p+q-2pq$",
+            "$p+q-pq$",
+            "$p+q+pq$"
+          ],
+          "answer": 1,
+          "solution": "Exactly one is alive means exactly one dies: $p(1-q)+q(1-p)=p+q-2pq$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-ce-002",
+          "type": "mcq",
+          "question": "If A and B each toss three coins, the probability that both get the same number of heads is:",
+          "options": [
+            "$1/9$",
+            "$3/16$",
+            "$5/16$",
+            "$3/8$"
+          ],
+          "answer": 2,
+          "solution": "$P=\\sum_{k=0}^{3}\\left[\\binom3k\\tfrac18\\right]^2=\\frac{1+9+9+1}{64}=\\frac{5}{16}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-ce-003",
+          "type": "msq",
+          "question": "If A and B are two independent events such that $P(\\overline{A}\\cap B)=2/15$ and $P(A\\cap\\overline{B})=1/6$, then $P(B)$ is (one or more options may be correct):",
+          "options": [
+            "$1/5$",
+            "$1/6$",
+            "$4/5$",
+            "$5/6$"
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Let $P(A)=a$, $P(B)=b$. Then $(1-a)b=\\tfrac2{15}$ and $a(1-b)=\\tfrac16$. Subtracting gives $a=b+\\tfrac1{30}$, so $30b^2-29b+4=0$ and $b=\\tfrac45$ or $\\tfrac16$. Both satisfy the conditions ($a=\\tfrac56$ or $a=\\tfrac15$ respectively).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-ce-004",
+          "type": "msq",
+          "question": "If A and B are two events, the probability that exactly one of them occurs is given by (one or more options may be correct):",
+          "options": [
+            "$P(A)+P(B)-2P(A\\cap B)$",
+            "$P(A\\cap\\overline{B})+P(\\overline{A}\\cap B)$",
+            "$P(A\\cup B)-P(A\\cap B)$",
+            "$P(\\overline{A})+P(\\overline{B})-2P(\\overline{A}\\cap\\overline{B})$"
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "Exactly one occurs $=(A\\cap\\overline B)\\cup(\\overline A\\cap B)$, which is option (b). Expanding gives $P(A)+P(B)-2P(A\\cap B)=P(A\\cup B)-P(A\\cap B)$. Using $P(\\overline A\\cap\\overline B)=1-P(A\\cup B)$, option (d) also reduces to the same expression. All four are correct.",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Probability: Random Variables",
+      "questions": [
+        {
+          "id": "dpp-em-rv-004",
+          "type": "nat",
+          "question": "A continuous random variable $X$ has density function: $f(x)=\\begin{cases}4-2x & 1\\le x<2 \\\\ 0 & \\text{elsewhere}\\end{cases}$. Find $P[0.25<X\\le1.25]$.",
+          "answer": 0.4375,
+          "tolerance": 0.0001,
+          "solution": "$P=\\int_{1}^{1.25}(4-2x)\\,dx=\\left[4x-x^2\\right]_1^{1.25}=(5-1.5625)-3=0.4375=\\frac7{16}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-005",
+          "type": "nat",
+          "question": "Let $X$ be a continuous random variable with probability density function $f(x)=\\frac{1}{2}e^{-|x-1|},\\ -\\infty<x<\\infty$. Find the value of $P(1<|X|<2)$. (Round to 4 decimal places.)",
+          "answer": 0.3588,
+          "tolerance": 0.0005,
+          "solution": "$P(1<|X|<2)=P(1<X<2)+P(-2<X<-1)=\\tfrac12(1-e^{-1})+\\tfrac12(e^{-2}-e^{-3})=\\tfrac12\\left(1-e^{-1}+e^{-2}-e^{-3}\\right)\\approx0.3588$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-006",
+          "type": "nat",
+          "question": "The probability density function of a random variable $X$ is given by $f(x)=\\begin{cases}\\frac{1}{4} & |x|\\le1 \\\\ \\frac{1}{4x^{2}} & \\text{otherwise}\\end{cases}$. Then $P\\left(-\\frac{1}{2}\\le X\\le2\\right)=$",
+          "answer": 0.5,
+          "tolerance": 0.0001,
+          "solution": "$P=\\int_{-1/2}^{1}\\tfrac14\\,dx+\\int_1^2\\frac{1}{4x^2}\\,dx=\\tfrac{3}{8}+\\tfrac14\\left(1-\\tfrac12\\right)=\\tfrac38+\\tfrac18=\\tfrac12$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-007",
+          "type": "nat",
+          "question": "Let $X$ be a continuous random variable with the probability density function $f(x)=\\begin{cases}\\frac{x}{8} & 0<x<2 \\\\ \\frac{k}{8} & 2\\le x\\le4 \\\\ \\frac{6-x}{8} & 4<x<6 \\\\ 0 & \\text{otherwise}\\end{cases}$ where $k$ is a real constant. Then $P(1<X<5)=$",
+          "answer": 0.875,
+          "tolerance": 0.0001,
+          "solution": "Normalisation: $\\tfrac14+\\tfrac k4+\\tfrac14=1$, so $k=2$. Then $P(1<X<5)=\\int_1^2\\tfrac x8dx+\\int_2^4\\tfrac28dx+\\int_4^5\\tfrac{6-x}8dx=\\tfrac3{16}+\\tfrac12+\\tfrac3{16}=\\tfrac78$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-011",
+          "type": "mcq",
+          "question": "Let $X$ be a continuous random variable with pdf $f(x)=\\begin{cases}kx^{3}e^{-x/2}, & x>0 \\\\ 0 & \\text{otherwise}\\end{cases}$. The value of $k$ is:",
+          "options": [
+            "$1/96$",
+            "$1/4$",
+            "$8/3$",
+            "$1/4$"
+          ],
+          "answer": 0,
+          "solution": "$\\int_0^\\infty x^3e^{-x/2}dx=\\Gamma(4)\\cdot2^4=6\\cdot16=96$. So $k=\\frac1{96}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-012",
+          "type": "mcq",
+          "question": "Let $X$ be a continuous random variable with pdf $f_X(x)=\\begin{cases}cx^{2}, & 0<x\\le1 \\\\ 0 & \\text{otherwise}\\end{cases}$ for some positive constant $c$. The value of $P\\left(X\\le\\frac{2}{3}\\,\\Big|\\,X>\\frac{1}{3}\\right)$ is:",
+          "options": [
+            "$3/26$",
+            "$5/26$",
+            "$7/26$",
+            "$11/26$"
+          ],
+          "answer": 2,
+          "solution": "$c=3$ and $F(x)=x^3$. $P=\\frac{F(2/3)-F(1/3)}{1-F(1/3)}=\\frac{8/27-1/27}{26/27}=\\frac7{26}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-013",
+          "type": "mcq",
+          "question": "Suppose the random variable $X$ has the probability density function $f(x)=\\begin{cases}ce^{x/3}, & x\\le0 \\\\ ce^{-x/3}, & x>0\\end{cases}$ for some positive constant $c$. The value of $P[X>6\\mid X>0]$ is:",
+          "options": [
+            "$e^{-2}$",
+            "$ce^{-2}$",
+            "$0$",
+            "$1-e^{-2}$"
+          ],
+          "answer": 0,
+          "solution": "For $x>0$ the tail is exponential: $P(X>6\\mid X>0)=\\frac{\\int_6^\\infty e^{-x/3}dx}{\\int_0^\\infty e^{-x/3}dx}=\\frac{3e^{-2}}{3}=e^{-2}$ (independent of $c$).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-014",
+          "type": "mcq",
+          "question": "Let $X$ be a discrete random variable with probability function $P(X=x)=\\frac{2}{3^{x}}$ for $x=1,2,3,\\dots$ What is the probability that $X$ is even?",
+          "options": [
+            "$\\frac14$",
+            "$\\frac27$",
+            "$\\frac13$",
+            "$\\frac23$"
+          ],
+          "answer": 0,
+          "solution": "$P=\\sum_{k\\ge1}\\frac{2}{3^{2k}}=2\\cdot\\frac{1/9}{1-1/9}=\\frac14$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-015",
+          "type": "mcq",
+          "question": "Let $f(x)=\\frac{k|x|}{(1+|x|)^{4}},\\ -\\infty<x<\\infty$. Then the value of $k$ for which $f(x)$ is a probability density function is:",
+          "options": [
+            "$\\frac16$",
+            "$\\frac12$",
+            "$3$",
+            "$6$"
+          ],
+          "answer": 2,
+          "solution": "$1=2k\\int_0^\\infty\\frac{x}{(1+x)^4}dx=2k\\,B(2,2)=2k\\cdot\\frac16$, so $k=3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-016",
+          "type": "mcq",
+          "question": "A random variable $X$ has a probability mass of $0.2$ at $X=0$ and a probability mass of $0.1$ at $X=1$. For all other values, $X$ has the density function $f(x)=\\begin{cases}0 & x<0 \\\\ x & 0<x<1 \\\\ 2x & 1\\le x<c \\\\ 0 & x\\ge c\\end{cases}$ where $c$ is a constant. Find $P(X<1\\mid X>0.5)$.",
+          "options": [
+            "$(0, 0.6)$",
+            "$(0.6, 0.7)$",
+            "$(0.7, 0.8)$",
+            "$(0.8, 0.9)$"
+          ],
+          "answer": 0,
+          "solution": "Total probability: $0.3+\\tfrac12+(c^2-1)=1$, so $c^2=1.2$. $P(0.5<X<1)=\\int_{0.5}^1x\\,dx=0.375$. $P(X>0.5)=0.375+0.1+(c^2-1)=0.675$. Ratio $=0.375/0.675\\approx0.556\\in(0,0.6)$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-017",
+          "type": "mcq",
+          "question": "The distribution function of a random variable $X$ is given by $F(x)=\\begin{cases}0 & x<0 \\\\ \\frac{1}{4} & 0\\le x<\\frac{1}{4} \\\\ \\frac{1}{2} & \\frac{1}{4}\\le x<\\frac{1}{2} \\\\ \\frac{3}{4} & \\frac{1}{2}\\le x<\\frac{3}{4} \\\\ \\frac{x+3}{5} & \\frac{3}{4}\\le x<2\\end{cases}$. Then $P\\left(\\frac{1}{4}\\le X\\le1\\right)$ is:",
+          "options": [
+            "$\\frac{1}{20}$",
+            "$\\frac{11}{20}$",
+            "$\\frac{7}{20}$",
+            "$\\frac{13}{20}$"
+          ],
+          "answer": 1,
+          "solution": "$P(\\tfrac14\\le X\\le1)=F(1)-F(\\tfrac14^-)=\\frac{1+3}{5}-\\frac14=\\frac{11}{20}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-019",
+          "type": "nat",
+          "question": "Let $X$ be a random variable with density $f(x)=\\frac{1}{4}e^{-|x|/2},\\ -\\infty<x<\\infty$. Then $E(|X|)=$",
+          "answer": 2,
+          "solution": "$E|X|=2\\int_0^\\infty x\\cdot\\tfrac14e^{-x/2}dx=\\tfrac12\\cdot\\Gamma(2)\\cdot2^2=2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-020",
+          "type": "mcq",
+          "question": "If $X$ is a random variable with density function $f(x)=\\begin{cases}1.4e^{-2x}+0.9e^{-3x}, & x>0 \\\\ 0 & \\text{elsewhere}\\end{cases}$, then $E[X]=$",
+          "options": [
+            "$\\frac{9}{20}$",
+            "$\\frac{5}{6}$",
+            "$1$",
+            "$\\frac{230}{126}$"
+          ],
+          "answer": 0,
+          "solution": "$E[X]=1.4\\int_0^\\infty xe^{-2x}dx+0.9\\int_0^\\infty xe^{-3x}dx=\\frac{1.4}{4}+\\frac{0.9}{9}=0.35+0.1=0.45=\\frac9{20}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-021",
+          "type": "mcq",
+          "question": "You are given a random variable $X$ such that its density is $f_X(x)=\\begin{cases}3x^{2} & 0<x<1 \\\\ 0 & \\text{otherwise}\\end{cases}$. A square with diagonal of length $X$ is constructed. Find the expected value of the area of that square.",
+          "options": [
+            "$0.1$",
+            "$0.25$",
+            "$\\frac47$",
+            "$0.3$"
+          ],
+          "answer": 3,
+          "solution": "Area $=\\frac{X^2}{2}$. $E[X^2]=\\int_0^1x^2\\cdot3x^2dx=\\frac35$, so $E[\\text{Area}]=\\frac3{10}=0.3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-022",
+          "type": "mcq",
+          "question": "$X$ has a distribution which is partly continuous and partly discrete: $f(x)=\\begin{cases}\\frac{1-p}{2} & 0<x<1 \\\\ p & x=1 \\\\ \\frac{1-p}{2} & 1<x<2 \\\\ 0 & \\text{otherwise}\\end{cases}$. Find the variance of $X$ in terms of $p$.",
+          "options": [
+            "$\\frac{1-p}{3}$",
+            "$\\frac{2-p}{3}$",
+            "$\\frac{1-p}{2}$",
+            "$\\frac{2-p}{2}$"
+          ],
+          "answer": 0,
+          "solution": "The distribution is symmetric about $1$, so $E[X]=1$ and $\\text{Var}(X)=E[(X-1)^2]=\\tfrac{1-p}{2}\\left(\\int_0^1(x-1)^2dx+\\int_1^2(x-1)^2dx\\right)=\\tfrac{1-p}{2}\\cdot\\tfrac23=\\frac{1-p}{3}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-023",
+          "type": "mcq",
+          "question": "$X$ has a mean of 2 and a variance of 4. $Y=aX+b$ has a mean of 5 and a variance of 1. What is $ab$, assuming that $a>0$?",
+          "options": [
+            "$1$",
+            "$2$",
+            "$3$",
+            "$4$"
+          ],
+          "answer": 1,
+          "solution": "$\\text{Var}(Y)=a^2\\cdot4=1$, so $a=\\tfrac12$. $E[Y]=2a+b=5$ gives $b=4$. So $ab=2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-024",
+          "type": "mcq",
+          "question": "Let $X$ be a random variable with $E(X)=5$ and $E(X^{2})=25$. Then $E\\left[(X+E(X))^{3}\\right]$ is:",
+          "options": [
+            "$0$",
+            "$125$",
+            "$1000$",
+            "$250$"
+          ],
+          "answer": 2,
+          "solution": "$\\text{Var}(X)=25-25=0$, so $X=5$ with probability 1. Then $(X+E(X))^3=10^3=1000$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-rv-025",
+          "type": "mcq",
+          "question": "Let $X$ be a continuous random variable with a probability density function symmetric about 0. If $V(X)<\\infty$, then which of the following statements is true?",
+          "options": [
+            "$E(|X|)=E(X)$",
+            "$V(|X|)=V(X)$",
+            "$V(|X|)<V(X)$",
+            "$V(|X|)>V(X)$"
+          ],
+          "answer": 2,
+          "solution": "By symmetry $E(X)=0$, so $V(X)=E(X^2)$. Also $V(|X|)=E(X^2)-(E|X|)^2=V(X)-(E|X|)^2<V(X)$ because $E|X|>0$.",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Single Variable Calculus",
+      "questions": [
+        {
+          "id": "dpp-em-calc-001",
+          "type": "mcq",
+          "question": "On the interval $[0, 1]$, the function $x^{25}(1-x)^{75}$ takes its maximum value at",
+          "options": [
+            "$0$",
+            "$1/2$",
+            "$1$",
+            "$1/4$"
+          ],
+          "answer": 3,
+          "solution": "Maximise $25\\ln x+75\\ln(1-x)$: $\\frac{25}{x}-\\frac{75}{1-x}=0$ gives $x=\\frac14$. The function is $0$ at both endpoints, so this is the maximum.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-002",
+          "type": "mcq",
+          "question": "The product of the minimum value of $x^{x}$ and the maximum value of $\\left(\\frac{1}{x}\\right)^{x}$ is",
+          "options": [
+            "$e$",
+            "$e^{-1}$",
+            "$1$",
+            "$e^{2}$"
+          ],
+          "answer": 2,
+          "solution": "$x^x$ has its minimum at $x=1/e$ with value $e^{-1/e}$. $(1/x)^x=1/x^x$ has its maximum at the same point with value $e^{1/e}$. The product is $1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-003",
+          "type": "mcq",
+          "question": "The minimum value of the function defined by $f(x) = \\max(x,\\ x+1,\\ 2-x)$ is",
+          "options": [
+            "$0$",
+            "$1/2$",
+            "$1$",
+            "$3/2$"
+          ],
+          "answer": 3,
+          "solution": "Since $x+1>x$, $f=\\max(x+1,\\,2-x)$. The two lines meet at $x=\\tfrac12$, giving the minimum value $\\tfrac32$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-004",
+          "type": "mcq",
+          "question": "The greatest and the least values of the function $f(x) = 2 - \\sqrt{1+2x+x^{2}}$ for $x \\in [-2, 1]$ are",
+          "options": [
+            "$2, 1$",
+            "$2, -1$",
+            "$2, 0$",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "$f(x)=2-|x+1|$. The maximum is $2$ at $x=-1$. At the endpoints $f(-2)=1$ and $f(1)=0$, so the least value is $0$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-005",
+          "type": "mcq",
+          "question": "The difference between the greatest and least values of the function $f(x) = \\sin 2x - x$ on $[-\\pi/2, \\pi/2]$ is",
+          "options": [
+            "$\\frac{\\sqrt{3}+\\sqrt{2}}{2}$",
+            "$\\frac{\\sqrt{3}+\\sqrt{2}}{2} + \\frac{\\pi}{6}$",
+            "$\\frac{\\pi}{2}$",
+            "$\\pi$"
+          ],
+          "answer": 3,
+          "solution": "$f'(x)=2\\cos2x-1=0$ at $x=\\pm\\frac\\pi6$, giving $f=\\pm\\left(\\frac{\\sqrt3}{2}-\\frac\\pi6\\right)\\approx\\pm0.342$. Endpoints: $f(\\pm\\frac\\pi2)=\\mp\\frac\\pi2$. Greatest $=\\frac\\pi2$, least $=-\\frac\\pi2$, difference $=\\pi$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-006",
+          "type": "mcq",
+          "question": "If $p$ and $q$ are positive real numbers such that $p^{2}+q^{2}=1$, then the maximum value of $(p+q)$ is",
+          "options": [
+            "$2$",
+            "$1/2$",
+            "$\\frac{1}{\\sqrt{2}}$",
+            "$\\sqrt{2}$"
+          ],
+          "answer": 3,
+          "solution": "With $p=\\cos\\theta$, $q=\\sin\\theta$: $p+q=\\sqrt2\\sin(\\theta+\\tfrac\\pi4)\\le\\sqrt2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-007",
+          "type": "mcq",
+          "question": "If $x$ is real, the maximum value of $\\frac{3x^{2}+9x+17}{3x^{2}+9x+7}$ is",
+          "options": [
+            "$41$",
+            "$1$",
+            "$17/7$",
+            "$1/4$"
+          ],
+          "answer": 0,
+          "solution": "The expression equals $1+\\frac{10}{3x^2+9x+7}$. The minimum of $3x^2+9x+7$ is $\\tfrac14$ (at $x=-\\tfrac32$), so the maximum is $1+40=41$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-008",
+          "type": "mcq",
+          "question": "The maximum value of $x^{3}-3x$ in the interval $[0, 2]$ is",
+          "options": [
+            "$1$",
+            "$2$",
+            "$0$",
+            "$-2$"
+          ],
+          "answer": 1,
+          "solution": "Critical point $x=1$ gives $-2$. Endpoints: $f(0)=0$, $f(2)=2$. Maximum $=2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-009",
+          "type": "mcq",
+          "question": "The minimum value of $\\frac{1}{3\\sin\\theta - 4\\cos\\theta + 7}$ is",
+          "options": [
+            "$\\frac{7}{12}$",
+            "$\\frac{5}{12}$",
+            "$\\frac{1}{12}$",
+            "$\\frac{1}{6}$"
+          ],
+          "answer": 2,
+          "solution": "$3\\sin\\theta-4\\cos\\theta$ ranges over $[-5,5]$, so the denominator's maximum is $12$, and the reciprocal's minimum is $\\frac1{12}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-010",
+          "type": "mcq",
+          "question": "The number of values of $x$ where $f(x) = \\cos x + \\cos\\sqrt{2}x$ attains its maximum value is",
+          "options": [
+            "$1$",
+            "$0$",
+            "$2$",
+            "infinite"
+          ],
+          "answer": 0,
+          "solution": "The maximum value $2$ needs $\\cos x=\\cos\\sqrt2x=1$, i.e. $x=2\\pi m$ and $\\sqrt2x=2\\pi n$. Since $\\sqrt2$ is irrational, only $x=0$ works.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-011",
+          "type": "mcq",
+          "question": "The greatest value of $f(x) = (x+1)^{1/3} - (x-1)^{1/3}$ in $[0, 1]$ is",
+          "options": [
+            "$1$",
+            "$2$",
+            "$3$",
+            "$2^{1/3}$"
+          ],
+          "answer": 1,
+          "solution": "$f'(x)=\\frac13\\left[(x+1)^{-2/3}-(x-1)^{-2/3}\\right]<0$ on $[0,1)$, so $f$ is decreasing and the greatest value is $f(0)=1-(-1)=2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-012",
+          "type": "mcq",
+          "question": "If $\\int_{1}^{x}\\frac{dt}{|t|\\sqrt{t^{2}-1}} = \\frac{\\pi}{6}$, then $x$ can be equal to",
+          "options": [
+            "$\\frac{2}{\\sqrt{3}}$",
+            "$\\sqrt{3}$",
+            "$2$",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "For $x>1$ the integral is $\\sec^{-1}x$. $\\sec^{-1}x=\\frac\\pi6$ gives $x=\\sec\\frac\\pi6=\\frac2{\\sqrt3}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-013",
+          "type": "mcq",
+          "question": "If $f(x) = \\begin{cases} x, & x < 1 \\\\ x-1, & x \\ge 1 \\end{cases}$, then $\\int_{0}^{2}x^{2}f(x)\\,dx$ is equal to",
+          "options": [
+            "$1$",
+            "$4/3$",
+            "$5/3$",
+            "$5/2$"
+          ],
+          "answer": 2,
+          "solution": "$\\int_0^1x^3dx+\\int_1^2x^2(x-1)dx=\\frac14+\\left[\\frac{x^4}4-\\frac{x^3}3\\right]_1^2=\\frac14+\\frac43+\\frac1{12}=\\frac53$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-014",
+          "type": "mcq",
+          "question": "$\\int_{0}^{\\pi}|1+2\\cos x|\\,dx$ is equal to:",
+          "options": [
+            "$2\\pi/3$",
+            "$\\pi$",
+            "$2$",
+            "$\\frac{\\pi}{3} + 2\\sqrt{3}$"
+          ],
+          "answer": 3,
+          "solution": "$1+2\\cos x=0$ at $x=\\frac{2\\pi}3$. $\\int_0^{2\\pi/3}(1+2\\cos x)dx=\\frac{2\\pi}3+\\sqrt3$ and $\\int_{2\\pi/3}^{\\pi}-(1+2\\cos x)dx=\\sqrt3-\\frac\\pi3$. Total $=\\frac\\pi3+2\\sqrt3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-015",
+          "type": "mcq",
+          "question": "The value of $\\int_{-1}^{3}\\left(|x-2| + [x]\\right)dx$ is equal to (where $[\\cdot]$ denotes the greatest integer function)",
+          "options": [
+            "$7$",
+            "$5$",
+            "$4$",
+            "$3$"
+          ],
+          "answer": 0,
+          "solution": "$\\int_{-1}^3|x-2|dx=\\frac92+\\frac12=5$. $\\int_{-1}^3[x]dx=(-1)+0+1+2=2$. Total $=7$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-016",
+          "type": "mcq",
+          "question": "If $\\int_{-1}^{3/2}|x\\sin\\pi x|\\,dx = \\frac{k}{\\pi^{2}}$, then the value of $k$ is",
+          "options": [
+            "$3\\pi+1$",
+            "$2\\pi+1$",
+            "$1$",
+            "$4$"
+          ],
+          "answer": 0,
+          "solution": "$x\\sin\\pi x\\ge0$ on $[-1,1]$ and $\\le0$ on $[1,\\tfrac32]$. With $\\int x\\sin\\pi x\\,dx=-\\frac{x\\cos\\pi x}{\\pi}+\\frac{\\sin\\pi x}{\\pi^2}$: $\\int_{-1}^1=\\frac2\\pi$ and $\\int_1^{3/2}=-\\frac1\\pi-\\frac1{\\pi^2}$. Total $=\\frac3\\pi+\\frac1{\\pi^2}=\\frac{3\\pi+1}{\\pi^2}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-017",
+          "type": "mcq",
+          "question": "$\\int_{\\log(\\pi/2)}^{\\log\\pi}\\frac{e^{x}}{1-\\cos\\left(\\frac{2}{3}e^{x}\\right)}\\,dx$ is equal to",
+          "options": [
+            "$\\sqrt{3}$",
+            "$-\\sqrt{3}$",
+            "$\\frac{1}{\\sqrt{3}}$",
+            "$-\\frac{1}{\\sqrt{3}}$"
+          ],
+          "answer": 0,
+          "solution": "Put $u=e^x$: $\\int_{\\pi/2}^{\\pi}\\frac{du}{2\\sin^2(u/3)}=\\left[-\\frac32\\cot\\frac u3\\right]_{\\pi/2}^{\\pi}=-\\frac32\\left(\\frac1{\\sqrt3}-\\sqrt3\\right)=\\sqrt3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-018",
+          "type": "mcq",
+          "question": "If $I_{1} = \\int_{e}^{e^{2}}\\frac{dx}{\\ln x}$ and $I_{2} = \\int_{1}^{2}\\frac{e^{x}}{x}\\,dx$, then",
+          "options": [
+            "$I_{1} = I_{2}$",
+            "$2I_{1} = I_{2}$",
+            "$I_{1} = 2I_{2}$",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "In $I_1$ put $x=e^t$: $dx=e^tdt$, limits $1$ to $2$, giving $\\int_1^2\\frac{e^t}{t}dt=I_2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-019",
+          "type": "mcq",
+          "question": "$\\int_{2-\\log 3}^{3+\\log 3}\\frac{\\log(4+x)}{\\log(4+x)+\\log(9-x)}\\,dx$",
+          "options": [
+            "Cannot be evaluated",
+            "Is equal to $5/2$",
+            "Is equal to $1+2\\log 3$",
+            "Is equal to $\\frac{1}{2}+\\log 3$"
+          ],
+          "answer": 3,
+          "solution": "Limits sum to $5$ and $x\\to5-x$ swaps $\\log(4+x)$ and $\\log(9-x)$. Hence $2I=\\int1\\,dx=(3+\\log3)-(2-\\log3)=1+2\\log3$, so $I=\\frac12+\\log3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-020",
+          "type": "mcq",
+          "question": "$\\int_{0}^{\\infty}[2e^{-x}]\\,dx$ is equal to (where $[\\cdot]$ denotes the greatest integer function)",
+          "options": [
+            "$0$",
+            "$\\ln 2$",
+            "$e^{2}$",
+            "$2e^{-1}$"
+          ],
+          "answer": 1,
+          "solution": "$[2e^{-x}]=1$ when $1\\le2e^{-x}<2$, i.e. $0<x\\le\\ln2$, and $0$ for $x>\\ln2$. The integral is $\\ln2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-021",
+          "type": "mcq",
+          "question": "If $\\int_{0}^{\\infty}e^{-x^{2}}dx = \\frac{\\sqrt{\\pi}}{2}$, then $\\int_{0}^{\\infty}e^{-ax^{2}}dx$ where $a>0$ is",
+          "options": [
+            "$\\frac{\\sqrt{\\pi}}{2}$",
+            "$\\frac{\\sqrt{\\pi}}{2a}$",
+            "$2\\frac{\\sqrt{\\pi}}{a}$",
+            "$\\frac{1}{2}\\sqrt{\\frac{\\pi}{a}}$"
+          ],
+          "answer": 3,
+          "solution": "Put $u=\\sqrt a\\,x$: $\\int_0^\\infty e^{-ax^2}dx=\\frac1{\\sqrt a}\\cdot\\frac{\\sqrt\\pi}2=\\frac12\\sqrt{\\frac\\pi a}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-022",
+          "type": "mcq",
+          "question": "The expression $\\frac{\\int_{0}^{n}[x]\\,dx}{\\int_{0}^{n}\\{x\\}\\,dx}$ is equal to (where $[\\cdot]$ and $\\{\\cdot\\}$ denote the greatest integer function and fractional part function, and $n \\in \\mathbb{N}$)",
+          "options": [
+            "$\\frac{1}{n-1}$",
+            "$\\frac{1}{n}$",
+            "$n$",
+            "$n-1$"
+          ],
+          "answer": 3,
+          "solution": "$\\int_0^n[x]dx=\\frac{n(n-1)}2$ and $\\int_0^n\\{x\\}dx=\\frac n2$. The ratio is $n-1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-023",
+          "type": "mcq",
+          "question": "Let $A = \\int_{0}^{1}\\frac{e^{t}}{1+t}\\,dt$. Then $\\int_{a-1}^{a}\\frac{e^{-t}}{t-a-1}\\,dt$ has the value",
+          "options": [
+            "$Ae^{-a}$",
+            "$-Ae^{-a}$",
+            "$-ae^{-a}$",
+            "$Ae^{a}$"
+          ],
+          "answer": 1,
+          "solution": "Put $t=a-u$: the integral becomes $\\int_1^0\\frac{e^{-a}e^{u}}{u+1}du=-e^{-a}\\int_0^1\\frac{e^u}{1+u}du=-Ae^{-a}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-024",
+          "type": "mcq",
+          "question": "$\\int_{0}^{\\pi}x\\,f(\\sin x)\\,dx$ is equal to",
+          "options": [
+            "$\\pi\\int_{0}^{\\pi}f(\\sin x)\\,dx$",
+            "$\\frac{\\pi}{2}\\int_{0}^{\\pi/2}f(\\sin x)\\,dx$",
+            "$\\pi\\int_{0}^{\\pi/2}f(\\cos x)\\,dx$",
+            "$\\pi\\int_{0}^{\\pi}f(\\cos x)\\,dx$"
+          ],
+          "answer": 2,
+          "solution": "By the property $x\\to\\pi-x$: $\\int_0^\\pi xf(\\sin x)dx=\\frac\\pi2\\int_0^\\pi f(\\sin x)dx=\\pi\\int_0^{\\pi/2}f(\\sin x)dx=\\pi\\int_0^{\\pi/2}f(\\cos x)dx$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-025",
+          "type": "mcq",
+          "question": "Let $f: \\mathbb{R} \\to \\mathbb{R}$ be a differentiable function having $f(2)=6$, $f'(2)=\\frac{1}{48}$. Then $\\lim_{x\\to 2}\\int_{6}^{f(x)}\\frac{4t^{3}}{x-2}\\,dt$ equals",
+          "options": [
+            "$18$",
+            "$12$",
+            "$36$",
+            "$24$"
+          ],
+          "answer": 0,
+          "solution": "$\\int_6^{f(x)}4t^3dt=f(x)^4-6^4$. The limit is $\\frac{d}{dx}f(x)^4\\Big|_{x=2}=4f(2)^3f'(2)=4\\cdot216\\cdot\\frac1{48}=18$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-026",
+          "type": "mcq",
+          "question": "The value of $\\int_{0}^{\\pi/2}\\frac{(\\sin x+\\cos x)^{2}}{\\sqrt{1+\\sin 2x}}\\,dx$ is",
+          "options": [
+            "$0$",
+            "$1$",
+            "$2$",
+            "$3$"
+          ],
+          "answer": 2,
+          "solution": "$1+\\sin2x=(\\sin x+\\cos x)^2$, so the integrand is $\\sin x+\\cos x$ on $[0,\\tfrac\\pi2]$. $\\int_0^{\\pi/2}(\\sin x+\\cos x)dx=2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-027",
+          "type": "mcq",
+          "question": "If $f(a+b-x)=f(x)$, then $\\int_{a}^{b}x\\,f(x)\\,dx$ is equal to",
+          "options": [
+            "$\\frac{a+b}{2}\\int_{a}^{b}f(b-x)\\,dx$",
+            "$\\frac{a+b}{2}\\int_{a}^{b}f(x)\\,dx$",
+            "$\\frac{b-a}{2}\\int_{a}^{b}f(x)\\,dx$",
+            "$\\frac{a+b}{2}\\int_{a}^{b}f(a+b+x)\\,dx$"
+          ],
+          "answer": 1,
+          "solution": "With $x\\to a+b-x$: $I=\\int(a+b-x)f(x)dx$, so $2I=(a+b)\\int_a^bf(x)dx$ and $I=\\frac{a+b}2\\int_a^bf(x)dx$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-028",
+          "type": "mcq",
+          "question": "The value of $\\lim_{x\\to 0}\\frac{\\int_{0}^{x^{2}}\\sec^{2}t\\,dt}{x\\sin x}$ is",
+          "options": [
+            "$3$",
+            "$2$",
+            "$1$",
+            "$-1$"
+          ],
+          "answer": 2,
+          "solution": "The numerator is $\\tan(x^2)\\sim x^2$ and the denominator is $x\\sin x\\sim x^2$. The limit is $1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-029",
+          "type": "mcq",
+          "question": "If $\\int_{\\sin x}^{1}t^{2}f(t)\\,dt = 1-\\sin x$ for all $x \\in (0, \\pi/2)$, then $f\\left(\\frac{1}{\\sqrt{3}}\\right)$ is",
+          "options": [
+            "$3$",
+            "$\\sqrt{3}$",
+            "$1/3$",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "Differentiate: $-\\sin^2x\\,f(\\sin x)\\cos x=-\\cos x$, so $f(\\sin x)=\\frac1{\\sin^2x}$ and $f(s)=\\frac1{s^2}$. Then $f\\left(\\frac1{\\sqrt3}\\right)=3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-030",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to 0}\\frac{\\int_{0}^{x^{2}}\\cos t^{2}\\,dt}{x\\sin x}$ is equal to",
+          "options": [
+            "$-1$",
+            "$1$",
+            "$2$",
+            "$-2$"
+          ],
+          "answer": 1,
+          "solution": "By L'Hopital: $\\frac{2x\\cos(x^4)}{\\sin x+x\\cos x}\\to\\frac{2x}{2x}=1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-031",
+          "type": "mcq",
+          "question": "If $\\int_{\\ln 2}^{x}\\frac{dx}{\\sqrt{e^{x}-1}}=\\frac{\\pi}{6}$, then $x=$",
+          "options": [
+            "$4$",
+            "$\\ln 8$",
+            "$\\ln 4$",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Put $u=\\sqrt{e^x-1}$: the integral becomes $2\\arctan u\\,\\Big|_{1}^{u}=\\frac\\pi6$, so $\\arctan u=\\frac\\pi3$, $u=\\sqrt3$, $e^x=4$ and $x=\\ln4$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-032",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to\\infty}\\left(\\frac{x^{2}-2x+1}{x^{2}-4x+2}\\right)^{x}=$",
+          "options": [
+            "$1$",
+            "$2$",
+            "$e^{2}$",
+            "$e$"
+          ],
+          "answer": 2,
+          "solution": "$1^\\infty$ form: exponent limit $=\\lim x\\cdot\\frac{2x-1}{x^2-4x+2}=2$. The limit is $e^2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-033",
+          "type": "mcq",
+          "question": "If $\\alpha$ and $\\beta$ are the roots of $ax^{2}+bx+c=0$, then $\\lim_{x\\to\\alpha}\\left(1+ax^{2}+bx+c\\right)^{\\frac{1}{x-\\alpha}}$ is",
+          "options": [
+            "$a(\\alpha-\\beta)$",
+            "$\\ln|a(\\alpha-\\beta)|$",
+            "$e^{a(\\alpha-\\beta)}$",
+            "$e^{a|\\alpha-\\beta|}$"
+          ],
+          "answer": 2,
+          "solution": "$ax^2+bx+c=a(x-\\alpha)(x-\\beta)$. The exponent limit is $\\lim\\frac{a(x-\\alpha)(x-\\beta)}{x-\\alpha}=a(\\alpha-\\beta)$, so the limit is $e^{a(\\alpha-\\beta)}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-034",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to\\pi/2}\\frac{2^{-\\cos x}-1}{x(x-\\pi/2)}=$",
+          "options": [
+            "$\\frac{2\\ln 2}{\\pi}$",
+            "$\\ln 2$",
+            "$2/\\pi$",
+            "Does not exist"
+          ],
+          "answer": 0,
+          "solution": "Let $h=x-\\frac\\pi2$: $-\\cos x=\\sin h\\approx h$, so $2^{-\\cos x}-1\\approx h\\ln2$. The limit is $\\frac{\\ln2}{\\pi/2}=\\frac{2\\ln2}{\\pi}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-035",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to\\pi/2}\\frac{\\left(1-\\tan\\frac{x}{2}\\right)(1-\\sin x)}{\\left(1+\\tan\\frac{x}{2}\\right)(\\pi-2x)^{3}}$ is",
+          "options": [
+            "$1/16$",
+            "$-1/16$",
+            "$1/32$",
+            "$-1/32$"
+          ],
+          "answer": 2,
+          "solution": "Let $\\theta=\\frac\\pi2-x$. $\\frac{1-\\tan(\\frac\\pi4-\\frac\\theta2)}{1+\\tan(\\frac\\pi4-\\frac\\theta2)}=\\tan\\frac\\theta2\\approx\\frac\\theta2$, $1-\\sin x=1-\\cos\\theta\\approx\\frac{\\theta^2}2$, $(\\pi-2x)^3=8\\theta^3$. Limit $=\\frac{\\theta^3/4}{8\\theta^3}=\\frac1{32}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-036",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to 0}(\\cos mx)^{\\frac{n}{x^{2}}}=$",
+          "options": [
+            "$e^{-m^{2}n/4}$",
+            "$e^{-m^{2}n/2}$",
+            "$e^{-mn^{2}/2}$",
+            "$e^{-mn^{2}/4}$"
+          ],
+          "answer": 1,
+          "solution": "$\\ln\\cos mx\\approx-\\frac{m^2x^2}{2}$, so the exponent tends to $-\\frac{m^2n}{2}$. The limit is $e^{-m^2n/2}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-037",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to 0}\\frac{(4^{x}-1)^{3}}{\\sin\\left(\\frac{x}{p}\\right)\\ln\\left(1+\\frac{x^{2}}{3}\\right)}=$",
+          "options": [
+            "$9p(\\log 4)$",
+            "$3p(\\log 4)^{3}$",
+            "$12p(\\log 4)^{3}$",
+            "$27p(\\log 4)^{2}$"
+          ],
+          "answer": 1,
+          "solution": "Numerator $\\sim(x\\ln4)^3$. Denominator $\\sim\\frac xp\\cdot\\frac{x^2}3=\\frac{x^3}{3p}$. Limit $=3p(\\ln4)^3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-038",
+          "type": "mcq",
+          "question": "Evaluate $\\lim_{n\\to\\infty}\\left(\\frac{1}{\\sqrt{n^{2}}}+\\frac{1}{\\sqrt{n^{2}+1}}+\\frac{1}{\\sqrt{n^{2}+2}}+\\dots+\\frac{1}{\\sqrt{n^{2}+2n}}\\right)$",
+          "options": [
+            "$1$",
+            "$1/2$",
+            "$0$",
+            "$2$"
+          ],
+          "answer": 3,
+          "solution": "There are $2n+1$ terms, each between $\\frac1{\\sqrt{n^2+2n}}$ and $\\frac1n$. Both bounds give $\\frac{2n+1}{n}\\to2$ in the limit (squeeze theorem).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-039",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to\\infty}\\left(\\frac{x^{2}+5x+3}{x^{2}+x+3}\\right)^{x}$ is equal to",
+          "options": [
+            "$e^{4}$",
+            "$e^{2}$",
+            "$e^{3}$",
+            "$e$"
+          ],
+          "answer": 0,
+          "solution": "$1^\\infty$ form: exponent $=\\lim x\\cdot\\frac{4x}{x^2+x+3}=4$. The limit is $e^4$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-040",
+          "type": "mcq",
+          "question": "Let $\\alpha$ and $\\beta$ be the distinct roots of $ax^{2}+bx+c=0$. Then $\\lim_{x\\to\\alpha}\\frac{1-\\cos(ax^{2}+bx+c)}{(x-\\alpha)^{2}}$ is equal to",
+          "options": [
+            "$\\frac{1}{2}(\\alpha-\\beta)^{2}$",
+            "$-\\frac{a^{2}}{2}(\\alpha-\\beta)^{2}$",
+            "$0$",
+            "$\\frac{a^{2}}{2}(\\alpha-\\beta)^{2}$"
+          ],
+          "answer": 3,
+          "solution": "With $u=a(x-\\alpha)(x-\\beta)\\to0$: $1-\\cos u\\approx\\frac{u^2}2$, so the limit is $\\frac{a^2(\\alpha-\\beta)^2}{2}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-041",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to 0}\\left(\\cot\\left(\\frac{\\pi}{4}+x\\right)\\right)^{\\csc x}=$",
+          "options": [
+            "$e^{-1}$",
+            "$e^{2}$",
+            "$e^{-2}$",
+            "$e^{1}$"
+          ],
+          "answer": 2,
+          "solution": "$\\cot(\\frac\\pi4+x)=\\frac{1-\\tan x}{1+\\tan x}\\approx1-2x$. Exponent: $\\frac{-2x}{\\sin x}\\to-2$. The limit is $e^{-2}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-042",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to\\infty}\\left(\\sin\\frac{1}{x}+\\cos\\frac{1}{x}\\right)^{x}=$",
+          "options": [
+            "$e$",
+            "$e^{2}$",
+            "$1/e$",
+            "does not exist"
+          ],
+          "answer": 0,
+          "solution": "Let $h=\\frac1x\\to0$: $\\sin h+\\cos h\\approx1+h$, so $(1+h)^{1/h}\\to e$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-043",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to 0}\\frac{\\sin(6x^{2})}{\\ln\\cos(2x^{2}-x)}=$",
+          "options": [
+            "$12$",
+            "$-12$",
+            "$6$",
+            "$-6$"
+          ],
+          "answer": 1,
+          "solution": "Numerator $\\sim6x^2$. $\\ln\\cos u\\approx-\\frac{u^2}{2}$ with $u=2x^2-x\\approx-x$, so the denominator $\\sim-\\frac{x^2}2$. Limit $=\\frac{6x^2}{-x^2/2}=-12$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-em-calc-044",
+          "type": "mcq",
+          "question": "$\\lim_{x\\to 0}\\frac{e^{-x^{2}/2}-\\cos x}{x^{3}\\sin x}=$",
+          "options": [
+            "$1/4$",
+            "$1/6$",
+            "$1/12$",
+            "$1/8$"
+          ],
+          "answer": 2,
+          "solution": "$e^{-x^2/2}=1-\\frac{x^2}2+\\frac{x^4}8-\\dots$ and $\\cos x=1-\\frac{x^2}2+\\frac{x^4}{24}-\\dots$. The difference is $\\frac{x^4}{12}$ and the denominator is $x^4$. Limit $=\\frac1{12}$.",
+          "source": "DPP"
+        }
+      ]
+    }
+  ]
 }
