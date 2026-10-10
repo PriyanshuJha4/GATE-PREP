@@ -1,4 +1,1829 @@
 {
-  "title": "c-programming - DPP",
-  "chapters": []
+  "title": "C Programming DPP Questions",
+  "chapters": [
+    {
+      "title": "Data Types and Operators — DPP 01",
+      "questions": [
+        {
+          "id": "dpp-dt01-01",
+          "title": "Valid declarations",
+          "type": "mcq",
+          "question": "Consider the following declarations:\n\n`P: signed short x;`\n\n`Q: unsigned long long int x;`\n\nWhich of the given declarations is/are CORRECT?",
+          "options": [
+            "Only P",
+            "Only Q",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 2,
+          "solution": "Both are valid C declarations. `signed short x;` is the same as `short int x;`, and `unsigned long long int x;` is a valid unsigned 64-bit (at least) integer type.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-dt01-02",
+          "title": "2-byte int overflow",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    int x = 32769;\n    printf(\"%d\", x);\n    return 0;\n}\n```\n\nAssume `int` is 2 bytes. The value printed is ______.",
+          "answer": -32767,
+          "solution": "A 2-byte signed `int` holds $-32768$ to $32767$. The value $32769$ does not fit and wraps around: $32769-65536=-32767$.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-dt01-03",
+          "title": "char overflow",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    char ch = 141;\n    printf(\"%d\", ch);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "Compiler Error",
+            "-115",
+            "-128",
+            "141"
+          ],
+          "answer": 1,
+          "solution": "Plain `char` is treated as a signed 8-bit type here (range $-128$ to $127$). $141-256=-115$, so `printf(\"%d\", ch)` prints `-115`.\n\n> Whether plain `char` is signed is implementation-defined; GATE assumes signed.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-dt01-04",
+          "title": "char wrap-around",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    char ch = -134;\n    printf(\"%c\", ch);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "A",
+            "Garbage",
+            "Compiler Error",
+            "z"
+          ],
+          "answer": 3,
+          "solution": "$-134$ is below $-128$, so it wraps modulo 256: $-134+256=122$. ASCII 122 is `z`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-dt01-05",
+          "title": "char arithmetic overflow",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    char ch = 125;\n    ch = ch + 6;\n    printf(\"%d\", ch);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": -125,
+          "solution": "$125+6=131$ does not fit in a signed `char` (max 127), so it wraps: $131-256=-125$.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-dt01-06",
+          "title": "2-byte int underflow",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    int x = -32769;\n    printf(\"%d\", x);\n    return 0;\n}\n```\n\nAssume `int` is 2 bytes. The output is ______.",
+          "answer": 32767,
+          "solution": "$-32769$ is below the 2-byte minimum $-32768$, so it wraps: $-32769+65536=32767$.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-dt01-07",
+          "title": "C standard and sizes",
+          "type": "mcq",
+          "question": "Consider the following two statements:\n\n`P: C standard specifies fixed number of bytes for every data type.`\n\n`Q: The size order for int, short and long data type is short < int < long`\n\nWhich of the following statements is/are CORRECT?",
+          "options": [
+            "Only P",
+            "Only Q",
+            "Neither P nor Q",
+            "Both P and Q"
+          ],
+          "answer": 2,
+          "solution": "**P is false:** the standard only gives minimum ranges, so sizes depend on the implementation. **Q is false:** the standard only guarantees `sizeof(short) <= sizeof(int) <= sizeof(long)`; the sizes may be equal, so the strict `<` is not guaranteed.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-dt01-08",
+          "title": "Signed short declarations",
+          "type": "msq",
+          "question": "Which of the following is/are valid declaration of a signed short integer?",
+          "options": [
+            "`short int a;`",
+            "`short a;`",
+            "`signed short a;`",
+            "`signed short int a;`"
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "All four forms are equivalent. `short`, `short int`, `signed short` and `signed short int` all declare a signed short integer.",
+          "marks": 2,
+          "source": "DPP-01"
+        }
+      ]
+    },
+    {
+      "title": "Data Types and Operators — DPP 02",
+      "questions": [
+        {
+          "id": "dpp-dt02-01",
+          "title": "Mixed int/double expression",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main(void) {\n    int a;\n    a = 2 * 6 / 5 + 3.0 / 2 + 1;\n    printf(\"%d\", a);\n    return 0;\n}\n```\n\nThe value of a is:",
+          "options": [
+            "4.9",
+            "4.0",
+            "4.5",
+            "4"
+          ],
+          "answer": 3,
+          "solution": "`2*6/5` = `12/5` = `2` (integer division). `3.0/2` = `1.5`. So the expression is `2 + 1.5 + 1 = 4.5`. Assigning to an `int` truncates it to `4`, and `%d` prints `4`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-dt02-02",
+          "title": "% on double",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main(void) {\n    int a;\n    a = 16.0 / 4 * 5 % 3;\n    printf(\"%d\", a);\n    return 0;\n}\n```\n\nThe value of a printed is:",
+          "options": [
+            "Compiler error",
+            "8.0",
+            "2",
+            "8"
+          ],
+          "answer": 0,
+          "solution": "`/`, `*` and `%` have the same precedence and associate left to right: `16.0/4` = `4.0` (double), `4.0*5` = `20.0` (double), then `20.0 % 3` applies `%` to a `double` operand, which is not allowed in C. This is a **compile-time error**.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-dt02-03",
+          "title": "Chained relational operators",
+          "type": "nat",
+          "question": "Consider the following program.\n\n```c\n#include <stdio.h>\nvoid main()\n{\n    int a;\n    a = 32 > 24 > 13 > 10 > 8 > -1 > 0;\n    printf(\"%d\", a);\n}\n```\n\nThe output is ______.",
+          "answer": 1,
+          "solution": "Relational operators associate left to right: `32>24` = `1`, `1>13` = `0`, `0>10` = `0`, `0>8` = `0`, `0>-1` = `1`, `1>0` = `1`. So `a = 1`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-dt02-04",
+          "title": "Relational vs equality precedence",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nvoid main()\n{\n    int a;\n    a = 25 > 15 > 0 != 12 < 45 > 42 != 65;\n    printf(\"%d\", a);\n}\n```\n\nThe output is ______.",
+          "answer": 1,
+          "solution": "Relational operators (`>`, `<`) have higher precedence than equality operators (`!=`). So the expression is `((25>15>0) != (12<45>42)) != 65`.\n\n- `25>15` = `1`, `1>0` = `1`\n- `12<45` = `1`, `1>42` = `0`\n- `1 != 0` = `1`, then `1 != 65` = `1`\n\nSo `a = 1`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-dt02-05",
+          "title": "Logical AND with assignments",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid main()\n{\n    int a = 0, b = 1;\n    a = (a = 5) && (b = 0);\n    printf(\"%d\", a);\n    printf(\"%d\", b);\n}\n```\n\nThe output is:",
+          "options": [
+            "50",
+            "00",
+            "10",
+            "Compiler error"
+          ],
+          "answer": 1,
+          "solution": "`(a = 5)` is `5` (true), so the right side `(b = 0)` is evaluated: `b` becomes `0` and the value is `0` (false). So `5 && 0` = `0`, which is assigned to `a`. Output: `a = 0`, `b = 0` → `00`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-dt02-06",
+          "title": "Modulus operator facts",
+          "type": "mcq",
+          "question": "Consider the following statements:\n\n`P: The precedence of the modulus operator is higher than multiplication or division operator.`\n\n`Q: The result of the modulus operator contains the sign of the second operand.`\n\nWhich of the following statements is/are INCORRECT?",
+          "options": [
+            "Only P",
+            "Only Q",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 2,
+          "solution": "**P is incorrect:** `*`, `/` and `%` have the *same* precedence (left to right). **Q is incorrect:** in C99 and later, the result of `%` has the sign of the *first* operand (the dividend), e.g. `-7 % 3 = -1` and `7 % -3 = 1`. So both statements are incorrect.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-dt02-07",
+          "title": "Argument evaluation order",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid main()\n{\n    int a = 2022;\n    printf(\"%d%d%d\", a != 2024, a = 2023, a == 2021);\n}\n```\n\nThe output is:",
+          "options": [
+            "020220",
+            "020231",
+            "002021",
+            "120230"
+          ],
+          "answer": 3,
+          "solution": "The order in which function arguments are evaluated is **unspecified** in C. GATE (and common compilers like gcc on x86) evaluate them **right to left**:\n\n1. `a == 2021` → `0` (a is still 2022)\n2. `a = 2023` → `2023`\n3. `a != 2024` → `1` (a is now 2023)\n\nThe values are then printed left to right: `1`, `2023`, `0` → `120230`.\n\n> Strictly, this code is unspecified/undefined behaviour because `a` is read and modified without a sequence point between arguments; the answer assumes right-to-left evaluation.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-dt02-08",
+          "title": "Bitwise NOT",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid main()\n{\n    int x = -2023;\n    printf(\"%d\", ~(x = x + 5));\n}\n```\n\nThe output is ______.",
+          "answer": 2017,
+          "solution": "`x = -2023 + 5 = -2018`. For two's complement, $\\sim n = -n-1$, so $\\sim(-2018) = 2018-1 = 2017$.",
+          "marks": 1,
+          "source": "DPP-02"
+        }
+      ]
+    },
+    {
+      "title": "Control Flow Statements — DPP 01",
+      "questions": [
+        {
+          "id": "dpp-cf01-01",
+          "title": "Ternary in if",
+          "question": "```c\n#include <stdio.h>\nint main(void) {\n    int i = 2, j = 3, k = 4;\n    if (i < j ? 1 : 0)\n        printf(\"GATE\");\n    else\n        printf(\"Wallah2023\");\n    return 0;\n}\n```\n\nThe output of the program is:",
+          "answer": "GATE",
+          "solution": "`i < j` is `2 < 3` = true, so the ternary gives `1`. The `if` condition is true and `GATE` is printed.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-cf01-02",
+          "title": "Assignment in if condition",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nvoid main(){\n    int a, b, c, d;\n    a = 2; b = -1; c = 3; d = -4;\n    if(a = b - c - d)\n        printf(\"%d%d%d\", a++, b--, c++);\n    else\n        printf(\"%d%d%d\", c--, ++a, ++b);\n}\n```\n\nThe output is:",
+          "options": [
+            "1 -2 4",
+            "3 1 0",
+            "2 1 -3",
+            "3 3 0"
+          ],
+          "answer": 1,
+          "solution": "`a = b - c - d = -1 - 3 + 4 = 0`, so the condition is **false** and the `else` branch runs: `c--` gives `3`, `++a` gives `1`, `++b` gives `0`. Output: `3 1 0`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-cf01-03",
+          "title": "Nested ternary",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main(void) {\n    int a = 3 > 2 ? 0 ? 0 : 1 : 5;\n    if(a == a - 1)\n        printf(\"GATE 2023\");\n    else\n        printf(\"GATE WALLAH\");\n    return 0;\n}\n```\n\nThe output of the program is:",
+          "options": [
+            "GATE 2023",
+            "GATE WALLAH",
+            "Compiler error",
+            "Garbage value"
+          ],
+          "answer": 1,
+          "solution": "`3 > 2` is true, so the value is `(0 ? 0 : 1)` = `1`, giving `a = 1`. `a == a - 1` is `1 == 0` = false, so the `else` branch prints `GATE WALLAH`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-cf01-04",
+          "title": "printf return value",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nvoid main(){\n    int a;\n    a = printf(\"GATE Wallah 2023\");\n    if(a % 4 == 0)\n        a = a + 5;\n    else\n        a = a - 5;\n    printf(\"%d\", a++);\n}\n```\n\nThe value of a at the end of the program is ______.",
+          "answer": 22,
+          "solution": "`printf` returns the number of characters printed. `GATE Wallah 2023` has 16 characters, so `a = 16`. `16 % 4 == 0`, so `a = 21`. `printf(\"%d\", a++)` prints `21` and then `a` becomes `22`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-cf01-05",
+          "title": "Ternary with post-decrement",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nvoid main(){\n    int i, j, k;\n    j = 4;\n    k = 0;\n    i = j < k ? k : j--;\n    if(j < i)\n        j = j + k - 1;\n    if(j == i)\n        j = j - i;\n    else\n        j = j + --k;\n    printf(\"%d\", j + k - i);\n}\n```\n\nThe output is ______.",
+          "answer": -4,
+          "solution": "`j<k` is false, so `i = j--`: `i = 4`, `j = 3`. `j<i` is true: `j = 3 + 0 - 1 = 2`. `j == i` (`2 == 4`) is false: `j = j + --k = 2 + (-1) = 1` and `k = -1`. Output `j + k - i = 1 - 1 - 4 = -4`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-cf01-06",
+          "title": "Tokenisation a+++--b",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int a = 19, b = 20;\n    if(a++ < b--) printf(\"%d\", a+++--b);\n    else printf(\"%d\", ++a+--b);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 38,
+          "solution": "`a++ < b--` is `19 < 20` (true); afterwards `a = 20`, `b = 19`. `a+++--b` is parsed as `(a++) + (--b)` = `20 + 18` = `38`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-cf01-07",
+          "title": "Assignment in if",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\nvoid main()\n{\n    int a = 0;\n    printf(\"%d\", a);\n    if(a = 2){\n        printf(\"Hi\");\n        printf(\"%d\", a);\n    }else{\n        printf(\"Bye\");\n    }\n    printf(\"%d\", a);\n}\n```\n\nThe output string is:",
+          "options": [
+            "0Hi22",
+            "0Hi20",
+            "0Bye0",
+            "0Hi00"
+          ],
+          "answer": 0,
+          "solution": "`printf(\"%d\", a)` prints `0`. `a = 2` is an assignment whose value `2` is true, so `Hi` and `2` are printed; the last `printf` prints `2` again. Output: `0Hi22`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-cf01-08",
+          "title": "Short-circuit OR",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\nvoid main()\n{\n    int a = 0, b = 0;\n    a = (a = 4) || (b = 1);\n    if(a && b) printf(\"CProgramming\");\n    else printf(\"PankajSharma\");\n    printf(\"%d\", b);\n}\n```\n\nThe output is:",
+          "options": [
+            "CProgramming0",
+            "CProgramming1",
+            "PankajSharma0",
+            "PankajSharma1"
+          ],
+          "answer": 2,
+          "solution": "`(a = 4)` is true, so `||` **short-circuits** and `(b = 1)` is never evaluated; `b` stays `0`. `a` becomes `1`. `a && b` is `1 && 0` = false, so `PankajSharma` is printed, then `b = 0`. Output: `PankajSharma0`.",
+          "marks": 1,
+          "source": "DPP-01"
+        }
+      ]
+    },
+    {
+      "title": "Control Flow Statements — DPP 02",
+      "questions": [
+        {
+          "id": "dpp-cf02-01",
+          "title": "for with empty body",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int i = 3;\n    for(; i++ <= 9; ++i);\n    printf(\"%d\", i);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 12,
+          "solution": "Trace of `i` (test `i++ <= 9`, then update `++i`):\n\n| Test sees | `i` after test | After `++i` |\n|---|---|---|\n| 3 (true) | 4 | 5 |\n| 5 (true) | 6 | 7 |\n| 7 (true) | 8 | 9 |\n| 9 (true) | 10 | 11 |\n| 11 (false) | 12 | (loop ends) |\n\nThe test increments `i` even when it fails, so `i = 12` is printed.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-cf02-02",
+          "title": "for with break",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int i = 3;\n    for(; i++ <= 9; ++i)\n    {\n        printf(\"best hai GATE Wallah\");\n        if(i > 8) break;\n    }\n    return 0;\n}\n```\n\nThe number of times printf() executed is ______.",
+          "answer": 4,
+          "solution": "Value of `i` inside the body in each iteration: 4, 6, 8, 10. `printf` runs in all of them, and the `break` fires at `i = 10` (`10 > 8`). So `printf` executes **4** times.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-cf02-03",
+          "title": "for update printf",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int a = 0, b = 1;\n    for(; b; printf(\"%d\\t\", a))\n    {\n        b = a++ <= 3;\n    }\n    return 0;\n}\n```\n\nThe output sequence is:",
+          "options": [
+            "01234",
+            "0123",
+            "1234",
+            "12345"
+          ],
+          "answer": 3,
+          "solution": "The update expression `printf(\"%d\\t\", a)` runs *after* each body execution. Body runs: `a` goes 0→1 (b=1), 1→2, 2→3, 3→4 (b=1), 4→5 (`4 <= 3` is false so `b = 0`). The printed values after each body are `1 2 3 4 5`; then the test `b` fails.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-cf02-04",
+          "title": "Loop with i *= 2",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int i = 0;\n    for(i = 2; i <= n; i *= 2)\n    {\n        printf(\"GATE WALLAH 2024\");\n    }\n    return 0;\n}\n```\n\nThe number of times printf() executed is approximated as:",
+          "options": [
+            "2n",
+            "log₂ n",
+            "log₂ log₂ n",
+            "2"
+          ],
+          "answer": 1,
+          "solution": "`i` takes the values 2, 4, 8, ..., doubling each time until it exceeds `n`, so the loop runs about $\\log_2 n$ times.\n\n> Note: `n` is not declared in the given code. The question is conceptual and assumes an `int n` is available.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-cf02-05",
+          "title": "printf in loop condition",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    int i;\n    for(i = printf(\"GATE\"); i < printf(\"Wallah2023\");)\n    {\n        if(i % 2 == 0) i = i - 1;\n        else i = i + 2;\n    }\n    return 0;\n}\n```\n\nThe number of times \"Wallah2023\" is printed is:",
+          "options": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": 2,
+          "solution": "`printf(\"GATE\")` returns `4`, so `i = 4`; `printf(\"Wallah2023\")` always returns `10`. The condition is evaluated each time (printing `Wallah2023` every time), and the values of `i` at the test are: 4 → (even) 3 → (odd) 5 → 7 → 9 → 11. Tests: `4<10`, `3<10`, `5<10`, `7<10`, `9<10`, `11<10`. That is **6** tests, so `Wallah2023` is printed 6 times.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-cf02-06",
+          "title": "Nested loops n^2",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    int i, j, n;\n    for(i = 1; i <= n; i++)\n        for(j = 1; j <= n; j++)\n            printf(\"GATE Wallah\");\n    return 0;\n}\n```\n\nHow many times will the printf() statement be executed when $n = 32$?",
+          "options": [
+            "128",
+            "1024",
+            "512",
+            "256"
+          ],
+          "answer": 1,
+          "solution": "Two nested loops each run `n` times, so `printf` executes $n^2 = 32^2 = 1024$ times.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-cf02-07",
+          "title": "Triangular loop count",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    int i, j, n, count = 0;\n    for(i = 1; i <= n; i++)\n        for(j = 1; j <= i; j++)\n            count += 1;\n    printf(\"%d\", count);\n    return 0;\n}\n```\n\nWhen $n = 31$, the output is ______.",
+          "answer": 496,
+          "solution": "The inner loop runs `i` times for each `i`, so `count = 1 + 2 + ... + 31 = \\dfrac{31 \\cdot 32}{2} = 496`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-cf02-08",
+          "title": "Float to int then %c",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    int a, i;\n    a = 12.5 / 5 + 31.2 / 2 * 5 - 5;\n    for(i = a; i < 90; i = i + 3)\n    {\n        printf(\"%c\\t\", i + 32);\n    }\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "107 110 113 116 119",
+            "KLMNO",
+            "knqtw",
+            "Garbage values"
+          ],
+          "answer": 2,
+          "solution": "`12.5/5 = 2.5`, `31.2/2*5 = 15.6*5 = 78.0`, so the expression is `2.5 + 78 - 5 = 75.5`, stored in an `int` as `a = 75`. The loop prints characters for `i = 75, 78, 81, 84, 87`. Adding 32 gives 107, 110, 113, 116, 119, which are the ASCII characters `k n q t w` (`%c`, not `%d`).",
+          "marks": 1,
+          "source": "DPP-02"
+        }
+      ]
+    },
+    {
+      "title": "Control Flow Statements — DPP 03",
+      "questions": [
+        {
+          "id": "dpp-cf03-01",
+          "title": "while with bitwise AND",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int a = 7, b = 8;\n    while(++b & a--)\n    {\n        printf(\"HI!\");\n    }\n    return 0;\n}\n```\n\nThe number of times the printf() executed is ______.",
+          "answer": 7,
+          "solution": "`++b` goes 9,10,...; `a--` yields 7,6,...,1,0 (bitwise `&`). Trace: `9&7=1`, `10&6=2`, `11&5=1`, `12&4=4`, `13&3=1`, `14&2=2`, `15&1=1` are all non-zero (7 iterations), then `16&0=0` ends the loop. So `printf` executes **7** times.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-cf03-02",
+          "title": "while with switch",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int a = 5, b = 10;\n    while(++b & a--)\n    {\n        switch (b)\n        {\n            case 0: b = b - 1;\n                    break;\n            case 1: b = b - 2;\n                    break;\n            default: b = b - 3;\n                    break;\n        }\n    }\n    printf(\"%d\\t%d\", a, b);\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "3 9",
+          "solution": "Trace (`++b` first, then `a--` uses the old value of `a`):\n\n| Test | `++b` | `a--` (old `a`) | `b & a` | Action |\n|---|---|---|---|---|\n| 1 | `b = 11` | `5` | `1011 & 0101 = 1` (true) | `switch(11)` → `default`: `b = 8` |\n| 2 | `b = 9` | `4` | `1001 & 0100 = 0` (false) | loop ends |\n\nAfter the loop `a = 3` and `b = 9`. Output: `3 9`.\n\n> **Note:** The source options (3 0, 4 2, 3 2, 4 1) do not contain the correct output `3 9`, so the question is stored as a self-check question. Verified by compiling and running.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-cf03-03",
+          "title": "do-while with inner while",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int a = 1, b = 2;\n    do\n    {\n        while(b++)\n        {\n            b = b - a;\n            a = a + b;\n        }\n    } while(a++ < 2);\n    printf(\"%d\\t%d\", a, b);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "3 0",
+            "4 2",
+            "3 2",
+            "4 1"
+          ],
+          "answer": 3,
+          "solution": "Start `a = 1`, `b = 2`.\n\n- `while(b++)`: test `2` (true), `b = 3`; body: `b = 3-1 = 2`, `a = 1+2 = 3`.\n- `while(b++)`: test `2` (true), `b = 3`; body: `b = 3-3 = 0`, `a = 3+0 = 3`.\n- `while(b++)`: test `0` (false), `b = 1`; inner loop ends.\n- `while(a++ < 2)`: `3 < 2` is false and `a` becomes `4`.\n\nOutput: `a = 4`, `b = 1`.\n\n> **Note:** The source asks for the \"number of times printf() executed\" but the options are output values, so the question is treated as \"The output is\".",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-cf03-04",
+          "title": "printf return values and switch",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int a, b;\n    a = printf(\"GATE\") > printf(\"Wallah\") ? printf(\"2023\") : printf(\"Hi!!\");\n    b = a - 1;\n    while(a > b)\n    {\n        switch(b)\n        {\n            case 1: b = --a;\n            case 2: b = a--;\n            default: b = --a;\n        }\n    }\n    printf(\"%d%d\", a, b);\n    return 0;\n}\n```\n\nThe output string is:",
+          "options": [
+            "GATEWallahHi!!33",
+            "GATEWallah202303",
+            "GATEWallah202330",
+            "GATEWallahHi!!00"
+          ],
+          "answer": 0,
+          "solution": "`printf(\"GATE\")` returns 4 and `printf(\"Wallah\")` returns 6 (printed left to right in the expected answer). `4 > 6` is false, so `printf(\"Hi!!\")` runs and returns 4: `a = 4`, `b = 3`.\n\nLoop: `a > b` (`4 > 3`) is true. `switch(3)` goes to `default`: `b = --a`, so `a = 3`, `b = 3`. Now `a > b` is false and the loop ends. Output: `GATEWallahHi!!` followed by `33`.\n\n> The order in which the two `printf` operands of `>` are evaluated is unspecified; the answer assumes left to right.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-cf03-05",
+          "title": "do-while sum",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int i = 16;\n    do\n    {\n        i = i - 2;\n        printf(\"%d\", i);\n    } while(i++);\n    return 0;\n}\n```\n\nThe sum of all printed values of i is ______.",
+          "answer": 105,
+          "solution": "Each pass subtracts 2 and then `i++` (in the test) adds 1, so the printed values are `14, 13, 12, ..., 1, 0`. Sum $= \\dfrac{14 \\cdot 15}{2} = 105$.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-cf03-06",
+          "title": "Loop count with powers of 2",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int a, b;\n    while(a != b)\n    {\n        b = b * 2;\n        a = a / 2;\n        if(b > a) break;\n    }\n    return 0;\n}\n```\n\nIf $a = 2^m$ and $b = 2^n$ where $m - n$ is even and positive, the number of times the loop runs is:",
+          "options": [
+            "$\\frac{m - n}{2}$",
+            "$\\lfloor\\frac{m - n}{2}\\rfloor + 1$",
+            "$\\frac{n - m}{2}$",
+            "$\\lfloor\\frac{n - m}{2}\\rfloor + 1$"
+          ],
+          "answer": 0,
+          "solution": "After $k$ iterations $b = 2^{n+k}$ and $a = 2^{m-k}$. The loop stops when `a == b`, i.e. $n + k = m - k$, so $k = \\dfrac{m-n}{2}$. Before that point $b < a$, so the `break` never fires. The loop runs $\\dfrac{m-n}{2}$ times.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-cf03-07",
+          "title": "while with printf in if",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int x = 5, y = 10;\n    if(printf(\"GATE\") - 3){\n        while(x--) y = y + x;\n    }\n    else y = y - x;\n    return 0;\n}\n```\n\nThe value of y at the end of the program is ______.",
+          "answer": 20,
+          "solution": "`printf(\"GATE\")` returns 4, so `4 - 3 = 1` (true) and the `while` loop executes. Inside the body `x` has already been decremented: `x` = 4, 3, 2, 1, 0 are added. `y = 10 + 4 + 3 + 2 + 1 + 0 = 20`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-cf03-08",
+          "title": "compound assignment in while",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int x = 5, y = 5;\n    while(x -= y++ < 10){\n        printf(\"GATE WALLAH\\n\");\n    }\n    return 0;\n}\n```\n\nThe number of times \"GATE WALLAH\" is printed is ______.",
+          "answer": 4,
+          "solution": "`<` has higher precedence than `-=`, so the loop condition is `x -= (y++ < 10)`. While `y < 10`, `1` is subtracted from `x`: `x` = 4, 3, 2, 1 (non-zero, so the body runs, 4 times). On the 5th test `x` becomes `0`, and the loop stops. So it is printed **4** times.",
+          "marks": 1,
+          "source": "DPP-03"
+        }
+      ]
+    },
+    {
+      "title": "Control Flow Statements — DPP 04",
+      "questions": [
+        {
+          "id": "dpp-cf04-01",
+          "title": "switch fall-through",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nvoid main()\n{\n    int i = 0;\n    switch(i)\n    {\n        case 0: i = i + 1;\n        case 1: i = i + 3;\n        case 2: i = i * 2;\n        break;\n        default: i = i + 5;\n    }\n    printf(\"%d\", i);\n}\n```\n\nThe value of i is ______.",
+          "answer": 8,
+          "solution": "`switch(0)` enters `case 0` and falls through (no `break`) into `case 1` and `case 2`: `i = 0+1 = 1`, `i = 1+3 = 4`, `i = 4*2 = 8`, then `break`.\n\n> **Note:** A `printf` was added to the code so the value can be observed; the original program had no output statement.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-cf04-02",
+          "title": "Short-circuit and switch",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nvoid main()\n{\n    int a, b, c, d, e;\n    b = 1; c = 1; d = 2; e = -1;\n    a = b++ && c-- || d++ && e--;\n    switch(c)\n    {\n        case 0: a = a + 1;\n        case 1: a = a - 1;\n        default: a = a - 2;\n    }\n    printf(\"%d\", a + b + c + d + e);\n}\n```\n\nThe final value of $(a + b + c + d + e)$ is ______.",
+          "answer": 2,
+          "solution": "`b++ && c--` is `1 && 1` = `1` (then `b = 2`, `c = 0`); because the left side of `||` is true, `d++ && e--` is **not** evaluated, so `d = 2` and `e = -1`. `a = 1`.\n\n`switch(c)` with `c = 0`: `case 0` → `a = 2`, falls into `case 1` → `a = 1`, falls into `default` → `a = -1`.\n\nSum: `a + b + c + d + e = -1 + 2 + 0 + 2 - 1 = 2`.\n\n> **Note:** A `printf` was added to the code so the sum can be observed.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-cf04-03",
+          "title": "switch default fall-through",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main(void)\n{\n    int x;\n    scanf(\"%d\", &x);\n    switch(x)\n    {\n        case 0: x = x + 1;\n                break;\n        default: x = x - 1;\n        case 1: x = x - 11;\n        case 2: x = x + 128;\n                break;\n    }\n    printf(\"%c\", x);\n    return 0;\n}\n```\n\nWhat is the output when $x = -4$?",
+          "options": [
+            "p",
+            "M",
+            "Garbage",
+            "ERROR"
+          ],
+          "answer": 0,
+          "solution": "`x = -4` matches no case, so `default` runs: `x = -5`, then it falls through to `case 1`: `x = -16`, then `case 2`: `x = 112`, then `break`. ASCII 112 is `p`.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-cf04-04",
+          "title": "switch on expression",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main(void)\n{\n    int q, r = 0;\n    q = 2 * 3 / 6 + 2.0 / 5 + 0.2 * 3;\n    r = -q--;\n    switch(q - r)\n    {\n        case 0: printf(\"Hello\"); break;\n        case 1: printf(\"Hi\"); break;\n        case 2: printf(\"best hai\"); break;\n        case 3: printf(\"GATE Wallah\"); break;\n        default: printf(\"2023\");\n    }\n    return 0;\n}\n```\n\nThe output of the program is:",
+          "options": [
+            "Hibest haiGATE Wallah",
+            "best haiGATE Wallah",
+            "GATE Wallah2023",
+            "GATE Wallah"
+          ],
+          "answer": 3,
+          "solution": "`2*3/6 = 1`, `2.0/5 = 0.4`, `0.2*3 = 0.6`, so the sum is `2.0` and `q = 2`. `r = -q--` gives `r = -2` and then `q = 1`. `q - r = 1 - (-2) = 3`, so `case 3` prints `GATE Wallah` and `break` stops.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-cf04-05",
+          "title": "switch with mixed fall-through",
+          "type": "mcq",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int j = 10, p = 0;\n    for(; j > 0;)\n    {\n        switch(j)\n        {\n            case 1: p += 3;\n            case 2: p += 5;\n                    break;\n            default: p -= 8;\n            case 3: p -= 7;\n                    break;\n        }\n        j = j - 3;\n        printf(\"%d\\t\", p);\n    }\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "-15 -30 -42 -45",
+            "-15 -45 -30 -42",
+            "-15 -30 -42 -39",
+            "-15 -30 -45 -37"
+          ],
+          "answer": 3,
+          "solution": "| `j` | case taken | `p` after |\n|---|---|---|\n| 10 | `default` then `case 3` (−8 −7) | −15 |\n| 7 | `default` then `case 3` | −30 |\n| 4 | `default` then `case 3` | −45 |\n| 1 | `case 1` then `case 2` (+3 +5) | −37 |\n\nOutput: `-15 -30 -45 -37`.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-cf04-06",
+          "title": "switch inside for",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int x;\n    for(x = 0; x < 32; x++)\n    {\n        switch(x)\n        {\n            case 0: x = x + 2;\n            case 1: x = x + 5;\n            case 2: x = x + 1;\n            default: x = x + 7;\n        }\n        printf(\"%d\\t\", x);\n    }\n    return 0;\n}\n```\n\nThe sum of the values printed is ______.",
+          "answer": 69,
+          "solution": "`x = 0`: falls through all cases: `0+2+5+1+7 = 15`, prints `15`. Then `x++` gives `16` (`default` only): `16+7 = 23`, prints `23`. Then `x++` gives `24`: `24+7 = 31`, prints `31`. Then `x++` gives `32` and the loop ends. Sum: `15 + 23 + 31 = 69`.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-cf04-07",
+          "title": "switch rules",
+          "type": "mcq",
+          "question": "Consider the following two statements:\n\n`P: Case label can be integer or character or floating point numbers.`\n\n`Q: Only one default is allowed in switch-case structure.`\n\nWhich of the following statements are INCORRECT?",
+          "options": [
+            "Both P and Q",
+            "Only P",
+            "Only Q",
+            "Neither P nor Q"
+          ],
+          "answer": 1,
+          "solution": "**P is incorrect:** case labels must be integer constant expressions (integers or characters); floating-point constants are not allowed. **Q is correct:** a `switch` can have at most one `default`. So only P is incorrect.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-cf04-08",
+          "title": "Chained equality",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint main()\n{\n    int x = 4, y = 5;\n    x = x == y == 5;\n    switch(1)\n    {\n        case 1: x = x + 11;\n    }\n    printf(\"%d\", ++x);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 12,
+          "solution": "`==` is left associative: `(x == y) == 5` = `(4 == 5) == 5` = `0 == 5` = `0`, so `x = 0`. `switch(1)` runs `case 1`: `x = 11`. `++x` makes it `12`, which is printed.\n\n> **Note:** The source options (0, 1, 11, Compiler Error) do not contain the correct value 12. The question is therefore stored as a numerical-answer question; verified by compiling and running.",
+          "marks": 1,
+          "source": "DPP-04"
+        }
+      ]
+    },
+    {
+      "title": "Functions and Storage Classes — DPP 01",
+      "questions": [
+        {
+          "id": "dpp-fs01-01",
+          "title": "Nested function calls",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint f2(int a){\n    int b = 0;\n    b = b + 5;\n    return a * b;\n}\nint f1(int a) {\n    int b;\n    b = f2(a);\n    return a * b;\n}\nint main(){\n    int i, a = 5, b = 4;\n    for(i = 0; i < 2; i++){\n        b -= f1(a) - f2(a);\n        printf(\"%d\\t\", b);\n    }\n    return 0;\n}\n```\n\nThe sum of the printed values is ______.",
+          "answer": -292,
+          "solution": "`f2(5) = 5*5 = 25` and `f1(5) = 5*f2(5) = 125`. Each iteration does `b -= 125 - 25 = 100`: first `b = 4 - 100 = -96`, then `b = -196`. The sum of printed values is `-96 + (-196) = -292`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-fs01-02",
+          "title": "Function declarations and loop",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nvoid print(int n) {\n    for(n++; n++; n++)\n        printf(\"GATE Wallah\");\n}\nint main(){\n    void print();\n    void print();\n    print(-9);\n    return 0;\n}\n```\n\nWhich of the following is correct?",
+          "options": [
+            "Compilation error",
+            "\"GATE Wallah\" will be printed infinite number of times.",
+            "\"GATE Wallah\" will be printed 5 times.",
+            "\"GATE Wallah\" will be printed 4 times."
+          ],
+          "answer": 3,
+          "solution": "The repeated block-scope declarations `void print();` are legal (they declare the function with unspecified parameters). In `print(-9)`: `n++` (init) gives `-8`. Test `n++`: values -8, -6, -4, -2 are non-zero and each pass prints; the test `n++` that sees `0` ends the loop. So it is printed **4** times.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-fs01-03",
+          "title": "Shift vs plus precedence",
+          "type": "mcq",
+          "question": "Consider the following program.\n\n```c\n#include<stdio.h>\nvoid f(int n){\n    switch (n << 1 + n){\n        default: printf(\"Sresth\");\n        case 4: printf(\"Parakram\");\n        case 3: printf(\"2024\");\n        break;\n        case 2: printf(\"2025\");\n    }\n}\nint main(){\n    f(1);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "Parakram2024",
+            "SresthParakram2024",
+            "Parakram",
+            "Sresth2025"
+          ],
+          "answer": 0,
+          "solution": "`+` has higher precedence than `<<`, so `n << 1 + n` = `n << (1 + n)` = `1 << 2` = `4`. `case 4` prints `Parakram`, falls through to `case 3` and prints `2024`, then `break`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-fs01-04",
+          "title": "Nested ternary with printf",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nvoid f(){\n    int x;\n    x = 10 < 5 ? printf(\"%d\", printf(\"GATE\")) : printf(\"\") ? printf(\"2024\") : printf(\"%d\", printf(\"Wallah Parakram\"));\n}\nint main() {\n    f();\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "GATE2024",
+            "Wallah Parakram15",
+            "GATEWallah Parakram4",
+            "GATE4"
+          ],
+          "answer": 1,
+          "solution": "`10 < 5` is false, so the second operand is skipped. The third operand is `printf(\"\") ? printf(\"2024\") : printf(\"%d\", printf(\"Wallah Parakram\"))`. `printf(\"\")` returns `0` (false), so the last part runs: the inner `printf` prints `Wallah Parakram` (15 chars) and returns `15`, then the outer prints `15`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-fs01-05",
+          "title": "Shift and post-decrement",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint f(int b, int a) {\n    int x;\n    x = a << b;\n    b = x * a--;\n    return a + b - x;\n}\nint main() {\n    printf(\"%d\", f(1, 2));\n    return 0;\n}\n```\n\nThe value printed is ______.",
+          "answer": 5,
+          "solution": "`f(1, 2)` has `b = 1`, `a = 2`. `x = 2 << 1 = 4`. `b = x * a-- = 4 * 2 = 8` and then `a = 1`. Return `a + b - x = 1 + 8 - 4 = 5`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-fs01-06",
+          "title": "Side effects in for header",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint r(int num){\n    return --num;\n}\nint main(){\n    int n = 4;\n    for (r(n); r(n++); r(--n))\n        printf(\"%d\\t\", r(--n));\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "123",
+            "1234",
+            "321",
+            "4321"
+          ],
+          "answer": 2,
+          "solution": "`r(x)` only returns `x - 1` and does not change the caller's variable, so the side effects come from `n++` and `--n`. Trace: test `r(n++)` (n=4→5, returns 3, true) → body `r(--n)` (n=4, prints `3`) → update `--n` (n=3) → test (passes 3, n=4, returns 2) → body (n=3, prints `2`) → update (n=2) → test (passes 2, n=3, returns 1) → body (n=2, prints `1`) → update (n=1) → test (passes 1, returns 0) stops. Output: `3 2 1`.",
+          "marks": 1,
+          "source": "DPP-01"
+        }
+      ]
+    },
+    {
+      "title": "Functions and Storage Classes — DPP 02",
+      "questions": [
+        {
+          "id": "dpp-fs02-01",
+          "title": "static initialiser must be constant",
+          "type": "msq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main(){\n    int a = 2, i;\n    static int b = a++;\n    for(i = 0; i < a + b; i++)\n        printf(\"GATE Wallah\");\n    return 0;\n}\n```\n\nWhich of the following is/are CORRECT?",
+          "options": [
+            "GATE Wallah is printed 3 times.",
+            "GATE Wallah is printed 4 times.",
+            "GATE Wallah is printed 5 times.",
+            "Compilation Error."
+          ],
+          "answer": [
+            3
+          ],
+          "solution": "A `static` variable must be initialised with a **constant expression**. `a++` is not a constant, so this is a compile-time error.",
+          "marks": 2,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-fs02-02",
+          "title": "Multiple extern declarations",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\nvoid main(){\n    extern int a;\n    extern int a;\n    extern int a;\n    printf(\"%d\", a);\n}\nint a = 15;\n```\n\nThe output is:",
+          "options": [
+            "Garbage value",
+            "Compilation error",
+            "15",
+            "No output"
+          ],
+          "answer": 2,
+          "solution": "Repeating an `extern` declaration is legal. All three refer to the global `a` defined below with the value `15`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-fs02-03",
+          "title": "Static variables across calls",
+          "type": "nat",
+          "question": "```c\n#include<stdio.h>\nint func(int a, int b){\n    static int p = 9, q = 21;\n    if(a > b){\n        a = a - p++;\n        b = b + q--;\n        return a + b;\n    }else{\n        return p - q;\n    }\n}\nint main(){\n    int i = 2, j = -2;\n    for(; j < 3; j++)\n        printf(\"%d\\t\", func(i, j));\n    return 0;\n}\n```\n\nThe sum of the values printed is ______.",
+          "answer": 38,
+          "solution": "`p` and `q` are static and keep their values. Calls (i = 2):\n\n| `j` | `a - p++` | `b + q--` | return |\n|---|---|---|---|\n| -2 | 2-9=-7 | -2+21=19 | 12 |\n| -1 | 2-10=-8 | -1+20=19 | 11 |\n| 0 | 2-11=-9 | 0+19=19 | 10 |\n| 1 | 2-12=-10 | 1+18=19 | 9 |\n| 2 | (a > b false) | | `p - q` = 13 - 17 = -4 |\n\nSum = 12 + 11 + 10 + 9 - 4 = **38**.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-fs02-04",
+          "title": "Static local variable",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nvoid f() {\n    static int a = 3;\n    int b = 5;\n    a -= b++;\n    printf(\"%d\\t%d\\n\", a, b);\n}\nint main() {\n    static int a = 2;\n    int b = 1;\n    a += 3;\n    f();\n    f();\n    printf(\"%d\\t%d\", a, b);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "-2 6 \\n -7 6 \\n 5 1",
+            "-2 6 \\n -7 7 \\n 5 1",
+            "-2 5 \\n -7 6 \\n 5 1",
+            "Compilation error"
+          ],
+          "answer": 0,
+          "solution": "In `f`, `a` is static (keeps its value) and `b` is re-created as `5` on each call. Call 1: `a = 3 - 5 = -2`, `b = 6` → `-2 6`. Call 2: `a = -2 - 5 = -7`, `b = 6` → `-7 6`. In `main`, `a = 2 + 3 = 5`, `b = 1` → `5 1`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-fs02-05",
+          "title": "extern and static i",
+          "type": "nat",
+          "question": "```c\n#include <stdio.h>\nint i = 1;\nint f() {\n    static int i = 2;\n    return i++;\n}\nint main() {\n    extern int i;\n    char a = 'B';\n    printf(\"%d\", a + f() + f() + i);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 72,
+          "solution": "`'B' = 66`. The two calls return `2` and `3` (the static `i` inside `f`). In `main`, `extern int i` refers to the global `i = 1`. Sum `66 + 2 + 3 + 1 = 72` (order of evaluation does not matter here).",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-fs02-06",
+          "title": "static global j",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nstatic int j;\nstatic int j = 3;\nint f(){\n    auto int i = 2;\n    return i++ + --j;\n}\nint main() {\n    char a = 'B';\n    printf(\"%d\", a + f() + f());\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "68",
+            "72",
+            "73",
+            "None"
+          ],
+          "answer": 2,
+          "solution": "`static int j;` followed by `static int j = 3;` is a legal tentative definition. First call: `i++ + --j` = `2 + 2` = `4` (`j = 2`). Second call: `2 + 1` = `3` (`j = 1`). Total: `66 + 4 + 3 = 73`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-fs02-07",
+          "title": "Counting printf calls",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint f(){\n    static int i = 5;\n    return i--;\n}\nint main() {\n    for(f(); f(); printf(\"GATE Wallah\"))\n        printf(\"Pankaj Sharma\");\n    return 0;\n}\n```\n\nThe number of times printf() is executed is ______.",
+          "answer": 8,
+          "solution": "`f()` returns 5, 4, 3, 2, 1, 0, ... The initialisation call consumes `5`. The test calls return `4, 3, 2, 1` (true, 4 iterations) and then `0` (false). In each of the 4 iterations the body `printf` and the update `printf` both execute: `4 + 4 = 8` calls.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-fs02-08",
+          "title": "Storage class facts",
+          "type": "msq",
+          "question": "Which of the following statement(s) is/are CORRECT?",
+          "options": [
+            "A static variable has internal linkage.",
+            "Static variables are stored in the data segment.",
+            "Auto variables are stored in the heap segment.",
+            "Register variables behave as auto variables by default."
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "(a) is not true in general: only a *file-scope* `static` variable has internal linkage; a `static` local variable has no linkage. (b) is correct: static (and global) variables live in the data/BSS segment. (c) is false: auto variables live on the **stack**, not the heap. (d) is correct: `register` is only a hint, and when no register is available the variable behaves like an auto variable.",
+          "marks": 2,
+          "source": "DPP-02"
+        }
+      ]
+    },
+    {
+      "title": "Functions and Storage Classes — DPP 03",
+      "questions": [
+        {
+          "id": "dpp-fs03-01",
+          "title": "Recursive division",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint f(int n)\n{\n    if(n < 2) return n;\n    return f(n/3) + 3;\n}\n```\n\nThe value returned by $f(27)$ is ______.",
+          "answer": 10,
+          "solution": "`f(27) = f(9)+3 = f(3)+6 = f(1)+9 = 1+9 = 10`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-fs03-02",
+          "title": "static then extern",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nstatic int i;\nextern int i = 3;\nvoid f(int n)\n{\n    if(n)\n    {\n        printf(\"%d\\t\", i++);\n        f(n-1);\n    }\n}\nint main()\n{\n    f(4);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "34567",
+            "3456",
+            "0123",
+            "Compilation error."
+          ],
+          "answer": 1,
+          "solution": "`static int i;` followed by `extern int i = 3;` refers to the same variable (the `extern` keeps the earlier internal linkage) and initialises it to `3`. `f(4)` prints the current `i` and increments it 4 times: `3 4 5 6`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-fs03-03",
+          "title": "Recursion with static",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nvoid f(int n){\n    static int i = 3;\n    if(n%2){\n        n += i--;\n        printf(\"%d\\t\", n);\n        f(n-1);\n    }\n    n++;\n    printf(\"%d\\t\", n);\n}\n```\n\nThe sum of the values printed when $f(5)$ is called is ______.",
+          "answer": 45,
+          "solution": "Calls (static `i` starts at 3):\n\n- `f(5)`: `n = 5+3 = 8` (i=2), prints `8`, calls `f(7)`.\n- `f(7)`: `n = 7+2 = 9` (i=1), prints `9`, calls `f(8)`.\n- `f(8)`: even, `n++` → `9`, prints `9`.\n- back in `f(7)`: `n++` → `10`, prints `10`.\n- back in `f(5)`: `n++` → `9`, prints `9`.\n\nSum: `8 + 9 + 9 + 10 + 9 = 45`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-fs03-04",
+          "title": "Two-argument recursion",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint func(int a, int b)\n{\n    if (a < b)\n        return a + b;\n    else\n        return 1 + func(a-1, b+1);\n}\n```\n\nThe value returned by $func(4,2)$ is ______.",
+          "answer": 8,
+          "solution": "`func(4,2) = 1 + func(3,3) = 1 + 1 + func(2,4) = 2 + (2 + 4) = 8`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-fs03-05",
+          "title": "Recursion tree output",
+          "type": "mcq",
+          "question": "Consider the following function:\n\n```c\nvoid arc(int n){\n    if (n <= 2)\n        return;\n    else {\n        arc(n-2);\n        printf(\"%d\\t\", n-1);\n        arc(n-3);\n        printf(\"%d\\t\", n-2);\n    }\n}\n```\n\nThe output printed when `arc(7)` is called is:",
+          "options": [
+            "62143325",
+            "23412365",
+            "21436325",
+            "52363421"
+          ],
+          "answer": 2,
+          "solution": "Expanding the recursion for `arc(7)`:\n\n- `arc(5)` prints: `arc(3)` → (`arc(1)` nothing) `2`, (`arc(0)` nothing) `1`; then `4`; `arc(2)` nothing; then `3`.\n- Back in `arc(7)`: prints `6`.\n- `arc(4)` prints: `arc(2)` nothing; `3`; `arc(1)` nothing; `2`.\n- Back in `arc(7)`: prints `5`.\n\nOutput: `2 1 4 3 6 3 2 5` → `21436325`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-fs03-06",
+          "title": "Recursion count",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\nvoid print(int n)\n{\n    printf(\"GATE Wallah\\n\");\n    if(n++ == 0) return;\n    print(n++);\n}\nint main(){\n    void print();\n    void print();\n    print(-4);\n    return 0;\n}\n```\n\nWhich of the following is correct?",
+          "options": [
+            "Compilation error",
+            "\"GATE Wallah\" will be printed infinite number of times.",
+            "\"GATE Wallah\" will be printed 4 times.",
+            "\"GATE Wallah\" will be printed 5 times."
+          ],
+          "answer": 3,
+          "solution": "Each call prints once. The values received are `-4, -3, -2, -1, 0`: in every call `n++` moves `n` by one and the recursive call receives `n` (the second `n++` only affects the local copy), so each level passes `n + 1`. The call with `n = 0` returns after printing. That is **5** prints.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-fs03-07",
+          "title": "static b in recursion",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\nvoid arc()\n{\n    int a;\n    static int b;\n    a = b;\n    printf(\"%d\\t%d\\t\", a++, b++);\n    if(a <= 3)\n        arc();\n}\nint main(){ arc(); return 0; }\n```\n\nWhen `arc()` is called from main, the output is:",
+          "options": [
+            "00112233",
+            "11223344",
+            "01122334",
+            "12233445"
+          ],
+          "answer": 0,
+          "solution": "`b` is static and keeps increasing; `a` is a fresh copy of `b` in each call. Each call prints `a` and `b` (both equal), then `a = b + 1`. The recursion continues while `a <= 3`: output `0 0 1 1 2 2 3 3`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-fs03-08",
+          "title": "Nested recursion",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint arc(int i, int j)\n{\n    if(i < 2) return j+2;\n    else if(j < 2) return arc(i-1, 1);\n    else return arc(i-1, arc(i, j-2));\n}\n```\n\nThe value returned by $arc(2,6)$ is ______.",
+          "answer": 9,
+          "solution": "`arc(2,0)` → `arc(1,1)` = `3`. `arc(2,2)` = `arc(1, arc(2,0))` = `arc(1,3)` = `5`. `arc(2,4)` = `arc(1, arc(2,2))` = `arc(1,5)` = `7`. `arc(2,6)` = `arc(1, arc(2,4))` = `arc(1,7)` = `9`.",
+          "marks": 1,
+          "source": "DPP-03"
+        }
+      ]
+    },
+    {
+      "title": "Functions and Storage Classes — DPP 04",
+      "questions": [
+        {
+          "id": "dpp-fs04-01",
+          "title": "Static b recursion",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint func(int a)\n{\n    static int b = 1;\n    b = b + a;\n    if((b%a)%2 != 0) return a + func(b+a);\n    return b-a;\n}\n```\n\nThe value returned by `func(5)` is ______.",
+          "answer": 11,
+          "solution": "`func(5)`: `b = 6`; `(6%5)%2 = 1 != 0`, so return `5 + func(11)`. `func(11)`: `b = 6 + 11 = 17`; `(17%11)%2 = 6%2 = 0`, so return `b - a = 17 - 11 = 6`. Result: `5 + 6 = 11`.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-fs04-02",
+          "title": "Recursion with printf",
+          "type": "mcq",
+          "question": "Consider the following function:\n\n```c\nvoid func(int n)\n{\n    if(n > 0){\n        func(n-1);\n        printf(\"%d\\t\", n);\n    }\n    printf(\"%d\\t\", n-1);\n}\n```\n\nThe output printed by `func(2)` is:",
+          "options": [
+            "-11021",
+            "-110212",
+            "-1102-21",
+            "-11021"
+          ],
+          "answer": 0,
+          "solution": "`func(0)` prints `-1`. `func(1)` then prints `1` and `0`. `func(2)` then prints `2` and `1`. Output: `-1 1 0 2 1` → `-11021`.\n\n> **Source note:** the code in your source had both `printf` calls inside the `if` block, which would print `1 0 2 1`, but none of the options match that. The code above (second `printf` after the `if`, as in your practice question `rc-10`) matches the options. Options (a) and (d) are identical in the source; (a) is marked.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-fs04-03",
+          "title": "Two recursive calls",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint func(int n)\n{\n    if(n > 0){\n        return func(n/2) + func(n/4) + 1;\n    }\n    return n + 1;\n}\n```\n\nThe value returned by `func(6)` is ______.",
+          "answer": 9,
+          "solution": "`func(0) = 1`. `func(1) = func(0) + func(0) + 1 = 3`. `func(3) = func(1) + func(0) + 1 = 3 + 1 + 1 = 5`. `func(6) = func(3) + func(1) + 1 = 5 + 3 + 1 = 9`.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-fs04-04",
+          "title": "Recursion with n/4",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint func(int n)\n{\n    if(n > 0){\n        return 3 * func(n/4) + 1;\n    }\n    return n;\n}\n```\n\nThe value returned by `func(24)` is ______.",
+          "answer": 13,
+          "solution": "`func(0) = 0`. `func(1) = 3*0 + 1 = 1`. `func(6) = 3*func(1) + 1 = 4`. `func(24) = 3*func(6) + 1 = 13`.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-fs04-05",
+          "title": "Static k in recursion",
+          "type": "nat",
+          "question": "Consider the following function:\n\n```c\nint func(int n)\n{\n    static int k = 0;\n    if(n > 0){\n        k++;\n        return 2 * func(n/2) + k;\n    }\n    return n + k--;\n}\n```\n\nThe value returned by `func(8)` is ______.",
+          "answer": 109,
+          "solution": "Calls go `func(8) → func(4) → func(2) → func(1) → func(0)`; `k` becomes `1, 2, 3, 4` on the way down. `func(0)` returns `0 + k--` = `4` and sets `k = 3`. Unwinding (`k` read *after* the recursive call, as gcc evaluates it): `func(1) = 2*4 + 3 = 11`, `func(2) = 2*11 + 3 = 25`, `func(4) = 2*25 + 3 = 53`, `func(8) = 2*53 + 3 = 109`.\n\n> The order of evaluating `func(n/2)` and `k` in `2 * func(n/2) + k` is unspecified in C; the answer follows gcc.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-fs04-06",
+          "title": "Binary recursion",
+          "type": "mcq",
+          "question": "Consider the following function:\n\n```c\nint func(int n, int i)\n{\n    if(n == 0) return 0;\n    else if(n%2){\n        return func(n/2, 2*i) + i;\n    }else return func(n/2, 2*i) - i;\n}\n```\n\nThe value returned by `func(14, 1)` is:",
+          "options": [
+            "1",
+            "13",
+            "15",
+            "0"
+          ],
+          "answer": 1,
+          "solution": "`func(14,1) = func(7,2) - 1`; `func(7,2) = func(3,4) + 2`; `func(3,4) = func(1,8) + 4`; `func(1,8) = func(0,16) + 8 = 8`. So `func(3,4) = 12`, `func(7,2) = 14`, `func(14,1) = 13`.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-fs04-07",
+          "title": "Static i in recursion",
+          "type": "mcq",
+          "question": "Consider the following function:\n\n```c\nint func(int n)\n{\n    static int i = 0;\n    if(n/2){\n        i--;\n        return func(n/2) + i;\n    }else return i;\n}\n```\n\nThe value returned by `func(7)` is:",
+          "options": [
+            "-6",
+            "-12",
+            "-18",
+            "-21"
+          ],
+          "answer": 0,
+          "solution": "`i` is static. `func(7)`: `7/2 = 3` is non-zero, `i = -1`, calls `func(3)`. `func(3)`: `3/2 = 1`, `i = -2`, calls `func(1)`. `func(1)`: `1/2 = 0`, so it returns `i = -2`. Unwinding: `func(3) = -2 + i = -2 + (-2) = -4` and `func(7) = -4 + i = -4 + (-2) = -6`, where `i` is read after the recursive call (the order is unspecified; gcc reads it after).\n\nResult: `-6`.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-fs04-08",
+          "title": "Static counter and printf",
+          "type": "mcq",
+          "question": "Consider the following function:\n\n```c\n#include <stdio.h>\nvoid display()\n{\n    static int i;\n    if(i <= printf(\"GATE24\")) {\n        i = i + 2;\n        display();\n    }\n}\nint main()\n{\n    int i = 0;\n    for(i = 0; i < 3; i++)\n        display();\n    return 0;\n}\n```\n\nThe number of times printf() executed is:",
+          "options": [
+            "6",
+            "5",
+            "7",
+            "9"
+          ],
+          "answer": 2,
+          "solution": "`printf(\"GATE24\")` always returns `6`. The first call of `display()` prints (static `i = 0`), then sets `i = 2`, 4, 6, 8: it prints at `i = 0, 2, 4, 6` (all `<= 6`) and once more at `i = 8` (not `<= 6`, so it stops): 5 prints. The 2nd and 3rd calls from `main` each print once (static `i` is already 8). Total: `5 + 1 + 1 = 7`.",
+          "marks": 1,
+          "source": "DPP-04"
+        }
+      ]
+    },
+    {
+      "title": "Arrays and Pointers — DPP 01",
+      "questions": [
+        {
+          "id": "dpp-ap01-01",
+          "title": "Invalid array declarations",
+          "type": "msq",
+          "question": "Which of the following declarations are INVALID?",
+          "options": [
+            "`int b[][4];`",
+            "`int b[];`",
+            "`int b[2][][2]={1,2,3,4};`",
+            "`int b[][2][2]={1,2,3,4};`"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Only the **first** dimension may be omitted, and only when an initialiser is given (the compiler counts the elements). (a) and (b) have no initialiser, so the size is unknown, and (c) omits a middle dimension; these are invalid. (d) is valid: it becomes `b[1][2][2]`.",
+          "marks": 2,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-ap01-02",
+          "title": "Array name vs pointer",
+          "type": "mcq",
+          "question": "Consider the following two statements:\n\n`P: int a[3]={1,2,3}; printf(\"%d\", *a++);`\n\n`Q: int a[3]={1,2,3}; int *p=a; printf(\"%d\", *p++);`\n\nWhich of the following statements is/are CORRECT?",
+          "options": [
+            "Only P",
+            "Only Q",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 1,
+          "solution": "The array name `a` is not a modifiable lvalue, so `a++` in P is a compile-time error. In Q, `p` is a pointer variable, so `*p++` is valid and prints `1`. Only Q is correct.\n\n> **Note:** The source gave no options; the standard four options were added.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-ap01-03",
+          "title": "Index swap a[1] == 1[a]",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main(void)\n{\n    int a[5]={5,10,15};\n    printf(\"%d\", 1[a]);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 10,
+          "solution": "`1[a]` is the same as `*(1 + a)` = `*(a + 1)` = `a[1]` = `10`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-ap01-04",
+          "title": "Index swap (repeat)",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main(void)\n{\n    int a[5]={5,10,15};\n    printf(\"%d\", 1[a]);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 10,
+          "solution": "`1[a]` = `*(1 + a)` = `a[1]` = `10`.\n\n> **Note:** This question is identical to the previous one in the source (the source declaration had a typo `int 5[a]`). Kept as given.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-ap01-05",
+          "title": "Pointer arithmetic with base address",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main(void) {\n    int a[5]={5, 10, 15, 20, 25};\n    printf(\"%u\", a);\n    printf(\"%u\", *(a+3));\n    printf(\"%u\", a+2);\n    printf(\"%u\", *(a+2)+6);\n    printf(\"%u\", *(a+*(a+1)-6));\n    return 0;\n}\n```\n\nAssuming the base address of the array to be 1000 and integer size as two bytes, the output is:",
+          "answer": "10002010042125",
+          "solution": "Printed pieces:\n\n- `a` → `1000`\n- `*(a+3)` → `20`\n- `a+2` → `1000 + 2*2 = 1004`\n- `*(a+2)+6` → `15 + 6 = 21`\n- `*(a + *(a+1) - 6)` → `*(a + 10 - 6)` = `*(a+4)` = `25`\n\nConcatenated output: `1000 20 1004 21 25` → `10002010042125`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-ap01-06",
+          "title": "&a + 1",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main(void)\n{\n    int a[5]={5,10,15,20,25};\n    printf(\"%u\\t\", *(1+a));\n    printf(\"%u\\t\", &a+1);\n    return 0;\n}\n```\n\nAssuming the base address of the array to be 1000 and integer size as four bytes, the output is:",
+          "answer": "10 1020",
+          "solution": "`*(1+a)` = `a[1]` = `10`. `&a` has type `int (*)[5]`, so `&a + 1` moves a whole array (`5 * 4 = 20` bytes): `1000 + 20 = 1020`.",
+          "marks": 1,
+          "source": "DPP-01"
+        }
+      ]
+    },
+    {
+      "title": "Arrays and Pointers — DPP 02",
+      "questions": [
+        {
+          "id": "dpp-ap02-01",
+          "title": "Array of pointers",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int a[5]={5,3,1,2,4};\n    int *p[5]={a, a+1, a+3, a+2, a+4};\n    printf(\"%u\\t%u\", p[3][1], *(*(p+4)-2));\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "2 1",
+          "solution": "`p[3] = a+2`, so `p[3][1] = *(a+2+1) = a[3] = 2`. `*(p+4) = a+4`, so `*(*(p+4)-2) = *(a+2) = a[2] = 1`. Output: `2 1`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-ap02-02",
+          "title": "Array of pointers dereference",
+          "type": "msq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    int a[]={2,4,6};\n    int b[]={1,3,5};\n    int *arr[]={a,b};\n    printf(\"%u\\t\", *(*(arr+1)+2));/*line 1*/\n    printf(\"%u\\t\", **arr+3);/*line 2*/\n    printf(\"%u\",***arr);/*line 3*/\n    return 0;\n}\n```\n\nWhich of the following lines do not give an ERROR?",
+          "options": [
+            "line 1",
+            "line 2",
+            "line 3"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "`arr` is an array of `int*`. Line 1: `*(arr+1)` is `b`, so `*(b+2) = b[2] = 5` (valid). Line 2: `**arr` is `a[0] = 2`, so `**arr + 3 = 5` (valid). Line 3: `***arr` dereferences an `int`, which is an error.\n\n> **Note:** The source gave no options; one option per line was added.",
+          "marks": 2,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-ap02-03",
+          "title": "Recursive array pointer function",
+          "question": "Consider the following function:\n\n```c\nvoid f(int *p, int n)\n{\n    static int i;\n    i=n-1;\n    if(i<0) return;\n    printf(\"%d\\t\", p[i]+p[n-i-1]);\n    f(p,n-1);\n}\n```\n\nIf the array `arr` with elements `[1, 2, 3, 4, 5]` is passed as `f(arr, 5)`, the output is:",
+          "answer": "6 5 4 3 2",
+          "solution": "For each call `i = n-1`, so it prints `p[n-1] + p[0]`: `5+1 = 6`, `4+1 = 5`, `3+1 = 4`, `2+1 = 3`, `1+1 = 2`; then `n = 0` gives `i = -1` and it returns. Output: `6 5 4 3 2`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-ap02-04",
+          "title": "Pointer to pointer",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int a[5]={5,3,1,2,4};\n    int *p[5]={a+3, a+1, a, a+2, a+4};\n    int **ptr=p+3;\n    printf(\"%u\\t%u\\t%u\", ptr-p, *ptr-a, **ptr);\n    return 0;\n}\n```\n\nThe sum of the output is ______.",
+          "answer": 6,
+          "solution": "`ptr - p = 3`. `*ptr = p[3] = a+2`, so `*ptr - a = 2`. `**ptr = a[2] = 1`. Output `3 2 1`, sum = `6`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-ap02-05",
+          "title": "Pointer to array row",
+          "question": "Consider the following function:\n\n```c\nvoid func(int (*ptr) [2])\n{\n    **ptr+=1;\n    ptr++;\n    **ptr*=3;\n}\n```\n\nThe array `arr[2][2]` with elements `{0, 1, 2, 3}` is passed to `func()`. What are the contents of the array after calling `func()`?",
+          "answer": "{1, 1, 6, 3} (i.e. arr[0][0]=1, arr[0][1]=1, arr[1][0]=6, arr[1][1]=3)",
+          "solution": "`ptr` points to row 0. `**ptr += 1` increments `arr[0][0]` from `0` to `1`. `ptr++` moves to row 1. `**ptr *= 3` makes `arr[1][0] = 2 * 3 = 6`. Final array: `{{1,1},{6,3}}`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-ap02-06",
+          "title": "3-D array pointer arithmetic",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int a[][3][2]={1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23};\n    printf(\"%u\\t\", a+1);\n    printf(\"%u\\t\", *a+1);\n    printf(\"%u\\t\", **a+1);\n    printf(\"%u\\t\", ***a+1);\n    printf(\"%u\\t\", &a+1);\n    return 0;\n}\n```\n\nAssume the base address of `a` is 100 and the integer size is 2 bytes. The output is:",
+          "answer": "112 104 102 2 124",
+          "solution": "`a` is `int[2][3][2]`. `a+1` skips one `int[3][2]` (12 bytes): `112`. `*a+1` skips one `int[2]` (4 bytes): `104`. `**a+1` skips one `int` (2 bytes): `102`. `***a+1` is `a[0][0][0] + 1 = 1 + 1 = 2`. `&a+1` skips the whole array (24 bytes): `124`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-ap02-07",
+          "title": "ptr += sizeof(int)",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int a[3][2]={1, 3, 5, 7, 9, 11};\n    int *ptr=a;\n    ptr+=sizeof(int);\n    printf(\"%d\", *ptr);\n    return 0;\n}\n```\n\n(Assume size of `int` to be 2 bytes.) The output is ______.",
+          "answer": 5,
+          "solution": "`sizeof(int) = 2`, so `ptr += 2` moves two `int`s forward from `a[0][0]`, reaching `a[1][0] = 5`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-ap02-08",
+          "title": "++*ptr++",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int a[][2]={1, 3, 5, 7, 9, 11};\n    int *ptr=a[1];\n    ++*ptr++;\n    printf(\"%d\", *ptr);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 7,
+          "solution": "`a[1]` is `{5, 7}`, so `ptr` points to `5`. In `++*ptr++`, the postfix `ptr++` binds first (the pointer moves to `7` after the expression), then `*` accesses `5` and the prefix `++` increments that value to `6`. Finally `*ptr` is `7`.",
+          "marks": 1,
+          "source": "DPP-02"
+        }
+      ]
+    },
+    {
+      "title": "Arrays and Pointers — DPP 03",
+      "questions": [
+        {
+          "id": "dpp-ap03-01",
+          "title": "Invalid double dereference",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int p=10, *q;\n    q=&p;\n    **q=p+++*q;\n    printf(\"%d\", *q);\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "Compilation error",
+          "solution": "`q` is an `int*`, so `*q` is an `int` and `**q` dereferences an integer, which is an invalid operand. This is a **compile-time error** (`invalid type argument of unary '*'`).",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-ap03-02",
+          "title": "Returning pointer to static array",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint* f() {\n    static int a[4]={1,2,3,4};\n    return a;\n}\nint main()\n{\n    int *p, i;\n    p=f();\n    for(i=0;i<3;i++) {\n        printf(\"%d\\t\", p[i]+p[i+1]);\n    }\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "3 5 7",
+          "solution": "`a` is static, so it still exists after `f` returns. The loop prints `1+2 = 3`, `2+3 = 5`, `3+4 = 7`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-ap03-03",
+          "title": "Pointer to pointer arithmetic",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int p=10, s=20, *q, **r;\n    q=&p;\n    *q=p+++*q;\n    q=&s;\n    r=&q;\n    **r=-*q***r;\n    printf(\"%d\",p+s);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": -379,
+          "solution": "`*q = p++ + *q` modifies `p` and also reads `*q` (which is `p`) without a sequence point, so this is unspecified/undefined behaviour in C. With gcc, `p++` makes `p = 11` and `*q` is then read as `11`, so `p = 10 + 11 = 21`.\n\nThen `q = &s`, `r = &q`. `**r = -*q***r` is `(-*q) * (**r)` = `-20 * 20 = -400`, so `s = -400`.\n\n`p + s = 21 + (-400) = -379`.\n\n> **Note:** Unspecified order of evaluation in `p++ + *q`; the answer follows gcc.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-ap03-04",
+          "title": "Returning pointer to local array",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint* f() {\n    int a[4]={1,2,3,4};\n    return a;\n}\nint main()\n{\n    int *p, i;\n    p=f();\n    for(i=0;i<3;i++) {\n        printf(\"%d\\t\", p[i]+p[i+1]);\n    }\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "Undefined behaviour (garbage values)",
+          "solution": "`a` is a local array; it is destroyed when `f` returns, so `p` is a **dangling pointer**. Reading through it is undefined behaviour and prints garbage (or crashes). The compiler normally warns `function returns address of local variable`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-ap03-05",
+          "title": "Complex declarations",
+          "type": "mcq",
+          "question": "Consider the following statements:\n\n`P: int * p(int *)` - p is a function that takes an integer pointer as argument and returns an integer pointer.\n\n`Q: int (*p(int *))[]` - p is a function that takes an integer pointer as argument and returns a pointer to an array of integers.\n\nWhich of the following is INCORRECT?",
+          "options": [
+            "Only P",
+            "Only Q",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 3,
+          "solution": "Both descriptions are correct. In P, `p` is a function `(int*) -> int*`. In Q, `p(int *)` is a function, `*p(int *)` is its (pointer) return value, and `(...)[]` makes it a pointer to an array of `int`. So *neither* statement is incorrect.\n\n> **Note:** The source gave no options; the standard four options were added.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-ap03-06",
+          "title": "Pointer to array of 2 ints",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nvoid f(int (*q)[2]) {\n    printf(\"%d\\t\",(*q)[1]);\n    q+=2;\n    printf(\"%d\",(*q)[1]);\n}\nint main()\n{\n    int a[][2]={2, 4, 6, 8, 10, 12};\n    int (*ptr)[2]=a;\n    f(ptr);\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "4 12",
+          "solution": "`q` points to row 0 `{2,4}`, so `(*q)[1] = 4`. `q += 2` moves two rows to `{10,12}`, so `(*q)[1] = 12`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-ap03-07",
+          "title": "&a + 1 as int pointer",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nint main()\n{\n    int a[3]={0, 1, 2};\n    int *p=(int*)(&a+1);\n    printf(\"%d\\t%d\", *(a+1),*(p-1));\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "1 2",
+          "solution": "`*(a+1) = a[1] = 1`. `&a+1` points one whole array past `a`, so `p` points just after `a[2]`, and `*(p-1) = a[2] = 2`. Output: `1 2`.",
+          "marks": 1,
+          "source": "DPP-03"
+        },
+        {
+          "id": "dpp-ap03-08",
+          "title": "Function pointer with loop",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\nvoid fun(int n){\n    for(n--;--n;--n)\n        printf(\"GATE WALLAH\");\n}\nint main()\n{\n    void (*p)(int)=fun;\n    (*p)(6);\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "GATE WALLAHGATE WALLAH",
+          "solution": "`n = 6`. Init: `n--` gives `5`. Test `--n` = `4` (true) → print. Update `--n` = `3`. Test `--n` = `2` (true) → print. Update `--n` = `1`. Test `--n` = `0` (false) → stop. So `GATE WALLAH` is printed twice.",
+          "marks": 1,
+          "source": "DPP-03"
+        }
+      ]
+    },
+    {
+      "title": "Arrays and Pointers — DPP 04",
+      "questions": [
+        {
+          "id": "dpp-ap04-01",
+          "title": "void pointer dereference",
+          "type": "mcq",
+          "question": "Consider the following codes:\n\n`P: void *p; p = malloc(1); *p = 65; printf(\"%c\",*(char*)p);`\n\n`Q: void *p; char a='A'; p = malloc(1); p = &a; printf(\"%c\",*(char*)p);`\n\nWhich of the following is CORRECT?",
+          "options": [
+            "Only P",
+            "Only Q",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 1,
+          "solution": "In P, `*p = 65` dereferences a `void *`, which is an error (it must be cast first). Q compiles and prints `A` (the `malloc`ed memory is leaked, but that is not an error). Only Q is correct.\n\n> **Note:** The source gave no options; the standard four options were added.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-ap04-02",
+          "title": "Heap vs local address",
+          "type": "msq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\nint* f()\n{\n    int *p=(int*)malloc(sizeof(int));\n    *p=10;\n    return p;\n}\nint * g(int a)\n{\n    return &a;\n}\nint main()\n{\n    printf(\"%p\", f());//line 1\n    printf(\"%p\", g(15));//line 2\n    return 0;\n}\n```\n\nWhich of the following statement(s) is/are INCORRECT?",
+          "options": [
+            "line 1",
+            "line 2"
+          ],
+          "answer": [
+            1
+          ],
+          "solution": "Line 1 returns a heap address from `malloc`, which stays valid. Line 2 returns the address of the parameter `a`, a local variable that is destroyed when `g` returns, so the pointer is **dangling** (incorrect).\n\n> **Note:** The source gave no options; one option per line was added.",
+          "marks": 2,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-ap04-03",
+          "title": "Reading int via char pointer",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nint main()\n{\n    void *p, *q;\n    int a=324;\n    p=&a;\n    printf(\"%d\", *(char*)p);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 68,
+          "solution": "`324 = 0x144`. The first (lowest-address) byte on a little-endian machine is `0x44 = 68`. Casting the pointer to `char*` reads that single byte, so `68` is printed.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-ap04-04",
+          "title": "malloc loop",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\nint main()\n{\n    int *p=(int*)malloc(sizeof(int));\n    int *q=(int*)malloc(sizeof(int));\n    *p=376;\n    *q=5;\n    while(*p>*q){\n        printf(\"%d\\t\",*p);\n        *p/=*q;\n        *q+=1;\n    }\n    return 0;\n}\n```\n\nThe sum of the printed values is ______.",
+          "answer": 463,
+          "solution": "Iterations: `376 > 5` prints `376`, then `*p = 75`, `*q = 6`. `75 > 6` prints `75`, then `*p = 12`, `*q = 7`. `12 > 7` prints `12`, then `*p = 1`, `*q = 8`. `1 > 8` is false. Sum: `376 + 75 + 12 = 463`.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-ap04-05",
+          "title": "realloc and uninitialised bytes",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\nint main() {\n    int count=0;\n    char *p=(char *)malloc(sizeof(char));\n    *p=65;\n    printf(\"%c\",*p);\n    p=realloc(p, 4*sizeof(char));\n    *p=256;\n    printf(\"%d\",*(int*)p);\n    return 0;\n}\n```\n\nThe output printed is:",
+          "answer": "A followed by an unpredictable (garbage) integer",
+          "solution": "`*p = 65` prints `A`. After `realloc` to 4 bytes the first byte is assigned `256`, which does not fit in a `char` and becomes `0`. Reading the 4 bytes as an `int` also reads 3 **uninitialised** bytes, so the integer is not guaranteed (it is `0` only if that memory happens to be zero). The output is `A` followed by an unpredictable number.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-ap04-06",
+          "title": "static and malloc pointers",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\nint* f()\n{\n    int *p=(int*)malloc(sizeof(int));\n    *p=20;\n    return p;\n}\nint* g()\n{\n    static int a=10;\n    int *q;\n    q=&a;\n    return q;\n}\nint main()\n{\n    printf(\"%d\\t\", *g());//line 1\n    printf(\"%d\", *f());//line 2\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "10 20",
+          "solution": "`g` returns the address of a `static` variable (still valid) → `10`. `f` returns a pointer to `malloc`ed memory → `20`. Output: `10 20`.",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-ap04-07",
+          "title": "malloc failure",
+          "type": "mcq",
+          "question": "When the memory is full, `malloc` returns:",
+          "options": [
+            "Void pointer",
+            "Wild pointer",
+            "Dangling pointer",
+            "NULL pointer"
+          ],
+          "answer": 3,
+          "solution": "`malloc` returns `NULL` when it cannot allocate the requested memory. (On success it returns a `void *`, but on failure the returned value is the null pointer.)",
+          "marks": 1,
+          "source": "DPP-04"
+        },
+        {
+          "id": "dpp-ap04-08",
+          "title": "calloc zero initialisation",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\n#include <stdlib.h>\nint main()\n{\n    int *p=(int *)calloc(2, sizeof(int));\n    int *q;\n    q=p+1;\n    printf(\"%d\\t\", *p);\n    printf(\"%d\\t\", *q);\n    *p=10;\n    *q=15;\n    printf(\"%d\\t\", *p);\n    printf(\"%d\\t\", *q);\n    free(p);\n    return 0;\n}\n```\n\nThe output is:",
+          "answer": "0 0 10 15",
+          "solution": "`calloc` zero-initialises the memory, so the first two prints show `0 0`. After the assignments the values are `10 15`. Output: `0 0 10 15`.",
+          "marks": 1,
+          "source": "DPP-04"
+        }
+      ]
+    },
+    {
+      "title": "Strings in C — DPP 01",
+      "questions": [
+        {
+          "id": "dpp-st01-01",
+          "title": "Modifying string literals",
+          "type": "nat",
+          "question": "Consider the following codes P and Q:\n\n```c\nP: char* p = \"GATEWallah\";\n   p[5] = 'A';\n   printf(\"%s\", p);\nQ: char* p = \"GATEWallah\";\n   char* q = p;\n   q[5] = 'A';\n   printf(\"%s\", q);\n```\n\nThe number of INCORRECT codes is/are ______.",
+          "answer": 2,
+          "solution": "A string literal lives in read-only memory, and modifying it is undefined behaviour (usually a segmentation fault). P modifies it through `p`, and Q modifies the same literal through `q`. Both are incorrect: **2**.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-st01-02",
+          "title": "Array comparison",
+          "type": "mcq",
+          "question": "Consider the following codes P and Q:\n\n```c\nP: char s1[] = \"GATE\";\n   char s2[] = \"GATE\";\n   if(s1 == s2) printf(\"YES\");\n   else printf(\"NO\");\nQ: char s1[] = \"GATE\";\n   char s2[] = \"GateWallah\";\n   if(*s1 == *s2) printf(\"YES\");\n   else printf(\"NO\");\n```\n\nThe outputs are:",
+          "options": [
+            "P = YES, Q = YES",
+            "P = YES, Q = NO",
+            "P = NO, Q = YES",
+            "P = NO, Q = NO"
+          ],
+          "answer": 2,
+          "solution": "P compares the **addresses** of two different arrays, which are never equal, so it prints `NO`. Q compares the first characters `'G'` and `'G'`, which are equal, so it prints `YES`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-st01-03",
+          "title": "scanf %s vs gets",
+          "type": "mcq",
+          "question": "Consider the following codes P and Q:\n\n```c\nP: char s[20];\n   printf(\"Enter your GATE stream with year: \\n\");\n   scanf(\"%s\", s);\n   printf(\"%s\", s);\nQ: char s[20];\n   printf(\"Enter your GATE stream with year: \\n\");\n   gets(s);\n   printf(\"%s\", s);\n```\n\nIf the input string is \"CS 2023\", the outputs are:",
+          "options": [
+            "P = CS 2023, Q = CS 2023",
+            "P = CS, Q = CS",
+            "P = CS 2023, Q = CS",
+            "P = CS, Q = CS 2023"
+          ],
+          "answer": 3,
+          "solution": "`scanf(\"%s\")` stops at the first whitespace, so P reads only `CS`. `gets` reads the whole line, so Q prints `CS 2023`.\n\n> `gets` was removed in C11 and is unsafe; this question is based on the older standard.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-st01-04",
+          "title": "Pointer offset and null terminator",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nint main()\n{\n    char s[20] = \"GATEWallah\";\n    printf(\"%s\", s + 4);\n    s[4] = 0;\n    printf(\"%s\", s);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "WallahGATE",
+            "EWallahGAT",
+            "WallahGATE allah",
+            "EWallahGAToallah"
+          ],
+          "answer": 0,
+          "solution": "`s + 4` points to `Wallah`, so that is printed first. Then `s[4] = 0` terminates the string after `GATE`, and the second `printf` prints `GATE`. Output: `WallahGATE`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-st01-05",
+          "title": "Pointer + char arithmetic",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nint main()\n{\n    char s[20] = \"GATEWallah2023\";\n    s[10] = '0';\n    printf(\"%s\", s + s[3] - s[1]);\n    return 0;\n}\n```\n\nThe output printed is:",
+          "options": [
+            "Wallah0",
+            "Wallah2023",
+            "Wallah0023",
+            "Wallah"
+          ],
+          "answer": 2,
+          "solution": "`s[3] = 'E' = 69` and `s[1] = 'A' = 65`, so the offset is `4` and the string starts at `Wallah...`. `s[10] = '0'` replaces the `'2'` at index 10 (`GATEWallah` has 10 characters, so index 10 is the first digit). The tail becomes `Wallah0023`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-st01-06",
+          "title": "Static index string update",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nvoid f(char *p)\n{\n    static int q = 2;\n    q = q + 3;\n    p[q] += 2;\n}\nint main()\n{\n    char s[20] = \"GATEWallahbesthai\";\n    int i = 0;\n    for(i = 0; i < 3; i++){\n        f(s);\n    }\n    printf(\"%s\", s);\n    return 0;\n}\n```\n\nThe output string printed is:",
+          "options": [
+            "GATEWcllchbgsthai",
+            "GATEWcllbhbgsthai",
+            "GATEWcllchbesthai",
+            "GATEWcllchbesthai"
+          ],
+          "answer": 0,
+          "solution": "`q` is static: calls modify indices 5, 8 and 11. `p[5] = 'a'+2 = 'c'`, `p[8] = 'a'+2 = 'c'`, `p[11] = 'e'+2 = 'g'`. Result: `GATEWcllchbgsthai`.\n\n> Options (c) and (d) are identical in the source.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-st01-07",
+          "title": "Recursive string printing",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nvoid f(char *p) {\n    if(*p != 0) {\n        printf(\"%c\", *p);\n        f(p + 1);\n        printf(\"%c\", *p);\n    }\n}\nint main()\n{\n    char s[5] = \"GATE\";\n    f(s);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "GATEGATE",
+            "ETAGGATE",
+            "ETAGETAG",
+            "GATEETAG"
+          ],
+          "answer": 3,
+          "solution": "The first `printf` runs before the recursive call (forward order `GATE`); the second runs after it (reverse order `ETAG`). Output: `GATEETAG`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-st01-08",
+          "title": "strcmp and printf return",
+          "type": "nat",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nint main()\n{\n    int a = 1;\n    char b[] = \"GATE2024\";\n    char c[] = \"GATE2024\";\n    int d = strcmp(b, c);\n    if(d == 0)\n        a = printf(\"GATEWallah\");\n    printf(\"%d\", a);\n    return 0;\n}\n```\n\nThe value of a is ______.",
+          "answer": 10,
+          "solution": "The two strings are equal, so `strcmp` returns `0` and the `if` runs. `printf(\"GATEWallah\")` returns the number of characters printed, `10`, so `a = 10`.",
+          "marks": 1,
+          "source": "DPP-01"
+        }
+      ]
+    },
+    {
+      "title": "Strings in C — DPP 02",
+      "questions": [
+        {
+          "id": "dpp-st02-01",
+          "title": "&5[a]",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nint main()\n{\n    char a[] = \"GATE_Wallah\";\n    printf(\"%s\\t\", &5[a]);\n    printf(\"%s\", (a + 5));\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "Runtime Error",
+            "Wallah Wallah",
+            "Wallah_Wallah",
+            "Compilation Error"
+          ],
+          "answer": 1,
+          "solution": "`5[a]` is `a[5]`, so `&5[a]` is `a + 5`, which points to `Wallah`. Both `printf`s print `Wallah`, separated by a tab.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-st02-02",
+          "title": "Array assignment",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nint main()\n{\n    char s[5];\n    s = \"GATE\";\n    printf(\"%s\", s);\n    return 0;\n}\n```\n\nThe output printed is:",
+          "options": [
+            "GATE",
+            "G",
+            "NULL",
+            "Compiler Error"
+          ],
+          "answer": 3,
+          "solution": "An array name is not a modifiable lvalue, so an array cannot be assigned with `=`. This is a **compile-time error** (use `strcpy` instead).",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-st02-03",
+          "title": "strcmp ternary",
+          "type": "nat",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nint main()\n{\n    char *p = \"abcd\";\n    char *q = \"acd\";\n    int a;\n    a = strcmp(p, q) ? strlen(p) : strlen(q);\n    printf(\"%d\", a);\n    return 0;\n}\n```\n\nThe output is ______.",
+          "answer": 4,
+          "solution": "`strcmp(\"abcd\", \"acd\")` is non-zero (`b` vs `c`), so the ternary picks `strlen(p) = 4`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-st02-04",
+          "title": "Pointer to pointer to string",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nint main()\n{\n    char * s[5] = {\"CS\", \"MECH\", \"ECE\", \"ELECTRICAL\", \"CIVIL\"};\n    char ** p[5] = {s + 2, s + 4, s + 1, s + 3, s};\n    char *** q = p;\n    q = q + 3;\n    printf(\"%s\", q[-2][-1]);\n    q = q - 2;\n    printf(\"%c\", ***q++ + 1);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "CSF",
+            "ELECTRICALD",
+            "CSD",
+            "CIVILF"
+          ],
+          "answer": 1,
+          "solution": "`q = p + 3`. `q[-2]` is `p[1] = s+4`, and `q[-2][-1]` is `s[3] = \"ELECTRICAL\"`, which is printed. Then `q = q - 2` = `p+1`. `***q` is `*(*(*q))`: `*q = s+4`, `**q = s[4] = \"CIVIL\"`, `***q = 'C'`, so `'C' + 1 = 'D'`. Output: `ELECTRICALD`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-st02-05",
+          "title": "strlen vs sizeof",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nint main()\n{\n    char a[] = \"GATE2024\";\n    char b[9];\n    strcpy(b, a);\n    printf(\"%s%d%d\", b, strlen(b), sizeof(b));\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "Compilation Error",
+            "GATE202488",
+            "GATE202489",
+            "GATE202499"
+          ],
+          "answer": 2,
+          "solution": "`strcpy` copies the 8 characters plus the null terminator (9 bytes) into `b[9]`. `strlen(b) = 8`, and `sizeof(b) = 9` (the array size). Output: `GATE2024` + `8` + `9`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-st02-06",
+          "title": "Skip-one recursion",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nvoid func(char *ptr)\n{\n    if((*ptr) != '\\0')\n    {\n        printf(\"%c\", *ptr);\n        func(ptr + 2);\n    }\n}\nint main()\n{\n    func(\"GATEWallah\");\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "GTWla",
+            "GTWlh",
+            "GATEWallah",
+            "None of the above"
+          ],
+          "answer": 0,
+          "solution": "The function prints every second character: indices 0, 2, 4, 6, 8 → `G`, `T`, `W`, `l`, `a`. The next pointer (index 10) is the null terminator. Output: `GTWla`.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-st02-07",
+          "title": "Terminating a string through a pointer",
+          "type": "mcq",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nint main()\n{\n    char a[] = \"GATEWallah\";\n    char *p;\n    p = a;\n    p += 4;\n    *p = '\\0';\n    printf(\"%s\", p);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "No output",
+            "Wallah",
+            "\\0allah",
+            "GATE 0allah"
+          ],
+          "answer": 0,
+          "solution": "`p` points to index 4. Writing `'\\0'` there makes `p` point at a null terminator, so `printf(\"%s\", p)` prints an empty string: no output.",
+          "marks": 1,
+          "source": "DPP-02"
+        },
+        {
+          "id": "dpp-st02-08",
+          "title": "Pointer chain with ++/--",
+          "type": "nat",
+          "question": "```c\n#include<stdio.h>\n#include<string.h>\nint main()\n{\n    char *a[] = {\"GATE\", \"Parakram\", \"Wallah\", \"Shreshth\"};\n    char **b[] = {a + 2, a + 3, a + 1, a};\n    char ***c = b;\n    printf(\"%s\", *--*++c + 3);\n    printf(\"%s\", **++c);\n    return 0;\n}\n```\n\nThe length of the output string is ______.",
+          "answer": 11,
+          "solution": "`++c` makes `c = b+1`, so `*++c = b[1]`. `--*++c` decrements `b[1]` from `a+3` to `a+2`; `*` of that is `a[2] = \"Wallah\"`, and `+ 3` gives `\"lah\"`, printed first. Then `++c` makes `c = b+2`, `*c = b[2] = a+1`, `**c = a[1] = \"Parakram\"`. Output: `lahParakram`, of length `3 + 8 = 11`.",
+          "marks": 1,
+          "source": "DPP-02"
+        }
+      ]
+    },
+    {
+      "title": "Structures and Unions — DPP 01",
+      "questions": [
+        {
+          "id": "dpp-su01-01",
+          "title": "Union size",
+          "type": "nat",
+          "question": "Consider the following C declaration:\n\n```c\n#include <stdio.h>\nunion u{\n    int a;\n    char b;\n    double d[2];\n};\nint main()\n{\n    union u ul;\n    printf(\"%d\", (int)sizeof(ul));\n    return 0;\n}\n```\n\nAssume that objects of the type `int`, `char` and `double` occupy 2 bytes, 1 byte and 4 bytes, respectively. The memory requirement for variable `ul` is ______ (in bytes).",
+          "answer": 8,
+          "solution": "A union takes the size of its largest member: `double d[2]` = `2 × 4 = 8` bytes.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-su01-02",
+          "title": "Struct containing a union",
+          "type": "nat",
+          "question": "Consider the following C declaration:\n\n```c\nstruct {\n    long a[3];\n    union {\n        int y;\n        float z;\n    } u;\n} s;\n```\n\nAssume that objects of the type `int`, `float` and `long` occupy 2 bytes, 4 bytes and 8 bytes, respectively. The memory requirement for variable `s` is ______ (in bytes).",
+          "answer": 28,
+          "solution": "`long a[3]` takes `3 × 8 = 24` bytes. The union takes the larger of `int` (2) and `float` (4) = `4` bytes. Total: `24 + 4 = 28` bytes.\n\n> This ignores alignment padding (the expected GATE answer). On a real machine with 8-byte alignment the struct would be padded to 32 bytes.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-su01-03",
+          "title": "Struct passed by pointer",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nstruct s{\n    char a, b;\n};\nvoid f(struct s *p){\n    p->a+=2;\n    p->b-=1;\n}\nint main()\n{\n    struct s s1, s2, *q;\n    s1.a='A'; s1.b='C';\n    q=&s1;\n    f(q);\n    printf(\"%c\\t%c\", s1.a, s1.b);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "CB",
+            "AC",
+            "Compilation error",
+            "Garbage values"
+          ],
+          "answer": 0,
+          "solution": "`f` receives a **pointer**, so the original struct is modified: `a = 'A'+2 = 'C'` and `b = 'C'-1 = 'B'`. Output: `C` then `B`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-su01-04",
+          "title": "Struct passed by value",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nstruct s{\n    char a, b;\n};\nvoid f(struct s s1){\n    s1.a+=3;\n    s1.b-=1;\n}\nint main()\n{\n    struct s s1;\n    s1.a='A'; s1.b='C';\n    f(s1);\n    printf(\"%c\\t%c\", s1.a, s1.b);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "CB",
+            "AC",
+            "Compilation error",
+            "Garbage values"
+          ],
+          "answer": 1,
+          "solution": "The struct is passed **by value**, so `f` changes only its own copy. `main`'s `s1` stays `A` and `C`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-su01-05",
+          "title": "Static counter updating struct",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nstruct s{\n    char a, b;\n};\nvoid f(struct s s1){\n    s1.a+=32;\n    s1.b+=32;\n}\nvoid g(struct s *p){\n    static count=2;\n    p->a+=count++;\n    p->b+=++count;\n}\nint main()\n{\n    struct s s1, s2;\n    s1.a='A'; s1.b='C';\n    s2.a='B'; s2.b='D';\n    f(s1);\n    for(int i=0;i<2;i++) g(&s2);\n    printf(\"%c\\t%c\", s1.a, s1.b);\n    printf(\"\\t%c\\t%c\", s2.a, s2.b);\n    return 0;\n}\n```\n\nThe output is:",
+          "options": [
+            "acBD",
+            "ACBD",
+            "ACHN",
+            "acBN"
+          ],
+          "answer": 2,
+          "solution": "`f(s1)` works on a copy, so `s1` stays `A`, `C`. `g` updates `s2` through a pointer; `count` is static (starts at 2):\n\n- Call 1: `a += 2` (count becomes 3) → `'B'+2 = 'D'`; `b += ++count` (count = 4) → `'D'+4 = 'H'`.\n- Call 2: `a += 4` (count becomes 5) → `'D'+4 = 'H'`; `b += ++count` (count = 6) → `'H'+6 = 'N'`.\n\nOutput: `A C H N` → `ACHN`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-su01-06",
+          "title": "Pointer and struct operator precedence",
+          "type": "mcq",
+          "question": "Consider the following program:\n\n```c\n#include <stdio.h>\nstruct days{\n    char *q;\n}s[]={\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"};\nint main()\n{\n    struct days *p=s;\n    p=p+3;\n    printf(\"%c\", *p++->q);\n    printf(\"%c\", *++p->q);\n    p=p-2;\n    printf(\"%s\", p->q);\n    return 0;\n}\n```\n\nThe output string printed is:",
+          "options": [
+            "WhWednesday",
+            "WTTuesday",
+            "WTWednesday",
+            "WhTuesday"
+          ],
+          "answer": 3,
+          "solution": "`p = s+3` (Wednesday). `*p++->q`: `p++->q` uses the old `p` and then moves `p` to Thursday; `*` gives the first character `W`. Next, `*++p->q` is `*(++(p->q))`: it increments Thursday's string pointer to `\"hursday\"` and prints `h`. Then `p = p - 2` points to Tuesday, so `%s` prints `Tuesday`. Output: `WhTuesday`.",
+          "marks": 1,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-su01-07",
+          "title": "Structure rules",
+          "type": "msq",
+          "question": "Which of the following statements are INCORRECT?",
+          "options": [
+            "Functions cannot be defined inside the structure.",
+            "Structure variable of the same structure type can be defined inside a structure.",
+            "A function may not contain a structure defined in it.",
+            "Existing structure cannot be contained in another structure."
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "(a) is a **correct** statement (C structs cannot contain function definitions, only function pointers). (b) is incorrect: a struct cannot contain a member of its own type (it would be infinitely large), only a pointer to it. (c) is incorrect: a struct can be defined inside a function. (d) is incorrect: structures can be nested. So (b), (c) and (d) are the incorrect statements.",
+          "marks": 2,
+          "source": "DPP-01"
+        },
+        {
+          "id": "dpp-su01-08",
+          "title": "Array member assignment",
+          "type": "nat",
+          "question": "Consider the following program:\n\n```c\n#include<stdio.h>\n#include<string.h>\nstruct t\n{\n    char sname[20];\n};\nint main ()\n{\n    struct t t1, t2;\n    strcpy(t1.sname, \"GATEWallah\"); //line a\n    t2.sname=\"GATE2023\"; //line b\n    printf(\"%s\", t1.sname); //line c\n    printf(\"%s\", t2.sname); //line d\n    return 0;\n}\n```\n\nThe number of lines with error among lines a, b, c, d is ______.",
+          "answer": 1,
+          "solution": "Only line b is an error: an array member cannot be assigned with `=` (use `strcpy`). Line a (`strcpy`) is fine. Lines c and d compile fine (d prints an uninitialised string, which is a runtime issue, not a compile error). So **1** line has an error.",
+          "marks": 1,
+          "source": "DPP-01"
+        }
+      ]
+    },
+    {
+      "title": "Miscellaneous Topics — DPP 01",
+      "questions": [
+        {
+          "id": "dpp-ms01-01",
+          "title": "Static vs dynamic scoping",
+          "question": "Consider the program below in a hypothetical language that allows a global variable and a choice of static and dynamic scoping:\n\n```c\nint i = 10; // global\n\nvoid main() {\n    i = 10; // or global i = 10\n    f();\n}\n\nvoid f() {\n    int i = 20;\n    g();\n}\n\nvoid g() {\n    print(i);\n}\n```\n\nLet $x$ be the value printed under static (lexical) scoping and $y$ the value printed under dynamic scoping. Find $x$ and $y$.",
+          "answer": "x = 10 and y = 20",
+          "solution": "**Static scoping:** `g` looks up `i` where `g` is *defined*, i.e. the global `i = 10`, so `x = 10`. **Dynamic scoping:** `g` looks up `i` along the *call chain* (`main → f → g`); the nearest `i` is `f`'s local `i = 20`, so `y = 20`.\n\n> The source did not state what to compute from `x` and `y`; for example `x + y = 30` and `y - x = 10`.",
+          "marks": 1,
+          "source": "DPP-01"
+        }
+      ]
+    }
+  ]
 }
