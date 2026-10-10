@@ -1,33 +1,902 @@
 {
   "title": "Discrete Mathematics — Concepts",
+  "intro": "## Discrete Mathematics (GATE CSE)\n\nCovers the four syllabus blocks: **Mathematical Logic**, **Set Theory** (sets, relations, functions, posets, lattices, monoids, groups), **Graph Theory** and **Combinatorics**.\n\n- Use the chapter tabs above to move between topics.\n- Each chapter ends with a short set of practice questions for quick revision.\n- Answers here are not counted on the dashboard; use the Practice, DPP and PYQ pages for tracked progress.",
   "sections": [
     {
-      "id": "graph-theory",
-      "title": "Chapter 1 — Graph Theory",
-      "short": "Graph Theory",
-      "content": "## Graph Theory\n\n_Notes yet to be added._",
-      "questions": []
+      "id": "logic-prop",
+      "title": "Mathematical Logic — Propositional Logic",
+      "short": "Prop. Logic",
+      "summary": "Connectives, equivalences, normal forms, tautology, functional completeness, inference.",
+      "content": "## 1. Connectives and truth values\n\n| $p$ | $q$ | $\\neg p$ | $p\\wedge q$ | $p\\vee q$ | $p\\to q$ | $p\\leftrightarrow q$ | $p\\oplus q$ |\n|---|---|---|---|---|---|---|---|\n| T | T | F | T | T | T | T | F |\n| T | F | F | F | T | **F** | F | T |\n| F | T | T | F | T | T | F | T |\n| F | F | T | F | F | T | T | F |\n\n$p\\to q$ is false **only** when $p=T,\\ q=F$.\n\n## 2. Important equivalences\n\n- $p\\to q\\equiv\\neg p\\vee q\\equiv\\neg q\\to\\neg p$ (contrapositive)\n- Converse $q\\to p$ and inverse $\\neg p\\to\\neg q$ are equivalent to each other, **not** to $p\\to q$\n- $\\neg(p\\to q)\\equiv p\\wedge\\neg q$\n- De Morgan: $\\neg(p\\wedge q)\\equiv\\neg p\\vee\\neg q$, $\\neg(p\\vee q)\\equiv\\neg p\\wedge\\neg q$\n- $p\\leftrightarrow q\\equiv(p\\to q)\\wedge(q\\to p)\\equiv\\neg(p\\oplus q)$\n- Absorption: $p\\vee(p\\wedge q)\\equiv p$, $p\\wedge(p\\vee q)\\equiv p$\n- Distributive: $p\\wedge(q\\vee r)\\equiv(p\\wedge q)\\vee(p\\wedge r)$ and vice versa\n\n## 3. Tautology, contradiction, satisfiability\n\n- **Tautology**: true in every row. **Contradiction**: false in every row. **Contingency**: neither.\n- **Satisfiable**: true in at least one row. $\\alpha$ is a tautology iff $\\neg\\alpha$ is unsatisfiable.\n- With $n$ variables there are $2^n$ rows and $2^{2^n}$ distinct Boolean functions.\n\n## 4. Normal forms and functional completeness\n\n- DNF: OR of ANDs (minterms). CNF: AND of ORs (maxterms).\n- Complete sets: $\\{\\wedge,\\neg\\}$, $\\{\\vee,\\neg\\}$, $\\{\\to,\\neg\\}$, $\\{\\uparrow\\}$ (NAND), $\\{\\downarrow\\}$ (NOR).\n- **Not** complete: $\\{\\wedge,\\vee\\}$ and $\\{\\to\\}$ alone (they cannot express negation).\n\n## 5. Rules of inference\n\n- Modus ponens: $p,\\ p\\to q\\ \\therefore q$\n- Modus tollens: $\\neg q,\\ p\\to q\\ \\therefore\\neg p$\n- Hypothetical syllogism: $p\\to q,\\ q\\to r\\ \\therefore p\\to r$\n- Disjunctive syllogism: $p\\vee q,\\ \\neg p\\ \\therefore q$\n- Resolution: $p\\vee q,\\ \\neg p\\vee r\\ \\therefore q\\vee r$\n- Fallacies: affirming the consequent ($q,\\ p\\to q\\ \\therefore p$) and denying the antecedent are **invalid**.\n\n**Exam tip (Hinglish):** Implication wale sawaal me pehle $p\\to q$ ko $\\neg p\\vee q$ bana lo, fir sab simple ho jata hai.\n",
+      "keyPoints": [
+        "$p\\to q$ is false only for $(T,F)$",
+        "$p\\to q\\equiv\\neg q\\to\\neg p\\equiv\\neg p\\vee q$",
+        "$\\neg(p\\to q)\\equiv p\\wedge\\neg q$",
+        "$n$ variables: $2^n$ rows, $2^{2^n}$ Boolean functions",
+        "NAND and NOR alone are functionally complete",
+        "Converse is not equivalent to the original implication"
+      ],
+      "questions": [
+        {
+          "id": "lp-1",
+          "title": "Equivalent of implication",
+          "type": "mcq",
+          "question": "Which formula is logically equivalent to $p\\to q$?",
+          "options": [
+            "$q\\to p$",
+            "$\\neg p\\to\\neg q$",
+            "$\\neg q\\to\\neg p$",
+            "$p\\wedge\\neg q$"
+          ],
+          "answer": 2,
+          "solution": "The contrapositive $\\neg q\\to\\neg p$ is equivalent. $q\\to p$ (converse) and $\\neg p\\to\\neg q$ (inverse) are not; $p\\wedge\\neg q$ is the negation of $p\\to q$.",
+          "marks": 1
+        },
+        {
+          "id": "lp-2",
+          "title": "Tautology",
+          "type": "mcq",
+          "question": "Which of the following is a tautology?",
+          "options": [
+            "$(p\\wedge(p\\to q))\\to q$",
+            "$(p\\vee q)\\to p$",
+            "$(p\\to q)\\to(q\\to p)$",
+            "$p\\wedge\\neg p$"
+          ],
+          "answer": 0,
+          "solution": "This is modus ponens: whenever $p$ and $p\\to q$ are true, $q$ is true, so the implication is always true. For (B) take $p=F,q=T$; for (C) take $p=F,q=T$ ($p\\to q$ true, $q\\to p$ false); (D) is a contradiction.",
+          "marks": 1
+        },
+        {
+          "id": "lp-3",
+          "title": "Boolean functions",
+          "type": "nat",
+          "question": "The number of distinct Boolean functions of 3 variables is ______.",
+          "answer": 256,
+          "solution": "There are $2^3=8$ input rows and each can map to 0 or 1, so $2^8=256$.",
+          "marks": 1
+        },
+        {
+          "id": "lp-4",
+          "title": "Functional completeness",
+          "type": "msq",
+          "question": "Which of the following sets of connectives are functionally complete?",
+          "options": [
+            "$\\{\\uparrow\\}$ (NAND)",
+            "$\\{\\downarrow\\}$ (NOR)",
+            "$\\{\\wedge,\\vee\\}$",
+            "$\\{\\wedge,\\neg\\}$"
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "NAND and NOR are each complete, and so is $\\{\\wedge,\\neg\\}$. $\\{\\wedge,\\vee\\}$ cannot express negation (it is monotone).",
+          "marks": 2
+        },
+        {
+          "id": "lp-5",
+          "title": "Negation",
+          "type": "mcq",
+          "question": "The negation of $p\\to q$ is",
+          "options": [
+            "$\\neg p\\to\\neg q$",
+            "$p\\wedge\\neg q$",
+            "$\\neg p\\wedge q$",
+            "$q\\to p$"
+          ],
+          "answer": 1,
+          "solution": "$\\neg(p\\to q)\\equiv\\neg(\\neg p\\vee q)\\equiv p\\wedge\\neg q$.",
+          "marks": 1
+        }
+      ]
     },
     {
-      "id": "mathematical-logic",
-      "title": "Chapter 2 — Mathematical Logic",
-      "short": "Mathematical Logic",
-      "content": "## Mathematical Logic\n\n_Notes yet to be added._",
-      "questions": []
+      "id": "logic-fol",
+      "title": "Mathematical Logic — First Order Logic",
+      "short": "First Order Logic",
+      "summary": "Predicates, quantifiers, negation, translation of English, quantifier order.",
+      "content": "## 1. Predicates and quantifiers\n\nA predicate $P(x)$ becomes a proposition once $x$ is bound by a quantifier.\n\n- $\\forall x\\,P(x)$: true iff $P(a)$ holds for **every** $a$ in the domain.\n- $\\exists x\\,P(x)$: true iff $P(a)$ holds for **at least one** $a$.\n- Over an **empty** domain $\\forall x\\,P(x)$ is true and $\\exists x\\,P(x)$ is false.\n\n## 2. Negation (quantifier De Morgan)\n\n- $\\neg\\forall x\\,P(x)\\equiv\\exists x\\,\\neg P(x)$\n- $\\neg\\exists x\\,P(x)\\equiv\\forall x\\,\\neg P(x)$\n- $\\neg\\forall x\\,(P(x)\\to Q(x))\\equiv\\exists x\\,(P(x)\\wedge\\neg Q(x))$\n\n## 3. Translating English (the classic traps)\n\n| Sentence | Formula |\n|---|---|\n| All $S$ are $P$ | $\\forall x\\,(S(x)\\to P(x))$ |\n| Some $S$ are $P$ | $\\exists x\\,(S(x)\\wedge P(x))$ |\n| No $S$ is $P$ | $\\forall x\\,(S(x)\\to\\neg P(x))\\equiv\\neg\\exists x\\,(S(x)\\wedge P(x))$ |\n| Some $S$ are not $P$ | $\\exists x\\,(S(x)\\wedge\\neg P(x))$ |\n\n- **Never** pair $\\forall$ with $\\wedge$ or $\\exists$ with $\\to$ for these patterns: $\\forall x\\,(S(x)\\wedge P(x))$ says *everything* is an $S$, and $\\exists x\\,(S(x)\\to P(x))$ is true whenever something is not an $S$.\n\n## 4. Order of quantifiers\n\n- Same type can be swapped: $\\forall x\\forall y\\equiv\\forall y\\forall x$ and $\\exists x\\exists y\\equiv\\exists y\\exists x$.\n- Mixed type **cannot** be swapped. $\\exists y\\,\\forall x\\,P(x,y)\\ \\Rightarrow\\ \\forall x\\,\\exists y\\,P(x,y)$ but **not** the converse.\n- $\\forall x\\,(P\\wedge Q)\\equiv\\forall x\\,P\\wedge\\forall x\\,Q$ and $\\exists x\\,(P\\vee Q)\\equiv\\exists x\\,P\\vee\\exists x\\,Q$.\n- $\\forall x\\,P\\vee\\forall x\\,Q\\Rightarrow\\forall x\\,(P\\vee Q)$ but not conversely; $\\exists x\\,(P\\wedge Q)\\Rightarrow\\exists x\\,P\\wedge\\exists x\\,Q$ but not conversely.\n\n## 5. Validity\n\nA first-order formula is **valid** if true in every interpretation. Validity of FOL is undecidable (but semi-decidable); satisfiability of propositional formulas is NP-complete.\n\n**Exam tip (Hinglish):** \"Sab ke liye\" ke saath implication ($\\to$), \"kuch ke liye\" ke saath AND ($\\wedge$). Ulta likha to option galat.\n",
+      "keyPoints": [
+        "All $S$ are $P$: $\\forall x(S\\to P)$",
+        "Some $S$ are $P$: $\\exists x(S\\wedge P)$",
+        "$\\exists y\\forall x\\Rightarrow\\forall x\\exists y$, not the converse",
+        "$\\neg\\forall\\equiv\\exists\\neg$ and $\\neg\\exists\\equiv\\forall\\neg$",
+        "Mixed quantifiers cannot be swapped"
+      ],
+      "questions": [
+        {
+          "id": "fol-1",
+          "title": "Negation",
+          "type": "mcq",
+          "question": "$\\neg\\forall x\\,(P(x)\\to Q(x))$ is equivalent to",
+          "options": [
+            "$\\forall x\\,(P(x)\\wedge\\neg Q(x))$",
+            "$\\exists x\\,(P(x)\\wedge\\neg Q(x))$",
+            "$\\exists x\\,(\\neg P(x)\\to\\neg Q(x))$",
+            "$\\forall x\\,(\\neg P(x)\\vee Q(x))$"
+          ],
+          "answer": 1,
+          "solution": "$\\neg\\forall x\\,\\varphi\\equiv\\exists x\\,\\neg\\varphi$ and $\\neg(P\\to Q)\\equiv P\\wedge\\neg Q$.",
+          "marks": 1
+        },
+        {
+          "id": "fol-2",
+          "title": "Translation",
+          "type": "mcq",
+          "question": "Which formula says \"No student is lazy\"? ($S$: student, $L$: lazy)",
+          "options": [
+            "$\\forall x\\,(S(x)\\wedge\\neg L(x))$",
+            "$\\exists x\\,(S(x)\\to\\neg L(x))$",
+            "$\\neg\\exists x\\,(S(x)\\wedge L(x))$",
+            "$\\neg\\forall x\\,(S(x)\\to L(x))$"
+          ],
+          "answer": 2,
+          "solution": "No student is lazy means there is no $x$ that is both a student and lazy: $\\neg\\exists x(S(x)\\wedge L(x))\\equiv\\forall x(S(x)\\to\\neg L(x))$.",
+          "marks": 1
+        },
+        {
+          "id": "fol-3",
+          "title": "Quantifier order",
+          "type": "mcq",
+          "question": "Which statement is always true for every predicate $P$?",
+          "options": [
+            "$\\forall x\\,\\exists y\\,P(x,y)\\Rightarrow\\exists y\\,\\forall x\\,P(x,y)$",
+            "$\\exists y\\,\\forall x\\,P(x,y)\\Rightarrow\\forall x\\,\\exists y\\,P(x,y)$",
+            "$\\forall x\\,\\exists y\\,P(x,y)\\equiv\\exists y\\,\\forall x\\,P(x,y)$",
+            "None of the above"
+          ],
+          "answer": 1,
+          "solution": "If one $y$ works for all $x$, then each $x$ certainly has some $y$. The converse fails: with $P(x,y):x<y$ over the integers, $\\forall x\\exists y$ is true but $\\exists y\\forall x$ is false.",
+          "marks": 1
+        },
+        {
+          "id": "fol-4",
+          "title": "Translation",
+          "type": "mcq",
+          "question": "Which formula expresses \"every natural number has a larger natural number\"?",
+          "options": [
+            "$\\exists x\\,\\forall y\\,(y>x)$",
+            "$\\forall x\\,\\exists y\\,(y>x)$",
+            "$\\forall y\\,\\exists x\\,(y>x)$",
+            "$\\exists y\\,\\forall x\\,(y>x)$"
+          ],
+          "answer": 1,
+          "solution": "For each $x$ there must exist a $y$ larger than it: $\\forall x\\,\\exists y\\,(y>x)$.",
+          "marks": 1
+        },
+        {
+          "id": "fol-5",
+          "title": "Equivalences",
+          "type": "msq",
+          "question": "Which of the following are logically valid (true under all interpretations)?",
+          "options": [
+            "$\\forall x\\,(P(x)\\wedge Q(x))\\to\\forall x\\,P(x)$",
+            "$\\exists x\\,(P(x)\\wedge Q(x))\\to\\exists x\\,P(x)\\wedge\\exists x\\,Q(x)$",
+            "$(\\forall x\\,P(x)\\vee\\forall x\\,Q(x))\\leftrightarrow\\forall x\\,(P(x)\\vee Q(x))$",
+            "$(\\exists x\\,P(x)\\wedge\\exists x\\,Q(x))\\to\\exists x\\,(P(x)\\wedge Q(x))$"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "(A) and (B) are valid. (C) fails when $P$ and $Q$ each hold for different elements: the right side is true but both $\\forall x P$ and $\\forall x Q$ are false. (D) fails when different elements satisfy $P$ and $Q$.",
+          "marks": 2
+        }
+      ]
     },
     {
-      "id": "set-theory",
-      "title": "Chapter 3 — Set Theory",
-      "short": "Set Theory",
-      "content": "## Set Theory\n\n_Notes yet to be added._",
-      "questions": []
+      "id": "sets-relations",
+      "title": "Set Theory — Sets and Relations",
+      "short": "Sets & Relations",
+      "summary": "Set identities, power set, relation properties and counting, equivalence relations, closures.",
+      "content": "## 1. Sets\n\n- $|A\\cup B|=|A|+|B|-|A\\cap B|$. For three sets use inclusion–exclusion.\n- $|\\mathcal P(A)|=2^{|A|}$. $|A\\times B|=|A||B|$.\n- De Morgan: $\\overline{A\\cup B}=\\overline A\\cap\\overline B$.\n- $A\\setminus B=A\\cap\\overline B$; symmetric difference $A\\oplus B=(A\\setminus B)\\cup(B\\setminus A)$.\n\n## 2. Relations and their properties\n\nA relation $R$ on $A$ is a subset of $A\\times A$.\n\n| Property | Condition |\n|---|---|\n| Reflexive | $(a,a)\\in R$ for all $a$ |\n| Irreflexive | $(a,a)\\notin R$ for all $a$ |\n| Symmetric | $(a,b)\\in R\\Rightarrow(b,a)\\in R$ |\n| Antisymmetric | $(a,b),(b,a)\\in R\\Rightarrow a=b$ |\n| Transitive | $(a,b),(b,c)\\in R\\Rightarrow(a,c)\\in R$ |\n\n- **Equivalence** = reflexive + symmetric + transitive. It partitions $A$ into equivalence classes.\n- **Partial order** = reflexive + antisymmetric + transitive.\n- Symmetric and antisymmetric are not opposites; the identity relation is both. The empty relation is symmetric, antisymmetric and transitive.\n\n## 3. Counting relations on an $n$-element set\n\n| Type | Count |\n|---|---|\n| All relations | $2^{n^2}$ |\n| Reflexive | $2^{n^2-n}$ |\n| Symmetric | $2^{n(n+1)/2}$ |\n| Antisymmetric | $2^n\\cdot3^{n(n-1)/2}$ |\n| Asymmetric | $3^{n(n-1)/2}$ |\n| Equivalence relations | Bell number $B_n$: $1,2,5,15,52,203,\\dots$ |\n\n## 4. Composition and closures\n\n- $R\\circ S=\\{(a,c):\\exists b,\\ (a,b)\\in S,\\ (b,c)\\in R\\}$ (check the convention used in the question).\n- Reflexive closure $R\\cup I$; symmetric closure $R\\cup R^{-1}$; transitive closure $R^+=R\\cup R^2\\cup\\dots\\cup R^n$ (Warshall's algorithm, $O(n^3)$).\n- Congruence mod $m$ is an equivalence relation with $m$ classes.\n\n**Exam tip (Hinglish):** Relation ke properties check karte waqt chhote counter-example (jaise $(1,2)$ aur $(2,1)$) se jaldi decide ho jata hai.\n",
+      "keyPoints": [
+        "Number of relations on $n$ elements: $2^{n^2}$",
+        "Reflexive: $2^{n^2-n}$, symmetric: $2^{n(n+1)/2}$",
+        "Antisymmetric: $2^n3^{n(n-1)/2}$",
+        "Equivalence relations on $n$ elements = Bell number $B_n$",
+        "Equivalence = reflexive + symmetric + transitive",
+        "Transitive closure by Warshall in $O(n^3)$"
+      ],
+      "questions": [
+        {
+          "id": "sr-1",
+          "title": "Reflexive relations",
+          "type": "nat",
+          "question": "The number of reflexive relations on a set with 3 elements is ______.",
+          "answer": 64,
+          "solution": "All 3 pairs $(a,a)$ are forced; each of the remaining $9-3=6$ pairs is free: $2^6=64$.",
+          "marks": 1
+        },
+        {
+          "id": "sr-2",
+          "title": "Symmetric relations",
+          "type": "nat",
+          "question": "The number of symmetric relations on a set of 4 elements is ______.",
+          "answer": 1024,
+          "solution": "A symmetric relation is determined by the 4 diagonal pairs and the $\\binom42=6$ unordered off-diagonal pairs: $2^{4+6}=2^{10}=1024$.",
+          "marks": 1
+        },
+        {
+          "id": "sr-3",
+          "title": "Equivalence relations",
+          "type": "nat",
+          "question": "The number of equivalence relations on a set of 4 elements is ______.",
+          "answer": 15,
+          "solution": "This is the number of partitions of a 4-set, the Bell number $B_4=15$.",
+          "marks": 1
+        },
+        {
+          "id": "sr-4",
+          "title": "Antisymmetric relations",
+          "type": "nat",
+          "question": "The number of antisymmetric relations on a set with 3 elements is ______.",
+          "answer": 216,
+          "solution": "$2^n\\cdot3^{n(n-1)/2}=2^3\\cdot3^3=8\\cdot27=216$.",
+          "marks": 1
+        },
+        {
+          "id": "sr-5",
+          "title": "Properties",
+          "type": "mcq",
+          "question": "$R=\\{(1,1),(2,2),(1,2),(2,1)\\}$ on $\\{1,2,3\\}$ is",
+          "options": [
+            "an equivalence relation",
+            "symmetric and transitive but not reflexive",
+            "reflexive and symmetric but not transitive",
+            "antisymmetric and transitive"
+          ],
+          "answer": 1,
+          "solution": "$(3,3)\\notin R$, so it is not reflexive. It is symmetric, and it is transitive (all compositions stay inside $\\{1,2\\}^2$). It is not antisymmetric since $(1,2),(2,1)\\in R$.",
+          "marks": 1
+        },
+        {
+          "id": "sr-6",
+          "title": "Congruence",
+          "type": "mcq",
+          "question": "The number of equivalence classes of the relation $a\\equiv b\\pmod 5$ on the integers is",
+          "options": [
+            "1",
+            "4",
+            "5",
+            "infinite"
+          ],
+          "answer": 2,
+          "solution": "Residues $0,1,2,3,4$ give exactly 5 classes.",
+          "marks": 1
+        }
+      ]
     },
     {
-      "id": "combinatorics",
-      "title": "Chapter 4 — Combinatorics",
-      "short": "Combinatorics",
-      "content": "## Combinatorics\n\n_Notes yet to be added._",
-      "questions": []
+      "id": "functions",
+      "title": "Set Theory — Functions",
+      "short": "Functions",
+      "summary": "Injective, surjective, bijective, composition, inverse and counting functions.",
+      "content": "## 1. Types of functions $f:A\\to B$\n\n- **Injective (one-one)**: $f(a)=f(b)\\Rightarrow a=b$.\n- **Surjective (onto)**: every $b\\in B$ has some $a$ with $f(a)=b$.\n- **Bijective**: both. Only bijections have an inverse $f^{-1}$.\n\n## 2. Counting with $|A|=m$, $|B|=n$\n\n| Kind | Count |\n|---|---|\n| All functions | $n^m$ |\n| Injective | $P(n,m)=\\dfrac{n!}{(n-m)!}$ (needs $m\\le n$) |\n| Bijective | $n!$ if $m=n$ |\n| Surjective | $\\displaystyle\\sum_{k=0}^{n}(-1)^k\\binom nk(n-k)^m$ (needs $m\\ge n$) |\n\nExample: onto functions from a 4-set to a 3-set $=3^4-3\\cdot2^4+3\\cdot1^4=36$.\n\n## 3. Composition\n\n- $(g\\circ f)(x)=g(f(x))$. Composition is associative, not commutative.\n- If $g\\circ f$ is injective then $f$ is injective.\n- If $g\\circ f$ is surjective then $g$ is surjective.\n- Composition of bijections is a bijection, and $(g\\circ f)^{-1}=f^{-1}\\circ g^{-1}$.\n\n## 4. Finite sets and cardinality\n\n- For $|A|=|B|$ finite: injective $\\iff$ surjective $\\iff$ bijective.\n- $f:\\mathbb Z\\to\\mathbb Z$, $f(x)=x^2$ is neither injective nor surjective; $f(x)=2x$ is injective but not surjective; $f(x)=x+1$ is bijective.\n- $\\mathbb N,\\mathbb Z,\\mathbb Q$ are countable; $\\mathbb R$ and $\\mathcal P(\\mathbb N)$ are uncountable.\n- Pigeonhole: no injection from a larger finite set to a smaller one.\n\n**Exam tip (Hinglish):** Onto functions ka count yaad nahi to inclusion–exclusion formula likh do, 2-3 lines me ho jata hai.\n",
+      "keyPoints": [
+        "All functions $m\\to n$: $n^m$",
+        "Injective: $n!/(n-m)!$",
+        "Onto: inclusion–exclusion $\\sum(-1)^k\\binom nk(n-k)^m$",
+        "$g\\circ f$ injective $\\Rightarrow f$ injective",
+        "$g\\circ f$ surjective $\\Rightarrow g$ surjective",
+        "Finite equal-size sets: injective $\\iff$ surjective"
+      ],
+      "questions": [
+        {
+          "id": "fn-1",
+          "title": "Onto functions",
+          "type": "nat",
+          "question": "The number of onto (surjective) functions from a set of 4 elements to a set of 3 elements is ______.",
+          "answer": 36,
+          "solution": "$3^4-\\binom31 2^4+\\binom32 1^4=81-48+3=36$.",
+          "marks": 1
+        },
+        {
+          "id": "fn-2",
+          "title": "Injective functions",
+          "type": "nat",
+          "question": "The number of one-one functions from a 3-element set to a 5-element set is ______.",
+          "answer": 60,
+          "solution": "$5\\cdot4\\cdot3=60$.",
+          "marks": 1
+        },
+        {
+          "id": "fn-3",
+          "title": "Type of function",
+          "type": "mcq",
+          "question": "The function $f:\\mathbb Z\\to\\mathbb Z$, $f(x)=x^2$ is",
+          "options": [
+            "injective but not surjective",
+            "surjective but not injective",
+            "bijective",
+            "neither injective nor surjective"
+          ],
+          "answer": 3,
+          "solution": "$f(2)=f(-2)$ so it is not injective, and negative integers are never attained, so it is not surjective.",
+          "marks": 1
+        },
+        {
+          "id": "fn-4",
+          "title": "Composition",
+          "type": "mcq",
+          "question": "If $g\\circ f:A\\to C$ is injective, then which of the following must be true?",
+          "options": [
+            "$g$ is injective",
+            "$f$ is injective",
+            "$f$ is surjective",
+            "$g$ is surjective"
+          ],
+          "answer": 1,
+          "solution": "If $f(a)=f(b)$ then $g(f(a))=g(f(b))$, hence $a=b$. So $f$ must be injective; $g$ need not be.",
+          "marks": 1
+        },
+        {
+          "id": "fn-5",
+          "title": "Counting functions",
+          "type": "nat",
+          "question": "The number of functions from $\\{1,2,3\\}$ to $\\{1,2,3,4\\}$ is ______.",
+          "answer": 64,
+          "solution": "Each of the 3 elements has 4 choices: $4^3=64.$",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "posets-lattices",
+      "title": "Set Theory — Partial Orders and Lattices",
+      "short": "Posets & Lattices",
+      "summary": "Hasse diagrams, extremal elements, lub/glb, lattices, Boolean lattices, chains and antichains.",
+      "content": "## 1. Partial orders and Hasse diagrams\n\nA **poset** $(P,\\preceq)$ is reflexive, antisymmetric and transitive. The Hasse diagram omits self-loops, transitive edges and arrow directions (lower elements are drawn lower).\n\n- **Maximal / minimal**: no element strictly above / below it (can be several).\n- **Greatest / least**: above / below **all** elements (unique if it exists).\n- **Upper bound / lower bound** of a subset $S$; **lub** = least upper bound (join, $\\vee$), **glb** = greatest lower bound (meet, $\\wedge$).\n- **Chain**: every two elements comparable. **Antichain**: no two comparable.\n- **Dilworth**: minimum number of chains covering a poset = size of the largest antichain.\n\n## 2. Lattices\n\nA poset is a **lattice** if every pair $\\{a,b\\}$ has both a lub and a glb. Every finite lattice has a greatest ($1$) and least ($0$) element.\n\n- **Bounded** (has $0$ and $1$), **complemented** (each $a$ has $a'$ with $a\\vee a'=1,\\ a\\wedge a'=0$), **distributive** ($a\\wedge(b\\vee c)=(a\\wedge b)\\vee(a\\wedge c)$).\n- A lattice is non-distributive iff it contains the diamond $M_3$ or pentagon $N_5$ as a sublattice.\n- In a distributive lattice, complements are **unique** when they exist.\n- **Boolean lattice** = complemented distributive lattice with $0,1$. A finite Boolean lattice has $2^n$ elements and is isomorphic to $(\\mathcal P(\\{1..n\\}),\\subseteq)$.\n\n## 3. Standard examples\n\n- $(\\mathcal P(S),\\subseteq)$: join = union, meet = intersection; Boolean.\n- $(\\mathbb N,\\mid)$ or $D_n$ (divisors of $n$ under divisibility): join = lcm, meet = gcd. $D_n$ is Boolean iff $n$ is **square-free**; it has $d(n)$ elements, e.g. $D_{30}$ has 8.\n- $(\\mathbb Z,\\le)$ is a chain and a distributive lattice but not bounded.\n- Hasse diagram of $\\mathcal P(\\{a,b,c\\})$ is a cube: 8 nodes, 12 edges, 6 maximal chains ($3!$).\n\n**Exam tip (Hinglish):** Lattice sawaal me pehle dekho har pair ka lub aur glb exist karta hai ya nahi. Square-free wala trick $D_n$ ke liye bahut kaam aata hai.\n",
+      "keyPoints": [
+        "Poset = reflexive + antisymmetric + transitive",
+        "Lattice: every pair has lub and glb",
+        "$D_n$ is Boolean iff $n$ is square-free",
+        "Finite Boolean lattice has $2^n$ elements",
+        "Hasse diagram of $\\mathcal P(\\{a,b,c\\})$ has 12 edges",
+        "Distributive lattice: no $M_3$ or $N_5$"
+      ],
+      "questions": [
+        {
+          "id": "pl-1",
+          "title": "Elements of D30",
+          "type": "nat",
+          "question": "The number of elements in the lattice $D_{30}$ (divisors of 30 under divisibility) is ______.",
+          "answer": 8,
+          "solution": "$30=2\\cdot3\\cdot5$ has $2^3=8$ divisors, and $D_{30}$ is the Boolean lattice on 3 atoms.",
+          "marks": 1
+        },
+        {
+          "id": "pl-2",
+          "title": "Boolean lattice",
+          "type": "mcq",
+          "question": "Which of the following divisor lattices is a Boolean lattice?",
+          "options": [
+            "$D_{12}$",
+            "$D_{18}$",
+            "$D_{30}$",
+            "$D_{36}$"
+          ],
+          "answer": 2,
+          "solution": "$D_n$ is Boolean iff $n$ is square-free. $30=2\\cdot3\\cdot5$ is square-free; $12=2^2\\cdot3$, $18=2\\cdot3^2$ and $36=2^2\\cdot3^2$ are not.",
+          "marks": 1
+        },
+        {
+          "id": "pl-3",
+          "title": "lub in divisibility",
+          "type": "mcq",
+          "question": "In the poset $(\\mathbb N,\\mid)$, the least upper bound of $4$ and $6$ is",
+          "options": [
+            "2",
+            "12",
+            "24",
+            "10"
+          ],
+          "answer": 1,
+          "solution": "Under divisibility the lub is the lcm: $\\mathrm{lcm}(4,6)=12$.",
+          "marks": 1
+        },
+        {
+          "id": "pl-4",
+          "title": "Hasse diagram of subsets",
+          "type": "nat",
+          "question": "The number of edges in the Hasse diagram of $(\\mathcal P(\\{a,b,c\\}),\\subseteq)$ is ______.",
+          "answer": 12,
+          "solution": "It is the 3-cube: each of the 8 subsets of size $k$ covers $k$ subsets, so edges $=0+1+1+1+2+2+2+3=12$ (equivalently $3\\cdot2^2$).",
+          "marks": 1
+        },
+        {
+          "id": "pl-5",
+          "title": "Maximal chains",
+          "type": "nat",
+          "question": "The number of maximal chains in $(\\mathcal P(\\{a,b,c\\}),\\subseteq)$ from $\\varnothing$ to $\\{a,b,c\\}$ is ______.",
+          "answer": 6,
+          "solution": "Each maximal chain adds one element at a time, so it corresponds to an ordering of $a,b,c$: $3!=6$.",
+          "marks": 1
+        },
+        {
+          "id": "pl-6",
+          "title": "Lattice facts",
+          "type": "msq",
+          "question": "Which of the following statements are true?",
+          "options": [
+            "Every finite lattice has a greatest and a least element",
+            "Every chain is a distributive lattice",
+            "In a distributive lattice a complement, if it exists, is unique",
+            "Every lattice is distributive"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "A finite lattice is bounded by the join and meet of all its elements; any chain is a lattice with $\\max$ and $\\min$ and is distributive; uniqueness of complements holds in distributive lattices. Not every lattice is distributive ($M_3,N_5$).",
+          "marks": 2
+        }
+      ]
+    },
+    {
+      "id": "groups",
+      "title": "Set Theory — Monoids and Groups",
+      "short": "Monoids & Groups",
+      "summary": "Algebraic structures, subgroups, cyclic groups, order of elements and Lagrange's theorem.",
+      "content": "## 1. Hierarchy of algebraic structures\n\n| Structure | Axioms |\n|---|---|\n| Closure / groupoid | $a*b\\in S$ |\n| **Semigroup** | closure + associativity |\n| **Monoid** | semigroup + identity |\n| **Group** | monoid + every element has an inverse |\n| Abelian group | group + commutativity |\n\nExamples: $(\\mathbb N,+)$ is a monoid (identity 0) but not a group; $(\\mathbb Z,+)$ is an abelian group; $(\\mathbb Z,-)$ is not even a semigroup (not associative); $(\\mathbb Z_n,+_n)$ is a cyclic group; $(\\mathbb Z_p^*,\\times_p)$ is a group iff $p$ is prime; $(\\mathbb Z_n^*,\\times_n)$ has $\\varphi(n)$ elements.\n\n## 2. Basic facts\n\n- Identity and inverses are **unique**. $(ab)^{-1}=b^{-1}a^{-1}$.\n- Cancellation laws hold. Every row/column of the Cayley table is a permutation.\n- A group of **even order** has an element of order 2. A group in which every $a^2=e$ is abelian.\n\n## 3. Subgroups and Lagrange\n\n- $H\\subseteq G$ is a subgroup iff $H\\ne\\varnothing$ and $a,b\\in H\\Rightarrow ab^{-1}\\in H$ (for finite $H$: closure suffices).\n- **Lagrange**: $|H|$ divides $|G|$. Hence the order of every element divides $|G|$, and a group of **prime** order is cyclic with no proper non-trivial subgroups.\n- The converse of Lagrange is false: $A_4$ (order 12) has no subgroup of order 6.\n- Intersection of subgroups is a subgroup; union generally is not.\n\n## 4. Cyclic groups and orders\n\n- $G=\\langle g\\rangle$. The order of $a$ in $\\mathbb Z_n$ (addition) is $\\dfrac{n}{\\gcd(a,n)}$.\n- A cyclic group of order $n$ has exactly $\\varphi(n)$ generators, and exactly one subgroup for each divisor of $n$.\n- Every cyclic group is abelian; every subgroup of a cyclic group is cyclic.\n- $|ab|=|a||b|$ only when $a,b$ commute and $\\gcd(|a|,|b|)=1$.\n\n**Exam tip (Hinglish):** Group ka order divisors se hi subgroup order ban sakta hai. Option me aisa number ho jo order ko divide nahi karta, wahi galat hai.\n",
+      "keyPoints": [
+        "Group = closure + associativity + identity + inverse",
+        "Monoid has identity but no inverses",
+        "Lagrange: $|H|\\mid|G|$",
+        "Order of $a$ in $\\mathbb Z_n$ is $n/\\gcd(a,n)$",
+        "Cyclic group of order $n$ has $\\varphi(n)$ generators",
+        "Group of prime order is cyclic"
+      ],
+      "questions": [
+        {
+          "id": "gr-1",
+          "title": "Order of an element",
+          "type": "nat",
+          "question": "The order of the element $3$ in the group $(\\mathbb Z_{12},+_{12})$ is ______.",
+          "answer": 4,
+          "solution": "$12/\\gcd(3,12)=12/3=4$: $3,6,9,0$.",
+          "marks": 1
+        },
+        {
+          "id": "gr-2",
+          "title": "Generators",
+          "type": "nat",
+          "question": "The number of generators of the cyclic group $\\mathbb Z_{12}$ is ______.",
+          "answer": 4,
+          "solution": "$\\varphi(12)=4$ (the generators are $1,5,7,11$).",
+          "marks": 1
+        },
+        {
+          "id": "gr-3",
+          "title": "Lagrange",
+          "type": "mcq",
+          "question": "Which of the following cannot be the order of a subgroup of a group of order 12?",
+          "options": [
+            "3",
+            "4",
+            "6",
+            "5"
+          ],
+          "answer": 3,
+          "solution": "By Lagrange the order of a subgroup divides 12. $5$ does not divide 12.",
+          "marks": 1
+        },
+        {
+          "id": "gr-4",
+          "title": "Monoid vs group",
+          "type": "mcq",
+          "question": "Which of the following is a monoid but not a group?",
+          "options": [
+            "$(\\mathbb Z,+)$",
+            "$(\\mathbb N\\cup\\{0\\},+)$",
+            "$(\\mathbb Q\\setminus\\{0\\},\\times)$",
+            "$(\\mathbb Z_5,+_5)$"
+          ],
+          "answer": 1,
+          "solution": "$(\\mathbb N\\cup\\{0\\},+)$ is associative with identity 0, but $1$ has no additive inverse in the set.",
+          "marks": 1
+        },
+        {
+          "id": "gr-5",
+          "title": "Prime order",
+          "type": "mcq",
+          "question": "A group of order 7 is",
+          "options": [
+            "necessarily cyclic",
+            "non-abelian",
+            "having a subgroup of order 3",
+            "not necessarily abelian"
+          ],
+          "answer": 0,
+          "solution": "Any non-identity element has order dividing 7, hence order 7, and generates the group. So it is cyclic (hence abelian) with no subgroup of order 3.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "graph-basics",
+      "title": "Graph Theory — Basics, Trees and Connectivity",
+      "short": "Graphs: Basics",
+      "summary": "Degrees, handshaking, trees, Euler and Hamilton paths, connectivity, bipartite graphs.",
+      "content": "## 1. Basics\n\n- **Handshaking**: $\\sum_v\\deg(v)=2|E|$. The number of odd-degree vertices is even.\n- Simple graph on $n$ vertices has at most $\\binom n2$ edges ($K_n$). $K_n$ is $(n-1)$-regular.\n- $K_{m,n}$ has $mn$ edges. A bipartite graph on $n$ vertices has at most $\\lfloor n^2/4\\rfloor$ edges.\n- A graph is **bipartite iff it has no odd cycle**.\n- Degree sequence is graphical iff it passes Havel–Hakimi.\n\n## 2. Trees\n\nFor a graph $G$ with $n$ vertices, the following are equivalent for a tree: connected and acyclic $\\iff$ connected with $n-1$ edges $\\iff$ acyclic with $n-1$ edges $\\iff$ exactly one path between each pair.\n\n- A forest with $n$ vertices and $k$ components has $n-k$ edges.\n- Every tree with $n\\ge2$ has at least 2 leaves. Number of leaves $=2+\\sum_{\\deg\\ge3}(\\deg-2)$.\n- **Cayley**: number of labelled trees on $n$ vertices (= spanning trees of $K_n$) is $n^{n-2}$.\n- Spanning tree of a connected graph: $n-1$ edges; the number of non-tree edges is $|E|-n+1$ (cyclomatic number).\n\n## 3. Euler and Hamilton\n\n- **Euler circuit** (uses every edge once, returns): connected and all degrees even.\n- **Euler path** (not closed): connected with exactly 0 or 2 odd-degree vertices.\n- **Hamiltonian cycle** (every vertex once): no simple necessary-and-sufficient test (NP-complete). Sufficient: **Dirac** $\\deg(v)\\ge n/2$ for all $v$ ($n\\ge3$); **Ore** $\\deg u+\\deg v\\ge n$ for non-adjacent pairs.\n- $K_n$ ($n\\ge3$) is Hamiltonian; it is Eulerian iff $n$ is odd.\n\n## 4. Connectivity\n\n- **Cut vertex** / **bridge**: removal disconnects the graph.\n- Vertex connectivity $\\kappa(G)\\le$ edge connectivity $\\lambda(G)\\le\\delta(G)$ (Whitney).\n- $K_n$: $\\kappa=n-1$. $C_n$: $\\kappa=\\lambda=2$. Tree: $\\lambda=1$.\n- A connected graph with $n$ vertices has at least $n-1$ edges.\n\n**Exam tip (Hinglish):** Euler wale sawaal me sirf degrees dekho (sab even?) aur connectivity. Hamilton ke liye Dirac/Ore sirf sufficient hai, necessary nahi.\n",
+      "keyPoints": [
+        "$\\sum\\deg=2|E|$",
+        "Bipartite $\\iff$ no odd cycle",
+        "Tree: $n-1$ edges, connected, acyclic",
+        "Cayley: $n^{n-2}$ spanning trees of $K_n$",
+        "Euler circuit: connected and all degrees even",
+        "$\\kappa\\le\\lambda\\le\\delta$"
+      ],
+      "questions": [
+        {
+          "id": "gb-1",
+          "title": "Handshaking",
+          "type": "nat",
+          "question": "The number of edges in a 4-regular graph on 10 vertices is ______.",
+          "answer": 20,
+          "solution": "$\\sum\\deg=4\\cdot10=40=2|E|$, so $|E|=20$.",
+          "marks": 1
+        },
+        {
+          "id": "gb-2",
+          "title": "Spanning trees of K5",
+          "type": "nat",
+          "question": "The number of distinct labelled spanning trees of $K_5$ is ______.",
+          "answer": 125,
+          "solution": "Cayley's formula: $5^{5-2}=125$.",
+          "marks": 1
+        },
+        {
+          "id": "gb-3",
+          "title": "Forest",
+          "type": "nat",
+          "question": "A forest has 20 vertices and 4 connected components. The number of edges is ______.",
+          "answer": 16,
+          "solution": "A forest with $n$ vertices and $k$ components has $n-k=16$ edges.",
+          "marks": 1
+        },
+        {
+          "id": "gb-4",
+          "title": "Euler circuit",
+          "type": "mcq",
+          "question": "Which of the following complete graphs has an Euler circuit?",
+          "options": [
+            "$K_4$",
+            "$K_5$",
+            "$K_6$",
+            "$K_8$"
+          ],
+          "answer": 1,
+          "solution": "$K_n$ is $(n-1)$-regular; all degrees are even only when $n$ is odd. Among the options only $K_5$ qualifies.",
+          "marks": 1
+        },
+        {
+          "id": "gb-5",
+          "title": "Leaves of a tree",
+          "type": "nat",
+          "question": "A tree has exactly one vertex of degree 4, one vertex of degree 3, and all other vertices are leaves. The number of leaves is ______.",
+          "answer": 5,
+          "solution": "Let there be $L$ leaves, so $n=L+2$ and $\\sum\\deg=4+3+L=2(n-1)=2(L+1)$. Hence $L=5$.",
+          "marks": 1
+        },
+        {
+          "id": "gb-6",
+          "title": "Bipartite",
+          "type": "mcq",
+          "question": "A graph is bipartite if and only if it",
+          "options": [
+            "is a tree",
+            "has no odd-length cycle",
+            "has no even-length cycle",
+            "has $|E|\\le |V|$"
+          ],
+          "answer": 1,
+          "solution": "This is König's characterization: bipartite $\\iff$ every cycle has even length.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "graph-matching-colouring",
+      "title": "Graph Theory — Matching, Colouring and Planarity",
+      "short": "Matching & Colouring",
+      "summary": "Matchings, Hall's theorem, chromatic number, planar graphs, Euler's formula.",
+      "content": "## 1. Matching\n\n- A **matching** is a set of edges with no common vertex. **Perfect matching** covers every vertex (needs even $n$).\n- **Hall's theorem**: a bipartite graph $(X,Y)$ has a matching saturating $X$ iff $|N(S)|\\ge|S|$ for every $S\\subseteq X$.\n- **König**: in a bipartite graph, maximum matching size = minimum vertex cover size.\n- $K_{m,n}$ has maximum matching $\\min(m,n)$. $K_{n}$ ($n$ even) has a perfect matching. Every $k$-regular bipartite graph ($k\\ge1$) has a perfect matching.\n- Independence number $\\alpha$, vertex cover $\\beta$: $\\alpha+\\beta=n$ in every graph.\n\n## 2. Colouring\n\n- **Chromatic number** $\\chi(G)$: least number of colours for a proper vertex colouring.\n- $\\chi(K_n)=n$; $\\chi(\\text{bipartite})=2$ (with at least one edge); $\\chi(C_n)=2$ if $n$ even, $3$ if $n$ odd; $\\chi(\\text{tree})=2$.\n- $\\omega(G)\\le\\chi(G)\\le\\Delta(G)+1$. **Brooks**: $\\chi\\le\\Delta$ unless $G$ is complete or an odd cycle.\n- **Four colour theorem**: every planar graph is 4-colourable.\n- Wheel $W_n$ (hub + $C_n$): $\\chi=3$ if $n$ even, $4$ if $n$ odd.\n- Chromatic polynomial of a tree on $n$ vertices is $k(k-1)^{n-1}$; of $K_n$ is $k(k-1)\\cdots(k-n+1)$.\n- Edge chromatic number: $\\Delta$ or $\\Delta+1$ (Vizing); bipartite graphs have $\\chi'=\\Delta$.\n\n## 3. Planar graphs\n\n- **Euler's formula** (connected planar): $V-E+F=2$.\n- Simple connected planar, $V\\ge3$: $E\\le3V-6$. If also triangle-free (e.g. bipartite): $E\\le2V-4$.\n- Every planar graph has a vertex of degree $\\le5$.\n- **Kuratowski**: planar iff no subdivision of $K_5$ or $K_{3,3}$. Both $K_5$ and $K_{3,3}$ are non-planar.\n- For a connected planar graph with all faces bounded by at least $g$ edges: $E\\le\\dfrac{g}{g-2}(V-2)$.\n\n**Exam tip (Hinglish):** Planar graph me $V,E,F$ ka sawaal ho to seedha $V-E+F=2$. Max edges poochhe to $3V-6$ (ya bipartite me $2V-4$).\n",
+      "keyPoints": [
+        "Hall: $|N(S)|\\ge|S|$ for all $S\\subseteq X$",
+        "König: max matching = min vertex cover (bipartite)",
+        "$\\chi(C_n)$: 2 if even, 3 if odd",
+        "Euler: $V-E+F=2$",
+        "Planar: $E\\le3V-6$",
+        "$K_5$ and $K_{3,3}$ are non-planar"
+      ],
+      "questions": [
+        {
+          "id": "mc-1",
+          "title": "Euler's formula",
+          "type": "nat",
+          "question": "A connected planar graph has 10 vertices and 15 edges. The number of faces (including the outer face) is ______.",
+          "answer": 7,
+          "solution": "$F=2-V+E=2-10+15=7$.",
+          "marks": 1
+        },
+        {
+          "id": "mc-2",
+          "title": "Maximum planar edges",
+          "type": "nat",
+          "question": "The maximum number of edges in a simple planar graph with 6 vertices is ______.",
+          "answer": 12,
+          "solution": "$E\\le3V-6=12$ (attained by the octahedron).",
+          "marks": 1
+        },
+        {
+          "id": "mc-3",
+          "title": "Chromatic number",
+          "type": "nat",
+          "question": "The chromatic number of the wheel graph with a hub and a cycle $C_5$ (6 vertices) is ______.",
+          "answer": 4,
+          "solution": "The $C_5$ needs 3 colours (odd cycle), and the hub is adjacent to all rim vertices, so a 4th colour is needed.",
+          "marks": 1
+        },
+        {
+          "id": "mc-4",
+          "title": "Maximum matching",
+          "type": "nat",
+          "question": "The size of a maximum matching in $K_{4,6}$ is ______.",
+          "answer": 4,
+          "solution": "For $K_{m,n}$ the maximum matching has $\\min(m,n)=4$ edges.",
+          "marks": 1
+        },
+        {
+          "id": "mc-5",
+          "title": "Non-planar graph",
+          "type": "mcq",
+          "question": "Which of the following graphs is NOT planar?",
+          "options": [
+            "$K_4$",
+            "$K_{2,3}$",
+            "$K_5$",
+            "$C_6$"
+          ],
+          "answer": 2,
+          "solution": "$K_5$ has $E=10>3V-6=9$, so it is non-planar.",
+          "marks": 1
+        },
+        {
+          "id": "mc-6",
+          "title": "Chromatic polynomial",
+          "type": "nat",
+          "question": "The number of proper colourings of a path on 4 vertices using at most 3 colours is ______.",
+          "answer": 24,
+          "solution": "For a tree, $P(k)=k(k-1)^{n-1}$: $3\\cdot2^3=24$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "counting",
+      "title": "Combinatorics — Counting",
+      "short": "Counting",
+      "summary": "Permutations, combinations, stars and bars, inclusion–exclusion, derangements, pigeonhole.",
+      "content": "## 1. Basic principles\n\n- **Sum rule**: $m$ or $n$ ways (disjoint) $\\Rightarrow m+n$. **Product rule**: $m$ then $n$ ways $\\Rightarrow mn$.\n- $P(n,r)=\\dfrac{n!}{(n-r)!}$, $\\ \\binom nr=\\dfrac{n!}{r!(n-r)!}$, $\\ \\binom nr=\\binom n{n-r}$, Pascal: $\\binom nr=\\binom{n-1}{r-1}+\\binom{n-1}r$.\n- Circular arrangements of $n$ distinct objects: $(n-1)!$ (divide by 2 more if reflections are identical).\n- Arrangements with repeated objects: $\\dfrac{n!}{n_1!\\,n_2!\\cdots n_k!}$.\n\n## 2. Selections with repetition (stars and bars)\n\n- Non-negative solutions of $x_1+\\dots+x_k=n$: $\\dbinom{n+k-1}{k-1}$.\n- Positive solutions ($x_i\\ge1$): $\\dbinom{n-1}{k-1}$.\n- With lower bounds, substitute $y_i=x_i-\\ell_i$ first.\n- Multisets of size $r$ from $n$ types: $\\dbinom{n+r-1}{r}$.\n\n## 3. Binomial theorem and identities\n\n- $(x+y)^n=\\sum_{k}\\binom nk x^{n-k}y^k$; $\\sum_k\\binom nk=2^n$; $\\sum_k(-1)^k\\binom nk=0$.\n- $\\sum_{k}\\binom nk^2=\\binom{2n}{n}$ (Vandermonde special case).\n- Catalan $C_n=\\dfrac1{n+1}\\binom{2n}n$ counts balanced parentheses, binary trees with $n$ nodes, etc.\n\n## 4. Inclusion–exclusion and derangements\n\n- $|A_1\\cup\\dots\\cup A_n|=\\sum|A_i|-\\sum|A_i\\cap A_j|+\\sum|A_i\\cap A_j\\cap A_k|-\\dots$\n- **Derangements**: $D_n=n!\\sum_{k=0}^n\\frac{(-1)^k}{k!}$, with $D_1=0,D_2=1,D_3=2,D_4=9,D_5=44$ and $D_n=(n-1)(D_{n-1}+D_{n-2})$.\n\n## 5. Pigeonhole principle\n\n- If $n$ items go into $k$ boxes, some box has at least $\\lceil n/k\\rceil$ items.\n- To **guarantee** $r$ items in some box you need $k(r-1)+1$ items.\n\n**Exam tip (Hinglish):** \"Kam se kam ek\" wale sawaal me total minus (koi nahi) try karo, inclusion–exclusion se pehle.\n",
+      "keyPoints": [
+        "Stars and bars: $\\binom{n+k-1}{k-1}$",
+        "Circular: $(n-1)!$",
+        "Repeats: $n!/\\prod n_i!$",
+        "$D_4=9$, $D_n=(n-1)(D_{n-1}+D_{n-2})$",
+        "Pigeonhole: $\\lceil n/k\\rceil$",
+        "Catalan $C_n=\\frac1{n+1}\\binom{2n}n$"
+      ],
+      "questions": [
+        {
+          "id": "ct-1",
+          "title": "Stars and bars",
+          "type": "nat",
+          "question": "The number of non-negative integer solutions of $x_1+x_2+x_3=10$ is ______.",
+          "answer": 66,
+          "solution": "$\\binom{10+3-1}{3-1}=\\binom{12}{2}=66$.",
+          "marks": 1
+        },
+        {
+          "id": "ct-2",
+          "title": "Arrangements with repeats",
+          "type": "nat",
+          "question": "The number of distinct arrangements of the letters of MISSISSIPPI is ______.",
+          "answer": 34650,
+          "solution": "$\\dfrac{11!}{4!\\,4!\\,2!}=\\dfrac{39916800}{24\\cdot24\\cdot2}=34650$ (M:1, I:4, S:4, P:2).",
+          "marks": 1
+        },
+        {
+          "id": "ct-3",
+          "title": "Derangements",
+          "type": "nat",
+          "question": "The number of derangements of 4 distinct objects is ______.",
+          "answer": 9,
+          "solution": "$D_4=4!\\left(1-1+\\frac12-\\frac16+\\frac1{24}\\right)=24-24+12-4+1=9$.",
+          "marks": 1
+        },
+        {
+          "id": "ct-4",
+          "title": "Inclusion-exclusion",
+          "type": "nat",
+          "question": "The number of integers from 1 to 100 divisible by 2 or 3 is ______.",
+          "answer": 67,
+          "solution": "$\\lfloor100/2\\rfloor+\\lfloor100/3\\rfloor-\\lfloor100/6\\rfloor=50+33-16=67$.",
+          "marks": 1
+        },
+        {
+          "id": "ct-5",
+          "title": "Pigeonhole",
+          "type": "nat",
+          "question": "The minimum number of people needed to guarantee that at least 2 of them were born in the same month is ______.",
+          "answer": 13,
+          "solution": "There are 12 months (boxes), so $12\\cdot1+1=13$ people are needed.",
+          "marks": 1
+        },
+        {
+          "id": "ct-6",
+          "title": "Circular arrangements",
+          "type": "nat",
+          "question": "The number of ways to seat 6 distinct people around a round table (rotations considered the same) is ______.",
+          "answer": 120,
+          "solution": "$(6-1)!=120$.",
+          "marks": 1
+        },
+        {
+          "id": "ct-7",
+          "title": "Binomial coefficient",
+          "type": "nat",
+          "question": "The coefficient of $x^3$ in the expansion of $(1+x)^8$ is ______.",
+          "answer": 56,
+          "solution": "$\\binom83=56$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "recurrence",
+      "title": "Combinatorics — Recurrence Relations",
+      "short": "Recurrences",
+      "summary": "Setting up recurrences, solving linear homogeneous and non-homogeneous ones.",
+      "content": "## 1. Linear recurrences with constant coefficients\n\n$a_n=c_1a_{n-1}+c_2a_{n-2}+\\dots+c_ka_{n-k}+f(n)$.\n\n**Homogeneous** ($f=0$). Write the characteristic equation $r^k=c_1r^{k-1}+\\dots+c_k$.\n\n- Distinct roots $r_1,\\dots,r_k$: $a_n=\\alpha_1r_1^n+\\dots+\\alpha_kr_k^n$.\n- A root $r$ of multiplicity $m$ contributes $(\\beta_0+\\beta_1n+\\dots+\\beta_{m-1}n^{m-1})\\,r^n$.\n- Constants come from the initial conditions.\n\nExample: $a_n=5a_{n-1}-6a_{n-2}$, $a_0=1,\\,a_1=1$. Roots $2,3$; $a_n=A2^n+B3^n$, with $A+B=1,\\ 2A+3B=1$ giving $A=2,B=-1$, so $a_n=2^{n+1}-3^n$.\n\n## 2. Non-homogeneous\n\n$a_n=a_n^{(h)}+a_n^{(p)}$. Guess the particular solution from $f(n)$:\n\n| $f(n)$ | Guess $a_n^{(p)}$ |\n|---|---|\n| constant $c$ | $A$ (use $An$ if $1$ is a root, $An^2$ if double root) |\n| polynomial of degree $d$ | polynomial of degree $d$ (multiply by $n$ if $1$ is a root) |\n| $c\\cdot s^n$ | $A s^n$ (multiply by $n$ if $s$ is a root) |\n\n## 3. Setting up recurrences (frequent GATE theme)\n\n- **Tower of Hanoi**: $T(n)=2T(n-1)+1,\\ T(1)=1\\Rightarrow T(n)=2^n-1$.\n- **Binary strings of length $n$ with no two consecutive 0s**: $f(n)=f(n-1)+f(n-2)$, $f(1)=2,\\ f(2)=3$ (Fibonacci-like).\n- **Fibonacci**: $F_n=F_{n-1}+F_{n-2}$ with closed form $F_n=\\dfrac{\\phi^n-\\psi^n}{\\sqrt5}$.\n- **Divide and conquer**: $T(n)=aT(n/b)+f(n)$ solved by the Master theorem or by repeated substitution.\n- Sum of first $n$ odd numbers: $T(n)=T(n-1)+2n-1\\Rightarrow T(n)=n^2$.\n\n**Exam tip (Hinglish):** Pehle characteristic roots nikalo. Repeated root ho to $n$ se multiply karna mat bhoolna.\n",
+      "keyPoints": [
+        "Roots $r_i$ give $\\sum\\alpha_ir_i^n$",
+        "Repeated root: $(A+Bn)r^n$",
+        "Hanoi: $T(n)=2^n-1$",
+        "No two consecutive 0s: Fibonacci-type",
+        "Particular solution depends on $f(n)$",
+        "Use initial conditions to find constants"
+      ],
+      "questions": [
+        {
+          "id": "rr-1",
+          "title": "Evaluate recurrence",
+          "type": "nat",
+          "question": "$a_n=5a_{n-1}-6a_{n-2}$ with $a_0=1,\\ a_1=1$. The value of $a_3$ is ______.",
+          "answer": -11,
+          "solution": "$a_2=5(1)-6(1)=-1$, $a_3=5(-1)-6(1)=-11$. Closed form $2^{n+1}-3^n$ gives $16-27=-11$.",
+          "marks": 1
+        },
+        {
+          "id": "rr-2",
+          "title": "Repeated root",
+          "type": "mcq",
+          "question": "The general solution of $a_n=4a_{n-1}-4a_{n-2}$ is",
+          "options": [
+            "$A2^n+B(-2)^n$",
+            "$(A+Bn)2^n$",
+            "$A2^n+B4^n$",
+            "$A+B2^n$"
+          ],
+          "answer": 1,
+          "solution": "The characteristic equation $r^2-4r+4=0$ has a double root $r=2$, so the solution is $(A+Bn)2^n$.",
+          "marks": 1
+        },
+        {
+          "id": "rr-3",
+          "title": "Tower of Hanoi",
+          "type": "nat",
+          "question": "The minimum number of moves for the Tower of Hanoi with 6 discs, given $T(n)=2T(n-1)+1$ and $T(1)=1$, is ______.",
+          "answer": 63,
+          "solution": "$T(n)=2^n-1$, so $T(6)=63$.",
+          "marks": 1
+        },
+        {
+          "id": "rr-4",
+          "title": "Binary strings",
+          "type": "nat",
+          "question": "The number of binary strings of length 8 with no two consecutive 0s is ______.",
+          "answer": 55,
+          "solution": "$f(n)=f(n-1)+f(n-2)$ with $f(1)=2,f(2)=3$: $5,8,13,21,34,55$ for $n=3,\\dots,8$.",
+          "marks": 1
+        },
+        {
+          "id": "rr-5",
+          "title": "Sum recurrence",
+          "type": "nat",
+          "question": "$T(n)=T(n-1)+2n-1$ with $T(1)=1$. The value of $T(12)$ is ______.",
+          "answer": 144,
+          "solution": "$T(n)=n^2$ (sum of the first $n$ odd numbers), so $T(12)=144$.",
+          "marks": 1
+        }
+      ]
+    },
+    {
+      "id": "generating-functions",
+      "title": "Combinatorics — Generating Functions",
+      "short": "Generating Functions",
+      "summary": "Ordinary generating functions, standard series, counting with bounds, solving recurrences.",
+      "content": "## 1. Definition\n\nThe (ordinary) generating function of $\\langle a_n\\rangle$ is $A(x)=\\sum_{n\\ge0}a_nx^n$.\n\n## 2. Standard series\n\n| Sequence | $A(x)$ |\n|---|---|\n| $1,1,1,\\dots$ | $\\dfrac1{1-x}$ |\n| $c^n$ | $\\dfrac1{1-cx}$ |\n| $n$ | $\\dfrac{x}{(1-x)^2}$ |\n| $\\binom{n+k-1}{k-1}$ (coefficient of $x^n$ in) | $\\dfrac1{(1-x)^k}$ |\n| $\\binom nk$ (finite) | $(1+x)^n$ |\n| $1,1,\\dots,1$ ($m$ ones) | $\\dfrac{1-x^m}{1-x}$ |\n| $\\dfrac1{n!}$ | $e^x$ (exponential GF) |\n\n## 3. Operations\n\n- Sum: $A(x)+B(x)$. Shift right: $x\\,A(x)$ gives $a_{n-1}$.\n- **Convolution**: $A(x)B(x)$ has coefficients $c_n=\\sum_{k}a_kb_{n-k}$.\n- Partial sums: $\\dfrac{A(x)}{1-x}$ has coefficients $a_0+\\dots+a_n$.\n- Differentiation: $x A'(x)$ gives $n\\,a_n$.\n\n## 4. Counting solutions with bounds\n\nNumber of solutions of $x_1+\\dots+x_k=n$ with $0\\le x_i\\le m$ is the coefficient of $x^n$ in $\\left(\\dfrac{1-x^{m+1}}{1-x}\\right)^k$.\n\nExample ($k=3$, $m=5$, $n=12$): coefficient of $x^{12}$ in $(1-x^6)^3(1-x)^{-3}=\\binom{14}{2}-3\\binom82+3\\binom22=91-84+3=10$.\n\n## 5. Solving a recurrence\n\nMultiply the recurrence by $x^n$, sum, solve for $A(x)$, use partial fractions and read off the coefficients. For $a_n=2a_{n-1},\\ a_0=1$: $A(x)(1-2x)=1$, so $A(x)=\\dfrac1{1-2x}$ and $a_n=2^n$.\n\n**Exam tip (Hinglish):** \"Coefficient of $x^n$\" wale sawaal me $\\frac1{(1-x)^k}$ ka formula yaad rakho, aur bound ho to $(1-x^{m+1})$ wala factor lagao.\n",
+      "keyPoints": [
+        "$\\frac1{1-x}\\leftrightarrow 1,1,1,\\dots$",
+        "$\\frac1{(1-x)^k}$: coeff $\\binom{n+k-1}{k-1}$",
+        "Product of GFs = convolution",
+        "$\\frac{x}{(1-x)^2}\\leftrightarrow n$",
+        "Bounded solutions: $\\left(\\frac{1-x^{m+1}}{1-x}\\right)^k$",
+        "Partial fractions solve recurrences"
+      ],
+      "questions": [
+        {
+          "id": "gf-1",
+          "title": "Standard GF",
+          "type": "mcq",
+          "question": "The generating function of the sequence $a_n=2^n$ ($n\\ge0$) is",
+          "options": [
+            "$\\dfrac1{1-x}$",
+            "$\\dfrac1{1-2x}$",
+            "$\\dfrac{2}{1-x}$",
+            "$\\dfrac{x}{1-2x}$"
+          ],
+          "answer": 1,
+          "solution": "$\\sum2^nx^n=\\sum(2x)^n=\\dfrac1{1-2x}$.",
+          "marks": 1
+        },
+        {
+          "id": "gf-2",
+          "title": "Coefficient",
+          "type": "nat",
+          "question": "The coefficient of $x^{10}$ in $\\dfrac1{(1-x)^3}$ is ______.",
+          "answer": 66,
+          "solution": "$\\binom{10+3-1}{2}=\\binom{12}2=66$.",
+          "marks": 1
+        },
+        {
+          "id": "gf-3",
+          "title": "Bounded solutions",
+          "type": "nat",
+          "question": "The number of integer solutions of $x_1+x_2+x_3=12$ with $0\\le x_i\\le5$ is ______.",
+          "answer": 10,
+          "solution": "Substitute $y_i=5-x_i$: $y_1+y_2+y_3=3$ with $y_i\\ge0$, giving $\\binom{5}{2}=10$. (Equivalently, the inclusion–exclusion value $91-84+3=10$.)",
+          "marks": 1
+        },
+        {
+          "id": "gf-4",
+          "title": "Sequence n",
+          "type": "mcq",
+          "question": "The generating function of the sequence $0,1,2,3,\\dots$ ($a_n=n$) is",
+          "options": [
+            "$\\dfrac1{(1-x)^2}$",
+            "$\\dfrac{x}{1-x}$",
+            "$\\dfrac{x}{(1-x)^2}$",
+            "$\\dfrac{x^2}{(1-x)^2}$"
+          ],
+          "answer": 2,
+          "solution": "Differentiate $\\frac1{1-x}$ to get $\\frac1{(1-x)^2}=\\sum(n+1)x^n$, then multiply by $x$: $\\sum nx^n=\\frac{x}{(1-x)^2}$.",
+          "marks": 1
+        },
+        {
+          "id": "gf-5",
+          "title": "Coefficient in a product",
+          "type": "nat",
+          "question": "The coefficient of $x^5$ in $(1+x+x^2)^3$ is ______.",
+          "answer": 3,
+          "solution": "$(1+x+x^2)^3=1+3x+6x^2+7x^3+6x^4+3x^5+x^6$, so the coefficient of $x^5$ is 3.",
+          "marks": 1
+        }
+      ]
     }
   ]
 }
