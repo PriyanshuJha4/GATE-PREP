@@ -1,4 +1,410 @@
 {
-  "title": "compiler-design - DPP",
-  "chapters": []
+  "title": "Compiler Design DPP Questions",
+  "chapters": [
+    {
+      "title": "Intermediate Code and Code Optimization",
+      "questions": [
+        {
+          "id": "dpp-icg-01-q1",
+          "title": "Three Address Code",
+          "type": "mcq",
+          "question": "The three addresses code involves",
+          "options": [
+            "At most 3 addresses.",
+            "Exactly 3 addresses.",
+            "At least 3 addresses.",
+            "No unary operator."
+          ],
+          "answer": 0,
+          "solution": "A three address instruction has at most three addresses (two operands and one result). Unary operations and copies use fewer.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-icg-01-q2",
+          "title": "Expression from a DAG",
+          "type": "subjective",
+          "question": "Consider the following DAG (Directed Acyclic graph): Which of the following is the correct expression for given DAG?\n\nOptions:\n(a) [a*a+(b-c)*(b-c)+d]\n(b) [a+a*(b-c)+(b-c)+d]\n(c) [a+a*(c-b)+(c-b)+d]\n(d) [a*a+(c-b)*(c-b)+d]",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The DAG figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-icg-01-q3",
+          "title": "Type Checking Phase",
+          "type": "mcq",
+          "question": "Type checking is performed by:",
+          "options": [
+            "Lexical analyses",
+            "Syntax analyses",
+            "Semantic analyses",
+            "Intermediate code generator"
+          ],
+          "answer": 2,
+          "solution": "Type checking is a static semantic check done in the semantic analysis phase.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-icg-01-q4",
+          "title": "Valid Three Address Code",
+          "type": "msq",
+          "question": "Which of the following are valid three addresses code (TAC)?",
+          "options": [
+            "if a>b goto C",
+            "x[i]=y",
+            "return 0",
+            "a=b*c"
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "Conditional jumps, indexed assignments, return statements and binary assignments are all standard forms of three address code.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-icg-01-q5",
+          "title": "Abstract Syntax Tree",
+          "type": "msq",
+          "question": "Which of the following is/are correct about abstract syntax tree (AST)?",
+          "options": [
+            "AST is also used in program analysis and program transformation systems.",
+            "It has no impact on the final output of the compiler.",
+            "It is a tree representation of the abstract syntactic structure of source code written in a programming language.",
+            "It is the result of syntax analysis phase of a compiler."
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "The AST is produced by syntax analysis and drives analysis, transformation and later phases, so it does affect the compiler output. Statement (b) is false.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-icg-01-q6",
+          "title": "Temporaries in Three Address Code",
+          "type": "nat",
+          "question": "Consider the following expression: p+q*r+s-t-p+q*r. How many minimum number of temporary variable created in three addresses code? Assume precedence order from lowest to highest is -, +, and *, and consider associativity of + & * is not important but - is left associative.",
+          "answer": 5,
+          "solution": "The expression parses as ((p+q*r+s) - t) - (p+q*r). Reusing the common subexpression p+q*r: t1 = q*r; t2 = p+t1; t3 = t2+s; t4 = t3-t; t5 = t4-t2. That is 5 temporaries.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-icg-01-q7",
+          "title": "Number of Basic Blocks",
+          "type": "nat",
+          "question": "Consider the following intermediate code: (1. loc = -1, 2. i = 0, 3. if (i < 100) goto 5, 4. goto 13, 5. t1 = 4 * i, 6. goto 3, 7. t2 = A[t1], 8. if t2 = x goto ..., 9. goto 11, 10. loc = i, 11. t3 = i + 1, 12. i = t3, 13. goto 3). How many number of basic block from the given code?",
+          "answer": 9,
+          "solution": "Leaders are statements 1, 3, 4, 5, 7, 9, 10, 11 and 13. Hence the basic blocks are 1-2, 3, 4, 5-6, 7-8, 9, 10, 11-12 and 13, which is 9 blocks.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-icg-01-q8",
+          "title": "DAG of a Repeated Product",
+          "type": "mcq",
+          "question": "Consider the following expression. ((x*x)*(x*x))*((x*x)*(x*x)). The total number of internal nodes in DAG representation are",
+          "options": [
+            "3 nodes and 5 edges",
+            "4 nodes and 7 edges",
+            "3 nodes and 6 edges",
+            "4 nodes and 6 edges"
+          ],
+          "answer": 2,
+          "solution": "n1 = x*x, n2 = n1*n1, n3 = n2*n2. There are 3 internal nodes, each with 2 outgoing edges, giving 6 edges.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Lexical Analysis and Syntax Analysis",
+      "questions": [
+        {
+          "id": "dpp-lex-01-q1",
+          "title": "Counting Tokens in a C Program",
+          "type": "nat",
+          "question": "Consider the following C program: int main () { /*finding maximum element out of a & b*/ int a, b max; a=10 b=20 if (a<b) max=b; else max=a; return (max); }. Calculate the total number of tokens present in the program?",
+          "answer": 38,
+          "solution": "The comment is discarded. The lexer counts every keyword, identifier, constant and punctuation symbol regardless of syntax errors: int main ( ) { int a , b max ; a = 10 b = 20 if ( a < b ) max = b ; else max = a ; return ( max ) ; } gives 38 tokens.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q2",
+          "title": "Errors in a C Program",
+          "type": "mcq",
+          "question": "Consider the following C-program: 1. int main)( 2. { 4. x = a + b * c 5. y = x + a; 6. char f='e'; 7. in t g = 200 8. ch /* comment ar = \"gate\"; 9. }. Which of the following is correct regarding above program?",
+          "options": [
+            "The given program has 47 tokens.",
+            "Given program produces compilation error.",
+            "Given program produces lexical error.",
+            "No error produced by program."
+          ],
+          "answer": 2,
+          "solution": "The comment opened at line 8 is never closed, which is detected by the lexical analyzer as a lexical error. (The program also has syntax errors, which would be reported only if lexing succeeded.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q3",
+          "title": "Longest Prefix Token Matching",
+          "type": "subjective",
+          "question": "Compiler's first phase makes uses of following patterns for token (S1, S2, S3) reorganization over the alphabet a,b,c. S1: b?(b|a)*c, S2: c?(c|b)*a, S3: a?(b|c)*b. Note: x? means 0 or 1 occurrence of the symbol x. The analyzer outputs the token that matched the longest possible prefix of the string. If abbbccccba is processed by first phase of compiler then which one of the following is the sequence of token of output.",
+          "answer": "S3 S2",
+          "solution": "From the start, S1 matches at most 'abbbc' (5 symbols), S2 matches 'a' (1 symbol) and S3 matches 'abbbccccb' (9 symbols), so S3 is output. The remaining string 'a' matches only S2. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q4",
+          "title": "Tokens Without Lookahead",
+          "type": "nat",
+          "question": "How many of the following strings are said to be tokens in C-language without looking at next input character? (i) ; (ii) return (iii) int (iv) ( (v) && (vi) >>",
+          "answer": 3,
+          "solution": "; ( and && are complete tokens as soon as they are read, since no longer token starts with them. return and int may continue as identifiers (e.g. returnx), and >> may continue as >>=, so these need lookahead.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q5",
+          "title": "Counting Tokens with Operators",
+          "type": "nat",
+          "question": "Consider the following C-program: int main () { int x; /* comment */ x === y /*abcd****/*abcd*/; int **p; int b = 10, y; x = *p +++++ y; }. How many tokens are present in the given program?",
+          "answer": 39,
+          "solution": "By maximal munch, === splits into == and =, the comment ends at the first */ so '*abcd*/' remains as * abcd * / tokens, ** is two * tokens, and +++++ splits into ++ ++ +. Counting all tokens gives 39.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q6",
+          "title": "Equivalent Unambiguous Grammar",
+          "type": "subjective",
+          "question": "Which of the following is equivalent unambiguous grammar for following rules? (Operator Priority & Associativity table provided in source).",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The operator priority and associativity table and the options are not provided in the source, so this cannot be solved.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q7",
+          "title": "Removing Left Factoring",
+          "type": "subjective",
+          "question": "What will be the equivalent grammar after removing left factoring from the given grammar? S -> a | ab | abc | abcd | e | f.",
+          "answer": "S -> aA | e | f, A -> epsilon | bB, B -> epsilon | cC, C -> epsilon | d",
+          "solution": "Factor the common prefix 'a' from the first four productions, then 'b' from the remaining ones, then 'c'. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q8",
+          "title": "FIRST and FOLLOW Sets",
+          "type": "subjective",
+          "question": "Which of the following is correct regarding FIRST & FOLLOW of the given grammar. E -> TE', E' -> +TE' | epsilon, T -> FT', T' -> *FT' | epsilon, F -> id | (E).",
+          "answer": "FIRST(E) = FIRST(T) = FIRST(F) = {id, (}; FIRST(E') = {+, epsilon}; FIRST(T') = {*, epsilon}. FOLLOW(E) = FOLLOW(E') = {$, )}; FOLLOW(T) = FOLLOW(T') = {+, $, )}; FOLLOW(F) = {*, +, $, )}.",
+          "solution": "Standard FIRST and FOLLOW computation for the expression grammar. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q9",
+          "title": "Items in an LR(1) Closure",
+          "type": "nat",
+          "question": "Consider the following grammar: S -> BB, B -> aB | b. How many items are there in Closure(S' -> .S, $)?",
+          "answer": 4,
+          "solution": "The closure contains S' -> .S,$ ; S -> .BB,$ ; B -> .aB,a/b ; B -> .b,a/b. That is 4 items when items with the same core and different lookaheads are written together (6 if each lookahead is counted separately).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q10",
+          "title": "Maximum LL(1) Stack Size",
+          "type": "nat",
+          "question": "Consider the given grammar: S -> (A) | a, A -> SA', A' -> ,SA' | epsilon. Assume that initially stack has 2 symbols $S on stack. Then, what will be the maximum size of stack during LL(1) parsing for the input string (a, a)?",
+          "answer": 5,
+          "solution": "Trace: $S -> $)A( (4) -> $)A (3) -> $)A'S (4) -> $)A'a (4) -> $)A' (3) -> $)A'S, (5) -> $)A'S (4) -> $)A'a (4) -> $)A' (3) -> $) (2) -> $. The maximum is 5.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q11",
+          "title": "CLR Parser States",
+          "type": "nat",
+          "question": "Consider the following: A -> B=C | C, C -> B, B -> *C | id. How many number of states are required for above grammar using CLR parser? Note: A, B & C are non-terminal and *, =, id are terminal.",
+          "answer": 14,
+          "solution": "This is the classic grammar S -> L=R | R, L -> *R | id, R -> L (A=S, B=L, C=R). Its canonical LR(1) automaton has 14 states (the LALR/SLR automaton has 10).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q12",
+          "title": "Conflicts in SLR(1) Table",
+          "type": "nat",
+          "question": "How many conflicting entries are there in SLR(1) parse table of the following grammar? S -> EcEf | FfEe, E -> x, F -> x.",
+          "answer": 1,
+          "solution": "After shifting x in the start state we have E -> x. and F -> x. FOLLOW(E) = {c, f, e} and FOLLOW(F) = {f}, so both reductions apply on f, giving one reduce-reduce conflict entry.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q13",
+          "title": "Parsing Power of a Grammar",
+          "type": "subjective",
+          "question": "Consider following grammar G. S -> Aa | Bb, A -> Ac | epsilon, B -> Bc | epsilon. Which of the following statement is true?",
+          "answer": "The grammar is unambiguous but is not LR(1) (so not LR(0), SLR(1) or LALR(1)), and being left recursive it is not LL(1).",
+          "solution": "In the start state both A -> epsilon and B -> epsilon can be reduced on lookahead c (A with lookahead {a,c} and B with lookahead {b,c}), giving a reduce-reduce conflict that no fixed lookahead can resolve. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q14",
+          "title": "Parser Class of a Grammar",
+          "type": "subjective",
+          "question": "Consider the following grammar: P -> Qx | yQz | tz | ytx, Q -> t. Which of the following is correct for above grammar?",
+          "answer": "The grammar is LR(1) and LALR(1) but not SLR(1).",
+          "solution": "After shifting t from the start state we have Q -> t. and P -> t.z; since FOLLOW(Q) = {x, z}, SLR(1) has a shift-reduce conflict on z. With LR(1) lookaheads Q -> t. is reduced only on x, so there is no conflict, and the states do not merge in LALR(1). Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lex-01-q15",
+          "title": "Maximum Reduce Moves",
+          "type": "nat",
+          "question": "The maximum number of reduce moves that can be taken during bottom-up evaluation of 21 token string by using a bottom-up parser. Assuming the grammar has no epsilon and unit production.",
+          "answer": 20,
+          "solution": "With no epsilon or unit productions, the maximum occurs when every production has exactly two symbols on the right side, giving a binary parse tree with 21 leaves and 20 internal nodes, hence 20 reductions.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Syntax Directed Translation",
+      "questions": [
+        {
+          "id": "dpp-sdt-01-q1",
+          "title": "Simulating Synthesized Attributes",
+          "type": "mcq",
+          "question": "Synthesized attributes can be easily simulated using",
+          "options": [
+            "LL grammar",
+            "LR grammar",
+            "ambiguous grammar",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "Synthesized attributes are computed bottom-up from children to parent, which matches the reductions of an LR (bottom-up) parser.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sdt-01-q2",
+          "title": "Top-down Translation Output",
+          "type": "subjective",
+          "question": "Consider the following translation rules for the grammar G: S -> a {print \"A\"} A, A -> b {print \"C\"} B, A -> epsilon {print \"C\"}, B -> e {print \"B\"} A, B -> epsilon {print \"C\"}, C -> c {print \"A\"}. What will be the output for the input string abecebe using top-down parser?",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The grammar only derives strings of the form a(be)*..., so 'abecebe' (which contains c) is not in the language. A top-down parser would print A C B C and then report a syntax error at 'c'. The question text seems garbled in the source, so no definite answer is given.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sdt-01-q3",
+          "title": "Attribute Grammar Dependency",
+          "type": "subjective",
+          "question": "Consider the following attribute grammar: A -> BA', A'1 -> +BA'2, A'.b = A.a, A.a = A'.b, A'2.b = A'2.b + B.a, A'1.a = A'2.a. Which of the following is true?",
+          "answer": "The attribute grammar is circular: A'.b = A.a and A.a = A'.b depend on each other.",
+          "solution": "The attribute dependencies form a cycle, so the attributes cannot be evaluated in any order. The question text appears garbled in the source and options were not provided.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sdt-01-q4",
+          "title": "Precedence from a Grammar",
+          "type": "msq",
+          "question": "Consider the following grammar: E -> E+T | T, T -> T/F | F, F -> F*A | A, A -> id. Which one of the following is true?",
+          "options": [
+            "/ have higher precedence than *",
+            "* have higher precedence than +",
+            "+ have lower precedence than /",
+            "*, +, / all have same precedence"
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Operators deeper in the grammar bind tighter: * is highest, then /, then +. So * > + and + < / are true.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sdt-01-q5",
+          "title": "Shift-Reduce Translation",
+          "type": "subjective",
+          "question": "A shift reduce parser perform action specified within process immediately after reduction to the corresponding rule of grammar. S -> ab {print '1'}, S -> cc {print '2'}, V -> Sd {print '3'}. What is the translation of ababccdd using the SDT scheme described by above rules?",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "With the rules as given, 'ababccdd' cannot be derived (S is never followed by a), so the grammar in the source appears to be incomplete or garbled and no translation can be determined.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sdt-01-q6",
+          "title": "Output of a Translation Scheme",
+          "type": "subjective",
+          "question": "Consider the following transition rules: A -> BC, C -> +BC | A+ | epsilon, B -> DB {print '+'} | epsilon, D -> (A) | id {print number value}. If input is given \"2+34\" then his translation scheme will generate output.",
+          "answer": "2 + 34 + (treating 34 as a single number token)",
+          "solution": "Parse 2 as D and print 2; the inner B is epsilon and the action prints +. Then C -> +BC consumes +, parses 34 as D (prints 34), the inner B is epsilon and its action prints +. The grammar and input in the source may be garbled, so this is the best reading.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sdt-01-q7",
+          "title": "Syntax Directed Translation",
+          "type": "subjective",
+          "question": "[...] is performed by attaching rules or algorithms to production in a grammar.",
+          "answer": "Syntax directed translation (SDT)",
+          "solution": "Syntax directed translation attaches semantic rules or actions to the productions of a grammar.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sdt-01-q8",
+          "title": "Ambiguous Translation Scheme",
+          "type": "subjective",
+          "question": "Consider a translation scheme is given as: S -> S1 + S2 {S.val = S1.val + S2.val}, S -> S1 * S2 {S.val = S1.val * S2.val}, S -> id {S.val = id}. What will be the output for 5 * 6 + 7?",
+          "answer": "Either 37 or 65, since the grammar is ambiguous.",
+          "solution": "If the expression is parsed as (5*6)+7 the value is 37; if parsed as 5*(6+7) the value is 65. The grammar has no precedence rules, so the result depends on the parse tree.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sdt-01-q9",
+          "title": "Evaluating Expression to Find x",
+          "type": "subjective",
+          "question": "Consider the given translation rules. If the expression 8 # 12 & 4 # 16 & 12 # 4 & 2 is evaluated to 512, then which of the following is correctly representing x?",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The translation rules and options are not provided in the source, so this cannot be solved.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sdt-01-q10",
+          "title": "Evaluating an Arithmetic SDT",
+          "type": "nat",
+          "question": "Consider the following SDT: (S -> E {S.val = E.val}, E -> E+T {E.val = E1.val + T.val}, E -> T {E.val = T.val}, T -> T*F {T.val = T1.val * F.val}, T -> F {T.val = F.val}, F -> (E) {F.val = E.val}, F -> a {F.val = a}). What will be the output of the expression \"20+8 x 6\"?",
+          "answer": 68,
+          "solution": "Reading x as the multiplication operator *, the grammar gives * higher precedence than +, so the value is 20 + (8*6) = 68. (If x is literally a different symbol, the string would not be valid.)",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    }
+  ]
 }

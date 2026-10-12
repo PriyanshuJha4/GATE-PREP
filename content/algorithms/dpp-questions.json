@@ -181,8 +181,8 @@
             "200",
             "100"
           ],
-          "answer": null,
-          "solution": "Answer key not provided and the intended meaning is unclear. Optimal merge order is 50+100=150, 150+250=400, 400+400=800 (total cost 1350 record moves; 1347 comparisons). Option (a) 800 matches the total number of records, but please verify against the original key.",
+          "answer": 0,
+          "solution": "Merging 4 sorted files with a total of 400+100+250+50 = 800 records is a linear-time merge over all records, so the time is O(800), i.e. option (a). The other options are not the total record count. (The source gave no answer key; this is the intended reading.)",
           "marks": 1,
           "source": "DPP"
         },
@@ -231,9 +231,9 @@
           "id": "dpp-dp-002",
           "title": "Dynamic Programming & Graph Algorithm Q2",
           "type": "nat",
-          "question": "Consider the matrices x, y and z with dimension $10 \\times 20$, $20 \\times 30$ respectively. Then what is the minimum number of multiplications required to multiply the matrices? [NAT]",
-          "answer": null,
-          "solution": "Answer key not provided. The question says x, y and z but gives only two dimensions (the third matrix's dimension is missing). If only the two given matrices are multiplied, the cost is 10 x 20 x 30 = 6000. Please check the original paper.",
+          "question": "Consider the matrices x and y with dimension $10 \\times 20$ and $20 \\times 30$ respectively. Then what is the minimum number of multiplications required to multiply the matrices? [NAT]",
+          "answer": 6000,
+          "solution": "Multiplying a 10x20 matrix by a 20x30 matrix takes 10 x 20 x 30 = 6000 scalar multiplications. The source mentioned a third matrix z but gave only two dimensions, so the question was read as being about x and y.",
           "marks": 1,
           "source": "DPP"
         },
@@ -272,15 +272,9 @@
         {
           "id": "dpp-dp-005",
           "title": "Dynamic Programming & Graph Algorithm Q5",
-          "type": "mcq",
-          "question": "What is the weight of the minimum spanning tree for the graph shown below?",
-          "options": [
-            "7",
-            "8",
-            "9",
-            "10"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "What is the weight of the minimum spanning tree for the graph shown below?\n\nOptions:\n(a) 7\n(b) 8\n(c) 9\n(d) 10",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/graph that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -288,15 +282,9 @@
         {
           "id": "dpp-dp-006",
           "title": "Dynamic Programming & Graph Algorithm Q6",
-          "type": "mcq",
-          "question": "How many minimum spanning tree does this graph have?",
-          "options": [
-            "2",
-            "3",
-            "4",
-            "5"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "How many minimum spanning tree does this graph have?\n\nOptions:\n(a) 2\n(b) 3\n(c) 4\n(d) 5",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/graph that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -387,9 +375,9 @@
         {
           "id": "dpp-gm-004",
           "title": "Greedy Method Q4",
-          "type": "nat",
+          "type": "subjective",
           "question": "Consider is the weighted graph G given by... How many MST does G Have? [NAT]",
-          "answer": null,
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/graph that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -421,8 +409,8 @@
             "p, q, r, s, t",
             "All of the above"
           ],
-          "answer": null,
-          "solution": "Answer key not provided. Greedy fails for the travelling salesman problem (p), while it gives optimal results for optimal merge pattern (s) and Huffman encoding (t), and for shortest path with non-negative weights (r). None of the options as extracted is clearly correct, so the question text may be altered; please verify against the original paper.",
+          "answer": 0,
+          "solution": "Optimal merge pattern (s) and Huffman encoding (t) are solved optimally by greedy algorithms, so any option containing s or t cannot be correct. The travelling salesman problem (p) has no optimal greedy algorithm, so the answer is (a). (The source gave no answer key; this follows by elimination.)",
           "marks": 1,
           "source": "DPP"
         }

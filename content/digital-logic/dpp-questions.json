@@ -23,15 +23,9 @@
         {
           "id": "dpp-cc-002",
           "title": "DPP-1 Q2",
-          "type": "mcq",
-          "question": "The two 4 bit numbers $A_{3} A_{2} A_{1} A_{0}$ and $B_{3} B_{2} B_{1} B_{0}$ are applied to a comparator circuit shown below. A pair of correct input numbers forcing the output $y=0$, will be",
-          "options": [
-            "1100, 1100",
-            "0111, 0111",
-            "1011, 1011",
-            "1100, 1101"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The two 4 bit numbers $A_{3} A_{2} A_{1} A_{0}$ and $B_{3} B_{2} B_{1} B_{0}$ are applied to a comparator circuit shown below. A pair of correct input numbers forcing the output $y=0$, will be\n\nOptions:\n(a) 1100, 1100\n(b) 0111, 0111\n(c) 1011, 1011\n(d) 1100, 1101",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -55,15 +49,9 @@
         {
           "id": "dpp-cc-004",
           "title": "DPP-1 Q4",
-          "type": "mcq",
-          "question": "A logic circuit is given (common statement for Q4 and Q5). A pair of correct input number (AB) forcing the output $x=1$, will be",
-          "options": [
-            "10",
-            "01",
-            "11",
-            "00"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "A logic circuit is given (common statement for Q4 and Q5). A pair of correct input number (AB) forcing the output $x=1$, will be\n\nOptions:\n(a) 10\n(b) 01\n(c) 11\n(d) 00",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -71,15 +59,9 @@
         {
           "id": "dpp-cc-005",
           "title": "DPP-1 Q5",
-          "type": "mcq",
-          "question": "A logic circuit is given (common statement for Q4 and Q5). A pair of correct input number (AB) forcing the output $y_{2}=1$, will be",
-          "options": [
-            "00, 11",
-            "01, 10",
-            "00, 10",
-            "11, 01"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "A logic circuit is given (common statement for Q4 and Q5). A pair of correct input number (AB) forcing the output $y_{2}=1$, will be\n\nOptions:\n(a) 00, 11\n(b) 01, 10\n(c) 00, 10\n(d) 11, 01",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -87,15 +69,9 @@
         {
           "id": "dpp-cc-006",
           "title": "DPP-2 Q1",
-          "type": "mcq",
-          "question": "The logic realized by the circuit shown in figure is",
-          "options": [
-            "$F=A\\odot C$",
-            "$F=A\\oplus C$",
-            "$F=B\\odot C$",
-            "$F=B\\oplus C$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The logic realized by the circuit shown in figure is\n\nOptions:\n(a) $F=A\\odot C$\n(b) $F=A\\oplus C$\n(c) $F=B\\odot C$\n(d) $F=B\\oplus C$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -119,15 +95,9 @@
         {
           "id": "dpp-cc-008",
           "title": "DPP-2 Q3",
-          "type": "mcq",
-          "question": "The Boolean function f implemented in the figure using two input multiplexers is",
-          "options": [
-            "$A\\overline{B}C+AB\\overline{C}$",
-            "$ABC+A\\overline{B}\\overline{C}$",
-            "$\\overline{A}BC+\\overline{A}\\overline{B}\\overline{C}$",
-            "$\\overline{ABC+\\overline{A}B\\overline{C}}$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The Boolean function f implemented in the figure using two input multiplexers is\n\nOptions:\n(a) $A\\overline{B}C+AB\\overline{C}$\n(b) $ABC+A\\overline{B}\\overline{C}$\n(c) $\\overline{A}BC+\\overline{A}\\overline{B}\\overline{C}$\n(d) $\\overline{ABC+\\overline{A}B\\overline{C}}$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -151,15 +121,9 @@
         {
           "id": "dpp-cc-010",
           "title": "DPP-2 Q5",
-          "type": "mcq",
-          "question": "The logic function implemented by $4\\times1$ MUX, is",
-          "options": [
-            "$Z=xy$",
-            "$Z=x+y$",
-            "$Z=\\overline{x+y}$",
-            "$x\\oplus y$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The logic function implemented by $4\\times1$ MUX, is\n\nOptions:\n(a) $Z=xy$\n(b) $Z=x+y$\n(c) $Z=\\overline{x+y}$\n(d) $x\\oplus y$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -183,15 +147,9 @@
         {
           "id": "dpp-cc-012",
           "title": "DPP-3 Q1",
-          "type": "mcq",
-          "question": "A demultiplexer of size $1\\times8$ with active low outputs, is programmed as shown below. The circuit has three inputs x, y, z and generates two outputs $y_{1}, y_{2}$. If de-multiplexer has active high output instead of active low outputs, then in order that outputs do not change",
-          "options": [
-            "NAND gates should be replaced by NOR gates",
-            "NAND gates should be replaced by OR gates",
-            "NAND gates should be replaced by AND gates",
-            "the inputs x, y, z should be inverted"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "A demultiplexer of size $1\\times8$ with active low outputs, is programmed as shown below. The circuit has three inputs x, y, z and generates two outputs $y_{1}, y_{2}$. If de-multiplexer has active high output instead of active low outputs, then in order that outputs do not change\n\nOptions:\n(a) NAND gates should be replaced by NOR gates\n(b) NAND gates should be replaced by OR gates\n(c) NAND gates should be replaced by AND gates\n(d) the inputs x, y, z should be inverted",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -199,15 +157,9 @@
         {
           "id": "dpp-cc-013",
           "title": "DPP-3 Q2",
-          "type": "mcq",
-          "question": "For what values of A, B, C the output (Y) will be 0",
-          "options": [
-            "$A=1, B=0, C=0$",
-            "$A=0, B=1, C=1$",
-            "$A=1, B=1, C=0$",
-            "$A=1, B=1, C=1$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "For what values of A, B, C the output (Y) will be 0\n\nOptions:\n(a) $A=1, B=0, C=0$\n(b) $A=0, B=1, C=1$\n(c) $A=1, B=1, C=0$\n(d) $A=1, B=1, C=1$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -215,15 +167,9 @@
         {
           "id": "dpp-cc-014",
           "title": "DPP-3 Q3",
-          "type": "mcq",
-          "question": "The figure shown below is a block diagram of demultiplexer?",
-          "options": [
-            "1 to 4",
-            "1 to 8",
-            "1 to 16",
-            "None of the above"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The figure shown below is a block diagram of demultiplexer?\n\nOptions:\n(a) 1 to 4\n(b) 1 to 8\n(c) 1 to 16\n(d) None of the above",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -231,15 +177,9 @@
         {
           "id": "dpp-cc-015",
           "title": "DPP-3 Q4",
-          "type": "mcq",
-          "question": "Identify the circuit shown below?",
-          "options": [
-            "Bidirectional buffer",
-            "De-multiplexer",
-            "Multiplexer",
-            "Encoder"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Identify the circuit shown below?\n\nOptions:\n(a) Bidirectional buffer\n(b) De-multiplexer\n(c) Multiplexer\n(d) Encoder",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -291,23 +231,17 @@
             "$M/N=M$",
             "$(M+N)/2=9$"
           ],
-          "answer": null,
-          "solution": "Answer key not provided. Note: 128 = 8 x 8 x 2, and none of the possible cascade orders gives an obvious match with the options as extracted, so please verify against the original paper.",
+          "answer": 2,
+          "solution": "A 1:8 demux adds 7 outputs and a 1:2 demux adds 1 output, so 1 + 7M + N = 128, i.e. 7M + N = 127. The minimum-cost cascade is one 1:2 demux feeding two 1:8 demuxes, each driving eight more 1:8 demuxes: N = 1 and M = 18 (7*18 + 1 = 127). Then M/N = 18 = M, which is option (c). The others fail: M+N=M needs N=0, (M-N)/2 and (M+N)/2 are not 9.",
           "marks": 1,
           "source": "DPP"
         },
         {
           "id": "dpp-cc-020",
           "title": "DPP-3 Q9",
-          "type": "mcq",
-          "question": "Consider a circuit as shown below (Output y is):",
-          "options": [
-            "$A+B$",
-            "$\\overline{A\\cdot B}$",
-            "$AB$",
-            "$A\\oplus B$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Consider a circuit as shown below (Output y is):\n\nOptions:\n(a) $A+B$\n(b) $\\overline{A\\cdot B}$\n(c) $AB$\n(d) $A\\oplus B$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -315,15 +249,9 @@
         {
           "id": "dpp-cc-021",
           "title": "DPP-3 Q10",
-          "type": "mcq",
-          "question": "Consider a combinational circuit as shown below. For any sequence A, B which of the output pins ($y_{0}$ to $y_{3}$) can be active",
-          "options": [
-            "$y_{0}$ and $y_{3}$ only",
-            "$y_{1}$ and $y_{2}$ only",
-            "$y_{1}$ only",
-            "all pins can be active"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Consider a combinational circuit as shown below. For any sequence A, B which of the output pins ($y_{0}$ to $y_{3}$) can be active\n\nOptions:\n(a) $y_{0}$ and $y_{3}$ only\n(b) $y_{1}$ and $y_{2}$ only\n(c) $y_{1}$ only\n(d) all pins can be active",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -357,15 +285,9 @@
         {
           "id": "dpp-cc-024",
           "title": "DPP-4 Q3",
-          "type": "mcq",
-          "question": "The following multiplexer circuit is equivalent to",
-          "options": [
-            "Implementation of sum equation of full adder",
-            "Implementation of carry equation of full adder",
-            "Implementation of borrow equation of full subtractor",
-            "All the above"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The following multiplexer circuit is equivalent to\n\nOptions:\n(a) Implementation of sum equation of full adder\n(b) Implementation of carry equation of full adder\n(c) Implementation of borrow equation of full subtractor\n(d) All the above",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -373,15 +295,9 @@
         {
           "id": "dpp-cc-025",
           "title": "DPP-4 Q4",
-          "type": "mcq",
-          "question": "A 3 line to 8 line decoder with three inputs A, B, C and two outputs $y_{1}$ and $y_{2}$, is configured as shown below. The minimized expression of outputs will be",
-          "options": [
-            "$y_{1}=\\overline{A}\\overline{B}+AB\\overline{C}; y_{2}=\\overline{A\\oplus B}$",
-            "$y_{1}=AB+\\overline{A}\\overline{B}C; y_{2}=A\\oplus B$",
-            "$y_{1}=\\overline{A}B+A\\overline{C}; y_{2}=AB+AC$",
-            "$y_{1}=A\\overline{B}+\\overline{A}C; y_{2}=\\overline{A}B+\\overline{B}C$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "A 3 line to 8 line decoder with three inputs A, B, C and two outputs $y_{1}$ and $y_{2}$, is configured as shown below. The minimized expression of outputs will be\n\nOptions:\n(a) $y_{1}=\\overline{A}\\overline{B}+AB\\overline{C}; y_{2}=\\overline{A\\oplus B}$\n(b) $y_{1}=AB+\\overline{A}\\overline{B}C; y_{2}=A\\oplus B$\n(c) $y_{1}=\\overline{A}B+A\\overline{C}; y_{2}=AB+AC$\n(d) $y_{1}=A\\overline{B}+\\overline{A}C; y_{2}=\\overline{A}B+\\overline{B}C$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -389,15 +305,9 @@
         {
           "id": "dpp-cc-026",
           "title": "DPP-4 Q5",
-          "type": "mcq",
-          "question": "What is this circuit?",
-          "options": [
-            "Half subtracter",
-            "Full subtractor",
-            "Half adder",
-            "Full adder"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "What is this circuit?\n\nOptions:\n(a) Half subtracter\n(b) Full subtractor\n(c) Half adder\n(d) Full adder",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -405,15 +315,9 @@
         {
           "id": "dpp-cc-027",
           "title": "DPP-4 Q6",
-          "type": "mcq",
-          "question": "The logic diagram of a $3\\times8$ decoder with active low outputs is shown below. What is state of outputs $Q_{7} \\dots Q_{0}$ for the set of inputs $E_{3}=E_{1}=1, E_{2}=0, A_{2}=A_{1}=1$ and $A_{0}=0$?",
-          "options": [
-            "1111 1111",
-            "1011 1111",
-            "1111 0111",
-            "0000 0000"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The logic diagram of a $3\\times8$ decoder with active low outputs is shown below. What is state of outputs $Q_{7} \\dots Q_{0}$ for the set of inputs $E_{3}=E_{1}=1, E_{2}=0, A_{2}=A_{1}=1$ and $A_{0}=0$?\n\nOptions:\n(a) 1111 1111\n(b) 1011 1111\n(c) 1111 0111\n(d) 0000 0000",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -421,15 +325,9 @@
         {
           "id": "dpp-cc-028",
           "title": "DPP-4 Q7",
-          "type": "mcq",
-          "question": "A 3 line to 8 line decoder with active low outputs, is used to realize Boolean function involving three variables x, y and z ($x$ is MSB and z is LSB) as shown below. The minimized Boolean function $f(x,y,z)$ in POS format, will be",
-          "options": [
-            "$(\\overline{x}+\\overline{y}+\\overline{z})(x+y+z)(x+\\overline{y}+\\overline{z})(\\overline{x}+y+\\overline{z})$",
-            "$(\\overline{x}+\\overline{y}+z)(\\overline{x}+y+z)(x+\\overline{y}+z)(x+y+\\overline{z})$",
-            "$(x+z)(y+z)(\\overline{x}+\\overline{y}+\\overline{z})$",
-            "$(\\overline{x}+\\overline{z})(\\overline{y}+\\overline{z})(x+y+z)$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "A 3 line to 8 line decoder with active low outputs, is used to realize Boolean function involving three variables x, y and z ($x$ is MSB and z is LSB) as shown below. The minimized Boolean function $f(x,y,z)$ in POS format, will be\n\nOptions:\n(a) $(\\overline{x}+\\overline{y}+\\overline{z})(x+y+z)(x+\\overline{y}+\\overline{z})(\\overline{x}+y+\\overline{z})$\n(b) $(\\overline{x}+\\overline{y}+z)(\\overline{x}+y+z)(x+\\overline{y}+z)(x+y+\\overline{z})$\n(c) $(x+z)(y+z)(\\overline{x}+\\overline{y}+\\overline{z})$\n(d) $(\\overline{x}+\\overline{z})(\\overline{y}+\\overline{z})(x+y+z)$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -437,15 +335,9 @@
         {
           "id": "dpp-cc-029",
           "title": "DPP-4 Q8",
-          "type": "mcq",
-          "question": "Two $2\\times4$ decoders one with active low outputs and another with active high output are interconnected as shown below. The output function $f_{2}(x_{3},x_{2},x_{1})$ will be",
-          "options": [
-            "$f_{2}=(x_{1}\\oplus x_{2})\\odot x_{3}$",
-            "$f_{2}=(x_{1}\\odot x_{2})\\odot x_{3}$",
-            "$f_{2}=(x_{1}\\oplus x_{2})\\oplus x_{3}$",
-            "$f_{2}=(x_{1}\\oplus x_{2})\\oplus x_{3}$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Two $2\\times4$ decoders one with active low outputs and another with active high output are interconnected as shown below. The output function $f_{2}(x_{3},x_{2},x_{1})$ will be\n\nOptions:\n(a) $f_{2}=(x_{1}\\oplus x_{2})\\odot x_{3}$\n(b) $f_{2}=(x_{1}\\odot x_{2})\\odot x_{3}$\n(c) $f_{2}=(x_{1}\\oplus x_{2})\\oplus x_{3}$\n(d) $f_{2}=(x_{1}\\oplus x_{2})\\oplus x_{3}$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -453,15 +345,9 @@
         {
           "id": "dpp-cc-030",
           "title": "DPP-4 Q9",
-          "type": "mcq",
-          "question": "Three half adders $HA_{1}$, $HA_{2}$ and $HA_{3}$ are inter-coupled as shown below. The four output functions $y_{1}, y_{2}, y_{3}$ and $y_{4}$ are expressed in terms of inputs a, b and c. Which one of the following output expressions, is correct?",
-          "options": [
-            "$y_{1}=(a\\oplus b)c$",
-            "$y_{2}=(a\\oplus b)\\oplus c$",
-            "$y_{3}=ab\\oplus c$",
-            "$y_{4}=a(b\\oplus c)$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Three half adders $HA_{1}$, $HA_{2}$ and $HA_{3}$ are inter-coupled as shown below. The four output functions $y_{1}, y_{2}, y_{3}$ and $y_{4}$ are expressed in terms of inputs a, b and c. Which one of the following output expressions, is correct?\n\nOptions:\n(a) $y_{1}=(a\\oplus b)c$\n(b) $y_{2}=(a\\oplus b)\\oplus c$\n(c) $y_{3}=ab\\oplus c$\n(d) $y_{4}=a(b\\oplus c)$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -469,15 +355,9 @@
         {
           "id": "dpp-cc-031",
           "title": "DPP-4 Q10",
-          "type": "mcq",
-          "question": "Determine the outputs for the circuit shown below.",
-          "options": [
-            "$\\Sigma^{\\prime}=1, {C^{\\prime}}_{out}=1$",
-            "$\\Sigma^{\\prime}=0, {C^{\\prime}}_{out}=0$",
-            "$\\Sigma^{\\prime}=0, {C^{\\prime}}_{out}=1$",
-            "$\\Sigma^{\\prime}=1, {C^{\\prime}}_{out}=0$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Determine the outputs for the circuit shown below.\n\nOptions:\n(a) $\\Sigma^{\\prime}=1, {C^{\\prime}}_{out}=1$\n(b) $\\Sigma^{\\prime}=0, {C^{\\prime}}_{out}=0$\n(c) $\\Sigma^{\\prime}=0, {C^{\\prime}}_{out}=1$\n(d) $\\Sigma^{\\prime}=1, {C^{\\prime}}_{out}=0$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -511,15 +391,9 @@
         {
           "id": "dpp-cc-034",
           "title": "DPP-5 Q1",
-          "type": "mcq",
-          "question": "The circuit shown below, is a controlled half adder/ half subtractor. The inputs to half adder/ half subtractor are x and y while z is a control. The outputs are $y_{1}$ and $y_{2}$.",
-          "options": [
-            "Half adder for $z=0$",
-            "Half subtractor for $z=1$",
-            "Half adder for $z=1$ and half subtractor for $z=0$",
-            "Half adder regardless of whether $z=0$ or $z=1$ due to design defect."
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The circuit shown below, is a controlled half adder/ half subtractor. The inputs to half adder/ half subtractor are x and y while z is a control. The outputs are $y_{1}$ and $y_{2}$.\n\nOptions:\n(a) Half adder for $z=0$\n(b) Half subtractor for $z=1$\n(c) Half adder for $z=1$ and half subtractor for $z=0$\n(d) Half adder regardless of whether $z=0$ or $z=1$ due to design defect.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -527,15 +401,9 @@
         {
           "id": "dpp-cc-035",
           "title": "DPP-5 Q2",
-          "type": "mcq",
-          "question": "The function $f_{1}$ and $f_{2}$ are",
-          "options": [
-            "$f_{1}=(x_{1}\\oplus x_{2})x_{3}$ and $f_{2}=x_{1}\\overline{x}_{2}+x_{1}\\overline{x}_{3}+x_{2}x_{3}$",
-            "$f_{1}=x_{1}\\oplus x_{2}\\oplus x_{3}$ and $f_{2}=x_{1}x_{2}+x_{1}x_{3}+x_{2}x_{3}$",
-            "$f_{1}=\\overline{(x_{1}\\oplus x_{2}\\oplus x_{3})}$ and $f_{2}=x_{1}x_{2}+x_{1}x_{3}+x_{2}x_{3}$",
-            "$f_{1}=x_{1}(x_{2}\\oplus x_{3})$ and $f_{2}=x_{1}x_{2}+x_{1}x_{3}+x_{2}x_{3}$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The function $f_{1}$ and $f_{2}$ are\n\nOptions:\n(a) $f_{1}=(x_{1}\\oplus x_{2})x_{3}$ and $f_{2}=x_{1}\\overline{x}_{2}+x_{1}\\overline{x}_{3}+x_{2}x_{3}$\n(b) $f_{1}=x_{1}\\oplus x_{2}\\oplus x_{3}$ and $f_{2}=x_{1}x_{2}+x_{1}x_{3}+x_{2}x_{3}$\n(c) $f_{1}=\\overline{(x_{1}\\oplus x_{2}\\oplus x_{3})}$ and $f_{2}=x_{1}x_{2}+x_{1}x_{3}+x_{2}x_{3}$\n(d) $f_{1}=x_{1}(x_{2}\\oplus x_{3})$ and $f_{2}=x_{1}x_{2}+x_{1}x_{3}+x_{2}x_{3}$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -543,15 +411,9 @@
         {
           "id": "dpp-cc-036",
           "title": "DPP-5 Q3",
-          "type": "mcq",
-          "question": "What is this circuit?",
-          "options": [
-            "Full adder",
-            "Full subtractor",
-            "Magnitude comparator",
-            "Priority encoder"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "What is this circuit?\n\nOptions:\n(a) Full adder\n(b) Full subtractor\n(c) Magnitude comparator\n(d) Priority encoder",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -559,15 +421,9 @@
         {
           "id": "dpp-cc-037",
           "title": "DPP-5 Q4",
-          "type": "mcq",
-          "question": "The output of the following circuit diagram represents",
-          "options": [
-            "Borrow of half subtractor",
-            "Carry of Half Adder",
-            "Sum of half adder",
-            "None of them"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The output of the following circuit diagram represents\n\nOptions:\n(a) Borrow of half subtractor\n(b) Carry of Half Adder\n(c) Sum of half adder\n(d) None of them",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -601,14 +457,9 @@
         {
           "id": "dpp-cc-040",
           "title": "DPP-5 Q7",
-          "type": "mcq",
-          "question": "A half subtractor (HS) and $2\\times1$ MUX are interconnected as demonstrated below. What is NOT correct about this circuit?",
-          "options": [
-            "For $Z=0, f=1$ indicates that the minuend and the subtrahend bits are different.",
-            "For $Z=0, f=0$ indicates that minuend and subtrahend bits are same, that is, $X=Y=0$ or $X=Y=1$.",
-            "For $Z=1, f=1$ indicates that $X<Y$."
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "A half subtractor (HS) and $2\\times1$ MUX are interconnected as demonstrated below. What is NOT correct about this circuit?\n\nOptions:\n(a) For $Z=0, f=1$ indicates that the minuend and the subtrahend bits are different.\n(b) For $Z=0, f=0$ indicates that minuend and subtrahend bits are same, that is, $X=Y=0$ or $X=Y=1$.\n(c) For $Z=1, f=1$ indicates that $X<Y$.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided; the figure is missing and option (d) was garbled in the source extraction, so only options (a)-(c) are included. Please restore option (d) from the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -621,15 +472,9 @@
         {
           "id": "dpp-lg-001",
           "title": "DPP-1 Q1",
-          "type": "mcq",
-          "question": "The input wave form is given. Draw output waveform.",
-          "options": [
-            "Waveform (a)",
-            "Waveform (b)",
-            "1 (constant)",
-            "Waveform (d)"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The input wave form is given. Draw output waveform.\n\nOptions:\n(a) Waveform (a)\n(b) Waveform (b)\n(c) 1 (constant)\n(d) Waveform (d)",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -637,15 +482,9 @@
         {
           "id": "dpp-lg-002",
           "title": "DPP-1 Q2",
-          "type": "mcq",
-          "question": "Find expression of f?",
-          "options": [
-            "$AB$",
-            "$1$",
-            "$A+B$",
-            "$\\overline{AB}$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Find expression of f?\n\nOptions:\n(a) $AB$\n(b) $1$\n(c) $A+B$\n(d) $\\overline{AB}$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -653,15 +492,9 @@
         {
           "id": "dpp-lg-003",
           "title": "DPP-1 Q3",
-          "type": "mcq",
-          "question": "Find value of f?",
-          "options": [
-            "1",
-            "0",
-            "A",
-            "$\\overline{A}$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Find value of f?\n\nOptions:\n(a) 1\n(b) 0\n(c) A\n(d) $\\overline{A}$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -669,15 +502,9 @@
         {
           "id": "dpp-lg-004",
           "title": "DPP-1 Q4",
-          "type": "mcq",
-          "question": "Bulb will glow when A and B are respectively.",
-          "options": [
-            "00",
-            "01",
-            "10",
-            "11"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Bulb will glow when A and B are respectively.\n\nOptions:\n(a) 00\n(b) 01\n(c) 10\n(d) 11",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -685,15 +512,9 @@
         {
           "id": "dpp-lg-005",
           "title": "DPP-1 Q5",
-          "type": "mcq",
-          "question": "Find expression of F",
-          "options": [
-            "$\\overline{ABC+D\\overline{E}}$",
-            "$\\overline{A}BCD\\overline{E}$",
-            "$(\\overline{A}+BC)D\\overline{E}$",
-            "$\\overline{A}BC(D+\\overline{E})$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Find expression of F\n\nOptions:\n(a) $\\overline{ABC+D\\overline{E}}$\n(b) $\\overline{A}BCD\\overline{E}$\n(c) $(\\overline{A}+BC)D\\overline{E}$\n(d) $\\overline{A}BC(D+\\overline{E})$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -717,15 +538,9 @@
         {
           "id": "dpp-lg-007",
           "title": "DPP-1 Q7",
-          "type": "mcq",
-          "question": "When $A=1$ then the value of Y equal",
-          "options": [
-            "0",
-            "1",
-            "$V_{CC}$",
-            "none of the above"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "When $A=1$ then the value of Y equal\n\nOptions:\n(a) 0\n(b) 1\n(c) $V_{CC}$\n(d) none of the above",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -733,15 +548,9 @@
         {
           "id": "dpp-lg-008",
           "title": "DPP-1 Q8",
-          "type": "mcq",
-          "question": "Find expression of f?",
-          "options": [
-            "0",
-            "1",
-            "AB",
-            "$\\overline{AB}$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Find expression of f?\n\nOptions:\n(a) 0\n(b) 1\n(c) AB\n(d) $\\overline{AB}$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -749,15 +558,9 @@
         {
           "id": "dpp-lg-009",
           "title": "DPP-1 Q9",
-          "type": "mcq",
-          "question": "Find output frequency, if the propagation delay of NOT gate is 2 n sec.",
-          "options": [
-            "125 MHz",
-            "500 MHz",
-            "250 MHz",
-            "none of the above"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Find output frequency, if the propagation delay of NOT gate is 2 n sec.\n\nOptions:\n(a) 125 MHz\n(b) 500 MHz\n(c) 250 MHz\n(d) none of the above",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -765,15 +568,9 @@
         {
           "id": "dpp-lg-010",
           "title": "DPP-2 Q1",
-          "type": "mcq",
-          "question": "For a 3-input logic circuit shown below, the output Z can be expressed as",
-          "options": [
-            "$Q+\\overline{R}$",
-            "$P\\overline{Q}+R$",
-            "$\\overline{Q}+R$",
-            "$P+\\overline{Q}+R$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "For a 3-input logic circuit shown below, the output Z can be expressed as\n\nOptions:\n(a) $Q+\\overline{R}$\n(b) $P\\overline{Q}+R$\n(c) $\\overline{Q}+R$\n(d) $P+\\overline{Q}+R$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -797,15 +594,9 @@
         {
           "id": "dpp-lg-012",
           "title": "DPP-2 Q3",
-          "type": "mcq",
-          "question": "In the logic circuit shown in the figure, Y is given by",
-          "options": [
-            "$Y=ABCD$",
-            "$Y=(A+B)(C+D)$",
-            "$Y=A+B+C+D$",
-            "$Y=AB+CD$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "In the logic circuit shown in the figure, Y is given by\n\nOptions:\n(a) $Y=ABCD$\n(b) $Y=(A+B)(C+D)$\n(c) $Y=A+B+C+D$\n(d) $Y=AB+CD$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -861,15 +652,9 @@
         {
           "id": "dpp-lg-016",
           "title": "DPP-2 Q7",
-          "type": "mcq",
-          "question": "For the circuit shown in figure the Boolean expression for the output Y in terms of inputs P, Q, R and S is",
-          "options": [
-            "$\\overline{P}+\\overline{Q}+\\overline{R}+\\overline{S}$",
-            "$P+Q+R+S$",
-            "$(\\overline{P}+\\overline{Q})+(\\overline{R}+\\overline{S})$",
-            "$(P+Q)(R+S)$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "For the circuit shown in figure the Boolean expression for the output Y in terms of inputs P, Q, R and S is\n\nOptions:\n(a) $\\overline{P}+\\overline{Q}+\\overline{R}+\\overline{S}$\n(b) $P+Q+R+S$\n(c) $(\\overline{P}+\\overline{Q})+(\\overline{R}+\\overline{S})$\n(d) $(P+Q)(R+S)$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -877,15 +662,9 @@
         {
           "id": "dpp-lg-017",
           "title": "DPP-2 Q8",
-          "type": "mcq",
-          "question": "A universal logic gate can implement any Boolean function by connecting sufficient number of them appropriately. Which one of the following statements is TRUE?",
-          "options": [
-            "Gate 1 is a universal gate.",
-            "Gate 2 is a universal gate.",
-            "Gate 3 is a universal gate.",
-            "None of the shown is a universal gate."
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "A universal logic gate can implement any Boolean function by connecting sufficient number of them appropriately. Which one of the following statements is TRUE?\n\nOptions:\n(a) Gate 1 is a universal gate.\n(b) Gate 2 is a universal gate.\n(c) Gate 3 is a universal gate.\n(d) None of the shown is a universal gate.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -893,15 +672,9 @@
         {
           "id": "dpp-lg-018",
           "title": "DPP-2 Q9",
-          "type": "mcq",
-          "question": "Consider the following gate network: Which one of the following gates is redundant?",
-          "options": [
-            "Gate No. 1",
-            "Gate No. 2",
-            "Gate No. 3",
-            "Gate No. 4"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "Consider the following gate network: Which one of the following gates is redundant?\n\nOptions:\n(a) Gate No. 1\n(b) Gate No. 2\n(c) Gate No. 3\n(d) Gate No. 4",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -909,31 +682,19 @@
         {
           "id": "dpp-lg-019",
           "title": "DPP-2 Q10",
-          "type": "mcq",
-          "question": "The minimum of NAND gates required to implement $A+\\overline{A}BC$ is equal to",
-          "options": [
-            "0",
-            "1",
-            "4",
-            "7"
-          ],
-          "answer": null,
-          "solution": "Answer key not provided. $A+\\overline{A}BC = A+BC$, which needs 3 NAND gates (one inverter for A, NAND(B,C), final NAND), but 3 is not among the options as extracted. Please verify the question/options against the original paper.",
+          "type": "subjective",
+          "question": "The minimum of NAND gates required to implement $A+\\overline{A}BC$ is equal to\n\nOptions:\n(a) 0\n(b) 1\n(c) 4\n(d) 7",
+          "answer": "3 NAND gates, because $A+\\overline{A}BC=A+BC=\\overline{\\overline{A}\\cdot\\overline{BC}}$ needs one NAND as inverter for A, one NAND for BC and one output NAND. This value is not among the listed options (0, 1, 4, 7).",
+          "solution": "A + A'BC simplifies to A + BC. Using NAND gates only: inverter for A (1), NAND(B,C) (1), final NAND (1) = 3 gates. The listed options do not include 3, so the options in the source may be wrong.",
           "marks": 1,
           "source": "DPP"
         },
         {
           "id": "dpp-lg-020",
           "title": "DPP-3 Q1",
-          "type": "mcq",
-          "question": "The initial output of the following circuit is 1. If we apply 010101 at input A (first bit is zero), then what is the bit pattern generated at the output Y.",
-          "options": [
-            "010101",
-            "101010",
-            "remains at 0",
-            "remains at '1'"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The initial output of the following circuit is 1. If we apply 010101 at input A (first bit is zero), then what is the bit pattern generated at the output Y.\n\nOptions:\n(a) 010101\n(b) 101010\n(c) remains at 0\n(d) remains at '1'",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -941,15 +702,9 @@
         {
           "id": "dpp-lg-021",
           "title": "DPP-3 Q2",
-          "type": "mcq",
-          "question": "The Boolean expression of the output of the logic circuit shown in figure is",
-          "options": [
-            "$Y=\\overline{A}\\overline{B}+AB+\\overline{C}$",
-            "$Y=\\overline{A}\\overline{B}+AB+C$",
-            "$Y=\\overline{A}B+\\overline{A}B+C$",
-            "$Y=\\overline{A}B+\\overline{A}\\overline{B}+C$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The Boolean expression of the output of the logic circuit shown in figure is\n\nOptions:\n(a) $Y=\\overline{A}\\overline{B}+AB+\\overline{C}$\n(b) $Y=\\overline{A}\\overline{B}+AB+C$\n(c) $Y=\\overline{A}B+\\overline{A}B+C$\n(d) $Y=\\overline{A}B+\\overline{A}\\overline{B}+C$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -973,15 +728,9 @@
         {
           "id": "dpp-lg-023",
           "title": "DPP-3 Q4",
-          "type": "mcq",
-          "question": "The output Y of the logic circuit given below is",
-          "options": [
-            "1",
-            "0",
-            "x",
-            "x"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The output Y of the logic circuit given below is\n\nOptions:\n(a) 1\n(b) 0\n(c) x\n(d) x",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1005,15 +754,9 @@
         {
           "id": "dpp-lg-025",
           "title": "DPP-3 Q6",
-          "type": "mcq",
-          "question": "In the circuit shown below, X and Y are digital inputs, and Z is a digital output. The equivalent circuit is",
-          "options": [
-            "XNOR gate",
-            "NOR gate",
-            "NAND gate",
-            "XOR gate"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "In the circuit shown below, X and Y are digital inputs, and Z is a digital output. The equivalent circuit is\n\nOptions:\n(a) XNOR gate\n(b) NOR gate\n(c) NAND gate\n(d) XOR gate",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1106,15 +849,9 @@
         {
           "id": "dpp-sc-002",
           "title": "DPP-1 Q2",
-          "type": "mcq",
-          "question": "In the circuit shown below, when inputs $A=B=0$ the possible logic states of C and D are",
-          "options": [
-            "$C=0, D=1$ or $C=1, D=0$",
-            "$C=1, D=0$",
-            "$C=1, D=1$ or $C=0, D=0$",
-            "$C=0, D=1$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "In the circuit shown below, when inputs $A=B=0$ the possible logic states of C and D are\n\nOptions:\n(a) $C=0, D=1$ or $C=1, D=0$\n(b) $C=1, D=0$\n(c) $C=1, D=1$ or $C=0, D=0$\n(d) $C=0, D=1$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1122,15 +859,9 @@
         {
           "id": "dpp-sc-003",
           "title": "DPP-1 Q3",
-          "type": "mcq",
-          "question": "The two NAND gates before the latch circuit shown below, are used to",
-          "options": [
-            "act as buffers",
-            "operate the latch faster",
-            "avoid racing",
-            "invert the latching action"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The two NAND gates before the latch circuit shown below, are used to\n\nOptions:\n(a) act as buffers\n(b) operate the latch faster\n(c) avoid racing\n(d) invert the latching action",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1138,15 +869,9 @@
         {
           "id": "dpp-sc-004",
           "title": "DPP-1 Q4",
-          "type": "mcq",
-          "question": "In the circuit shown below, outputs $Q\\overline{Q}=01$, the possible values of X and Y are",
-          "options": [
-            "$X=1, Y=0$",
-            "$X=1, Y=1$",
-            "$X=0, Y=1$",
-            "$X=0, Y=0$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "In the circuit shown below, outputs $Q\\overline{Q}=01$, the possible values of X and Y are\n\nOptions:\n(a) $X=1, Y=0$\n(b) $X=1, Y=1$\n(c) $X=0, Y=1$\n(d) $X=0, Y=0$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1186,15 +911,9 @@
         {
           "id": "dpp-sc-007",
           "title": "DPP-2 Q2",
-          "type": "mcq",
-          "question": "In the given circuit, the race around",
-          "options": [
-            "does not occur.",
-            "occurs when $CLK=0$.",
-            "occurs when $CLK=1$ and $A=B=1$.",
-            "occurs when $CLK=1$ and $A=B=0$."
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "In the given circuit, the race around\n\nOptions:\n(a) does not occur.\n(b) occurs when $CLK=0$.\n(c) occurs when $CLK=1$ and $A=B=1$.\n(d) occurs when $CLK=1$ and $A=B=0$.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1202,15 +921,9 @@
         {
           "id": "dpp-sc-008",
           "title": "DPP-2 Q3",
-          "type": "mcq",
-          "question": "A sequential circuit using D Flip-Flop and logic gates is shown in figure, where X and Y are the inputs and Z is the output. The circuit is",
-          "options": [
-            "S-R Flip-Flop with inputs $X=R$ and $Y=S$",
-            "S-R Flip-Flop with inputs $X=S$ and $Y=R$",
-            "J-K Flip-Flop with inputs $X=J$ and $Y=K$.",
-            "J-K Flip-Flop with inputs $X=K$ and $Y=J$."
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "A sequential circuit using D Flip-Flop and logic gates is shown in figure, where X and Y are the inputs and Z is the output. The circuit is\n\nOptions:\n(a) S-R Flip-Flop with inputs $X=R$ and $Y=S$\n(b) S-R Flip-Flop with inputs $X=S$ and $Y=R$\n(c) J-K Flip-Flop with inputs $X=J$ and $Y=K$.\n(d) J-K Flip-Flop with inputs $X=K$ and $Y=J$.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1218,15 +931,9 @@
         {
           "id": "dpp-sc-009",
           "title": "DPP-2 Q4",
-          "type": "mcq",
-          "question": "The frequency of the clock signal applied to the negative going edge triggered JK flip flop shown below is 5 kHz. What is frequency of signal available at Q?",
-          "options": [
-            "2.5 kHz",
-            "5 kHz",
-            "10 kHz",
-            "1.25 kHz"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The frequency of the clock signal applied to the negative going edge triggered JK flip flop shown below is 5 kHz. What is frequency of signal available at Q?\n\nOptions:\n(a) 2.5 kHz\n(b) 5 kHz\n(c) 10 kHz\n(d) 1.25 kHz",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1234,15 +941,9 @@
         {
           "id": "dpp-sc-010",
           "title": "DPP-2 Q5",
-          "type": "mcq",
-          "question": "The RS flip flop is modified so as to realize a flip flop with single input P. The characteristic equation of a new flip-flop will be",
-          "options": [
-            "$Q(t+1)=P\\oplus Q$",
-            "$Q(t+1)=P\\oplus Q$",
-            "$Q(t+1)=P+Q$",
-            "$Q(t+1)=P$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The RS flip flop is modified so as to realize a flip flop with single input P. The characteristic equation of a new flip-flop will be\n\nOptions:\n(a) $Q(t+1)=P\\oplus Q$\n(b) $Q(t+1)=P\\oplus Q$\n(c) $Q(t+1)=P+Q$\n(d) $Q(t+1)=P$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1250,15 +951,9 @@
         {
           "id": "dpp-sc-011",
           "title": "DPP-2 Q6",
-          "type": "mcq",
-          "question": "The J-K FF shown below is initially cleared and then clocked for 5 pulses, the sequence at the Q output will be",
-          "options": [
-            "010000",
-            "011001",
-            "010010",
-            "010101"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The J-K FF shown below is initially cleared and then clocked for 5 pulses, the sequence at the Q output will be\n\nOptions:\n(a) 010000\n(b) 011001\n(c) 010010\n(d) 010101",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1370,15 +1065,9 @@
         {
           "id": "dpp-sc-020",
           "title": "DPP-4 Q1",
-          "type": "mcq",
-          "question": "What is the output signal frequency of the following counter if the clock signal frequency is 16 kHz? All 'J' and 'K' inputs are connected to 1.",
-          "options": [
-            "4 kHz",
-            "8 kHz",
-            "10 kHz",
-            "16 kHz"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "What is the output signal frequency of the following counter if the clock signal frequency is 16 kHz? All 'J' and 'K' inputs are connected to 1.\n\nOptions:\n(a) 4 kHz\n(b) 8 kHz\n(c) 10 kHz\n(d) 16 kHz",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1386,15 +1075,9 @@
         {
           "id": "dpp-sc-021",
           "title": "DPP-4 Q2",
-          "type": "mcq",
-          "question": "The circuit is counter of mod",
-          "options": [
-            "Mod-0",
-            "Mod-16",
-            "Mod-15",
-            "Mod-14"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The circuit is counter of mod\n\nOptions:\n(a) Mod-0\n(b) Mod-16\n(c) Mod-15\n(d) Mod-14",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1402,15 +1085,9 @@
         {
           "id": "dpp-sc-022",
           "title": "DPP-4 Q3",
-          "type": "mcq",
-          "question": "The circuit is a counter of mod",
-          "options": [
-            "a MOD-2 counter",
-            "a MOD-3 counter",
-            "generate sequence 00, 10, 01, 00.....",
-            "generate sequence 00, 10, 00, 10, 00"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The circuit is a counter of mod\n\nOptions:\n(a) a MOD-2 counter\n(b) a MOD-3 counter\n(c) generate sequence 00, 10, 01, 00.....\n(d) generate sequence 00, 10, 00, 10, 00",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1418,15 +1095,9 @@
         {
           "id": "dpp-sc-023",
           "title": "DPP-4 Q4",
-          "type": "mcq",
-          "question": "The circuit shown consists of J-K flip-flops, each with an active low asynchronous reset ($\\overline{R}_{d}$ input). The counter corresponding to this circuit is",
-          "options": [
-            "a modulo-5 binary up counter.",
-            "a modulo-6 binary down counter.",
-            "a modulo-5 binary down counter.",
-            "a modulo-6 binary up counter."
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The circuit shown consists of J-K flip-flops, each with an active low asynchronous reset ($\\overline{R}_{d}$ input). The counter corresponding to this circuit is\n\nOptions:\n(a) a modulo-5 binary up counter.\n(b) a modulo-6 binary down counter.\n(c) a modulo-5 binary down counter.\n(d) a modulo-6 binary up counter.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1434,15 +1105,9 @@
         {
           "id": "dpp-sc-024",
           "title": "DPP-4 Q5",
-          "type": "mcq",
-          "question": "The circuit shown in figure is",
-          "options": [
-            "a MOD-2 counter",
-            "a MOD-3 counter",
-            "generate sequence 00, 10, 01, 00.....",
-            "generate sequence 00, 10, 00, 10, 00"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The circuit shown in figure is\n\nOptions:\n(a) a MOD-2 counter\n(b) a MOD-3 counter\n(c) generate sequence 00, 10, 01, 00.....\n(d) generate sequence 00, 10, 00, 10, 00",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1519,16 +1184,10 @@
         {
           "id": "dpp-mn-005",
           "title": "DPP-1 Q5",
-          "type": "mcq",
-          "question": "The Boolean expression $f=(X+Y)(X+\\overline{Y})+\\overline{X}\\overline{Y}+\\overline{X}$",
-          "options": [
-            "$Y$",
-            "$X$",
-            "$\\overline{X}\\overline{Y}$",
-            "$X+\\overline{Y}$"
-          ],
-          "answer": null,
-          "solution": "As extracted, $(X+Y)(X+\\overline{Y})=X$ and $\\overline{X}\\overline{Y}+\\overline{X}=\\overline{X}$, so $f=X+\\overline{X}=1$, which is not an option. The expression was probably garbled in extraction; please verify against the original paper.",
+          "type": "subjective",
+          "question": "The Boolean expression $f=(X+Y)(X+\\overline{Y})+\\overline{X}\\overline{Y}+\\overline{X}$\n\nOptions:\n(a) $Y$\n(b) $X$\n(c) $\\overline{X}\\overline{Y}$\n(d) $X+\\overline{Y}$",
+          "answer": "As extracted, $f=1$ (not among the options).",
+          "solution": "(X+Y)(X+Ȳ)=X and X̄Ȳ+X̄=X̄, so f=X+X̄=1, which is not an option. The expression was probably garbled in extraction.",
           "marks": 1,
           "source": "DPP"
         },
@@ -1615,16 +1274,10 @@
         {
           "id": "dpp-mn-011",
           "title": "DPP-2 Q1",
-          "type": "mcq",
-          "question": "For the given Boolean function $f(A,B,C)=\\sum_{m}(0,1,5,6)$, simplified output will be",
-          "options": [
-            "$A\\overline{B}+B\\overline{C}+AB\\overline{C}$",
-            "$\\overline{A}\\overline{B}+\\overline{B}\\overline{C}+AB\\overline{C}$",
-            "$A\\overline{B}+\\overline{B}\\overline{C}+\\overline{A}\\overline{B}C$",
-            "$\\overline{A}\\overline{B}+\\overline{B}\\overline{C}+AB\\overline{C}$"
-          ],
-          "answer": null,
-          "solution": "K-map gives $f=\\overline{A}\\overline{B}+\\overline{B}C+AB\\overline{C}$. This does not match any option exactly as extracted (the extracted options have $\\overline{B}\\overline{C}$ and options (b) and (d) are identical). Please verify against the original paper.",
+          "type": "subjective",
+          "question": "For the given Boolean function $f(A,B,C)=\\sum_{m}(0,1,5,6)$, simplified output will be\n\nOptions:\n(a) $A\\overline{B}+B\\overline{C}+AB\\overline{C}$\n(b) $\\overline{A}\\overline{B}+\\overline{B}\\overline{C}+AB\\overline{C}$\n(c) $A\\overline{B}+\\overline{B}\\overline{C}+\\overline{A}\\overline{B}C$\n(d) $\\overline{A}\\overline{B}+\\overline{B}\\overline{C}+AB\\overline{C}$",
+          "answer": "$f=\\overline{A}\\,\\overline{B}+\\overline{B}C+AB\\overline{C}$",
+          "solution": "K-map of m(0,1,5,6): 000 and 001 form $\\overline{A}\\,\\overline{B}$; 001 and 101 form $\\overline{B}C$; 110 stays alone as $AB\\overline{C}$. None of the listed options matches exactly (options (b) and (d) are identical and use $\\overline{B}\\,\\overline{C}$), so the options in the source are garbled.",
           "marks": 1,
           "source": "DPP"
         },
@@ -1679,15 +1332,9 @@
         {
           "id": "dpp-mn-015",
           "title": "DPP-2 Q5",
-          "type": "mcq",
-          "question": "The simplified SOP form of the k-map shown in the figure is",
-          "options": [
-            "$\\overline{x}\\overline{z}+\\overline{W}\\overline{x}\\overline{y}$",
-            "$\\overline{x}\\overline{z}$",
-            "$\\overline{W}\\overline{x}+WX$",
-            "$\\overline{x}\\overline{z}$"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The simplified SOP form of the k-map shown in the figure is\n\nOptions:\n(a) $\\overline{x}\\overline{z}+\\overline{W}\\overline{x}\\overline{y}$\n(b) $\\overline{x}\\overline{z}$\n(c) $\\overline{W}\\overline{x}+WX$\n(d) $\\overline{x}\\overline{z}$",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1711,15 +1358,9 @@
         {
           "id": "dpp-mn-017",
           "title": "DPP-2 Q7",
-          "type": "mcq",
-          "question": "The simplified Boolean function for the given K-map is",
-          "options": [
-            "ABC",
-            "$A\\oplus B\\odot C$",
-            "ABOC",
-            "AOBOC"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The simplified Boolean function for the given K-map is\n\nOptions:\n(a) ABC\n(b) $A\\oplus B\\odot C$\n(c) ABOC\n(d) AOBOC",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1743,15 +1384,9 @@
         {
           "id": "dpp-mn-019",
           "title": "DPP-2 Q9",
-          "type": "mcq",
-          "question": "The minimum number of NAND gates required to simplify the given K-map is",
-          "options": [
-            "4",
-            "5",
-            "3",
-            "9"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The minimum number of NAND gates required to simplify the given K-map is\n\nOptions:\n(a) 4\n(b) 5\n(c) 3\n(d) 9",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"
@@ -1759,15 +1394,9 @@
         {
           "id": "dpp-mn-020",
           "title": "DPP-2 Q10",
-          "type": "mcq",
-          "question": "The simplified expression of the given K-map is independent of variables",
-          "options": [
-            "A",
-            "B",
-            "C",
-            "A, B and C"
-          ],
-          "answer": null,
+          "type": "subjective",
+          "question": "The simplified expression of the given K-map is independent of variables\n\nOptions:\n(a) A\n(b) B\n(c) C\n(d) A, B and C",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
           "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
           "marks": 1,
           "source": "DPP"

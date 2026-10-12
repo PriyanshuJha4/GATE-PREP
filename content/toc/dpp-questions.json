@@ -4,206 +4,2449 @@
     {
       "title": "Decidability and Undecidability",
       "questions": [
-        {"id":"dpp-dec-01-q1","title":"TM Existence and Decidability","type":"mcq","question":"Consider the following statements:\nS1: For any problem if TM exist then problem may be decidable.\nS2: For any problem if TM not exist then problem may be decidable.\nWhich of the following is correct?","options":["S1 only","S2 only","Both S1 and S2","Neither S1 nor S2"],"answer":0,"solution":"If a TM exists, the problem may be decidable (or only semidecidable). If no TM exists, the problem cannot be decidable. So only S1 is correct.","marks":1,"source":"DPP"},
-        {"id":"dpp-dec-01-q2","title":"CYK Algorithm","type":"msq","question":"Which of the following is / are true about CYK algorithm?","options":["CYK is a bottom up parsing algorithm.","CYK algorithm will take O(n^3) time to verify n length string.","CYK is a dynamic programming algorithm.","CYK algorithm is used to check whether given string is a member of the language or not."],"answer":[0,1,2,3],"solution":"CYK is a bottom-up dynamic programming membership algorithm for CNF grammars running in O(n^3). All four statements are true.","marks":2,"source":"DPP"},
-        {"id":"dpp-dec-01-q3","title":"Halting Problem Not Decidable","type":"mcq","question":"In which of the following machine, halting problem is not decidable?","options":["Finite automata.","Linear bound automata.","Deterministic push down automata.","None of these."],"answer":3,"solution":"Halting is decidable for FA, LBA and DPDA. It is undecidable only for Turing machines. So none of the given machines is correct.","marks":1,"source":"DPP"},
-        {"id":"dpp-dec-01-q4","title":"Decidable Problems Statements","type":"subjective","question":"Consider the following Statements:\n(i) Nondisjointness problem is decidable for regular expression.\n(ii) Totality problem for DPDA is decidable.\n(iii) Every decidable problem is also semidecidable.\nWhich of the following is correct?","answer":"All three statements (i), (ii) and (iii) are correct.","solution":"(i) Intersection of regular languages is regular and emptiness is decidable. (ii) Totality (L = Sigma*) is decidable for DPDA since DPDAs are closed under complement. (iii) Decidable implies RE (semidecidable). Options were not provided in the source.","marks":2,"source":"DPP"},
-        {"id":"dpp-dec-01-q5","title":"Decidable Problem for TM","type":"mcq","question":"Which of the following is decidable to turing machine?","options":["Halting problem.","Blank tape halting problem.","RE membership problem.","None of these."],"answer":3,"solution":"The halting problem, blank tape halting problem and membership problem for recursively enumerable languages are all undecidable.","marks":1,"source":"DPP"},
-        {"id":"dpp-dec-01-q6","title":"Dead States in TM","type":"mcq","question":"Consider the following statement:\nS1: In turing machine every final state is dead.\nS2: In turing machine every non-final state may be dead.\nWhich of the following is correct?","options":["S1 only","S2 only","Both S1 and S2","Neither S1 nor S2"],"answer":2,"solution":"A TM halts on reaching a final state, so final states have no outgoing transitions (dead). A non-final state may also have no outgoing transitions (halting and rejecting). Both statements are correct.","marks":1,"source":"DPP"},
-        {"id":"dpp-dec-01-q7","title":"Incorrect Statement on RE Languages","type":"mcq","question":"Which of the following is not correct?","options":["Every semidecidable language is RE.","If language is NOT even semidecidable, then it must be NOT RE.","If language is undecidable then it may be RE.","If a language is semidecidable but not decidable then it may be Recursive."],"answer":3,"solution":"Semidecidable = RE. A semidecidable but not decidable language is by definition not recursive, so option (d) is incorrect.","marks":1,"source":"DPP"},
-        {"id":"dpp-dec-01-q8","title":"Decidable and Semidecidable Languages","type":"msq","question":"Which of the following is / are correct?","options":["A language 'L' is semidecidable iff there exist a turing machine which accept L and which halts (on strings of L).","A language 'L' is decidable iff there exist a turing machine which accept 'L'.","A language is decidable iff there exist an algorithm."],"answer":[0,2],"solution":"Decidable means an algorithm (a halting TM) exists. A TM that merely accepts L makes L RE, not necessarily decidable, so (b) is false. Note: the text of option (a) was garbled in the source; it was interpreted as halting on strings of L.","marks":2,"source":"DPP"},
-
-        {"id":"dpp-dec-02-q1","title":"Infinite Language of DFA","type":"msq","question":"Let L = {<X> | X is a DFA and L(X) is an infinite language}, where <X> represents the encoding of the deterministic finite automata (DFA). Then which of the statement is/are correct?","options":["It is recognizable by Turing.","Its complement is recognizable by Turing.","It is Turing decidable (recursive).","It is context-free but not regular."],"answer":[0,1,2],"solution":"Whether a DFA accepts an infinite language is decidable (look for a cycle on a path from start to a final state). A decidable language and its complement are both recognizable. The set of DFA encodings is not shown to be context-free.","marks":2,"source":"DPP"},
-        {"id":"dpp-dec-02-q2","title":"Incorrect Closure Statements","type":"msq","question":"Which of the following statement is/are incorrect?","options":["If L is CFL and A is DCFL then L-A is CFL.","The subset of a decidable language is always decidable.","If L and A are DCFL then (complement of L) intersection (complement of A) is CFL.","None of the above are incorrect."],"answer":[0,1,2],"solution":"(a) L-A = L ∩ complement(A), and complement(A) is a DCFL but not regular, so CFL ∩ DCFL need not be CFL. (b) A subset of a decidable language can be undecidable. (c) It equals the complement of (L ∪ A); L ∪ A is a CFL and the complement of a CFL need not be CFL. All three are incorrect.","marks":2,"source":"DPP"},
-        {"id":"dpp-dec-02-q3","title":"Language Reduction","type":"mcq","question":"Consider some language P in {0,1}* reduces to another language Q in {0,1}*. Which of the following statement is true?","options":["P is decidable.","A Turing machine that recognizes P can be used to construct a turing machine that recognizes Q.","If Q is decidable then P is decidable.","If P is decidable then Q is decidable."],"answer":2,"solution":"If P reduces to Q, then a decider for Q gives a decider for P. The converse does not hold.","marks":1,"source":"DPP"},
-        {"id":"dpp-dec-02-q4","title":"Membership Problems","type":"mcq","question":"Consider the following statement:\nS1: In phase structured language, membership problem is semi decidable.\nS2: In context-free languages, membership problem can be solved in polynomial time.\nWhich of the following is correct?","options":["S1 only","S2 only","Both S1 and S2","Neither S1 nor S2"],"answer":2,"solution":"Type-0 membership is semidecidable (RE). CFL membership is solved by CYK in O(n^3). Both are correct.","marks":1,"source":"DPP"},
-        {"id":"dpp-dec-02-q5","title":"Reverse and Complement of Languages","type":"mcq","question":"Consider the following statements:\nS1: For a decidable language X, X^R may or may not be decidable.\nS2: If X is not recursively enumerable then complement of X must be recursively enumerable.\nWhich of the following is correct?","options":["S1 only","S2 only","Both S1 and S2","Neither S1 nor S2"],"answer":3,"solution":"S1 is false: the reverse of a decidable language is always decidable. S2 is false: both X and its complement can be non-RE.","marks":1,"source":"DPP"},
-        {"id":"dpp-dec-02-q6","title":"Decidable and Semidecidable TM","type":"mcq","question":"Consider the following statements about Turing machine.\nS1: If there is some Turing machine that accepts every string in L and rejects every string not in L then L is decidable.\nS2: If there is some Turing machine that accepts every string in L and either rejects or loops on every string not in L, then L is semi-decidable or computably enumerable (CE).\nWhich of the following is correct?","options":["S1 only","S2 only","Both S1 and S2","Neither S1 nor S2"],"answer":2,"solution":"These are exactly the definitions of decidable (recursive) and semidecidable (RE) languages.","marks":1,"source":"DPP"},
-        {"id":"dpp-dec-02-q7","title":"Decidable Properties of CFG","type":"msq","question":"Which of the following is/are decidable properties of context-free?","options":["for context-free grammar X, find if string w is in X.","for context-free grammar X, find if L(X) = phi.","for context-free grammar X, find if L(X) is infinite.","none of the above are decidable properties of context free."],"answer":[0,1,2],"solution":"Membership, emptiness and finiteness/infiniteness are all decidable for CFGs.","marks":2,"source":"DPP"},
-        {"id":"dpp-dec-02-q8","title":"Incorrect Statement on TM Existence","type":"mcq","question":"Consider the following statements:\nS1: There is language for which no TM available. Then surely language will be Not RE.\nS2: Language is undecidable if and only there is no HTM (halting TM) available for language.\nWhich of the following is incorrect?","options":["S1 only","S2 only","Both S1 and S2","Neither S1 nor S2"],"answer":3,"solution":"Both statements are correct (RE iff a TM exists; decidable iff a halting TM exists), so neither is incorrect.","marks":1,"source":"DPP"}
+        {
+          "id": "dpp-dec-01-q1",
+          "title": "TM Existence and Decidability",
+          "type": "mcq",
+          "question": "Consider the following statements:\nS1: For any problem if TM exist then problem may be decidable.\nS2: For any problem if TM not exist then problem may be decidable.\nWhich of the following is correct?",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 0,
+          "solution": "If a TM exists, the problem may be decidable (or only semidecidable). If no TM exists, the problem cannot be decidable. So only S1 is correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-01-q2",
+          "title": "CYK Algorithm",
+          "type": "msq",
+          "question": "Which of the following is / are true about CYK algorithm?",
+          "options": [
+            "CYK is a bottom up parsing algorithm.",
+            "CYK algorithm will take O(n^3) time to verify n length string.",
+            "CYK is a dynamic programming algorithm.",
+            "CYK algorithm is used to check whether given string is a member of the language or not."
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "CYK is a bottom-up dynamic programming membership algorithm for CNF grammars running in O(n^3). All four statements are true.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-01-q3",
+          "title": "Halting Problem Not Decidable",
+          "type": "mcq",
+          "question": "In which of the following machine, halting problem is not decidable?",
+          "options": [
+            "Finite automata.",
+            "Linear bound automata.",
+            "Deterministic push down automata.",
+            "None of these."
+          ],
+          "answer": 3,
+          "solution": "Halting is decidable for FA, LBA and DPDA. It is undecidable only for Turing machines. So none of the given machines is correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-01-q4",
+          "title": "Decidable Problems Statements",
+          "type": "subjective",
+          "question": "Consider the following Statements:\n(i) Nondisjointness problem is decidable for regular expression.\n(ii) Totality problem for DPDA is decidable.\n(iii) Every decidable problem is also semidecidable.\nWhich of the following is correct?",
+          "answer": "All three statements (i), (ii) and (iii) are correct.",
+          "solution": "(i) Intersection of regular languages is regular and emptiness is decidable. (ii) Totality (L = Sigma*) is decidable for DPDA since DPDAs are closed under complement. (iii) Decidable implies RE (semidecidable). Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-01-q5",
+          "title": "Decidable Problem for TM",
+          "type": "mcq",
+          "question": "Which of the following is decidable to turing machine?",
+          "options": [
+            "Halting problem.",
+            "Blank tape halting problem.",
+            "RE membership problem.",
+            "None of these."
+          ],
+          "answer": 3,
+          "solution": "The halting problem, blank tape halting problem and membership problem for recursively enumerable languages are all undecidable.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-01-q6",
+          "title": "Dead States in TM",
+          "type": "mcq",
+          "question": "Consider the following statement:\nS1: In turing machine every final state is dead.\nS2: In turing machine every non-final state may be dead.\nWhich of the following is correct?",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 2,
+          "solution": "A TM halts on reaching a final state, so final states have no outgoing transitions (dead). A non-final state may also have no outgoing transitions (halting and rejecting). Both statements are correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-01-q7",
+          "title": "Incorrect Statement on RE Languages",
+          "type": "mcq",
+          "question": "Which of the following is not correct?",
+          "options": [
+            "Every semidecidable language is RE.",
+            "If language is NOT even semidecidable, then it must be NOT RE.",
+            "If language is undecidable then it may be RE.",
+            "If a language is semidecidable but not decidable then it may be Recursive."
+          ],
+          "answer": 3,
+          "solution": "Semidecidable = RE. A semidecidable but not decidable language is by definition not recursive, so option (d) is incorrect.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-01-q8",
+          "title": "Decidable and Semidecidable Languages",
+          "type": "msq",
+          "question": "Which of the following is / are correct?",
+          "options": [
+            "A language 'L' is semidecidable iff there exist a turing machine which accept L and which halts (on strings of L).",
+            "A language 'L' is decidable iff there exist a turing machine which accept 'L'.",
+            "A language is decidable iff there exist an algorithm."
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "Decidable means an algorithm (a halting TM) exists. A TM that merely accepts L makes L RE, not necessarily decidable, so (b) is false. Note: the text of option (a) was garbled in the source; it was interpreted as halting on strings of L.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-02-q1",
+          "title": "Infinite Language of DFA",
+          "type": "msq",
+          "question": "Let L = {<X> | X is a DFA and L(X) is an infinite language}, where <X> represents the encoding of the deterministic finite automata (DFA). Then which of the statement is/are correct?",
+          "options": [
+            "It is recognizable by Turing.",
+            "Its complement is recognizable by Turing.",
+            "It is Turing decidable (recursive).",
+            "It is context-free but not regular."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Whether a DFA accepts an infinite language is decidable (look for a cycle on a path from start to a final state). A decidable language and its complement are both recognizable. The set of DFA encodings is not shown to be context-free.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-02-q2",
+          "title": "Incorrect Closure Statements",
+          "type": "msq",
+          "question": "Which of the following statement is/are incorrect?",
+          "options": [
+            "If L is CFL and A is DCFL then L-A is CFL.",
+            "The subset of a decidable language is always decidable.",
+            "If L and A are DCFL then (complement of L) intersection (complement of A) is CFL.",
+            "None of the above are incorrect."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "(a) L-A = L ∩ complement(A), and complement(A) is a DCFL but not regular, so CFL ∩ DCFL need not be CFL. (b) A subset of a decidable language can be undecidable. (c) It equals the complement of (L ∪ A); L ∪ A is a CFL and the complement of a CFL need not be CFL. All three are incorrect.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-02-q3",
+          "title": "Language Reduction",
+          "type": "mcq",
+          "question": "Consider some language P in {0,1}* reduces to another language Q in {0,1}*. Which of the following statement is true?",
+          "options": [
+            "P is decidable.",
+            "A Turing machine that recognizes P can be used to construct a turing machine that recognizes Q.",
+            "If Q is decidable then P is decidable.",
+            "If P is decidable then Q is decidable."
+          ],
+          "answer": 2,
+          "solution": "If P reduces to Q, then a decider for Q gives a decider for P. The converse does not hold.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-02-q4",
+          "title": "Membership Problems",
+          "type": "mcq",
+          "question": "Consider the following statement:\nS1: In phase structured language, membership problem is semi decidable.\nS2: In context-free languages, membership problem can be solved in polynomial time.\nWhich of the following is correct?",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 2,
+          "solution": "Type-0 membership is semidecidable (RE). CFL membership is solved by CYK in O(n^3). Both are correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-02-q5",
+          "title": "Reverse and Complement of Languages",
+          "type": "mcq",
+          "question": "Consider the following statements:\nS1: For a decidable language X, X^R may or may not be decidable.\nS2: If X is not recursively enumerable then complement of X must be recursively enumerable.\nWhich of the following is correct?",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 3,
+          "solution": "S1 is false: the reverse of a decidable language is always decidable. S2 is false: both X and its complement can be non-RE.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-02-q6",
+          "title": "Decidable and Semidecidable TM",
+          "type": "mcq",
+          "question": "Consider the following statements about Turing machine.\nS1: If there is some Turing machine that accepts every string in L and rejects every string not in L then L is decidable.\nS2: If there is some Turing machine that accepts every string in L and either rejects or loops on every string not in L, then L is semi-decidable or computably enumerable (CE).\nWhich of the following is correct?",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 2,
+          "solution": "These are exactly the definitions of decidable (recursive) and semidecidable (RE) languages.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-02-q7",
+          "title": "Decidable Properties of CFG",
+          "type": "msq",
+          "question": "Which of the following is/are decidable properties of context-free?",
+          "options": [
+            "for context-free grammar X, find if string w is in X.",
+            "for context-free grammar X, find if L(X) = phi.",
+            "for context-free grammar X, find if L(X) is infinite.",
+            "none of the above are decidable properties of context free."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Membership, emptiness and finiteness/infiniteness are all decidable for CFGs.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dec-02-q8",
+          "title": "Incorrect Statement on TM Existence",
+          "type": "mcq",
+          "question": "Consider the following statements:\nS1: There is language for which no TM available. Then surely language will be Not RE.\nS2: Language is undecidable if and only there is no HTM (halting TM) available for language.\nWhich of the following is incorrect?",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 3,
+          "solution": "Both statements are correct (RE iff a TM exists; decidable iff a halting TM exists), so neither is incorrect.",
+          "marks": 1,
+          "source": "DPP"
+        }
       ]
     },
     {
       "title": "Context-Free Languages and Pushdown Automata",
       "questions": [
-        {"id":"dpp-cfg-01-q1","title":"Language of Palindrome Grammar","type":"subjective","question":"Consider the following grammar:\nS -> abSba | bSb | aSa | a | b | epsilon\nWhat is the language generated by above grammar?","answer":"The set of all palindromes over {a,b}: L = {w | w = w^R}.","solution":"Every production wraps S with matching symbols at both ends (a..a, b..b, ab..ba) or ends with a, b or epsilon in the middle. This generates exactly all even and odd length palindromes.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-01-q2","title":"Comparing Three Grammars","type":"subjective","question":"Consider the following grammars:\nG1: S -> aSc | $B, B -> bBc | $\nG2: S -> aaScc | $B, B -> bBc | $\nG3: S -> aSc | $B, B -> bbBcc | S\nWhich of the following is true regarding G1, G2 and G3?","answer":"L(G1) = {a^n $ b^m $ c^(n+m)} and L(G2) = {a^(2n) $ b^m $ c^(2n+m)} are non-empty CFLs, while G3 generates the empty language.","solution":"In G3, S -> aSc | $B and B -> bbBcc | S never lead to a production with only terminals, so no string is derivable and L(G3) = phi. Options were not provided in the source.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-01-q3","title":"Simplifying a CFG","type":"subjective","question":"Consider the following context free grammar:\nS -> aA | aBB\nA -> aaA | epsilon\nB -> bB | bbC\nC -> B\nWhat will be the equivalent simplified CFG for the given grammar?","answer":"S -> aA, A -> aaA | epsilon (equivalently S -> a | aA, A -> aaA | aa after removing epsilon).","solution":"B and C never derive a terminal string (B -> bB | bbC, C -> B), so they are useless and S -> aBB is removed. The language is a(aa)*.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-01-q4","title":"Property of a Grammar","type":"subjective","question":"Consider the following grammar:\nS -> AB\nA -> BaB | a\nB -> bbA\nWhich of the following is true regarding given grammar?","answer":"The grammar is unambiguous (it is LL(1)); all variables are useful and the language is infinite.","solution":"A starts with 'a' or 'b' depending on its production, and B always starts with 'b', so each parse decision is determined by one lookahead symbol; hence unambiguous. Options were not provided in the source.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-01-q5","title":"Productions in GNF","type":"nat","question":"Consider the following grammar G:\nS -> XA | BB\nB -> b | SB\nX -> b\nA -> a\nAfter converting above grammar into GNF how many productions are there in the grammar?","answer":18,"solution":"Substitute X: S -> bA | BB. B -> b | bAB | BBB has left recursion; remove it with Z -> BB | BBZ and B -> b | bAB | bZ | bABZ. Then S has 5 productions, A has 1, B has 4 and Z has 8, totalling 18 (the unreachable X -> b is not counted). The count can vary with the conversion method.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-01-q6","title":"True Statements on Grammars","type":"msq","question":"Which of the following is true","options":["A grammar is called ambiguous if (No. of parse trees = No. of left most derivation = Number of Right most derivation) > 1","Production of the form A -> a is known as unit production","CNF is also known as binary standard form","In left-most derivation, right most non-terminal is substituted with its production to derive a string"],"answer":[0,2],"solution":"For a string the number of parse trees equals the number of leftmost and rightmost derivations, and ambiguity means more than one. CNF is also called binary form. A -> a is a terminal production, not a unit production, and leftmost derivation substitutes the leftmost non-terminal.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-01-q7","title":"Ambiguity of Two Grammars","type":"subjective","question":"Given the following two grammars:\nG1: S -> AB | aaB, A -> a | Aa, B -> b\nG2: S -> aSbS | bSaS | epsilon\nWhat is true regarding above grammars?","answer":"Both grammars are ambiguous. L(G1) = a+b and L(G2) = {w | n_a(w) = n_b(w)}.","solution":"In G1, 'aab' has two parse trees (S -> AB with A -> Aa -> aa, and S -> aaB). G2 also gives multiple parse trees for strings like 'abab'.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-01-q8","title":"Class of Two Languages","type":"subjective","question":"Consider the following languages\nL1 = {a^n b^(n+m) c^m | n, m >= 0}\nL2 = {a^p b^q c^(p+q) | p, q >= 0}\nWhich of the following is true?","answer":"Both L1 and L2 are DCFL (hence CFL) but not regular.","solution":"L1 = a^n b^n b^m c^m: match a's with first b's, then remaining b's with c's. L2: push for a's and b's, pop for c's. Both are deterministic.","marks":2,"source":"DPP"},
-
-        {"id":"dpp-cfg-02-q1","title":"String Acceptance in PDA","type":"msq","question":"Which of the following is string accepting mechanism of PDA?","options":["PDA using final state.","PDA using empty stack.","PDA using both empty stack and final state.","PDA using transition state."],"answer":[0,1,2],"solution":"A PDA accepts by final state, by empty stack, or by a combination of both. 'Transition state' is not an acceptance mode.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-02-q2","title":"Push Operation","type":"msq","question":"Which of the following is correct push operation:","options":["delta(q, a, b) = (q', ab)","delta(q, a, b) = (q, ab)","delta(q, a, b) = (q', ab)","delta(q, a, b) = (q', epsilon)"],"answer":[0,1,2],"solution":"Replacing stack top b with ab pushes a. (d) replaces b with epsilon, which is a pop.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-02-q3","title":"DPDA and NPDA Statements","type":"nat","question":"Consider the following statements:\n(I) All DPDA are NPDA.\n(II) All NPDA are DPDA.\n(III) All NPDA and DPDA are equivalent.\n(IV) All context free language are regular language.\nThe total number of correct statements are","answer":1,"solution":"Only (I) is true. NPDA are strictly more powerful than DPDA, and CFLs properly include regular languages.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-02-q4","title":"Meaning of a Transition","type":"mcq","question":"What does following transition means: delta(q, epsilon, b) = (q', b)","options":["Push b","Pop b","Read b","No operation"],"answer":3,"solution":"No input is read, and the top b is replaced by b, so the stack is unchanged.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-02-q5","title":"Values of x and y in NPDA","type":"subjective","question":"What are the values of x and y, if the language accepted by NPDA is L = {a^m b^n c^(m+n) | m, n >= 1}.","answer":null,"solution":"The PDA figure referred to by this question (with x and y) is not provided in the source, so it cannot be solved.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-02-q6","title":"Language Accepted by PDA","type":"subjective","question":"Which language is accepted by the following PDA.","answer":null,"solution":"The PDA figure is not provided in the source, so it cannot be solved.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-02-q7","title":"Languages Accepted by PDA","type":"msq","question":"Which of the following languages are accepted by PDA.","options":["L = {a^n b^n c^m | m, n >= 1}","L = {a^n b^n c^m | m <= n}","L = {a^n b^m c^n d^m | m, n >= 0}","L = {a^m b^n c^n d^m | m, n >= 0}"],"answer":[0,3],"solution":"(a) and (d) need only one stack comparison or nested comparison. (b) needs the count n to be used twice (a vs b, then c vs n) and (c) has crossing dependencies, so neither is a CFL.","marks":2,"source":"DPP"},
-
-        {"id":"dpp-cfg-03-q1","title":"Language Derived by PDA","type":"mcq","question":"The language derived by given PDA is","options":["L = {a^n b^m c^k | n = m+k, m, n, k >= 0}","L = {a^m b^n c^k | k = m+n, m, n, k >= 1}","L = {a^m b^n c^k | k = m+n, m, n, k >= 0}","L = {a^m b^n c^k | n = m+k, m, n, k >= 1}"],"answer":null,"solution":"The PDA figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-03-q2","title":"Equivalence of Automata","type":"nat","question":"Consider the following statements:\n(i) For every NFA N there exists a minimal DFA (M) such that L(N) = L(M)\n(ii) For every DFA M there exists a DPDA P such that L(M) = L(P)\n(iii) For every DPDA P there exists a NPDA N such that L(P) = L(N)\n(iv) For every NPDA 'N' there exists a DPDA 'P' such that L(N) = L(P)\nThe number of correct statements is","answer":3,"solution":"(i), (ii) and (iii) are true. (iv) is false because NPDA are more powerful than DPDA.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-03-q3","title":"Equivalent Regular Expression","type":"mcq","question":"Let r1 = (01*)* be a regular expression. Then which of the following regular expression represents r2 such that L(r1) = L(r2).","options":["(10*)*","(1* + 01*1)*","(0* + 01*1)*","None"],"answer":2,"solution":"(01*)* = epsilon plus all strings starting with 0. (0* + 01*1)* generates blocks of 0 and 01+, which gives exactly epsilon plus the strings starting with 0.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-03-q4","title":"Language of a PDA","type":"mcq","question":"The above PDA accepts which language?","options":["L(M) = {a^n b^n c^m | n >= 1, m >= 0}","L(M) = {a^n b^m c^n | n >= 1, m >= 0}","L(M) = {a^n b^m c^m | n >= 1, m >= 0}","L(M) = {a^n b^m c^n | n >= 1, m >= 1}"],"answer":null,"solution":"The PDA figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-03-q5","title":"Language of a Non-terminating Grammar","type":"mcq","question":"Consider the following grammar G:\nS -> SS | S\nA -> aA\nHere, S and A are variables and a is a terminal then the language generated by above grammar G is:","options":["L(G) = a^n","L(G) = a*","L(G) = phi","L(G) = a^n b a^n"],"answer":2,"solution":"No production terminates in a terminal string (S only derives S's and A -> aA never ends), so L(G) is empty.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-03-q6","title":"Context Free Languages","type":"msq","question":"Which of the following is/are context free language.","options":["L = {a^m b^m c^n | m >= 1 and n >= 1}","L = {a^m b^m c^m | m >= 0}","L = {w c w^R | w in (a+b)+}","All strings of balanced parenthesis"],"answer":[0,2,3],"solution":"(a), (c) and (d) are accepted by a PDA. a^m b^m c^m is not a CFL.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-03-q7","title":"Complement of w c w^R","type":"mcq","question":"Consider the following language L: L = {w c w^R | w in (a+b)*, c in (a+b)}\nThe complement of L will be","options":["Regular","DCFL but not regular","CFL but not DCFL","None of these"],"answer":2,"solution":"L is the set of odd-length palindromes with an arbitrary middle symbol, which needs guessing the middle and so is not a DCFL. The complement is accepted by an NPDA (even-length strings, or an odd string with a mismatch) so it is a CFL, and it cannot be a DCFL since DCFLs are closed under complement.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-03-q8","title":"Languages Accepted by PDA","type":"nat","question":"Suppose, L is a language accepted by PDA.\n(i) L = {a^n b^n c^m d^m | n, m >= 1}\n(ii) L = {a^n | n is prime}\n(iii) L = {w w^R | w in (a+b)+}\nThen how many of the following can be L","answer":2,"solution":"(i) and (iii) are CFLs. The set of prime-length unary strings is not a CFL.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-cfg-04-q1","title":"Finite Intersection Non-regular","type":"mcq","question":"Suppose L1 is a finite language and L2 is non-regular language then L1 ∩ L2 will be:","options":["Regular but infinite","Non-regular","Finite and regular","None of these"],"answer":2,"solution":"The intersection is a subset of a finite language, so it is finite and therefore regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-04-q2","title":"Minimum DFA States","type":"nat","question":"Consider a language L = {a^(29n+9) | n >= 9} then total number of minimum states in DFA will be","answer":299,"solution":"The shortest string has length 29*9+9 = 270, so lengths 0 to 269 each need their own state (270 states). From length 270 onward the pattern repeats every 29 symbols, giving a cycle of 29 states. Total = 270 + 29 = 299.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-04-q3","title":"Strings in L*","type":"msq","question":"Consider the languages L = {ab, aa, baa} which of the following strings is/are in L*","options":["abaabaaabaa","aaaabaaaa","baaaaabaaaab","baaaaabaa"],"answer":[0,1,3],"solution":"(a) ab|aa|baa|ab|aa. (b) aa|aa|baa|aa. (d) baa|aa|ab|aa. (c) cannot be split into strings of L (it leaves a lone b at the end).","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-04-q4","title":"Finite, Regular and Context Free Languages","type":"nat","question":"Consider the following statements:\n(i) All finite language are context free language.\n(ii) All regular language are finite.\n(iii) All DCFL are finite.\n(iv) All regular language are DCFL.\n(v) There exists some language which are finite and irregular.\nThe number of correct statements from the above statements are","answer":2,"solution":"Only (i) and (iv) are true. Regular languages can be infinite, DCFLs can be infinite, and every finite language is regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-04-q5","title":"Class of Two Languages","type":"subjective","question":"Consider the following languages.\nL1 = {a^n b^n | n >= 0}\nL2 = {a^n b^m c^k | n, m, k >= 0 and (n != m or m != k)}\nWhich of the following statements is correct?","answer":"L1 is a DCFL; L2 is a CFL but not a DCFL.","solution":"L2 is accepted by an NPDA that guesses which inequality to verify. If L2 were a DCFL, its complement intersected with a*b*c* would give {a^n b^n c^n} as a DCFL, which is false. Options were not provided in the source.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-04-q6","title":"Grammars Generating DCFL but not Regular","type":"msq","question":"Which of the following grammar is/are generating DCFL but not regular language?","options":["S -> aaSbb | epsilon","S -> aSbb | epsilon","S -> aaSb | epsilon","S -> abS | epsilon"],"answer":[0,1,2],"solution":"(a) a^(2n) b^(2n), (b) a^n b^(2n), (c) a^(2n) b^n are DCFL and non-regular. (d) generates (ab)*, which is regular.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-04-q7","title":"DCFL Check of Two Languages","type":"mcq","question":"Consider the following languages:\nL1 = {a^m b^n c^k | if (m is even) then (n = k)}\nL2 = {a^n c b^n} ∪ {a^n d b^n}\nWhich of the following is correct statement?","options":["Only L1 is DCFL.","Only L2 is DCFL.","Both L1, L2 are CFL but not DCFL.","Both L1 and L2 are DCFL but not regular."],"answer":3,"solution":"L1: track parity of a's; if even, match b's with c's, otherwise accept freely, all deterministic. L2: after the marker c or d the machine knows what to do, so it is deterministic. Both are DCFL and non-regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-04-q8","title":"Property of Concatenated Palindrome Grammar","type":"subjective","question":"Consider the following grammar:\nS -> AB\nA -> aAa | bAb | epsilon\nB -> aBa | bBb | epsilon\nWhich of the following is correct regarding above grammar?","answer":"The grammar generates {w w^R x x^R}, the concatenation of two even-length palindromes. It is a CFL and it is ambiguous.","solution":"For 'aaaa' we have A = aa, B = aa; or A = aaaa, B = epsilon; or A = epsilon, B = aaaa, so more than one parse tree exists. Options were not provided in the source.","marks":2,"source":"DPP"},
-
-        {"id":"dpp-cfg-05-q1","title":"CFL Intersection with Regular","type":"mcq","question":"The intersection of CFL and a regular language will be","options":["Always regular","Always CFL","Always not regular","None of these"],"answer":1,"solution":"CFLs are closed under intersection with regular languages.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-05-q2","title":"Comparing Three Grammars","type":"subjective","question":"Consider the following grammars G1, G2 and G3:\nG1: S -> PQ, P -> 0P1 | epsilon, Q -> 1Q2 | epsilon\nG2: S -> 0S1 | Q, P -> 1Q2 | epsilon\nG3: S -> PQ | Q, P -> 0P1 | 01, Q -> 1Q2 | epsilon\nWhich of the following is true?","answer":"G1 and G3 generate the same language {0^n 1^(n+m) 2^m | n, m >= 0}. G2 generates a different language (Q has no production, so G2 derives nothing).","solution":"G1 gives 0^n 1^n 1^m 2^m. G3 gives the same for n >= 1 through S -> PQ, and for n = 0 through S -> Q. In G2, Q has no productions, so no terminal string is derived. Options were not provided in the source.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-05-q3","title":"Solving Regular Equations","type":"subjective","question":"Consider the following regular expressions P, Q and R over Sigma = {a,b}:\nP = ab + aQ + bR\nQ = baQ + bR\nR = Raba + a\nWhich of the following regular expression will produce all the strings accepted by above regular expression?","answer":"P = ab + a(ba)*b a(aba)* + b a(aba)*","solution":"R = Raba + a gives R = a(aba)*. Q = baQ + bR gives Q = (ba)* b R = (ba)* b a (aba)*. Substituting into P gives the expression above. Options were not provided in the source.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-05-q4","title":"Incorrect Language Class Statement","type":"subjective","question":"Consider the following language.\nL1 = Context free language.\nL2 = Deterministic context free language.\nL3 = Context sensitive language.\nL4 = Regular\nWhich of the following is incorrect?","answer":null,"solution":"The options were not provided in the source. The correct hierarchy is Regular (L4) ⊂ DCFL (L2) ⊂ CFL (L1) ⊂ CSL (L3).","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-05-q5","title":"Language Accepted by PDA","type":"subjective","question":"Consider the following push down automata. Which of the following language is accepted by above PDA?","answer":null,"solution":"The PDA figure is not provided in the source, so it cannot be solved.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-05-q6","title":"DCFL Check of Two Languages","type":"subjective","question":"Consider the following language:\nL1 = {a b^n a^(2n) | n >= 1}\nL2 = {aa b^n a^(3n) | n >= 1}\nWhich of the following is correct?","answer":"Both L1 and L2 are DCFL but not regular.","solution":"Push 2 (or 3) symbols for each b and pop one for each trailing a; the machine is deterministic. Options were not provided in the source.","marks":2,"source":"DPP"},
-        {"id":"dpp-cfg-05-q7","title":"Language of a PDA","type":"mcq","question":"Consider the following PDA: Then the language accepted by above PDA is?","options":["Regular but finite","Regular but infinite","CFL but not regular","None of these"],"answer":null,"solution":"The PDA figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-cfg-05-q8","title":"Operations on a CFL","type":"subjective","question":"Suppose, L is any CFL language on alphabet Sigma = {a,b}, and the following language:\nL1 = L - {w x w^R | w, x in {a,b}*}\nL2 = L1 . L\nL3 = complement(L1) ∪ L\nWhich of the following is/are correct?","answer":"L1 = phi, L2 = phi and L3 = Sigma*, so all three are regular.","solution":"Taking w = epsilon, {w x w^R} = Sigma*, so L1 = L - Sigma* = phi. Then L2 = phi . L = phi, and L3 = complement(phi) ∪ L = Sigma*. Options were not provided in the source.","marks":2,"source":"DPP"}
+        {
+          "id": "dpp-cfg-01-q1",
+          "title": "Language of Palindrome Grammar",
+          "type": "subjective",
+          "question": "Consider the following grammar:\nS -> abSba | bSb | aSa | a | b | epsilon\nWhat is the language generated by above grammar?",
+          "answer": "The set of all palindromes over {a,b}: L = {w | w = w^R}.",
+          "solution": "Every production wraps S with matching symbols at both ends (a..a, b..b, ab..ba) or ends with a, b or epsilon in the middle. This generates exactly all even and odd length palindromes.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-01-q2",
+          "title": "Comparing Three Grammars",
+          "type": "subjective",
+          "question": "Consider the following grammars:\nG1: S -> aSc | $B, B -> bBc | $\nG2: S -> aaScc | $B, B -> bBc | $\nG3: S -> aSc | $B, B -> bbBcc | S\nWhich of the following is true regarding G1, G2 and G3?",
+          "answer": "L(G1) = {a^n $ b^m $ c^(n+m)} and L(G2) = {a^(2n) $ b^m $ c^(2n+m)} are non-empty CFLs, while G3 generates the empty language.",
+          "solution": "In G3, S -> aSc | $B and B -> bbBcc | S never lead to a production with only terminals, so no string is derivable and L(G3) = phi. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-01-q3",
+          "title": "Simplifying a CFG",
+          "type": "subjective",
+          "question": "Consider the following context free grammar:\nS -> aA | aBB\nA -> aaA | epsilon\nB -> bB | bbC\nC -> B\nWhat will be the equivalent simplified CFG for the given grammar?",
+          "answer": "S -> aA, A -> aaA | epsilon (equivalently S -> a | aA, A -> aaA | aa after removing epsilon).",
+          "solution": "B and C never derive a terminal string (B -> bB | bbC, C -> B), so they are useless and S -> aBB is removed. The language is a(aa)*.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-01-q4",
+          "title": "Property of a Grammar",
+          "type": "subjective",
+          "question": "Consider the following grammar:\nS -> AB\nA -> BaB | a\nB -> bbA\nWhich of the following is true regarding given grammar?",
+          "answer": "The grammar is unambiguous (it is LL(1)); all variables are useful and the language is infinite.",
+          "solution": "A starts with 'a' or 'b' depending on its production, and B always starts with 'b', so each parse decision is determined by one lookahead symbol; hence unambiguous. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-01-q5",
+          "title": "Productions in GNF",
+          "type": "nat",
+          "question": "Consider the following grammar G:\nS -> XA | BB\nB -> b | SB\nX -> b\nA -> a\nAfter converting above grammar into GNF how many productions are there in the grammar?",
+          "answer": 18,
+          "solution": "Substitute X: S -> bA | BB. B -> b | bAB | BBB has left recursion; remove it with Z -> BB | BBZ and B -> b | bAB | bZ | bABZ. Then S has 5 productions, A has 1, B has 4 and Z has 8, totalling 18 (the unreachable X -> b is not counted). The count can vary with the conversion method.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-01-q6",
+          "title": "True Statements on Grammars",
+          "type": "msq",
+          "question": "Which of the following is true",
+          "options": [
+            "A grammar is called ambiguous if (No. of parse trees = No. of left most derivation = Number of Right most derivation) > 1",
+            "Production of the form A -> a is known as unit production",
+            "CNF is also known as binary standard form",
+            "In left-most derivation, right most non-terminal is substituted with its production to derive a string"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "For a string the number of parse trees equals the number of leftmost and rightmost derivations, and ambiguity means more than one. CNF is also called binary form. A -> a is a terminal production, not a unit production, and leftmost derivation substitutes the leftmost non-terminal.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-01-q7",
+          "title": "Ambiguity of Two Grammars",
+          "type": "subjective",
+          "question": "Given the following two grammars:\nG1: S -> AB | aaB, A -> a | Aa, B -> b\nG2: S -> aSbS | bSaS | epsilon\nWhat is true regarding above grammars?",
+          "answer": "Both grammars are ambiguous. L(G1) = a+b and L(G2) = {w | n_a(w) = n_b(w)}.",
+          "solution": "In G1, 'aab' has two parse trees (S -> AB with A -> Aa -> aa, and S -> aaB). G2 also gives multiple parse trees for strings like 'abab'.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-01-q8",
+          "title": "Class of Two Languages",
+          "type": "subjective",
+          "question": "Consider the following languages\nL1 = {a^n b^(n+m) c^m | n, m >= 0}\nL2 = {a^p b^q c^(p+q) | p, q >= 0}\nWhich of the following is true?",
+          "answer": "Both L1 and L2 are DCFL (hence CFL) but not regular.",
+          "solution": "L1 = a^n b^n b^m c^m: match a's with first b's, then remaining b's with c's. L2: push for a's and b's, pop for c's. Both are deterministic.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-02-q1",
+          "title": "String Acceptance in PDA",
+          "type": "msq",
+          "question": "Which of the following is string accepting mechanism of PDA?",
+          "options": [
+            "PDA using final state.",
+            "PDA using empty stack.",
+            "PDA using both empty stack and final state.",
+            "PDA using transition state."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "A PDA accepts by final state, by empty stack, or by a combination of both. 'Transition state' is not an acceptance mode.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-02-q2",
+          "title": "Push Operation",
+          "type": "msq",
+          "question": "Which of the following is correct push operation:",
+          "options": [
+            "delta(q, a, b) = (q', ab)",
+            "delta(q, a, b) = (q, ab)",
+            "delta(q, a, b) = (q', epsilon)"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "Replacing stack top b with ab pushes a. (d) replaces b with epsilon, which is a pop. (The source listed an option twice with identical text; the duplicate was removed.)",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-02-q3",
+          "title": "DPDA and NPDA Statements",
+          "type": "nat",
+          "question": "Consider the following statements:\n(I) All DPDA are NPDA.\n(II) All NPDA are DPDA.\n(III) All NPDA and DPDA are equivalent.\n(IV) All context free language are regular language.\nThe total number of correct statements are",
+          "answer": 1,
+          "solution": "Only (I) is true. NPDA are strictly more powerful than DPDA, and CFLs properly include regular languages.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-02-q4",
+          "title": "Meaning of a Transition",
+          "type": "mcq",
+          "question": "What does following transition means: delta(q, epsilon, b) = (q', b)",
+          "options": [
+            "Push b",
+            "Pop b",
+            "Read b",
+            "No operation"
+          ],
+          "answer": 3,
+          "solution": "No input is read, and the top b is replaced by b, so the stack is unchanged.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-02-q5",
+          "title": "Values of x and y in NPDA",
+          "type": "subjective",
+          "question": "What are the values of x and y, if the language accepted by NPDA is L = {a^m b^n c^(m+n) | m, n >= 1}.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The PDA figure referred to by this question (with x and y) is not provided in the source, so it cannot be solved.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-02-q6",
+          "title": "Language Accepted by PDA",
+          "type": "subjective",
+          "question": "Which language is accepted by the following PDA.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The PDA figure is not provided in the source, so it cannot be solved.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-02-q7",
+          "title": "Languages Accepted by PDA",
+          "type": "msq",
+          "question": "Which of the following languages are accepted by PDA.",
+          "options": [
+            "L = {a^n b^n c^m | m, n >= 1}",
+            "L = {a^n b^n c^m | m <= n}",
+            "L = {a^n b^m c^n d^m | m, n >= 0}",
+            "L = {a^m b^n c^n d^m | m, n >= 0}"
+          ],
+          "answer": [
+            0,
+            3
+          ],
+          "solution": "(a) and (d) need only one stack comparison or nested comparison. (b) needs the count n to be used twice (a vs b, then c vs n) and (c) has crossing dependencies, so neither is a CFL.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-03-q1",
+          "title": "Language Derived by PDA",
+          "type": "subjective",
+          "question": "The language derived by given PDA is\n\nOptions:\n(a) L = {a^n b^m c^k | n = m+k, m, n, k >= 0}\n(b) L = {a^m b^n c^k | k = m+n, m, n, k >= 1}\n(c) L = {a^m b^n c^k | k = m+n, m, n, k >= 0}\n(d) L = {a^m b^n c^k | n = m+k, m, n, k >= 1}",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The PDA figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-03-q2",
+          "title": "Equivalence of Automata",
+          "type": "nat",
+          "question": "Consider the following statements:\n(i) For every NFA N there exists a minimal DFA (M) such that L(N) = L(M)\n(ii) For every DFA M there exists a DPDA P such that L(M) = L(P)\n(iii) For every DPDA P there exists a NPDA N such that L(P) = L(N)\n(iv) For every NPDA 'N' there exists a DPDA 'P' such that L(N) = L(P)\nThe number of correct statements is",
+          "answer": 3,
+          "solution": "(i), (ii) and (iii) are true. (iv) is false because NPDA are more powerful than DPDA.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-03-q3",
+          "title": "Equivalent Regular Expression",
+          "type": "mcq",
+          "question": "Let r1 = (01*)* be a regular expression. Then which of the following regular expression represents r2 such that L(r1) = L(r2).",
+          "options": [
+            "(10*)*",
+            "(1* + 01*1)*",
+            "(0* + 01*1)*",
+            "None"
+          ],
+          "answer": 2,
+          "solution": "(01*)* = epsilon plus all strings starting with 0. (0* + 01*1)* generates blocks of 0 and 01+, which gives exactly epsilon plus the strings starting with 0.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-03-q4",
+          "title": "Language of a PDA",
+          "type": "subjective",
+          "question": "The above PDA accepts which language?\n\nOptions:\n(a) L(M) = {a^n b^n c^m | n >= 1, m >= 0}\n(b) L(M) = {a^n b^m c^n | n >= 1, m >= 0}\n(c) L(M) = {a^n b^m c^m | n >= 1, m >= 0}\n(d) L(M) = {a^n b^m c^n | n >= 1, m >= 1}",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The PDA figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-03-q5",
+          "title": "Language of a Non-terminating Grammar",
+          "type": "mcq",
+          "question": "Consider the following grammar G:\nS -> SS | S\nA -> aA\nHere, S and A are variables and a is a terminal then the language generated by above grammar G is:",
+          "options": [
+            "L(G) = a^n",
+            "L(G) = a*",
+            "L(G) = phi",
+            "L(G) = a^n b a^n"
+          ],
+          "answer": 2,
+          "solution": "No production terminates in a terminal string (S only derives S's and A -> aA never ends), so L(G) is empty.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-03-q6",
+          "title": "Context Free Languages",
+          "type": "msq",
+          "question": "Which of the following is/are context free language.",
+          "options": [
+            "L = {a^m b^m c^n | m >= 1 and n >= 1}",
+            "L = {a^m b^m c^m | m >= 0}",
+            "L = {w c w^R | w in (a+b)+}",
+            "All strings of balanced parenthesis"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "(a), (c) and (d) are accepted by a PDA. a^m b^m c^m is not a CFL.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-03-q7",
+          "title": "Complement of w c w^R",
+          "type": "mcq",
+          "question": "Consider the following language L: L = {w c w^R | w in (a+b)*, c in (a+b)}\nThe complement of L will be",
+          "options": [
+            "Regular",
+            "DCFL but not regular",
+            "CFL but not DCFL",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "L is the set of odd-length palindromes with an arbitrary middle symbol, which needs guessing the middle and so is not a DCFL. The complement is accepted by an NPDA (even-length strings, or an odd string with a mismatch) so it is a CFL, and it cannot be a DCFL since DCFLs are closed under complement.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-03-q8",
+          "title": "Languages Accepted by PDA",
+          "type": "nat",
+          "question": "Suppose, L is a language accepted by PDA.\n(i) L = {a^n b^n c^m d^m | n, m >= 1}\n(ii) L = {a^n | n is prime}\n(iii) L = {w w^R | w in (a+b)+}\nThen how many of the following can be L",
+          "answer": 2,
+          "solution": "(i) and (iii) are CFLs. The set of prime-length unary strings is not a CFL.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-04-q1",
+          "title": "Finite Intersection Non-regular",
+          "type": "mcq",
+          "question": "Suppose L1 is a finite language and L2 is non-regular language then L1 ∩ L2 will be:",
+          "options": [
+            "Regular but infinite",
+            "Non-regular",
+            "Finite and regular",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "The intersection is a subset of a finite language, so it is finite and therefore regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-04-q2",
+          "title": "Minimum DFA States",
+          "type": "nat",
+          "question": "Consider a language L = {a^(29n+9) | n >= 9} then total number of minimum states in DFA will be",
+          "answer": 299,
+          "solution": "The shortest string has length 29*9+9 = 270, so lengths 0 to 269 each need their own state (270 states). From length 270 onward the pattern repeats every 29 symbols, giving a cycle of 29 states. Total = 270 + 29 = 299.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-04-q3",
+          "title": "Strings in L*",
+          "type": "msq",
+          "question": "Consider the languages L = {ab, aa, baa} which of the following strings is/are in L*",
+          "options": [
+            "abaabaaabaa",
+            "aaaabaaaa",
+            "baaaaabaaaab",
+            "baaaaabaa"
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "(a) ab|aa|baa|ab|aa. (b) aa|aa|baa|aa. (d) baa|aa|ab|aa. (c) cannot be split into strings of L (it leaves a lone b at the end).",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-04-q4",
+          "title": "Finite, Regular and Context Free Languages",
+          "type": "nat",
+          "question": "Consider the following statements:\n(i) All finite language are context free language.\n(ii) All regular language are finite.\n(iii) All DCFL are finite.\n(iv) All regular language are DCFL.\n(v) There exists some language which are finite and irregular.\nThe number of correct statements from the above statements are",
+          "answer": 2,
+          "solution": "Only (i) and (iv) are true. Regular languages can be infinite, DCFLs can be infinite, and every finite language is regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-04-q5",
+          "title": "Class of Two Languages",
+          "type": "subjective",
+          "question": "Consider the following languages.\nL1 = {a^n b^n | n >= 0}\nL2 = {a^n b^m c^k | n, m, k >= 0 and (n != m or m != k)}\nWhich of the following statements is correct?",
+          "answer": "L1 is a DCFL; L2 is a CFL but not a DCFL.",
+          "solution": "L2 is accepted by an NPDA that guesses which inequality to verify. If L2 were a DCFL, its complement intersected with a*b*c* would give {a^n b^n c^n} as a DCFL, which is false. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-04-q6",
+          "title": "Grammars Generating DCFL but not Regular",
+          "type": "msq",
+          "question": "Which of the following grammar is/are generating DCFL but not regular language?",
+          "options": [
+            "S -> aaSbb | epsilon",
+            "S -> aSbb | epsilon",
+            "S -> aaSb | epsilon",
+            "S -> abS | epsilon"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "(a) a^(2n) b^(2n), (b) a^n b^(2n), (c) a^(2n) b^n are DCFL and non-regular. (d) generates (ab)*, which is regular.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-04-q7",
+          "title": "DCFL Check of Two Languages",
+          "type": "mcq",
+          "question": "Consider the following languages:\nL1 = {a^m b^n c^k | if (m is even) then (n = k)}\nL2 = {a^n c b^n} ∪ {a^n d b^n}\nWhich of the following is correct statement?",
+          "options": [
+            "Only L1 is DCFL.",
+            "Only L2 is DCFL.",
+            "Both L1, L2 are CFL but not DCFL.",
+            "Both L1 and L2 are DCFL but not regular."
+          ],
+          "answer": 3,
+          "solution": "L1: track parity of a's; if even, match b's with c's, otherwise accept freely, all deterministic. L2: after the marker c or d the machine knows what to do, so it is deterministic. Both are DCFL and non-regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-04-q8",
+          "title": "Property of Concatenated Palindrome Grammar",
+          "type": "subjective",
+          "question": "Consider the following grammar:\nS -> AB\nA -> aAa | bAb | epsilon\nB -> aBa | bBb | epsilon\nWhich of the following is correct regarding above grammar?",
+          "answer": "The grammar generates {w w^R x x^R}, the concatenation of two even-length palindromes. It is a CFL and it is ambiguous.",
+          "solution": "For 'aaaa' we have A = aa, B = aa; or A = aaaa, B = epsilon; or A = epsilon, B = aaaa, so more than one parse tree exists. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-05-q1",
+          "title": "CFL Intersection with Regular",
+          "type": "mcq",
+          "question": "The intersection of CFL and a regular language will be",
+          "options": [
+            "Always regular",
+            "Always CFL",
+            "Always not regular",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "CFLs are closed under intersection with regular languages.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-05-q2",
+          "title": "Comparing Three Grammars",
+          "type": "subjective",
+          "question": "Consider the following grammars G1, G2 and G3:\nG1: S -> PQ, P -> 0P1 | epsilon, Q -> 1Q2 | epsilon\nG2: S -> 0S1 | Q, P -> 1Q2 | epsilon\nG3: S -> PQ | Q, P -> 0P1 | 01, Q -> 1Q2 | epsilon\nWhich of the following is true?",
+          "answer": "G1 and G3 generate the same language {0^n 1^(n+m) 2^m | n, m >= 0}. G2 generates a different language (Q has no production, so G2 derives nothing).",
+          "solution": "G1 gives 0^n 1^n 1^m 2^m. G3 gives the same for n >= 1 through S -> PQ, and for n = 0 through S -> Q. In G2, Q has no productions, so no terminal string is derived. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-05-q3",
+          "title": "Solving Regular Equations",
+          "type": "subjective",
+          "question": "Consider the following regular expressions P, Q and R over Sigma = {a,b}:\nP = ab + aQ + bR\nQ = baQ + bR\nR = Raba + a\nWhich of the following regular expression will produce all the strings accepted by above regular expression?",
+          "answer": "P = ab + a(ba)*b a(aba)* + b a(aba)*",
+          "solution": "R = Raba + a gives R = a(aba)*. Q = baQ + bR gives Q = (ba)* b R = (ba)* b a (aba)*. Substituting into P gives the expression above. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-05-q4",
+          "title": "Incorrect Language Class Statement",
+          "type": "subjective",
+          "question": "Consider the following language.\nL1 = Context free language.\nL2 = Deterministic context free language.\nL3 = Context sensitive language.\nL4 = Regular\nWhich of the following is incorrect?",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The options were not provided in the source. The correct hierarchy is Regular (L4) ⊂ DCFL (L2) ⊂ CFL (L1) ⊂ CSL (L3).",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-05-q5",
+          "title": "Language Accepted by PDA",
+          "type": "subjective",
+          "question": "Consider the following push down automata. Which of the following language is accepted by above PDA?",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The PDA figure is not provided in the source, so it cannot be solved.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-05-q6",
+          "title": "DCFL Check of Two Languages",
+          "type": "subjective",
+          "question": "Consider the following language:\nL1 = {a b^n a^(2n) | n >= 1}\nL2 = {aa b^n a^(3n) | n >= 1}\nWhich of the following is correct?",
+          "answer": "Both L1 and L2 are DCFL but not regular.",
+          "solution": "Push 2 (or 3) symbols for each b and pop one for each trailing a; the machine is deterministic. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-05-q7",
+          "title": "Language of a PDA",
+          "type": "subjective",
+          "question": "Consider the following PDA: Then the language accepted by above PDA is?\n\nOptions:\n(a) Regular but finite\n(b) Regular but infinite\n(c) CFL but not regular\n(d) None of these",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The PDA figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cfg-05-q8",
+          "title": "Operations on a CFL",
+          "type": "subjective",
+          "question": "Suppose, L is any CFL language on alphabet Sigma = {a,b}, and the following language:\nL1 = L - {w x w^R | w, x in {a,b}*}\nL2 = L1 . L\nL3 = complement(L1) ∪ L\nWhich of the following is/are correct?",
+          "answer": "L1 = phi, L2 = phi and L3 = Sigma*, so all three are regular.",
+          "solution": "Taking w = epsilon, {w x w^R} = Sigma*, so L1 = L - Sigma* = phi. Then L2 = phi . L = phi, and L3 = complement(phi) ∪ L = Sigma*. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        }
       ]
     },
     {
       "title": "Turing Machines",
       "questions": [
-        {"id":"dpp-tm-01-q1","title":"Language Accepted by a TM","type":"mcq","question":"Let M be a turing machine having Q = {q0, q1, q2, q3, q4} a set of states, input alphabet {0, 1}. The tape alphabets {0, 1, B, x, y}. The symbol B is used to represent the end input string. The initial and final states are q0 and q4 respectively. The transitions are as follows:\n1. d(q0, 0) = (q1, x, R)\n2. d(q0, y) = (q3, y, R)\n3. d(q1, 0) = (q1, 0, R)\n4. d(q1, 1) = (q2, y, L)\n5. d(q1, y) = (q1, y, R)\n6. d(q2, 0) = (q2, 0, L)\n7. d(q2, x) = (q0, x, R)\n8. d(q2, y) = (q2, y, L)\n9. d(q3, y) = (q3, y, R)\n10. d(q3, B) = (q4, B, R)\nWhich of the following statement is true about M?","options":["M accepts on L = {0^n 1^m | n, m >= 0}.","M accepts 010 as a substring.","M accepts on L = {0^n 1^n | n >= 0}.","M accepts on 011 as a substring."],"answer":2,"solution":"The machine marks a 0 as x, then marks the matching 1 as y, and repeats. When no 0 is left it checks that only y's remain and moves to the final state. It accepts 0^n 1^n (strictly for n >= 1, as there is no transition on B from q0), so option (c) is the closest.","marks":1,"source":"DPP"},
-        {"id":"dpp-tm-01-q2","title":"Equivalent Turing Machines","type":"subjective","question":"Consider the following turing machines:\n(i) Single-tape TM\n(ii) Multi-tape TM\n(iii) Universal TM\nWhich of the above TM's are equivalent?","answer":"All three (i), (ii) and (iii) are equivalent in computational power.","solution":"A multi-tape TM can be simulated by a single-tape TM, and a universal TM is itself a single TM that simulates any TM. Options were not provided in the source.","marks":2,"source":"DPP"},
-        {"id":"dpp-tm-01-q3","title":"Values of x and y in a TM","type":"mcq","question":"If the following turing machine accepts L = {(0+1)*}, then what will the value of x and y?","options":["x = (1, 1, R); y = (0, 0, R)","x = (1, 0, R); y = (0, 1, R)","x = (1, 1, R); y = (1, 1, R)","x = (0, 1, R); y = (1, 0, R)"],"answer":null,"solution":"The Turing machine figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-tm-01-q4","title":"Tuples of a Turing Machine","type":"msq","question":"Which of the following statement is/are correct regarding tuples of turing machine","options":["TM has six tuples which are {Q, T, delta, B, q0, F}.","Sigma is the input alphabet.","T is the tape alphabet.","Q is finite set of states."],"answer":[1,2,3],"solution":"A TM is a 7-tuple (Q, Sigma, Gamma, delta, B, q0, F), so statement (a) is wrong. Statements (b), (c) and (d) are correct.","marks":2,"source":"DPP"},
-        {"id":"dpp-tm-01-q5","title":"Restricted Turing Machine","type":"mcq","question":"Consider a Turing machine with following restrictions\n(i) Head can only read and cannot write.\n(ii) Head can move only in one direction.\nThe Turing machine with above restrictions is known as","options":["Turing machine","Linear bounded automata","Push down automata","Finite Automata"],"answer":3,"solution":"A read-only, one-way head with finite control is a finite automaton.","marks":1,"source":"DPP"},
-        {"id":"dpp-tm-01-q6","title":"Language of a Type-0 Grammar","type":"mcq","question":"Consider the given grammar:\nS -> aASccc | epsilon\nAa -> aA\nAc -> bbc\nAb -> bb\nWhich of the following language is derived by the above grammar?","options":["L = {a^n b^n c^n | n >= 0}","L = {a^n b^(2n) c^n | n >= 0}","L = {a^n b^(2n) c^(3n) | n >= 0}","L = {a^(4n) b^(3n) c^(2n) | n >= 0}"],"answer":2,"solution":"Each use of S -> aASccc adds one a, one A and three c's. Each A becomes bb, so we get n a's, 2n b's and 3n c's.","marks":1,"source":"DPP"},
-        {"id":"dpp-tm-01-q7","title":"Language of a TM","type":"mcq","question":"Consider the following transitions of a turing machine M:\nd(q0, a) = (q1, B, R)\nd(q0, b) = (q1, B, R)\nd(q0, B) = (q3, B, R)\nd(q1, b) = (q2, B, R)\nd(q1, a) = (q2, B, R)\nd(q2, a) = (q0, B, R)\nd(q2, b) = (q0, B, R)\nThe language derived by the equivalent turing machine defined as?","options":["L = {w : |w| is even}","L = {w : |w| is odd}","L = {w : |w| is multiple of 3}","None of these"],"answer":2,"solution":"The machine cycles q0 -> q1 -> q2 -> q0 consuming one symbol each time and accepts (q3) only when it sees the blank at q0, so the length must be a multiple of 3.","marks":1,"source":"DPP"},
-        {"id":"dpp-tm-01-q8","title":"Stacks Needed to Simulate a TM","type":"mcq","question":"Minimum number of stacks required by push down automata to behave like a turing machine.","options":["1","2","3","None of these"],"answer":1,"solution":"A PDA with two stacks can simulate a Turing machine tape (one stack for each side of the head).","marks":1,"source":"DPP"},
-
-        {"id":"dpp-tm-02-q1","title":"NTM and DTM Conversion","type":"mcq","question":"Which of the following statement is correct?","options":["Every NTM (Non-deterministic Turing Machine) can be converted into DTM (Deterministic Turing Machine).","Every DTM (Deterministic Turing Machine) can be converted into NTM (Non-deterministic Turing Machine).","Both (a) and (b)","None of these"],"answer":2,"solution":"NTM and DTM are equivalent in power; every DTM is trivially an NTM and every NTM can be simulated by a DTM.","marks":1,"source":"DPP"},
-        {"id":"dpp-tm-02-q2","title":"Halting of Turing Machine","type":"msq","question":"Which of the following statement is/are true regarding halting of turing machine?","options":["If head of TM always move right, then TM never halts.","If head of TM always move left, then TM may halt.","If head of TM always move left, then TM never halts.","If head of TM moves in right and sometimes in left (loop), then also the TM never halts."],"answer":[1],"solution":"A TM can halt by reaching a final state or a state with no transition regardless of the direction it moves, so only (b) is true.","marks":2,"source":"DPP"},
-        {"id":"dpp-tm-02-q3","title":"Language of a TM from Transition Table","type":"mcq","question":"Given transition table of turing machine is as follow:\n-> q0 on 0 -> (q0, 0, R); on 1 -> (q1, 0, R)\nq1 on 0 -> (q0, 1, R); on 1 -> (q1, 1, R)\nIf q0 is initial state and q1 is final state, which of the following language is accepted by given turing machine?","options":["Set of all string ending with 1.","Set of all string ending with 11.","Set of all string starting with 0.","Set of all string starting with 10."],"answer":0,"solution":"The machine moves to q1 exactly when it reads a 1, and returns to q0 when it reads a 0 in q1. So it ends in q1 iff the last symbol read is 1.","marks":1,"source":"DPP"},
-        {"id":"dpp-tm-02-q4","title":"True Statements on Language Classes","type":"msq","question":"Which of the following is/are true?","options":["There exist no recursive enumerable language that is recursive language.","If L is CFL, then complement of L may be CFL.","There exist no recursive language that is not recursively enumerable.","If L is CFL, then complement of L may be CSL."],"answer":[1,2,3],"solution":"Every recursive language is RE, so (a) is false and (c) is true. The complement of a CFL may be a CFL (e.g. regular languages) and is always a CSL since CSLs are closed under complement.","marks":2,"source":"DPP"},
-        {"id":"dpp-tm-02-q5","title":"Machines Equal to Turing Machine","type":"msq","question":"Which of the following has the same computational power as of turing machine?","options":["PDA with additional 2 stack.","PDA with additional 1 stack.","FA with additional 1 counter.","FA with additional 2 counter."],"answer":[0,1,3],"solution":"A PDA with one additional stack has two stacks in total, which equals a TM. A PDA with 2 additional stacks and an FA with 2 counters are also equivalent to a TM. An FA with one counter is only a restricted PDA.","marks":2,"source":"DPP"},
-        {"id":"dpp-tm-02-q6","title":"Transition Function of DTM","type":"mcq","question":"Which of the following is a correct transition function of DTM?\nWhen Q = Set of state, Sigma = Input alphabet, Gamma = Tape alphabet, F = Final state, delta = Transition function","options":["delta: Q x Sigma -> Q x Gamma x F","delta: Q x Sigma -> Q x Sigma x {L, R}","delta: Q x Gamma -> Q x Gamma x {L, R}","delta: Q x Gamma -> Q x Sigma x F"],"answer":2,"solution":"The TM reads a tape symbol, writes a tape symbol, changes state and moves L or R: Q x Gamma -> Q x Gamma x {L, R}.","marks":1,"source":"DPP"},
-        {"id":"dpp-tm-02-q7","title":"Context Sensitive Languages","type":"nat","question":"How many of the following languages are context sensitive language?\n(i) L = {a^(n^2) | n >= 0}\n(ii) L = {a^n b^m c^n d^m | n, m >= 0}\n(iii) L = {a^n b^m c^m d^n e^f | n, m, f >= 0}\n(iv) L = {w x w^R | x, w in (0,1)*}\n(v) L = {a^n b^(n^2) | n >= 0}","answer":5,"solution":"All five languages are decidable by a linear bounded automaton, hence all are context sensitive. (iv) is simply (0+1)*.","marks":1,"source":"DPP"},
-        {"id":"dpp-tm-02-q8","title":"Language of a Turing Machine","type":"mcq","question":"Consider the following turing machine: Which of the following language is accepted by given turing machine?","options":["L = {a^m b^n c^p | m, n, p >= 0}","L = {a^m b^n c^p | m, n >= 0}","L = {a^m b^m c^m | m >= 0}","L = {a^m b^(2m) c^(3m) | m >= 0}"],"answer":null,"solution":"The Turing machine figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"}
+        {
+          "id": "dpp-tm-01-q1",
+          "title": "Language Accepted by a TM",
+          "type": "mcq",
+          "question": "Let M be a turing machine having Q = {q0, q1, q2, q3, q4} a set of states, input alphabet {0, 1}. The tape alphabets {0, 1, B, x, y}. The symbol B is used to represent the end input string. The initial and final states are q0 and q4 respectively. The transitions are as follows:\n1. d(q0, 0) = (q1, x, R)\n2. d(q0, y) = (q3, y, R)\n3. d(q1, 0) = (q1, 0, R)\n4. d(q1, 1) = (q2, y, L)\n5. d(q1, y) = (q1, y, R)\n6. d(q2, 0) = (q2, 0, L)\n7. d(q2, x) = (q0, x, R)\n8. d(q2, y) = (q2, y, L)\n9. d(q3, y) = (q3, y, R)\n10. d(q3, B) = (q4, B, R)\nWhich of the following statement is true about M?",
+          "options": [
+            "M accepts on L = {0^n 1^m | n, m >= 0}.",
+            "M accepts 010 as a substring.",
+            "M accepts on L = {0^n 1^n | n >= 0}.",
+            "M accepts on 011 as a substring."
+          ],
+          "answer": 2,
+          "solution": "The machine marks a 0 as x, then marks the matching 1 as y, and repeats. When no 0 is left it checks that only y's remain and moves to the final state. It accepts 0^n 1^n (strictly for n >= 1, as there is no transition on B from q0), so option (c) is the closest.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-01-q2",
+          "title": "Equivalent Turing Machines",
+          "type": "subjective",
+          "question": "Consider the following turing machines:\n(i) Single-tape TM\n(ii) Multi-tape TM\n(iii) Universal TM\nWhich of the above TM's are equivalent?",
+          "answer": "All three (i), (ii) and (iii) are equivalent in computational power.",
+          "solution": "A multi-tape TM can be simulated by a single-tape TM, and a universal TM is itself a single TM that simulates any TM. Options were not provided in the source.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-01-q3",
+          "title": "Values of x and y in a TM",
+          "type": "subjective",
+          "question": "If the following turing machine accepts L = {(0+1)*}, then what will the value of x and y?\n\nOptions:\n(a) x = (1, 1, R); y = (0, 0, R)\n(b) x = (1, 0, R); y = (0, 1, R)\n(c) x = (1, 1, R); y = (1, 1, R)\n(d) x = (0, 1, R); y = (1, 0, R)",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The Turing machine figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-01-q4",
+          "title": "Tuples of a Turing Machine",
+          "type": "msq",
+          "question": "Which of the following statement is/are correct regarding tuples of turing machine",
+          "options": [
+            "TM has six tuples which are {Q, T, delta, B, q0, F}.",
+            "Sigma is the input alphabet.",
+            "T is the tape alphabet.",
+            "Q is finite set of states."
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "A TM is a 7-tuple (Q, Sigma, Gamma, delta, B, q0, F), so statement (a) is wrong. Statements (b), (c) and (d) are correct.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-01-q5",
+          "title": "Restricted Turing Machine",
+          "type": "mcq",
+          "question": "Consider a Turing machine with following restrictions\n(i) Head can only read and cannot write.\n(ii) Head can move only in one direction.\nThe Turing machine with above restrictions is known as",
+          "options": [
+            "Turing machine",
+            "Linear bounded automata",
+            "Push down automata",
+            "Finite Automata"
+          ],
+          "answer": 3,
+          "solution": "A read-only, one-way head with finite control is a finite automaton.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-01-q6",
+          "title": "Language of a Type-0 Grammar",
+          "type": "mcq",
+          "question": "Consider the given grammar:\nS -> aASccc | epsilon\nAa -> aA\nAc -> bbc\nAb -> bb\nWhich of the following language is derived by the above grammar?",
+          "options": [
+            "L = {a^n b^n c^n | n >= 0}",
+            "L = {a^n b^(2n) c^n | n >= 0}",
+            "L = {a^n b^(2n) c^(3n) | n >= 0}",
+            "L = {a^(4n) b^(3n) c^(2n) | n >= 0}"
+          ],
+          "answer": 2,
+          "solution": "Each use of S -> aASccc adds one a, one A and three c's. Each A becomes bb, so we get n a's, 2n b's and 3n c's.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-01-q7",
+          "title": "Language of a TM",
+          "type": "mcq",
+          "question": "Consider the following transitions of a turing machine M:\nd(q0, a) = (q1, B, R)\nd(q0, b) = (q1, B, R)\nd(q0, B) = (q3, B, R)\nd(q1, b) = (q2, B, R)\nd(q1, a) = (q2, B, R)\nd(q2, a) = (q0, B, R)\nd(q2, b) = (q0, B, R)\nThe language derived by the equivalent turing machine defined as?",
+          "options": [
+            "L = {w : |w| is even}",
+            "L = {w : |w| is odd}",
+            "L = {w : |w| is multiple of 3}",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "The machine cycles q0 -> q1 -> q2 -> q0 consuming one symbol each time and accepts (q3) only when it sees the blank at q0, so the length must be a multiple of 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-01-q8",
+          "title": "Stacks Needed to Simulate a TM",
+          "type": "mcq",
+          "question": "Minimum number of stacks required by push down automata to behave like a turing machine.",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "A PDA with two stacks can simulate a Turing machine tape (one stack for each side of the head).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-02-q1",
+          "title": "NTM and DTM Conversion",
+          "type": "mcq",
+          "question": "Which of the following statement is correct?",
+          "options": [
+            "Every NTM (Non-deterministic Turing Machine) can be converted into DTM (Deterministic Turing Machine).",
+            "Every DTM (Deterministic Turing Machine) can be converted into NTM (Non-deterministic Turing Machine).",
+            "Both (a) and (b)",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "NTM and DTM are equivalent in power; every DTM is trivially an NTM and every NTM can be simulated by a DTM.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-02-q2",
+          "title": "Halting of Turing Machine",
+          "type": "msq",
+          "question": "Which of the following statement is/are true regarding halting of turing machine?",
+          "options": [
+            "If head of TM always move right, then TM never halts.",
+            "If head of TM always move left, then TM may halt.",
+            "If head of TM always move left, then TM never halts.",
+            "If head of TM moves in right and sometimes in left (loop), then also the TM never halts."
+          ],
+          "answer": [
+            1
+          ],
+          "solution": "A TM can halt by reaching a final state or a state with no transition regardless of the direction it moves, so only (b) is true.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-02-q3",
+          "title": "Language of a TM from Transition Table",
+          "type": "mcq",
+          "question": "Given transition table of turing machine is as follow:\n-> q0 on 0 -> (q0, 0, R); on 1 -> (q1, 0, R)\nq1 on 0 -> (q0, 1, R); on 1 -> (q1, 1, R)\nIf q0 is initial state and q1 is final state, which of the following language is accepted by given turing machine?",
+          "options": [
+            "Set of all string ending with 1.",
+            "Set of all string ending with 11.",
+            "Set of all string starting with 0.",
+            "Set of all string starting with 10."
+          ],
+          "answer": 0,
+          "solution": "The machine moves to q1 exactly when it reads a 1, and returns to q0 when it reads a 0 in q1. So it ends in q1 iff the last symbol read is 1.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-02-q4",
+          "title": "True Statements on Language Classes",
+          "type": "msq",
+          "question": "Which of the following is/are true?",
+          "options": [
+            "There exist no recursive enumerable language that is recursive language.",
+            "If L is CFL, then complement of L may be CFL.",
+            "There exist no recursive language that is not recursively enumerable.",
+            "If L is CFL, then complement of L may be CSL."
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "Every recursive language is RE, so (a) is false and (c) is true. The complement of a CFL may be a CFL (e.g. regular languages) and is always a CSL since CSLs are closed under complement.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-02-q5",
+          "title": "Machines Equal to Turing Machine",
+          "type": "msq",
+          "question": "Which of the following has the same computational power as of turing machine?",
+          "options": [
+            "PDA with additional 2 stack.",
+            "PDA with additional 1 stack.",
+            "FA with additional 1 counter.",
+            "FA with additional 2 counter."
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "A PDA with one additional stack has two stacks in total, which equals a TM. A PDA with 2 additional stacks and an FA with 2 counters are also equivalent to a TM. An FA with one counter is only a restricted PDA.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-02-q6",
+          "title": "Transition Function of DTM",
+          "type": "mcq",
+          "question": "Which of the following is a correct transition function of DTM?\nWhen Q = Set of state, Sigma = Input alphabet, Gamma = Tape alphabet, F = Final state, delta = Transition function",
+          "options": [
+            "delta: Q x Sigma -> Q x Gamma x F",
+            "delta: Q x Sigma -> Q x Sigma x {L, R}",
+            "delta: Q x Gamma -> Q x Gamma x {L, R}",
+            "delta: Q x Gamma -> Q x Sigma x F"
+          ],
+          "answer": 2,
+          "solution": "The TM reads a tape symbol, writes a tape symbol, changes state and moves L or R: Q x Gamma -> Q x Gamma x {L, R}.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-02-q7",
+          "title": "Context Sensitive Languages",
+          "type": "nat",
+          "question": "How many of the following languages are context sensitive language?\n(i) L = {a^(n^2) | n >= 0}\n(ii) L = {a^n b^m c^n d^m | n, m >= 0}\n(iii) L = {a^n b^m c^m d^n e^f | n, m, f >= 0}\n(iv) L = {w x w^R | x, w in (0,1)*}\n(v) L = {a^n b^(n^2) | n >= 0}",
+          "answer": 5,
+          "solution": "All five languages are decidable by a linear bounded automaton, hence all are context sensitive. (iv) is simply (0+1)*.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tm-02-q8",
+          "title": "Language of a Turing Machine",
+          "type": "subjective",
+          "question": "Consider the following turing machine: Which of the following language is accepted by given turing machine?\n\nOptions:\n(a) L = {a^m b^n c^p | m, n, p >= 0}\n(b) L = {a^m b^n c^p | m, n >= 0}\n(c) L = {a^m b^m c^m | m >= 0}\n(d) L = {a^m b^(2m) c^(3m) | m >= 0}",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The Turing machine figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        }
       ]
     },
     {
       "title": "Finite Automata and Regular Languages",
       "questions": [
-        {"id":"dpp-fa-01-q1","title":"Two Length Strings over Decimal Alphabet","type":"mcq","question":"Consider decimal alphabet Sigma = {0,1,2,...,9}, then how many two length strings are possible?","options":["4","20","100","2"],"answer":2,"solution":"10 choices for each of the 2 positions gives 10 x 10 = 100.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-01-q2","title":"Three Length Binary Strings","type":"mcq","question":"Consider a binary alphabet Sigma = {0,1}. How many 3 length strings are possible, the third symbol of the string must be 0?","options":["4","8","3","5"],"answer":0,"solution":"The first two positions have 2 choices each and the third is fixed: 2 x 2 x 1 = 4.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-01-q3","title":"Length of Concatenation","type":"msq","question":"Consider the following strings and their respective lengths: |w1| = p, |w2| = q, |w3| = r. Then, which of the following is/are correct?","options":["The length of the string w1.w2 = pq","The length of the string w1.w2.w3 = p+q+r","The length of the string w1.w2.w3 = pqr","The length of the string w1.w3 = p+r"],"answer":[1,3],"solution":"The length of a concatenation is the sum of the lengths.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-01-q4","title":"Regular Grammar","type":"mcq","question":"Which of the following is correct about Regular Grammar?","options":["Every Regular grammar is Left Linear Grammar.","Every Right Linear grammar may/may not be Regular Grammar.","If grammar is regular then it must be left linear as well as right linear.","If grammar is regular then it must be left linear or right linear."],"answer":3,"solution":"A regular grammar is either left linear or right linear (not necessarily both), and every such grammar is regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-01-q5","title":"Not an Alphabet","type":"msq","question":"Which of the following is / are not an alphabet?","options":["Sigma = {a,b,ab}","Sigma = {1,2,3,4,...}","Sigma = {}","Sigma = {epsilon}"],"answer":[0,1,2,3],"solution":"An alphabet is a finite, non-empty set of symbols. 'ab' is a string, not a symbol; {1,2,3,...} is infinite; {} is empty; epsilon is the empty string, not a symbol.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-01-q6","title":"Reversal of Strings","type":"msq","question":"If w is a string and w^R is reversal of the string then which of the following is incorrect?","options":["(w^R)^R = w","(w w^R)^R = w . w^R","(w x w^R)^R = w . x . w^R","(w w^R)^R = w^R . w"],"answer":[2,3],"solution":"(w x w^R)^R = w x^R w^R, which is not w x w^R in general. (w w^R)^R = w w^R, not w^R w.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-01-q7","title":"Maximum Substrings","type":"nat","question":"For 10 length strings, Total number of maximum substrings possible are","answer":56,"solution":"Non-empty substrings: n(n+1)/2 = 55. Including the empty string gives 56.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-01-q8","title":"Prefix, Suffix and Substring","type":"nat","question":"Consider following statements:\nS1: Every prefix or suffix is a substring.\nS2: Total number of prefixes are same as total number of suffixes in a string.\nS3: Total number of suffixes for n length string is (n+1).\nNumber of correct statements are","answer":3,"solution":"All three are true (counting the empty string and the string itself).","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-02-q1","title":"Regular Expression Identities","type":"msq","question":"Which of the following is/are true?","options":["(a*b*)* = (b*a*)*","(a + epsilon)+ = a+","(a+b)*(ba)* = (ab)*(a+b)*","(ab+ba)* = (ab(ab)* + ba(ba)*)*"],"answer":[0,2,3],"solution":"(a) both equal (a+b)*. (b) (a+epsilon)+ = a*, not a+. (c) both equal (a+b)*. (d) both sides generate the same language.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-02-q2","title":"Equivalent to a*b*","type":"mcq","question":"Consider the following regular expressions:\n(I) a*b* + a*\n(II) (epsilon + aa*)(bb* + epsilon)\n(III) b*a* + a*b* + b*\n(IV) aa+bb+\nWhich the following is equivalent to a*b*?","options":["(I) and (II) only","(I) only","(II) and (III) only","(I) and (IV) only"],"answer":0,"solution":"(I) = a*b* since a* is contained in a*b*. (II) = a* b*. (III) includes strings like 'ba' and (IV) omits epsilon, a and b.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-02-q3","title":"Incorrect Regular Expression Equality","type":"msq","question":"Which of the following is not correct?","options":["a*bb* = a*b+","a+a+ = a+","a+a+ = a+","phi* = epsilon"],"answer":[1,2],"solution":"a+a+ = aa+ (strings of length at least 2), which is not a+. The other two identities are correct.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-02-q4","title":"Uses of Regular Expressions","type":"msq","question":"Regular expression can be used in:","options":["Lexical Analysis","Pattern matching","String matching","Syntax analysis"],"answer":[0,1,2],"solution":"Regular expressions are used in lexical analysis and for pattern/string matching. Syntax analysis needs CFGs.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-02-q5","title":"Equivalent Regular Expression","type":"mcq","question":"Consider the regular expression: a*b(a + ba*)*. Above regular expression is equivalent to which of the following below regular expression?","options":["ba*(bb)*","ba*(a + ba*b)*","(b + aa*b) + (b + aa*b)(ba*b + a)(ba*b + a)*","ab(a + b)*"],"answer":null,"solution":"(a + ba*)* = (a+b)*, so the expression equals a*b(a+b)*, i.e. all strings containing at least one b. None of the options listed matches this language (the options likely have typos), so no answer could be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-02-q6","title":"Finite Language Generators","type":"mcq","question":"Which of the following statement will generate finite language?","options":["PDA with finite stack.","Regular expression without kleene star and kleene plus.","Regular expression with unary alphabet.","Regular expression with binary alphabet."],"answer":1,"solution":"Without star or plus a regular expression can only generate a finite set of strings.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-02-q7","title":"Equivalence of Regular Expressions","type":"mcq","question":"Consider following regular expressions:\n[I] (ab)*a = a(ab)*\n[II] (bb)*b* = b*\n[III] (b + epsilon)+ = b*\nWhich of the following is correct?","options":["II and III only.","I and II only.","All are correct.","None of these are correct."],"answer":0,"solution":"[I] is false since (ab)*a = a(ba)*, not a(ab)*. [II] and [III] are true.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-02-q8","title":"Length of a String","type":"nat","question":"Consider the string [(ab)^10 (ab)^7 ((ab)^3)^2]^2, the length of the string is","answer":92,"solution":"Inside: 20 + 14 + 12 = 46. Squared: 2 x 46 = 92.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-03-q1","title":"Regular Expression for a^n b^m","type":"mcq","question":"For L = {a^n b^m | n, m >= 0} What will be the regular expression?","options":["(ab)*","a*b*","(ab)","b*a*"],"answer":1,"solution":"Any number of a's followed by any number of b's is a*b*.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-03-q2","title":"Equality of Regular Expressions","type":"mcq","question":"Consider the following regular expressions:\n(I) (aa+aaa)* = aa+\n(II) (a*b(a+b)* + (a*b*)*) = (a+b)*\n(III) (epsilon + aaa(aaa)*)(epsilon + a + aa) = (a + aa + aa)*\nWhich the following is correct?","options":["(I) and (III) only.","(II) and (III) only.","All are correct.","None of them are correct."],"answer":1,"solution":"(I) is false because (aa+aaa)* contains epsilon while aa+ does not. (II) is true as (a*b*)* = (a+b)*. (III) both sides equal a*.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-03-q3","title":"Strings Containing ab","type":"msq","question":"Which of the following is/are regular expression for the language: L = {containing ab as a substring}","options":["b*aa*b(a*b*)*","(a+b)*(ab)*(a+b)*","(a*b*)*ab(a*+b*)*","(a+b)*ab(a+b)*"],"answer":[0,2,3],"solution":"(b) is wrong since (ab)* can be epsilon, so it generates all strings. The other three each force an 'ab' somewhere.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-03-q4","title":"Regular Expression for a^(2n), n >= 15","type":"mcq","question":"What will be the regular expression for L = {a^(2n) | n >= 15} over Sigma = {a}","options":["a^15 (aa)*","(aa)* a^15","a^30 (aa)*","None of these"],"answer":2,"solution":"Strings have even length at least 30: a^30 (aa)*.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-03-q5","title":"String not in (ab*)*","type":"mcq","question":"Which of the following string does not belong to (ab*)*?","options":["aaabbaa","baaaabb","aaabbb","ababa"],"answer":1,"solution":"(ab*)* generates epsilon and all strings starting with a. 'baaaabb' starts with b.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-04-q1","title":"DFA and NFA Statements","type":"mcq","question":"Consider following two statements:\nS1: Every DFA can be converted into equivalent NFA\nS2: NFA design is easy because NFA help us to write a program.\nWhich of the following is correct?","options":["S1 only.","S2 only.","Both S1 and S2 are correct.","Both are incorrect."],"answer":0,"solution":"Every DFA is an NFA. NFA is easier to design but programs are written from DFAs, so S2's reason is incorrect.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-04-q2","title":"Finite Automaton Statements","type":"msq","question":"Which of the following statements is/are correct about finite automaton?","options":["Finite automata represent only finite language.","Finite automata represents only infinite language.","Transition function in NFA is Q x (Sigma ∪ {epsilon}) -> 2^Q","Every regular language is finite."],"answer":[2],"solution":"Finite automata accept both finite and infinite regular languages. The NFA transition function maps to the power set of Q.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-04-q3","title":"Transitions in DFA","type":"mcq","question":"From each state, how many transition are possible in DFA for each input symbol?","options":["Exactly 1","At least 1","Exactly 2","At least 2"],"answer":0,"solution":"A DFA is deterministic, so there is exactly one transition per state and symbol.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-04-q4","title":"All Final and All Non-final DFA","type":"mcq","question":"Consider following two statements:\nS1: If every state is final state in DFA, then L(DFA) = Sigma*\nS2: If every state is non-final state in DFA, then L(DFA) = phi (or epsilon).\nWhich of the following is correct?","options":["S1 only.","S2 only.","Both S1 and S2 are correct.","Both are incorrect."],"answer":2,"solution":"If all states are final, every string is accepted. If none is final, no string is accepted.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-04-q5","title":"Minimal DFA for Length-2 Strings","type":"mcq","question":"For L = {(a+b)^2}, how many states are required in minimal DFA?","options":["2","3","4","1"],"answer":2,"solution":"States for lengths 0, 1 and 2 plus a dead state gives 4.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-05-q1","title":"Minimal DFA for Prefix 00100","type":"mcq","question":"Design deterministic finite automata of set of all binary strings over Sigma = {0,1}, where every binary string starting with 00100. How many minimum numbers of states required for above FA?","options":["6","5","7","4"],"answer":2,"solution":"Six states track the prefix 00100 (including the accepting state) plus one dead state, giving 7.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-05-q2","title":"Minimal DFA for Substring 0110","type":"nat","question":"How many states are required to design a minimal DFA for set of all binary strings over Sigma = {0,1} where every binary string containing '0110' as a substring?","answer":5,"solution":"A substring pattern of length n needs n+1 states: 5.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-05-q3","title":"Minimal DFA for Strings Not Starting with bb","type":"subjective","question":"Which of the following is correct design of a minimal DFA for set of all strings over Sigma = {a,b} where every string does not start with bb?","answer":null,"solution":"The options/figures for this question are not provided in the source. The minimal DFA has 4 states: start, 'b' read, a final trap-accept state (after a first, or after 'ba'), and a dead state after 'bb'.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-05-q4","title":"DFA Statements","type":"msq","question":"Which of the following statement is/are correct?","options":["DFA is possible for every regular language","DFA is also possible for some non-regular languages.","DFA is possible for both finite language and regular infinite language.","There exist only 1 unique DFA for every regular language."],"answer":[0,2],"solution":"DFAs exist exactly for regular languages (finite or infinite). Many DFAs exist for a language; only the minimal DFA is unique.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-05-q5","title":"Minimal DFA for Strings Ending in ba","type":"nat","question":"How many states required to design a minimal DFA for L = {Xba | X in {a,b}*}","answer":3,"solution":"States track the progress towards the suffix 'ba': 3 states.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-05-q6","title":"Final States in a Minimal DFA","type":"nat","question":"Number of final states required to design a minimal DFA for L = {(epsilon + b + a)^2 | Sigma = {a,b}} is/are","answer":3,"solution":"The language is all strings of length at most 2, so the states for lengths 0, 1 and 2 are final (a dead state is non-final).","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-06-q1","title":"Last Three Symbols Same","type":"nat","question":"Let L be the set of all binary strings whose last three symbols are the same. The number of states in the minimum state DFA accepting L is","answer":7,"solution":"Classes: epsilon, 0, 1, 00, 11, 000+ (final), 111+ (final), giving 7 states.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-06-q2","title":"Count of a's Multiple of 2 but not 4","type":"mcq","question":"Consider a language L over Sigma = {b} L = {w | n_a(w) multiple of 2 but not multiple of 4}. How many states are required to design a minimum state DFA for above language L?","options":["6","8","4","5"],"answer":2,"solution":"The count of a's matters modulo 4, so 4 states are needed and the state for remainder 2 is final. (The alphabet in the source appears to be a typo for {a} or {a,b}.)","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-06-q3","title":"Counts of a's and b's Accepted by FSM","type":"subjective","question":"The following finite state machine accept all those strings in which the number of a's and b's are respectively","answer":null,"solution":"The finite state machine figure is not provided in the source, so it cannot be solved.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-06-q4","title":"Second Symbol a or Fourth Symbol b","type":"mcq","question":"Consider the following given language L on alphabet Sigma = {a,b}: L = {w | w in {a,b}*, 2nd symbol is 'a' OR 4th symbol of w is 'b'}. How many states are required to design a minimal DFA for L?","options":["6","7","5","None of these"],"answer":0,"solution":"States: start, after 1 symbol, accept-all trap (second symbol a, or fourth symbol b), second symbol b, third symbol, and a dead state = 6.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-06-q5","title":"Language of a Regular Expression","type":"mcq","question":"Which one of the following language over the alphabet {a, b} is described by the regular expression: (a + b)* a (a + b)* a (ab)* a (a+b)*?","options":["The set of all the strings containing the substring 000.","The set of all the strings that begin and end with same alphabet.","The set of all strings containing almost three a's.","The set of all strings containing at least three a's."],"answer":3,"solution":"The expression forces at least three a's, so (d) is the intended answer. (Strictly the (ab)* part restricts it slightly, but (d) is the only option that fits.)","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-06-q6","title":"Language of a DFA","type":"subjective","question":"Identify the language accepted by the following deterministic finite automata over the input alphabet Sigma = {a,b}.","answer":null,"solution":"The DFA figure is not provided in the source, so it cannot be solved.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-06-q7","title":"Equivalent DFAs","type":"mcq","question":"Consider the following DFA's. Which of the above DFA's are equivalent?","options":["DFA1 and DFA2","DFA2 and DFA3","DFA3 and DFA4","None of these"],"answer":null,"solution":"The DFA figures are not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-06-q8","title":"Equivalent Regular Expression","type":"mcq","question":"Consider the following regular expression (RE) RE = (a+b)*(a+b+epsilon)a. Which of the following is equivalent to the above RE?","options":["(a* + b*) + (aa + ba)","(epsilon + a + b*)+ a","(a+b) + (a+b+c)a","None of these"],"answer":1,"solution":"RE = (a+b)* a (strings ending in a). (epsilon + a + b*)+ generates all strings over {a,b}, and appending a gives (a+b)*a.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-07-q1","title":"Operations on Languages","type":"mcq","question":"Let L1 = phi, L2 = {epsilon}, L3 = {a, epsilon}. L1, L2, L3 are languages defined over Sigma = {a} then, L3.L2.L1* + L1.L3 is","options":["phi","{a}","{a, epsilon}","{a^n | n >= 2}"],"answer":2,"solution":"L1* = {epsilon}, so L3.L2.L1* = {a, epsilon}. L1.L3 = phi. The union is {a, epsilon}.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-07-q2","title":"String Generated by Grammar","type":"mcq","question":"Consider the following given grammar S -> AB, A -> AS | a, B -> BA | SB | b. Which of the following string generated by above grammar?","options":["bbaa","baba","aabb","baab"],"answer":2,"solution":"Every string starts with a (since A starts with a). aabb: S -> AB -> a B -> a SB -> a (AB) B -> a ab b.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-07-q3","title":"100-state Automaton with Only Initial Final","type":"msq","question":"If the finite automaton M has 100 states and all the states are Non final except initial state over the alphabet Sigma = {0,1} then the set L(M) can be:","options":["phi","Sigma*","{epsilon}","Subset of Sigma*"],"answer":[1,2,3],"solution":"The initial state is final, so epsilon is always accepted and phi is impossible. Depending on transitions L(M) may be {epsilon} or Sigma*, and any language is a subset of Sigma*.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-07-q4","title":"Language of a Finite Automaton","type":"mcq","question":"Consider the following finite automata. Find the language accepted by above FA.","options":["a*","aa*","aaa*","a(aa)*"],"answer":null,"solution":"The finite automaton figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-07-q5","title":"Prefix Property","type":"msq","question":"Which of the following language does not satisfy the prefix property?","options":["L = {a^n b^n | n >= 1}","L = {w x w^R | w in (0+1)*}","L = {a^m b^(2m) | m >= 1}","L = {w in (0+1)* | n_0(w) = n_1(w)}"],"answer":[1,3],"solution":"(b) contains every string (w = epsilon), so some strings are prefixes of others. In (d), '01' is a proper prefix of '0101'. (a) and (c) have the prefix property.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-07-q6","title":"Left Linear Grammar Language","type":"mcq","question":"Consider the following left linear Grammar. S -> Sa | Sb | A, A -> Aab | epsilon. Choose the correct language generated by the above grammar.","options":["(a+b)*","(a+b)+","(a+b)*ab","(a+b)+ab"],"answer":0,"solution":"A generates (ab)* and S generates A(a+b)* = (ab)*(a+b)* = (a+b)*.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-07-q7","title":"5th Symbol from End is a","type":"nat","question":"Consider a language L = {w | w in {a,b}*, 5th symbol from end is 'a'}. If number of state in NFA is P and Number of states in MDFA (minimal DFA) is Q then the value of P*Q is","answer":192,"solution":"The minimal NFA has 6 states and the minimal DFA has 2^5 = 32 states, so P*Q = 6 x 32 = 192.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-07-q8","title":"Representation of a Finite Automaton","type":"mcq","question":"Consider the following finite automaton: Which one of the following is correct representation of above finite automaton?","options":["Second symbol from ends is 'b'.","Containing (b+ab+ba) as a substring.","Third symbol from ends is 'b'.","None of these."],"answer":null,"solution":"The finite automaton figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-08-q1","title":"Minimal DFA States","type":"mcq","question":"Consider the following DFA over Sigma = {0,1}. How many states are required in minimal DFA?","options":["3","2","4","5"],"answer":null,"solution":"The DFA figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-08-q2","title":"Reachable States in epsilon-NFA","type":"mcq","question":"Consider the following epsilon NFA: What is the set of reachable states for the input string ba?","options":["{B, F}","{F}","{C, B, F}","{S, B, F}"],"answer":null,"solution":"The epsilon-NFA figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-08-q3","title":"NFA States for Strings Starting with ab","type":"mcq","question":"For language L = {Xw | X = {ab}, W = {a,b}*} How many states are required in NFA for above language (L)?","options":["4","3","6","None"],"answer":1,"solution":"The language is all strings starting with ab: start -a-> q1 -b-> q2, with q2 final and looping on a and b. That is 3 states.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-08-q4","title":"NFA and DFA Conversions","type":"msq","question":"Which of the following statement is/are correct?","options":["Every DFA can be converted into equivalent NFA.","Every DFA can be convert into equivalent epsilon-NFA.","Every NFA can be converted into equivalent minimal DFA.","NFA with epsilon-moves is not equivalent to NFA without epsilon move."],"answer":[0,1,2],"solution":"DFA, NFA and epsilon-NFA all have the same power. (d) is false.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-08-q5","title":"Regular Expression for epsilon-NFA","type":"msq","question":"Consider the following epsilon-NFA: Which of the following is/are correct regular expression for above epsilon-NFA?","options":["a*b*(a+b)*","(a+b+c)*","a*b+c+(a+b+c)*","a*b*c*(c+a+b)*"],"answer":null,"solution":"The epsilon-NFA figure is not provided in the source, so the answer cannot be determined.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-08-q6","title":"Language of Complemented Automaton","type":"mcq","question":"Consider the following finite state automaton (M). Let M-bar be the modified automaton obtained from M by interchanging finals and non-finals. If language accepted by above automaton is L(M) then the language accepted by L(M-bar) will be:","options":["L(M-bar) = {a(a+b)*, (bb)(a+b)*, epsilon}","L(M-bar) = {epsilon, b}","L(M-bar) = {not starting with 'ba'}","L(M-bar) = none of these"],"answer":null,"solution":"The finite state automaton figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-08-q7","title":"Order of a Language","type":"nat","question":"Given a language L, define L^i as follows: L^0 = {epsilon}, L^i = L . L^(i-1) for all i > 0. The order of a language L is defined as the smallest k such that L^k = L^(k+1). Consider the language L1 (over alphabet 0) accepted by the following automaton. The order of L1 is","answer":null,"solution":"The automaton figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-09-q1","title":"Mealy and Moore Machines","type":"msq","question":"Which of the following is/are correct?","options":["Transition function (delta) in mealy machine and moore machine is same.","Output function (lambda) in moore machine is lambda: Q -> Delta.","Output function (lambda) in mealy machine is lambda: Q x Sigma -> Delta.","Output is associated with state in mealy machine."],"answer":[0,1,2],"solution":"In a Mealy machine the output is associated with transitions, not states, so (d) is false.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-09-q2","title":"Output of a Moore Machine","type":"subjective","question":"Consider the following moore machine: On input 'abbabb' the output will be","answer":null,"solution":"The Moore machine figure is not provided in the source, so it cannot be solved.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-09-q3","title":"Function of a Moore Machine","type":"mcq","question":"Consider the following moore machine: The above moore machine will produce","options":["0 output for every occurrence of bab.","1 output for every occurrence of aa.","0 output for ever occurrence of ab.","None of these."],"answer":null,"solution":"The Moore machine figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-09-q4","title":"Output of a Mealy Machine","type":"mcq","question":"Consider the following mealy machine on Sigma = {0,1}. For input '010100' what will be the output?","options":["z1 z2 z1 z2 z1 z2","z2 z1 z2 z1 z2 z1","z1 z1 z2 z2 z1 z2","None of these."],"answer":null,"solution":"The Mealy machine figure is not provided in the source, so the answer cannot be determined.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-09-q5","title":"Mealy and Moore Equivalence","type":"mcq","question":"Consider the following statements:\nS1: Mealy machine and moore machine both are equivalent.\nS2: For n length input moore machine produces (n+1) length output.\nWhich of the following is correct?","options":["S1 only.","S2 only.","Both S1 and S2 are correct.","None of these."],"answer":2,"solution":"Mealy and Moore machines are equivalent in power. A Moore machine also outputs for the start state, giving n+1 output symbols for n inputs.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-10-q1","title":"Language of a Regular Grammar","type":"mcq","question":"Consider alphabet Sigma = {a,b}, the empty string epsilon and the set of strings S, P, Q and R generated by the corresponding non-terminals of a regular grammar. S, P, Q and R related as follows (S is a start symbol): S -> aP | bQ | epsilon, P -> bR | aS, Q -> aR | bS, R -> aQ | bP.","options":["L = {w : n_a(w) and n_b(w) both are even}","L = {w : n_a(w) and n_b(w) both are odd}","L = {w : n_a(w) or n_b(w) are even}","None of these."],"answer":0,"solution":"The non-terminals S, P, Q, R track the parity of (a's, b's) as (even, even), (odd, even), (even, odd), (odd, odd). S is the only nullable state, so the language has both counts even.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-10-q2","title":"Regular Grammar for w x w^R","type":"msq","question":"Consider the following language L on alphabet Sigma = {a,b} L = {w x w^R | w, x in {a,b}+}. The correct regular grammar of above language is/are possible?","options":["S -> aAa | bAb, A -> aA | bA | a | b, B -> aA | bA | a | b","S -> aAa | bAb | epsilon, A -> ab","S -> aA | bB, A -> aA | bA | a, B -> bB | aB | b","S -> Aa | Bb, A -> Aa | Ab | a, B -> Bb | Ba | b"],"answer":[2,3],"solution":"L is regular: strings of length at least 3 that start and end with the same symbol. (a) and (b) are not linear regular grammars. (c) is right linear and (d) is left linear, so they are the intended answers (strictly they also allow 'aa' and 'bb', a minor discrepancy in the source).","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-10-q3","title":"Regular Language and Regular Grammar","type":"mcq","question":"Consider the following statements:\nS1: If language is regular then, grammar must be regular.\nS2: If grammar is regular then, language can't be regular.\nWhich of the following is correct?","options":["S1 is true.","S2 is true.","Both S1 and S2 are true.","None of these"],"answer":0,"solution":"Every regular language has a regular grammar (as one of its possible grammars is regular). A regular grammar always generates a regular language, so S2 is false.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-10-q4","title":"Language of a Grammar","type":"mcq","question":"Consider the following grammar G: S -> ABC, A -> aA | a, B -> bc, C -> cC | epsilon. The language generated by above grammar is?","options":["L = {a* b c c*}","L = {a+ b c+}","L = {a* b c*}","None of these"],"answer":1,"solution":"A = a+, B = bc, C = c*. So the language is a+ bc c* = a+ b c+.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-10-q5","title":"Minimum Pumping Length","type":"nat","question":"For language {a* b b* a* b* ∪ b a* b} the minimum pumping length will be","answer":2,"solution":"Since b a* b is already contained in a* b+ a* b*, the language is a* b+ a* b*. A pumping length of 1 fails on 'ba' (removing the first symbol b gives 'a', not in L), while for length 2 every string of length at least 2 can be pumped using its first or second symbol. So the minimum is 2.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-10-q6","title":"Product of Minimum Pumping Lengths","type":"nat","question":"Consider some regular expression: r1: a* b b* c* (ab)*, r2: a* b* a b ∪ (bb)*. If minimum pumping length of r1 is P1 and minimum pumping of r2 is P2 then the value of P1*P2 will be","answer":6,"solution":"For r1 the minimum pumping length is 2 (length 1 fails on 'b'). For r2, length 2 fails on 'ab' (pumping up three times leaves a*b*), while length 3 works, so P2 = 3. P1*P2 = 6.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-10-q7","title":"Infinite Language Condition","type":"mcq","question":"Suppose, a language L has finite automata M with N states. The language generated by FA is L(M) is an infinite if and only if we have a string w in L such that","options":["N >= |w| <= 2N","N <= |w| <= 2N-1","N <= |w| >= 2N-1","None of these"],"answer":1,"solution":"L(M) is infinite iff it contains a string with N <= |w| <= 2N-1 (i.e. N <= |w| < 2N).","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-10-q8","title":"Regular Grammars","type":"mcq","question":"Consider the following grammars G1 and G2: G1: S -> aS | S | A, A -> aA | abA | epsilon; G2: S -> aS | a. Which of the following grammar is/are regular?","options":["G1 only","G2 only","Both G1 and G2","None of these"],"answer":2,"solution":"Both grammars are right linear (every production has the form variable -> terminals followed by at most one variable), so both are regular.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-11-q1","title":"Regular Languages","type":"msq","question":"Which of the following language is/are regular?","options":["L = {a^m b^n | m != n and m != n}","L = {a^n b^n c^n | n >= 100}","L = {a^m b^n | LCM(m,n) = 100}","L = {a a^n b^n b b | n >= 1}"],"answer":[2],"solution":"LCM(m,n) = 100 has only finitely many solutions, so (c) is finite and regular. The others need unbounded counting.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-11-q2","title":"Regularity of Two Languages","type":"mcq","question":"Consider the following two language L1 and L2. L1 = {www | w in {a}*}, L2 = {{a^(n^n)}* | n >= 1}. Which of the following is correct?","options":["L1 is regular.","L2 is regular.","Both L1 and L2 are regular.","None of these."],"answer":2,"solution":"L1 = (aaa)*, which is regular. L2 includes n = 1, which gives a*, so L2 = a* is regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-11-q3","title":"Non-regular Language","type":"mcq","question":"Which of the following language is non-regular?","options":["L = {w x w^R | x, w in {a,b}*}","L = {w x w | w, x in {a,b}*}","L = {w x w x | w, x in {a,b}+}","None of these"],"answer":2,"solution":"(a) and (b) equal {a,b}* (take w = epsilon). In (c) strings have the form uu with |u| >= 2, which is non-regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-11-q4","title":"Regular Language from Grammar","type":"mcq","question":"Consider the following grammar G1 and G2: G1: S -> aAb, A -> aB | epsilon, B -> Ab; G2: S -> aABb, A -> aA | epsilon, B -> bB | epsilon. Which of the following grammar generates a regular language?","options":["G1 only","G2 only","Both G1 and G2","None of these"],"answer":1,"solution":"G1 generates a^(n+1) b^(n+1), which is non-regular. G2 generates a a* b* b, which is regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-11-q5","title":"Number of Regular Languages","type":"nat","question":"Consider the following three languages:\n(1) L = {a^(n^n) | n >= 1}\n(2) L = {a^(m^n) | m = n^2, n >= 1}\n(3) L = {a^(m^n) | n >= 1, m > n}\nTotal number of regular languages is/are","answer":1,"solution":"(1) and (2) have sparse, rapidly growing lengths and are non-regular. In (3), n = 1 gives all lengths m >= 2, and every other length m^n is also at least 2, so L = a^k for k >= 2, which is regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-11-q6","title":"Language of Grammar G","type":"mcq","question":"Consider the following grammar G: S -> AB | CD, A -> aaA | epsilon, B -> bB | epsilon, C -> aaC | epsilon, D -> bD | epsilon. The language generated by above grammar is:","options":["Finite","Infinite but regular","Non-regular","None of these"],"answer":1,"solution":"The language is (aa)* b*, which is infinite and regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-11-q7","title":"Non-regular Language","type":"mcq","question":"Which of the following language is non-regular?","options":["L = {a^(2m) b^n b^n | m, n >= 1}","L = {a^m b^n X | m, n >= 1, X in {a,b}*}","L = {{a^(n^2)}* | n >= 0}","None of these"],"answer":3,"solution":"(a) = (aa)+ (bb)+, (b) = a+ b+ (a+b)*, and (c) includes n = 1 which gives a*, so L = a*. All are regular.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-12-q1","title":"Not Regular Language","type":"mcq","question":"Which of the following language is not regular?","options":["L = {w | w in {a,b}*}","L = {xy | x, y in {a,b}*}","L = {xy | |x| = |y|, x, y in {a,b}*}","None of these"],"answer":3,"solution":"(a) and (b) are {a,b}*, and (c) is the set of even-length strings. All are regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-12-q2","title":"Regular Languages","type":"msq","question":"Which of the following language is/are regular?","options":["L = {w w^R | w in {0,1}*}","L = {Set of all palindrome}","L = {Number of a's equal to number of b's}","L = {w w p | w, p in {0,1}*}"],"answer":[3],"solution":"(d) equals {0,1}* (take w = epsilon). The others require unbounded matching.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-12-q3","title":"Regular Expression of a Language","type":"mcq","question":"Consider the following given language L. L = {p q w w y r | w, p, q, r in {a,b}*}. The regular expression generated by above language is?","options":["(a+b)^2 (aa+bb)(a+b)","[(a+b)^2]* (aa+bb)(a+b)*","(a+b)*","None of these"],"answer":2,"solution":"Taking w = epsilon, every string can be written in the form, so L = (a+b)*.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-12-q4","title":"Regular Expression of w w p","type":"mcq","question":"Consider the language L = {w w p | w, p in {a,b}+}. Which of the following regular expression generated by above language?","options":["(a+b)+","(a+b)+(a+b)+","(aa+bb)(a+b)+","None of these"],"answer":3,"solution":"Strings in L have a prefix that is a square ww followed by a non-empty suffix. Strings such as 'aba' and 'abb' are not of this form, so L is not (a+b)+ or the other listed expressions.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-12-q5","title":"Equivalence Classes","type":"nat","question":"Consider the following language L: L = {x w | |x| = 2, w in {a,b}*}. For the above language L, how many equivalence classes are possible?","answer":3,"solution":"L is the set of strings of length at least 2. Classes: length 0, length 1, length at least 2.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-12-q6","title":"Regular Language Among Two","type":"mcq","question":"Consider the following languages. L1 = {w x w^R | w, x in {a,b}+}, L2 = {w w^R x | w, x in {a,b}+}. Which of the following language is regular?","options":["L1 is regular.","L2 is regular.","Both L1 and L2 are regular.","None of these."],"answer":0,"solution":"L1 is the set of strings of length at least 3 whose first and last symbols are equal, which is regular. L2 needs a prefix w w^R of unbounded length, so it is not regular.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-13-q1","title":"Kleene Closure Statements","type":"mcq","question":"Consider the following statements:\nS1: Kleene Closure (*) of infinite set is always finite.\nS2: Kleene Closure (*) of finite set is always infinite.\nWhich of the following is correct?","options":["S1 only.","S2 only.","Both S1 and S2 are correct.","None of these."],"answer":3,"solution":"The closure of an infinite set is infinite. The closure of a finite set can be finite, e.g. phi* = {epsilon}.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-13-q2","title":"Subset of a Language","type":"mcq","question":"Consider a language L, then subset of L will be?","options":["Regular.","Regular but finite.","Non-regular.","None of these."],"answer":3,"solution":"A subset of a language can be regular or non-regular, so none of the given statements always holds.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-13-q3","title":"Union and Intersection of a*b* and b*a*","type":"msq","question":"Consider two languages L1 and L2: L1 = a*b*, L2 = b*a*. Which of the following is/are correct for above languages.","options":["L1 ∪ L2 is regular.","For L1 ∪ L2 regular expression will be (a+b)*","L1 ∩ L2 is regular.","For L1 ∩ L2 regular expression will be (a* + b*)"],"answer":[0,2,3],"solution":"Regular languages are closed under union and intersection. The union is not (a+b)* (e.g. 'aba' is missing). The intersection contains only strings of a's alone or b's alone: a* + b*.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-13-q4","title":"Language with Regular Subset","type":"mcq","question":"If subset of L1 is regular then what is L1?","options":["L1 must be finite.","L1 must be regular.","L1 must be non-regular.","None of these."],"answer":3,"solution":"A regular subset tells us nothing about L1; it can be regular or non-regular.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-13-q5","title":"Operation Not Closed for Regular Languages","type":"mcq","question":"Regular language does not close under on which operation?","options":["Complement","Union","Subset","Intersection"],"answer":2,"solution":"Regular languages are closed under complement, union and intersection, but not under taking subsets.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-13-q6","title":"Complement Statements","type":"nat","question":"Consider the following statements:\n[I] If L is regular, then complement of L is regular.\n[II] If complement of L is regular, then L is regular.\n[III] Union of L and its complement is Sigma*.\nNumber of correct statement is/are","answer":3,"solution":"All three statements are true.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-13-q7","title":"Operations on {epsilon} and a+","type":"mcq","question":"Let L1 = {epsilon}, L2 = {a+}. Then which of the following is correct?","options":["L1 ∩ L2 = epsilon.","L1 ∪ L2 = any language.","L1 ∪ complement(L2) = epsilon.","None of these."],"answer":3,"solution":"L1 ∩ L2 = phi, the union is just a*, and the complement of a+ contains many strings, so (a), (b) and (c) are all false.","marks":1,"source":"DPP"},
-
-        {"id":"dpp-fa-14-q1","title":"Language with Regular Kleene Closure","type":"msq","question":"Consider a regular language L. If L* = {a}* is regular, then which of the following is true?","options":["L = {a} is regular","L = {a} is not regular","L = {a} is regular and finite.","None of these."],"answer":[0,2],"solution":"The set {a} is finite and hence regular.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-14-q2","title":"Closure Properties of Regular Languages","type":"msq","question":"Consider a regular language L, which of the following statements are true regarding L.","options":["Prefix(L) = {w | w w1 in L, w1 in Sigma*} is regular.","Suffix(L) = {w | w1 w in L, w1 in Sigma*} is regular.","Half(L) = {w | w w1 in L, |w| = |w1|} is regular.","L is closed under infinite intersection."],"answer":[0,1,2],"solution":"Regular languages are closed under prefix, suffix and half operations, but not under infinite intersection.","marks":2,"source":"DPP"},
-        {"id":"dpp-fa-14-q3","title":"Operations on Regular Sets","type":"mcq","question":"Let's consider L1 and L2 are two regular sets defined over (Sigma = a,b) then","options":["L1 ∩ L2 is irregular","L1 ∪ L2 is not regular","L1* is not regular","Sigma* - L1 is regular"],"answer":3,"solution":"Regular languages are closed under complement, so Sigma* - L1 is regular. The other statements are false.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-14-q4","title":"Operations on Languages","type":"mcq","question":"Let's suppose the languages L1 = {a} & L2 = {phi}. Then L2 L1* ∪ L2*?","options":["empty set","{epsilon}","{a*}","{a}"],"answer":1,"solution":"Treating L2 as the empty language, L2 L1* = phi and L2* = {epsilon}. The union is {epsilon}.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-14-q5","title":"Homomorphism of a Regular Language","type":"mcq","question":"Consider a regular language L over the alphabet Sigma = {a,b}. L is defined as x = (a+b*)(bab*). If homomorphism h is defined over T = {c,d,e} and h(a) = cd, h(b) = cddec then the regular language h(L) is given as","options":["(cd + cddec)(cddec cd cddec)","(cddec)(cd + cddec*)","(cd + (cddec)*)((cddec)(cd)(cddec)*)","None of these"],"answer":2,"solution":"Replace a by cd and b by cddec: (a + b*) becomes (cd + (cddec)*) and (b a b*) becomes (cddec)(cd)(cddec)*.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-14-q6","title":"Union and Infinite Union of Regular Languages","type":"mcq","question":"Consider the following statements:\nS1: if L1 ∪ L2 is regular, then both L1 and L2 are regular.\nS2: Regular language is closed under infinite union.","options":["S1 is true.","S2 is true","Both S1 and S2 are true","Both S1 and S2 are false."],"answer":3,"solution":"S1 is false (a non-regular L1 and its complement-like partner can union to a regular set). S2 is false: regular languages are not closed under infinite union.","marks":1,"source":"DPP"},
-        {"id":"dpp-fa-14-q7","title":"Closure of Regular Languages","type":"msq","question":"Regular language is closed under","options":["Subset","Complement","Finite union","Infinite Intersection"],"answer":[1,2],"solution":"Regular languages are closed under complement and finite union, but not under subsets or infinite intersection.","marks":2,"source":"DPP"}
+        {
+          "id": "dpp-fa-01-q1",
+          "title": "Two Length Strings over Decimal Alphabet",
+          "type": "mcq",
+          "question": "Consider decimal alphabet Sigma = {0,1,2,...,9}, then how many two length strings are possible?",
+          "options": [
+            "4",
+            "20",
+            "100",
+            "2"
+          ],
+          "answer": 2,
+          "solution": "10 choices for each of the 2 positions gives 10 x 10 = 100.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-01-q2",
+          "title": "Three Length Binary Strings",
+          "type": "mcq",
+          "question": "Consider a binary alphabet Sigma = {0,1}. How many 3 length strings are possible, the third symbol of the string must be 0?",
+          "options": [
+            "4",
+            "8",
+            "3",
+            "5"
+          ],
+          "answer": 0,
+          "solution": "The first two positions have 2 choices each and the third is fixed: 2 x 2 x 1 = 4.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-01-q3",
+          "title": "Length of Concatenation",
+          "type": "msq",
+          "question": "Consider the following strings and their respective lengths: |w1| = p, |w2| = q, |w3| = r. Then, which of the following is/are correct?",
+          "options": [
+            "The length of the string w1.w2 = pq",
+            "The length of the string w1.w2.w3 = p+q+r",
+            "The length of the string w1.w2.w3 = pqr",
+            "The length of the string w1.w3 = p+r"
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "The length of a concatenation is the sum of the lengths.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-01-q4",
+          "title": "Regular Grammar",
+          "type": "mcq",
+          "question": "Which of the following is correct about Regular Grammar?",
+          "options": [
+            "Every Regular grammar is Left Linear Grammar.",
+            "Every Right Linear grammar may/may not be Regular Grammar.",
+            "If grammar is regular then it must be left linear as well as right linear.",
+            "If grammar is regular then it must be left linear or right linear."
+          ],
+          "answer": 3,
+          "solution": "A regular grammar is either left linear or right linear (not necessarily both), and every such grammar is regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-01-q5",
+          "title": "Not an Alphabet",
+          "type": "msq",
+          "question": "Which of the following is / are not an alphabet?",
+          "options": [
+            "Sigma = {a,b,ab}",
+            "Sigma = {1,2,3,4,...}",
+            "Sigma = {}",
+            "Sigma = {epsilon}"
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "An alphabet is a finite, non-empty set of symbols. 'ab' is a string, not a symbol; {1,2,3,...} is infinite; {} is empty; epsilon is the empty string, not a symbol.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-01-q6",
+          "title": "Reversal of Strings",
+          "type": "msq",
+          "question": "If w is a string and w^R is reversal of the string then which of the following is incorrect?",
+          "options": [
+            "(w^R)^R = w",
+            "(w w^R)^R = w . w^R",
+            "(w x w^R)^R = w . x . w^R",
+            "(w w^R)^R = w^R . w"
+          ],
+          "answer": [
+            2,
+            3
+          ],
+          "solution": "(w x w^R)^R = w x^R w^R, which is not w x w^R in general. (w w^R)^R = w w^R, not w^R w.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-01-q7",
+          "title": "Maximum Substrings",
+          "type": "nat",
+          "question": "For 10 length strings, Total number of maximum substrings possible are",
+          "answer": 56,
+          "solution": "Non-empty substrings: n(n+1)/2 = 55. Including the empty string gives 56.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-01-q8",
+          "title": "Prefix, Suffix and Substring",
+          "type": "nat",
+          "question": "Consider following statements:\nS1: Every prefix or suffix is a substring.\nS2: Total number of prefixes are same as total number of suffixes in a string.\nS3: Total number of suffixes for n length string is (n+1).\nNumber of correct statements are",
+          "answer": 3,
+          "solution": "All three are true (counting the empty string and the string itself).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-02-q1",
+          "title": "Regular Expression Identities",
+          "type": "msq",
+          "question": "Which of the following is/are true?",
+          "options": [
+            "(a*b*)* = (b*a*)*",
+            "(a + epsilon)+ = a+",
+            "(a+b)*(ba)* = (ab)*(a+b)*",
+            "(ab+ba)* = (ab(ab)* + ba(ba)*)*"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "(a) both equal (a+b)*. (b) (a+epsilon)+ = a*, not a+. (c) both equal (a+b)*. (d) both sides generate the same language.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-02-q2",
+          "title": "Equivalent to a*b*",
+          "type": "mcq",
+          "question": "Consider the following regular expressions:\n(I) a*b* + a*\n(II) (epsilon + aa*)(bb* + epsilon)\n(III) b*a* + a*b* + b*\n(IV) aa+bb+\nWhich the following is equivalent to a*b*?",
+          "options": [
+            "(I) and (II) only",
+            "(I) only",
+            "(II) and (III) only",
+            "(I) and (IV) only"
+          ],
+          "answer": 0,
+          "solution": "(I) = a*b* since a* is contained in a*b*. (II) = a* b*. (III) includes strings like 'ba' and (IV) omits epsilon, a and b.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-02-q3",
+          "title": "Incorrect Regular Expression Equality",
+          "type": "mcq",
+          "question": "Which of the following is not correct?",
+          "options": [
+            "a*bb* = a*b+",
+            "a+a+ = a+",
+            "phi* = epsilon"
+          ],
+          "answer": 1,
+          "solution": "a+a+ = aa+ (strings of length at least 2), which is not a+. The other two identities are correct. (The source listed an option twice with identical text; the duplicate was removed.)",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-02-q4",
+          "title": "Uses of Regular Expressions",
+          "type": "msq",
+          "question": "Regular expression can be used in:",
+          "options": [
+            "Lexical Analysis",
+            "Pattern matching",
+            "String matching",
+            "Syntax analysis"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Regular expressions are used in lexical analysis and for pattern/string matching. Syntax analysis needs CFGs.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-02-q5",
+          "title": "Equivalent Regular Expression",
+          "type": "subjective",
+          "question": "Consider the regular expression: a*b(a + ba*)*. Above regular expression is equivalent to which of the following below regular expression?\n\nOptions:\n(a) ba*(bb)*\n(b) ba*(a + ba*b)*\n(c) (b + aa*b) + (b + aa*b)(ba*b + a)(ba*b + a)*\n(d) ab(a + b)*",
+          "answer": "The expression equals a*b(a+b)* (all strings containing at least one b). None of the listed options is equivalent.",
+          "solution": "(a + ba*)* = (a+b)*, so a*b(a+ba*)* = a*b(a+b)*. None of the four options generates exactly this language, so the options in the source are probably garbled.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-02-q6",
+          "title": "Finite Language Generators",
+          "type": "mcq",
+          "question": "Which of the following statement will generate finite language?",
+          "options": [
+            "PDA with finite stack.",
+            "Regular expression without kleene star and kleene plus.",
+            "Regular expression with unary alphabet.",
+            "Regular expression with binary alphabet."
+          ],
+          "answer": 1,
+          "solution": "Without star or plus a regular expression can only generate a finite set of strings.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-02-q7",
+          "title": "Equivalence of Regular Expressions",
+          "type": "mcq",
+          "question": "Consider following regular expressions:\n[I] (ab)*a = a(ab)*\n[II] (bb)*b* = b*\n[III] (b + epsilon)+ = b*\nWhich of the following is correct?",
+          "options": [
+            "II and III only.",
+            "I and II only.",
+            "All are correct.",
+            "None of these are correct."
+          ],
+          "answer": 0,
+          "solution": "[I] is false since (ab)*a = a(ba)*, not a(ab)*. [II] and [III] are true.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-02-q8",
+          "title": "Length of a String",
+          "type": "nat",
+          "question": "Consider the string [(ab)^10 (ab)^7 ((ab)^3)^2]^2, the length of the string is",
+          "answer": 92,
+          "solution": "Inside: 20 + 14 + 12 = 46. Squared: 2 x 46 = 92.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-03-q1",
+          "title": "Regular Expression for a^n b^m",
+          "type": "mcq",
+          "question": "For L = {a^n b^m | n, m >= 0} What will be the regular expression?",
+          "options": [
+            "(ab)*",
+            "a*b*",
+            "(ab)",
+            "b*a*"
+          ],
+          "answer": 1,
+          "solution": "Any number of a's followed by any number of b's is a*b*.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-03-q2",
+          "title": "Equality of Regular Expressions",
+          "type": "mcq",
+          "question": "Consider the following regular expressions:\n(I) (aa+aaa)* = aa+\n(II) (a*b(a+b)* + (a*b*)*) = (a+b)*\n(III) (epsilon + aaa(aaa)*)(epsilon + a + aa) = (a + aa + aa)*\nWhich the following is correct?",
+          "options": [
+            "(I) and (III) only.",
+            "(II) and (III) only.",
+            "All are correct.",
+            "None of them are correct."
+          ],
+          "answer": 1,
+          "solution": "(I) is false because (aa+aaa)* contains epsilon while aa+ does not. (II) is true as (a*b*)* = (a+b)*. (III) both sides equal a*.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-03-q3",
+          "title": "Strings Containing ab",
+          "type": "msq",
+          "question": "Which of the following is/are regular expression for the language: L = {containing ab as a substring}",
+          "options": [
+            "b*aa*b(a*b*)*",
+            "(a+b)*(ab)*(a+b)*",
+            "(a*b*)*ab(a*+b*)*",
+            "(a+b)*ab(a+b)*"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "(b) is wrong since (ab)* can be epsilon, so it generates all strings. The other three each force an 'ab' somewhere.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-03-q4",
+          "title": "Regular Expression for a^(2n), n >= 15",
+          "type": "mcq",
+          "question": "What will be the regular expression for L = {a^(2n) | n >= 15} over Sigma = {a}",
+          "options": [
+            "a^15 (aa)*",
+            "(aa)* a^15",
+            "a^30 (aa)*",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Strings have even length at least 30: a^30 (aa)*.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-03-q5",
+          "title": "String not in (ab*)*",
+          "type": "mcq",
+          "question": "Which of the following string does not belong to (ab*)*?",
+          "options": [
+            "aaabbaa",
+            "baaaabb",
+            "aaabbb",
+            "ababa"
+          ],
+          "answer": 1,
+          "solution": "(ab*)* generates epsilon and all strings starting with a. 'baaaabb' starts with b.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-04-q1",
+          "title": "DFA and NFA Statements",
+          "type": "mcq",
+          "question": "Consider following two statements:\nS1: Every DFA can be converted into equivalent NFA\nS2: NFA design is easy because NFA help us to write a program.\nWhich of the following is correct?",
+          "options": [
+            "S1 only.",
+            "S2 only.",
+            "Both S1 and S2 are correct.",
+            "Both are incorrect."
+          ],
+          "answer": 0,
+          "solution": "Every DFA is an NFA. NFA is easier to design but programs are written from DFAs, so S2's reason is incorrect.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-04-q2",
+          "title": "Finite Automaton Statements",
+          "type": "msq",
+          "question": "Which of the following statements is/are correct about finite automaton?",
+          "options": [
+            "Finite automata represent only finite language.",
+            "Finite automata represents only infinite language.",
+            "Transition function in NFA is Q x (Sigma ∪ {epsilon}) -> 2^Q",
+            "Every regular language is finite."
+          ],
+          "answer": [
+            2
+          ],
+          "solution": "Finite automata accept both finite and infinite regular languages. The NFA transition function maps to the power set of Q.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-04-q3",
+          "title": "Transitions in DFA",
+          "type": "mcq",
+          "question": "From each state, how many transition are possible in DFA for each input symbol?",
+          "options": [
+            "Exactly 1",
+            "At least 1",
+            "Exactly 2",
+            "At least 2"
+          ],
+          "answer": 0,
+          "solution": "A DFA is deterministic, so there is exactly one transition per state and symbol.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-04-q4",
+          "title": "All Final and All Non-final DFA",
+          "type": "mcq",
+          "question": "Consider following two statements:\nS1: If every state is final state in DFA, then L(DFA) = Sigma*\nS2: If every state is non-final state in DFA, then L(DFA) = phi (or epsilon).\nWhich of the following is correct?",
+          "options": [
+            "S1 only.",
+            "S2 only.",
+            "Both S1 and S2 are correct.",
+            "Both are incorrect."
+          ],
+          "answer": 2,
+          "solution": "If all states are final, every string is accepted. If none is final, no string is accepted.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-04-q5",
+          "title": "Minimal DFA for Length-2 Strings",
+          "type": "mcq",
+          "question": "For L = {(a+b)^2}, how many states are required in minimal DFA?",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "1"
+          ],
+          "answer": 2,
+          "solution": "States for lengths 0, 1 and 2 plus a dead state gives 4.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-05-q1",
+          "title": "Minimal DFA for Prefix 00100",
+          "type": "mcq",
+          "question": "Design deterministic finite automata of set of all binary strings over Sigma = {0,1}, where every binary string starting with 00100. How many minimum numbers of states required for above FA?",
+          "options": [
+            "6",
+            "5",
+            "7",
+            "4"
+          ],
+          "answer": 2,
+          "solution": "Six states track the prefix 00100 (including the accepting state) plus one dead state, giving 7.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-05-q2",
+          "title": "Minimal DFA for Substring 0110",
+          "type": "nat",
+          "question": "How many states are required to design a minimal DFA for set of all binary strings over Sigma = {0,1} where every binary string containing '0110' as a substring?",
+          "answer": 5,
+          "solution": "A substring pattern of length n needs n+1 states: 5.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-05-q3",
+          "title": "Minimal DFA for Strings Not Starting with bb",
+          "type": "subjective",
+          "question": "Which of the following is correct design of a minimal DFA for set of all strings over Sigma = {a,b} where every string does not start with bb?",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The options/figures for this question are not provided in the source. The minimal DFA has 4 states: start, 'b' read, a final trap-accept state (after a first, or after 'ba'), and a dead state after 'bb'.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-05-q4",
+          "title": "DFA Statements",
+          "type": "msq",
+          "question": "Which of the following statement is/are correct?",
+          "options": [
+            "DFA is possible for every regular language",
+            "DFA is also possible for some non-regular languages.",
+            "DFA is possible for both finite language and regular infinite language.",
+            "There exist only 1 unique DFA for every regular language."
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "DFAs exist exactly for regular languages (finite or infinite). Many DFAs exist for a language; only the minimal DFA is unique.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-05-q5",
+          "title": "Minimal DFA for Strings Ending in ba",
+          "type": "nat",
+          "question": "How many states required to design a minimal DFA for L = {Xba | X in {a,b}*}",
+          "answer": 3,
+          "solution": "States track the progress towards the suffix 'ba': 3 states.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-05-q6",
+          "title": "Final States in a Minimal DFA",
+          "type": "nat",
+          "question": "Number of final states required to design a minimal DFA for L = {(epsilon + b + a)^2 | Sigma = {a,b}} is/are",
+          "answer": 3,
+          "solution": "The language is all strings of length at most 2, so the states for lengths 0, 1 and 2 are final (a dead state is non-final).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-06-q1",
+          "title": "Last Three Symbols Same",
+          "type": "nat",
+          "question": "Let L be the set of all binary strings whose last three symbols are the same. The number of states in the minimum state DFA accepting L is",
+          "answer": 7,
+          "solution": "Classes: epsilon, 0, 1, 00, 11, 000+ (final), 111+ (final), giving 7 states.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-06-q2",
+          "title": "Count of a's Multiple of 2 but not 4",
+          "type": "mcq",
+          "question": "Consider a language L over Sigma = {b} L = {w | n_a(w) multiple of 2 but not multiple of 4}. How many states are required to design a minimum state DFA for above language L?",
+          "options": [
+            "6",
+            "8",
+            "4",
+            "5"
+          ],
+          "answer": 2,
+          "solution": "The count of a's matters modulo 4, so 4 states are needed and the state for remainder 2 is final. (The alphabet in the source appears to be a typo for {a} or {a,b}.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-06-q3",
+          "title": "Counts of a's and b's Accepted by FSM",
+          "type": "subjective",
+          "question": "The following finite state machine accept all those strings in which the number of a's and b's are respectively",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The finite state machine figure is not provided in the source, so it cannot be solved.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-06-q4",
+          "title": "Second Symbol a or Fourth Symbol b",
+          "type": "mcq",
+          "question": "Consider the following given language L on alphabet Sigma = {a,b}: L = {w | w in {a,b}*, 2nd symbol is 'a' OR 4th symbol of w is 'b'}. How many states are required to design a minimal DFA for L?",
+          "options": [
+            "6",
+            "7",
+            "5",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "States: start, after 1 symbol, accept-all trap (second symbol a, or fourth symbol b), second symbol b, third symbol, and a dead state = 6.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-06-q5",
+          "title": "Language of a Regular Expression",
+          "type": "mcq",
+          "question": "Which one of the following language over the alphabet {a, b} is described by the regular expression: (a + b)* a (a + b)* a (ab)* a (a+b)*?",
+          "options": [
+            "The set of all the strings containing the substring 000.",
+            "The set of all the strings that begin and end with same alphabet.",
+            "The set of all strings containing almost three a's.",
+            "The set of all strings containing at least three a's."
+          ],
+          "answer": 3,
+          "solution": "The expression forces at least three a's, so (d) is the intended answer. (Strictly the (ab)* part restricts it slightly, but (d) is the only option that fits.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-06-q6",
+          "title": "Language of a DFA",
+          "type": "subjective",
+          "question": "Identify the language accepted by the following deterministic finite automata over the input alphabet Sigma = {a,b}.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The DFA figure is not provided in the source, so it cannot be solved.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-06-q7",
+          "title": "Equivalent DFAs",
+          "type": "subjective",
+          "question": "Consider the following DFA's. Which of the above DFA's are equivalent?\n\nOptions:\n(a) DFA1 and DFA2\n(b) DFA2 and DFA3\n(c) DFA3 and DFA4\n(d) None of these",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The DFA figures are not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-06-q8",
+          "title": "Equivalent Regular Expression",
+          "type": "mcq",
+          "question": "Consider the following regular expression (RE) RE = (a+b)*(a+b+epsilon)a. Which of the following is equivalent to the above RE?",
+          "options": [
+            "(a* + b*) + (aa + ba)",
+            "(epsilon + a + b*)+ a",
+            "(a+b) + (a+b+c)a",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "RE = (a+b)* a (strings ending in a). (epsilon + a + b*)+ generates all strings over {a,b}, and appending a gives (a+b)*a.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-07-q1",
+          "title": "Operations on Languages",
+          "type": "mcq",
+          "question": "Let L1 = phi, L2 = {epsilon}, L3 = {a, epsilon}. L1, L2, L3 are languages defined over Sigma = {a} then, L3.L2.L1* + L1.L3 is",
+          "options": [
+            "phi",
+            "{a}",
+            "{a, epsilon}",
+            "{a^n | n >= 2}"
+          ],
+          "answer": 2,
+          "solution": "L1* = {epsilon}, so L3.L2.L1* = {a, epsilon}. L1.L3 = phi. The union is {a, epsilon}.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-07-q2",
+          "title": "String Generated by Grammar",
+          "type": "mcq",
+          "question": "Consider the following given grammar S -> AB, A -> AS | a, B -> BA | SB | b. Which of the following string generated by above grammar?",
+          "options": [
+            "bbaa",
+            "baba",
+            "aabb",
+            "baab"
+          ],
+          "answer": 2,
+          "solution": "Every string starts with a (since A starts with a). aabb: S -> AB -> a B -> a SB -> a (AB) B -> a ab b.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-07-q3",
+          "title": "100-state Automaton with Only Initial Final",
+          "type": "msq",
+          "question": "If the finite automaton M has 100 states and all the states are Non final except initial state over the alphabet Sigma = {0,1} then the set L(M) can be:",
+          "options": [
+            "phi",
+            "Sigma*",
+            "{epsilon}",
+            "Subset of Sigma*"
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "The initial state is final, so epsilon is always accepted and phi is impossible. Depending on transitions L(M) may be {epsilon} or Sigma*, and any language is a subset of Sigma*.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-07-q4",
+          "title": "Language of a Finite Automaton",
+          "type": "subjective",
+          "question": "Consider the following finite automata. Find the language accepted by above FA.\n\nOptions:\n(a) a*\n(b) aa*\n(c) aaa*\n(d) a(aa)*",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The finite automaton figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-07-q5",
+          "title": "Prefix Property",
+          "type": "msq",
+          "question": "Which of the following language does not satisfy the prefix property?",
+          "options": [
+            "L = {a^n b^n | n >= 1}",
+            "L = {w x w^R | w in (0+1)*}",
+            "L = {a^m b^(2m) | m >= 1}",
+            "L = {w in (0+1)* | n_0(w) = n_1(w)}"
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "(b) contains every string (w = epsilon), so some strings are prefixes of others. In (d), '01' is a proper prefix of '0101'. (a) and (c) have the prefix property.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-07-q6",
+          "title": "Left Linear Grammar Language",
+          "type": "mcq",
+          "question": "Consider the following left linear Grammar. S -> Sa | Sb | A, A -> Aab | epsilon. Choose the correct language generated by the above grammar.",
+          "options": [
+            "(a+b)*",
+            "(a+b)+",
+            "(a+b)*ab",
+            "(a+b)+ab"
+          ],
+          "answer": 0,
+          "solution": "A generates (ab)* and S generates A(a+b)* = (ab)*(a+b)* = (a+b)*.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-07-q7",
+          "title": "5th Symbol from End is a",
+          "type": "nat",
+          "question": "Consider a language L = {w | w in {a,b}*, 5th symbol from end is 'a'}. If number of state in NFA is P and Number of states in MDFA (minimal DFA) is Q then the value of P*Q is",
+          "answer": 192,
+          "solution": "The minimal NFA has 6 states and the minimal DFA has 2^5 = 32 states, so P*Q = 6 x 32 = 192.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-07-q8",
+          "title": "Representation of a Finite Automaton",
+          "type": "subjective",
+          "question": "Consider the following finite automaton: Which one of the following is correct representation of above finite automaton?\n\nOptions:\n(a) Second symbol from ends is 'b'.\n(b) Containing (b+ab+ba) as a substring.\n(c) Third symbol from ends is 'b'.\n(d) None of these.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The finite automaton figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-08-q1",
+          "title": "Minimal DFA States",
+          "type": "subjective",
+          "question": "Consider the following DFA over Sigma = {0,1}. How many states are required in minimal DFA?\n\nOptions:\n(a) 3\n(b) 2\n(c) 4\n(d) 5",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The DFA figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-08-q2",
+          "title": "Reachable States in epsilon-NFA",
+          "type": "subjective",
+          "question": "Consider the following epsilon NFA: What is the set of reachable states for the input string ba?\n\nOptions:\n(a) {B, F}\n(b) {F}\n(c) {C, B, F}\n(d) {S, B, F}",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The epsilon-NFA figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-08-q3",
+          "title": "NFA States for Strings Starting with ab",
+          "type": "mcq",
+          "question": "For language L = {Xw | X = {ab}, W = {a,b}*} How many states are required in NFA for above language (L)?",
+          "options": [
+            "4",
+            "3",
+            "6",
+            "None"
+          ],
+          "answer": 1,
+          "solution": "The language is all strings starting with ab: start -a-> q1 -b-> q2, with q2 final and looping on a and b. That is 3 states.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-08-q4",
+          "title": "NFA and DFA Conversions",
+          "type": "msq",
+          "question": "Which of the following statement is/are correct?",
+          "options": [
+            "Every DFA can be converted into equivalent NFA.",
+            "Every DFA can be convert into equivalent epsilon-NFA.",
+            "Every NFA can be converted into equivalent minimal DFA.",
+            "NFA with epsilon-moves is not equivalent to NFA without epsilon move."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "DFA, NFA and epsilon-NFA all have the same power. (d) is false.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-08-q5",
+          "title": "Regular Expression for epsilon-NFA",
+          "type": "subjective",
+          "question": "Consider the following epsilon-NFA: Which of the following is/are correct regular expression for above epsilon-NFA?\n\nOptions:\n(a) a*b*(a+b)*\n(b) (a+b+c)*\n(c) a*b+c+(a+b+c)*\n(d) a*b*c*(c+a+b)*",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The epsilon-NFA figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-08-q6",
+          "title": "Language of Complemented Automaton",
+          "type": "subjective",
+          "question": "Consider the following finite state automaton (M). Let M-bar be the modified automaton obtained from M by interchanging finals and non-finals. If language accepted by above automaton is L(M) then the language accepted by L(M-bar) will be:\n\nOptions:\n(a) L(M-bar) = {a(a+b)*, (bb)(a+b)*, epsilon}\n(b) L(M-bar) = {epsilon, b}\n(c) L(M-bar) = {not starting with 'ba'}\n(d) L(M-bar) = none of these",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The finite state automaton figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-08-q7",
+          "title": "Order of a Language",
+          "type": "subjective",
+          "question": "Given a language L, define L^i as follows: L^0 = {epsilon}, L^i = L . L^(i-1) for all i > 0. The order of a language L is defined as the smallest k such that L^k = L^(k+1). Consider the language L1 (over alphabet 0) accepted by the following automaton. The order of L1 is",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The automaton figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-09-q1",
+          "title": "Mealy and Moore Machines",
+          "type": "msq",
+          "question": "Which of the following is/are correct?",
+          "options": [
+            "Transition function (delta) in mealy machine and moore machine is same.",
+            "Output function (lambda) in moore machine is lambda: Q -> Delta.",
+            "Output function (lambda) in mealy machine is lambda: Q x Sigma -> Delta.",
+            "Output is associated with state in mealy machine."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "In a Mealy machine the output is associated with transitions, not states, so (d) is false.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-09-q2",
+          "title": "Output of a Moore Machine",
+          "type": "subjective",
+          "question": "Consider the following moore machine: On input 'abbabb' the output will be",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The Moore machine figure is not provided in the source, so it cannot be solved.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-09-q3",
+          "title": "Function of a Moore Machine",
+          "type": "subjective",
+          "question": "Consider the following moore machine: The above moore machine will produce\n\nOptions:\n(a) 0 output for every occurrence of bab.\n(b) 1 output for every occurrence of aa.\n(c) 0 output for ever occurrence of ab.\n(d) None of these.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The Moore machine figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-09-q4",
+          "title": "Output of a Mealy Machine",
+          "type": "subjective",
+          "question": "Consider the following mealy machine on Sigma = {0,1}. For input '010100' what will be the output?\n\nOptions:\n(a) z1 z2 z1 z2 z1 z2\n(b) z2 z1 z2 z1 z2 z1\n(c) z1 z1 z2 z2 z1 z2\n(d) None of these.",
+          "answer": "Answer not available: the figure/circuit or part of the question text is missing from the source.",
+          "solution": "The Mealy machine figure is not provided in the source, so the answer cannot be determined.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-09-q5",
+          "title": "Mealy and Moore Equivalence",
+          "type": "mcq",
+          "question": "Consider the following statements:\nS1: Mealy machine and moore machine both are equivalent.\nS2: For n length input moore machine produces (n+1) length output.\nWhich of the following is correct?",
+          "options": [
+            "S1 only.",
+            "S2 only.",
+            "Both S1 and S2 are correct.",
+            "None of these."
+          ],
+          "answer": 2,
+          "solution": "Mealy and Moore machines are equivalent in power. A Moore machine also outputs for the start state, giving n+1 output symbols for n inputs.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-10-q1",
+          "title": "Language of a Regular Grammar",
+          "type": "mcq",
+          "question": "Consider alphabet Sigma = {a,b}, the empty string epsilon and the set of strings S, P, Q and R generated by the corresponding non-terminals of a regular grammar. S, P, Q and R related as follows (S is a start symbol): S -> aP | bQ | epsilon, P -> bR | aS, Q -> aR | bS, R -> aQ | bP.",
+          "options": [
+            "L = {w : n_a(w) and n_b(w) both are even}",
+            "L = {w : n_a(w) and n_b(w) both are odd}",
+            "L = {w : n_a(w) or n_b(w) are even}",
+            "None of these."
+          ],
+          "answer": 0,
+          "solution": "The non-terminals S, P, Q, R track the parity of (a's, b's) as (even, even), (odd, even), (even, odd), (odd, odd). S is the only nullable state, so the language has both counts even.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-10-q2",
+          "title": "Regular Grammar for w x w^R",
+          "type": "msq",
+          "question": "Consider the following language L on alphabet Sigma = {a,b} L = {w x w^R | w, x in {a,b}+}. The correct regular grammar of above language is/are possible?",
+          "options": [
+            "S -> aAa | bAb, A -> aA | bA | a | b, B -> aA | bA | a | b",
+            "S -> aAa | bAb | epsilon, A -> ab",
+            "S -> aA | bB, A -> aA | bA | a, B -> bB | aB | b",
+            "S -> Aa | Bb, A -> Aa | Ab | a, B -> Bb | Ba | b"
+          ],
+          "answer": [
+            2,
+            3
+          ],
+          "solution": "L is regular: strings of length at least 3 that start and end with the same symbol. (a) and (b) are not linear regular grammars. (c) is right linear and (d) is left linear, so they are the intended answers (strictly they also allow 'aa' and 'bb', a minor discrepancy in the source).",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-10-q3",
+          "title": "Regular Language and Regular Grammar",
+          "type": "mcq",
+          "question": "Consider the following statements:\nS1: If language is regular then, grammar must be regular.\nS2: If grammar is regular then, language can't be regular.\nWhich of the following is correct?",
+          "options": [
+            "S1 is true.",
+            "S2 is true.",
+            "Both S1 and S2 are true.",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "Every regular language has a regular grammar (as one of its possible grammars is regular). A regular grammar always generates a regular language, so S2 is false.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-10-q4",
+          "title": "Language of a Grammar",
+          "type": "mcq",
+          "question": "Consider the following grammar G: S -> ABC, A -> aA | a, B -> bc, C -> cC | epsilon. The language generated by above grammar is?",
+          "options": [
+            "L = {a* b c c*}",
+            "L = {a+ b c+}",
+            "L = {a* b c*}",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "A = a+, B = bc, C = c*. So the language is a+ bc c* = a+ b c+.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-10-q5",
+          "title": "Minimum Pumping Length",
+          "type": "nat",
+          "question": "For language {a* b b* a* b* ∪ b a* b} the minimum pumping length will be",
+          "answer": 2,
+          "solution": "Since b a* b is already contained in a* b+ a* b*, the language is a* b+ a* b*. A pumping length of 1 fails on 'ba' (removing the first symbol b gives 'a', not in L), while for length 2 every string of length at least 2 can be pumped using its first or second symbol. So the minimum is 2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-10-q6",
+          "title": "Product of Minimum Pumping Lengths",
+          "type": "nat",
+          "question": "Consider some regular expression: r1: a* b b* c* (ab)*, r2: a* b* a b ∪ (bb)*. If minimum pumping length of r1 is P1 and minimum pumping of r2 is P2 then the value of P1*P2 will be",
+          "answer": 6,
+          "solution": "For r1 the minimum pumping length is 2 (length 1 fails on 'b'). For r2, length 2 fails on 'ab' (pumping up three times leaves a*b*), while length 3 works, so P2 = 3. P1*P2 = 6.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-10-q7",
+          "title": "Infinite Language Condition",
+          "type": "mcq",
+          "question": "Suppose, a language L has finite automata M with N states. The language generated by FA is L(M) is an infinite if and only if we have a string w in L such that",
+          "options": [
+            "N >= |w| <= 2N",
+            "N <= |w| <= 2N-1",
+            "N <= |w| >= 2N-1",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "L(M) is infinite iff it contains a string with N <= |w| <= 2N-1 (i.e. N <= |w| < 2N).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-10-q8",
+          "title": "Regular Grammars",
+          "type": "mcq",
+          "question": "Consider the following grammars G1 and G2: G1: S -> aS | S | A, A -> aA | abA | epsilon; G2: S -> aS | a. Which of the following grammar is/are regular?",
+          "options": [
+            "G1 only",
+            "G2 only",
+            "Both G1 and G2",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Both grammars are right linear (every production has the form variable -> terminals followed by at most one variable), so both are regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-11-q1",
+          "title": "Regular Languages",
+          "type": "msq",
+          "question": "Which of the following language is/are regular?",
+          "options": [
+            "L = {a^m b^n | m != n and m != n}",
+            "L = {a^n b^n c^n | n >= 100}",
+            "L = {a^m b^n | LCM(m,n) = 100}",
+            "L = {a a^n b^n b b | n >= 1}"
+          ],
+          "answer": [
+            2
+          ],
+          "solution": "LCM(m,n) = 100 has only finitely many solutions, so (c) is finite and regular. The others need unbounded counting.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-11-q2",
+          "title": "Regularity of Two Languages",
+          "type": "mcq",
+          "question": "Consider the following two language L1 and L2. L1 = {www | w in {a}*}, L2 = {{a^(n^n)}* | n >= 1}. Which of the following is correct?",
+          "options": [
+            "L1 is regular.",
+            "L2 is regular.",
+            "Both L1 and L2 are regular.",
+            "None of these."
+          ],
+          "answer": 2,
+          "solution": "L1 = (aaa)*, which is regular. L2 includes n = 1, which gives a*, so L2 = a* is regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-11-q3",
+          "title": "Non-regular Language",
+          "type": "mcq",
+          "question": "Which of the following language is non-regular?",
+          "options": [
+            "L = {w x w^R | x, w in {a,b}*}",
+            "L = {w x w | w, x in {a,b}*}",
+            "L = {w x w x | w, x in {a,b}+}",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "(a) and (b) equal {a,b}* (take w = epsilon). In (c) strings have the form uu with |u| >= 2, which is non-regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-11-q4",
+          "title": "Regular Language from Grammar",
+          "type": "mcq",
+          "question": "Consider the following grammar G1 and G2: G1: S -> aAb, A -> aB | epsilon, B -> Ab; G2: S -> aABb, A -> aA | epsilon, B -> bB | epsilon. Which of the following grammar generates a regular language?",
+          "options": [
+            "G1 only",
+            "G2 only",
+            "Both G1 and G2",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "G1 generates a^(n+1) b^(n+1), which is non-regular. G2 generates a a* b* b, which is regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-11-q5",
+          "title": "Number of Regular Languages",
+          "type": "nat",
+          "question": "Consider the following three languages:\n(1) L = {a^(n^n) | n >= 1}\n(2) L = {a^(m^n) | m = n^2, n >= 1}\n(3) L = {a^(m^n) | n >= 1, m > n}\nTotal number of regular languages is/are",
+          "answer": 1,
+          "solution": "(1) and (2) have sparse, rapidly growing lengths and are non-regular. In (3), n = 1 gives all lengths m >= 2, and every other length m^n is also at least 2, so L = a^k for k >= 2, which is regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-11-q6",
+          "title": "Language of Grammar G",
+          "type": "mcq",
+          "question": "Consider the following grammar G: S -> AB | CD, A -> aaA | epsilon, B -> bB | epsilon, C -> aaC | epsilon, D -> bD | epsilon. The language generated by above grammar is:",
+          "options": [
+            "Finite",
+            "Infinite but regular",
+            "Non-regular",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "The language is (aa)* b*, which is infinite and regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-11-q7",
+          "title": "Non-regular Language",
+          "type": "mcq",
+          "question": "Which of the following language is non-regular?",
+          "options": [
+            "L = {a^(2m) b^n b^n | m, n >= 1}",
+            "L = {a^m b^n X | m, n >= 1, X in {a,b}*}",
+            "L = {{a^(n^2)}* | n >= 0}",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "(a) = (aa)+ (bb)+, (b) = a+ b+ (a+b)*, and (c) includes n = 1 which gives a*, so L = a*. All are regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-12-q1",
+          "title": "Not Regular Language",
+          "type": "mcq",
+          "question": "Which of the following language is not regular?",
+          "options": [
+            "L = {w | w in {a,b}*}",
+            "L = {xy | x, y in {a,b}*}",
+            "L = {xy | |x| = |y|, x, y in {a,b}*}",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "(a) and (b) are {a,b}*, and (c) is the set of even-length strings. All are regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-12-q2",
+          "title": "Regular Languages",
+          "type": "msq",
+          "question": "Which of the following language is/are regular?",
+          "options": [
+            "L = {w w^R | w in {0,1}*}",
+            "L = {Set of all palindrome}",
+            "L = {Number of a's equal to number of b's}",
+            "L = {w w p | w, p in {0,1}*}"
+          ],
+          "answer": [
+            3
+          ],
+          "solution": "(d) equals {0,1}* (take w = epsilon). The others require unbounded matching.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-12-q3",
+          "title": "Regular Expression of a Language",
+          "type": "mcq",
+          "question": "Consider the following given language L. L = {p q w w y r | w, p, q, r in {a,b}*}. The regular expression generated by above language is?",
+          "options": [
+            "(a+b)^2 (aa+bb)(a+b)",
+            "[(a+b)^2]* (aa+bb)(a+b)*",
+            "(a+b)*",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Taking w = epsilon, every string can be written in the form, so L = (a+b)*.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-12-q4",
+          "title": "Regular Expression of w w p",
+          "type": "mcq",
+          "question": "Consider the language L = {w w p | w, p in {a,b}+}. Which of the following regular expression generated by above language?",
+          "options": [
+            "(a+b)+",
+            "(a+b)+(a+b)+",
+            "(aa+bb)(a+b)+",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "Strings in L have a prefix that is a square ww followed by a non-empty suffix. Strings such as 'aba' and 'abb' are not of this form, so L is not (a+b)+ or the other listed expressions.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-12-q5",
+          "title": "Equivalence Classes",
+          "type": "nat",
+          "question": "Consider the following language L: L = {x w | |x| = 2, w in {a,b}*}. For the above language L, how many equivalence classes are possible?",
+          "answer": 3,
+          "solution": "L is the set of strings of length at least 2. Classes: length 0, length 1, length at least 2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-12-q6",
+          "title": "Regular Language Among Two",
+          "type": "mcq",
+          "question": "Consider the following languages. L1 = {w x w^R | w, x in {a,b}+}, L2 = {w w^R x | w, x in {a,b}+}. Which of the following language is regular?",
+          "options": [
+            "L1 is regular.",
+            "L2 is regular.",
+            "Both L1 and L2 are regular.",
+            "None of these."
+          ],
+          "answer": 0,
+          "solution": "L1 is the set of strings of length at least 3 whose first and last symbols are equal, which is regular. L2 needs a prefix w w^R of unbounded length, so it is not regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-13-q1",
+          "title": "Kleene Closure Statements",
+          "type": "mcq",
+          "question": "Consider the following statements:\nS1: Kleene Closure (*) of infinite set is always finite.\nS2: Kleene Closure (*) of finite set is always infinite.\nWhich of the following is correct?",
+          "options": [
+            "S1 only.",
+            "S2 only.",
+            "Both S1 and S2 are correct.",
+            "None of these."
+          ],
+          "answer": 3,
+          "solution": "The closure of an infinite set is infinite. The closure of a finite set can be finite, e.g. phi* = {epsilon}.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-13-q2",
+          "title": "Subset of a Language",
+          "type": "mcq",
+          "question": "Consider a language L, then subset of L will be?",
+          "options": [
+            "Regular.",
+            "Regular but finite.",
+            "Non-regular.",
+            "None of these."
+          ],
+          "answer": 3,
+          "solution": "A subset of a language can be regular or non-regular, so none of the given statements always holds.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-13-q3",
+          "title": "Union and Intersection of a*b* and b*a*",
+          "type": "msq",
+          "question": "Consider two languages L1 and L2: L1 = a*b*, L2 = b*a*. Which of the following is/are correct for above languages.",
+          "options": [
+            "L1 ∪ L2 is regular.",
+            "For L1 ∪ L2 regular expression will be (a+b)*",
+            "L1 ∩ L2 is regular.",
+            "For L1 ∩ L2 regular expression will be (a* + b*)"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "Regular languages are closed under union and intersection. The union is not (a+b)* (e.g. 'aba' is missing). The intersection contains only strings of a's alone or b's alone: a* + b*.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-13-q4",
+          "title": "Language with Regular Subset",
+          "type": "mcq",
+          "question": "If subset of L1 is regular then what is L1?",
+          "options": [
+            "L1 must be finite.",
+            "L1 must be regular.",
+            "L1 must be non-regular.",
+            "None of these."
+          ],
+          "answer": 3,
+          "solution": "A regular subset tells us nothing about L1; it can be regular or non-regular.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-13-q5",
+          "title": "Operation Not Closed for Regular Languages",
+          "type": "mcq",
+          "question": "Regular language does not close under on which operation?",
+          "options": [
+            "Complement",
+            "Union",
+            "Subset",
+            "Intersection"
+          ],
+          "answer": 2,
+          "solution": "Regular languages are closed under complement, union and intersection, but not under taking subsets.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-13-q6",
+          "title": "Complement Statements",
+          "type": "nat",
+          "question": "Consider the following statements:\n[I] If L is regular, then complement of L is regular.\n[II] If complement of L is regular, then L is regular.\n[III] Union of L and its complement is Sigma*.\nNumber of correct statement is/are",
+          "answer": 3,
+          "solution": "All three statements are true.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-13-q7",
+          "title": "Operations on {epsilon} and a+",
+          "type": "mcq",
+          "question": "Let L1 = {epsilon}, L2 = {a+}. Then which of the following is correct?",
+          "options": [
+            "L1 ∩ L2 = epsilon.",
+            "L1 ∪ L2 = any language.",
+            "L1 ∪ complement(L2) = epsilon.",
+            "None of these."
+          ],
+          "answer": 3,
+          "solution": "L1 ∩ L2 = phi, the union is just a*, and the complement of a+ contains many strings, so (a), (b) and (c) are all false.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-14-q1",
+          "title": "Language with Regular Kleene Closure",
+          "type": "msq",
+          "question": "Consider a regular language L. If L* = {a}* is regular, then which of the following is true?",
+          "options": [
+            "L = {a} is regular",
+            "L = {a} is not regular",
+            "L = {a} is regular and finite.",
+            "None of these."
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "The set {a} is finite and hence regular.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-14-q2",
+          "title": "Closure Properties of Regular Languages",
+          "type": "msq",
+          "question": "Consider a regular language L, which of the following statements are true regarding L.",
+          "options": [
+            "Prefix(L) = {w | w w1 in L, w1 in Sigma*} is regular.",
+            "Suffix(L) = {w | w1 w in L, w1 in Sigma*} is regular.",
+            "Half(L) = {w | w w1 in L, |w| = |w1|} is regular.",
+            "L is closed under infinite intersection."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Regular languages are closed under prefix, suffix and half operations, but not under infinite intersection.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-14-q3",
+          "title": "Operations on Regular Sets",
+          "type": "mcq",
+          "question": "Let's consider L1 and L2 are two regular sets defined over (Sigma = a,b) then",
+          "options": [
+            "L1 ∩ L2 is irregular",
+            "L1 ∪ L2 is not regular",
+            "L1* is not regular",
+            "Sigma* - L1 is regular"
+          ],
+          "answer": 3,
+          "solution": "Regular languages are closed under complement, so Sigma* - L1 is regular. The other statements are false.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-14-q4",
+          "title": "Operations on Languages",
+          "type": "mcq",
+          "question": "Let's suppose the languages L1 = {a} & L2 = {phi}. Then L2 L1* ∪ L2*?",
+          "options": [
+            "empty set",
+            "{epsilon}",
+            "{a*}",
+            "{a}"
+          ],
+          "answer": 1,
+          "solution": "Treating L2 as the empty language, L2 L1* = phi and L2* = {epsilon}. The union is {epsilon}.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-14-q5",
+          "title": "Homomorphism of a Regular Language",
+          "type": "mcq",
+          "question": "Consider a regular language L over the alphabet Sigma = {a,b}. L is defined as x = (a+b*)(bab*). If homomorphism h is defined over T = {c,d,e} and h(a) = cd, h(b) = cddec then the regular language h(L) is given as",
+          "options": [
+            "(cd + cddec)(cddec cd cddec)",
+            "(cddec)(cd + cddec*)",
+            "(cd + (cddec)*)((cddec)(cd)(cddec)*)",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Replace a by cd and b by cddec: (a + b*) becomes (cd + (cddec)*) and (b a b*) becomes (cddec)(cd)(cddec)*.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-14-q6",
+          "title": "Union and Infinite Union of Regular Languages",
+          "type": "mcq",
+          "question": "Consider the following statements:\nS1: if L1 ∪ L2 is regular, then both L1 and L2 are regular.\nS2: Regular language is closed under infinite union.",
+          "options": [
+            "S1 is true.",
+            "S2 is true",
+            "Both S1 and S2 are true",
+            "Both S1 and S2 are false."
+          ],
+          "answer": 3,
+          "solution": "S1 is false (a non-regular L1 and its complement-like partner can union to a regular set). S2 is false: regular languages are not closed under infinite union.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fa-14-q7",
+          "title": "Closure of Regular Languages",
+          "type": "msq",
+          "question": "Regular language is closed under",
+          "options": [
+            "Subset",
+            "Complement",
+            "Finite union",
+            "Infinite Intersection"
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Regular languages are closed under complement and finite union, but not under subsets or infinite intersection.",
+          "marks": 2,
+          "source": "DPP"
+        }
       ]
     }
   ]
