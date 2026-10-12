@@ -31,10 +31,5 @@ export const quickLinks = [
     url: 'https://drive.google.com/drive/folders/1q24s39nWoWM2KcgAYSn6GlZemhu5Uv_m?usp=sharing',
     description: 'GATE CSE 2027 concepts notes',
   },
-   {
-    title: 'PYQs [KGAI]',
-    url: 'https://www.knowledgegate.ai/courses/GATE-GUIDANCE-BY-SANCHIT-SIR',
-    description: 'GATE CSE 2027 previous year questions',
-  },
 
 ];
