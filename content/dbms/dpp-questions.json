@@ -1,4 +1,1358 @@
 {
-  "title": "dbms - DPP",
-  "chapters": []
+  "title": "DBMS DPP Questions",
+  "chapters": [
+    {
+      "title": "ER Model",
+      "questions": [
+        {
+          "id": "dpp-er-001",
+          "title": "ER Model Statements",
+          "type": "mcq",
+          "question": "Which of the following statements about ER model is/are correct?\nS1: Relationship sets can have attributes of their own.\nS2: Many to many relationships cannot be represented in ER diagram.\nS3: Multivalued attributes and weak entity set are allowed in RDBMS.",
+          "options": [
+            "S1 only",
+            "S1 and S3 only",
+            "S2 and S3 only",
+            "S1, S2 and S3"
+          ],
+          "answer": 0,
+          "solution": "S1 is true (e.g. enrollment date on a relationship). S2 is false: M:N relationships are easily drawn in an ER diagram. S3 is false: the relational model does not allow multivalued attributes directly; they are converted into separate tables. So only S1 is correct.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Relational Model & Integrity Constraints",
+      "questions": [
+        {
+          "id": "dpp-rm-001",
+          "title": "Foreign Key Statements",
+          "type": "mcq",
+          "question": "Consider the following statements:\nP: At most one foreign key is possible for a relational schema.\nQ: A foreign key declaration can always be replaced by an equivalent check assertion in SQL.\nWhich of the following is/are INCORRECT?",
+          "options": [
+            "P only",
+            "Q only",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 2,
+          "solution": "P is incorrect: a relation can have several foreign keys. Q is incorrect: a foreign key carries actions such as ON DELETE CASCADE / SET NULL that a simple check constraint cannot replace. Both are incorrect.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-rm-002",
+          "title": "Papercode as Key",
+          "type": "msq",
+          "question": "Two relations are R1(PaperCode, NumberofCandidates) and R2(RollNo, PaperCode). Each roll number has exactly one papercode, but one paper can be chosen by many candidates. Which of the following is/are INCORRECT?",
+          "options": [
+            "Papercode can act as a primary key as well as a foreign key in R2",
+            "Papercode acts as a foreign key in R2",
+            "Papercode satisfies UNIQUE and NOT NULL constraint in R2",
+            "Papercode allows NULL values in R2"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "Papercode in R2 references R1, so it is a foreign key (b is correct). Many candidates choose the same paper, so Papercode is not unique in R2 and cannot be a primary key (a incorrect) or satisfy UNIQUE (c incorrect). A foreign key may hold NULL (d is correct).",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-rm-003",
+          "title": "ON DELETE CASCADE",
+          "type": "nat",
+          "question": "Consider: CREATE TABLE department (a INTEGER, b INTEGER, PRIMARY KEY (a), FOREIGN KEY (b) REFERENCES department(a) ON DELETE CASCADE);\nTuples (a, b): (0,2) (1,2) (2,1) (3,0) (5,0) (7,3) (4,2) (6,1).\nQuery: DELETE FROM department WHERE a = 0.\nThe number of tuples that must be additionally deleted to preserve referential integrity is ____",
+          "answer": 3,
+          "solution": "Deleting a=0 cascades to tuples with b=0: (3,0) and (5,0). Deleting a=3 cascades to (7,3). Deleting a=5 and a=7 cascades to nothing. Additional deletions = 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-rm-004",
+          "title": "Insertion Violations",
+          "type": "mcq",
+          "question": "Consider the following statements:\nP: Insertion of tuples into the referenced relation may cause foreign key violation.\nQ: Insertion of tuples into the referencing relation may cause foreign key violation.\nWhich of the following is/are CORRECT?",
+          "options": [
+            "P only",
+            "Q only",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 1,
+          "solution": "Inserting into the referenced (parent) relation never violates a foreign key. Inserting into the referencing (child) relation can violate it if the value does not exist in the parent. Only Q is correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-rm-005",
+          "title": "Updation Violations",
+          "type": "mcq",
+          "question": "Consider the following statements:\nP: Updation of tuples in the referenced relation may cause foreign key violation.\nQ: Updation of tuples in the referencing relation may cause foreign key violation.\nWhich of the following is/are INCORRECT?",
+          "options": [
+            "P only",
+            "Q only",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 3,
+          "solution": "Updating the referenced key can orphan child tuples (P true). Updating the foreign key in the child to a non-existing value violates integrity (Q true). Both statements are correct, so neither is incorrect.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Relational Algebra & Query Language",
+      "questions": [
+        {
+          "id": "dpp-ql-001",
+          "title": "Cascade of Operators",
+          "type": "mcq",
+          "question": "Consider the following statements:\nS1: π_ListN(π_ListN-1(...(π_List1(R)))) ≡ π_List1(π_List2(...(π_ListN(R))))\nS2: σ_cn(σ_cn-1(...(σ_c1(R)))) ≡ σ_c1(σ_c2(...(σ_cN(R))))\nWhich of the statement(s) is/are correct?",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 1,
+          "solution": "Selections are commutative, so the order of cascaded selections does not matter (S2 true). Cascaded projections collapse only when the attribute lists form a subset chain in the proper order, so reversing the order is not valid in general (S1 false).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ql-002",
+          "title": "Semi Join Cardinality",
+          "type": "nat",
+          "question": "Relations: Enroll(CandidateID, Papercode) with 5000 tuples and Count(Papercode, Number_of_appearing_candidates) with 29 tuples. One candidate can enroll for multiple papercodes. Let p and q be the maximum and minimum number of records in Count ⋉ Enroll. Find p + q.",
+          "answer": 30,
+          "solution": "Count has 29 tuples, so p = 29. Enroll has 5000 tuples whose papercodes refer to Count, so at least one Count tuple always matches: q = 1. p + q = 30.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ql-003",
+          "title": "Union Compatible Relations",
+          "type": "mcq",
+          "question": "Let R1 and R2 be union-compatible relations with the same set of attributes.\nS1: R1 ∩ R2 = R1 ⋉ R2\nS2: R1 ∪ R2 = R1 ⋉ R2\nWhich of the above statement(s) are INCORRECT?",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 1,
+          "solution": "With identical attributes, the semi/natural join keeps exactly the tuples present in both relations, i.e. the intersection (S1 correct). It is not the union (S2 incorrect).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ql-004",
+          "title": "Only CS Papers",
+          "type": "mcq",
+          "question": "Relations: Enroll(Sid, Papercode), Paper(Papercode, Desc). Which relational algebra expression gives the sids who enrolled ONLY for papercodes with Desc = 'CS'?",
+          "options": [
+            "π_sid(Enroll ⋈_{Desc='CS'} Paper)",
+            "π_sid(Enroll) − π_sid(Enroll ⋈_{Desc≠'CS'} Paper)",
+            "π_sid(Enroll) − π_sid(Enroll ⋈_{Desc='CS'} Paper)",
+            "None"
+          ],
+          "answer": 1,
+          "solution": "'Only CS' means all sids minus the sids who have at least one non-CS paper. That is option (b).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ql-005",
+          "title": "Exactly One Project",
+          "type": "mcq",
+          "question": "Relation Work(EmpID, ProjectID). Which relational algebra expression projects the employee ids who work in exactly one project?",
+          "options": [
+            "π_Empid(Work) − π_Empid(Work ⋈_{Empid=E ∧ ProjectID=P} ρ_{E,P}(Work))",
+            "π_Empid(Work ⋈_{Empid=E ∧ ProjectID≠P} ρ_{E,P}(Work))",
+            "π_Empid(Work) − π_Empid(Work ⋈_{Empid=E ∧ ProjectID≠P} ρ_{E,P}(Work))",
+            "None"
+          ],
+          "answer": 2,
+          "solution": "The join with ProjectID≠P finds employees having at least two different projects. Subtracting them from all employees leaves those with exactly one project.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ql-006",
+          "title": "Division Cardinality",
+          "type": "mcq",
+          "question": "Relations R and S have x and y distinct records. Let p and q be the minimum and maximum number of records in R ÷ S. Then,",
+          "options": [
+            "p = 0, q = x + 1",
+            "p = 0, q = ⌊x/y⌋",
+            "p = x, q = y",
+            "p = x, q = ⌊x/y⌋"
+          ],
+          "answer": 1,
+          "solution": "The quotient can be empty (p = 0). Each quotient tuple needs y distinct tuples of R, so at most ⌊x/y⌋ quotient tuples exist.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ql-007",
+          "title": "Set Operation Bounds",
+          "type": "mcq",
+          "question": "Let R1 and R2 be union-compatible relations with n and m tuples.\nS1: The maximum number of records in R1 − R2 is n.\nS2: The minimum number of records in R1 ∪ R2 is max(n, m).",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 2,
+          "solution": "R1 − R2 can keep all n tuples when nothing is common (max n). R1 ∪ R2 is smallest when the smaller relation is a subset of the larger, giving max(n, m). Both are true.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ql-008",
+          "title": "Division Equivalence",
+          "type": "mcq",
+          "question": "On relations A(p, q, r) and B(q, r): π_p(A) − π_p((π_p(A) × π_{q,r}(B)) − π_{p,q,r}(A)). The query is equivalent to",
+          "options": [
+            "A ∩ B",
+            "A ∪ B",
+            "A − B",
+            "A ÷ B"
+          ],
+          "answer": 3,
+          "solution": "This is the standard basic-operator expansion of division: all p values minus those p values missing some (q, r) combination of B.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ql-009",
+          "title": "Relational Algebra Equivalences",
+          "type": "mcq",
+          "question": "Relations A(P, Q) and B(R, S). Which of the following equivalences is/are TRUE?",
+          "options": [
+            "π_{P,Q}(A × B) = A",
+            "A − ρ_{T(P,Q)}(B) = ρ_{T(P,Q)}(B − ρ_{T(R,S)}(A))",
+            "π_{P,Q,S}(A ⋈_{Q=R} B) = A ⋈ ρ_{T(Q,S)}(B)",
+            "None of the above"
+          ],
+          "answer": 2,
+          "solution": "(a) fails when B is empty. (b) left side is A − B but right side is B − A. (c) renaming R to Q turns the theta join into a natural join on Q, giving the same (P, Q, S) tuples, so it is true.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ql-010",
+          "title": "Always Valid Identities",
+          "type": "msq",
+          "question": "Which of the following relational algebra expressions always hold?",
+          "options": [
+            "(X ⋈ Y) ⋈ Z = (Z ⋈ X) ⋈ Y",
+            "σ_A(σ_B(X)) = σ_B(σ_A(X))",
+            "π_A(π_B(X)) = π_B(π_A(X))",
+            "None of the above"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "Natural join is associative and commutative; selections commute. Cascaded projections need a subset relation between lists, so (c) does not always hold.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ql-011",
+          "title": "Join Cardinality Statements",
+          "type": "msq",
+          "question": "Relations A(P, Q) and B(R, S). Which of the following statement(s) is/are TRUE?",
+          "options": [
+            "card(A ⋈_{P=R} B) is always ≥ card(A ⋈_{P=R ∧ Q=S} B)",
+            "card(A ⋈_{P=R ∧ Q≠S} B) is always ≥ card(A ⋈_{P=R ∧ Q=S} B)",
+            "σ_{P=5}(A ⋈_{Q=R} B) and σ_{P=5}(A) ⋈_{Q=R} B are always equivalent",
+            "(A × B) − (A ⋈_{Q=R} B) and (A ⋈_{Q≠R} B) are always equivalent"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "(a) The extra condition only filters tuples. (b) The two result sets are disjoint, so no ordering is guaranteed. (c) P belongs to A, so selection can be pushed down. (d) The cross product minus tuples with Q=R leaves exactly those with Q≠R.",
+          "marks": 2,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Transaction & Concurrency Control",
+      "questions": [
+        {
+          "id": "dpp-tx-001",
+          "title": "Conflict Equivalent Schedules",
+          "type": "nat",
+          "question": "Schedule S: w1(X); w1(Y); r2(X); w2(Y); r3(X); w3(Y). How many schedules are conflict equivalent to S?",
+          "answer": 8,
+          "solution": "Constraints: w1(X) first (it precedes r2(X), r3(X)); on Y the order w1<w2<w3 is fixed; each transaction keeps its own order. After w1(X), the remaining ops b=w1(Y), c=r2(X), d=w2(Y), e=r3(X), f=w3(Y) must satisfy b,c<d<f and e<f. Orders of {b,c,d,f} = 2 x 1 = 2, and e can be inserted in 4 positions before f. Total = 2 x 4 = 8.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-002",
+          "title": "Serial Schedules Conflict Equal",
+          "type": "nat",
+          "question": "Schedule S = r1(P); r3(S); w1(Q); r2(Q); r4(Q); w2(R); r5(R); w4(T); r5(T); w5(Q). How many serial schedules are conflict equal to S?",
+          "answer": 10,
+          "solution": "Precedence edges: T1→T2, T1→T4, T2→T5, T4→T5, T1→T5. T3 is isolated. Among T1, T2, T4, T5: T1 first, T5 last, T2/T4 in 2 orders. T3 can sit in any of 5 positions. Total = 2 x 5 = 10.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-003",
+          "title": "Serial Schedules View Equal",
+          "type": "nat",
+          "question": "Schedule S = r1(P); r3(S); w1(Q); r2(Q); r4(Q); w2(R); r5(R); w4(T); r5(T); w5(Q). How many serial schedules are view equal to S?",
+          "answer": 10,
+          "solution": "T2 and T4 read Q from T1, T5 reads R from T2 and T for T4, T5 writes Q last. So T1 first, T5 last among the related ones, T2/T4 any order (2 ways); T3 reads initial values only and fits anywhere (5 ways). 2 x 5 = 10.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-004",
+          "title": "Concurrent Schedules Count",
+          "type": "mcq",
+          "question": "T1: r1(P) w1(P) r1(Q) w1(Q); T2: r2(P) r2(Q); T3: w3(P) w3(Q). How many concurrent schedules between T1, T2 and T3?",
+          "options": [
+            "400",
+            "410",
+            "420",
+            "None"
+          ],
+          "answer": 2,
+          "solution": "Total interleavings = 8! / (4! x 2! x 2!) = 40320 / 96 = 420.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-005",
+          "title": "View Equivalent Serial Schedules",
+          "type": "nat",
+          "question": "For S: w1(P) r2(P) w3(P) r4(P) w5(P) r6(P), how many view equivalent serial schedules are possible?",
+          "answer": 2,
+          "solution": "T2 reads from T1, T4 from T3, T6 from T5, and T5 is the final writer. Writers must be ordered T1, T3, T5 or T3, T1, T5, with each reader placed right after its writer. Valid: T1 T2 T3 T4 T5 T6 and T3 T4 T1 T2 T5 T6. Total 2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-006",
+          "title": "Goal of Concurrency Control",
+          "type": "mcq",
+          "question": "The goal of concurrency control on a database system is to",
+          "options": [
+            "Only allow concurrent execution of transactions that correspond to a serial execution of some of the transactions",
+            "Allow only transactions that don't access common relations to run concurrently",
+            "Execute transactions serially",
+            "None of the above"
+          ],
+          "answer": 0,
+          "solution": "Concurrency control aims for serializability: concurrent execution must be equivalent to some serial execution.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-007",
+          "title": "Concurrency Problems",
+          "type": "mcq",
+          "question": "What problem can occur when a DBMS executes multiple transactions concurrently?",
+          "options": [
+            "Lost update problem",
+            "Dirty read problem",
+            "Incorrect summary problem",
+            "All of the above"
+          ],
+          "answer": 3,
+          "solution": "All three are classic concurrency anomalies.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-008",
+          "title": "View vs Conflict Serializable",
+          "type": "mcq",
+          "question": "S1: Every view serializable schedule is conflict serializable.\nS2: Some view serializable schedules are conflict serializable.",
+          "options": [
+            "Only S1 is true",
+            "Only S2 is true",
+            "Both S1 and S2 are true",
+            "Neither S1 nor S2 is true"
+          ],
+          "answer": 1,
+          "solution": "Conflict serializable is a subset of view serializable, so S1 is false (blind writes give a counterexample) and S2 is true.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-009",
+          "title": "Isolation Violated",
+          "type": "mcq",
+          "question": "Many concurrent transactions run over the same data set and the 2nd transaction updates the database before the 1st transaction completes. Which property is violated?",
+          "options": [
+            "Durability",
+            "Isolation",
+            "Atomicity",
+            "Consistency"
+          ],
+          "answer": 1,
+          "solution": "A transaction should not see/affect partial results of another transaction. That is the Isolation property.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-010",
+          "title": "View and Conflict Serializability",
+          "type": "mcq",
+          "question": "S1: If a schedule is view serializable then it may not be conflict serializable.\nS2: If a schedule is conflict serializable then it is also view serializable.",
+          "options": [
+            "Only S1 is true",
+            "Only S2 is true",
+            "Both S1 & S2 are true",
+            "Neither S1 nor S2 is true"
+          ],
+          "answer": 2,
+          "solution": "Conflict serializable ⊂ view serializable ⊂ serializable, so both statements hold.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-011",
+          "title": "View Equal Serial Schedules",
+          "type": "nat",
+          "question": "Schedule S: R1(A) R3(D) W1(B) R2(B) R4(B) R5(C) W4(E) R3(E) W5(B) W2(C). How many serial schedules are view equal to S?",
+          "answer": 0,
+          "solution": "T5 reads the initial value of C, so T5 must precede T2 (writer of C). T5 writes B last, and T2 reads B from T1, so T5 must come after T2. These two conditions contradict, so no view equivalent serial schedule exists.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-012",
+          "title": "Serialization Order",
+          "type": "mcq",
+          "question": "S: r1(x); r2(x); r3(y); w1(x); r2(z); r2(y); w2(y); w1(z). Which is the correct serialization order?",
+          "options": [
+            "T2 → T1 → T3",
+            "T3 → T2 → T1",
+            "T3 → T1 → T2",
+            "T2 → T3 → T1"
+          ],
+          "answer": 1,
+          "solution": "Edges: r2(x)<w1(x) gives T2→T1; r2(z)<w1(z) gives T2→T1; r3(y)<w2(y) gives T3→T2. Topological order: T3 → T2 → T1.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-013",
+          "title": "View but Not Conflict Serializable",
+          "type": "mcq",
+          "question": "Which schedule is view serializable but not conflict serializable?",
+          "options": [
+            "r1(P); r2(P) w1(P) r2(Q)",
+            "r1(P) w1(P) r2(P) w2(Q)",
+            "w1(P) w2(P) w1(P); w2(P) w1(P)",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "(c) has only blind writes by T1 and T2, creating edges T1→T2 and T2→T1 (cycle, not conflict serializable). Running T2 then T1 gives the same final write, so it is view serializable. (a) and (b) are conflict serializable.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-014",
+          "title": "Phantom Read",
+          "type": "mcq",
+          "question": "The problem occurs when a transaction reads data, then another transaction reads the same data, and that data is deleted by an operation of the first transaction.",
+          "options": [
+            "Dirty read",
+            "Unrepeatable read problem",
+            "Phantom read",
+            "Lost update problem"
+          ],
+          "answer": 2,
+          "solution": "When a data item read earlier disappears because of a delete by another transaction, it is the phantom read problem.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tx-015",
+          "title": "Serializability Check",
+          "type": "mcq",
+          "question": "S: r1(A), r2(B), w2(A), r3(A), w1(B), w3(A). Choose the correct statement.",
+          "options": [
+            "S is conflict serializable",
+            "S is not conflict serializable",
+            "S may or may not be view serializable",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "r1(A)<w2(A) gives T1→T2 and r2(B)<w1(B) gives T2→T1. The cycle means S is not conflict serializable (it is not view serializable either).",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Functional Dependencies & Normalization",
+      "questions": [
+        {
+          "id": "dpp-fd-001",
+          "title": "RDBMS Rules",
+          "type": "msq",
+          "question": "According to RDBMS rules, choose the correct statement(s):",
+          "options": [
+            "A relation in RDBMS can have multiple attributes",
+            "A relation in RDBMS is a set of rows and columns",
+            "A tuple in a relation can have multiple values for an attribute",
+            "All of the above"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "A relation has many attributes and is represented as rows and columns. A tuple cannot hold multiple values for one attribute (atomicity), so (c) and (d) are false.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-002",
+          "title": "Attribute Closure Superkey",
+          "type": "mcq",
+          "question": "R(A, B, C, D, E, F, H), FDs: {A→BC, C→AD, DE→F, C→F}. Which attribute closure contains all attributes of R?",
+          "options": [
+            "AE+",
+            "CE+",
+            "AEH+",
+            "All of the above"
+          ],
+          "answer": 2,
+          "solution": "H is never on a right side, so it must be in every key. AEH+ = {A,E,H,B,C,D,F}, all attributes. AE+ and CE+ miss H.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-003",
+          "title": "Non-trivial FDs",
+          "type": "nat",
+          "question": "Relation Stud(Rid, name, course, mail, phone) with FDs: Rid→{Rid}, Rid→{name, mail}, course→{course, phone}, mail→{Rid, course}, name→{phone, mail, course}. The number of non-trivial FDs in the given set is ____",
+          "answer": 4,
+          "solution": "An FD X→Y is non-trivial when Y is not a subset of X. Rid→{Rid} is trivial; the other four are non-trivial.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-004",
+          "title": "Closure of YZ",
+          "type": "mcq",
+          "question": "FDs {V→W, W→XZ, X→YZ} on R(V, W, X, Y, Z). How many elements does the attribute closure of YZ contain?",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "answer": 2,
+          "solution": "No FD has Y or Z (alone or together) on the left side, so (YZ)+ = {Y, Z}: 2 elements.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-005",
+          "title": "Super Key not Candidate Key",
+          "type": "mcq",
+          "question": "FDs {P→QT, Q→SU, V→U} on R(P, Q, T, S, U, V). Which set of attributes is a super key but not a candidate key?",
+          "options": [
+            "PTQ",
+            "PV",
+            "PQV",
+            "QV"
+          ],
+          "answer": 2,
+          "solution": "V is on no right side so it must be in the key; PV+ = all attributes, so PV is the candidate key. PQV is a proper superset of PV: super key but not candidate key.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-006",
+          "title": "FD Implication",
+          "type": "msq",
+          "question": "FDs {Y→X, YZ→W, ZW→V, X→W, V→X} on attributes X, Y, Z, W, V. Which of the following FDs is NOT implied?",
+          "options": [
+            "YX → ZW",
+            "XV → YZ",
+            "ZW → V",
+            "XV → XW"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "(YX)+ = {Y,X,W}, no Z, so YX→ZW is not implied. (XV)+ = {X,V,W}, no Y or Z, so XV→YZ is not implied. ZW→V is given and XV→XW holds.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-007",
+          "title": "Relational Terms",
+          "type": "mcq",
+          "question": "Choose the correct statement.",
+          "options": [
+            "The cardinality is defined as the number of attributes in a relation.",
+            "Degree of the relation is the number of tuples in the relation.",
+            "Relation instance is the set of tuples of a relation at a particular instance of time.",
+            "All of the above"
+          ],
+          "answer": 2,
+          "solution": "Cardinality = number of tuples, degree = number of attributes. Only (c) is correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-008",
+          "title": "Keys Basics",
+          "type": "msq",
+          "question": "Choose the correct statement(s):",
+          "options": [
+            "There can be many primary keys for a relation.",
+            "There can be many alternate keys for a relation.",
+            "All the candidate keys are also super keys.",
+            "All the super keys are also the candidate keys."
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Only one primary key exists, but several alternate keys can. Every candidate key is a super key, but not every super key is minimal.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-009",
+          "title": "Keys from FD Set",
+          "type": "mcq",
+          "question": "R(D, N, C, S), FDs {D→N, D→C, D→S, C→S}. Choose the correct statement.",
+          "options": [
+            "{D} is the superkey for the relation.",
+            "{DN} is the candidate key for the relation.",
+            "{DC} is the candidate key for the relation.",
+            "{CN} is the superkey for the relation."
+          ],
+          "answer": 0,
+          "solution": "D+ = {D,N,C,S}, so D is a key (and super key). DN and DC are not minimal. (CN)+ = {C,N,S}, which misses D.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-010",
+          "title": "Prime Attributes",
+          "type": "nat",
+          "question": "R(X, Y, Z, W, U, V), FDs {XY→Z, YZW→U, UZ→V, W→X}. The number of prime attributes is ____",
+          "answer": 2,
+          "solution": "Y and W never appear on a right side, so they are in every key. (YW)+ = all attributes, so YW is the only candidate key. Prime attributes: Y, W = 2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-011",
+          "title": "Incorrect Key Statement",
+          "type": "mcq",
+          "question": "Choose the incorrect statement.",
+          "options": [
+            "All super keys cannot be primary key.",
+            "We choose the minimal candidate key to be a primary key.",
+            "The number of super keys are equal to the number of primary keys for a relation.",
+            "None of the above."
+          ],
+          "answer": 2,
+          "solution": "A relation can have many super keys but only one primary key, so (c) is incorrect.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-012",
+          "title": "Max Candidate Keys (9 attributes)",
+          "type": "nat",
+          "question": "If a relation R has 9 attributes, the maximum possible number of candidate keys is ____",
+          "answer": 126,
+          "solution": "Maximum candidate keys = C(n, ⌊n/2⌋) = C(9, 4) = 126.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-013",
+          "title": "Find the Key",
+          "type": "msq",
+          "question": "FDs {A→D, C→BDE, B→F, B→C} on R(A, B, C, D, E, F). Which option(s) are correct?",
+          "options": [
+            "AC could be the primary key.",
+            "There are two candidate keys AC and AB.",
+            "BC is the primary key.",
+            "No primary key exists for the relation."
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "A is on no right side. (AB)+ and (AC)+ both give all attributes, so AB and AC are the candidate keys; either can be chosen as primary key.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-014",
+          "title": "Max Candidate Keys (6 attributes)",
+          "type": "mcq",
+          "question": "For a relation R(A, B, C, D, E, F), the maximum number of candidate keys possible is",
+          "options": [
+            "8",
+            "12",
+            "16",
+            "20"
+          ],
+          "answer": 3,
+          "solution": "C(6, 3) = 20.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-015",
+          "title": "Not a Candidate Key",
+          "type": "mcq",
+          "question": "R(P, Q, R, S, T), F = {P→Q, QR→T, TS→P}. Which of the following is NOT a candidate key?",
+          "options": [
+            "RST",
+            "PRS",
+            "QRS",
+            "PQR"
+          ],
+          "answer": 3,
+          "solution": "RST, PRS and QRS each have closure equal to all attributes and are minimal. (PQR)+ = {P,Q,R,T} lacks S.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-016",
+          "title": "Number of Candidate Keys",
+          "type": "nat",
+          "question": "R(P, Q, R, S, T) with FDs {P→Q, Q→R, R→Q, Q→T}. How many candidate keys does R have?",
+          "answer": 1,
+          "solution": "P and S are on no right side. (PS)+ = all attributes and nothing determines P or S, so PS is the only candidate key.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-017",
+          "title": "Keys Statements",
+          "type": "mcq",
+          "question": "S1: A key in DBMS is an attribute (or set of attributes) that helps to uniquely identify a tuple in a relation.\nS2: There should be only one candidate key in a relation, which is chosen as the primary key.",
+          "options": [
+            "Only S1 is true.",
+            "Only S2 is true.",
+            "Both S1 and S2 are true.",
+            "Neither S1 nor S2 is true."
+          ],
+          "answer": 0,
+          "solution": "A relation can have several candidate keys; one is chosen as primary key. So S2 is false.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-018",
+          "title": "Key Definitions",
+          "type": "msq",
+          "question": "Choose the correct statement(s):",
+          "options": [
+            "The minimal set of attributes that can uniquely identify a tuple is known as a candidate key.",
+            "A super key is a group of single or multiple keys that identifies rows in a table. It supports NULL values.",
+            "Primary key is not a unique key.",
+            "None of the above."
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "(a) is the definition of candidate key. (b) matches the standard definition of super key (NULLs are not forbidden unlike primary key). (c) is false: primary key is unique.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-019",
+          "title": "Implied FDs",
+          "type": "msq",
+          "question": "Attributes A, B, C, D, E with FDs {A→B, A→C, CD→E, B→D, E→A}. Which of the following FDs is/are implied?",
+          "options": [
+            "CD → AC",
+            "BC → CD",
+            "AC → BC",
+            "BD → CD"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "(CD)+ = {C,D,E,A,B}; (BC)+ = {B,C,D,E,A}; (AC)+ = {A,C,B,D,E}. All contain the required right side. (BD)+ = {B,D}, so BD→CD is not implied.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-020",
+          "title": "Number of Candidate Keys (8 attributes)",
+          "type": "mcq",
+          "question": "R(A..H), F = {CH→G, A→BC, B→CFH, E→A, F→EG}. How many candidate keys does R have?",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": 2,
+          "solution": "D is on no right side so it is in every key. AD, BD, ED and FD each have closure equal to all attributes. That gives 4 candidate keys.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-021",
+          "title": "Primary Key Statements",
+          "type": "mcq",
+          "question": "S1: Primary key has no duplicate values, only unique values.\nS2: Primary key need not be a single column; more than one column can also form a primary key.",
+          "options": [
+            "Only S1 is true.",
+            "Only S2 is true.",
+            "Both S1 & S2 are true.",
+            "Neither S1 nor S2 are true."
+          ],
+          "answer": 2,
+          "solution": "Both statements are correct (composite primary keys exist).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-022",
+          "title": "Candidate Key Facts",
+          "type": "msq",
+          "question": "Choose the correct statements about candidate key:",
+          "options": [
+            "Candidate key is a super key with maximum attributes.",
+            "It must contain unique values.",
+            "A table can have multiple CKs but only one primary key.",
+            "It is a super key with no repeated data which is called a candidate key."
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "A candidate key is a minimal super key (not maximal), so (a) is false. The others are valid.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-023",
+          "title": "Equivalence of FD Sets",
+          "type": "mcq",
+          "question": "X = {P→Q, Q→R, R→P, P→R, R→Q, Q→P}, Y = {P→Q, Q→R, R→P}. Which is true?",
+          "options": [
+            "X ⊂ Y",
+            "Y ⊂ X",
+            "X ≡ Y",
+            "X ≠ Y"
+          ],
+          "answer": 2,
+          "solution": "In Y, P, Q and R determine each other through the cycle, so Y+ contains all six FDs of X. Hence X and Y are equivalent.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-024",
+          "title": "Number of Super Keys (1)",
+          "type": "nat",
+          "question": "R(P, Q, R, S, T), FDs {PQ→R, RS→T, S→P}. How many super keys does R contain?",
+          "answer": 8,
+          "solution": "Q and S are on no right side; (QS)+ = all attributes, so QS is the only candidate key. Super keys = 2^3 = 8 (P, R, T free).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-025",
+          "title": "Number of Super Keys (2)",
+          "type": "nat",
+          "question": "R(P, Q, R, S, T), FDs {P→QR, RS→T, Q→S, T→P}. How many super keys are possible?",
+          "answer": 27,
+          "solution": "Candidate keys: P, T, QR, RS. Non-super-key subsets avoid P and T and do not contain QR or RS: {}, {Q}, {R}, {S}, {Q,S} = 5. Super keys = 32 − 5 = 27.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-026",
+          "title": "Candidate Key of 10 Attributes",
+          "type": "mcq",
+          "question": "R(P..Y), F = {PQ→R, Q→TU, PS→VW, V→X, W→Y}. Which can be the candidate key?",
+          "options": [
+            "PQT",
+            "PQS",
+            "PQSR",
+            "PQSVW"
+          ],
+          "answer": 1,
+          "solution": "P, Q, S are on no right side. (PQS)+ includes R, T, U, V, W, X, Y = all attributes and is minimal. PQSR and PQSVW are not minimal.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-027",
+          "title": "Super Keys from Candidate Key",
+          "type": "nat",
+          "question": "R(P, Q, R, S, T) has PQR as its only candidate key. How many super keys are possible?",
+          "answer": 4,
+          "solution": "Super keys = PQR plus any subset of the remaining 2 attributes: 2^2 = 4.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-028",
+          "title": "Equivalent FD Sets",
+          "type": "mcq",
+          "question": "S1 = {P→R, PR→S, T→PS, T→U}; S2 = {P→S, QR→PS, R→Q, T→P, T→S, T→U}; S3 = {P→S, R→P, R→Q, T→PU}. Which sets are equivalent?",
+          "options": [
+            "S1 ≡ S2",
+            "S2 ≡ S3",
+            "S1 ≡ S3",
+            "S1 ≡ S2 ≡ S3"
+          ],
+          "answer": 1,
+          "solution": "S1 has P→R, which S2 and S3 cannot derive (P+ = PS). S2 and S3 have the same closures: R+ = RQPS, T+ = TPSU. So only S2 ≡ S3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-029",
+          "title": "Minimal Cover Size",
+          "type": "nat",
+          "question": "R = {P,Q,R,S,T,U,V,W}, F = {PR→V, S→T, RS→T, QR→S, RV→QS, PRS→Q, RT→PV}. The minimum number of simple FDs in the minimal cover of F is ____",
+          "answer": 5,
+          "solution": "Right sides T, S, V, Q, P each need at least one FD. A valid cover is {PR→V, S→T, QR→S, RV→Q, RT→P}: 5 FDs, which is the minimum.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fd-030",
+          "title": "Super Keys with Two Candidate Keys",
+          "type": "nat",
+          "question": "R(P, Q, R, S, T), FDs PQR→ST and S→PQ. The number of super keys is ____",
+          "answer": 10,
+          "solution": "Candidate keys: PQR and SR. Supersets of PQR: 4; supersets of SR: 8; common (PQRS): 2. Total = 4 + 8 − 2 = 10.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "File Organization & Indexing",
+      "questions": [
+        {
+          "id": "dpp-fi-001",
+          "title": "Sparse Primary Index Blocks",
+          "type": "mcq",
+          "question": "Relation C: 16384 fixed records of 256 bytes, key C.N = 22 bytes, unspanned. Block size 4096 bytes, block pointer 10 bytes. How many blocks are needed for a sparse primary index on C.N?",
+          "options": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "answer": 1,
+          "solution": "Records per block = 4096/256 = 16, so data blocks = 16384/16 = 1024 (= index entries). Entry = 22+10 = 32 bytes; 128 entries per block. Index blocks = 1024/128 = 8.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-002",
+          "title": "Dense Secondary Index Blocks",
+          "type": "nat",
+          "question": "Product P: 262144 records of 256 bytes. P.C = 32 bytes. Block size 4096 bytes, record pointer 32 bytes, unspanned. Number of blocks needed for a dense secondary index on P.C = ____",
+          "answer": 4096,
+          "solution": "Entry = 32+32 = 64 bytes; 4096/64 = 64 entries per block. Dense: 262144 entries, so blocks = 262144/64 = 4096.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-003",
+          "title": "Which Column to Index",
+          "type": "mcq",
+          "question": "SELECT P1, P2, P3 FROM Q WHERE P2 = 'Pavan' is executed frequently. Which column(s) should be indexed based only on the statement?",
+          "options": [
+            "P1 only",
+            "P2 only",
+            "P3 only",
+            "P1, P2 and P3"
+          ],
+          "answer": 1,
+          "solution": "Indexes help the search condition. The WHERE clause uses only P2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-004",
+          "title": "Blocking Factor",
+          "type": "mcq",
+          "question": "Disk block = 2048 bytes. Each record is 63 bytes plus 1 extra byte as end-of-record marker. What is the blocking factor (unspanned)?",
+          "options": [
+            "16",
+            "32",
+            "48",
+            "64"
+          ],
+          "answer": 1,
+          "solution": "Record size = 64 bytes. Blocking factor = ⌊2048/64⌋ = 32.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-005",
+          "title": "Indexing Statements",
+          "type": "mcq",
+          "question": "Which of the following statements is/are true regarding indexing?",
+          "options": [
+            "A database file can contain multiple clustered indexes.",
+            "A database file can consist of only one clustered index with multiple secondary indexes.",
+            "A database file can consist of multiple primary indexes.",
+            "A database file can consist of both primary and clustered index."
+          ],
+          "answer": 1,
+          "solution": "The file can be physically ordered on only one field, so only one primary or clustering index exists; any number of secondary indexes can be added.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-006",
+          "title": "Clustering Index Block Accesses",
+          "type": "nat",
+          "question": "25,000 fixed-length records of 100 bytes, ordered file; the clustering field is 10 bytes. Block size 512 bytes, block pointer 5 bytes. A cluster consumes 2 blocks. Worst-case block accesses to identify the desired data = ____",
+          "answer": 9,
+          "solution": "Records per block = 5, so data blocks = 5000. Clusters = 5000/2 = 2500 index entries. Entry = 10+5 = 15 bytes, 34 per block, so ⌈2500/34⌉ = 74 index blocks. Binary search = ⌈log2 74⌉ = 7. Then read the 2-block cluster: 7 + 2 = 9.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-007",
+          "title": "Secondary Index Statements",
+          "type": "mcq",
+          "question": "S1: If records of relation X are physically ordered over a non-key field P and an index is built over the key field of X, the index is necessarily a secondary index over a key attribute.\nS2: More than one secondary index is possible.",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 2,
+          "solution": "An index on a non-ordering field is a secondary index, and a file can have many secondary indexes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-008",
+          "title": "Index Blocking Factor",
+          "type": "nat",
+          "question": "Block = 2048 bytes, block pointer 14 bytes, record pointer 18 bytes. File of 60,000 records, 256 bytes each, sorted on key ESN (18 bytes). For the sparse primary index, what is the index blocking factor (entries per block)?",
+          "answer": 64,
+          "solution": "Index entry = key + block pointer = 18+14 = 32 bytes. Entries per block = 2048/32 = 64.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-009",
+          "title": "Secondary Index Entries",
+          "type": "nat",
+          "question": "B = 1024 bytes, BP = 12, RP = 7. File of 60,000 records of 230 bytes, unordered on key PSN (18 bytes). A secondary index is built on PSN. Let x and y be the number of first-level and second-level index entries. Find x + y.",
+          "answer": 61500,
+          "solution": "First level is dense: x = 60000. Entry = 18+7 = 25 bytes, 40 per block, so first-level blocks = 1500. Second-level entries y = 1500. x + y = 61500.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-010",
+          "title": "Secondary Index Blocks",
+          "type": "mcq",
+          "question": "Using the same data (B = 1024, BP = 12, RP = 7, 60,000 records, PSN = 18 bytes), let x and y be the number of first-level and second-level index blocks. Then x + y =",
+          "options": [
+            "1600",
+            "1500",
+            "45",
+            "1545"
+          ],
+          "answer": 3,
+          "solution": "First level: 60000/40 = 1500 blocks. Second-level entry = 18+12 = 30 bytes, 34 per block, so ⌈1500/34⌉ = 45 blocks. x + y = 1545.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-011",
+          "title": "Multilevel Primary Index",
+          "type": "nat",
+          "question": "r = 40,000 records of 100 bytes, key = 20 bytes, ordered, unspanned, B = 2000 bytes, block pointer = 20 bytes. A multilevel primary index is built on the key. Total number of blocks required by the multilevel index = ____",
+          "answer": 41,
+          "solution": "Data blocks = 40000/20 = 2000. Index entry = 40 bytes, 50 per block. Level 1: 2000/50 = 40 blocks. Level 2: ⌈40/50⌉ = 1 block. Total = 41.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-012",
+          "title": "Blocks Accessed With/Without Index",
+          "type": "mcq",
+          "question": "Ordered file of r = 60,000 records, B = 2048, R = 200 bytes, unspanned. Key V = 18 bytes, block pointer P = 12 bytes, primary index built. Let p and q be the blocks accessed without index and with primary index (binary search). Then p + q =",
+          "options": [
+            "18",
+            "19",
+            "20",
+            "21"
+          ],
+          "answer": 3,
+          "solution": "Data blocks = 60000/10 = 6000; p = ⌈log2 6000⌉ = 13. Index entry = 30 bytes, 68 per block, so ⌈6000/68⌉ = 89 index blocks; ⌈log2 89⌉ = 7 plus 1 data block gives q = 8. p + q = 21.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-013",
+          "title": "Spanned File Blocks",
+          "type": "mcq",
+          "question": "Unordered file of 10^6 records of 200 bytes on blocks of 8 KB with spanned organization (no block overhead). How many blocks are needed?",
+          "options": [
+            "24400",
+            "24405",
+            "24410",
+            "24415"
+          ],
+          "answer": 3,
+          "solution": "Total bytes = 2 x 10^8. Blocks = ⌈200000000/8192⌉ = ⌈24414.06⌉ = 24415.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-014",
+          "title": "Sparse vs Dense Indexes",
+          "type": "mcq",
+          "question": "S1: For any data file, it is possible to create two different sparse first-level indexes on various keys.\nS2: For any data file, it is possible to create two different dense first-level indexes on various keys.",
+          "options": [
+            "Only S1 correct",
+            "Only S2 correct",
+            "Both S1 and S2 are correct",
+            "Neither S1 nor S2 is correct"
+          ],
+          "answer": 1,
+          "solution": "A sparse index needs the file to be ordered on the indexed field, which is possible for only one field. Dense indexes can be created on many fields.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-015",
+          "title": "Not a Benefit of Indexes",
+          "type": "mcq",
+          "question": "Which of the following is NOT a benefit of using indexes in a database?",
+          "options": [
+            "Improved query performance",
+            "Reduced disk I/O",
+            "Increased storage space",
+            "Faster data retrieval"
+          ],
+          "answer": 2,
+          "solution": "Indexes need extra storage; this is a cost, not a benefit.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-016",
+          "title": "What is an Index",
+          "type": "mcq",
+          "question": "Which of the following best describes an index in a database?",
+          "options": [
+            "A column that stores unique identifiers for each row in a table.",
+            "A data structure that allows fast searching and retrieval of data based on certain criteria.",
+            "A set of constraints that enforce rules for data integrity.",
+            "None of the above."
+          ],
+          "answer": 1,
+          "solution": "An index is a data structure for fast lookup.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-017",
+          "title": "B+ Tree Leaf Order",
+          "type": "mcq",
+          "question": "Block = 1K bytes, data record pointer = 8 bytes, value field = 10 bytes, block pointer = 6 bytes. What is the order of the leaf node?",
+          "options": [
+            "53",
+            "54",
+            "55",
+            "56"
+          ],
+          "answer": 3,
+          "solution": "n(10+8) + 6 ≤ 1024 gives 18n ≤ 1018, so n = 56.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-018",
+          "title": "Max Keys in B+ Tree",
+          "type": "nat",
+          "question": "Order of a node = number of pointers it can hold. Maximum number of keys in a B+ tree of order 4 and height 4 (root height = 1)?",
+          "answer": 192,
+          "solution": "Each node holds at most 3 keys. Nodes per level: 1, 4, 16, 64. In a B+ tree all keys are in the leaves: 64 x 3 = 192.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-019",
+          "title": "Blocks for Data and Dense Index",
+          "type": "msq",
+          "question": "A block can hold either 3 records or 10 key pointers. A database contains P records. How many blocks are needed to hold the data file and the dense index?",
+          "options": [
+            "P/30",
+            "13P/30",
+            "P/3 + P/10",
+            "P/3"
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Data blocks = P/3; dense index entries = P, so P/10 blocks. Total = P/3 + P/10 = 13P/30, so options (b) and (c) are the same value.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-020",
+          "title": "B+ Tree Internal Node Order",
+          "type": "nat",
+          "question": "Child pointer = 6 bytes, search field = 34 bytes, block = 2048 bytes. What is the order of the internal node (maximum children)?",
+          "answer": 52,
+          "solution": "6n + 34(n−1) ≤ 2048 gives 40n ≤ 2082, so n = 52.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-021",
+          "title": "Secondary Index File Size",
+          "type": "mcq",
+          "question": "Block B = 1024 bytes, block pointer 12 bytes, record pointer 18 bytes. 1,00,000 patient records of 100 bytes, ordered on PID. A secondary dense index is built on non-key DeptID (14 bytes). Minimum number of blocks to store the index file (unspanned)?",
+          "options": [
+            "3000",
+            "3100",
+            "3125",
+            "None of the above"
+          ],
+          "answer": 2,
+          "solution": "Entry = 14+18 = 32 bytes, 32 entries per block. Dense: 100000 entries, so 100000/32 = 3125 blocks.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-022",
+          "title": "Order of B Tree Node",
+          "type": "nat",
+          "question": "B tree order = max block pointers per node. Block = 2K bytes, data record pointer = 8 bytes, search key = 9 bytes, block pointer = 5 bytes. The best possible order is ____",
+          "answer": 93,
+          "solution": "5p + (p−1)(9+8) ≤ 2048 gives 22p ≤ 2065, so p = 93.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-023",
+          "title": "Permissible Block Size",
+          "type": "nat",
+          "question": "Leaf order P = 36, data record pointer = 8 bytes, search field = 6 bytes, block pointer = 8 bytes. The (minimum) permissible block size is ____ bytes",
+          "answer": 512,
+          "solution": "36(6+8) + 8 = 512 bytes. A block of at least 512 bytes (up to 525; 526 would allow order 37) gives leaf order 36.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-024",
+          "title": "Minimum Keys in B and B+ Tree",
+          "type": "nat",
+          "question": "Let a and b be the minimum number of keys in a B tree and a B+ tree of order P = 5 and level = 5. Root has 2 to P pointers, internal nodes ⌈P/2⌉ to P pointers, B+ leaves ⌈P/2⌉−1 to P−1 keys. Find a + b (root is level 1).",
+          "answer": 269,
+          "solution": "Minimum nodes per level: 1, 2, 6, 18, 54. B tree (2 keys per non-root node, 1 in root): 1 + 4 + 12 + 36 + 108 = 161. B+ tree (keys only in leaves): 54 x 2 = 108. a + b = 269.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-025",
+          "title": "Maximum Keys in B and B+ Tree",
+          "type": "nat",
+          "question": "Let a and b be the maximum number of keys in a B tree and a B+ tree of order P = 5 and level = 5 (root is level 1). Find a + b.",
+          "answer": 5624,
+          "solution": "Max nodes per level: 1, 5, 25, 125, 625 = 781 nodes with 4 keys each. B tree: 781 x 4 = 3124. B+ tree (leaf keys only): 625 x 4 = 2500. a + b = 5624.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-026",
+          "title": "Maximum Levels of B+ Tree",
+          "type": "nat",
+          "question": "Keys 1 to 5000 are inserted into a B+ tree. Root has 2 to P pointers and other nodes ⌈P/2⌉ to P pointers (P = 9). Maximum possible levels (root = level 1)?",
+          "answer": 6,
+          "solution": "For maximum height use minimum fan-out: nodes per level 1, 2, 10, 50, 250, 1250. Leaves hold at least 4 keys, so 1250 x 4 = 5000 fits exactly at level 6; a 7th level would need 25000 keys.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-027",
+          "title": "B+ Tree Data Pointers",
+          "type": "mcq",
+          "question": "S1: In a B+ tree, data pointers are stored only at the leaf nodes.\nS2: The leaf node has an entry for every value of the search field, along with the data pointer to the record.",
+          "options": [
+            "Only S1 is true",
+            "Only S2 is true",
+            "Both S1 and S2 are true",
+            "Neither S1 nor S2 is true"
+          ],
+          "answer": 2,
+          "solution": "Both are standard properties of a B+ tree.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-028",
+          "title": "B+ Tree Properties",
+          "type": "msq",
+          "question": "Which of the following is/are true regarding B+ tree?",
+          "options": [
+            "Records can be fetched in equal number of disk access.",
+            "Height of the tree remains balanced and less as compared to B tree.",
+            "Keys are used for indexing.",
+            "Faster search queries as the data is stored only on the leaf nodes."
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "All leaves are at the same level, internal nodes store only keys (more fan-out, smaller height), and data lives only in leaves. All four hold.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fi-029",
+          "title": "Minimum Levels of B+ Tree",
+          "type": "nat",
+          "question": "Keys 1 to 5000 are inserted into a B+ tree with P = 9 (root: 2 to P pointers, others ⌈P/2⌉ to P). Minimum possible levels (root = level 1)?",
+          "answer": 4,
+          "solution": "For minimum height use maximum fan-out: leaves at level L can hold 8 x 9^(L−1) keys. L=3: 648 < 5000; L=4: 5832 ≥ 5000. So 4.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    }
+  ]
 }
