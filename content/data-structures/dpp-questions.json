@@ -1,4 +1,765 @@
 {
-  "title": "data-structures - DPP",
-  "chapters": []
+  "title": "Data Structures DPP Questions",
+  "chapters": [
+    {
+      "title": "Arrays",
+      "questions": [
+        {
+          "id": "dpp-ds-a1-01",
+          "title": "Arrays-I (DPP-01) · Q1",
+          "type": "nat",
+          "question": "Consider a 1D array `a` with 9 elements. If the base address of the array is 108 and the size of each array element is 4 bytes, the address of `a[7]` is (assume array index starts from 0).",
+          "answer": 136,
+          "solution": "Address $=108+7\\times4=136$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a1-02",
+          "title": "Arrays-I (DPP-01) · Q2",
+          "type": "nat",
+          "question": "Consider a 1D array `a[-127 ... +255]` where $-127$ and $+255$ are the starting and ending index of the array respectively. The number of elements in the array is",
+          "answer": 383,
+          "solution": "Number of elements $=255-(-127)+1=383$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a1-03",
+          "title": "Arrays-I (DPP-01) · Q3",
+          "type": "nat",
+          "question": "Consider a 1D array `a` with 19 elements. If the base address of the array is 108 and the size of each array element is 4 bytes, the address of `a[7]` is (assume array index starts from $-11$).",
+          "answer": 180,
+          "solution": "Address $=108+(7-(-11))\\times4=108+72=180$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a1-04",
+          "title": "Arrays-I (DPP-01) · Q4",
+          "type": "nat",
+          "question": "Consider a 2D array `a[-127 to +255][-13 to +14]`. The number of elements in the array is",
+          "answer": 10724,
+          "solution": "Rows $=383$, columns $=14-(-13)+1=28$. Elements $=383\\times28=10724$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a1-05",
+          "title": "Arrays-I (DPP-01) · Q5",
+          "type": "nat",
+          "question": "Consider the natural numbers from 1 to 256 are stored in a 2D array `arr[-28 to 3][-3 to 3]`. Find the element present at location `arr[-16][1]`. (Suppose the elements are stored in row-major order.)",
+          "answer": 89,
+          "solution": "Columns $=7$. Row offset $=-16-(-28)=12$, column offset $=1-(-3)=4$. Position $=12\\times7+4=88$ (0-based), so the stored element is $88+1=89$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a1-06",
+          "title": "Arrays-I (DPP-01) · Q6",
+          "type": "nat",
+          "question": "Consider the natural numbers from 1 to 256 are stored in a 2D array `arr[-28 to 3][-3 to 3]`. Find the address of the location `arr[-16][1]` if the starting address of the array is 625 and the size of each element is 4 bytes. (Suppose the elements are stored in row-major order.)",
+          "answer": 977,
+          "solution": "Offset $=12\\times7+4=88$ elements. Address $=625+88\\times4=977$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a1-07",
+          "title": "Arrays-I (DPP-01) · Q7",
+          "type": "nat",
+          "question": "Consider the whole numbers from 0 to 127 are stored in a 2D array `arr[0 to 15][0 to 7]`. Find the element present at location `arr[6][4]`. (Suppose the elements are stored in column-major order.)",
+          "answer": 70,
+          "solution": "Rows $=16$. Column-major position $=4\\times16+6=70$. Since numbering starts from $0$, the stored element is $70$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a1-08",
+          "title": "Arrays-I (DPP-01) · Q8",
+          "type": "nat",
+          "question": "Consider a 2D array `arr[-15 to 15][-7 to 7]`. Find the address of the location `arr[-1][5]` if the starting address of the array is 500 and the size of each element is 4 bytes. (Suppose the elements are stored in column-major order.)",
+          "answer": 2044,
+          "solution": "Rows $=31$. Row offset $=-1+15=14$, column offset $=5+7=12$. Position $=12\\times31+14=386$. Address $=500+386\\times4=2044$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a2-01",
+          "title": "Arrays-II (DPP-02) · Q1",
+          "type": "nat",
+          "question": "Consider a lower triangular 2D array `arr[][5]` with 15 elements. The number of rows in `arr` is",
+          "answer": 5,
+          "solution": "A lower triangular $n\\times n$ array stores $\\frac{n(n+1)}2=15$ elements, so $n=5$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a2-02",
+          "title": "Arrays-II (DPP-02) · Q2",
+          "type": "nat",
+          "question": "Consider an integer 2D array `a[-7 to +7][-7 to +7]` that stores an upper triangular matrix `uppertm` where `uppertm[i][j]` is 1 for all $i\\le j$. The sum of all the elements in the array is",
+          "answer": 120,
+          "solution": "The array is $15\\times15$. The number of cells with $i\\le j$ is $\\frac{15\\cdot16}{2}=120$, each holding 1.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a2-03",
+          "title": "Arrays-II (DPP-02) · Q3",
+          "type": "nat",
+          "question": "Consider an integer lower triangular 2D array `arr[-16 to +15][-16 to +15]` having base address 1000. If the size of the integer is 4 bytes, the address of the element `arr[8][7]` is (row-major storage of the lower triangle).",
+          "answer": 2292,
+          "solution": "Row index $i=8+16=24$, column index $j=7+16=23$. Elements before row $i$: $\\frac{i(i+1)}2=300$. Position $=300+23=323$. Address $=1000+323\\times4=2292$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a2-04",
+          "title": "Arrays-II (DPP-02) · Q4",
+          "type": "nat",
+          "question": "Consider an integer upper triangular 2D array `arr[-8 to +7][-8 to +7]` having base address 1000. If the size of an integer is 4 bytes, the address of the element present at location `arr[-6][4]` is (row-major storage of the upper triangle).",
+          "answer": 1164,
+          "solution": "$n=16$, $i=-6+8=2$, $j=4+8=12$. Elements before row $i$: $i\\cdot n-\\frac{i(i-1)}2=32-1=31$. Position $=31+(j-i)=41$. Address $=1000+41\\times4=1164$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a2-05",
+          "title": "Arrays-II (DPP-02) · Q5",
+          "type": "nat",
+          "question": "Consider the natural numbers starting from 1 are stored in a lower triangular matrix `arr[-3 to 3][-3 to 3]`. Find the element present at location `arr[1][1]`. (Row-major order.)",
+          "answer": 15,
+          "solution": "$i=j=4$. Elements before row 4: $\\frac{4\\cdot5}2=10$. Position $=10+4=14$ (0-based), so the element is $15$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a2-06",
+          "title": "Arrays-II (DPP-02) · Q6",
+          "type": "nat",
+          "question": "Consider the natural numbers starting from 1 are stored in an upper triangular 2D array `arr[-3 to 3][-3 to 3]`. Find the element present at location `arr[1][2]`. (Row-major order.)",
+          "answer": 24,
+          "solution": "$n=7$, $i=4$, $j=5$. Elements before row 4: $4\\cdot7-\\frac{4\\cdot3}2=22$. Position $=22+(5-4)=23$ (0-based), so the element is $24$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a2-07",
+          "title": "Arrays-II (DPP-02) · Q7",
+          "type": "nat",
+          "question": "Consider a 2D array `arr[-4 to +4][-4 to +4]` that stores an upper triangular matrix. Find the address of the location `arr[-1][-1]` if the starting address of the array is 500 and the size of each element is 8 bytes. Assume that elements are stored in column-major order.",
+          "answer": 572,
+          "solution": "$n=9$, $i=j=3$. Column-major upper triangle: elements before column $j$ $=\\frac{j(j+1)}2=6$, plus $i=3$ within the column: position $=9$. Address $=500+9\\times8=572$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-a2-08",
+          "title": "Arrays-II (DPP-02) · Q8",
+          "type": "nat",
+          "question": "Consider a 2D array `arr[-4 to +4][-4 to +4]` that stores a lower triangular matrix. Find the address of the location `arr[-2][-3]` if the starting address of the array is 500 and the size of each element is 8 bytes. Assume that elements are stored in column-major order.",
+          "answer": 580,
+          "solution": "$n=9$, $i=2$, $j=1$. Column-major lower triangle: elements before column $j$ $=jn-\\frac{j(j-1)}2=9$, plus $(i-j)=1$ within the column: position $=10$. Address $=500+10\\times8=580$.",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Hashing",
+      "questions": [
+        {
+          "id": "dpp-ds-h1-01",
+          "title": "Hashing (DPP-01) · Q1",
+          "type": "nat",
+          "question": "Consider a hash table $H$ with 512 slots. If 128 keys are to be stored in $H$, the load factor of $H$ is",
+          "answer": 0.25,
+          "solution": "Load factor $\\alpha=\\frac nm=\\frac{128}{512}=0.25$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-h1-02",
+          "title": "Hashing (DPP-01) · Q2",
+          "type": "nat",
+          "question": "Consider a hash function that distributes keys uniformly. The hash table size is 2024. After hashing how many keys will the probability that any new key hashed collides with an existing one exceed 0.75?",
+          "answer": 1518,
+          "range": [
+            1518,
+            1519
+          ],
+          "solution": "With $k$ keys stored, a new key collides with probability $\\frac k{2024}$. $\\frac k{2024}=0.75$ gives $k=1518$ (the first value for which it exceeds $0.75$ is $1519$, so both are accepted).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-h1-03",
+          "title": "Hashing (DPP-01) · Q3",
+          "type": "mcq",
+          "question": "Suppose we are given $n$ keys, $m$ hash table slots, and two simple uniform hash functions $h_1$ and $h_2$. Further suppose our hashing scheme uses $h_1$ for the even keys and $h_2$ for the odd keys. What is the expected number of keys in a slot?",
+          "options": [
+            "$\\frac nm$",
+            "$\\frac mn$",
+            "$\\frac{2n}m$",
+            "$\\frac m{2n}$"
+          ],
+          "answer": 0,
+          "solution": "Each key lands in any given slot with probability $\\frac1m$ regardless of which uniform function is used. Expected keys per slot $=\\frac nm$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-h1-04",
+          "title": "Hashing (DPP-01) · Q4",
+          "type": "nat",
+          "question": "A hash table contains 9 buckets and uses linear probing to resolve collisions. The key values are integers and the hash function used is `key % 9`. If the values 41, 157, 72, 76, 31 are inserted in the table, in what location would the last key be inserted?",
+          "answer": 7,
+          "solution": "$41\\to5$, $157\\to4$, $72\\to0$. $76\\to4$ is occupied, so probe $5$ (occupied) and place it at $6$. $31\\to4$: slots $4,5,6$ are occupied, so it goes to $7$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-h1-05",
+          "title": "Hashing (DPP-01) · Q5",
+          "type": "mcq",
+          "question": "Which one of the following hash functions on integers will distribute keys most uniformly over 10 buckets numbered 0 to 9 for $i$ ranging from 0 to 2024?",
+          "options": [
+            "$h(i)=(12\\cdot i)\\bmod 10$",
+            "$h(i)=(11\\cdot i^2)\\bmod 10$",
+            "$h(i)=i^3\\bmod 10$",
+            "$h(i)=i^2\\bmod 10$"
+          ],
+          "answer": 2,
+          "solution": "$i^3\\bmod10$ depends only on the last digit and maps digits $0,\\dots,9$ to $0,1,8,7,4,5,6,3,2,9$, a permutation, so all buckets are hit almost equally. $12i$ hits only even buckets, and $i^2$, $11i^2$ hit only $\\{0,1,4,5,6,9\\}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-h1-06",
+          "title": "Hashing (DPP-01) · Q6",
+          "type": "nat",
+          "question": "Consider a double hashing scheme in which the primary hash function is $h_1(k)=k\\bmod17$ and the secondary hash function is $h_2(k)=1+(k\\bmod13)$. Assume that the table size is 17. Then the address returned by probe 2 in the probe sequence (assume that the probe sequence begins at probe 0) for key value $k=127$ is",
+          "answer": 13,
+          "solution": "$h_1(127)=127\\bmod17=8$, $h_2(127)=1+(127\\bmod13)=1+10=11$. Probe $i$: $(h_1+i\\,h_2)\\bmod17$. For $i=2$: $(8+22)\\bmod17=30\\bmod17=13$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-h1-07",
+          "title": "Hashing (DPP-01) · Q7",
+          "type": "mcq",
+          "question": "Consider a hash table with 11 slots. The hash function is $h(k)=k\\bmod11$. The collisions are resolved by chaining. The following 11 keys are inserted in the order: 28, 19, 15, 20, 33, 30, 42, 63, 60, 32, 43. The maximum, minimum, and average chain lengths in the hash table, respectively, are",
+          "options": [
+            "$3,\\ 0,\\ 1$",
+            "$3,\\ 3,\\ 3$",
+            "$3,\\ 0,\\ 2$",
+            "$4,\\ 0,\\ 1$"
+          ],
+          "answer": 0,
+          "solution": "Slots: $28\\to6$, $19\\to8$, $15\\to4$, $20\\to9$, $33\\to0$, $30\\to8$, $42\\to9$, $63\\to8$, $60\\to5$, $32\\to10$, $43\\to10$. Chain lengths: slot 8 has 3, slots 9 and 10 have 2, slots 0, 4, 5, 6 have 1 and slots 1, 2, 3, 7 are empty. Max $=3$, min $=0$, average $=\\frac{11}{11}=1$.",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Linked List",
+      "questions": [
+        {
+          "id": "dpp-ds-l1-03",
+          "title": "Linked List (DPP-01) · Q3",
+          "type": "mcq",
+          "question": "Consider the following statements. P: Linked lists support linear accessing of elements. Q: Linked lists support random accessing of elements. Which of the statements is/are INCORRECT?",
+          "options": [
+            "P only",
+            "Q only",
+            "Both P and Q",
+            "Neither P nor Q"
+          ],
+          "answer": 1,
+          "solution": "To reach the $i$-th node we must traverse from the head, so access is linear (sequential). Random (constant-time) access is not supported, so Q is incorrect.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-l1-05",
+          "title": "Linked List (DPP-01) · Q5",
+          "type": "mcq",
+          "question": "Consider the following statements. P: Insertion at the end of the linked list is more difficult than insertion at the beginning. Q: Deletion at the beginning of a linked list is easier as compared to deletion at the end. Which statements are CORRECT?",
+          "options": [
+            "Both P and Q",
+            "P only",
+            "Q only",
+            "Neither P nor Q"
+          ],
+          "answer": 0,
+          "solution": "In a singly linked list with only a head pointer, insertion or deletion at the beginning is $O(1)$, while at the end it needs a traversal ($O(n)$). Both statements are correct.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-l2-01",
+          "title": "Linked List (DPP-02) · Q1",
+          "type": "nat",
+          "question": "Consider a linked list `[a, b, c, d, e]`. `ptr` points to the start node. The output of the statement `printf(\"%d\", ptr->next->next->data)` is",
+          "answer": 99,
+          "solution": "`ptr->next->next` is the third node, holding `'c'`. `%d` prints the ASCII code of `'c'`, which is $99$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-l2-08",
+          "title": "Linked List (DPP-02) · Q8",
+          "type": "mcq",
+          "question": "A node of a linked list is to be created by calling the `malloc()` function. The `malloc()` returns NULL if",
+          "options": [
+            "Stack overflow occurs.",
+            "Memory leakage occurs.",
+            "Memory is full.",
+            "None of the above."
+          ],
+          "answer": 2,
+          "solution": "`malloc()` allocates from the heap and returns NULL when the request cannot be satisfied, i.e. when sufficient free memory is not available.",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Stacks and Queues",
+      "questions": [
+        {
+          "id": "dpp-ds-s1-01",
+          "title": "Stacks and Queues (DPP-01) · Q1",
+          "type": "nat",
+          "question": "Consider the following operations on an empty stack: `push(5); push(2); pop(); push(4); push(6); p=pop(); q=pop(); r=pop();`. The value of $p+q-r$ is",
+          "answer": 5,
+          "solution": "Stack evolution: $[5]\\to[5,2]\\to[5]\\to[5,4]\\to[5,4,6]$. Then $p=6$, $q=4$, $r=5$. $p+q-r=6+4-5=5$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-s1-02",
+          "title": "Stacks and Queues (DPP-01) · Q2",
+          "type": "msq",
+          "question": "Which of the following includes the applications of stack?",
+          "options": [
+            "Recursive function calls",
+            "HTML and XML tag matching",
+            "Checking if an expression contains balanced parentheses",
+            "Finding the maximum element in a given sequence"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Function calls (call stack), tag matching and parenthesis checking are classic stack applications. Finding the maximum of a sequence needs no stack.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-s1-04",
+          "title": "Stacks and Queues (DPP-01) · Q4",
+          "type": "mcq",
+          "question": "A single array `A[1...MAXSIZE]` is used to implement two stacks. The two stacks grow from opposite ends of the array. Variables `top1` and `top2` ($top1<top2$) point to the location of the topmost element in each of the stacks. The condition for \"stack full\" is",
+          "options": [
+            "(`top1 = MAXSIZE/2`) and (`top2 = MAXSIZE/2+1`)",
+            "(`top1 = MAXSIZE/2`) or (`top2 = MAXSIZE/2+1`)",
+            "`top1 + top2 = MAXSIZE`",
+            "`top1 = top2 - 1`"
+          ],
+          "answer": 3,
+          "solution": "The stacks share the whole array, so the array is full exactly when the two tops are adjacent: `top1 = top2 - 1`.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-s1-06",
+          "title": "Stacks and Queues (DPP-01) · Q6",
+          "type": "msq",
+          "question": "Which permutation(s) CANNOT be obtained in the output using a stack, assuming that the input is the sequence `a, b, c, d, e` in that order?",
+          "options": [
+            "`cdeab`",
+            "`aebcd`",
+            "`cdeba`",
+            "`edcba`"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "`cdeab`: after popping c, d, e the stack holds a, b with b on top, so b must come out before a. `aebcd`: after a and e are out, the stack holds b, c, d with d on top, so d must come before b. `cdeba` and `edcba` are obtainable.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-s2-01",
+          "title": "Stacks and Queues (DPP-02) · Q1",
+          "type": "mcq",
+          "question": "Consider the infix expression `P-Q/(R*S)+T*U`. The prefix notation is",
+          "options": [
+            "`-+P/Q*RS*TU`",
+            "`+-P/Q*RS*TU`",
+            "`+-/PQ*RS*TU`",
+            "None of the above"
+          ],
+          "answer": 1,
+          "solution": "The expression is $(P-(Q/(R*S)))+(T*U)$. Prefix: `+ - P / Q * R S * T U`.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-s2-02",
+          "title": "Stacks and Queues (DPP-02) · Q2",
+          "type": "mcq",
+          "question": "Consider the infix expression `P+Q/R-S*T^U/V-W`. The postfix notation is",
+          "options": [
+            "`PQR/+STU^*V/-W-`",
+            "`PQ+RS-TU^*V/-W-`",
+            "`PQR/-STU^*V/W+-`",
+            "None of the above"
+          ],
+          "answer": 0,
+          "solution": "Parsed as $((P+(Q/R))-((S*(T^U))/V))-W$. Postfix: `P Q R / + S T U ^ * V / - W -`.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-s2-03",
+          "title": "Stacks and Queues (DPP-02) · Q3",
+          "type": "mcq",
+          "question": "Consider the prefix notation `/^*+abc/de^gh`. The postfix notation is",
+          "options": [
+            "`ab+c*de/^gh^/`",
+            "`abc+*de/^gh^/`",
+            "`abc+de/*^gh^/`",
+            "None of the above"
+          ],
+          "answer": 0,
+          "solution": "Parsing the prefix form gives $\\big(((a+b)*c)\\,\\wedge\\,(d/e)\\big)\\,/\\,(g\\wedge h)$. Postfix: `a b + c * d e / ^ g h ^ /`.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-s2-04",
+          "title": "Stacks and Queues (DPP-02) · Q4",
+          "type": "nat",
+          "question": "Consider the infix expression `P+Q/R-S*T^U/V-W`. The maximum size of the operator stack required for the conversion to postfix is",
+          "answer": 3,
+          "solution": "Operator stack while scanning: `+` $\\to$ `+ /` $\\to$ (on `-`) `-` $\\to$ `- *` $\\to$ `- * ^` (size 3) $\\to$ (on `/`) `- /` $\\to$ (on `-`) `-`. The maximum size is 3.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-s2-05",
+          "title": "Stacks and Queues (DPP-02) · Q5",
+          "type": "mcq",
+          "question": "In the infix expression `P*Q/R-S*T+U/V*W`, on reaching the symbol `V` during the conversion to postfix, the top two contents of the operator stack (top first) are",
+          "options": [
+            "`/`, `*`",
+            "`-`, `*`",
+            "`*`, `+`",
+            "`/`, `+`"
+          ],
+          "answer": 3,
+          "solution": "Scanning: `*`; on `/` pop `*`, push `/`; on `-` pop `/`, push `-`; `*` pushed; on `+` pop `*` and `-`, push `+`; then `/` is pushed. On reaching `V` the stack is `+ /` with `/` on top.",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Trees and Heaps",
+      "questions": [
+        {
+          "id": "dpp-ds-t1-01",
+          "title": "Tree (DPP-01) · Q1",
+          "type": "nat",
+          "question": "A binary tree has 1024 leaves. The number of nodes in the tree having two children is",
+          "answer": 1023,
+          "solution": "In a binary tree, (nodes with 2 children) $=$ (leaves) $-1=1023$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t1-02",
+          "title": "Tree (DPP-01) · Q2",
+          "type": "mcq",
+          "question": "The height of a tree is the length of the longest root-to-leaf path in it. The maximum and minimum number of nodes in a binary tree of height 9 are",
+          "options": [
+            "$1024,\\ 9$",
+            "$1023,\\ 10$",
+            "$511,\\ 9$",
+            "$512,\\ 10$"
+          ],
+          "answer": 1,
+          "solution": "Maximum (complete tree of height $h$): $2^{h+1}-1=2^{10}-1=1023$. Minimum (a single path): $h+1=10$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t1-03",
+          "title": "Tree (DPP-01) · Q3",
+          "type": "nat",
+          "question": "In a binary tree, the number of internal nodes of degree 1 is 6, and the number of internal nodes of degree 2 is 12. The number of leaf nodes in the binary tree is",
+          "answer": 13,
+          "solution": "Leaves $=n_2+1=12+1=13$ (degree-1 nodes do not change the count).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t1-04",
+          "title": "Tree (DPP-01) · Q4",
+          "type": "mcq",
+          "question": "A strict $k$-ary tree $T$ is a tree in which every node has either 0 or $k$ children. The number of leaf nodes in $T$, if there are $p$ internal nodes, is",
+          "options": [
+            "$(k-1)p+1$",
+            "$pk+1$",
+            "$pk+1+p$",
+            "None"
+          ],
+          "answer": 0,
+          "solution": "Total nodes $=pk+1$ (every non-root node is a child of some internal node). Leaves $=pk+1-p=(k-1)p+1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t1-05",
+          "title": "Tree (DPP-01) · Q5",
+          "type": "nat",
+          "question": "A linked list is used to store a binary tree with 1024 nodes. The number of null pointers present in the linked list is",
+          "answer": 1025,
+          "solution": "$n$ nodes have $2n$ pointer fields and $n-1$ of them are used by edges, so the null pointers number $2n-(n-1)=n+1=1025$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t1-06",
+          "title": "Tree (DPP-01) · Q6",
+          "type": "nat",
+          "question": "A full binary tree has 4 leaves (it is the perfect binary tree of height 2). Two leaves are chosen uniformly at random and independently, so the same leaf may be chosen twice. The expected value of the distance (number of edges) between them is",
+          "answer": 2.5,
+          "solution": "There are $16$ ordered pairs. Same leaf: $4$ pairs at distance $0$. Sibling leaves: $4$ ordered pairs at distance $2$. Other pairs: $8$ at distance $4$. Expected $=\\frac{0\\cdot4+2\\cdot4+4\\cdot8}{16}=2.5$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t1-07",
+          "title": "Tree (DPP-01) · Q7",
+          "type": "mcq",
+          "question": "The number of leaf nodes in a rooted tree of $n$ nodes, with each node having 0 or 2 children, is",
+          "options": [
+            "$\\frac{n+1}{2}$",
+            "$\\frac{n-1}{2}$",
+            "$\\frac n2$",
+            "$n-1$"
+          ],
+          "answer": 0,
+          "solution": "Let leaves $=l$ and internal nodes $=i$. Then $l=i+1$ and $l+i=n$, so $l=\\frac{n+1}2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t2-07",
+          "title": "Tree (DPP-02) · Q7",
+          "type": "nat",
+          "question": "The pre-order traversal of a binary tree is `1, 2, 4, 7, 8, 3, 5, 6, 9`. The in-order traversal of the same tree is `7 4 8 2 1 5 3 6 9`. The height of the tree (number of edges on the longest root-to-leaf path) is",
+          "answer": 3,
+          "solution": "Root 1. Left subtree: root 2 with children subtree rooted at 4 (left child 7, right child 8). Right subtree: root 3 with left child 5 and right child 6, whose right child is 9. Longest paths: $1\\to2\\to4\\to7$ and $1\\to3\\to6\\to9$, both of length 3.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t3-01",
+          "title": "Tree (DPP-03) · Q1",
+          "type": "nat",
+          "question": "The number of unlabelled binary trees possible with four nodes is",
+          "answer": 14,
+          "solution": "Catalan number $C_4=\\frac1{5}\\binom84=14$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t3-02",
+          "title": "Tree (DPP-03) · Q2",
+          "type": "nat",
+          "question": "The number of labelled binary trees possible with nodes 10, 30, 25, 40 is",
+          "answer": 336,
+          "solution": "Each of the $14$ shapes can be labelled in $4!=24$ ways: $14\\times24=336$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t3-03",
+          "title": "Tree (DPP-03) · Q3",
+          "type": "nat",
+          "question": "The number of binary search trees possible with nodes 10, 30, 25, 40 is",
+          "answer": 14,
+          "solution": "For distinct keys the number of BSTs equals the number of binary tree shapes, $C_4=14$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t3-04",
+          "title": "Tree (DPP-03) · Q4",
+          "type": "mcq",
+          "question": "The pre-order traversal of a binary search tree is `7, 3, 2, 1, 5, 4, 6, 8, 10, 9, 11`. The post-order traversal of the same tree is",
+          "options": [
+            "`1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11`",
+            "`1, 2, 4, 6, 5, 3, 9, 11, 10, 8, 7`",
+            "`1, 2, 4, 5, 6, 3, 9, 10, 11, 8, 7`",
+            "`11, 9, 10, 8, 6, 4, 5, 1, 2, 3, 7`"
+          ],
+          "answer": 1,
+          "solution": "Rebuild the BST: root 7; left subtree `3 (2 (1), 5 (4, 6))`; right subtree `8 (-, 10 (9, 11))`. Post-order: `1 2 4 6 5 3 9 11 10 8 7`.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t5-01",
+          "title": "Tree (DPP-05) · Q1",
+          "type": "nat",
+          "question": "The minimum number of nodes in an AVL tree of height 6 is (the height of the root is 1).",
+          "answer": 20,
+          "solution": "$N(h)=N(h-1)+N(h-2)+1$ with $N(1)=1$, $N(2)=2$: $N(3)=4$, $N(4)=7$, $N(5)=12$, $N(6)=20$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t5-03",
+          "title": "Tree (DPP-05) · Q3",
+          "type": "nat",
+          "question": "The total number of ways to construct a max-heap with the keys 7, 6, 1, 4, 5, 2, 3 is",
+          "answer": 80,
+          "solution": "Number of heap orderings $=\\frac{n!}{\\prod(\\text{subtree sizes})}=\\frac{7!}{7\\cdot3\\cdot3}=80$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t5-05",
+          "title": "Tree (DPP-05) · Q5",
+          "type": "msq",
+          "question": "The following operations are performed on an initially empty BST (deletion of a node with two children may use either the in-order predecessor or the in-order successor): `INSERT(23), INSERT(17), INSERT(25), INSERT(4), INSERT(21), INSERT(1), INSERT(7), DELETE(17), DELETE(23)`. The post-order traversal of the resultant BST can be",
+          "options": [
+            "`1, 7, 4, 21, 25`",
+            "`1, 4, 7, 25, 21`",
+            "`1, 4, 21, 7, 25`",
+            "None"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Deleting 17 (replace with 7 or 21) and then 23 (replace with predecessor or successor) gives four possible trees. Their post-orders are `1 7 4 21 25`, `1 4 7 25 21`, `1 4 21 7 25` and `1 7 4 25 21`. The first three appear in the options.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t5-06",
+          "title": "Tree (DPP-05) · Q6",
+          "type": "msq",
+          "question": "Which of the following sequence(s) of array form a heap?",
+          "options": [
+            "`23, 17, 14, 6, 13, 10, 1, 12, 7, 5`",
+            "`1, 5, 10, 6, 7, 12, 13, 14, 17, 23`",
+            "`23, 17, 14, 7, 13, 10, 1, 5, 6, 12`",
+            "`1, 5, 10, 12, 13, 7, 14, 17, 23, 6`"
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "(a) fails: index 4 holds 6 but its child at index 8 holds 12 (not a max-heap, not a min-heap). (b) is a valid min-heap. (c) is a valid max-heap. (d) fails: index 3 holds 10 but its child at index 6 holds 7.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t5-08",
+          "title": "Tree (DPP-05) · Q8",
+          "type": "nat",
+          "question": "Construct an AVL tree by inserting the keys 12, 10, 15, 14, 13, 17, 8 in this order. The immediate left child key value of the root node is",
+          "answer": 12,
+          "solution": "After 12, 10, 15, 14, 13: node 15 is unbalanced (LL), so rotate right to get `12 (10, 14 (13, 15))`. Inserting 17 unbalances the root (RR), so rotate left: root 14 with left child 12 (10, 13) and right child 15 (-, 17). Inserting 8 keeps the tree balanced. The root is 14 and its left child is 12.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t6-01",
+          "title": "Tree (DPP-06) · Q1",
+          "type": "nat",
+          "question": "The maximum number of comparisons needed to find the maximum element in a min-heap of 1024 elements is",
+          "answer": 511,
+          "solution": "The maximum of a min-heap is one of the leaves. A min-heap of 1024 elements has $\\frac{1024}{2}=512$ leaves, and finding the largest of 512 elements needs $511$ comparisons.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t6-03",
+          "title": "Tree (DPP-06) · Q3",
+          "type": "nat",
+          "question": "Consider the array `50 40 10 5 60 70 40 15 80`. The minimum number of swap operations needed to convert it into a max-heap (bottom-up build-heap) is",
+          "answer": 5,
+          "solution": "Sift down from index 4: swap with 80 (1). Index 3: swap with 70 (1). Index 2: swap with 80 (1). Index 1: swap with 80, then with 60 (2). Total $=5$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t6-04",
+          "title": "Tree (DPP-06) · Q4",
+          "type": "mcq",
+          "question": "The resultant max-heap of the array `50 40 10 5 60 70 40 15 80` using the bottom-up build-heap approach is",
+          "options": [
+            "`80, 60, 70, 40, 50, 10, 40, 15, 5`",
+            "`80, 70, 60, 50, 40, 10, 40, 5, 15`",
+            "`80, 70, 60, 50, 40, 40, 15, 10, 5`",
+            "None"
+          ],
+          "answer": 0,
+          "solution": "Performing the sift-downs from index 4 up to index 1 gives `80 60 70 40 50 10 40 15 5`.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t6-05",
+          "title": "Tree (DPP-06) · Q5",
+          "type": "nat",
+          "question": "The sequence of elements `50, 40, 10, 5, 60, 70, 40, 15, 80` is inserted into a max-heap one by one. The number of shift (swap with parent) operations required is",
+          "answer": 8,
+          "solution": "Shifts per insertion: 50 (0), 40 (0), 10 (0), 5 (0), 60 (2), 70 (2), 40 (0), 15 (1), 80 (3). Total $=8$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t6-06",
+          "title": "Tree (DPP-06) · Q6",
+          "type": "mcq",
+          "question": "The resultant max-heap using element-by-element insertion for the sequence `50, 40, 10, 5, 60, 70, 40, 15, 80` is",
+          "options": [
+            "`80, 60, 70, 40, 50, 10, 40, 15, 5`",
+            "`80, 70, 60, 50, 40, 10, 40, 5, 15`",
+            "`80, 70, 60, 50, 40, 40, 15, 10, 5`",
+            "None"
+          ],
+          "answer": 1,
+          "solution": "Inserting one by one with sift-up gives `80 70 60 50 40 10 40 5 15`.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t7-02",
+          "title": "Tree (DPP-07) · Q2",
+          "type": "mcq",
+          "question": "What is the worst-case time complexity of inserting $n^2$ elements into an AVL tree with $n$ elements initially?",
+          "options": [
+            "$O(n^2)$",
+            "$O(n^2\\log n)$",
+            "$O(n^4)$",
+            "$O(n^3)$"
+          ],
+          "answer": 1,
+          "solution": "Each insertion costs $O(\\log\\text{size})$ and the size never exceeds $n+n^2$, so each costs $O(\\log n)$. Total $=n^2\\cdot O(\\log n)=O(n^2\\log n)$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t7-03",
+          "title": "Tree (DPP-07) · Q3",
+          "type": "mcq",
+          "question": "The numbers 7, 5, 1, 8, 3, 6, 0, 9, 4, 2 are inserted in that order into an initially empty binary search tree. The pre-order traversal sequence of the resultant tree is",
+          "options": [
+            "`7 5 1 0 3 2 4 6 8 9`",
+            "`0 2 4 3 1 6 5 9 8 7`",
+            "`0 1 2 3 4 5 6 7 8 9`",
+            "`9 8 6 4 2 3 0 1 5 7`"
+          ],
+          "answer": 0,
+          "solution": "The BST is `7 (5 (1 (0, 3 (2, 4)), 6), 8 (-, 9))`. Pre-order: `7 5 1 0 3 2 4 6 8 9`.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t7-04",
+          "title": "Tree (DPP-07) · Q4",
+          "type": "mcq",
+          "question": "Consider the activation tree of a recursive program. S1: The sequence of procedure calls corresponds to a pre-order traversal of the activation tree. S2: The sequence of procedure returns corresponds to a post-order traversal of the activation tree. Which option is correct?",
+          "options": [
+            "S1 only",
+            "S2 only",
+            "Both S1 and S2",
+            "Neither S1 nor S2"
+          ],
+          "answer": 2,
+          "solution": "A call is made when a node is first visited (pre-order) and the procedure returns after all its children finish (post-order). Both statements are true.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t7-07",
+          "title": "Tree (DPP-07) · Q7",
+          "type": "nat",
+          "question": "A complete $n$-ary tree is a tree in which each node has $n$ children or no children. Let $L=41$ be the number of leaves and $I=10$ the number of internal nodes. The value of $n$ is",
+          "answer": 5,
+          "solution": "$L=(n-1)I+1$, so $41=(n-1)\\cdot10+1$ and $n=5$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-t7-08",
+          "title": "Tree (DPP-07) · Q8",
+          "type": "mcq",
+          "question": "A priority queue is implemented as a max-heap. Initially it has 5 elements `10, 8, 5, 3, 2`. Two new elements `1` and `7` are inserted in that order. The level-order traversal of the heap after the insertion is",
+          "options": [
+            "`10, 8, 7, 3, 2, 1, 5`",
+            "`10, 8, 7, 2, 3, 1, 5`",
+            "`10, 8, 7, 3, 2, 5, 1`",
+            "None"
+          ],
+          "answer": 0,
+          "solution": "Insert 1: placed at index 6, no swap: `10 8 5 3 2 1`. Insert 7: placed at index 7, swapped with parent 5: `10 8 7 3 2 1 5`.",
+          "source": "DPP"
+        }
+      ]
+    }
+  ]
 }
