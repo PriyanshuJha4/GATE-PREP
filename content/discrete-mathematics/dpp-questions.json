@@ -1,4 +1,2052 @@
 {
-  "title": "discrete-mathematics - DPP",
-  "chapters": []
+  "title": "Discrete Mathematics DPP Questions",
+  "chapters": [
+    {
+      "title": "Combinatorics",
+      "questions": [
+        {
+          "id": "dpp-dm-c1-01",
+          "title": "Combinatorics (DPP-01) · Q1",
+          "type": "nat",
+          "question": "Determine the number of (staircase) paths in the $xy$ plane from $(2,1)$ to $(7,4)$, where each such path is made up of individual steps going one unit to the right (R) or one unit upward (U).",
+          "answer": 56,
+          "solution": "The path needs $5$ R-steps and $3$ U-steps in some order: $\\binom{8}{3}=56$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c1-02",
+          "title": "Combinatorics (DPP-01) · Q2",
+          "type": "nat",
+          "question": "How many nonnegative integer solutions are there to the pair of equations $x_1+x_2+\\dots+x_7=37$, $x_1+x_2+x_3=6$?",
+          "answer": 167552,
+          "solution": "$x_1+x_2+x_3=6$ has $\\binom{8}{2}=28$ solutions. Then $x_4+\\dots+x_7=31$ has $\\binom{34}{3}=5984$ solutions. Total $=28\\times5984=167552$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c1-03",
+          "title": "Combinatorics (DPP-01) · Q3",
+          "type": "nat",
+          "question": "Determine the number of integer solutions of $x_1+x_2+x_3+x_4+x_5<40$, where $x_i\\ge0$, $1\\le i\\le5$.",
+          "answer": 1086008,
+          "solution": "The condition is $\\sum x_i\\le39$. Add a slack variable $x_6\\ge0$ so that $\\sum_{i=1}^{6}x_i=39$: $\\binom{39+5}{5}=\\binom{44}{5}=1086008$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c1-04",
+          "title": "Combinatorics (DPP-01) · Q4",
+          "type": "nat",
+          "question": "Determine the number of integer solutions of $x_1+x_2+x_3+x_4+x_5<40$, where $x_i\\ge-3$, $1\\le i\\le5$.",
+          "answer": 5006386,
+          "solution": "Put $y_i=x_i+3\\ge0$. Then $\\sum y_i\\le39+15=54$. Adding a slack variable gives $\\binom{54+5}{5}=\\binom{59}{5}=5006386$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c1-05",
+          "title": "Combinatorics (DPP-01) · Q5",
+          "type": "nat",
+          "question": "How many ways are there to place 12 marbles of the same size in five distinct jars if the marbles are all black?",
+          "answer": 1820,
+          "solution": "Identical objects into distinct boxes: $\\binom{12+4}{4}=\\binom{16}{4}=1820$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c1-07",
+          "title": "Combinatorics (DPP-01) · Q7",
+          "type": "nat",
+          "question": "A certain ice cream store has 31 flavors of ice cream available. In how many ways can we order a dozen ice cream cones if a flavor may be ordered as many as 12 times?",
+          "answer": 11058116888,
+          "solution": "Selection with repetition: $\\binom{12+31-1}{12}=\\binom{42}{12}=11058116888$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c1-08",
+          "title": "Combinatorics (DPP-01) · Q8",
+          "type": "nat",
+          "question": "In how many ways can 10 (identical) dimes be distributed among five children if there are no restrictions?",
+          "answer": 1001,
+          "solution": "$\\binom{10+4}{4}=\\binom{14}{4}=1001$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c1-09",
+          "title": "Combinatorics (DPP-01) · Q9",
+          "type": "nat",
+          "question": "Find the coefficient of $x^{16}$ in the expansion of $\\left(2x^{2}-\\frac{x}{2}\\right)^{12}$.",
+          "answer": 30.9375,
+          "tolerance": 0.0001,
+          "solution": "The term with $(-x/2)^k$ has power $2(12-k)+k=24-k$. For $x^{16}$, $k=8$: $\\binom{12}{8}\\,2^{4}\\left(-\\tfrac12\\right)^{8}=495\\cdot\\frac{16}{256}=\\frac{495}{16}=30.9375$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c1-10",
+          "title": "Combinatorics (DPP-01) · Q10",
+          "type": "nat",
+          "question": "How many ways are there to place 12 pebbles of the same size in five distinct jars if each pebble is a different color?",
+          "answer": 244140625,
+          "solution": "The pebbles are distinguishable, so each of the 12 pebbles independently goes into one of 5 jars: $5^{12}=244140625$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c2-01",
+          "title": "Combinatorics (DPP-02) · Q1",
+          "type": "nat",
+          "question": "Among a group of students, 49 study Physics, 37 study English and 21 study Biology. If 9 of these students study Physics and English, 5 study English and Biology, 4 study Physics and Biology and 3 study Physics, English and Biology, find the number of students in the group.",
+          "answer": 92,
+          "solution": "By inclusion-exclusion: $49+37+21-9-5-4+3=92$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c2-02",
+          "title": "Combinatorics (DPP-02) · Q2",
+          "type": "nat",
+          "question": "A large software development company employs 100 computer programmers. Of them, 45 are proficient in Java, 30 in C#, 20 in Python, six in C# and Java, one in Java and Python, five in C# and Python, and just one programmer is proficient in all three languages above. Determine the number of computer programmers that are not proficient in any of these three languages.",
+          "answer": 16,
+          "solution": "Proficient in at least one: $45+30+20-6-1-5+1=84$. Not proficient in any: $100-84=16$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c2-03",
+          "title": "Combinatorics (DPP-02) · Q3",
+          "type": "nat",
+          "question": "In a discrete mathematics class every student is a major in computer science or mathematics or both. The number of students having computer science as a major (possibly along with mathematics) is 25; the number of students having mathematics as a major (possibly along with computer science) is 13; and the number of students majoring in both computer science and mathematics is 8. How many students are in the class?",
+          "answer": 30,
+          "solution": "$|CS\\cup M|=25+13-8=30$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c2-04",
+          "title": "Combinatorics (DPP-02) · Q4",
+          "type": "nat",
+          "question": "The number of properties that are true with respect to the inclusion-exclusion principle is given by: I. Computes the total number of elements that satisfy at least one of several properties. II. It prevents the problem of double counting.",
+          "answer": 2,
+          "solution": "Both statements describe the inclusion-exclusion principle correctly, so the number of true properties is $2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c2-05",
+          "title": "Combinatorics (DPP-02) · Q5",
+          "type": "nat",
+          "question": "The number of positive integers not exceeding 100 that are either odd or the square of an integer is",
+          "answer": 55,
+          "solution": "Odd: $50$. Squares ($1^2,\\dots,10^2$): $10$. Odd squares ($1,9,25,49,81$): $5$. Total $=50+10-5=55$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c3-01",
+          "title": "Combinatorics (DPP-03) · Q1",
+          "type": "nat",
+          "question": "Let $A=\\{1,2,3,\\dots,7\\}$. A function $f:A\\to A$ is said to have a fixed point if for some $x\\in A$, $f(x)=x$. How many one-to-one functions $f:A\\to A$ have at least one fixed point?",
+          "answer": 3186,
+          "solution": "Total permutations $7!=5040$. Derangements $D_7=1854$. Permutations with at least one fixed point $=5040-1854=3186$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c3-02",
+          "title": "Combinatorics (DPP-03) · Q2",
+          "type": "nat",
+          "question": "For the positive integers $1,2,3,\\dots,n-1,n$, there are 11,660 derangements where $1,2,3,4$ and $5$ appear in the first five positions. What is the value of $n$?",
+          "answer": 11,
+          "solution": "The first five positions hold $1,\\dots,5$ in a deranged order: $D_5=44$ ways. The remaining $n-5$ numbers are deranged: $D_{n-5}$ ways. $44\\cdot D_{n-5}=11660$ gives $D_{n-5}=265=D_6$, so $n=11$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c3-03",
+          "title": "Combinatorics (DPP-03) · Q3",
+          "type": "nat",
+          "question": "In how many ways can Mrs. Ford distribute ten distinct books to her ten children (one book to each child) and then collect and redistribute the books so that each child has the opportunity to peruse two different books?",
+          "answer": 4844306476800,
+          "solution": "First distribution: $10!$ ways. The second must give every child a different book from the first: $D_{10}=1334961$ ways. Total $=10!\\cdot D_{10}=3628800\\times1334961=4844306476800$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c3-04",
+          "title": "Combinatorics (DPP-03) · Q4",
+          "type": "text",
+          "question": "Caitlyn has 48 different books: 12 each in mathematics, chemistry, physics, and computer science. These books are arranged on four shelves in her office with all books on any one subject on its own shelf. When her office is cleaned, the 48 books are taken down and then replaced on the shelves once again with all 12 books on any one subject on its own shelf. In how many ways can this be done so that (i) no subject is on its original shelf? (ii) one subject is on its original shelf? (iii) no subject is on its original shelf and no book is in its original position?",
+          "solution": "Assign subjects to shelves, then arrange the 12 books within each shelf ($12!$ ways per shelf). (i) Derangement of 4 subjects: $D_4\\cdot(12!)^4=9\\,(12!)^4$. (ii) Exactly one subject fixed: $\\binom41D_3\\cdot(12!)^4=4\\cdot2\\,(12!)^4=8\\,(12!)^4$. (iii) Subjects deranged and, within each shelf, no book in its original position: $D_4\\cdot(D_{12})^4=9\\,(D_{12})^4$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c3-05",
+          "title": "Combinatorics (DPP-03) · Q5",
+          "type": "nat",
+          "question": "Find the number of derangements of $1,2,3,4,5,6$ in which the first three positions are occupied by $1,2,3$ in some order.",
+          "answer": 4,
+          "solution": "The first three positions must be a derangement of $\\{1,2,3\\}$ ($231$ or $312$) and the last three a derangement of $\\{4,5,6\\}$ ($564$ or $645$). The derangements are $231564$, $231645$, $312564$, $312645$: $2\\times2=4$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c4-01",
+          "title": "Combinatorics (DPP-04) · Q1",
+          "type": "nat",
+          "question": "If $\\phi$ is Euler's phi function, then $\\phi(\\phi(1001))$ is",
+          "answer": 192,
+          "solution": "$1001=7\\cdot11\\cdot13$, so $\\phi(1001)=6\\cdot10\\cdot12=720$. $\\phi(720)=720\\left(1-\\tfrac12\\right)\\left(1-\\tfrac13\\right)\\left(1-\\tfrac15\\right)=192$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c4-02",
+          "title": "Combinatorics (DPP-04) · Q2",
+          "type": "nat",
+          "question": "Consider Euler's phi function $\\phi(n)=n\\prod_{p\\mid n}\\left(1-\\frac1p\\right)$, where $p$ runs over all the primes dividing $n$. What is the value of $\\phi(45)$?",
+          "answer": 24,
+          "solution": "$\\phi(45)=45\\left(1-\\tfrac13\\right)\\left(1-\\tfrac15\\right)=24$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c4-03",
+          "title": "Combinatorics (DPP-04) · Q3",
+          "type": "nat",
+          "question": "How many numbers in $\\{1,2,\\dots,200\\}$ are coprime to 100?",
+          "answer": 80,
+          "solution": "$\\phi(100)=40$ numbers per block of 100, and $\\{1,\\dots,200\\}$ has two blocks: $80$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c4-04",
+          "title": "Combinatorics (DPP-04) · Q4",
+          "type": "nat",
+          "question": "Find the number of positive integers $n\\le168$ such that $\\gcd(n,168)=8$.",
+          "answer": 12,
+          "solution": "$168=8\\cdot21$. Write $n=8m$ with $m\\le21$ and $\\gcd(m,21)=1$. The count is $\\phi(21)=12$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c4-05",
+          "title": "Combinatorics (DPP-04) · Q5",
+          "type": "nat",
+          "question": "Let $\\phi(n)$ be Euler's totient function. What is $\\frac{\\phi(7000000)}{\\phi(1000000)}$?",
+          "answer": 6,
+          "solution": "$7000000=7\\cdot10^6$ with $\\gcd(7,10)=1$, so $\\phi(7\\cdot10^6)=\\phi(7)\\phi(10^6)=6\\,\\phi(10^6)$. The ratio is $6$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c5-01",
+          "title": "Combinatorics (DPP-05) · Q1",
+          "type": "nat",
+          "question": "In how many ways can 3000 identical envelopes be divided, in packages of 25, among four student groups so that each group gets at least 150, but not more than 1000, of the envelopes?",
+          "answer": 12117,
+          "solution": "There are $120$ packages. Each group gets $6$ to $40$ packages. Put $z_i=y_i-6\\in[0,34]$ with $\\sum z_i=96$. Inclusion-exclusion: $\\binom{99}{3}-4\\binom{64}{3}+6\\binom{29}{3}=156849-166656+21924=12117$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c5-02",
+          "title": "Combinatorics (DPP-05) · Q2",
+          "type": "nat",
+          "question": "Determine the coefficient of $x^{15}$ in $f(x)=(x^{2}+x^{3}+x^{4}+\\cdots)^{4}$.",
+          "answer": 120,
+          "solution": "$f(x)=x^{8}(1-x)^{-4}$. The coefficient of $x^{15}$ is the coefficient of $x^7$ in $(1-x)^{-4}$: $\\binom{7+3}{3}=120$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c5-03",
+          "title": "Combinatorics (DPP-05) · Q3",
+          "type": "nat",
+          "question": "In how many ways can a police captain distribute 24 rifle shells to four police officers so that each officer gets at least three shells, but not more than eight?",
+          "answer": 125,
+          "solution": "Put $z_i=y_i-3\\in[0,5]$ with $\\sum z_i=12$. $\\binom{15}{3}-4\\binom{9}{3}+6\\binom{3}{3}=455-336+6=125$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c5-04",
+          "title": "Combinatorics (DPP-05) · Q4",
+          "type": "text",
+          "question": "Determine the sequence generated by the generating function $f(x)=\\dfrac{1}{1+3x}$.",
+          "solution": "$\\frac1{1+3x}=\\sum_{n\\ge0}(-3x)^n$, so $a_n=(-3)^n$, i.e. the sequence $1,-3,9,-27,\\dots$",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c5-05",
+          "title": "Combinatorics (DPP-05) · Q5",
+          "type": "nat",
+          "question": "In how many ways can two dozen identical robots be assigned to four assembly lines with at least three robots assigned to each line?",
+          "answer": 455,
+          "solution": "Give 3 robots to each line first ($12$ used). Distribute the remaining $12$ freely among $4$ lines: $\\binom{15}{3}=455$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c5-06",
+          "title": "Combinatorics (DPP-05) · Q6",
+          "type": "text",
+          "question": "Find a recurrence relation, with initial condition, that uniquely determines the geometric progression $7,\\ \\frac{14}{5},\\ \\frac{28}{25},\\ \\frac{56}{125},\\dots$",
+          "solution": "The common ratio is $\\frac{14/5}{7}=\\frac25$. So $a_{n+1}=\\frac25a_n$ for $n\\ge0$, with $a_0=7$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c5-08",
+          "title": "Combinatorics (DPP-05) · Q8",
+          "type": "text",
+          "question": "If $a_0=0$, $a_1=1$, $a_2=4$ and $a_3=37$ satisfy the recurrence relation $a_{n+2}+ba_{n+1}+ca_n=0$ where $n\\ge0$ and $b,c$ are constants, determine the values of $b$ and $c$ respectively.",
+          "solution": "$n=0$: $a_2+ba_1+ca_0=4+b=0\\Rightarrow b=-4$. $n=1$: $a_3+ba_2+ca_1=37-16+c=0\\Rightarrow c=-21$. So $b=-4$, $c=-21$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-c5-09",
+          "title": "Combinatorics (DPP-05) · Q9",
+          "type": "text",
+          "question": "Determine the constants $b$ and $c$ if $a_n=c_1+c_2(7^n)$, $n\\ge0$, is the general solution of the relation $a_{n+2}+ba_{n+1}+ca_n=0$, $n\\ge0$.",
+          "solution": "The characteristic roots are $1$ and $7$, so $(r-1)(r-7)=r^2-8r+7=0$. Hence $b=-8$ and $c=7$.",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Graph Theory",
+      "questions": [
+        {
+          "id": "dpp-dm-g1-01",
+          "title": "Graph Theory (DPP-01) · Q1",
+          "type": "mcq",
+          "question": "Which of the following is a graphic sequence?",
+          "options": [
+            "$5,3,3,2,2,1$",
+            "$2,1,1,1,1,1$",
+            "$6,5,4,3,2,1$",
+            "$5,5,2,2,1,1$"
+          ],
+          "answer": 0,
+          "solution": "(a) Havel-Hakimi: $5,3,3,2,2,1\\to2,2,1,1,0\\to1,0,1,0\\to$ all zeros after reduction, so it is graphic. (b) The degree sum $7$ is odd. (c) A degree $6$ is impossible with $6$ vertices. (d) $5,5,2,2,1,1\\to4,1,1,0,0$, then $4$ cannot be satisfied, so not graphic.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g1-02",
+          "title": "Graph Theory (DPP-01) · Q2",
+          "type": "nat",
+          "question": "Find the number of edges of an undirected graph having degree sequence $2,4,4,3,4,1$.",
+          "answer": 9,
+          "solution": "Handshaking lemma: sum of degrees $=18=2e$, so $e=9$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g1-04",
+          "title": "Graph Theory (DPP-01) · Q4",
+          "type": "nat",
+          "question": "There are 24 routers in Physics Wallah. Find the number of cables required to connect them such that each router is connected with exactly 6 others.",
+          "answer": 72,
+          "solution": "The network is a 6-regular graph on 24 vertices: $e=\\frac{24\\cdot6}2=72$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g1-05",
+          "title": "Graph Theory (DPP-01) · Q5",
+          "type": "nat",
+          "question": "What is the maximum value of the minimum degree ($\\delta$) of a graph of order 10 and size 16?",
+          "answer": 3,
+          "solution": "$\\delta\\le$ average degree $=\\frac{2\\cdot16}{10}=3.2$, so $\\delta\\le3$. A graph with $\\delta=3$ exists (e.g. a 3-regular graph plus one extra edge), so the maximum is $3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g2-01",
+          "title": "Graph Theory (DPP-02) · Q1",
+          "type": "nat",
+          "question": "Consider a complete graph of size 2016. Suppose after deletion of 2 vertices from the above graph, the modified graph has $x$ edges and $y$ vertices. Find the value of $x-y$.",
+          "answer": 1829,
+          "solution": "$\\binom n2=2016$ gives $n=64$. After deleting 2 vertices we get $K_{62}$: $x=\\binom{62}{2}=1891$, $y=62$. $x-y=1829$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g2-02",
+          "title": "Graph Theory (DPP-02) · Q2",
+          "type": "msq",
+          "question": "Which of the following options is/are True?",
+          "options": [
+            "Some $k$-regular graph can be a complete graph.",
+            "A (simple) graph with more than 2 vertices must have at least 2 vertices with the same degree.",
+            "The degree sum of the odd degree vertices must be even.",
+            "The degree sum of the odd degree vertices must be odd."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "(a) $K_n$ is $(n-1)$-regular. (b) Degrees lie in $0,\\dots,n-1$, and $0$ and $n-1$ cannot both occur, so by pigeonhole two degrees coincide. (c) The number of odd-degree vertices is even, so their sum is even. (d) is therefore false.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g2-03",
+          "title": "Graph Theory (DPP-02) · Q3",
+          "type": "mcq",
+          "question": "Consider a wheel graph $W_n$ ($n\\ge4$ vertices). Which of the following is the minimum number of edges to be added to this wheel graph to make it a complete graph?",
+          "options": [
+            "$n(n-1)$",
+            "$\\frac{n^2-5n+4}{2}$",
+            "$\\frac{n(n-1)}{4}$",
+            "None of these."
+          ],
+          "answer": 1,
+          "solution": "$W_n$ has $2(n-1)$ edges and $K_n$ has $\\frac{n(n-1)}2$. Edges to add $=\\frac{n(n-1)}2-2(n-1)=\\frac{(n-1)(n-4)}2=\\frac{n^2-5n+4}2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g2-05",
+          "title": "Graph Theory (DPP-02) · Q5",
+          "type": "msq",
+          "question": "Which of the following options is/are correct?",
+          "options": [
+            "Every null graph is a bipartite graph.",
+            "Some cycle graph is a complete graph.",
+            "A cyclic graph is different from a cycle graph.",
+            "A graph $G$ is bipartite if and only if it has an even cycle."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "(a) A null graph has no edges, so it is bipartite. (b) $C_3=K_3$. (c) A cyclic graph is any graph containing a cycle, whereas a cycle graph $C_n$ is a single cycle. (d) False: a graph is bipartite iff it has no odd cycle.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g2-06",
+          "title": "Graph Theory (DPP-02) · Q6",
+          "type": "mcq",
+          "question": "Consider a regular graph of order 6 and size 12. Which of the following is the minimum degree ($\\delta$) and maximum degree ($\\Delta$)?",
+          "options": [
+            "$\\delta=3,\\ \\Delta=4$",
+            "$\\delta=4,\\ \\Delta=3$",
+            "$\\delta=4,\\ \\Delta=4$",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Regular means every degree is $\\frac{2\\cdot12}{6}=4$. So $\\delta=\\Delta=4$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g3-01",
+          "title": "Graph Theory (DPP-03) · Q1",
+          "type": "mcq",
+          "question": "Consider a graph of order 7 with degree sequence $4,3,3,3,2,2,1$. Let $x$ be the number of edges and $y$ the degree sequence of the complement graph. Find $x$ and $y$.",
+          "options": [
+            "$x=10$ and $y=5,3,3,3,2,2,2$",
+            "$x=12$ and $y=5,4,4,3,3,3,2$",
+            "$x=14$ and $y=5,5,4,4,4,4,2$",
+            "$x=16$ and $y=6,5,5,5,5,3,3$"
+          ],
+          "answer": 1,
+          "solution": "$e(G)=\\frac{18}{2}=9$, so the complement has $\\binom72-9=12$ edges. Complement degrees are $6-d$: $2,3,3,3,4,4,5$, i.e. $5,4,4,3,3,3,2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g3-03",
+          "title": "Graph Theory (DPP-03) · Q3",
+          "type": "msq",
+          "question": "Which of the following can be the number of vertices of a self-complementary graph?",
+          "options": [
+            "$13$",
+            "$12$",
+            "$15$",
+            "$16$"
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "A self-complementary graph on $n$ vertices has $\\frac{n(n-1)}4$ edges, so $n\\equiv0$ or $1\\pmod4$. $13\\equiv1$, $12\\equiv0$, $16\\equiv0$ qualify; $15\\equiv3$ does not.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g3-04",
+          "title": "Graph Theory (DPP-03) · Q4",
+          "type": "nat",
+          "question": "In a self-complementary graph $G$ of size 18, find the number of vertices in $G$.",
+          "answer": 9,
+          "solution": "$\\frac{n(n-1)}{4}=18\\Rightarrow n(n-1)=72\\Rightarrow n=9$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g3-05",
+          "title": "Graph Theory (DPP-03) · Q5",
+          "type": "mcq",
+          "question": "Consider a graph with 4 vertices and 3 edges. Which of the following is True? $S_1$: It may or may not be a self-complementary graph. $S_2$: It must be a self-complementary graph.",
+          "options": [
+            "$S_1$ is True but $S_2$ is False",
+            "$S_1$ is False but $S_2$ is True",
+            "Neither $S_1$ nor $S_2$ is True",
+            "None of these."
+          ],
+          "answer": 0,
+          "solution": "$P_4$ (path) is self-complementary, but $K_3\\cup K_1$ and the star $K_{1,3}$ also have 4 vertices and 3 edges and are not. So $S_1$ is true and $S_2$ is false.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g3-07",
+          "title": "Graph Theory (DPP-03) · Q7",
+          "type": "mcq",
+          "question": "Consider the following statements. $S_1$: If two graphs are self-complementary graphs then they have an equal number of vertices and edges. $S_2$: If two graphs $G_1$ and $G_2$ have the same number of edges, vertices and the same degree sequence then they are self-complementary graphs. Which option is true?",
+          "options": [
+            "$S_1$ only",
+            "$S_2$ only",
+            "Both $S_1$ and $S_2$",
+            "Neither $S_1$ nor $S_2$"
+          ],
+          "answer": 3,
+          "solution": "$S_1$ is false: $K_1$ and $P_4$ are both self-complementary but have different numbers of vertices. $S_2$ is false: equal $n$, $e$ and degree sequence do not make a graph self-complementary.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g4-01",
+          "title": "Graph Theory (DPP-04) · Q1",
+          "type": "mcq",
+          "question": "If a hypercube ($Q_n$) has 193 edges, then the number of vertices will be",
+          "options": [
+            "$6$",
+            "$5$",
+            "$7$",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "$Q_n$ has $n\\,2^{n-1}$ edges: $Q_6$ has $192$ and $Q_7$ has $448$. No $n$ gives $193$ (and the vertex count $2^n$ is never among $6,5,7$), so the answer is None of these.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g4-02",
+          "title": "Graph Theory (DPP-04) · Q2",
+          "type": "mcq",
+          "question": "Consider the following statements. $S_1$: Every hypercube graph is a bipartite graph. $S_2$: Every bipartite graph is also a hypercube. Which of the following options is True?",
+          "options": [
+            "$S_1$ only",
+            "$S_2$ only",
+            "Both $S_1$ and $S_2$",
+            "Neither $S_1$ nor $S_2$"
+          ],
+          "answer": 0,
+          "solution": "Vertices of $Q_n$ can be split by parity of the number of 1s in the label, so $Q_n$ is bipartite. The converse is false (e.g. $K_{1,3}$ is bipartite but not a hypercube).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g4-03",
+          "title": "Graph Theory (DPP-04) · Q3",
+          "type": "nat",
+          "question": "A certain graph $G$ has order 16 and size 29. The degree of each vertex of $G$ is 3, 4 or 5. There are six vertices of degree 4. How many vertices of $G$ have degree 5?",
+          "answer": 2,
+          "solution": "Let $a$ and $b$ be the numbers of vertices of degree 3 and 5. $a+b=10$ and $3a+5b+24=58$. So $3a+5b=34$, giving $2b=4$, $b=2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g4-04",
+          "title": "Graph Theory (DPP-04) · Q4",
+          "type": "mcq",
+          "question": "If the sequence $x,7,7,5,5,4,3,2$ is graphical, what is the possible value of $x$ ($0\\le x\\le4$)?",
+          "options": [
+            "$0$",
+            "$2$",
+            "$3$",
+            "$1$"
+          ],
+          "answer": 2,
+          "solution": "The degree sum $x+33$ must be even, so $x$ is odd: $1$ or $3$. For $x=1$, Havel-Hakimi fails ($7,7,5,5,4,3,2,1\\to6,4,4,3,2,1,0\\to3,3,2,1,0,-1$). For $x=3$: $7,7,5,5,4,3,3,2\\to6,4,4,3,2,2,1\\to3,3,2,1,1,0\\to2,1,0,1,0\\to$ graphic.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g5-01",
+          "title": "Graph Theory (DPP-05) · Q1",
+          "type": "nat",
+          "question": "Consider a connected undirected graph $G$ with 8 vertices and 13 edges. Find the minimum number of edges whose deletion from $G$ always guarantees that it becomes disconnected.",
+          "answer": 3,
+          "solution": "$\\delta\\le\\left\\lfloor\\frac{2\\cdot13}{8}\\right\\rfloor=3$, so deleting the (at most) $3$ edges at a minimum-degree vertex always disconnects $G$. Some such graphs have edge connectivity exactly $3$, so $3$ is needed.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g5-02",
+          "title": "Graph Theory (DPP-05) · Q2",
+          "type": "mcq",
+          "question": "The order (number of vertices) of a complete bipartite graph in which there are 162 edges and one of the partitions has twice the number of vertices as the other is",
+          "options": [
+            "$20$",
+            "$25$",
+            "$27$",
+            "$29$"
+          ],
+          "answer": 2,
+          "solution": "$K_{m,2m}$ has $2m^2=162$ edges, so $m=9$ and the order is $9+18=27$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g5-03",
+          "title": "Graph Theory (DPP-05) · Q3",
+          "type": "nat",
+          "question": "Consider a simple graph of 10 vertices. If the graph is disconnected, then the maximum number of edges it can have is",
+          "answer": 36,
+          "solution": "The maximum is $K_9$ plus an isolated vertex: $\\binom92=36$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g5-04",
+          "title": "Graph Theory (DPP-05) · Q4",
+          "type": "nat",
+          "question": "Consider a wheel graph $W_n$ of 9 vertices. Find the number of edges to be deleted from it such that the resultant graph is a minimal connected graph.",
+          "answer": 8,
+          "solution": "$W_9$ has $2(9-1)=16$ edges. A minimal connected graph is a spanning tree with $8$ edges, so $16-8=8$ edges are deleted.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g5-05",
+          "title": "Graph Theory (DPP-05) · Q5",
+          "type": "mcq",
+          "question": "If $G$ is a simple disconnected graph with 16 vertices and 3 components, then the maximum number of edges possible in $G$ is",
+          "options": [
+            "$90$",
+            "$91$",
+            "$92$",
+            "$93$"
+          ],
+          "answer": 1,
+          "solution": "The maximum is attained by $K_{14}$ and two isolated vertices: $\\binom{14}{2}=91$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g5-06",
+          "title": "Graph Theory (DPP-05) · Q6",
+          "type": "mcq",
+          "question": "Which of the following statements is/are true? $S_1$: A graph $G(V,E)$ is called a tree if there is exactly one path between every 2 vertices. $S_2$: A graph $G(V,E)$ is a tree iff it is connected and does not contain a cycle.",
+          "options": [
+            "$S_1$ only",
+            "$S_2$ only",
+            "Both $S_1$ and $S_2$",
+            "None of these."
+          ],
+          "answer": 2,
+          "solution": "Both are standard equivalent characterisations of a tree.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g6-01",
+          "title": "Graph Theory (DPP-06) · Q1",
+          "type": "nat",
+          "question": "Let $G$ be a simple graph with 15 edges and let its complement $\\bar G$ have 21 edges. The number of vertices in $G$ is",
+          "answer": 9,
+          "solution": "$\\binom n2=15+21=36\\Rightarrow n=9$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g6-02",
+          "title": "Graph Theory (DPP-06) · Q2",
+          "type": "msq",
+          "question": "Which of the following is true for a graph with vertex connectivity 3 and edge connectivity 4?",
+          "options": [
+            "Removal of any 3 vertices can disconnect the graph.",
+            "Removal of any 4 edges can disconnect the graph.",
+            "Removal of some 3 vertices will increase the number of connected components.",
+            "Removal of some 4 edges will increase the number of connected components."
+          ],
+          "answer": [
+            2,
+            3
+          ],
+          "solution": "Connectivity is a minimum over choices: some set of $3$ vertices and some set of $4$ edges disconnect the graph, but not every such set does.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g6-03",
+          "title": "Graph Theory (DPP-06) · Q3",
+          "type": "mcq",
+          "question": "What are the possible values of vertex connectivity and edge connectivity for a graph of order 10 and size 16?",
+          "options": [
+            "$1\\le VC,EC\\le3$",
+            "$1\\le VC,EC\\le4$",
+            "$0\\le VC,EC\\le3$",
+            "$0\\le VC,EC\\le4$"
+          ],
+          "answer": 2,
+          "solution": "$VC\\le EC\\le\\delta\\le\\left\\lfloor\\frac{32}{10}\\right\\rfloor=3$. The graph may also be disconnected (e.g. $K_6$ plus other vertices), so the minimum is $0$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g6-05",
+          "title": "Graph Theory (DPP-06) · Q5",
+          "type": "mcq",
+          "question": "Consider the following statements. $S_1$: The vertex connectivity of a graph is 1 if and only if the graph has a cut vertex. $S_2$: The edge connectivity of a graph is 1 if and only if the graph has a cut edge. Which of the following statements is true?",
+          "options": [
+            "$S_1$ only",
+            "$S_2$ only",
+            "Both $S_1$ and $S_2$",
+            "Neither $S_1$ nor $S_2$"
+          ],
+          "answer": 2,
+          "solution": "For a connected graph with at least 3 vertices, $\\kappa=1$ exactly when a cut vertex exists and $\\lambda=1$ exactly when a cut edge (bridge) exists. (The trivial graph $K_2$ is ignored.)",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g7-01",
+          "title": "Graph Theory (DPP-07) · Q1",
+          "type": "nat",
+          "question": "If $G$ is a bipartite graph with 9 vertices and the maximum number of edges, then the vertex connectivity of $G$ is",
+          "answer": 4,
+          "solution": "The maximum is $K_{4,5}$ (with $20$ edges), and $\\kappa(K_{m,n})=\\min(m,n)=4$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g7-02",
+          "title": "Graph Theory (DPP-07) · Q2",
+          "type": "msq",
+          "question": "Which of the following options is/are correct?",
+          "options": [
+            "A graph $G$ is Euler iff it is connected and $\\forall v\\in G$, degree$(v)$ = even.",
+            "A $K$-regular graph is Euler iff $K$ is even.",
+            "A wheel graph ($W_n$) can have an Euler circuit.",
+            "A graph will contain an Euler path if it contains at most two vertices of odd degree."
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "(a) is Euler's theorem. (b) Assuming connectedness, all degrees equal $K$, so an Euler circuit exists iff $K$ is even. (c) The rim vertices of a wheel have degree $3$, so no Euler circuit. (d) A connected graph with $0$ or $2$ odd vertices has an Euler path.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g7-03",
+          "title": "Graph Theory (DPP-07) · Q3",
+          "type": "mcq",
+          "question": "A forest is a disconnected graph in which each component is a tree. Let $F$ be a forest on 80 vertices with 21 connected components. The number of edges in $F$ is",
+          "options": [
+            "$58$",
+            "$60$",
+            "$59$",
+            "$101$"
+          ],
+          "answer": 2,
+          "solution": "A forest with $n$ vertices and $c$ components has $n-c=80-21=59$ edges.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g7-05",
+          "title": "Graph Theory (DPP-07) · Q5",
+          "type": "mcq",
+          "question": "Which of the following is an Euler graph?",
+          "options": [
+            "$K_{51}$",
+            "$K_{50}$",
+            "$\\overline{C_{60}}$",
+            "11-regular"
+          ],
+          "answer": 0,
+          "solution": "An Euler graph needs all degrees even. $K_{51}$ has degree $50$. $K_{50}$ has degree $49$. $\\overline{C_{60}}$ has degree $59-2=57$. An 11-regular graph has odd degree.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g7-06",
+          "title": "Graph Theory (DPP-07) · Q6",
+          "type": "mcq",
+          "question": "If $G$ is a simple disconnected graph with $n$ vertices, then the maximum number of edges possible in $G$ is",
+          "options": [
+            "$\\frac{n(n-2)}{2}$",
+            "$\\frac{(n-1)n}{2}$",
+            "$\\frac{(n-1)(n-2)}{2}$",
+            "$\\frac{(n-1)(n-2)}{4}$"
+          ],
+          "answer": 2,
+          "solution": "The maximum is $K_{n-1}$ plus an isolated vertex: $\\frac{(n-1)(n-2)}2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g8-01",
+          "title": "Graph Theory (DPP-08) · Q1",
+          "type": "mcq",
+          "question": "Consider the following statements. $S_1$: If a connected graph $G$ has a cut vertex, then $G$ has a cut edge. $S_2$: If a connected graph $G$ has a cut edge then $G$ has a cut vertex. Which of the following is true?",
+          "options": [
+            "$S_1$ only",
+            "$S_2$ only",
+            "Both $S_1$ and $S_2$",
+            "Neither $S_1$ nor $S_2$"
+          ],
+          "answer": 1,
+          "solution": "$S_1$ is false: two triangles sharing a vertex have a cut vertex but no cut edge. $S_2$ is true (for graphs with at least 3 vertices): an end vertex of a bridge that has another neighbour is a cut vertex.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g8-03",
+          "title": "Graph Theory (DPP-08) · Q3",
+          "type": "nat",
+          "question": "If $G$ is a connected graph with 10 vertices and vertex connectivity 3, then the minimum number of edges necessary in $G$ is",
+          "answer": 15,
+          "solution": "$\\delta\\ge\\kappa=3$, so $e\\ge\\frac{10\\cdot3}{2}=15$, and this is attained (Harary graph $H_{3,10}$).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g8-04",
+          "title": "Graph Theory (DPP-08) · Q4",
+          "type": "msq",
+          "question": "Which of the following options is/are correct?",
+          "options": [
+            "The chromatic number of a graph with at least 1 edge is at least 2.",
+            "A graph is a null graph if and only if its chromatic number is 2.",
+            "For any graph, $\\chi_G\\le1+\\Delta(G)\\le n$, where $\\Delta(G)$ is the maximum degree and $\\chi_G$ the chromatic number.",
+            "The chromatic number of a multigraph is equal to the chromatic number of its equivalent simple graph."
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "(a) Adjacent vertices need different colours. (b) A null graph has $\\chi=1$. (c) Greedy colouring and $\\Delta\\le n-1$. (d) Parallel edges do not affect colouring.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g8-05",
+          "title": "Graph Theory (DPP-08) · Q5",
+          "type": "mcq",
+          "question": "Consider the following statements. $S_1$: A graph is a bipartite graph if and only if its chromatic number is 2. $S_2$: The chromatic number of a tree is 2. Thus, every tree is a bipartite graph. Which statement is False?",
+          "options": [
+            "$S_1$ only",
+            "$S_2$ only",
+            "Both $S_1$ and $S_2$",
+            "Neither $S_1$ nor $S_2$"
+          ],
+          "answer": 0,
+          "solution": "A null graph is bipartite with $\\chi=1$, so $\\chi=2$ is not necessary ($S_1$ is false). $S_2$ is true for any tree with an edge.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-g9-01",
+          "title": "Graph Theory (DPP-09) · Q1",
+          "type": "nat",
+          "question": "If $G$ is a bipartite graph with 6 vertices and 9 edges, then the chromatic number of $\\bar G$ is",
+          "answer": 3,
+          "solution": "A bipartite graph on $6$ vertices has at most $9$ edges, attained only by $K_{3,3}$. $\\overline{K_{3,3}}=K_3\\cup K_3$ has $\\chi=3$.",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Mathematical Logic",
+      "questions": [
+        {
+          "id": "dpp-dm-l1-01",
+          "title": "Logic (DPP-01) · Q1",
+          "type": "mcq",
+          "question": "Which of the following is a tautology?",
+          "options": [
+            "$(\\sim p\\wedge(p\\to q))\\to\\sim q$",
+            "$(p\\to q)\\to\\sim q$",
+            "$[(\\sim p\\wedge q)\\wedge[q\\to(p\\to q)]]\\to\\sim r$",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "(a) is false for $p=F,q=T$. (b) is false for $p=F,q=T$. (c) reduces to $(\\sim p\\wedge q)\\to\\sim r$, false for $p=F,q=T,r=T$. So none is a tautology.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l1-02",
+          "title": "Logic (DPP-01) · Q2",
+          "type": "mcq",
+          "question": "The statement $[P\\vee(P\\leftrightarrow Q)\\vee Q]$ is equivalent to",
+          "options": [
+            "$P$",
+            "$Q$",
+            "A tautology",
+            "$(P\\wedge Q)$"
+          ],
+          "answer": 2,
+          "solution": "If $P$ or $Q$ is true the statement is true. If both are false, $P\\leftrightarrow Q$ is true. So it is always true.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l1-03",
+          "title": "Logic (DPP-01) · Q3",
+          "type": "msq",
+          "question": "Consider the following statements. $S_1:[(p\\Rightarrow q)\\wedge(q\\Rightarrow r)]\\Rightarrow(r\\Rightarrow p)$. $S_2:[((p\\Rightarrow q)\\wedge(q\\Rightarrow r))\\Rightarrow(p\\Rightarrow r)]$. Which of the following is/are correct?",
+          "options": [
+            "$S_1$ is a contingency",
+            "$S_2$ is a tautology",
+            "$S_1$ and $S_2$ both contingency",
+            "$S_1$ and $S_2$ both tautology"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "$S_2$ is hypothetical syllogism, a tautology. $S_1$ is false for $p=F,q=F,r=T$ and true for $p=q=r=T$, so it is a contingency.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l1-04",
+          "title": "Logic (DPP-01) · Q4",
+          "type": "mcq",
+          "question": "Which of the following is valid? $S_1$: $p\\Rightarrow(q\\vee r)\\equiv(p\\Rightarrow q)\\vee(p\\Rightarrow r)$. $S_2$: $p\\Rightarrow(q\\wedge r)\\equiv(p\\Rightarrow q)\\wedge(p\\Rightarrow r)$.",
+          "options": [
+            "$S_1$ is valid and $S_2$ is not valid",
+            "$S_1$ is not valid and $S_2$ is valid",
+            "Both $S_1$ and $S_2$ are valid",
+            "Neither $S_1$ nor $S_2$ is valid"
+          ],
+          "answer": 2,
+          "solution": "$p\\Rightarrow(q\\vee r)\\equiv\\sim p\\vee q\\vee r\\equiv(\\sim p\\vee q)\\vee(\\sim p\\vee r)$, and $p\\Rightarrow(q\\wedge r)\\equiv(\\sim p\\vee q)\\wedge(\\sim p\\vee r)$ by distribution. Both are valid.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l1-05",
+          "title": "Logic (DPP-01) · Q5",
+          "type": "mcq",
+          "question": "Which of the following is not a tautology?",
+          "options": [
+            "$((p\\to q)\\to r)\\to(p\\to(q\\to r))$",
+            "$(p\\to(r\\vee q))\\to((p\\to r)\\vee(p\\to q))$",
+            "$(p\\to(r\\wedge q))\\to((p\\to r)\\vee(p\\to q))$",
+            "$(p\\to(q\\to r))\\to((p\\to q)\\to r)$"
+          ],
+          "answer": 3,
+          "solution": "(a), (b), (c) are tautologies. (d) fails for $p=F,q=F,r=F$: the antecedent is true, while $(p\\to q)\\to r$ is $T\\to F=F$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l2-01",
+          "title": "Logic (DPP-02) · Q1",
+          "type": "msq",
+          "question": "Which of the following is/are logical equivalences? I. $\\sim(p\\to q)$. II. $\\sim(p\\to q)\\wedge(q\\to r)$. III. $p\\wedge\\sim q$. IV. $(p\\vee q)\\to r$.",
+          "options": [
+            "I and II",
+            "I and III",
+            "II and IV",
+            "II and III"
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "$\\sim(p\\to q)\\equiv p\\wedge\\sim q$ (I $\\equiv$ III). In II, $\\sim q$ makes $q\\to r$ true, so II $\\equiv p\\wedge\\sim q$ as well. IV is different (it is true when $p=q=F$). So I, II, III are mutually equivalent.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l2-02",
+          "title": "Logic (DPP-02) · Q2",
+          "type": "msq",
+          "question": "Consider the following statements. $S_1:(p\\to q)\\wedge(p\\to r)$. $S_2:p\\to(q\\wedge r)$. Which of the following is True?",
+          "options": [
+            "$S_1$ is a tautology",
+            "$S_1$ is a contingency",
+            "$S_1$ is logically equivalent to $S_2$",
+            "None of these"
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "$p\\to(q\\wedge r)\\equiv(p\\to q)\\wedge(p\\to r)$. $S_1$ is false for $p=T,q=F$ and true for $p=F$, so it is a contingency.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l2-04",
+          "title": "Logic (DPP-02) · Q4",
+          "type": "mcq",
+          "question": "Consider the following statements. $S_1:\\sim(p\\leftrightarrow q)$. $S_2:p\\leftrightarrow\\sim q$. Which of the following is correct?",
+          "options": [
+            "$S_1$ is a tautology",
+            "$S_2$ is a contradiction",
+            "$S_1$ is equivalent to $S_2$",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "$p\\leftrightarrow q$ is false exactly when $p$ and $q$ differ, i.e. when $p\\leftrightarrow\\sim q$ is true. The two are equivalent and both are contingencies.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l2-05",
+          "title": "Logic (DPP-02) · Q5",
+          "type": "mcq",
+          "question": "Consider the following statements. $S_1:\\sim(p\\vee(\\sim p\\wedge q))$. $S_2:\\sim p\\wedge\\sim q$. Which of the following is correct?",
+          "options": [
+            "$S_1$ is a tautology",
+            "$S_2$ is a contradiction",
+            "$S_1$ is equivalent to $S_2$",
+            "$S_1$ is not equivalent to $S_2$"
+          ],
+          "answer": 2,
+          "solution": "$p\\vee(\\sim p\\wedge q)\\equiv p\\vee q$ (absorption), so $S_1\\equiv\\sim(p\\vee q)\\equiv\\sim p\\wedge\\sim q=S_2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l3-02",
+          "title": "Logic (DPP-03) · Q2",
+          "type": "mcq",
+          "question": "Which of the following is a contingency?",
+          "options": [
+            "$(\\sim p\\wedge(p\\to q))\\to\\sim p$",
+            "$(q\\wedge(p\\to q))\\to\\sim p$",
+            "$((p\\to q)\\wedge(q\\to r))\\to(p\\to r)$",
+            "$((p\\vee q)\\wedge\\sim p)\\to q$"
+          ],
+          "answer": 1,
+          "solution": "(a), (c), (d) are tautologies (simplification, hypothetical syllogism, disjunctive syllogism). (b) is false for $p=q=T$ and true for $p=F$, so it is a contingency.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l3-03",
+          "title": "Logic (DPP-03) · Q3",
+          "type": "mcq",
+          "question": "Let $p$ be \"I will study discrete math\" and $q$ be \"I will study English literature\". Given the premises \"I will study discrete math or I will study English literature\" and \"I will not study discrete math\", which of the following can be the conclusion?",
+          "options": [
+            "Therefore, I will not study English literature",
+            "Therefore, I will study English literature.",
+            "Both A and B",
+            "None of these."
+          ],
+          "answer": 1,
+          "solution": "Premises: $p\\vee q$ and $\\sim p$. By disjunctive syllogism, $q$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l3-04",
+          "title": "Logic (DPP-03) · Q4",
+          "type": "msq",
+          "question": "Which of the following can be the conclusion for the given hypothesis? Hypothesis: $\\sim p\\wedge q,\\ r\\to p,\\ \\sim r\\to s,\\ s\\to t$.",
+          "options": [
+            "$\\sim r\\wedge p$",
+            "$t$",
+            "$s$",
+            "$r\\to s$"
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "From $\\sim p$ and $r\\to p$: $\\sim r$ (modus tollens). Then $s$, then $t$. $r\\to s$ holds because $r$ is false. $\\sim r\\wedge p$ is false since $p$ is false.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l3-05",
+          "title": "Logic (DPP-03) · Q5",
+          "type": "mcq",
+          "question": "$P_1$: If it rains, the match will not be played. $P_2$: The match was played. Which of the following is a valid inference?",
+          "options": [
+            "It rains",
+            "It did not rain",
+            "It either rain or did not rain",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "Modus tollens on $rain\\to\\sim played$ and $played$ gives $\\sim rain$. (Option (c) is a tautology, not an inference drawn from the premises.)",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l4-02",
+          "title": "Logic (DPP-04) · Q2",
+          "type": "mcq",
+          "question": "Let $p(x)$, $q(x)$ denote the open statements $p(x): x\\le3$ and $q(x): x+1$ is odd. If the universe consists of all integers, what are the truth values of $S_1:\\sim(p(-4)\\vee q(-3))$ and $S_2:\\sim(p(-4)\\wedge\\sim q(-3))$?",
+          "options": [
+            "$S_1$: True, $S_2$: False",
+            "$S_1$: False, $S_2$: True",
+            "$S_1$: True, $S_2$: True",
+            "$S_1$: False, $S_2$: False"
+          ],
+          "answer": 3,
+          "solution": "$p(-4)$ is true. $q(-3)$: $-2$ is even, so false. $S_1=\\sim(T\\vee F)=F$. $S_2=\\sim(T\\wedge T)=F$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l4-03",
+          "title": "Logic (DPP-04) · Q3",
+          "type": "nat",
+          "question": "Let $p(x)$, $q(x)$ denote $p(x): x+1>x$ and $q(x): x^2>0$. How many of the following expressions evaluate to True? I. $p(3)\\vee[q(3)\\vee\\sim p(3)]$. II. $p(2)\\to[q(2)\\to p(2)]$. III. $[p(2)\\to q(2)]\\wedge p(-3)$.",
+          "answer": 3,
+          "solution": "$p(x)$ is always true, and $q(2)$, $q(3)$ are true. I is true, II is true (the consequent is true), III is $T\\wedge T=T$. All $3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l4-04",
+          "title": "Logic (DPP-04) · Q4",
+          "type": "msq",
+          "question": "Consider the English sentence \"You cannot ride the roller coaster if you are under 4 feet tall unless you are older than 16 years old\". $q$: you can ride the roller coaster; $r$: you are under 4 feet tall; $s$: you are older than 16 years old. Which of the following correctly represent the logical expression for the sentence?",
+          "options": [
+            "$q\\to\\sim(r\\wedge\\sim s)$",
+            "$(r\\vee\\sim s)\\to q$",
+            "$(r\\wedge\\sim s)\\to\\sim q$",
+            "None of these"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "The sentence says: if you are under 4 feet and not older than 16, you cannot ride: $(r\\wedge\\sim s)\\to\\sim q$. Its contrapositive is $q\\to\\sim(r\\wedge\\sim s)$. Both are equivalent.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l4-05",
+          "title": "Logic (DPP-04) · Q5",
+          "type": "mcq",
+          "question": "Let $p(x)$ be the statement \"$x+1>x$\". The domain consists of all real numbers. $L_1=\\forall x\\,p(x)$, $L_2=\\exists x\\,p(x)$. Which of the following evaluate to True?",
+          "options": [
+            "$L_1$ only",
+            "$L_2$ only",
+            "Both $L_1$ and $L_2$ are True",
+            "Neither $L_1$ nor $L_2$"
+          ],
+          "answer": 2,
+          "solution": "$x+1>x$ holds for every real $x$, so both the universal and existential statements are true.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l5-01",
+          "title": "Logic (DPP-05) · Q1",
+          "type": "mcq",
+          "question": "Let $p(x)$: $x^2>0$ and $q(x)$: $x$ is odd, for the universe of all integers. $S_1:\\forall x[p(x)\\to q(x)]$. $S_2:\\exists x[p(x)\\to q(x)]$. Which of the following is true?",
+          "options": [
+            "$S_1$ only",
+            "$S_2$ only",
+            "Both $S_1$ and $S_2$",
+            "Neither $S_1$ nor $S_2$"
+          ],
+          "answer": 1,
+          "solution": "$S_1$ fails at $x=2$ ($p$ true, $q$ false). $S_2$ holds at $x=0$ ($p$ false, so the implication is true).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l5-02",
+          "title": "Logic (DPP-05) · Q2",
+          "type": "mcq",
+          "question": "Consider the following two first-order logic statements. $S_1:[\\forall x(\\neg P(x)\\vee Q(x))]\\to[\\forall x\\,P(x)\\to\\forall x\\,Q(x)]$. $S_2:[\\exists x\\,P(x)]\\to[\\exists x\\,Q(x)]\\to[\\exists x(P(x)\\to Q(x))]$. Which of the following is valid?",
+          "options": [
+            "$S_1$ only",
+            "$S_2$ only",
+            "Both $S_1$ and $S_2$",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "$S_1$: if every $P$ implies $Q$ and every element satisfies $P$, then every element satisfies $Q$. $S_2$: valid under either grouping of the implications (a witness of $Q$ or of $\\neg P$ always gives $P\\to Q$ true). Both are valid.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l5-03",
+          "title": "Logic (DPP-05) · Q3",
+          "type": "msq",
+          "question": "$P(y)=\\sqrt y$ is real in the domain $\\mathbb Z^+$. Which of the following is/are correct?",
+          "options": [
+            "$\\forall y\\,P(y)$",
+            "$\\exists y\\,P(y)$",
+            "$\\forall y\\sim P(y)$",
+            "$\\exists y\\sim P(y)$"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "The square root of every positive integer is real, so $\\forall y\\,P(y)$ and $\\exists y\\,P(y)$ are true, and the negated forms are false.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l5-04",
+          "title": "Logic (DPP-05) · Q4",
+          "type": "mcq",
+          "question": "Which of the following is not a valid logical expression?",
+          "options": [
+            "$\\forall x[P(x)\\to Q(x)]\\to[\\forall x\\,P(x)]\\to[\\forall x\\,Q(x)]$",
+            "$\\forall x[P(x)\\vee Q(x)]\\to[\\forall x\\,P(x)]\\vee[\\forall x\\,Q(x)]$",
+            "$\\exists x[P(x)\\wedge Q(x)]\\to[\\exists x\\,P(x)]\\wedge[\\exists x\\,Q(x)]$",
+            "$\\forall x[P(x)\\leftrightarrow Q(x)]\\to[\\forall x\\,P(x)]\\leftrightarrow[\\forall x\\,Q(x)]$"
+          ],
+          "answer": 1,
+          "solution": "(b) is invalid: with $P(a)=T,Q(a)=F$ and $P(b)=F,Q(b)=T$, every element satisfies $P\\vee Q$ but neither $\\forall P$ nor $\\forall Q$ holds. The others are valid.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l5-05",
+          "title": "Logic (DPP-05) · Q5",
+          "type": "mcq",
+          "question": "Consider the following logical expressions. $I:\\forall y[P(y)\\to Q]\\leftrightarrow[\\forall y\\,P(y)]\\to Q$. $II:\\exists y[P(y)\\to Q]\\to[\\exists y\\,P(y)]\\to Q$. Which of the following logical expressions is valid?",
+          "options": [
+            "I only",
+            "II only",
+            "Both I and II",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "$\\forall y[P(y)\\to Q]\\equiv[\\exists y\\,P(y)]\\to Q$, which differs from $[\\forall y\\,P(y)]\\to Q$, so I is invalid (take $P(a)=T$, $P(b)=F$, $Q=F$). For II, $\\exists y[P(y)\\to Q]\\equiv[\\forall y\\,P(y)]\\to Q$, which does not imply $[\\exists y\\,P(y)]\\to Q$, so II is invalid as well.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l6-01",
+          "title": "Logic (DPP-06) · Q1",
+          "type": "msq",
+          "question": "Consider $P(x,y,z)$: $x+y+z=15$ with domain $\\mathbb Z$. Which of the following is correct?",
+          "options": [
+            "$\\forall x\\exists y\\exists z\\,P(x,y,z)$",
+            "$\\exists z\\forall x\\forall y\\,P(x,y,z)$",
+            "$\\forall x\\exists z\\exists y\\,P(x,y,z)$",
+            "$\\exists z\\exists y\\forall x\\,P(x,y,z)$"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "For every $x$ we can pick $y=0$, $z=15-x$, so (a) and (c) hold. A fixed $z$ (or fixed $y,z$) cannot satisfy the equation for all $x$ (and $y$), so (b) and (d) are false.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l6-02",
+          "title": "Logic (DPP-06) · Q2",
+          "type": "mcq",
+          "question": "Consider $P(x,y)$: $x^2+y^2=10$ on the domain of integers. Which of the following is correct?",
+          "options": [
+            "$\\exists x\\exists y\\,P(x,y)$",
+            "$\\forall x\\forall y\\,P(x,y)$",
+            "$\\forall y\\exists x\\,P(x,y)$",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "$1^2+3^2=10$, so (a) is true. (b) is false. (c) is false: for $y=0$, $x^2=10$ has no integer solution.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l6-03",
+          "title": "Logic (DPP-06) · Q3",
+          "type": "msq",
+          "question": "Which of the following is/are the negation of $[\\forall x\\exists y\\forall z(P(x,y,z)\\oplus Q(x,y,z))]$?",
+          "options": [
+            "$\\exists x\\forall y\\exists z(\\sim P\\oplus\\sim Q)$",
+            "$\\exists x\\forall y\\exists z(P\\Rightarrow\\sim Q)$",
+            "$\\exists x\\forall y\\exists z(P\\Leftrightarrow Q)$",
+            "$\\exists x\\forall y\\exists z(\\sim P\\Leftrightarrow\\sim Q)$"
+          ],
+          "answer": [
+            2,
+            3
+          ],
+          "solution": "The negation is $\\exists x\\forall y\\exists z\\,\\sim(P\\oplus Q)\\equiv\\exists x\\forall y\\exists z\\,(P\\Leftrightarrow Q)$, and $\\sim P\\Leftrightarrow\\sim Q\\equiv P\\Leftrightarrow Q$. Option (a) equals $P\\oplus Q$ and (b) is a different formula.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l6-04",
+          "title": "Logic (DPP-06) · Q4",
+          "type": "nat",
+          "question": "Consider the following logical expressions: (a) $\\forall x\\forall y\\,P(x,y)\\leftrightarrow\\exists y\\forall x\\,P(x,y)$. (b) $[\\forall x\\,P(x)]\\vee Q\\leftrightarrow\\forall x[P(x)\\vee Q]$. (c) $\\forall x[P(x)\\wedge Q]\\leftrightarrow[\\forall x\\,P(x)]\\wedge Q$. (d) $\\exists x[P(x)\\vee Q]\\leftrightarrow[\\exists x\\,P(x)]\\wedge Q$. The total number of invalid expressions is",
+          "answer": 2,
+          "solution": "(a) is invalid ($\\exists y\\forall x\\,P$ does not imply $\\forall x\\forall y\\,P$). (b) and (c) are valid. (d) is invalid: $\\exists x[P(x)\\vee Q]\\equiv[\\exists x\\,P(x)]\\vee Q$. So $2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l6-05",
+          "title": "Logic (DPP-06) · Q5",
+          "type": "mcq",
+          "question": "Consider the following statements. $S_1$: There is someone who is loved by everyone. $S_2$: Every real number has its corresponding negative. Here $L(x,y)$ denotes \"$x$ loves $y$\" and $p(x,y)$ denotes \"$x+y=0$\". Which of the following represents the correct predicate logic of the given statements?",
+          "options": [
+            "$S_1:\\exists x\\forall y\\,L(x,y)$, $S_2:\\exists y\\forall x\\,p(x,y)$",
+            "$S_1:\\forall x\\exists y\\,L(x,y)$, $S_2:\\forall x\\exists y\\,p(x,y)$",
+            "$S_1:\\exists y\\forall x\\,L(x,y)$, $S_2:\\forall x\\exists y\\,p(x,y)$",
+            "None of these."
+          ],
+          "answer": 2,
+          "solution": "Someone loved by everyone: $\\exists y\\forall x\\,L(x,y)$. Every real has a negative: $\\forall x\\exists y\\,(x+y=0)$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l7-01",
+          "title": "Logic (DPP-07) · Q1",
+          "type": "mcq",
+          "question": "Let $Actor(x)$: $x$ is an actor, $Smart(x)$: $x$ is smart. Choose the correct English representation of the well-formed formula $\\exists x(Actor(x)\\wedge Smart(x))$.",
+          "options": [
+            "Some actor is smart.",
+            "Some actor is not smart.",
+            "All actors are smart.",
+            "All smart are actors."
+          ],
+          "answer": 0,
+          "solution": "There exists someone who is both an actor and smart.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l7-02",
+          "title": "Logic (DPP-07) · Q2",
+          "type": "mcq",
+          "question": "Consider the statement \"There is exactly one apple\". Let $apple(x)$: $x$ is an apple. I. $\\exists x(apple(x)\\wedge\\forall y(apple(y)\\Rightarrow x=y))$. II. $\\exists x\\,apple(x)$. Which of these represents the statement?",
+          "options": [
+            "Only I",
+            "Only II",
+            "Both I and II",
+            "Neither I nor II"
+          ],
+          "answer": 0,
+          "solution": "I says some apple exists and every apple equals it, i.e. exactly one apple. II only says at least one apple exists.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l7-03",
+          "title": "Logic (DPP-07) · Q3",
+          "type": "nat",
+          "question": "Consider the following statements. I. $\\exists x\\{P(x)\\to\\{\\forall x\\,P(x)\\to\\exists x\\,Q(x)\\}\\}$. II. $\\exists x\\forall y\\,P(x,y)\\to\\forall y\\exists x\\,P(x,y)$. The number of valid statements is",
+          "answer": 1,
+          "solution": "II is valid: if one $x$ works for all $y$, then each $y$ has that $x$. I is not valid: if $P$ holds for all elements and $Q$ for none, then for every $x$ the inner implication is false.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l7-04",
+          "title": "Logic (DPP-07) · Q4",
+          "type": "msq",
+          "question": "Choose among the following those that are not equivalent to the given first-order logic statement $(\\exists x)(\\forall y)[p(x,y)\\wedge q(x,y)\\wedge\\neg r(x,y)]$.",
+          "options": [
+            "$(\\forall x)(\\exists y)[p(x,y)\\wedge q(x,y)\\to r(x,y)]$",
+            "$(\\exists x)(\\forall y)[p(x,y)\\vee q(x,y)\\wedge\\neg r(x,y)]$",
+            "$(\\forall x)(\\exists y)[p(x,y)\\vee q(x,y)\\to r(x,y)]$",
+            "$(\\forall x)(\\exists y)[p(x,y)\\wedge q(x,y)\\to r(x,y)]$"
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "The negation of the given statement is $\\forall x\\exists y[(p\\wedge q)\\to r]$, which is option (a) (and (d), identical): that is the negation, not an equivalent. (b) and (c) have different structure and are also not equivalent. So none of the options is equivalent.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-l7-05",
+          "title": "Logic (DPP-07) · Q5",
+          "type": "mcq",
+          "question": "Choose the correct representation for the statement \"Every player is liked by some coach\".",
+          "options": [
+            "$\\forall x[player(x)\\to\\exists y[coach(y)\\wedge likes(y,x)]]$",
+            "$\\forall x[player(x)\\to\\exists y[coach(y)\\to likes(y,x)]]$",
+            "$\\forall x[player(x)\\to\\forall y[coach(y)\\to likes(y,x)]]$",
+            "$\\forall x[player(x)\\to\\forall y[coach(y)\\wedge likes(y,x)]]$"
+          ],
+          "answer": 0,
+          "solution": "For each player there exists a coach who likes that player: $\\exists y$ is paired with $\\wedge$ (using $\\to$ with $\\exists$ would be trivially satisfied by any non-coach).",
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Set Theory",
+      "questions": [
+        {
+          "id": "dpp-dm-s1-01",
+          "title": "Sets (DPP-01) · Q1",
+          "type": "msq",
+          "question": "Which of the following statements are true?",
+          "options": [
+            "I. $\\phi\\in\\phi$",
+            "II. $\\phi\\subset\\phi$",
+            "III. $\\phi\\subseteq\\phi$",
+            "IV. $\\phi\\in\\{\\phi\\}$",
+            "V. $\\phi\\subset\\{\\phi\\}$",
+            "VI. $\\phi\\subseteq\\{\\phi\\}$"
+          ],
+          "answer": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "solution": "$\\phi$ has no elements, so I is false. A set is not a proper subset of itself, so II is false. III is true. $\\{\\phi\\}$ has $\\phi$ as an element (IV) and $\\phi$ is a proper subset of it (V, VI).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s1-02",
+          "title": "Sets (DPP-01) · Q2",
+          "type": "nat",
+          "question": "If a set $A$ has 63 proper subsets, then what is the cardinality of $A$?",
+          "answer": 6,
+          "solution": "$2^n-1=63\\Rightarrow n=6$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s1-03",
+          "title": "Sets (DPP-01) · Q3",
+          "type": "mcq",
+          "question": "If a set $A$ has 64 subsets of odd cardinality, then what is $|A|$?",
+          "options": [
+            "$6$",
+            "$63$",
+            "$7$",
+            "$128$"
+          ],
+          "answer": 2,
+          "solution": "The number of odd-cardinality subsets is $2^{n-1}=64$, so $n=7$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s1-04",
+          "title": "Sets (DPP-01) · Q4",
+          "type": "nat",
+          "question": "How many subsets of $\\{1,2,3,\\dots,11\\}$ contain at least one even integer?",
+          "answer": 1984,
+          "solution": "Total $2^{11}=2048$. Subsets with only odd elements ($6$ odd numbers): $2^6=64$. So $2048-64=1984$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s1-05",
+          "title": "Sets (DPP-01) · Q5",
+          "type": "nat",
+          "question": "Let $A=\\{1,2,3,4,5,7,8,10,11,14,17,18\\}$. How many subsets of $A$ contain six elements?",
+          "answer": 924,
+          "solution": "$|A|=12$, so $\\binom{12}{6}=924$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s1-06",
+          "title": "Sets (DPP-01) · Q6",
+          "type": "nat",
+          "question": "Let $A=\\{2,4,5,6,7,8,9,10,11,12,13,15\\}$. How many six-element subsets of $A$ contain four even integers and two odd integers?",
+          "answer": 225,
+          "solution": "$A$ has $6$ even and $6$ odd integers. $\\binom64\\binom62=15\\times15=225$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s1-07",
+          "title": "Sets (DPP-01) · Q7",
+          "type": "nat",
+          "question": "Let $A=\\{1,2,3,4,5,6,7,8,9,10,11,12\\}$. How many subsets of $A$ contain only odd integers?",
+          "answer": 64,
+          "solution": "There are $6$ odd integers; any subset of them (including the empty set) qualifies: $2^6=64$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s2-01",
+          "title": "Sets (DPP-02) · Q1",
+          "type": "mcq",
+          "question": "Suppose $A,B,C,D$ are subsets of $U$ with $A\\subseteq B$ and $C\\subseteq D$. Consider: I. $A\\cap C\\subseteq B\\cap D$. II. $A\\cup C\\subseteq B\\cup D$. Which is correct?",
+          "options": [
+            "Only I is true",
+            "Only II is true",
+            "Neither I nor II is true",
+            "Both I and II are true"
+          ],
+          "answer": 3,
+          "solution": "An element of $A\\cap C$ lies in $B$ and in $D$. An element of $A\\cup C$ lies in $B$ or in $D$. Both hold.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s2-02",
+          "title": "Sets (DPP-02) · Q2",
+          "type": "nat",
+          "question": "Let $A=\\{1,2,3,\\dots,15\\}$. How many subsets of $A$ contain all of the odd integers in $A$?",
+          "answer": 128,
+          "solution": "The $8$ odd integers are forced in; each of the $7$ even integers is free: $2^7=128$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s2-03",
+          "title": "Sets (DPP-02) · Q3",
+          "type": "msq",
+          "question": "Which of the following statements are true?",
+          "options": [
+            "If $A$ and $B$ are infinite sets, then $A\\cap B$ is infinite.",
+            "If $B$ is infinite and $A\\subseteq B$ then $A$ is infinite.",
+            "If $A\\subseteq B$ with $B$ finite, then $A$ is finite.",
+            "If $A\\subseteq B$ with $A$ finite, then $B$ is finite."
+          ],
+          "answer": [
+            2
+          ],
+          "solution": "(a) False: $A=\\mathbb N$ evens, $B=$ odds, $A\\cap B=\\emptyset$. (b) False: $A=\\{1\\}\\subseteq\\mathbb N$. (c) True. (d) False: $A=\\{1\\}\\subseteq B=\\mathbb N$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s2-04",
+          "title": "Sets (DPP-02) · Q4",
+          "type": "nat",
+          "question": "Let $U$ be a given universe with $A,B\\subseteq U$, $A\\cap B=\\phi$, $|A|=12$ and $|B|=10$. If seven elements are selected from $A\\cup B$, what is the probability that the selection contains four elements from $A$ and three from $B$? (Round to 4 decimal places.)",
+          "answer": 0.3483,
+          "tolerance": 0.0005,
+          "solution": "$P=\\frac{\\binom{12}{4}\\binom{10}{3}}{\\binom{22}{7}}=\\frac{495\\cdot120}{170544}=\\frac{225}{646}\\approx0.3483$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s2-05",
+          "title": "Sets (DPP-02) · Q5",
+          "type": "mcq",
+          "question": "Let $A,B\\subseteq\\mathbb R$ where $A=\\{x\\mid x^2-7x=-12\\}$ and $B=\\{x\\mid x^2-x=6\\}$. Determine $A\\cup B$ and $A\\cap B$.",
+          "options": [
+            "$A\\cup B=\\{5\\}$ and $A\\cap B=\\{-2,3,4\\}$",
+            "$A\\cup B=\\{3\\}$ and $A\\cap B=\\{-2,3,4\\}$",
+            "$A\\cup B=\\{-2,3,4\\}$ and $A\\cap B=\\{3\\}$",
+            "$A\\cup B=\\{2,3,4\\}$ and $A\\cap B=\\{5\\}$"
+          ],
+          "answer": 2,
+          "solution": "$x^2-7x+12=0\\Rightarrow A=\\{3,4\\}$. $x^2-x-6=0\\Rightarrow B=\\{-2,3\\}$. So $A\\cup B=\\{-2,3,4\\}$, $A\\cap B=\\{3\\}$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s3-01",
+          "title": "Functions (DPP-03) · Q1",
+          "type": "msq",
+          "question": "Let $f,g:\\mathbb R\\to\\mathbb R$ where $g(x)=1-x+x^2$ and $f(x)=ax+b$. If $(g\\circ f)(x)=9x^2-9x+3$, determine $a,b$.",
+          "options": [
+            "$a=-1,\\ b=3$",
+            "$a=3,\\ b=-1$",
+            "$a=-3,\\ b=2$",
+            "$a=2,\\ b=-3$"
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "$g(f(x))=a^2x^2+(2ab-a)x+(b^2-b+1)$. So $a^2=9$, $2ab-a=-9$, $b^2-b+1=3$. $a=3$ gives $b=-1$ and $a=-3$ gives $b=2$. Both pairs satisfy all three equations.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s3-02",
+          "title": "Functions (DPP-03) · Q2",
+          "type": "nat",
+          "question": "Let $A=\\{1,2,3,4,5\\}$ and $B=\\{6,7,8,9,10,11,12\\}$. How many functions $f:A\\to B$ are such that $f^{-1}(\\{6,7,8\\})=\\{1,2\\}$?",
+          "answer": 576,
+          "solution": "Elements $1,2$ map into $\\{6,7,8\\}$: $3^2=9$. Elements $3,4,5$ map into the other $4$ elements of $B$: $4^3=64$. Total $9\\times64=576$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s3-03",
+          "title": "Functions (DPP-03) · Q3",
+          "type": "nat",
+          "question": "How many of the following functions $f:\\mathbb R\\to\\mathbb R$ are both 1:1 and onto? (a) $f(x)=x+7$ (b) $f(x)=2x-3$ (c) $f(x)=-x+5$ (d) $f(x)=x^2$ (e) $f(x)=x^2+x$ (f) $f(x)=x^3$",
+          "answer": 4,
+          "solution": "(a), (b), (c), (f) are bijections on $\\mathbb R$. (d) and (e) are not one-to-one. Count $=4$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s3-04",
+          "title": "Functions (DPP-03) · Q4",
+          "type": "mcq",
+          "question": "A chemist who has five assistants is engaged in a research project that calls for nine compounds that must be synthesized. In how many ways can the chemist assign these syntheses to the five assistants so that each is working on at least one synthesis?",
+          "options": [
+            "$5!\\,S(9,5)$",
+            "$(4!)\\,S(7,4)$",
+            "$(3!)\\,S(6,3)$",
+            "None of the above"
+          ],
+          "answer": 0,
+          "solution": "The assignments are onto functions from 9 compounds to 5 assistants: $5!\\,S(9,5)$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s3-05",
+          "title": "Functions (DPP-03) · Q5",
+          "type": "mcq",
+          "question": "Let $A=\\{1,2,3,4\\}$ and $B=\\{x,y,z\\}$. Let $x$ be the number of functions from $A$ to $B$ and $y$ the number of one-to-one functions from $A$ to $B$. Then $x/y$ is",
+          "options": [
+            "$81$",
+            "$0$",
+            "undefined",
+            "$81/4$"
+          ],
+          "answer": 2,
+          "solution": "$x=3^4=81$. Since $|A|>|B|$, there is no one-to-one function, so $y=0$ and $x/y$ is undefined.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s3-06",
+          "title": "Functions (DPP-03) · Q6",
+          "type": "nat",
+          "question": "If there exist 2187 functions $f:A\\to B$ and the cardinality of set $B$ is 3, what is the cardinality of set $A$?",
+          "answer": 7,
+          "solution": "$|B|^{|A|}=3^{|A|}=2187=3^7$, so $|A|=7$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s3-07",
+          "title": "Functions (DPP-03) · Q7",
+          "type": "mcq",
+          "question": "If $A=\\{1,2,3,4,5\\}$ and there are 6720 injective functions $f:A\\to B$, what is $|B|$?",
+          "options": [
+            "$16$",
+            "$17$",
+            "$18$",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "$P(m,5)=m(m-1)(m-2)(m-3)(m-4)=6720=8\\cdot7\\cdot6\\cdot5\\cdot4$, so $|B|=8$, which is not among the options.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s3-08",
+          "title": "Functions (DPP-03) · Q8",
+          "type": "mcq",
+          "question": "Let $f:A\\to B$ with $A_1,A_2\\subseteq A$. Consider: $S_1:f(A_1\\cup A_2)=f(A_1)\\cup f(A_2)$. $S_2:f(A_1\\cap A_2)\\subseteq f(A_1)\\cap f(A_2)$. $S_3:f(A_1\\cap A_2)=f(A_1)\\cap f(A_2)$ when $f$ is one-to-one. Choose the correct option.",
+          "options": [
+            "Only $S_2$ and $S_3$ are true.",
+            "Only $S_1$ and $S_3$ are true.",
+            "Only $S_1$ and $S_2$ are true.",
+            "All $S_1$, $S_2$ and $S_3$ are true."
+          ],
+          "answer": 3,
+          "solution": "All three are standard properties of images: union is preserved, intersection is only contained, and equality holds for injective $f$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s4-01",
+          "title": "Relations (DPP-04) · Q1",
+          "type": "nat",
+          "question": "Consider the set $X=\\{1,2,3,4,5\\}$. The number of symmetric relations on $X$ is",
+          "answer": 32768,
+          "solution": "$2^{n(n+1)/2}=2^{15}=32768$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s4-02",
+          "title": "Relations (DPP-04) · Q2",
+          "type": "mcq",
+          "question": "Consider the cross product of the set $A=\\{1,2,3\\}$, the set $B=\\{x,y,z\\}$ and a set $C$. The resultant cross product is $\\phi$. Then the set $C$ is",
+          "options": [
+            "$\\{a,b\\}$",
+            "$\\{0\\}$",
+            "$\\phi$",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "A Cartesian product is empty iff one of its factors is empty. $A$ and $B$ are non-empty, so $C=\\phi$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s4-03",
+          "title": "Relations (DPP-04) · Q3",
+          "type": "mcq",
+          "question": "If the number of reflexive relations on a set is 64, then the cardinality of the set is",
+          "options": [
+            "$3$",
+            "$4$",
+            "$6$",
+            "$16$"
+          ],
+          "answer": 0,
+          "solution": "$2^{n^2-n}=64=2^6$, so $n^2-n=6$ and $n=3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s4-04",
+          "title": "Relations (DPP-04) · Q4",
+          "type": "mcq",
+          "question": "Consider the relations on $A=\\{a,b,c,d\\}$: $R_1=\\{(a,a),(a,b),(a,c),(b,c),(c,a)\\}$ and $R_2=\\{(a,a),(a,b),(a,c),(b,c),(b,a),(c,b),(c,a)\\}$. Choose the correct statement.",
+          "options": [
+            "$R_1$ is a symmetric relation but not $R_2$",
+            "$R_2$ is a symmetric relation but not $R_1$",
+            "Both $R_1$ and $R_2$ are symmetric",
+            "Neither $R_1$ nor $R_2$ is symmetric"
+          ],
+          "answer": 1,
+          "solution": "$R_1$ contains $(a,b)$ but not $(b,a)$, so it is not symmetric. In $R_2$ every pair has its reverse: $(a,b),(b,a)$; $(a,c),(c,a)$; $(b,c),(c,b)$; $(a,a)$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s4-05",
+          "title": "Relations (DPP-04) · Q5",
+          "type": "mcq",
+          "question": "Consider the relations: I. $R_1$ = \"Has the same birthday\" on the set of people. II. $R_2$ = \"Has the same absolute value\" on the set of real numbers. III. $R_3$ = \"Congruence modulo $n$\" on the set of integers. Choose the correct statement.",
+          "options": [
+            "Only $R_1$ and $R_2$ are equivalence relations.",
+            "Only $R_2$ and $R_3$ are equivalence relations.",
+            "Only $R_1$ and $R_3$ are equivalence relations.",
+            "All $R_1$, $R_2$ and $R_3$ are equivalence relations."
+          ],
+          "answer": 3,
+          "solution": "Each relation is of the form \"same value of some function\" (birthday, $|x|$, remainder mod $n$), hence reflexive, symmetric and transitive.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s4-06",
+          "title": "Relations (DPP-04) · Q6",
+          "type": "nat",
+          "question": "Consider the statements: I: Every reflexive relation is always symmetric. II: \"Is a subset of\" is a transitive relation defined on a power set of sets. III: The inverse of a transitive relation is a transitive relation. The number of incorrect statements is",
+          "answer": 1,
+          "solution": "I is false (e.g. $\\{(a,a),(a,b)\\}$ on $\\{a,b\\}$ is not reflexive, but $\\{(a,a),(b,b),(a,b)\\}$ is reflexive and not symmetric). II and III are true. So $1$ statement is incorrect.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s4-07",
+          "title": "Relations (DPP-04) · Q7",
+          "type": "nat",
+          "question": "For a set $A$ with cardinality 7, what is the total number of reflexive and symmetric relations?",
+          "answer": 2097152,
+          "solution": "The diagonal is forced. Each of the $\\binom72=21$ unordered pairs is included or not: $2^{21}=2097152$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s5-01",
+          "title": "Relations (DPP-05) · Q1",
+          "type": "msq",
+          "question": "A binary relation $R$ on $\\mathbb N\\times\\mathbb N$ is defined as follows: $(a,b)\\,R\\,(c,d)$ if $a\\ge c$ AND $b\\ge d$. Consider: $P$: $R$ is reflexive. $Q$: $R$ is not symmetric. $S$: The inverse of $R$ is a transitive relation. Which of the given propositional logic is true?",
+          "options": [
+            "$P\\wedge\\sim S$",
+            "$P\\wedge Q$",
+            "$\\sim P\\vee S$",
+            "$Q\\wedge S$"
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "$R$ is reflexive, not symmetric (e.g. $(2,2)R(1,1)$ but not conversely), and transitive; its inverse is also transitive. So $P,Q,S$ are all true: $P\\wedge\\sim S$ is false while $P\\wedge Q$, $\\sim P\\vee S$ and $Q\\wedge S$ are true.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s5-02",
+          "title": "Relations (DPP-05) · Q2",
+          "type": "mcq",
+          "question": "Consider the statements: I. A relation defined on an empty set is not a transitive relation. II. The number of transitive relations on a given set can be calculated using the formula $2^{n(n+1)/2}$. III. The complement of a transitive relation need not be transitive. Choose the correct option.",
+          "options": [
+            "I is true but II and III are false.",
+            "I and II both are true, III is false.",
+            "I and II are false, only III is true.",
+            "I and II are false, only II is true."
+          ],
+          "answer": 2,
+          "solution": "I is false: the empty relation on the empty set is vacuously transitive. II is false: $2^{n(n+1)/2}$ counts symmetric relations. III is true.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s5-03",
+          "title": "Relations (DPP-05) · Q3",
+          "type": "nat",
+          "question": "Consider the relations: $R_1=\\{(a,b),(b,c),(b,b),(a,c),(c,b)\\}$ on $A=\\{a,b,c\\}$, and $R_2$: \"Is parallel to\" on the set of lines. The number of the above relations that are transitive is",
+          "answer": 1,
+          "solution": "$R_1$ contains $(c,b)$ and $(b,c)$ but not $(c,c)$, so it is not transitive. $R_2$ is transitive (parallelism is an equivalence relation). Count $=1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s5-04",
+          "title": "Relations (DPP-05) · Q4",
+          "type": "msq",
+          "question": "Which of the following statements is/are true? I: The intersection of the relation $R_1$ = \"is a biological sibling\" on the set of persons and the relation $R_2$ = \"is elder to\" on the set of persons is also a transitive relation. II: The union of two transitive relations is also transitive.",
+          "options": [
+            "I",
+            "II"
+          ],
+          "answer": [
+            0
+          ],
+          "solution": "I is true: the intersection holds between siblings where the first is elder, and both \"sibling\" and \"elder\" chain correctly. II is false: $\\{(a,b)\\}\\cup\\{(b,c)\\}$ is not transitive.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s5-05",
+          "title": "Relations (DPP-05) · Q5",
+          "type": "nat",
+          "question": "For a set of 6 elements, the number of relations that are only symmetric but not anti-symmetric is",
+          "answer": 2097088,
+          "solution": "Symmetric relations: $2^{21}$. Relations that are both symmetric and antisymmetric lie inside the diagonal: $2^6$. Answer $=2^{21}-2^6=2097088$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s5-06",
+          "title": "Relations (DPP-05) · Q6",
+          "type": "nat",
+          "question": "The number of the given relations that are not transitive is: I. \"Division of\" on the set of integers. II. \"Multiple of\" on the set of integers. III. \"Greatest common divisor\" (gcd greater than 1) on the set of integers.",
+          "answer": 1,
+          "solution": "Divisibility and \"multiple of\" are transitive. The gcd relation is not: $(2,6)$ and $(6,3)$ are related but $(2,3)$ is not. So $1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s6-01",
+          "title": "Relations (DPP-06) · Q1",
+          "type": "nat",
+          "question": "Consider the following statements about relations on a set $A$, where $|A|=n$. How many of them are TRUE? I. If $R$ is a relation on $A$ and $|R|\\ge n$ then $R$ is reflexive. II. $R_2\\supseteq R_1$ and $R_1$ reflexive $\\Rightarrow R_2$ reflexive. III. $R_2\\supseteq R_1$ and $R_1$ symmetric $\\Rightarrow R_2$ symmetric. IV. $R_2\\supseteq R_1$ and $R_1$ anti-symmetric $\\Rightarrow R_2$ anti-symmetric. V. $R_2\\supseteq R_1$ and $R_1$ transitive $\\Rightarrow R_2$ transitive. VI. $R_2\\supseteq R_1$ and $R_2$ reflexive $\\Rightarrow R_1$ reflexive. VII. $R_2\\supseteq R_1$ and $R_2$ symmetric $\\Rightarrow R_1$ symmetric. VIII. $R_2\\supseteq R_1$ and $R_2$ anti-symmetric $\\Rightarrow R_1$ anti-symmetric. IX. $R_2\\supseteq R_1$ and $R_2$ transitive $\\Rightarrow R_1$ transitive. X. If $R$ is an equivalence relation on $A$, then $n\\le|R|\\le n^2$.",
+          "answer": 3,
+          "solution": "True: II (supersets keep the diagonal), VIII (subsets of an antisymmetric relation are antisymmetric) and X (an equivalence relation contains the diagonal and is at most $A\\times A$). All others have simple counterexamples. Answer $=3$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s6-02",
+          "title": "Relations (DPP-06) · Q2",
+          "type": "msq",
+          "question": "Consider $A=\\{w,x,y,z\\}$. Which of the following options is/are correct?",
+          "options": [
+            "The number of symmetric relations is $2^{10}$.",
+            "The number of symmetric relations which contain $(x,y)$ is $2^{9}$.",
+            "The number of relations which are anti-symmetric and contain $(x,y)$ is $2^{4}\\cdot3^{5}$.",
+            "The number of relations which are reflexive, symmetric and anti-symmetric is 1."
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "(a) $2^{n(n+1)/2}=2^{10}$. (b) Containing $(x,y)$ forces $(y,x)$, leaving $2^{9}$. (c) Antisymmetric relations number $2^43^6$; for the pair $\\{x,y\\}$ only $(x,y)$ is allowed (1 choice instead of 3), giving $2^43^5$. (d) Only the identity relation qualifies.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s6-03",
+          "title": "Relations (DPP-06) · Q3",
+          "type": "mcq",
+          "question": "Let $A$ be a set with $|A|=n$ and let $R$ be an anti-symmetric relation on $A$. Which of the following options is correct?",
+          "options": [
+            "The maximum value for $|R|$ is $(n^2+n)/2$.",
+            "The number of anti-symmetric relations of size $|R|$ is $2^{(n^2+n)/2}$.",
+            "Both (a) and (b)",
+            "None of these."
+          ],
+          "answer": 0,
+          "solution": "Maximum: the whole diagonal plus one pair from each of $\\binom n2$ unordered pairs, $n+\\binom n2=\\frac{n^2+n}2$. The total count of antisymmetric relations is $2^n3^{n(n-1)/2}$, so the formula in (b) is wrong.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s6-04",
+          "title": "Relations (DPP-06) · Q4",
+          "type": "mcq",
+          "question": "Let $A$ be a set with $|A|=n$ and let $R$ be an equivalence relation on $A$ with $|R|=r$. Which of the following is TRUE for $R$?",
+          "options": [
+            "$r-n$ will always be even.",
+            "$r-n$ will always be odd.",
+            "Both (a) and (b)",
+            "None of these."
+          ],
+          "answer": 0,
+          "solution": "If the classes have sizes $k_i$, then $r=\\sum k_i^2$ and $n=\\sum k_i$, so $r-n=\\sum k_i(k_i-1)$ is a sum of even numbers.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s6-05",
+          "title": "Relations (DPP-06) · Q5",
+          "type": "nat",
+          "question": "Let $A=\\{1,2,3,4,5,6,7,8\\}$. How many symmetric relations on $A$ contain exactly four ordered pairs?",
+          "answer": 1232,
+          "solution": "Use $d$ diagonal pairs (1 ordered pair each) and $e$ off-diagonal unordered pairs (2 ordered pairs each) with $d+2e=4$: $\\binom84+\\binom82\\binom{28}1+\\binom{28}{2}=70+784+378=1232$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s7-01",
+          "title": "Posets (DPP-07) · Q1",
+          "type": "mcq",
+          "question": "Which of the following pairs of elements are comparable in the poset $(\\mathbb N,\\mid)$?",
+          "options": [
+            "$6,7$",
+            "$3,5$",
+            "$5,15$",
+            "$4,6$"
+          ],
+          "answer": 2,
+          "solution": "$5\\mid15$, so $5$ and $15$ are comparable. In the other pairs neither element divides the other.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s7-02",
+          "title": "Posets (DPP-07) · Q2",
+          "type": "mcq",
+          "question": "Which of the following pairs of sets are not comparable in the poset $[P(A),\\subseteq]$ where $A=\\{0,1,2\\}$?",
+          "options": [
+            "$\\{0\\},\\{0,1\\}$",
+            "$\\phi,\\{0,1,2\\}$",
+            "$\\{1,2\\},\\{0,1,2\\}$",
+            "$\\{0\\},\\{1\\}$"
+          ],
+          "answer": 3,
+          "solution": "$\\{0\\}\\not\\subseteq\\{1\\}$ and $\\{1\\}\\not\\subseteq\\{0\\}$. In the other pairs one set is contained in the other.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s7-03",
+          "title": "Posets (DPP-07) · Q3",
+          "type": "nat",
+          "question": "Let $U=\\{1,2,3,4,5,6,7\\}$, $A=P(U)$, and let $R$ be the subset relation on $A$. For $B=\\{\\{1\\},\\{2\\},\\{2,3\\}\\}\\subseteq A$, let $X$ be the number of upper bounds of $B$ and $Y$ the number of lower bounds. Find $X+Y$.",
+          "answer": 17,
+          "solution": "Upper bounds are the supersets of $\\{1\\}\\cup\\{2\\}\\cup\\{2,3\\}=\\{1,2,3\\}$: $2^4=16$. Lower bounds are subsets of $\\{1\\}\\cap\\{2\\}\\cap\\{2,3\\}=\\phi$: just $\\phi$, i.e. $1$. $X+Y=17$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s7-04",
+          "title": "Posets (DPP-07) · Q4",
+          "type": "mcq",
+          "question": "Let $(A,R_1)$ and $(B,R_2)$ be two posets. On $A\\times B$ define the relation $R$ by $(a,b)R(x,y)$ if $aR_1x$ and $bR_2y$. Consider: I. $R$ is a partial order. II. $R$ is not a partial order.",
+          "options": [
+            "Only I is true.",
+            "Only II is true.",
+            "Both I and II are true.",
+            "Neither I nor II is true."
+          ],
+          "answer": 0,
+          "solution": "Reflexivity, antisymmetry and transitivity all hold componentwise, so the product order is a partial order.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s7-05",
+          "title": "Posets (DPP-07) · Q5",
+          "type": "nat",
+          "question": "Define the relation $R$ on $\\mathbb Z$ by $aRb$ if $a-b$ is a nonnegative even integer. The number of correct statements for $R$ is: I. $R$ is a partial order. II. $R$ is a total order.",
+          "answer": 1,
+          "solution": "$R$ is reflexive ($0$ is even), antisymmetric and transitive, so I is true. It is not total: $1$ and $2$ are incomparable. So $1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s8-02",
+          "title": "Posets (DPP-08) · Q2",
+          "type": "mcq",
+          "question": "If $(A,R)$ is a lattice with $A$ finite, then $(A,R)$ has",
+          "options": [
+            "Only a greatest element.",
+            "Only a least element.",
+            "A greatest element and a least element.",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "In a finite lattice the join of all elements is the greatest element and the meet of all elements is the least element.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s8-03",
+          "title": "Posets (DPP-08) · Q3",
+          "type": "mcq",
+          "question": "Let $M(R)$ be the relation matrix of a relation $R$ on $A$, with $|A|=n$. If $(A,R)$ is a total order, the number of 1's in $M(R)$ is",
+          "options": [
+            "$n+\\binom n2$",
+            "$\\frac{n+1}{2}$",
+            "$\\frac{n-1}{2}$",
+            "$2+\\binom n2$"
+          ],
+          "answer": 0,
+          "solution": "There are $n$ diagonal entries (reflexive) and exactly one of $(a,b)$, $(b,a)$ for each of the $\\binom n2$ pairs: $n+\\binom n2$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s8-04",
+          "title": "Posets (DPP-08) · Q4",
+          "type": "nat",
+          "question": "Let $D_{30}=\\{1,2,3,5,6,10,15,30\\}$ with divisibility as the partial ordering. The greatest lower bound of 10 and 15 is",
+          "answer": 5,
+          "solution": "The glb is the gcd: $\\gcd(10,15)=5$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s8-05",
+          "title": "Posets (DPP-08) · Q5",
+          "type": "nat",
+          "question": "For $U=\\{1,2,3\\}$, let $A=P(U)$. Define the relation $R$ on $A$ by $BRC$ if $B\\subseteq C$. How many ordered pairs are there in $R$?",
+          "answer": 27,
+          "solution": "Each element of $U$ is in neither, only $C$, or both $B$ and $C$: $3^3=27$ pairs.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s9-01",
+          "title": "Lattices (DPP-09) · Q1",
+          "type": "mcq",
+          "question": "The poset $[D_{12};\\mid]$ is",
+          "options": [
+            "a lattice.",
+            "a join semi lattice but not a meet semi lattice.",
+            "a meet semi lattice but not a join semi lattice.",
+            "not a semi lattice."
+          ],
+          "answer": 0,
+          "solution": "For divisors of $12$, the lub is the lcm and the glb is the gcd, both of which are again divisors of $12$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s9-03",
+          "title": "Lattices (DPP-09) · Q3",
+          "type": "mcq",
+          "question": "Which of the following statements is false, for the lattice $[P(A);\\subseteq]$ and $[\\mathbb N;\\le]$ with $\\mathbb N$ the positive integers?",
+          "options": [
+            "The upper bound of $[P(A);\\subseteq]$ is $A$.",
+            "The lower bound of $[P(A);\\subseteq]$ is $\\emptyset$.",
+            "The upper bound of $[\\mathbb N;\\le]$ does not exist, where $\\mathbb N$ is the set of all positive integers.",
+            "The lower bound of $[\\mathbb N;\\le]$ is 0."
+          ],
+          "answer": 3,
+          "solution": "$P(A)$ has greatest element $A$ and least element $\\emptyset$. $\\mathbb N$ has no upper bound, and its least element is $1$, not $0$ (since $0\\notin\\mathbb N$).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s9-04",
+          "title": "Lattices (DPP-09) · Q4",
+          "type": "msq",
+          "question": "Which of the following is not true?",
+          "options": [
+            "$[P(A);\\subseteq]$ is a distributive lattice.",
+            "In a distributive lattice if $b\\wedge c=0$ then $b\\le c$.",
+            "If $L$ is a bounded distributive lattice, the complements are unique, if they exist.",
+            "Every distributive lattice is a complemented lattice."
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "(a) and (c) are true. (b) is false: in $P(\\{1,2\\})$, $\\{1\\}\\wedge\\{2\\}=\\emptyset$ but $\\{1\\}\\not\\subseteq\\{2\\}$. (d) is false: the chain $0<a<1$ is distributive but $a$ has no complement.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s9-05",
+          "title": "Lattices (DPP-09) · Q5",
+          "type": "mcq",
+          "question": "Which of the following posets is not a lattice?",
+          "options": [
+            "$[\\{1,3,6,9,12\\};\\mid]$",
+            "$[\\{1,5,25,125\\};\\mid]$",
+            "$[\\{1,2,4,8,16\\};\\mid]$",
+            "$[\\mathbb Z;\\ge]$"
+          ],
+          "answer": 0,
+          "solution": "In (a), $6$ and $9$ have no common multiple within the set ($18\\notin$ set, $12$ is not a multiple of $9$), so no lub exists. (b), (c) and (d) are chains, hence lattices.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s10-01",
+          "title": "Groups (DPP-10) · Q1",
+          "type": "msq",
+          "question": "The set of all positive rational numbers forms an abelian group under the composition $*$ defined by $a*b=\\frac{ab}{2}$. Which of the following is/are TRUE?",
+          "options": [
+            "The identity element is 2.",
+            "The inverse of $a$ is $4/a$.",
+            "The inverse of 4 is 1.",
+            "The identity element is 1."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "$a*e=a\\Rightarrow e=2$. $a*b=2\\Rightarrow b=\\frac4a$, so the inverse of $4$ is $1$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s10-02",
+          "title": "Groups (DPP-10) · Q2",
+          "type": "msq",
+          "question": "Let $\\mathbb R$ be the set of all real numbers and $*$ the binary operation $a*b=a+b+ab$. Which of the following is TRUE?",
+          "options": [
+            "The identity element is 0.",
+            "The inverse of $-1$ is 1.",
+            "The inverse of $a$ is $-\\frac{a}{a+1}$.",
+            "$\\mathbb R$ is not a group."
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "$a*0=a$, so $0$ is the identity. The inverse of $a\\ne-1$ is $-\\frac a{a+1}$. But $-1*b=-1$ for every $b$, so $-1$ has no inverse and $(\\mathbb R,*)$ is not a group.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s10-03",
+          "title": "Groups (DPP-10) · Q3",
+          "type": "mcq",
+          "question": "The set $G=\\{0,1,2,3,4,5\\}$ is a group with respect to addition modulo 6. Which of the following is false?",
+          "options": [
+            "The inverse of 2 is 4",
+            "The inverse of 3 is 3",
+            "The inverse of 5 is 2",
+            "The inverse of 1 is 5"
+          ],
+          "answer": 2,
+          "solution": "The inverse of $x$ is $6-x$: $2\\to4$, $3\\to3$, $1\\to5$, but $5\\to1$ (not $2$).",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s10-04",
+          "title": "Groups (DPP-10) · Q4",
+          "type": "nat",
+          "question": "$G=\\{1,-1,i,-i\\}$ is a group with respect to multiplication. The order of $-i$ is",
+          "answer": 4,
+          "solution": "$(-i)^2=-1$, $(-i)^3=i$, $(-i)^4=1$. The order is $4$.",
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dm-s10-05",
+          "title": "Groups (DPP-10) · Q5",
+          "type": "mcq",
+          "question": "If $G$ is a group of prime order $p$, then the number of subgroups of $G$ is",
+          "options": [
+            "$1$",
+            "$2$",
+            "$p-1$",
+            "$p$"
+          ],
+          "answer": 1,
+          "solution": "By Lagrange's theorem a subgroup has order dividing $p$, i.e. $1$ or $p$. So only the trivial subgroup and $G$ itself.",
+          "source": "DPP"
+        }
+      ]
+    }
+  ]
 }
