@@ -1,4 +1,537 @@
 {
-  "title": "algorithms - DPP",
-  "chapters": []
+  "title": "Algorithms DPP Questions",
+  "chapters": [
+    {
+      "title": "Analysis of Algorithms",
+      "questions": [
+        {
+          "id": "dpp-aa-001",
+          "title": "Analysis of Algorithms Q1",
+          "type": "mcq",
+          "question": "Sort the functions in ascending order of asymptotic (big-O) complexity: $f_1(n) = n$, $f_2(n) = 80$, $f_3(n) = n^{\\log n}$, $f_4(n) = \\log \\log^2 n$, $f_5(n) = (\\log n)^{\\log n}$.",
+          "options": [
+            "$f_2(n), f_4(n), f_1(n), f_5(n), f_3(n)$",
+            "$f_2(n), f_1(n), f_4(n), f_5(n), f_3(n)$",
+            "$f_2(n), f_1(n), f_4(n), f_3(n), f_5(n)$",
+            "$f_1(n), f_1(n), f_4(n), f_3(n), f_2(n)$"
+          ],
+          "answer": 0,
+          "solution": "80 is constant, $\\log\\log^2 n = 2\\log\\log n$ grows slower than n. Between the last two: $(\\log n)^{\\log n}=2^{\\log n\\cdot\\log\\log n}$ while $n^{\\log n}=2^{(\\log n)^2}$, and $\\log\\log n<\\log n$, so $f_5<f_3$. Order: $f_2,f_4,f_1,f_5,f_3$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-aa-002",
+          "title": "Analysis of Algorithms Q2",
+          "type": "msq",
+          "question": "Consider two functions $f(n) = 10n + 2\\log n$ and $g(n) = 5n + 2(\\log n)^2$, then which of the following is correct option?",
+          "options": [
+            "$f(n) = \\theta(g(n))$",
+            "$f(n) = O(g(n))$",
+            "$f(n) = \\omega(g(n^2))$",
+            "None of the above"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "Both functions are dominated by their linear term, so $f(n)=\\Theta(g(n))$ and therefore also $f(n)=O(g(n))$. $\\omega(g(n^2))$ is false. As extracted the question is single-choice, but both (a) and (b) are true, so it is stored as msq. Please check which option your key uses.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-aa-003",
+          "title": "Analysis of Algorithms Q3",
+          "type": "nat",
+          "question": "Consider two functions $f(n) = \\sqrt{n}$ and $g(n) = n \\log n + n$, then $f(n)/g(n)$ is equivalent to how many of the following given below? (i) $o(n^{-1/2})$, (ii) $O(n^{-1/2})$, (iii) $\\Omega(1/\\log n)$, (iv) $\\theta(n^{-1/2})$.",
+          "answer": 2,
+          "solution": "$f/g=\\sqrt n/(n\\log n+n)\\approx n^{-1/2}/(\\log n+1)$. It is $o(n^{-1/2})$ (true) and $O(n^{-1/2})$ (true). It is much smaller than $1/\\log n$, so (iii) is false, and the extra $1/\\log n$ factor makes (iv) false. Count = 2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-aa-004",
+          "title": "Analysis of Algorithms Q4",
+          "type": "mcq",
+          "question": "Consider the following C-code: `void foo (int x) { int a=1; if (n==1) return; for (; a<=n; a++) {} printf(\"GATEWALLAH\"); break; }` What is the worst time complexity of above program?",
+          "options": [
+            "$O(1)$",
+            "$O(n)$",
+            "$O(\\log n)$",
+            "$O(\\sqrt{n})$"
+          ],
+          "answer": 1,
+          "solution": "The empty for loop runs n times, which dominates the running time: O(n). Note that the code as extracted is not valid C (parameter is x but n is used, and break appears outside a loop); the intended answer is O(n).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-aa-005",
+          "title": "Analysis of Algorithms Q5",
+          "type": "mcq",
+          "question": "Find the time complexity of the following summation, assume that k is constant. $k > 0$: $\\sum_{x=1}^{n}\\sum_{y=x+1}^{n}\\frac{1}{k}$.",
+          "options": [
+            "$O(n^2)$",
+            "$O(n)$",
+            "$O(n^3)$",
+            "None of the above"
+          ],
+          "answer": 0,
+          "solution": "The sum is $\\frac{1}{k}\\cdot\\frac{n(n-1)}{2}=\\Theta(n^2)$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-aa-006",
+          "title": "Analysis of Algorithms Q6",
+          "type": "nat",
+          "question": "How many of the following expressions correctly describes $T(n) = n \\log(n^2)$? (i) $\\theta(n^2)$, (ii) $O(n)$, (iii) $\\Omega(n)$, (iv) $O(n^2)$.",
+          "answer": 2,
+          "solution": "$T(n)=2n\\log n=\\Theta(n\\log n)$. It is not $\\Theta(n^2)$ and not $O(n)$, but it is $\\Omega(n)$ and $O(n^2)$. Count = 2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-aa-007",
+          "title": "Analysis of Algorithms Q7",
+          "type": "mcq",
+          "question": "Consider two functions $f_1(n) = n^{2^n}$ and $f_2(n) = n^{n^2}$, then which of the following is true.",
+          "options": [
+            "$f_1(n) = O(f_2(n))$",
+            "$f_1(n) = \\theta(f_2(n))$",
+            "$f_1(n) = \\omega(f_2(n))$",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Compare exponents: $2^n$ grows faster than $n^2$, so $n^{2^n}$ grows faster than $n^{n^2}$, giving $f_1=\\omega(f_2)$.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Design Strategies",
+      "questions": [
+        {
+          "id": "dpp-ds-001",
+          "title": "Design Strategies Q1",
+          "type": "mcq",
+          "question": "Consider an array containing the following elements in unsorted order (placed randomly) but 120 as first elements: `120 160 30 190 14 24 70 180 110`. Quick sort partitioning algorithm is applied by choosing first elements as pivot element. Then what is the total number of arrangements of array integers are possible preserving the effect of first pass of partitioning algorithm.",
+          "options": [
+            "680",
+            "700",
+            "720",
+            "740"
+          ],
+          "answer": 2,
+          "solution": "With pivot 120, 5 elements are smaller (30, 14, 24, 70, 110) and 3 are larger (160, 190, 180). After the first pass the pivot is fixed at position 6, with smaller elements on the left and larger on the right. Arrangements = 5! x 3! = 120 x 6 = 720.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-002",
+          "title": "Design Strategies Q2",
+          "type": "mcq",
+          "question": "Let $T(n) = [n(\\log(n^3) - \\log n) + \\log n]n + \\log n$. Complexity of $T(n)$ is:",
+          "options": [
+            "$O(n^2)$",
+            "$O(n^3)$",
+            "$O(n \\log n)$",
+            "$O(n^2 \\log n)$"
+          ],
+          "answer": 3,
+          "solution": "$\\log n^3-\\log n=2\\log n$, so $T(n)=(2n\\log n+\\log n)n+\\log n=2n^2\\log n+n\\log n+\\log n=\\Theta(n^2\\log n)$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-003",
+          "title": "Design Strategies Q3",
+          "type": "mcq",
+          "question": "Assume that there are 4 sorted lists of $n/4$ elements each, if these lists are merged into a single sorted list of $n$ elements then how many key comparisons are required in the worst case using an efficient algorithm?",
+          "options": [
+            "$2n - 3$",
+            "$\\frac{7}{4}n - 3$",
+            "$\\frac{9}{4}n - 3$",
+            "$\\frac{6}{4}n - 3$"
+          ],
+          "answer": 0,
+          "solution": "Merge pairwise: two merges of n/4 + n/4 elements cost (n/2 - 1) each = n - 2, then one merge of n/2 + n/2 costs n - 1. Total = 2n - 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-004",
+          "title": "Design Strategies Q4",
+          "type": "nat",
+          "question": "Consider the number in the sequence: `2 5 11 17 19 21 26 33 39 40 51 65 79 88 99`. Using binary search, the number of comparisons required to search elements '2' is [NAT].",
+          "answer": 4,
+          "solution": "The array has 15 elements. Probes: mid=8 (33), mid=4 (17), mid=2 (5), mid=1 (2, found). That is 4 comparisons.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-005",
+          "title": "Design Strategies Q5",
+          "type": "mcq",
+          "question": "Merging 4 sorted files having 400, 100, 250, 50 records will take $O()$ time?",
+          "options": [
+            "800",
+            "400",
+            "200",
+            "100"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided and the intended meaning is unclear. Optimal merge order is 50+100=150, 150+250=400, 400+400=800 (total cost 1350 record moves; 1347 comparisons). Option (a) 800 matches the total number of records, but please verify against the original key.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-006",
+          "title": "Design Strategies Q6",
+          "type": "nat",
+          "question": "Consider a machine which needs a minimum of 50 seconds to sort 500 names by quick sort, then what is the minimum time (approximately) is required to sort 50 names (round off to 2 decimal) [NAT].",
+          "answer": 3.15,
+          "solution": "The minimum (best-case) time of quick sort is proportional to $n\\log n$. $T(50)=50\\times\\frac{50\\log 50}{500\\log 500}=50\\times0.0630\\approx3.15$ seconds (the base of the logarithm cancels).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ds-007",
+          "title": "Design Strategies Q7",
+          "type": "nat",
+          "question": "What is the total number of comparisons that will be required in worst case to merge the following sorted files into a single sorted file by merging together two files at a time? Files: $F_1, F_2, F_3, F_4$; Number of records: 40, 42, 44, 46 [NAT].",
+          "answer": 341,
+          "solution": "Using the optimal merge pattern: 40+42=82 (81 comparisons), 44+46=90 (89 comparisons), 82+90=172 (171 comparisons). Total = 81 + 89 + 171 = 341. (Merging m and n records needs m+n-1 comparisons in the worst case.)",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Dynamic Programming & Graph Algorithm",
+      "questions": [
+        {
+          "id": "dpp-dp-001",
+          "title": "Dynamic Programming & Graph Algorithm Q1",
+          "type": "mcq",
+          "question": "What is the time complexity of dynamic programming for matrix chain multiplication problem?",
+          "options": [
+            "$O(n^2)$",
+            "$O(n^3)$",
+            "$O(n \\log n)$",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "There are O(n^2) subproblems and each takes O(n) time to evaluate the split points, giving O(n^3).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dp-002",
+          "title": "Dynamic Programming & Graph Algorithm Q2",
+          "type": "nat",
+          "question": "Consider the matrices x, y and z with dimension $10 \\times 20$, $20 \\times 30$ respectively. Then what is the minimum number of multiplications required to multiply the matrices? [NAT]",
+          "answer": null,
+          "solution": "Answer key not provided. The question says x, y and z but gives only two dimensions (the third matrix's dimension is missing). If only the two given matrices are multiplied, the cost is 10 x 20 x 30 = 6000. Please check the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dp-003",
+          "title": "Dynamic Programming & Graph Algorithm Q3",
+          "type": "mcq",
+          "question": "What is the length of the LCS for the pair of subsequences given below. $P = \\text{ATGACTATAA}$, $Q = \\text{GACTAATA}$.",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "answer": 2,
+          "solution": "GACTATA is a common subsequence (P positions 3,4,5,6,7,8,9; Q positions 1,2,3,4,5,7,8), giving length 7. All of Q (length 8) is not a subsequence of P, since after matching G,A,C,T no T remains for Q's second-to-last letter. So LCS = 7.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dp-004",
+          "title": "Dynamic Programming & Graph Algorithm Q4",
+          "type": "mcq",
+          "question": "Consider a connected weighted graph $G = (V, E)$, where $\\vert{}V\\vert{} = n$, $\\vert{}E\\vert{} = m$, if all the edges have distinct positive integer weights, then the maximum number of minimum weight spanning trees in the graph is?",
+          "options": [
+            "$n$",
+            "$m$",
+            "$1$",
+            "$n^{n-2}$"
+          ],
+          "answer": 2,
+          "solution": "If all edge weights are distinct, the MST is unique, so the maximum number of minimum weight spanning trees is 1.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dp-005",
+          "title": "Dynamic Programming & Graph Algorithm Q5",
+          "type": "mcq",
+          "question": "What is the weight of the minimum spanning tree for the graph shown below?",
+          "options": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/graph that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dp-006",
+          "title": "Dynamic Programming & Graph Algorithm Q6",
+          "type": "mcq",
+          "question": "How many minimum spanning tree does this graph have?",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/graph that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dp-007",
+          "title": "Dynamic Programming & Graph Algorithm Q7",
+          "type": "mcq",
+          "question": "Consider the following problem with knapsack capacity of 8. Items: $I_1$ (Profit: 13, Weight: 1), $I_2$ (Profit: 8, Weight: 5), $I_3$ (Profit: 7, Weight: 3), $I_4$ (Profit: 3, Weight: 4). Which of the following item is not selected in the optimal solution of 0/1 knapsack problem?",
+          "options": [
+            "$I_1$ only",
+            "$I_2$ only",
+            "$I_3$ only",
+            "$I_4$ only"
+          ],
+          "answer": 1,
+          "solution": "Best combination within weight 8 is I1 + I3 + I4: weight 1+3+4 = 8, profit 13+7+3 = 23. Alternatives: I1+I2 = 21, I1+I3 = 20, I2+I3 = 15. So I2 is not selected.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dp-008",
+          "title": "Dynamic Programming & Graph Algorithm Q8",
+          "type": "mcq",
+          "question": "Consider the following statements: $S_1$: For every weighted graph and any two vertices p and q, Bellman ford algorithm starting at p will always return a shortest path to q. $S_2$: At the termination of Bellman ford algorithm even if graph has negative weight cycle, correct shortest path is found for vertex for which shortest path is well-defined. Which of the statement is correct?",
+          "options": [
+            "only $S_1$",
+            "only $S_2$",
+            "Both $S_1$ and $S_2$ are true",
+            "neither $S_1$ nor $S_2$ is true"
+          ],
+          "answer": 1,
+          "solution": "S1 is false: with a negative weight cycle reachable on the way to q, the shortest path is not defined. S2 is true: vertices whose shortest path is well-defined (not affected by a negative cycle) still get correct distances.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Greedy Method",
+      "questions": [
+        {
+          "id": "dpp-gm-001",
+          "title": "Greedy Method Q1",
+          "type": "mcq",
+          "question": "Consider the following statements. $S_1$: Given a weighted declared graph with the distinct weights, the shortest path among any two vertices will be unique. $S_2$: A minimum spanning tree can contain negative edges. Choose the correct statements.",
+          "options": [
+            "Only $S_1$ is true",
+            "Only $S_2$ is true",
+            "Both $S_1$ and $S_2$ are true",
+            "neither $S_1$ nor $S_2$ is true"
+          ],
+          "answer": 1,
+          "solution": "S1 is false: distinct edge weights do not make path sums distinct (e.g. 1+4 = 2+3). S2 is true: MST has no restriction on negative edge weights.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-gm-002",
+          "title": "Greedy Method Q2",
+          "type": "msq",
+          "question": "Which of the statement is/are correct?",
+          "options": [
+            "First edge added by Kruskal's algorithm can be the last edge added by prim's algorithm.",
+            "In a graph, if one raises the length of all edge to the power of 3, the minimum spanning tree will stay the same.",
+            "The heaviest edge in a graph cannot belong to the minimum spanning tree.",
+            "The maximum spanning tree (spanning tree of maximum cost) can be computed by negating the cost of all the edges in the graph and then computing minimum spanning tree."
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "(a) True: on the path a-b-c-d with weights 2, 3, 1, Kruskal adds cd first, while Prim started from a adds cd last. (b) True: x^3 is strictly increasing, so the ordering of edge weights is preserved. (c) False: a bridge edge must be in every spanning tree even if it is the heaviest. (d) True: negating the weights turns MST into maximum spanning tree.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-gm-003",
+          "title": "Greedy Method Q3",
+          "type": "nat",
+          "question": "Consider the following instances of the job scheduling problem with deadlines (Note: every Job takes one unit time). Jobs: $J_1$ (Deadline: 1, Profit: 3), $J_2$ (Deadline: 3, Profit: 5), $J_3$ (Deadline: 4, Profit: 20), $J_4$ (Deadline: 3, Profit: 18), $J_5$ (Deadline: 2, Profit: 1), $J_6$ (Deadline: 1, Profit: 6), $J_7$ (Deadline: 2, Profit: 30). What is the maximum profit generated by greedy algorithm? [NAT]",
+          "answer": 74,
+          "solution": "Consider jobs in decreasing profit: J7 (30, slot 2), J3 (20, slot 4), J4 (18, slot 3), J6 (6, slot 1). All 4 slots are now full, so the rest are rejected. Profit = 30 + 20 + 18 + 6 = 74.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-gm-004",
+          "title": "Greedy Method Q4",
+          "type": "nat",
+          "question": "Consider is the weighted graph G given by... How many MST does G Have? [NAT]",
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/graph that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-gm-005",
+          "title": "Greedy Method Q5",
+          "type": "mcq",
+          "question": "Let's suppose, we want to merge some sorted files where the number of records in each file is given below: (15, 18, 20, 21, 24, 28, 30, 32, 35, 40, 45, 50) then what is the minimum number of comparisons required to merge the following files?",
+          "options": [
+            "1200",
+            "1225",
+            "1251",
+            "1255"
+          ],
+          "answer": 2,
+          "solution": "Optimal merge (Huffman) costs: 33, 41, 52, 62, 68, 81, 95, 114, 149, 209, 358, total 1262. There are 11 merges, and each merge of m and n records needs m+n-1 comparisons, so comparisons = 1262 - 11 = 1251.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-gm-006",
+          "title": "Greedy Method Q6",
+          "type": "mcq",
+          "question": "Greedy algorithm fails to give an optimal solution to which of the following problems? (p) Travelling salesman problem, (q) Job scheduling with deadlines and penalty, (r) Shortest path algorithm, (s) optimal merge pattern, (t) Huffman encoding.",
+          "options": [
+            "p, q, r",
+            "r, s, t",
+            "p, q, r, s, t",
+            "All of the above"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided. Greedy fails for the travelling salesman problem (p), while it gives optimal results for optimal merge pattern (s) and Huffman encoding (t), and for shortest path with non-negative weights (r). None of the options as extracted is clearly correct, so the question text may be altered; please verify against the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Heap Algorithm & Backtracking and Branch-Bound",
+      "questions": [
+        {
+          "id": "dpp-hb-001",
+          "title": "Heap Algorithm & Backtracking and Branch-Bound Q1",
+          "type": "mcq",
+          "question": "Consider the statements: $S_1$: Merge-sort, quick-sort and bubble sort are comparison-based sorting algorithms. $S_2$: A reverse-sorted array (i.e. decreasing order) is always max-heap.",
+          "options": [
+            "Only $S_1$ is true",
+            "Only $S_2$ is true",
+            "Both $S_1$ and $S_2$ are true",
+            "Neither $S_1$ nor $S_2$ is true"
+          ],
+          "answer": 2,
+          "solution": "S1 is true. S2 is true: in a decreasing array every parent (index i) is at least as large as its children (indices 2i, 2i+1, which come later), so the max-heap property holds.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-hb-002",
+          "title": "Heap Algorithm & Backtracking and Branch-Bound Q2",
+          "type": "mcq",
+          "question": "Consider a binary search tree which is also a complete binary tree. The problem is to convert the BST which is given into a minheap with the condition that, all the values in the left subtree of a node should be less than all the values in the right subtree of the node. This condition is applied on all the nodes in the process of converting BST into minheap... What will be the worst-case time complexity (tightest) of given problem, if we can take auxiliary space of $O(n)$?",
+          "options": [
+            "$O(n)$",
+            "$O(n^2)$",
+            "$O(\\log n)$",
+            "$O(n \\log n)$"
+          ],
+          "answer": 0,
+          "solution": "Do an inorder traversal of the BST to get a sorted array (O(n)), then fill the nodes in preorder from that array. This produces a min-heap with the left-subtree < right-subtree property in O(n) total time using O(n) space. The question text is truncated in the source, so please verify.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-hb-003",
+          "title": "Heap Algorithm & Backtracking and Branch-Bound Q3",
+          "type": "mcq",
+          "question": "How many different min-heap are possible with keys 1 2 3 4 5?",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "answer": 3,
+          "solution": "Root = 1. A 5-node complete tree has 3 nodes in the left subtree and 1 in the right. Choose which 3 of the remaining 4 keys go left: C(4,3) = 4. A 3-node heap has 2 arrangements, a 1-node heap has 1. Total = 4 x 2 x 1 = 8.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-hb-004",
+          "title": "Heap Algorithm & Backtracking and Branch-Bound Q4",
+          "type": "mcq",
+          "question": "What is the maximum number of exchanges required to order an array of 5 elements using the selection sort?",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 3,
+          "solution": "Selection sort does at most one swap per pass and needs n-1 passes, so the maximum is 5-1 = 4.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-hb-005",
+          "title": "Heap Algorithm & Backtracking and Branch-Bound Q5",
+          "type": "nat",
+          "question": "Number of undirected graph (not necessarily connected) can be constructed by given set $V = [1, 2, 3, 4]$ of 4 vertices are [NAT].",
+          "answer": 64,
+          "solution": "With 4 labelled vertices there are C(4,2) = 6 possible edges, each present or absent, giving 2^6 = 64 graphs.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-hb-006",
+          "title": "Heap Algorithm & Backtracking and Branch-Bound Q6",
+          "type": "nat",
+          "question": "The number of spanning trees of an undirected completed graph with 7 nodes is [NAT].",
+          "answer": 16807,
+          "solution": "By Cayley's formula, the complete graph K_n has n^(n-2) spanning trees. For n = 7: 7^5 = 16807.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-hb-007",
+          "title": "Heap Algorithm & Backtracking and Branch-Bound Q7",
+          "type": "mcq",
+          "question": "Consider the following statements: $S_1$: Backtracking is an algorithm technique for solving problems recursively by trying to build a solution incrementally. $S_2$: Time complexity of N-Queens algorithm is $O(n!)$. Which statement is true?",
+          "options": [
+            "only $S_1$",
+            "only $S_2$",
+            "Both $S_1$ and $S_2$ are true",
+            "Neither $S_1$ nor $S_2$ is true"
+          ],
+          "answer": 2,
+          "solution": "S1 is the standard definition of backtracking. S2: the N-Queens backtracking search places one queen per row, giving a worst-case time of O(n!). Both are true.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    }
+  ]
 }

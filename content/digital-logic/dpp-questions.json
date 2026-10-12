@@ -1,4 +1,2007 @@
 {
-  "title": "digital-logic - DPP",
-  "chapters": []
+  "title": "Digital Logic DPP Questions",
+  "chapters": [
+    {
+      "title": "Combinational Circuits",
+      "questions": [
+        {
+          "id": "dpp-cc-001",
+          "title": "DPP-1 Q1",
+          "type": "mcq",
+          "question": "Let $X=x_{1}x_{0}$ and $y=y_{1}y_{0}$ be unsigned 2-bit numbers. The function $F=1$ if $x>y$ and $F=0$ otherwise. The minimal sum of product expression for F, is",
+          "options": [
+            "$y_{1}y_{0}+x_{0}y_{0}+x_{1}x_{0}y_{1}$",
+            "$x_{0}y_{1}+y_{1}y_{0}+x_{1}\\overline{x}_{0}$",
+            "$y_{1}\\overline{x}_{1}+y_{0}\\overline{x}_{1}\\overline{x}_{0}+y_{1}y_{0}\\overline{x}_{0}$",
+            "$x_{1}\\overline{y_{1}}+x_{0}\\overline{y_{0}y_{1}}+x_{0}x_{1}\\overline{y_{0}}$"
+          ],
+          "answer": 3,
+          "solution": "x>y when x1=1,y1=0, or x1=y1 and x0=1,y0=0. Minimal SOP: $x_1\\overline{y_1}+x_0\\overline{y_1}\\,\\overline{y_0}+x_1x_0\\overline{y_0}$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-002",
+          "title": "DPP-1 Q2",
+          "type": "mcq",
+          "question": "The two 4 bit numbers $A_{3} A_{2} A_{1} A_{0}$ and $B_{3} B_{2} B_{1} B_{0}$ are applied to a comparator circuit shown below. A pair of correct input numbers forcing the output $y=0$, will be",
+          "options": [
+            "1100, 1100",
+            "0111, 0111",
+            "1011, 1011",
+            "1100, 1101"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-003",
+          "title": "DPP-1 Q3",
+          "type": "mcq",
+          "question": "The output y of a 2-bit comparator is logic-1 whenever the 2-bit A is greater than 2-bit B the number of combination for which the output is logic - 1 is",
+          "options": [
+            "6",
+            "2",
+            "1",
+            "7"
+          ],
+          "answer": 0,
+          "solution": "Out of 16 input combinations, 4 have A=B, 6 have A>B and 6 have A<B. So A>B occurs for 6 combinations.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-004",
+          "title": "DPP-1 Q4",
+          "type": "mcq",
+          "question": "A logic circuit is given (common statement for Q4 and Q5). A pair of correct input number (AB) forcing the output $x=1$, will be",
+          "options": [
+            "10",
+            "01",
+            "11",
+            "00"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-005",
+          "title": "DPP-1 Q5",
+          "type": "mcq",
+          "question": "A logic circuit is given (common statement for Q4 and Q5). A pair of correct input number (AB) forcing the output $y_{2}=1$, will be",
+          "options": [
+            "00, 11",
+            "01, 10",
+            "00, 10",
+            "11, 01"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-006",
+          "title": "DPP-2 Q1",
+          "type": "mcq",
+          "question": "The logic realized by the circuit shown in figure is",
+          "options": [
+            "$F=A\\odot C$",
+            "$F=A\\oplus C$",
+            "$F=B\\odot C$",
+            "$F=B\\oplus C$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-007",
+          "title": "DPP-2 Q2",
+          "type": "mcq",
+          "question": "The minimum number of 2-to-1 multiplexers required to realize a 4-to-1 multiplexer is",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "answer": 2,
+          "solution": "A 4-to-1 MUX = two 2-to-1 MUXes in the first stage + one 2-to-1 MUX in the second stage = 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-008",
+          "title": "DPP-2 Q3",
+          "type": "mcq",
+          "question": "The Boolean function f implemented in the figure using two input multiplexers is",
+          "options": [
+            "$A\\overline{B}C+AB\\overline{C}$",
+            "$ABC+A\\overline{B}\\overline{C}$",
+            "$\\overline{A}BC+\\overline{A}\\overline{B}\\overline{C}$",
+            "$\\overline{ABC+\\overline{A}B\\overline{C}}$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-009",
+          "title": "DPP-2 Q4",
+          "type": "mcq",
+          "question": "A designer has multiplexer units of size $2\\times1$ and multiplexer of size $16\\times1$ is to be realized. The number of units of $2\\times1$ MUXs required, will be",
+          "options": [
+            "30",
+            "7",
+            "15",
+            "11"
+          ],
+          "answer": 2,
+          "solution": "Number of 2x1 MUXes for an N x 1 MUX is N-1 = 15.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-010",
+          "title": "DPP-2 Q5",
+          "type": "mcq",
+          "question": "The logic function implemented by $4\\times1$ MUX, is",
+          "options": [
+            "$Z=xy$",
+            "$Z=x+y$",
+            "$Z=\\overline{x+y}$",
+            "$x\\oplus y$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-011",
+          "title": "DPP-2 Q6",
+          "type": "mcq",
+          "question": "The minimum number of multiplexers of size $2\\times1$ required to implement a 2-input XNOR gate and 2-input AND gate, are",
+          "options": [
+            "1 and 1",
+            "2 and 1",
+            "2 and 2",
+            "3 and 1"
+          ],
+          "answer": 1,
+          "solution": "XNOR: select = A, inputs B and $\\overline{B}$ (the inverter needs one more MUX) = 2 MUXes. AND: select = A, inputs B and 0 = 1 MUX.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-012",
+          "title": "DPP-3 Q1",
+          "type": "mcq",
+          "question": "A demultiplexer of size $1\\times8$ with active low outputs, is programmed as shown below. The circuit has three inputs x, y, z and generates two outputs $y_{1}, y_{2}$. If de-multiplexer has active high output instead of active low outputs, then in order that outputs do not change",
+          "options": [
+            "NAND gates should be replaced by NOR gates",
+            "NAND gates should be replaced by OR gates",
+            "NAND gates should be replaced by AND gates",
+            "the inputs x, y, z should be inverted"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-013",
+          "title": "DPP-3 Q2",
+          "type": "mcq",
+          "question": "For what values of A, B, C the output (Y) will be 0",
+          "options": [
+            "$A=1, B=0, C=0$",
+            "$A=0, B=1, C=1$",
+            "$A=1, B=1, C=0$",
+            "$A=1, B=1, C=1$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-014",
+          "title": "DPP-3 Q3",
+          "type": "mcq",
+          "question": "The figure shown below is a block diagram of demultiplexer?",
+          "options": [
+            "1 to 4",
+            "1 to 8",
+            "1 to 16",
+            "None of the above"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-015",
+          "title": "DPP-3 Q4",
+          "type": "mcq",
+          "question": "Identify the circuit shown below?",
+          "options": [
+            "Bidirectional buffer",
+            "De-multiplexer",
+            "Multiplexer",
+            "Encoder"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-016",
+          "title": "DPP-3 Q5",
+          "type": "nat",
+          "question": "How many inputs will a decimal to BCD encoder have?",
+          "answer": 10,
+          "solution": "A decimal-to-BCD encoder encodes the 10 decimal digits (0-9), so it has 10 inputs and 4 outputs.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-017",
+          "title": "DPP-3 Q6",
+          "type": "mcq",
+          "question": "Which one of the following de multiplexer requires only five select lines?",
+          "options": [
+            "$1\\times2$ de Mux",
+            "$1\\times4$ De Mux",
+            "$1\\times8$ De Mux",
+            "$1\\times32$ De Mux"
+          ],
+          "answer": 3,
+          "solution": "Select lines = log2(32) = 5.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-018",
+          "title": "DPP-3 Q7",
+          "type": "nat",
+          "question": "What is the minimum number of $1\\times4$ De Mux required to implement $1\\times2^{10}$ De Mux.",
+          "answer": 341,
+          "solution": "Number = 1 + 4 + 16 + 64 + 256 = (4^5 - 1)/3 = 341.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-019",
+          "title": "DPP-3 Q8",
+          "type": "mcq",
+          "question": "To implement a 1: 128 De-Mux we require M number of 1: 8 De-mux and N numbers of 1: 2 De-mux. Then which of the following is correct",
+          "options": [
+            "$(M-N)/2=9$",
+            "$M+N=M$",
+            "$M/N=M$",
+            "$(M+N)/2=9$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided. Note: 128 = 8 x 8 x 2, and none of the possible cascade orders gives an obvious match with the options as extracted, so please verify against the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-020",
+          "title": "DPP-3 Q9",
+          "type": "mcq",
+          "question": "Consider a circuit as shown below (Output y is):",
+          "options": [
+            "$A+B$",
+            "$\\overline{A\\cdot B}$",
+            "$AB$",
+            "$A\\oplus B$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-021",
+          "title": "DPP-3 Q10",
+          "type": "mcq",
+          "question": "Consider a combinational circuit as shown below. For any sequence A, B which of the output pins ($y_{0}$ to $y_{3}$) can be active",
+          "options": [
+            "$y_{0}$ and $y_{3}$ only",
+            "$y_{1}$ and $y_{2}$ only",
+            "$y_{1}$ only",
+            "all pins can be active"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-022",
+          "title": "DPP-4 Q1",
+          "type": "mcq",
+          "question": "What are basic gates required to implement a full adder",
+          "options": [
+            "1 EX-OR gate, 1 AND gate",
+            "2 EX-OR gate, 1 OR gate",
+            "2 EX-OR gate, 2 AND gate, 1 OR gate",
+            "1 EX-OR gate, 2 AND gate, 2 OR gate"
+          ],
+          "answer": 2,
+          "solution": "Full adder = 2 half adders (each 1 XOR + 1 AND) + 1 OR gate for the carry.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-023",
+          "title": "DPP-4 Q2",
+          "type": "nat",
+          "question": "How many half adders are required to implement the following expressions: $D=\\overline{A}BC+A\\overline{B}C$, $E=A\\oplus B\\oplus C$, $F=\\overline{A}C+AB\\overline{C}+\\overline{B}C$.",
+          "answer": 3,
+          "solution": "HA1(A,B) gives $A\\oplus B$ and AB. HA2($A\\oplus B$, C) gives $E=A\\oplus B\\oplus C$ and $D=C(A\\oplus B)$. HA3(AB, C) gives $F=AB\\oplus C$. Total = 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-024",
+          "title": "DPP-4 Q3",
+          "type": "mcq",
+          "question": "The following multiplexer circuit is equivalent to",
+          "options": [
+            "Implementation of sum equation of full adder",
+            "Implementation of carry equation of full adder",
+            "Implementation of borrow equation of full subtractor",
+            "All the above"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-025",
+          "title": "DPP-4 Q4",
+          "type": "mcq",
+          "question": "A 3 line to 8 line decoder with three inputs A, B, C and two outputs $y_{1}$ and $y_{2}$, is configured as shown below. The minimized expression of outputs will be",
+          "options": [
+            "$y_{1}=\\overline{A}\\overline{B}+AB\\overline{C}; y_{2}=\\overline{A\\oplus B}$",
+            "$y_{1}=AB+\\overline{A}\\overline{B}C; y_{2}=A\\oplus B$",
+            "$y_{1}=\\overline{A}B+A\\overline{C}; y_{2}=AB+AC$",
+            "$y_{1}=A\\overline{B}+\\overline{A}C; y_{2}=\\overline{A}B+\\overline{B}C$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-026",
+          "title": "DPP-4 Q5",
+          "type": "mcq",
+          "question": "What is this circuit?",
+          "options": [
+            "Half subtracter",
+            "Full subtractor",
+            "Half adder",
+            "Full adder"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-027",
+          "title": "DPP-4 Q6",
+          "type": "mcq",
+          "question": "The logic diagram of a $3\\times8$ decoder with active low outputs is shown below. What is state of outputs $Q_{7} \\dots Q_{0}$ for the set of inputs $E_{3}=E_{1}=1, E_{2}=0, A_{2}=A_{1}=1$ and $A_{0}=0$?",
+          "options": [
+            "1111 1111",
+            "1011 1111",
+            "1111 0111",
+            "0000 0000"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-028",
+          "title": "DPP-4 Q7",
+          "type": "mcq",
+          "question": "A 3 line to 8 line decoder with active low outputs, is used to realize Boolean function involving three variables x, y and z ($x$ is MSB and z is LSB) as shown below. The minimized Boolean function $f(x,y,z)$ in POS format, will be",
+          "options": [
+            "$(\\overline{x}+\\overline{y}+\\overline{z})(x+y+z)(x+\\overline{y}+\\overline{z})(\\overline{x}+y+\\overline{z})$",
+            "$(\\overline{x}+\\overline{y}+z)(\\overline{x}+y+z)(x+\\overline{y}+z)(x+y+\\overline{z})$",
+            "$(x+z)(y+z)(\\overline{x}+\\overline{y}+\\overline{z})$",
+            "$(\\overline{x}+\\overline{z})(\\overline{y}+\\overline{z})(x+y+z)$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-029",
+          "title": "DPP-4 Q8",
+          "type": "mcq",
+          "question": "Two $2\\times4$ decoders one with active low outputs and another with active high output are interconnected as shown below. The output function $f_{2}(x_{3},x_{2},x_{1})$ will be",
+          "options": [
+            "$f_{2}=(x_{1}\\oplus x_{2})\\odot x_{3}$",
+            "$f_{2}=(x_{1}\\odot x_{2})\\odot x_{3}$",
+            "$f_{2}=(x_{1}\\oplus x_{2})\\oplus x_{3}$",
+            "$f_{2}=(x_{1}\\oplus x_{2})\\oplus x_{3}$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-030",
+          "title": "DPP-4 Q9",
+          "type": "mcq",
+          "question": "Three half adders $HA_{1}$, $HA_{2}$ and $HA_{3}$ are inter-coupled as shown below. The four output functions $y_{1}, y_{2}, y_{3}$ and $y_{4}$ are expressed in terms of inputs a, b and c. Which one of the following output expressions, is correct?",
+          "options": [
+            "$y_{1}=(a\\oplus b)c$",
+            "$y_{2}=(a\\oplus b)\\oplus c$",
+            "$y_{3}=ab\\oplus c$",
+            "$y_{4}=a(b\\oplus c)$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-031",
+          "title": "DPP-4 Q10",
+          "type": "mcq",
+          "question": "Determine the outputs for the circuit shown below.",
+          "options": [
+            "$\\Sigma^{\\prime}=1, {C^{\\prime}}_{out}=1$",
+            "$\\Sigma^{\\prime}=0, {C^{\\prime}}_{out}=0$",
+            "$\\Sigma^{\\prime}=0, {C^{\\prime}}_{out}=1$",
+            "$\\Sigma^{\\prime}=1, {C^{\\prime}}_{out}=0$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-032",
+          "title": "DPP-4 Q11",
+          "type": "mcq",
+          "question": "How many half adders, will be required to add two k bit numbers?",
+          "options": [
+            "$2k+1$",
+            "$2k-1$",
+            "$2k$",
+            "$2(k+1)$"
+          ],
+          "answer": 1,
+          "solution": "The first stage needs 1 half adder; each of the remaining (k-1) stages needs a full adder = 2 half adders (+ an OR gate). Total = 1 + 2(k-1) = 2k-1.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-033",
+          "title": "DPP-4 Q12",
+          "type": "nat",
+          "question": "Eight 1-bit full adders are cascaded. Each 1-bit full adder generates carry out bit in 10 ns and sum bit in 30 ns. The number of addition performed per second, will be $\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\times 10^7$.",
+          "answer": 1,
+          "solution": "Total delay = 7 x 10 ns (carry ripple) + 30 ns (final sum) = 100 ns. Additions per second = 1/100 ns = 1 x 10^7.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-034",
+          "title": "DPP-5 Q1",
+          "type": "mcq",
+          "question": "The circuit shown below, is a controlled half adder/ half subtractor. The inputs to half adder/ half subtractor are x and y while z is a control. The outputs are $y_{1}$ and $y_{2}$.",
+          "options": [
+            "Half adder for $z=0$",
+            "Half subtractor for $z=1$",
+            "Half adder for $z=1$ and half subtractor for $z=0$",
+            "Half adder regardless of whether $z=0$ or $z=1$ due to design defect."
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-035",
+          "title": "DPP-5 Q2",
+          "type": "mcq",
+          "question": "The function $f_{1}$ and $f_{2}$ are",
+          "options": [
+            "$f_{1}=(x_{1}\\oplus x_{2})x_{3}$ and $f_{2}=x_{1}\\overline{x}_{2}+x_{1}\\overline{x}_{3}+x_{2}x_{3}$",
+            "$f_{1}=x_{1}\\oplus x_{2}\\oplus x_{3}$ and $f_{2}=x_{1}x_{2}+x_{1}x_{3}+x_{2}x_{3}$",
+            "$f_{1}=\\overline{(x_{1}\\oplus x_{2}\\oplus x_{3})}$ and $f_{2}=x_{1}x_{2}+x_{1}x_{3}+x_{2}x_{3}$",
+            "$f_{1}=x_{1}(x_{2}\\oplus x_{3})$ and $f_{2}=x_{1}x_{2}+x_{1}x_{3}+x_{2}x_{3}$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-036",
+          "title": "DPP-5 Q3",
+          "type": "mcq",
+          "question": "What is this circuit?",
+          "options": [
+            "Full adder",
+            "Full subtractor",
+            "Magnitude comparator",
+            "Priority encoder"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-037",
+          "title": "DPP-5 Q4",
+          "type": "mcq",
+          "question": "The output of the following circuit diagram represents",
+          "options": [
+            "Borrow of half subtractor",
+            "Carry of Half Adder",
+            "Sum of half adder",
+            "None of them"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-038",
+          "title": "DPP-5 Q5",
+          "type": "mcq",
+          "question": "The design of a combinational logic circuit with three inputs x, y, z and three outputs A, B, C is attempted. The constraint is that designer has only HA, HS, FA and FS units only in his inventory. When the binary input is 0, 1, 2 or 3 the binary output is same as input and when binary input is 4, 5, 6 or 7 the binary output is 2 less than binary input. What completes the design?",
+          "options": [
+            "One FA and one HS",
+            "One HA and one HS",
+            "One HA only",
+            "One FA only"
+          ],
+          "answer": 2,
+          "solution": "With a half adder on (x, y): $B = x\\oplus y$ (sum), $A = xy$ (carry), $C = z$. Check: 100->010, 101->011, 110->100, 111->101 (input minus 2), and for x=0 the output equals the input.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-039",
+          "title": "DPP-5 Q6",
+          "type": "nat",
+          "question": "A serial adder is operating with a clock frequency of 10 MHz. The time required to sum $1011011$ and $10110$ is (in usec)",
+          "answer": 0.7,
+          "solution": "The larger operand has 7 bits, so 7 clock cycles are needed. Time = 7 x 0.1 us = 0.7 us.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cc-040",
+          "title": "DPP-5 Q7",
+          "type": "mcq",
+          "question": "A half subtractor (HS) and $2\\times1$ MUX are interconnected as demonstrated below. What is NOT correct about this circuit?",
+          "options": [
+            "For $Z=0, f=1$ indicates that the minuend and the subtrahend bits are different.",
+            "For $Z=0, f=0$ indicates that minuend and subtrahend bits are same, that is, $X=Y=0$ or $X=Y=1$.",
+            "For $Z=1, f=1$ indicates that $X<Y$."
+          ],
+          "answer": null,
+          "solution": "Answer key not provided; the figure is missing and option (d) was garbled in the source extraction, so only options (a)-(c) are included. Please restore option (d) from the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Logic Gates",
+      "questions": [
+        {
+          "id": "dpp-lg-001",
+          "title": "DPP-1 Q1",
+          "type": "mcq",
+          "question": "The input wave form is given. Draw output waveform.",
+          "options": [
+            "Waveform (a)",
+            "Waveform (b)",
+            "1 (constant)",
+            "Waveform (d)"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-002",
+          "title": "DPP-1 Q2",
+          "type": "mcq",
+          "question": "Find expression of f?",
+          "options": [
+            "$AB$",
+            "$1$",
+            "$A+B$",
+            "$\\overline{AB}$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-003",
+          "title": "DPP-1 Q3",
+          "type": "mcq",
+          "question": "Find value of f?",
+          "options": [
+            "1",
+            "0",
+            "A",
+            "$\\overline{A}$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-004",
+          "title": "DPP-1 Q4",
+          "type": "mcq",
+          "question": "Bulb will glow when A and B are respectively.",
+          "options": [
+            "00",
+            "01",
+            "10",
+            "11"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-005",
+          "title": "DPP-1 Q5",
+          "type": "mcq",
+          "question": "Find expression of F",
+          "options": [
+            "$\\overline{ABC+D\\overline{E}}$",
+            "$\\overline{A}BCD\\overline{E}$",
+            "$(\\overline{A}+BC)D\\overline{E}$",
+            "$\\overline{A}BC(D+\\overline{E})$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-006",
+          "title": "DPP-1 Q6",
+          "type": "mcq",
+          "question": "The inverter is ___ gate.",
+          "options": [
+            "AND",
+            "OR",
+            "NOT",
+            "none of the above"
+          ],
+          "answer": 2,
+          "solution": "An inverter is a NOT gate.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-007",
+          "title": "DPP-1 Q7",
+          "type": "mcq",
+          "question": "When $A=1$ then the value of Y equal",
+          "options": [
+            "0",
+            "1",
+            "$V_{CC}$",
+            "none of the above"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-008",
+          "title": "DPP-1 Q8",
+          "type": "mcq",
+          "question": "Find expression of f?",
+          "options": [
+            "0",
+            "1",
+            "AB",
+            "$\\overline{AB}$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-009",
+          "title": "DPP-1 Q9",
+          "type": "mcq",
+          "question": "Find output frequency, if the propagation delay of NOT gate is 2 n sec.",
+          "options": [
+            "125 MHz",
+            "500 MHz",
+            "250 MHz",
+            "none of the above"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-010",
+          "title": "DPP-2 Q1",
+          "type": "mcq",
+          "question": "For a 3-input logic circuit shown below, the output Z can be expressed as",
+          "options": [
+            "$Q+\\overline{R}$",
+            "$P\\overline{Q}+R$",
+            "$\\overline{Q}+R$",
+            "$P+\\overline{Q}+R$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-011",
+          "title": "DPP-2 Q2",
+          "type": "mcq",
+          "question": "The complete set of only those Logic Gates designated as Universal Gates is",
+          "options": [
+            "NOT, OR and AND Gates",
+            "XNOR, NOR and NAND Gates",
+            "NOR and NAND Gates",
+            "XOR, NOR and NAND Gates"
+          ],
+          "answer": 2,
+          "solution": "NAND and NOR are the only universal gates among these; each alone can realize every Boolean function.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-012",
+          "title": "DPP-2 Q3",
+          "type": "mcq",
+          "question": "In the logic circuit shown in the figure, Y is given by",
+          "options": [
+            "$Y=ABCD$",
+            "$Y=(A+B)(C+D)$",
+            "$Y=A+B+C+D$",
+            "$Y=AB+CD$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-013",
+          "title": "DPP-2 Q4",
+          "type": "mcq",
+          "question": "$F=AB+CD+E$ will be implemented with how many minimum number NAND gates?",
+          "options": [
+            "Three",
+            "Four",
+            "Five",
+            "Six"
+          ],
+          "answer": 1,
+          "solution": "$F=\\overline{\\overline{AB}\\cdot\\overline{CD}\\cdot\\overline{E}}$: 2 NAND gates for AB and CD, 1 NAND as an inverter for E, 1 final NAND = 4.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-014",
+          "title": "DPP-2 Q5",
+          "type": "mcq",
+          "question": "The minimum number of NAND gates required to reduce the expression $((A+B)C)D$ is",
+          "options": [
+            "6",
+            "5",
+            "8",
+            "4"
+          ],
+          "answer": 1,
+          "solution": "$A+B=\\overline{\\overline{A}\\cdot\\overline{B}}$ needs 3 NAND gates (2 inverters + 1). ANDing with C and D takes one 3-input NAND plus an inverter = 5 (assuming multi-input NAND gates are allowed). Please verify against the original key.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-015",
+          "title": "DPP-2 Q6",
+          "type": "mcq",
+          "question": "In a two-input NAND gate, if both inputs are shorted, it will behave like a ___ gate.",
+          "options": [
+            "Buffer",
+            "AND",
+            "NOT",
+            "EX-OR"
+          ],
+          "answer": 2,
+          "solution": "$\\overline{A\\cdot A}=\\overline{A}$, which is a NOT gate.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-016",
+          "title": "DPP-2 Q7",
+          "type": "mcq",
+          "question": "For the circuit shown in figure the Boolean expression for the output Y in terms of inputs P, Q, R and S is",
+          "options": [
+            "$\\overline{P}+\\overline{Q}+\\overline{R}+\\overline{S}$",
+            "$P+Q+R+S$",
+            "$(\\overline{P}+\\overline{Q})+(\\overline{R}+\\overline{S})$",
+            "$(P+Q)(R+S)$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-017",
+          "title": "DPP-2 Q8",
+          "type": "mcq",
+          "question": "A universal logic gate can implement any Boolean function by connecting sufficient number of them appropriately. Which one of the following statements is TRUE?",
+          "options": [
+            "Gate 1 is a universal gate.",
+            "Gate 2 is a universal gate.",
+            "Gate 3 is a universal gate.",
+            "None of the shown is a universal gate."
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-018",
+          "title": "DPP-2 Q9",
+          "type": "mcq",
+          "question": "Consider the following gate network: Which one of the following gates is redundant?",
+          "options": [
+            "Gate No. 1",
+            "Gate No. 2",
+            "Gate No. 3",
+            "Gate No. 4"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-019",
+          "title": "DPP-2 Q10",
+          "type": "mcq",
+          "question": "The minimum of NAND gates required to implement $A+\\overline{A}BC$ is equal to",
+          "options": [
+            "0",
+            "1",
+            "4",
+            "7"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided. $A+\\overline{A}BC = A+BC$, which needs 3 NAND gates (one inverter for A, NAND(B,C), final NAND), but 3 is not among the options as extracted. Please verify the question/options against the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-020",
+          "title": "DPP-3 Q1",
+          "type": "mcq",
+          "question": "The initial output of the following circuit is 1. If we apply 010101 at input A (first bit is zero), then what is the bit pattern generated at the output Y.",
+          "options": [
+            "010101",
+            "101010",
+            "remains at 0",
+            "remains at '1'"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-021",
+          "title": "DPP-3 Q2",
+          "type": "mcq",
+          "question": "The Boolean expression of the output of the logic circuit shown in figure is",
+          "options": [
+            "$Y=\\overline{A}\\overline{B}+AB+\\overline{C}$",
+            "$Y=\\overline{A}\\overline{B}+AB+C$",
+            "$Y=\\overline{A}B+\\overline{A}B+C$",
+            "$Y=\\overline{A}B+\\overline{A}\\overline{B}+C$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-022",
+          "title": "DPP-3 Q3",
+          "type": "mcq",
+          "question": "A, B, C and D are input, and Y is the output bit in the XOR gate circuit of the figure below. Which of the following statements about the sum S of A, B, C, D and Y is correct?",
+          "options": [
+            "S is always either zero or odd.",
+            "S is always either zero or even.",
+            "$S=1$ only if the sum of A, B, C and D is even.",
+            "$S=1$ only if the sum of A, B, C and D is odd."
+          ],
+          "answer": 1,
+          "solution": "Assuming $Y=A\\oplus B\\oplus C\\oplus D$ (even-parity style XOR tree): Y equals the parity of A+B+C+D, so A+B+C+D+Y is always even (0, 2, 4 or 6). The figure was not available, so please verify.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-023",
+          "title": "DPP-3 Q4",
+          "type": "mcq",
+          "question": "The output Y of the logic circuit given below is",
+          "options": [
+            "1",
+            "0",
+            "x",
+            "x"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-024",
+          "title": "DPP-3 Q5",
+          "type": "mcq",
+          "question": "A bulb in a staircase has two switches, one switch being at the ground floor and the other one at the first floor. The bulb can be turned ON and also can be turned OFF by any one of the switches irrespective of the state of the other switch. The logic of switching of the bulb resembles",
+          "options": [
+            "an AND gate",
+            "an OR gate",
+            "an XOR gate",
+            "a NAND gate"
+          ],
+          "answer": 2,
+          "solution": "Toggling either switch flips the bulb state, which is XOR behaviour.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-025",
+          "title": "DPP-3 Q6",
+          "type": "mcq",
+          "question": "In the circuit shown below, X and Y are digital inputs, and Z is a digital output. The equivalent circuit is",
+          "options": [
+            "XNOR gate",
+            "NOR gate",
+            "NAND gate",
+            "XOR gate"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-026",
+          "title": "DPP-3 Q7",
+          "type": "mcq",
+          "question": "Which one of the following gate is also known as equivalence gate?",
+          "options": [
+            "EX-OR",
+            "AND",
+            "EX-NOR",
+            "NOR"
+          ],
+          "answer": 2,
+          "solution": "EX-NOR outputs 1 when both inputs are equal, so it is called the equivalence gate.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-027",
+          "title": "DPP-3 Q8",
+          "type": "mcq",
+          "question": "The logic function $f=\\overline{xy+\\overline{x}\\overline{y}}$ is equal to",
+          "options": [
+            "EX-NOR",
+            "NAND",
+            "EX-OR",
+            "NOR"
+          ],
+          "answer": 2,
+          "solution": "$xy+\\overline{x}\\overline{y}$ is XNOR, so its complement is XOR.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-028",
+          "title": "DPP-3 Q9",
+          "type": "mcq",
+          "question": "The minimum number of 2 input NOR gates required to implement a 2 input XOR gate is",
+          "options": [
+            "4",
+            "5",
+            "3",
+            "6"
+          ],
+          "answer": 1,
+          "solution": "XOR needs 5 two-input NOR gates (XNOR needs 4, plus 1 NOR as inverter).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-lg-029",
+          "title": "DPP-3 Q10",
+          "type": "mcq",
+          "question": "The minimum number of 2 input NAND gates required to implement a 2 input EX-NOR gates is",
+          "options": [
+            "4",
+            "5",
+            "3",
+            "6"
+          ],
+          "answer": 1,
+          "solution": "XOR needs 4 NAND gates; XNOR needs one extra NAND as inverter = 5.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Sequential Circuits",
+      "questions": [
+        {
+          "id": "dpp-sc-001",
+          "title": "DPP-1 Q1",
+          "type": "mcq",
+          "question": "In an SR latch made by cross-coupling two NAND gates, if both S and R inputs are set to 0, then it will result in",
+          "options": [
+            "$Q=0, Q^{\\prime}=1$",
+            "$Q=1, Q^{\\prime}=0$",
+            "$Q=1, Q^{\\prime}=1$",
+            "Indeterminate states"
+          ],
+          "answer": 2,
+          "solution": "For a NAND latch, S=R=0 (both active-low inputs asserted) forces both outputs to 1: Q = Q' = 1 (the forbidden state).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-002",
+          "title": "DPP-1 Q2",
+          "type": "mcq",
+          "question": "In the circuit shown below, when inputs $A=B=0$ the possible logic states of C and D are",
+          "options": [
+            "$C=0, D=1$ or $C=1, D=0$",
+            "$C=1, D=0$",
+            "$C=1, D=1$ or $C=0, D=0$",
+            "$C=0, D=1$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-003",
+          "title": "DPP-1 Q3",
+          "type": "mcq",
+          "question": "The two NAND gates before the latch circuit shown below, are used to",
+          "options": [
+            "act as buffers",
+            "operate the latch faster",
+            "avoid racing",
+            "invert the latching action"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-004",
+          "title": "DPP-1 Q4",
+          "type": "mcq",
+          "question": "In the circuit shown below, outputs $Q\\overline{Q}=01$, the possible values of X and Y are",
+          "options": [
+            "$X=1, Y=0$",
+            "$X=1, Y=1$",
+            "$X=0, Y=1$",
+            "$X=0, Y=0$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-005",
+          "title": "DPP-1 Q5",
+          "type": "mcq",
+          "question": "Latch is a device with",
+          "options": [
+            "One stable state",
+            "Two stable state",
+            "Three stable state",
+            "Infinite stable states"
+          ],
+          "answer": 1,
+          "solution": "A latch is a bistable device: it has two stable states.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-006",
+          "title": "DPP-2 Q1",
+          "type": "mcq",
+          "question": "In the J-K flip-flop shown, $J=\\overline{Q}$ and $K=1$. Assume that the flip-flop was initially cleared and then clocked for 6 pulses. What is the sequence at the Q output?",
+          "options": [
+            "010000",
+            "011001",
+            "010010",
+            "010101"
+          ],
+          "answer": 3,
+          "solution": "$Q^+=J\\overline{Q}+\\overline{K}Q=\\overline{Q}$, so Q toggles every clock. Starting from 0 the sequence alternates 0/1; option (d) 010101 is the only alternating option. Please verify against the original key, since the strict post-clock sequence is 101010.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-007",
+          "title": "DPP-2 Q2",
+          "type": "mcq",
+          "question": "In the given circuit, the race around",
+          "options": [
+            "does not occur.",
+            "occurs when $CLK=0$.",
+            "occurs when $CLK=1$ and $A=B=1$.",
+            "occurs when $CLK=1$ and $A=B=0$."
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-008",
+          "title": "DPP-2 Q3",
+          "type": "mcq",
+          "question": "A sequential circuit using D Flip-Flop and logic gates is shown in figure, where X and Y are the inputs and Z is the output. The circuit is",
+          "options": [
+            "S-R Flip-Flop with inputs $X=R$ and $Y=S$",
+            "S-R Flip-Flop with inputs $X=S$ and $Y=R$",
+            "J-K Flip-Flop with inputs $X=J$ and $Y=K$.",
+            "J-K Flip-Flop with inputs $X=K$ and $Y=J$."
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-009",
+          "title": "DPP-2 Q4",
+          "type": "mcq",
+          "question": "The frequency of the clock signal applied to the negative going edge triggered JK flip flop shown below is 5 kHz. What is frequency of signal available at Q?",
+          "options": [
+            "2.5 kHz",
+            "5 kHz",
+            "10 kHz",
+            "1.25 kHz"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-010",
+          "title": "DPP-2 Q5",
+          "type": "mcq",
+          "question": "The RS flip flop is modified so as to realize a flip flop with single input P. The characteristic equation of a new flip-flop will be",
+          "options": [
+            "$Q(t+1)=P\\oplus Q$",
+            "$Q(t+1)=P\\oplus Q$",
+            "$Q(t+1)=P+Q$",
+            "$Q(t+1)=P$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-011",
+          "title": "DPP-2 Q6",
+          "type": "mcq",
+          "question": "The J-K FF shown below is initially cleared and then clocked for 5 pulses, the sequence at the Q output will be",
+          "options": [
+            "010000",
+            "011001",
+            "010010",
+            "010101"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-012",
+          "title": "DPP-2 Q7",
+          "type": "nat",
+          "question": "For a J-K flip-flop, J input is tied to its own $\\overline{Q}$ output and its K input is connected to its own Q output. If the flip-flop is fed with a clock of frequency 1 MHz, its Q output frequency (in MHz) will be",
+          "answer": 0.5,
+          "solution": "J=$\\overline{Q}$, K=Q makes the flip-flop toggle on every clock, so it divides the frequency by 2: 1 MHz / 2 = 0.5 MHz.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-013",
+          "title": "DPP-3 Q1",
+          "type": "mcq",
+          "question": "If Mod-60 counter is cascaded with Mod-40 counter, then it will becomes,",
+          "options": [
+            "Mod-100 counter",
+            "Mod-2400 counter",
+            "Mod-20 counter",
+            "Mod-140 counter"
+          ],
+          "answer": 1,
+          "solution": "Cascaded modulus = 60 x 40 = 2400.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-014",
+          "title": "DPP-3 Q2",
+          "type": "nat",
+          "question": "The maximum decimal count of 7-bit asynchronous counter is",
+          "answer": 127,
+          "solution": "A 7-bit counter counts 0 to 2^7 - 1 = 127.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-015",
+          "title": "DPP-3 Q3",
+          "type": "mcq",
+          "question": "The modulus of given block (mod-3, mod-6, mod-9 cascaded) is,",
+          "options": [
+            "81",
+            "40",
+            "144",
+            "162"
+          ],
+          "answer": 3,
+          "solution": "3 x 6 x 9 = 162.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-016",
+          "title": "DPP-3 Q4",
+          "type": "nat",
+          "question": "If input frequency of clock is 10 KHz then output frequency of counter will be _____ KHz [Assume mod of counter is 5]",
+          "answer": 2,
+          "solution": "Output frequency = input frequency / mod = 10 / 5 = 2 kHz.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-017",
+          "title": "DPP-3 Q5",
+          "type": "nat",
+          "question": "For given block (mod-4 followed by mod-10 with $f_1=500$ Hz), the value of $f_0$ is _____ Hz.",
+          "answer": 12.5,
+          "solution": "Total division = 4 x 10 = 40. f0 = 500 / 40 = 12.5 Hz.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-018",
+          "title": "DPP-3 Q6",
+          "type": "mcq",
+          "question": "Symmetric square wave of time period 100 µsec can be obtained from square wave of time period 10 µsec by using a",
+          "options": [
+            "divide by - 5 circuit",
+            "divide by - 2 circuit",
+            "divide by - 5 followed by a divide by 2-circuit",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "A factor of 10 is needed. Divide-by-5 alone gives a non-symmetric wave; following it with a divide-by-2 (toggle) gives a 50% duty cycle.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-019",
+          "title": "DPP-3 Q7",
+          "type": "mcq",
+          "question": "How many flip flops are required to construct Mod-31 counter?",
+          "options": [
+            "4",
+            "3",
+            "2",
+            "5"
+          ],
+          "answer": 3,
+          "solution": "2^4 = 16 < 31 <= 2^5 = 32, so 5 flip-flops are needed.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-020",
+          "title": "DPP-4 Q1",
+          "type": "mcq",
+          "question": "What is the output signal frequency of the following counter if the clock signal frequency is 16 kHz? All 'J' and 'K' inputs are connected to 1.",
+          "options": [
+            "4 kHz",
+            "8 kHz",
+            "10 kHz",
+            "16 kHz"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-021",
+          "title": "DPP-4 Q2",
+          "type": "mcq",
+          "question": "The circuit is counter of mod",
+          "options": [
+            "Mod-0",
+            "Mod-16",
+            "Mod-15",
+            "Mod-14"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-022",
+          "title": "DPP-4 Q3",
+          "type": "mcq",
+          "question": "The circuit is a counter of mod",
+          "options": [
+            "a MOD-2 counter",
+            "a MOD-3 counter",
+            "generate sequence 00, 10, 01, 00.....",
+            "generate sequence 00, 10, 00, 10, 00"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-023",
+          "title": "DPP-4 Q4",
+          "type": "mcq",
+          "question": "The circuit shown consists of J-K flip-flops, each with an active low asynchronous reset ($\\overline{R}_{d}$ input). The counter corresponding to this circuit is",
+          "options": [
+            "a modulo-5 binary up counter.",
+            "a modulo-6 binary down counter.",
+            "a modulo-5 binary down counter.",
+            "a modulo-6 binary up counter."
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-sc-024",
+          "title": "DPP-4 Q5",
+          "type": "mcq",
+          "question": "The circuit shown in figure is",
+          "options": [
+            "a MOD-2 counter",
+            "a MOD-3 counter",
+            "generate sequence 00, 10, 01, 00.....",
+            "generate sequence 00, 10, 00, 10, 00"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Minimization",
+      "questions": [
+        {
+          "id": "dpp-mn-001",
+          "title": "DPP-1 Q1",
+          "type": "mcq",
+          "question": "Find out minimize expression for following function: $f=AB\\overline{C}+ABC+\\overline{A}BC$",
+          "options": [
+            "$AB+BC$",
+            "$A\\overline{C}+\\overline{A}B$",
+            "$BC+\\overline{A}B$",
+            "$\\overline{A}B+B\\overline{C}$"
+          ],
+          "answer": 0,
+          "solution": "$AB\\overline{C}+ABC=AB$ and $ABC+\\overline{A}BC=BC$. So $f=AB+BC$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-002",
+          "title": "DPP-1 Q2",
+          "type": "mcq",
+          "question": "Find out minimize expression for following function: $f=AB+A\\overline{B}+\\overline{A}\\overline{B}$",
+          "options": [
+            "$\\overline{A}+B$",
+            "$A+\\overline{B}$",
+            "$\\overline{A}+\\overline{B}$",
+            "$A+B$"
+          ],
+          "answer": 1,
+          "solution": "$AB+A\\overline{B}=A$, so $f=A+\\overline{A}\\overline{B}=A+\\overline{B}$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-003",
+          "title": "DPP-1 Q3",
+          "type": "mcq",
+          "question": "Find out minimize expression for following function: $f=(A+B)(A+\\overline{B})(\\overline{A}+B)(\\overline{A}+\\overline{B})$",
+          "options": [
+            "1",
+            "$\\overline{A}\\overline{B}$",
+            "0",
+            "$A\\overline{B}$"
+          ],
+          "answer": 2,
+          "solution": "This is the product of all four maxterms of two variables, which is always 0.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-004",
+          "title": "DPP-1 Q4",
+          "type": "mcq",
+          "question": "Find out minimize expression for following function: $f=(A+B+C)(A+B+C)$",
+          "options": [
+            "$(A+C)B$",
+            "$A+B$",
+            "$AB\\overline{C}$",
+            "$A(B+C)$"
+          ],
+          "answer": 1,
+          "solution": "As extracted, $(A+B+C)(A+B+C)=A+B+C$, which is not an option. The second factor was most likely $(A+B+\\overline{C})$, giving $(A+B)+C\\overline{C}=A+B$. Answer (b) assumes that typo; please verify against the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-005",
+          "title": "DPP-1 Q5",
+          "type": "mcq",
+          "question": "The Boolean expression $f=(X+Y)(X+\\overline{Y})+\\overline{X}\\overline{Y}+\\overline{X}$",
+          "options": [
+            "$Y$",
+            "$X$",
+            "$\\overline{X}\\overline{Y}$",
+            "$X+\\overline{Y}$"
+          ],
+          "answer": null,
+          "solution": "As extracted, $(X+Y)(X+\\overline{Y})=X$ and $\\overline{X}\\overline{Y}+\\overline{X}=\\overline{X}$, so $f=X+\\overline{X}=1$, which is not an option. The expression was probably garbled in extraction; please verify against the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-006",
+          "title": "DPP-1 Q6",
+          "type": "mcq",
+          "question": "The logic expression $f=X+\\overline{X}Y$ is equivalent to",
+          "options": [
+            "$X+Y$",
+            "$XY$",
+            "$\\overline{X}+Y$",
+            "$X+\\overline{Y}$"
+          ],
+          "answer": 0,
+          "solution": "Absorption law: $X+\\overline{X}Y=X+Y$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-007",
+          "title": "DPP-1 Q7",
+          "type": "mcq",
+          "question": "The logic expression $f=(A+B)(A+C)$ is equivalent to",
+          "options": [
+            "$A+BC$",
+            "$B+AC$",
+            "$C+AC$",
+            "$\\overline{A}+BC$"
+          ],
+          "answer": 0,
+          "solution": "Distributive law: (A+B)(A+C) = A + BC.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-008",
+          "title": "DPP-1 Q8",
+          "type": "mcq",
+          "question": "The Boolean expression $f=(1+\\overline{A})(B+AC)$ is equivalent to",
+          "options": [
+            "$AC+B$",
+            "$\\overline{A}C+B$",
+            "$\\overline{A}+BC$",
+            "1"
+          ],
+          "answer": 0,
+          "solution": "$1+\\overline{A}=1$, so $f=B+AC$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-009",
+          "title": "DPP-1 Q9",
+          "type": "mcq",
+          "question": "Find minimization expression $f=(A+\\overline{A})+(BC+AC)(A+D)$",
+          "options": [
+            "1",
+            "0",
+            "$AB+CD$",
+            "$ABC+BCD+ACD$"
+          ],
+          "answer": 0,
+          "solution": "$A+\\overline{A}=1$, and $1+$ anything $=1$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-010",
+          "title": "DPP-1 Q10",
+          "type": "mcq",
+          "question": "Find out minimization $f=(A+B)(A+B+C)$",
+          "options": [
+            "$B+C$",
+            "$A+B$",
+            "$A+B+C$",
+            "$AB+BC+AC$"
+          ],
+          "answer": 1,
+          "solution": "Absorption: (A+B)(A+B+C) = (A+B) + (A+B)C = A+B.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-011",
+          "title": "DPP-2 Q1",
+          "type": "mcq",
+          "question": "For the given Boolean function $f(A,B,C)=\\sum_{m}(0,1,5,6)$, simplified output will be",
+          "options": [
+            "$A\\overline{B}+B\\overline{C}+AB\\overline{C}$",
+            "$\\overline{A}\\overline{B}+\\overline{B}\\overline{C}+AB\\overline{C}$",
+            "$A\\overline{B}+\\overline{B}\\overline{C}+\\overline{A}\\overline{B}C$",
+            "$\\overline{A}\\overline{B}+\\overline{B}\\overline{C}+AB\\overline{C}$"
+          ],
+          "answer": null,
+          "solution": "K-map gives $f=\\overline{A}\\overline{B}+\\overline{B}C+AB\\overline{C}$. This does not match any option exactly as extracted (the extracted options have $\\overline{B}\\overline{C}$ and options (b) and (d) are identical). Please verify against the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-012",
+          "title": "DPP-2 Q2",
+          "type": "mcq",
+          "question": "For the given Boolean function $f(A, B, C)=\\sum_{m}(1,3,6,7)+\\sum d(0,2)$, simplified output will be",
+          "options": [
+            "$A+B$",
+            "$B+C$",
+            "$\\overline{A}+B$",
+            "$\\overline{A}C+AB$"
+          ],
+          "answer": 2,
+          "solution": "Using don't cares 0 and 2: minterms 0,1,2,3 give $\\overline{A}$, and 6,7 give $AB$. So $f=\\overline{A}+AB=\\overline{A}+B$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-013",
+          "title": "DPP-2 Q3",
+          "type": "mcq",
+          "question": "What is the other canonical form of the given function $f(A,B,C)=\\sum_{m}(0,1,2,3,4,5,6,7)$",
+          "options": [
+            "$f(A,B,C)=\\Pi_{M}(0,1,2,3,4,5,6,7)$",
+            "$f(A,B,C)=\\Pi_{M}(0,2,4,7)$",
+            "$f(A,B,C)=\\Pi_{M}(1,2,4,7)$",
+            "Does not exist"
+          ],
+          "answer": 3,
+          "solution": "The function is constant 1 (all minterms present), so it has no maxterms and no non-trivial POS canonical form. Please verify against the original key.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-014",
+          "title": "DPP-2 Q4",
+          "type": "mcq",
+          "question": "The product of all the maxterms of a given Boolean function is always equal to ?",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "Complement of the function"
+          ],
+          "answer": 0,
+          "solution": "The product of all maxterms is always 0 (the AND of every sum term contradicts itself).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-015",
+          "title": "DPP-2 Q5",
+          "type": "mcq",
+          "question": "The simplified SOP form of the k-map shown in the figure is",
+          "options": [
+            "$\\overline{x}\\overline{z}+\\overline{W}\\overline{x}\\overline{y}$",
+            "$\\overline{x}\\overline{z}$",
+            "$\\overline{W}\\overline{x}+WX$",
+            "$\\overline{x}\\overline{z}$"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-016",
+          "title": "DPP-2 Q6",
+          "type": "mcq",
+          "question": "The Boolean function $f(A,B,C,D)=\\Sigma_{m}(5,7,9,11,13,15)$ is independent of variables",
+          "options": [
+            "A",
+            "C",
+            "B",
+            "B and C"
+          ],
+          "answer": 1,
+          "solution": "Minterms 9,11,13,15 give AD and 5,7,13,15 give BD, so f = AD + BD = D(A+B). It does not depend on C.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-017",
+          "title": "DPP-2 Q7",
+          "type": "mcq",
+          "question": "The simplified Boolean function for the given K-map is",
+          "options": [
+            "ABC",
+            "$A\\oplus B\\odot C$",
+            "ABOC",
+            "AOBOC"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-018",
+          "title": "DPP-2 Q8",
+          "type": "mcq",
+          "question": "The simplified Boolean expression $f(w,x,y,z)=\\sum_{m}(0,2,5,9,15)+\\sum_{d}(6,7,8,10,12,13)$",
+          "options": [
+            "$\\overline{x}\\overline{z}+W\\overline{y}+xz$",
+            "$\\overline{x}\\overline{z}+W\\overline{y}+x\\overline{z}$",
+            "$x\\overline{z}+w\\overline{y}+\\overline{x}z$",
+            "$\\overline{x}\\overline{z}+\\overline{w}\\overline{y}+xz$"
+          ],
+          "answer": 0,
+          "solution": "Groups: $\\overline{x}\\overline{z}$ covers 0,2,8,10; $w\\overline{y}$ covers 8,9,12,13; $xz$ covers 5,7,13,15. So $f=\\overline{x}\\overline{z}+w\\overline{y}+xz$.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-019",
+          "title": "DPP-2 Q9",
+          "type": "mcq",
+          "question": "The minimum number of NAND gates required to simplify the given K-map is",
+          "options": [
+            "4",
+            "5",
+            "3",
+            "9"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mn-020",
+          "title": "DPP-2 Q10",
+          "type": "mcq",
+          "question": "The simplified expression of the given K-map is independent of variables",
+          "options": [
+            "A",
+            "B",
+            "C",
+            "A, B and C"
+          ],
+          "answer": null,
+          "solution": "Answer key not provided, and this question depends on a figure/circuit that was not included in the extracted text. Fill in the answer after checking the original paper.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Number System",
+      "questions": [
+        {
+          "id": "dpp-ns-001",
+          "title": "DPP-1 Q1",
+          "type": "mcq",
+          "question": "The two addition operations $24+14=41$ and $23+12=101$ are performed on number bases $b_{1}$ and $b_{2}$ respectively. The values of $b_{1}$ and $b_{2}$ are respectively",
+          "options": [
+            "7 and 4",
+            "4 and 7",
+            "8 and 4",
+            "4 and 8"
+          ],
+          "answer": 0,
+          "solution": "First: (2b+4)+(b+4)=4b+1 gives b1=7. Second: (2b+3)+(b+2)=b^2+1 gives b^2-3b-4=0, so b2=4.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-002",
+          "title": "DPP-1 Q2",
+          "type": "mcq",
+          "question": "If x and y are successive numbers in a number system of base b such that $(xy)_{b}=(25)_{10}$ and $(yx)_{b}=(31)_{10}$, then",
+          "options": [
+            "$x=4, y=5$ and $b=7$",
+            "$x=3, y=4$ and $b=6$",
+            "$x=4, y=5$ and $b=6$",
+            "$x=3, y=4$ and $b=7$"
+          ],
+          "answer": 3,
+          "solution": "Adding: (x+y)(b+1)=56. With x=3, y=4, b=7: 3(7)+4=25 and 4(7)+3=31. Correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-003",
+          "title": "DPP-1 Q3",
+          "type": "mcq",
+          "question": "If $a=(4.4)_{5}$ and $b=(3.3)_{5}$ then $a+b=(x)_{5}$. The subscript 5 denotes the base on which the corresponding number is expressed. The value of x is",
+          "options": [
+            "31.2",
+            "7.2",
+            "8.7",
+            "13.2"
+          ],
+          "answer": 3,
+          "solution": "a = 4.8, b = 3.6 (decimal), sum = 8.4 = (13.2)_5 since 8 = 13_5 and 0.4 = 0.2_5.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-004",
+          "title": "DPP-1 Q4",
+          "type": "mcq",
+          "question": "If $(X 1CY)_{16}=(120702)_{8}$, then X and Y are",
+          "options": [
+            "A and 2",
+            "B and 1",
+            "1 and B",
+            "2 and A"
+          ],
+          "answer": 0,
+          "solution": "(120702)_8 = 41410 = (A1C2)_16, so X = A and Y = 2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-005",
+          "title": "DPP-1 Q5",
+          "type": "mcq",
+          "question": "Given $(135)_{b}+(144)_{b}=(323)_{b}$ where subscript b denotes the base on which numbers are expressed. What is value of b?",
+          "options": [
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "answer": 2,
+          "solution": "Units: 5+4=9 gives digit 3 with carry 1, so b=6. Check: 3+4+1=8 = 1*6+2, digit 2 carry 1; 1+1+1=3. Correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-006",
+          "title": "DPP-1 Q6",
+          "type": "mcq",
+          "question": "In a digital computer, binary subtraction is performed",
+          "options": [
+            "In the same way as we perform subtraction in decimal number system",
+            "Using two's complement method",
+            "Using 9's complement method",
+            "Using 10's complement"
+          ],
+          "answer": 1,
+          "solution": "Digital computers perform binary subtraction using 2's complement addition.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-007",
+          "title": "DPP-1 Q7",
+          "type": "mcq",
+          "question": "The greatest negative number, which can be stored in a computer that has 8-bit word length and uses 2's complement arithmetic, is",
+          "options": [
+            "-256",
+            "-255",
+            "-128",
+            "-127"
+          ],
+          "answer": 2,
+          "solution": "The 8-bit 2's complement range is -128 to +127.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-008",
+          "title": "DPP-1 Q8",
+          "type": "mcq",
+          "question": "F's complement of $(2BFD)_{hex}$ is",
+          "options": [
+            "E304",
+            "D403",
+            "D402",
+            "C403"
+          ],
+          "answer": 2,
+          "solution": "F's complement = FFFF - 2BFD = D402.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-009",
+          "title": "DPP-1 Q9",
+          "type": "mcq",
+          "question": "The result of addition operation $34+43$ performed on minimum base is stored in an 8-bit register. The content of register will be",
+          "options": [
+            "01000011",
+            "00101010",
+            "01010101",
+            "01010100"
+          ],
+          "answer": 1,
+          "solution": "The largest digit is 4, so the minimum base is 5. (34)_5 = 19, (43)_5 = 23, sum = 42 = 00101010.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-010",
+          "title": "DPP-1 Q10",
+          "type": "mcq",
+          "question": "Which of the following is equal to $(AB)_{16}$?",
+          "options": [
+            "$(B7)_{16}-(A)_{16}$",
+            "$(B5)_{16}-(A)_{16}$",
+            "$(A0)_{16}+(D)_{16}$",
+            "$(BA)_{16}+(01)_{16}$"
+          ],
+          "answer": 1,
+          "solution": "(AB)_16 = 171. (B5)_16 - (A)_16 = 181 - 10 = 171.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-011",
+          "title": "DPP-1 Q11",
+          "type": "mcq",
+          "question": "An equivalent 2's complement representation of the 2's complement number 1101 is",
+          "options": [
+            "110100",
+            "001101",
+            "110111",
+            "111101"
+          ],
+          "answer": 3,
+          "solution": "Sign-extend 1101 (-3) to 6 bits: 111101.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-012",
+          "title": "DPP-1 Q12",
+          "type": "mcq",
+          "question": "The 2's complement representation of -17 is",
+          "options": [
+            "101110",
+            "101111",
+            "111110",
+            "110001"
+          ],
+          "answer": 1,
+          "solution": "17 = 010001. Invert: 101110, add 1: 101111.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-013",
+          "title": "DPP-1 Q13",
+          "type": "mcq",
+          "question": "11001, 1001 and 111001 correspond to the 2's complement representation of which one of the following sets of number?",
+          "options": [
+            "25, 9 and 57 respectively",
+            "-6, -6 and -6 respectively",
+            "-7, -7 and -7 respectively",
+            "-25, -9 and -57 respectively"
+          ],
+          "answer": 2,
+          "solution": "11001 (5-bit) = 25 - 32 = -7; 1001 (4-bit) = 9 - 16 = -7; 111001 (6-bit) = 57 - 64 = -7.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ns-014",
+          "title": "DPP-1 Q14",
+          "type": "mcq",
+          "question": "$X=01110$ and $Y=11001$ are two 5-bit binary numbers represented in two's complement format. The sum of X and Y represented in two's complement format using 6 bits is",
+          "options": [
+            "100111",
+            "001000",
+            "000111",
+            "101001"
+          ],
+          "answer": 2,
+          "solution": "X = 14, Y = -7. Sum = 7 = 000111 in 6 bits.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    }
+  ]
 }
