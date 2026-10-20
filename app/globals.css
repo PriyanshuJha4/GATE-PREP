@@ -375,3 +375,52 @@ code { overflow-wrap: anywhere; }
 .quick-card:hover .quick-title svg { color: var(--accent); }
 .quick-desc { font-size: 14px; }
 .quick-host { margin-top: 6px; font-size: 12.5px; color: var(--muted); font-family: var(--mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+
+/* ============================================================
+   Mermaid Diagrams Styling & Auto-Scaling Fix
+   ============================================================ */
+
+/* Outer container: allows horizontal scroll instead of shrinking */
+.mermaid {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+  margin: 1.75rem 0;
+  padding: 1.25rem 0.5rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom scrollbar for wide diagrams */
+.mermaid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.mermaid::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+/* Crucial: Override Mermaid's inline max-width so SVG doesn't compress */
+.mermaid svg {
+  display: inline-block !important;
+  max-width: none !important;
+  height: auto !important;
+  min-width: 550px;
+}
+
+/* Ensure node text and edge labels remain crisp and readable */
+.mermaid .node text,
+.mermaid .label text,
+.mermaid .cluster-label text,
+.mermaid .edgeLabel,
+.mermaid span.nodeLabel {
+  font-size: 15px !important;
+  font-family: inherit !important;
+  font-weight: 500 !important;
+}
