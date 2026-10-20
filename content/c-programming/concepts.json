@@ -1,36 +1,83 @@
 {
   "title": "C Programming Concepts",
-  "intro": "GATE CSE preparation notes for C Programming.",
+  "intro": "GATE CSE notes for C number systems, integer constants, base conversion and related practice questions.",
   "sections": [
     {
-      "id": "integer-types-and-declarations",
-      "title": "Integer Types, Valid Declarations and sizeof",
-      "short": "C integer type declarations, equivalent spellings, type sizes and sizeof rules.",
-      "summary": "C में integer declarations के valid forms, short/int/long/long long के size relationships और question में दी गई size assumptions को समझना।",
-      "content": "## 1. Integer type declarations\n\nC में integer types के कई valid spellings होते हैं:\n\n```c\nshort a;\nshort int a;\nsigned short a;\nsigned short int a;\nunsigned short a;\nunsigned short int a;\nint b;\nunsigned int c;\nlong int d;\nlong long int e;\nunsigned long long int f;\n```\n\n`short` और `short int` equivalent हैं। इसी तरह `signed short` और `signed short int` equivalent हैं। `unsigned long long` और `unsigned long long int` भी equivalent spellings हैं।\n\n## 2. Integer type sizes\n\nC integer types के sizes को हमेशा strictly increasing होना जरूरी नहीं है। C के नियमों के अनुसार:\n\n```c\nsizeof(short) <= sizeof(int)\nsizeof(int) <= sizeof(long)\nsizeof(long) <= sizeof(long long)\n```\n\nइसलिए दो adjacent integer types का size बराबर हो सकता है। इन types का exact size implementation पर निर्भर करता है।\n\n## 3. sizeof operator\n\n`sizeof` किसी type या object का size bytes में देता है। इसका result type `size_t` होता है। उदाहरण:\n\n```c\nsizeof(short)\nsizeof(int)\nsizeof(long long)\n```\n\nयदि किसी question में explicitly दिया गया हो कि `sizeof(short) = 2`, तो उसी question की calculations में इस assumption का उपयोग करो। इसे सभी C implementations के लिए universal rule मत मानो।\n\n## 4. GATE exam reminders\n\n- Valid declaration और type के exact size को अलग-अलग concepts समझो।\n- `short int` में `int` लिखना आवश्यक नहीं है; `short` भी valid है।\n- `signed short` एक valid declaration है।\n- `unsigned long long int` एक valid declaration है।\n- C type-size questions में दिए गए assumptions और standard guarantees को अलग पहचानो।",
+      "id": "number-systems-and-constants",
+      "title": "Number Systems and Integer Constants",
+      "short": "Number bases, conversions, C integer literals, prefixes and suffixes.",
+      "summary": "Understand decimal, binary, octal and hexadecimal numbers, convert between bases, and identify valid C integer constants.",
+      "content": "## 1. Number systems\n\n- Decimal: base 10; digits 0–9.\n- Binary: base 2; digits 0–1.\n- Octal: base 8; digits 0–7.\n- Hexadecimal: base 16; digits 0–9 and A–F.\n\nFor a number with digits $d_n,\\ldots,d_1,d_0$ in base $b$:\n\n$$\n\\text{value} = d_n b^n + \\cdots + d_1 b + d_0\n$$\n\nExamples:\n- $1011_2 = 11_{10}$\n- $55_8 = 45_{10}$\n- $AF_{16} = 175_{10}$\n\n## 2. C integer constant notation\n\n- `25` is decimal 25.\n- `025` is octal 25 = decimal 21.\n- `012` is octal 12 = decimal 10.\n- `0x1A` and `0X1A` are hexadecimal 26.\n- `08` and `09` are invalid octal constants because octal digits range from 0 to 7.\n- Hexadecimal digits may use A–F or a–f.\n- The minus sign is a unary operator, not part of the integer constant itself. For example, `-012` evaluates to -10.\n\n## 3. Base conversion\n\n### Binary to octal\nGroup bits in groups of three from the right. Add leading zeros if necessary.\nExample: $101101_2 = (101\\mid101)_2 = 55_8$.\n\n### Binary to hexadecimal\nGroup bits in groups of four from the right. Add leading zeros if necessary.\nExample: $10101111_2 = (1010\\mid1111)_2 = AF_{16}$.\n\n### Octal or hexadecimal to binary\nReplace every octal digit with 3 binary bits and every hexadecimal digit with 4 binary bits.\nExample: $73_8 = 111011_2$; $2F_{16} = 00101111_2$.\n\n### Decimal integer to another base\nRepeatedly divide by the target base and read remainders from bottom to top.\nExample: $13_{10} = 1101_2$.\n\n### Binary integer to decimal\nMultiply each bit by its positional power of 2 and add the results.\nExample: $110101_2 = 32 + 16 + 4 + 1 = 53_{10}$.\n\n### Decimal fraction to binary\nRepeatedly multiply the fractional part by 2. Record each integer part in order.\nExample: $0.625_{10} = 0.101_2$.\nSome decimal fractions, such as 0.1, have repeating binary representations.\n\n## 4. Integer constant suffixes\n\n- `U` or `u`: unsigned suffix.\n- `L` or `l`: long suffix.\n- `LL` or `ll`: long long suffix.\n- `UL` / `LU`: unsigned long suffix combinations.\n- `ULL` / `LLU`: unsigned long long suffix combinations.\n\nExamples: `10U`, `10L`, `10LL`, `10ULL`.\n\nThe type of an integer constant depends on its base, suffix, and the candidate types permitted by the C standard. Unsuffixed decimal constants and unsuffixed octal/hexadecimal constants have different candidate-type rules. Do not assume every integer constant has type int.\n\n## 5. Binary literals and C versions\n\n`0b1010` and `0B1010` are standard binary integer literals in C23. They are not standard syntax in older C versions, although some compilers support them as extensions. Check the language version specified in a question.\n\n## 6. Bitwise representation basics\n\nBinary digits represent bits. For example, $10 = 1010_2$ and $12 = 1100_2$.\n\n- `&`: bitwise AND; output bit is 1 when both input bits are 1.\n- `|`: bitwise OR; output bit is 1 when either input bit is 1.\n- `^`: bitwise XOR; output bit is 1 when input bits differ.\n- `~`: bitwise complement.\n- `<<`: left shift.\n- `>>`: right shift.\n\nExamples: `10 & 12` = 8; `10 | 12` = 14; `10 ^ 12` = 6.\n\nShift results and complement expressions depend on operand types, promotions, widths and C language rules. Do not apply simple bit tricks without checking these conditions.\n\n## 7. Two's complement basics\n\nFor an $N$-bit two's-complement representation, the range is\n\n$$\n-2^{N-1} \\text{ to } 2^{N-1}-1\n$$\n\nTo form a negative value, invert the positive value's bits and add 1.\n\nExample using 8 bits:\n\n$$\n+5 = 00000101_2\n$$\n\nInvert the bits: $11111010_2$. Add 1:\n\n$$\n-5 = 11111011_2\n$$\n\nC23 specifies two's-complement signed integer representation. For questions based on another C version or an explicitly stated representation, follow the question's assumptions.\n\n## 8. GATE exam traps\n\n- `12`, `012` and `0x12` represent different values: 12, 10 and 18 respectively.\n- `08` and `09` are invalid octal constants.\n- `0x10` is hexadecimal 16, not decimal 10.\n- `10` and `10.0` are different kinds of constants: integer and floating-point.\n- Binary-to-octal grouping uses 3 bits; binary-to-hex grouping uses 4 bits.\n- Check suffixes and the C standard version before determining a constant's type or validity.",
       "keyPoints": [
-        "`short` और `short int` equivalent हैं।",
-        "`signed short` और `signed short int` equivalent हैं।",
-        "`unsigned long long` और `unsigned long long int` equivalent हैं।",
-        "Integer type sizes strictly increasing होना आवश्यक नहीं है।",
-        "`sizeof` का result bytes में होता है और उसका type `size_t` है।",
-        "Question में दी गई size assumptions उसी question के लिए लागू करो।"
+        "Decimal uses base 10, binary base 2, octal base 8 and hexadecimal base 16.",
+        "A leading zero in an integer constant indicates octal notation in C.",
+        "0x or 0X indicates hexadecimal notation.",
+        "Octal constants cannot contain digits 8 or 9.",
+        "Group binary digits in threes for octal and fours for hexadecimal.",
+        "Integer suffixes affect the type-selection rules.",
+        "0b binary literals are standard in C23, not in older C standards.",
+        "Check types and language rules before evaluating bitwise expressions."
       ],
       "questions": [
         {
-          "question": "Which declarations are valid: P: short int a; Q: signed short a; R: unsigned long long int a?",
-          "answer": "P, Q and R — all are valid.",
-          "explanation": "ये सभी C के valid integer declarations हैं।"
+          "question": "What is the decimal value of the C integer constant 012?",
+          "answer": "10",
+          "explanation": "The leading zero indicates octal: 1*8 + 2 = 10."
         },
         {
-          "question": "Does C guarantee sizeof(short) < sizeof(int) < sizeof(long)?",
-          "answer": "No.",
-          "explanation": "C में corresponding sizes बराबर हो सकते हैं; strict inequality guaranteed नहीं है।"
+          "question": "Which of these is an invalid octal integer constant: 077, 012, 08, 007?",
+          "answer": "08",
+          "explanation": "Octal digits range from 0 to 7; digit 8 is not allowed."
         },
         {
-          "question": "If a question states sizeof(short) = 2 bytes, should that assumption be used?",
-          "answer": "Yes.",
-          "explanation": "उस question के लिए स्पष्ट रूप से दी गई assumption का उपयोग करना चाहिए।"
+          "question": "Convert 0x2F to decimal.",
+          "answer": "47",
+          "explanation": "2*16 + 15 = 47."
+        },
+        {
+          "question": "Convert $101101_2$ to octal.",
+          "answer": "$55_8$",
+          "explanation": "Group as $101\\mid101$; each group is 5 in octal."
+        },
+        {
+          "question": "Convert $11111111_2$ to hexadecimal.",
+          "answer": "$FF_{16}$",
+          "explanation": "Group as $1111\\mid1111$; each group represents hexadecimal F."
+        },
+        {
+          "question": "What is the hexadecimal representation of decimal 26?",
+          "answer": "$1A_{16}$",
+          "explanation": "26 = 1*16 + 10, and hexadecimal digit 10 is A."
+        },
+        {
+          "question": "What is the value of the C expression -012?",
+          "answer": "-10",
+          "explanation": "012 is octal 10; unary minus makes the result -10."
+        },
+        {
+          "question": "What is the decimal value of binary $1101_2$?",
+          "answer": "13",
+          "explanation": "8 + 4 + 0 + 1 = 13."
+        },
+        {
+          "question": "Evaluate 10 & 12 in C.",
+          "answer": "8",
+          "explanation": "1010 AND 1100 gives $1000_2$, which is 8."
+        },
+        {
+          "question": "Evaluate 10 ^ 12 in C.",
+          "answer": "6",
+          "explanation": "1010 XOR 1100 gives $0110_2$, which is 6."
+        },
+        {
+          "question": "What is -5 in 8-bit two's-complement representation?",
+          "answer": "11111011",
+          "explanation": "Start with $00000101_2$, invert the bits to $11111010_2$, then add 1."
+        },
+        {
+          "question": "Is 0b1010 a standard integer literal in C17?",
+          "answer": "No",
+          "explanation": "The 0b/0B binary integer literal syntax became standard in C23. Older standards do not standardize it."
         }
       ]
     }

@@ -1,3 +1,4 @@
+@import "katex/dist/katex.min.css";
 :root {
   --bg: #ffffff;
   --bg-sidebar: #f9f9f9;
