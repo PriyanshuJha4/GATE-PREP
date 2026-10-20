@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState } from 'react';
@@ -6,16 +7,26 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypeHighlight from 'rehype-highlight';
+import MermaidDiagram from './MermaidDiagram';
 
 function CodeBlock({ node, children, ...props }) {
   const ref = useRef(null);
   const [copied, setCopied] = useState(false);
   const className = children?.props?.className || '';
   const lang = (className.match(/language-([\w-]+)/) || [])[1];
+  const code = String(children?.props?.children ?? '').replace(/\n$/, '');
+
+  // Mermaid code ko normal text ki tarah nahi,
+  // actual diagram ki tarah render karo.
+  if (lang === 'mermaid') {
+    return <MermaidDiagram chart={code} />;
+  }
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(ref.current?.innerText || '');
+      await navigator.clipboard.writeText(
+        ref.current?.innerText || ''
+      );
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {}
@@ -25,7 +36,9 @@ function CodeBlock({ node, children, ...props }) {
     <div className="codeblock">
       <div className="codeblock-bar">
         <span>{lang || 'code'}</span>
-        <button onClick={copy}>{copied ? 'Copied' : 'Copy'}</button>
+        <button onClick={copy}>
+          {copied ? 'Copied' : 'Copy'}
+        </button>
       </div>
       <pre ref={ref} {...props}>
         {children}
@@ -36,25 +49,47 @@ function CodeBlock({ node, children, ...props }) {
 
 const components = {
   pre: CodeBlock,
+
   table: ({ node, ...props }) => (
     <div className="table-wrap">
       <table {...props} />
     </div>
   ),
+
   a: ({ node, href = '', ...props }) => {
     const external = /^https?:\/\//.test(href);
-    return <a href={href} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} {...props} />;
+
+    return (
+      <a
+        href={href}
+        {...(
+          external
+            ? {
+                target: '_blank',
+                rel: 'noopener noreferrer',
+              }
+            : {}
+        )}
+        {...props}
+      />
+    );
   },
 };
 
-export default function MarkdownRenderer({ content, className = '' }) {
+export default function MarkdownRenderer({
+  content,
+  className = '',
+}) {
   return (
     <div className={`prose ${className}`}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}
         rehypePlugins={[
           [rehypeKatex, { strict: false }],
-          [rehypeHighlight, { detect: false, ignoreMissing: true }],
+          [
+            rehypeHighlight,
+            { detect: false, ignoreMissing: true },
+          ],
         ]}
         components={components}
       >

@@ -1,93 +1,1003 @@
 {
-  "intro": "> Yeh pehli line hai intro ki. \n\n >Yeh doosri line hai.\n\nAur yeh ek naya paragraph hai jo detailed information ke liye hai.",
- "sections": [
-  {
-   "id": "ch1",
-   "title": "Chapter 1 — Basics & Expressions",
-   "short": "Basics",
-   "content": "### 1.1 Introduction to C\nC is a procedural programming language.\n\n```c\n#include <stdio.h>\nint main() {\n    printf(\"Hello World\");\n    return 0;\n}\n```\n\n### 1.2 Operators\nOperators perform operations on variables and values. Example: `+`, `-`, `*`, `/`.",
-   "questions": [
+  "title": "Programming & Data Structures — Concepts",
+  "intro": "# Programming & Data Structures\n\nA complete, unabridged concept reference manual covering procedural programming in C and fundamental data structures. Designed for computer science academics, software engineers, and GATE CS/IT aspirants.\n\n## Curriculum Outline\n- **Chapter 1 — C Language**: Syntax, tokens, character sets, storage classes, operators, expression evaluation, operator precedence, type conversions, control flow, functions, recursion, parameter passing, string library functions, pointer arithmetic, multi-dimensional array addressing via pointers, structures, unions, and typedef.\n- **Chapter 2 — Arrays**: Linear array representation, memory mapping, Row-Major Order (RMO), Column-Major Order (CMO), 3D and multi-dimensional address translation, sparse matrices, lower/upper triangular matrices, strictly lower triangular matrices, and tridiagonal matrices.\n- **Chapter 3 — Stacks & Queues**: Stack LIFO abstract data type, push/pop/peek operations, underflow/overflow conditions, balanced parentheses parsing, infix, prefix, and postfix notations, conversion and evaluation algorithms, Tower of Hanoi recurrence, FIFO queue ADT, linear queue limitations, circular queue ring buffer arithmetic, priority queues (ascending/descending), double-ended queues (deques, input/output restricted), queue implementation using two stacks, and linked queue implementations.\n- **Chapter 4 — Linked Lists**: Singly linked lists, dynamic node allocation, pointer manipulation, front/end insertions and deletions, O(1) intermediate node deletion, doubly linked lists (DLL), circular singly linked lists (CSLL), circular doubly linked lists (CDLL), and applications in queues, polynomial arithmetic, sparse matrices, and graph adjacency lists.\n- **Chapter 5 — Trees & Heaps**: Tree terminology (root, edge, leaf, siblings, depth, level, height), binary tree classifications (strict, full, complete, skewed), tree traversal algorithms (inorder, preorder, postorder, level order, double order, triple order), binary tree reconstruction theorems, Catalan number counts for unlabelled and labelled binary trees, recursive tree metrics (counting nodes, leaves, full nodes, height), Binary Search Trees (BST) properties and operations, AVL height-balanced trees (balance factors, LL, RR, LR, RL rotations, minimum nodes recurrence), and Binary Heaps (min-heap, max-heap, array indexing, linear-time Build-Max-Heap O(n), and Heapsort).\n- **Chapter 6 — Hashing**: Searching paradigms, direct address tables, hash tables and hash functions (division modulo, digit extraction, mid-square, folding), load factor (alpha = n/m), collision inevitability (Pigeonhole Principle / Birthday Paradox), collision resolution via separate chaining (open hashing), and open addressing (closed hashing: linear probing, primary clustering, quadratic probing, secondary clustering, and double hashing).",
+  "sections": [
     {
-     "id": "1.1",
-     "type": "mcq",
-     "marks": 1,
-     "question": "What is the extension of a C source file?",
-     "options": [
-      "`.cpp`",
-      "`.c`",
-      "`.h`",
-      "`.java`"
-     ],
-     "answer": 1,
-     "solution": "C source files always use the `.c` extension."
+      "id": "c-basics-tokens",
+      "title": "Chapter 1.1 — C Language: Basics, Tokens & Structure",
+      "short": "C Basics & Tokens",
+      "summary": "Origin of C, compilation pipeline, character sets, tokens, naming rules, and program anatomy.",
+      "content": "## 1.1 Basics of C Programming\n\nC is a general-purpose, procedural computer programming language developed in 1972 by **Dennis Ritchie** at AT&T Bell Laboratories, USA. In the late 1970s, C began replacing older languages such as ALGOL and PL/I. Operating systems like UNIX, Linux, and Windows, as well as embedded firmware and device drivers, are written primarily in C due to its runtime performance and direct hardware memory access.\n\n### Compilation Pipeline in C\n\n```mermaid\nflowchart LR\n    A[Source File: prog.c] -->|Preprocessor: cpp| B[Expanded Code: prog.i]\n    B -->|Compiler: ccl| C[Assembly File: prog.s]\n    C -->|Assembler: as| D[Object File: prog.o]\n    D -->|Linker: ld| E[Executable: prog.exe / a.out]\n    F[Standard C Libraries] --> E\n    E -->|Loader| G[RAM Memory]\n```\n\n### Features of C\n- **Portability**: Code can be recompiled on diverse hardware platforms.\n- **Structure-Oriented**: Decomposes complex logic into manageable modular functions.\n- **Middle-Level Language**: Combines high-level structured control flow with low-level direct pointer access and bitwise manipulation.\n- **Fast and Efficient**: Produces compact machine binaries with minimal execution overhead.\n\n### Character Set & Building Blocks\nC programs are constructed from:\n1. **Alphabets**: Upper-case $A-Z$ and lower-case $a-z$.\n2. **Digits**: $0-9$.\n3. **Special Symbols**: `~ ' ! @ # % ^ & * ( ) _ - + = | \\ { } [ ] : ; \" ' < > , . ? /`\n4. **White Spaces**: Blank spaces, horizontal tabs (`\\t`), newline characters (`\\n`), and form feeds.\n\n```mermaid\ngraph LR\n    Chars[Alphabets, Digits, Symbols] --> Tokens[Tokens: Constants, Variables, Keywords]\n    Tokens --> Instr[Instructions / Statements]\n    Instr --> Prog[Complete C Program]\n```\n\n### Tokens in C\nA token is the smallest individual lexical unit recognized by the compiler:\n- **Keywords**: Exactly 32 reserved words in C89/C90, each with immutable predefined meaning.\n- **Identifiers**: Names assigned to variables, functions, and arrays.\n- **Constants**: Invariable data values.\n- **String Literals**: Character arrays enclosed in double quotes (`\"...\"`), automatically terminated with the null byte `\\0`.\n- **Operators**: Syntactic symbols denoting computation or data assignment.\n- **Special Characters**: Delimiters and statement terminators like `;` and `,`.\n\n### 32 Standard C Keywords\n```c\nauto     else     long     switch\nbreak    enum     register typedef\ncase     extern   return   union\nchar     float    short    unsigned\nconst    for      signed   void\ncontinue goto     sizeof   volatile\ndefault  if       static   while\ndo       int      struct   double\n```\n\n### Rules for Identifiers\n- Can consist of letters ($a-z, A-Z$), digits ($0-9$), and underscores (`_`).\n- The first character **must** be an alphabet or an underscore (`_`).\n- C is strictly **case-sensitive** (`Var1` and `var1` are distinct identifiers).\n- Special punctuation symbols (e.g. `@`, `$`, `#`, `-`, `%`) and whitespace are prohibited.\n- Keywords cannot be repurposed as identifiers.\n- Maximum significant length: standard compilers distinguish at least the first 31 characters.\n\n### Basic Structure of a C Program\n```c\n#include <stdio.h>    // Preprocessor directive for standard I/O library\n\nint main() {          // Main function: Program entry point\n    int a = 10;       // Variable declaration & initialization\n    int b = 20;\n    int sum = a + b;  // Arithmetic expression & assignment\n    printf(\"Sum = %d\\n\", sum); // Formatted output statement\n    return 0;         // Return statement exiting execution\n}\n```",
+      "keyPoints": [
+        "Dennis Ritchie developed C at Bell Labs in 1972 to implement the UNIX operating system.",
+        "C has 32 standard reserved keywords that cannot be repurposed as user identifier names.",
+        "Identifiers must start with an alphabet or an underscore (_); digits and punctuation are forbidden at the start.",
+        "Strings in C are enclosed in double quotes and automatically null-terminated by '\\0'.",
+        "Every standalone C statement terminates with a semicolon ';'."
+      ],
+      "questions": [
+        {
+          "id": "c-basics-q1",
+          "title": "Valid C Identifier Rules",
+          "type": "mcq",
+          "question": "Which of the following is a VALID identifier in C?",
+          "options": [
+            "123var",
+            "_variable1",
+            "var@123",
+            "default"
+          ],
+          "answer": 1,
+          "solution": "`_variable1` is valid because it begins with an underscore. `123var` starts with a digit (invalid), `var@123` contains special character `@` (invalid), and `default` is a reserved keyword (invalid).",
+          "marks": 1,
+          "source": "Practice"
+        },
+        {
+          "id": "c-basics-q2",
+          "title": "Null Character in Strings",
+          "type": "mcq",
+          "question": "What is the size in bytes occupied by the string literal `\"Hello\"` in standard C (including termination)?",
+          "options": [
+            "5",
+            "6",
+            "4",
+            "Machine dependent"
+          ],
+          "answer": 1,
+          "solution": "The string literal `\"Hello\"` contains 5 characters plus the compiler-appended null terminator `\\0`. Thus, total bytes occupied = $5 + 1 = 6$ bytes.",
+          "marks": 1,
+          "source": "Practice"
+        }
+      ]
     },
     {
-     "id": "1.2",
-     "type": "msq",
-     "marks": 2,
-     "question": "Which of the following are valid integer data types in C?",
-     "options": [
-      "`int`",
-      "`float`",
-      "`char`",
-      "`double`"
-     ],
-     "answer": [0, 2],
-     "solution": "`int` and `char` are integer types in C (`char` behaves as a small integer)."
+      "id": "c-datatypes-variables",
+      "title": "Chapter 1.2 — C Language: Data Types & Variables",
+      "short": "Data Types & Variables",
+      "summary": "Primary and secondary data types, modifiers, memory sizes, 2's complement ranges, and l-value/r-value concepts.",
+      "content": "## 1.2 Data Types & Variables\n\nA **data type** defines the set of values a variable can store and specifies the amount of memory allocated.\n\n```mermaid\ngraph TD\n    DT[Data Types in C] --> Prim[Primary / Primitive]\n    DT --> Sec[Secondary / User-Defined]\n    DT --> Deriv[Derived]\n    \n    Prim --> Int[Integer: char, int, short, long]\n    Prim --> Float[Floating Point: float, double, long double]\n    Prim --> Void[Void: empty type]\n    \n    Sec --> Struct[Structure: struct]\n    Sec --> Union[Union: union]\n    Sec --> Enum[Enumeration: enum]\n    \n    Deriv --> Arr[Arrays]\n    Deriv --> Ptr[Pointers]\n    Deriv --> Fn[Functions]\n```\n\n### Primary Data Types & Bit Ranges\nIn an $n$-bit 2's complement integer representation:\n- **Signed Range**:\n  $$[-2^{n-1}, \\; 2^{n-1} - 1]$$\n- **Unsigned Range**:\n  $$[0, \\; 2^n - 1]$$\n\n| Data Type | Typical Size (16-bit) | Typical Size (32/64-bit) | Signed Range | Unsigned Range |\n| :--- | :---: | :---: | :--- | :--- |\n| `char` | 1 byte (8 bits) | 1 byte (8 bits) | $-128 \\text{ to } +127$ | $0 \\text{ to } 255$ |\n| `short int` | 2 bytes (16 bits) | 2 bytes (16 bits) | $-32,768 \\text{ to } +32,767$ | $0 \\text{ to } 65,535$ |\n| `int` | 2 bytes (16 bits) | 4 bytes (32 bits) | $-2^{31} \\text{ to } +2^{31}-1$ (on 32-bit) | $0 \\text{ to } 2^{32}-1$ |\n| `long int` | 4 bytes (32 bits) | 4 or 8 bytes | $-2^{31} \\text{ to } +2^{31}-1$ | $0 \\text{ to } 2^{32}-1$ |\n| `float` | 4 bytes (32 bits) | 4 bytes (32 bits) | $\\pm 3.4 \\times 10^{-38} \\text{ to } \\pm 3.4 \\times 10^{+38}$ | 6 decimal digits precision |\n| `double` | 8 bytes (64 bits) | 8 bytes (64 bits) | $\\pm 1.7 \\times 10^{-308} \\text{ to } \\pm 1.7 \\times 10^{+308}$ | 15 decimal digits precision |\n\n### l-value vs r-value\n- **l-value (locator value)**: Denotes an object occupying an identifiable location in memory (an addressable storage unit). An l-value can appear on the left or right side of an assignment:\n  ```c\n  int x = 20; // x is an l-value\n  ```\n- **r-value (read value)**: Denotes a data value produced by an expression or constant. It cannot be assigned to and can only appear on the right side:\n  ```c\n  x = 30 + 5; // (30 + 5) is an r-value\n  // 35 = x;  // COMPILE ERROR: l-value required as left operand of assignment\n  ```\n\n### Symbolic Constants (#define)\nDefined before compilation via preprocessor directives:\n```c\n#define PI 3.14159265\n#define MAX_BUFFER 1024\n```\nSymbolic constants perform literal token replacement prior to compilation, consuming no memory storage.",
+      "keyPoints": [
+        "Data types dictate memory byte allocation, bit encoding format, and legal operations.",
+        "By default, integer types without 'unsigned' qualifier are signed in C.",
+        "In 2's complement, an n-bit signed integer has range [-2^(n-1), 2^(n-1) - 1].",
+        "An l-value represents an addressable memory location capable of holding data.",
+        "Preprocessor #define macros perform literal text substitution without allocating variable storage."
+      ],
+      "questions": [
+        {
+          "id": "c-datatypes-q1",
+          "title": "Range of Signed Character",
+          "type": "mcq",
+          "question": "In standard C on a system using 8-bit bytes and 2's complement representation, what is the valid range of `signed char`?",
+          "options": [
+            "0 to 255",
+            "-128 to +127",
+            "-127 to +128",
+            "-256 to +255"
+          ],
+          "answer": 1,
+          "solution": "For $n = 8$ bits in 2's complement, the signed range is $[-2^{8-1}, 2^{8-1} - 1] = [-2^7, 2^7 - 1] = [-128, +127]$.",
+          "marks": 1,
+          "source": "Practice"
+        }
+      ]
     },
     {
-     "id": "1.3",
-     "type": "nat",
-     "marks": 1,
-     "question": "The value of `10 / 3` using integer division in C is ______.",
-     "answer": 3,
-     "solution": "Integer division truncates the fractional part: 10 / 3 = 3."
-    }
-   ]
-  },
-  {
-   "id": "ch2",
-   "title": "Chapter 2 — Control Statements",
-   "short": "Control Flow",
-   "content": "### 2.1 If-Else Conditionals\nConditional statements let you make decisions in your code.\n\n```c\nif (x > 0) {\n    printf(\"Positive\");\n}\n```",
-   "questions": [
+      "id": "c-storage-classes",
+      "title": "Chapter 1.3 — C Language: Storage Classes & Variable Lifetimes",
+      "short": "Storage Classes",
+      "summary": "Auto, static, extern, and register storage classes; scope, lifetime, memory segments, and linkage.",
+      "content": "## 1.3 Scope and Lifetime of Variables (Storage Classes)\n\nIn C, every variable possesses both a **data type** and a **storage class**. The storage class determines:\n1. **Lifetime**: The temporal duration between creation and destruction.\n2. **Scope**: The lexical region of code where the variable is visible and accessible.\n3. **Default Initial Value**: The value assumed when no explicit initializer is provided.\n4. **Physical Location**: Whether allocated on the Stack, CPU Register, or Data Segment (BSS / Initialized Data).\n\n```mermaid\ngraph TD\n    SC[Storage Classes in C] --> Auto[auto: Stack / Local Scope / Garbage]\n    SC --> Reg[register: CPU Register / Local Scope / Garbage]\n    SC --> Static[static: Data Segment / Block or File Scope / Zero]\n    SC --> Extern[extern: Data Segment / Global Scope / Zero]\n```\n\n### Comprehensive Comparison Table\n\n| Storage Class | Keyword | Storage Location | Default Initial Value | Scope | Lifetime |\n| :--- | :--- | :--- | :--- | :--- | :--- |\n| **Automatic** | `auto` | Stack Frame | Indeterminate (Garbage) | Block / Local | Scope of defining block |\n| **Register** | `register` | CPU Register | Indeterminate (Garbage) | Block / Local | Scope of defining block |\n| **Static** | `static` | Data Segment | Zero (`0`) | Local to block or File | Entire program execution |\n| **External** | `extern` | Data Segment | Zero (`0`) | Global across files | Entire program execution |\n\n### Deep-Dive: The `static` Storage Class\nA `static` variable is initialized **exactly once** before program startup:\n- **Static Local Variable**: Retains its persisted value across multiple function calls.\n- **Static Global Variable**: Restricts file scope (internal linkage), preventing symbol collision with other compilation units.\n\n```c\n#include <stdio.h>\nvoid counter() {\n    static int count = 0; // Initialized once at compile/load time\n    count++;\n    printf(\"%d \", count);\n}\nint main() {\n    counter(); // prints 1\n    counter(); // prints 2\n    counter(); // prints 3\n    return 0;\n}\n```\n\n### The `register` Storage Class\nSuggests to the compiler that the variable be placed directly into a high-speed CPU hardware register for fast loop execution:\n```c\nregister int i;\n// printf(\"%p\", &i); // COMPILE ERROR: Cannot take address of register variable!\n```\nBecause CPU registers reside inside the processor rather than in addressable RAM, the unary address-of operator `&` cannot be applied.\n\n### The `extern` Storage Class\nInforms the compiler that the variable is defined elsewhere (in another file or later in the same file):\n```c\nextern int global_var; // Declaration without allocating memory\n```",
+      "keyPoints": [
+        "Storage classes define scope, lifetime, default value, and memory location.",
+        "Automatic (auto) variables are allocated on the stack and default to garbage values.",
+        "Static variables are allocated in the data segment, initialized once, and default to zero.",
+        "The address-of operator (&) cannot be applied to a register variable.",
+        "An extern declaration references a global variable defined in another translation unit."
+      ],
+      "questions": [
+        {
+          "id": "c-storage-q1",
+          "title": "Static Variable in Loop Execution",
+          "type": "mcq",
+          "question": "What is the value of `j` at the end of execution of the following C program?\n\n```c\n#include <stdio.h>\nint incr(int i) {\n    static int count = 0;\n    count = count + i;\n    return count;\n}\nint main() {\n    int i, j;\n    for (i = 0; i <= 4; i++)\n        j = incr(i);\n    return 0;\n}\n```",
+          "options": [
+            "10",
+            "4",
+            "6",
+            "7"
+          ],
+          "answer": 0,
+          "solution": "Trace each iteration with static variable `count`:\n- $i=0$: `count = 0 + 0 = 0`, returns 0.\n- $i=1$: `count = 0 + 1 = 1`, returns 1.\n- $i=2$: `count = 1 + 2 = 3`, returns 3.\n- $i=3$: `count = 3 + 3 = 6`, returns 6.\n- $i=4$: `count = 6 + 4 = 10`, returns 10.\nFinal value assigned to `j` is 10.",
+          "marks": 2,
+          "source": "GATE CSE 2000"
+        },
+        {
+          "id": "c-storage-q2",
+          "title": "Recursion with Static Variable",
+          "type": "mcq",
+          "question": "Consider the recursive C function:\n\n```c\nint f(int n) {\n    static int i = 1;\n    if (n >= 5) return n;\n    n = n + i;\n    i++;\n    return f(n);\n}\n```\nWhat value is returned by `f(1)`?",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "answer": 2,
+          "solution": "Trace function calls with static `i`:\n1. `f(1)`: `i=1`. $1 < 5 \\implies n = 1 + 1 = 2$, `i` becomes 2. Calls `f(2)`.\n2. `f(2)`: `i=2`. $2 < 5 \\implies n = 2 + 2 = 4$, `i` becomes 3. Calls `f(4)`.\n3. `f(4)`: `i=3`. $4 < 5 \\implies n = 4 + 3 = 7$, `i` becomes 4. Calls `f(7)`.\n4. `f(7)`: $7 \\ge 5$, returns 7.",
+          "marks": 2,
+          "source": "GATE CSE 2004"
+        }
+      ]
+    },
     {
-     "id": "2.1",
-     "type": "mcq",
-     "marks": 1,
-     "question": "Which keyword is used for alternative execution in C?",
-     "options": [
-      "then",
-      "else",
-      "elseif",
-      "case"
-     ],
-     "answer": 1,
-     "solution": "`else` is used along with `if` for alternative execution."
-    }
-   ]
-  },
+      "id": "c-operators",
+      "title": "Chapter 1.4 — C Language: Operators & Expressions",
+      "short": "Operators in C",
+      "summary": "Arithmetic, bitwise, logical, relational, assignment, increment/decrement, conditional, and sizeof operators.",
+      "content": "## 1.4 Operators in C\n\nAn **operator** is a symbol that specifies an operation performed on one or more data items (**operands**).\n\n```mermaid\ngraph TD\n    Ops[Operators in C] --> Unary[Unary: ++, --, !, ~, sizeof, & addr, * deref]\n    Ops --> Binary[Binary: Arithmetic, Relational, Logical, Bitwise, Assignment]\n    Ops --> Ternary[Ternary: Conditional Operator ? :]\n```\n\n### 1. Arithmetic Operators\n- `+` (addition), `-` (subtraction), `*` (multiplication), `/` (division), `%` (modulus).\n- Integer division truncates towards zero: `10 / 3` evaluates to `3`.\n- Modulus operator `%` requires **integer operands only**; applying `%` to floats produces a compile error.\n\n### 2. Relational & Equality Operators\n`<`, `<=`, `>`, `>=`, `==`, `!=`.\n- Evaluate to integer `1` (true) or `0` (false).\n- Distinguish assignment `=` from equality `==`: `if (x = 5)` assigns 5 to `x` and evaluates to true!\n\n### 3. Logical Operators & Short-Circuit Evaluation\n- `&&` (Logical AND): True if both operands non-zero.\n- `||` (Logical OR): True if at least one operand non-zero.\n- `!` (Logical NOT): Inverts truth value.\n\n**Short-Circuit Evaluation**:\n- In `expr1 && expr2`: If `expr1` is $0$, `expr2` is **bypassed completely**.\n- In `expr1 || expr2`: If `expr1` is non-zero, `expr2` is **bypassed completely**.\n\n### 4. Bitwise Operators\nOperate directly on individual bits of integral data types:\n\n| Operator | Symbol | Semantics |\n| :--- | :---: | :--- |\n| **Bitwise AND** | `&` | Result bit is 1 if both operand bits are 1 |\n| **Bitwise OR** | `\\|` | Result bit is 1 if at least one operand bit is 1 |\n| **Bitwise XOR** | `^` | Result bit is 1 if odd number of operand bits are 1 |\n| **1's Complement** | `~` | Unary negation flipping 0 to 1 and 1 to 0 |\n| **Left Shift** | `<<` | Shifts bits left by $k$ places; empty bits filled with $0$ ($x \\times 2^k$) |\n| **Right Shift** | `>>` | Shifts bits right by $k$ places ($x / 2^k$) |\n\n### 5. Increment and Decrement Operators\n- **Prefix (`++x`, `--x`)**:\n  1. Increment/decrement value of `x` by 1.\n  2. Produce the new incremented value.\n- **Postfix (`x++`, `x--`)**:\n  1. Produce current value of `x` for the surrounding expression.\n  2. Increment/decrement value of `x` by 1.\n\n### 6. Conditional (Ternary) Operator\n$$\\text{Condition} \\; ? \\; \\text{Expression1} \\; : \\; \\text{Expression2}$$\nIf condition is non-zero, evaluates `Expression1`; otherwise evaluates `Expression2`.\n\n### 7. Comma Operator (`,`)\nHas the lowest precedence of all C operators. Evaluates sub-expressions strictly from left to right and yields the value of the rightmost sub-expression:\n```c\nint a = (x = 10, y = 20, x + y); // a is assigned 30\n```\n\n### 8. `sizeof` Operator\nA compile-time unary operator returning the byte size of an expression or type specifier (`size_t`):\n```c\nprintf(\"%zu\", sizeof(int)); // Outputs 4 on 32/64-bit systems\n```",
+      "keyPoints": [
+        "Modulus operator (%) operates exclusively on integer operands.",
+        "Logical operators && and || utilize short-circuit evaluation, skipping right-hand evaluation when possible.",
+        "Bitwise shifts (<< and >>) effectively perform integer multiplication and division by powers of 2.",
+        "Prefix increment (++x) updates before evaluation; postfix increment (x++) updates after evaluation.",
+        "The comma operator evaluates operands left-to-right and returns the rightmost expression value."
+      ],
+      "questions": [
+        {
+          "id": "c-ops-q1",
+          "title": "Unary Operator Identification",
+          "type": "mcq",
+          "question": "Which of the following is NOT a unary operator in C?",
+          "options": [
+            "++",
+            "-",
+            "sizeof",
+            "?:"
+          ],
+          "answer": 3,
+          "solution": "`?:` is a ternary operator requiring three operands (`condition ? exp1 : exp2`). `++`, `-` (unary minus), and `sizeof` are all unary operators.",
+          "marks": 1,
+          "source": "Book Exercise"
+        },
+        {
+          "id": "c-ops-q2",
+          "title": "Comma Operator Evaluation",
+          "type": "nat",
+          "question": "What is the integer value stored in `sum` after executing:\n\n```c\nint sum = (a = 10, b = 7, c = 3, a + b + c);\n```",
+          "answer": 20,
+          "solution": "The comma operator evaluates expressions sequentially from left to right. `a` is set to 10, `b` to 7, `c` to 3, and the final expression evaluated is `a + b + c = 10 + 7 + 3 = 20`. Thus, `sum = 20`.",
+          "marks": 1,
+          "source": "Book Example"
+        }
+      ]
+    },
+    {
+      "id": "c-type-conversion-precedence",
+      "title": "Chapter 1.5 — C Language: Type Conversion & Operator Precedence",
+      "short": "Type Conversion & Precedence",
+      "summary": "Implicit type promotion, explicit type casting, complete 15-level precedence hierarchy, and associativity rules.",
+      "content": "## 1.5 Type Conversion & Precedence\n\n### Type Conversion\nType conversion changes the data type of an operand to facilitate mixed-type operations.\n\n```mermaid\ngraph TD\n    TC[Type Conversion] --> Imp[Implicit Conversion / Automatic Promotion]\n    TC --> Exp[Explicit Conversion / Type Casting]\n    \n    Imp --> UnaryP[Unary Type Promotion: char and short to int]\n    Imp --> BinaryP[Binary Type Promotion: Lower rank to Higher rank]\n    Imp --> AssignP[Assignment Conversion: RHS coerced to LHS type]\n```\n\n### Rank Hierarchy for Promotion\n$$\\text{char, short} \\to \\text{int} \\to \\text{unsigned int} \\to \\text{long} \\to \\text{unsigned long} \\to \\text{float} \\to \\text{double} \\to \\text{long double}$$\n\n- **Explicit Type Casting Syntax**:\n  $$(TargetType) \\; expression$$\n  Example:\n  ```c\n  int x = 20, y = 3;\n  float z = (float) x / y; // Produces 6.666667 rather than truncated 6.0\n  ```\n\n---\n\n## 1.6 Complete Operator Precedence & Associativity Table\n\nWhen an expression contains multiple operators, **precedence** dictates evaluation order. When two operators share the same precedence, **associativity** defines grouping.\n\n| Precedence Level | Operator Category | Operators | Associativity |\n| :---: | :--- | :--- | :---: |\n| **1 (Highest)** | Primary Expression Operators | `()` `[]` `->` `.` | Left to Right |\n| **2** | Unary Operators | `+` `-` `!` `~` `++` `--` `*` (deref) `&` (addr) `(type)` `sizeof` | **Right to Left** |\n| **3** | Multiplicative Operators | `*` `/` `%` | Left to Right |\n| **4** | Additive Operators | `+` `-` | Left to Right |\n| **5** | Bitwise Shift Operators | `<<` `>>` | Left to Right |\n| **6** | Relational Inequality | `<` `<=` `>` `>=` | Left to Right |\n| **7** | Relational Equality | `==` `!=` | Left to Right |\n| **8** | Bitwise AND | `&` | Left to Right |\n| **9** | Bitwise XOR | `^` | Left to Right |\n| **10** | Bitwise OR | `\\|` | Left to Right |\n| **11** | Logical AND | `&&` | Left to Right |\n| **12** | Logical OR | `\\|\\|` | Left to Right |\n| **13** | Conditional (Ternary) | `?:` | **Right to Left** |\n| **14** | Assignment Operators | `=` `+=` `-=` `*=` `/=` `%=` `&=` `^=` `\\|=` `<<=` `>>=` | **Right to Left** |\n| **15 (Lowest)** | Comma Operator | `,` | Left to Right |\n\n### Expression Evaluation Example\nEvaluate $5 + 16 / 2 \\times 4$:\n1. `/` and `*` have higher precedence than `+`.\n2. `/` and `*` share precedence level 3 and associate Left-to-Right.\n3. Compute $16 / 2 = 8$.\n4. Compute $8 \\times 4 = 32$.\n5. Add $5 + 32 = 37$.",
+      "keyPoints": [
+        "In arithmetic expressions, char and short types are automatically promoted to int before calculation.",
+        "Explicit casting (type) expression creates a temporary converted value without altering original variable storage.",
+        "Unary operators, conditional operator (?:), and assignment operators associate Right to Left.",
+        "All arithmetic, relational, logical, bitwise, and comma operators associate Left to Right.",
+        "Parentheses () override default operator precedence."
+      ],
+      "questions": [
+        {
+          "id": "c-prec-q1",
+          "title": "Associativity of Unary Operators",
+          "type": "mcq",
+          "question": "What is the associativity of unary operators (such as `++`, `--`, `!`, `~`, `sizeof`) in C?",
+          "options": [
+            "Left to Right",
+            "Right to Left",
+            "Non-associative",
+            "Compiler dependent"
+          ],
+          "answer": 1,
+          "solution": "In standard C, all unary operators (precedence level 2), ternary conditional operator `?:`, and assignment operators associate strictly **Right to Left**.",
+          "marks": 1,
+          "source": "GATE CSE 2004"
+        }
+      ]
+    },
+    {
+      "id": "c-flow-control-loops",
+      "title": "Chapter 1.6 — C Language: Flow Control, Loops & Jumps",
+      "short": "Flow Control & Loops",
+      "summary": "Branching (if-else, switch-case), iteration (while, do-while, for), and jump statements (break, continue, goto).",
+      "content": "## 1.6 Flow Control in C\n\nControl statements govern the order of statement execution.\n\n```mermaid\ngraph TD\n    CS[Control Statements] --> Sel[Selection: if, if-else, switch]\n    CS --> Iter[Iteration / Loops: while, do-while, for]\n    CS --> Jump[Jump Statements: break, continue, goto, return]\n```\n\n### 1. Selection Statements\n- `if-else`: Evaluates conditional boolean expression (non-zero is true, zero is false).\n- `switch-case`:\n  - Evaluates integral/character expression.\n  - Case labels must be compile-time integer constants.\n  - **Fall-Through**: Omitting `break;` causes execution to cascade sequentially into subsequent cases.\n\n### 2. Iteration Statements (Loops)\n- **`while (condition)`**: Pre-test / entry-controlled loop. Evaluates condition before executing body.\n- **`do ... while (condition);`**: Post-test / exit-controlled loop. Guarantees at least one execution of the body even if condition is initially false.\n- **`for (init; condition; update)`**: Compact loop structure. Any expression may be empty; `for (;;)` creates an infinite loop.\n\n```mermaid\nflowchart TD\n    subgraph While Loop\n        WCond{Condition?}\n        WCond -->|True| WBody[Execute Body] --> WCond\n        WCond -->|False| WExit[Exit Loop]\n    end\n    subgraph Do-While Loop\n        DBody[Execute Body] --> DCond{Condition?}\n        DCond -->|True| DBody\n        DCond -->|False| DExit[Exit Loop]\n    end\n```\n\n### 3. Jump Statements\n- `break`: Terminates innermost loop or switch.\n- `continue`: Skips remainder of current loop iteration and proceeds directly to update/test step.\n- `goto label;`: Unconditional branch. Overuse generates unmaintainable 'spaghetti code'.",
+      "keyPoints": [
+        "In C, any non-zero value represents true, and 0 represents false.",
+        "The do-while loop executes its body at least once before checking the condition.",
+        "Switch expressions and case labels must be integral or character constants.",
+        "Break exits a loop immediately; continue skips to the next iteration.",
+        "Goto causes unconditional branching and should be avoided to prevent spaghetti code."
+      ],
+      "questions": [
+        {
+          "id": "c-flow-q1",
+          "title": "Switch Case Fall-Through",
+          "type": "mcq",
+          "question": "What is the output of the following C code segment?\n\n```c\nchar inchar = 'A';\nswitch(inchar) {\n    case 'A': printf(\"choice A\\n\");\n    case 'B':\n    case 'C': printf(\"choice B\");\n    case 'D':\n    case 'E':\n    default: printf(\"No choice\");\n}\n```",
+          "options": [
+            "choice A",
+            "choice A\\nNo choice",
+            "choice A\\nchoice BNo choice",
+            "Program gives no output as it is erroneous"
+          ],
+          "answer": 2,
+          "solution": "Because there are no `break;` statements in any of the cases, execution falls through from `case 'A'` into all subsequent cases. Thus, `choice A\\n`, `choice B`, and `No choice` are printed in sequence.",
+          "marks": 2,
+          "source": "GATE CSE 2012"
+        }
+      ]
+    },
+
+    {
+      "id": "c-functions-parameter-passing",
+      "title": "Chapter 1.7 — C Language: Functions & Parameter Passing",
+      "short": "Functions & Parameters",
+      "summary": "Function prototypes, call by value, call by reference simulation via pointers, and string library functions.",
+      "content": "## 1.7 Functions & Parameter Passing\n\nA function is a modular, self-contained block of instructions that performs a specific task.\n\n```mermaid\nflowchart TD\n    subgraph Function Execution Model\n        Caller[Caller Function: main] -->|Pass Arguments| Callee[Callee Function: func]\n        Callee -->|Execute Code| Body[Local Computations]\n        Body -->|Return Value| Caller\n    end\n```\n\n### Actual vs. Formal Arguments\n- **Actual Arguments**: Arguments passed inside the function call statement (`sum(x, y)`).\n- **Formal Arguments**: Variables defined in the function signature receiving the passed data (`int sum(int a, int b)`).\n\n### Call by Value vs. Call by Reference (via Pointers)\n- **Call by Value**: Formal arguments receive independent copies of actual arguments. Mutations to formal arguments do not affect caller variables.\n- **Call by Reference (Pointer Passing)**: Formal arguments receive addresses of actual arguments (`&x`). Dereferencing allows direct mutation of caller memory.\n\n```mermaid\ngraph LR\n    subgraph Call by Value\n        M1[main: x = 10] -->|Copies value| F1[func: a = 10]\n        F1 -->|a = 20| F1_mod[func: a = 20]\n        F1_mod -.->|No effect| M1\n    end\n    subgraph Call by Address\n        M2[main: x = 10 at 0x100] -->|Passes 0x100| F2[func: ptr = 0x100]\n        F2 -->|*ptr = 20| M2_mod[Mutates 0x100: x = 20]\n    end\n```\n\n### Common String Library Functions (`<string.h>`)\n- `strlen(s)`: Returns the number of characters in string `s` excluding null terminator `\\0`.\n- `strcpy(dest, src)`: Copies `src` string to `dest` array.\n- `strcmp(s1, s2)`: Lexicographical comparison. Returns 0 if identical, $< 0$ if $s_1 < s_2$, and $> 0$ if $s_1 > s_2$.\n- `strcat(dest, src)`: Concatenates `src` to end of `dest`.",
+      "keyPoints": [
+        "C strictly uses call by value for standard variables; call by reference is simulated using pointers.",
+        "Actual arguments appear in function calls; formal arguments appear in function definitions.",
+        "strlen() returns character count up to but excluding the null byte '\\0'.",
+        "strcmp() returns the numeric difference of the first mismatched ASCII characters."
+      ],
+      "questions": [
+        {
+          "id": "c-func-q1",
+          "title": "String Pointer Swap Function",
+          "type": "mcq",
+          "question": "Consider the following C code:\n\n```c\n#include <stdio.h>\nvoid fun1(char *s1, char *s2) {\n    char *tmp; tmp = s1; s1 = s2; s2 = tmp;\n}\nvoid fun2(char **s1, char **s2) {\n    char *tmp; tmp = *s1; *s1 = *s2; *s2 = tmp;\n}\nint main() {\n    char *str1 = \"Hi\", *str2 = \"Bye\";\n    fun1(str1, str2); printf(\"%s %s \", str1, str2);\n    fun2(&str1, &str2); printf(\"%s %s\", str1, str2);\n    return 0;\n}\n```\nWhat is the output printed by the program?",
+          "options": [
+            "Hi Bye Bye Hi",
+            "Hi Bye Hi Bye",
+            "Bye Hi Hi Bye",
+            "Bye Hi Bye Hi"
+          ],
+          "answer": 0,
+          "solution": "In `fun1`, pointers `s1` and `s2` are passed by value; swapping local pointers has no effect on `str1` and `str2`. In `fun2`, double pointers are passed by reference, successfully swapping caller pointers `str1` and `str2`. Thus, output is `Hi Bye Bye Hi`.",
+          "marks": 2,
+          "source": "GATE CSE 2018"
+        }
+      ]
+    },
+    {
+      "id": "c-recursion-callstack",
+      "title": "Chapter 1.8 — C Language: Recursion & Activation Records",
+      "short": "Recursion & Call Stack",
+      "summary": "Recursive function execution, stack frame activation records, base conditions, and recurrence traces.",
+      "content": "## 1.8 Recursion & Call Stack\n\n**Recursion** is the mechanism where a function invokes itself directly or indirectly to solve smaller subproblems of the same structure.\n\n```mermaid\nflowchart TD\n    subgraph Call Stack Allocation during fact(3)\n        F3[\"Activation Record: fact(3) | n = 3\"] --> F2[\"Activation Record: fact(2) | n = 2\"]\n        F2 --> F1[\"Activation Record: fact(1) | n = 1\"]\n        F1 --> F0[\"Activation Record: fact(0) | n = 0 (Base Case)\"]\n        F0 -.->|Returns 1| F1\n        F1 -.->|Returns 1 * 1 = 1| F2\n        F2 -.->|Returns 2 * 1 = 2| F3\n        F3 -.->|Returns 3 * 2 = 6| Out[Final Return Value: 6]\n    end\n```\n\n### Essential Components of Recursion\n1. **Base Case**: The stopping condition that terminates recursion without further self-invocations.\n2. **Recursive Step**: Reduces problem size toward the base case.\n\n### Stack Overhead & Memory Hazards\nEvery recursive invocation pushes an **Activation Record (Stack Frame)** containing:\n- Function parameters\n- Local variables\n- Saved CPU registers\n- Return address back to the caller\n\nIf the base case is missing or unreachable, the stack grows unbounded until a **Stack Overflow** runtime crash occurs.\n\n### Classic Example: Fibonacci Numbers\n$$F(n) = F(n-1) + F(n-2) \\quad \\text{for } n \\ge 2, \\quad F(0)=0, F(1)=1$$\nNaive recursion for Fibonacci incurs exponential time complexity $\\Theta(2^n)$ due to overlapping subproblems.",
+      "keyPoints": [
+        "Recursion requires a base case to avoid infinite call loops and stack overflow.",
+        "Each recursive call consumes stack memory by allocating a new activation record.",
+        "Recursive solutions offer concise divide-and-conquer logic but carry memory and function call overhead."
+      ],
+      "questions": [
+        {
+          "id": "c-rec-q1",
+          "title": "Recursive Call Count Analysis",
+          "type": "mcq",
+          "question": "Consider the function:\n\n```c\nvoid get(int n) {\n    if (n < 1) return;\n    get(n - 1);\n    get(n - 3);\n    printf(\"%d\", n);\n}\n```\nHow many times will `get()` be invoked when calling `get(6)`?",
+          "options": [
+            "15",
+            "25",
+            "35",
+            "45"
+          ],
+          "answer": 1,
+          "solution": "Let $T(n)$ be the number of calls for `get(n)`. $T(n) = 1 + T(n-1) + T(n-3)$ with $T(\\le 0) = 1$.\n- $T(1) = 1 + 1 + 1 = 3$\n- $T(2) = 1 + 3 + 1 = 5$\n- $T(3) = 1 + 5 + 1 = 7$\n- $T(4) = 1 + 7 + 3 = 11$\n- $T(5) = 1 + 11 + 5 = 17$\n- $T(6) = 1 + 17 + 7 = 25$.\nTotal calls = 25.",
+          "marks": 2,
+          "source": "GATE CSE 2015"
+        }
+      ]
+    },
+    {
+      "id": "c-pointers-addresses",
+      "title": "Chapter 1.9 — C Language: Pointers & Memory Architecture",
+      "short": "Pointers & Addresses",
+      "summary": "Pointers, memory addresses, & and * operators, pointer arithmetic, and double pointers.",
+      "content": "## 1.9 Pointers & Memory Architecture\n\nA **pointer** is a variable that stores the physical or virtual memory address of another variable.\n\n```mermaid\ngraph LR\n    ptr[\"Pointer: ptr<br/>Address: 65518<br/>Value: 65524\"] -->|Points to &var| var[\"Variable: var<br/>Address: 65524<br/>Value: 10\"]\n```\n\n### Pointer Operators\n- **`&` (Address-of Operator)**: Returns the memory location where a variable resides.\n- **`*` (Dereference / Indirection Operator)**: Accesses or modifies the value stored at the referenced memory location.\n- Fundamental Identity: `*(&var) == var`.\n\n### Pointer Arithmetic Rules\nArithmetic on pointers is automatically scaled by the size of the base type:\n$$\\text{New Address} = \\text{Base Address} + i \\times \\text{sizeof}(\\text{type})$$\n\n- **Legal Operations**:\n  - `ptr + i` (advances by $i \\times \\text{sizeof}(*ptr)$ bytes)\n  - `ptr - i` (moves backward)\n  - `ptr++`, `ptr--`\n  - `ptr1 - ptr2`: Yields the integer count of elements between two pointers of the identical type.\n- **Illegal Operations**: Adding two pointers (`ptr1 + ptr2`), multiplying or dividing pointers.\n\n### Pointer to Pointer (Double Pointer)\nA variable that holds the memory address of another pointer variable:\n```c\nint a = 15;\nint *ptra = &a;\nint **pptra = &ptra;\n```\n\n```mermaid\ngraph LR\n    pptra[\"pptra (0x4000)<br/>Value: 0x3000\"] --> ptra[\"ptra (0x3000)<br/>Value: 0x2000\"] --> a[\"a (0x2000)<br/>Value: 15\"]\n```",
+      "keyPoints": [
+        "A pointer stores the memory address of another variable.",
+        "The dereference operator * retrieves the value at the address stored in the pointer.",
+        "Pointer arithmetic is automatically scaled by the byte size of the underlying base type.",
+        "Subtracting two pointers of the same type produces the number of elements between them."
+      ],
+      "questions": [
+        {
+          "id": "c-ptr-q1",
+          "title": "Pointer Arithmetic Calculation",
+          "type": "nat",
+          "question": "Suppose integer variable `a` is stored at memory address 1000 on a machine where `sizeof(int) == 4`. If pointer `int *p = &a;`, what is the address value represented by `p + 3`?",
+          "answer": 1012,
+          "solution": "Pointer addition scales by `sizeof(int)`: $\\text{New Address} = 1000 + 3 \\times 4 = 1000 + 12 = 1012$.",
+          "marks": 1,
+          "source": "Practice"
+        }
+      ]
+    },
+    {
+      "id": "c-pointers-arrays",
+      "title": "Chapter 1.10 — C Language: Pointers and Arrays",
+      "short": "Pointers and Arrays",
+      "summary": "Array decaying to pointers, commutative subscripting, 1D/2D pointer notation, and pointer arrays vs array pointers.",
+      "content": "## 1.10 Pointers and Arrays\n\nIn C, there is a tight syntactic and semantic coupling between pointers and arrays.\n\n### Array Decaying & Subscript Equivalence\nAn array name represents the constant base address of its zeroth element (`arr == &arr[0]`). Array indexing is defined in terms of pointer arithmetic:\n$$arr[i] \\equiv *(arr + i) \\equiv *(i + arr) \\equiv i[arr]$$\nBecause addition is commutative, `arr[i]` is strictly equivalent to `i[arr]`.\n\n```mermaid\ngraph LR\n    subgraph Array Memory Pointer Mapping\n        arr[\"arr == &arr[0]\"] --> A0[\"arr[0] / *(arr+0)\"]\n        A0 --- A1[\"arr[1] / *(arr+1)\"]\n        A1 --- A2[\"arr[2] / *(arr+2)\"]\n        A2 --- A3[\"arr[3] / *(arr+3)\"]\n    end\n```\n\n### Pointer to an Array vs. Array of Pointers\n- **Pointer to an Array**: `int (*ptr)[5];`\n  `ptr` is a single pointer that points to an entire 5-element array. Incrementing `ptr++` jumps by $5 \\times \\text{sizeof}(int)$ bytes.\n- **Array of Pointers**: `int *ptr[5];`\n  `ptr` is an array of 5 individual integer pointers.\n\n### Multidimensional Arrays via Pointers\nFor a 2D array `int a[3][4]`, stored in row-major order:\n- `a`: Points to the 0th row (array of 4 ints).\n- `a + i`: Points to row $i$.\n- `*(a + i)`: Yields the base address of row $i$, equivalent to `&a[i][0]`.\n- `*(a + i) + j`: Points to element `a[i][j]`.\n- `*(*(a + i) + j)`: Evaluates to the scalar value at `a[i][j]`.",
+      "keyPoints": [
+        "An array name decays to a pointer to its first element in expressions.",
+        "Subscripting is commutative in C: arr[i] == i[arr] == *(arr + i).",
+        "int (*ptr)[N] is a pointer to an array of size N; int *ptr[N] is an array of N pointers.",
+        "In 2D arrays, *(*(a + i) + j) directly accesses the value at row i, column j."
+      ],
+      "questions": [
+        {
+          "id": "c-ptr-arr-q1",
+          "title": "Pointer to Array Incrementation",
+          "type": "nat",
+          "question": "Given declaration `int a[5] = {1, 2, 3, 4, 5}; int (*ptr)[5] = &a;` on a system with 4-byte integers. If `ptr` is initially at address 2000, what is the address value of `ptr + 1`?",
+          "answer": 2020,
+          "solution": "`ptr` points to an entire array of 5 integers. Its base size is $5 \\times 4 = 20$ bytes. Thus, `ptr + 1` advances by $20$ bytes: $2000 + 20 = 2020$.",
+          "marks": 2,
+          "source": "Book Example"
+        }
+      ]
+    },
+    {
+      "id": "c-structures-unions",
+      "title": "Chapter 1.11 — C Language: Structures, Unions & Typedef",
+      "short": "Structures & Unions",
+      "summary": "Composite data types, structure member alignment, union memory sharing, self-referential structures, and typedef.",
+      "content": "## 1.11 Structures, Unions & Typedef\n\n### Structures (`struct`)\nA structure is a user-defined data type grouping heterogeneous data members under a unified name.\n```c\nstruct Student {\n    char name[20];\n    int roll;\n    float marks;\n};\n```\n- **Memory Layout**: Each member receives its own distinct memory offset. Total size equals the sum of member sizes plus compiler alignment padding bytes.\n- **Member Access**:\n  - Dot operator (`.`) for structure instances: `s.roll = 101;`\n  - Arrow operator (`->`) for structure pointers: `ptr->roll = 101;` $\\equiv$ `(*ptr).roll = 101;`\n\n### Self-Referential Structures\nA structure containing a pointer member pointing to a structure of its own type. This is the foundation of dynamic data structures like linked lists and trees:\n```c\nstruct Node {\n    int data;\n    struct Node *next; // Self-referential pointer\n};\n```\n\n### Unions (`union`)\nA user-defined type where all members share the exact same beginning memory location:\n- Size of union equals the size of its largest constituent member.\n- Only one member can hold a valid value at any given moment.\n\n```mermaid\ngraph TD\n    subgraph Struct Memory Allocation (Separate Slots)\n        S1[char c: 1B] --- S2[Padding: 3B] --- S3[int i: 4B] --- S4[double d: 8B]\n    end\n    subgraph Union Memory Allocation (Shared Single Slot)\n        U[Shared 8 Bytes: accommodates double, int, or char]\n    end\n```\n\n### `typedef`\nDefines an alias for an existing type to enhance code readability and portability:\n```c\ntypedef struct Node Node;\n```",
+      "keyPoints": [
+        "Structures allocate dedicated memory for each member; unions share memory among all members.",
+        "Structure size may exceed the sum of member sizes due to compiler alignment padding.",
+        "Self-referential structures contain a pointer to their own structure type, enabling dynamic lists and trees.",
+        "The arrow operator (->) dereferences a structure pointer and accesses a member in one step."
+      ],
+      "questions": [
+        {
+          "id": "c-struct-q1",
+          "title": "Pointer to Array of Structures Declaration",
+          "type": "mcq",
+          "question": "Consider the declaration:\n```c\nstruct node {\n    int i;\n    float j;\n};\nstruct node *s[10];\n```\nThis defines `s` to be:",
+          "options": [
+            "An array, each element of which is a pointer to a structure of type node",
+            "A structure of 2 fields, each field being a pointer to an array of 10 elements",
+            "A structure of 3 fields: an integer, a float, and an array of 10 elements",
+            "An array, each element of which is a structure of type node"
+          ],
+          "answer": 0,
+          "solution": "`struct node *s[10];` declares `s` as an array of 10 elements, where each element is a pointer (`*`) to a `struct node`.",
+          "marks": 1,
+          "source": "GATE CSE 2000"
+        }
+      ]
+    },
+    {
+      "id": "array-basics-representations",
+      "title": "Chapter 2.1 — Arrays: Data Structures & 1D Representations",
+      "short": "Array Fundamentals",
+      "summary": "Linear vs. non-linear structures, Abstract Data Types (ADT), 1D array indexing, and memory allocation.",
+      "content": "## 2.1 Data Structures & Array Fundamentals\n\nA **Data Structure** is a mathematical or logical model for organizing, storing, and manipulating data efficiently.\n\n```mermaid\ngraph TD\n    DS[Data Structures] --> Lin[Linear Structures: Sequential relationship]\n    DS --> NonLin[Non-Linear Structures: Hierarchical / Interconnected]\n    \n    Lin --> Arr[Arrays: Fixed contiguous memory]\n    Lin --> Stk[Stacks: LIFO access]\n    Lin --> Que[Queues: FIFO access]\n    Lin --> LL[Linked Lists: Dynamic pointer chain]\n    \n    NonLin --> Tree[Trees: Hierarchical nodes]\n    NonLin --> Graph[Graphs: Vertices and edges]\n```\n\n### Abstract Data Type (ADT)\nAn ADT defines a data type purely in terms of its behavior (values and operations) from the perspective of a client, hiding internal implementation details.\n\n### 1-Dimensional Array Representation\nA 1D array is a linear collection of homogeneous elements stored in contiguous memory cells.\n- **Lower Bound (LB)**: Starting index of the array ($0$ in C).\n- **Upper Bound (UB)**: Final valid index ($N - 1$).\n- **Length / Range**: $\\text{Length} = \\text{UB} - \\text{LB} + 1$.\n\n```mermaid\ngraph LR\n    subgraph 1D Array Contiguous RAM Layout\n        0[\"A[0]<br/>Addr: 1000\"] --- 1[\"A[1]<br/>Addr: 1004\"] --- 2[\"A[2]<br/>Addr: 1008\"] --- 3[\"A[3]<br/>Addr: 1012\"]\n    end\n```",
+      "keyPoints": [
+        "Arrays store homogeneous elements in contiguous memory locations.",
+        "Random access is achieved in O(1) time via base address arithmetic.",
+        "An ADT specifies what operations can be performed, independent of implementation.",
+        "Array length is computed as: Range = Upper Bound - Lower Bound + 1."
+      ],
+      "questions": [
+        {
+          "id": "arr-basics-q1",
+          "title": "Definition of Abstract Data Type",
+          "type": "mcq",
+          "question": "An Abstract Data Type (ADT) is:",
+          "options": [
+            "Same as an abstract class in object oriented programming",
+            "A data type that cannot be instantiated",
+            "A data type for which only the operations defined on it can be used, but nothing else",
+            "All of the above"
+          ],
+          "answer": 2,
+          "solution": "An ADT defines a data type solely by the set of operations permissible on it, encapsulating internal representation from client code.",
+          "marks": 1,
+          "source": "GATE CSE 2005"
+        }
+      ]
+    },
+    {
+      "id": "array-address-calculations",
+      "title": "Chapter 2.2 — Arrays: Address Translation (1D, 2D RMO & CMO, 3D)",
+      "short": "Array Address Calculations",
+      "summary": "Rigorous address calculation formulas for 1D, 2D Row-Major Order (RMO), Column-Major Order (CMO), and 3D arrays.",
+      "content": "## 2.2 Array Address Translation Formulas\n\nBecause physical computer RAM is linear, multi-dimensional array coordinates must be mapped to 1D linear addresses.\n\n### 1. 1-Dimensional Array Addressing\nFor an array $A[\\text{LB} \\dots \\text{UB}]$ with base address $b$ and element byte size $w$:\n$$\\text{Loc}(A[K]) = b + (K - \\text{LB}) \\times w$$\nFor standard 0-indexed arrays ($\\text{LB} = 0$):\n$$\\text{Loc}(A[K]) = b + K \\times w$$\n\n### 2. 2-Dimensional Array Addressing\nLet 2D array $A[L_1 \\dots U_1][L_2 \\dots U_2]$ have:\n- Number of rows: $m = U_1 - L_1 + 1$\n- Number of columns: $n = U_2 - L_2 + 1$\n- Base address: $\\text{base}(A) = b$, element size: $w$\n\n#### Row-Major Order (RMO)\nRows are stored sequentially in memory:\n$$\\text{Loc}(A[i][j]) = b + \\Big[(i - L_1) \\times n + (j - L_2)\\Big] \\times w$$\nFor 0-indexed arrays ($L_1 = 0, L_2 = 0$):\n$$\\text{Loc}(A[i][j]) = b + (i \\times n + j) \\times w$$\n\n#### Column-Major Order (CMO)\nColumns are stored sequentially in memory:\n$$\\text{Loc}(A[i][j]) = b + \\Big[(j - L_2) \\times m + (i - L_1)\\Big] \\times w$$\nFor 0-indexed arrays ($L_1 = 0, L_2 = 0$):\n$$\\text{Loc}(A[i][j]) = b + (j \\times m + i) \\times w$$\n\n```mermaid\ngraph TD\n    subgraph Row Major vs Column Major Storage\n        RMO[\"RMO: Row 0 -> Row 1 -> Row 2\"]\n        CMO[\"CMO: Col 0 -> Col 1 -> Col 2\"]\n    end\n```\n\n### 3. 3-Dimensional Array Addressing\nFor array $A[L_1 \\dots U_1][L_2 \\dots U_2][L_3 \\dots U_3]$ with dimensions $d_1, d_2, d_3$:\n$$\\text{Loc}(A[i][j][k]) = b + \\Big[(i - L_1) d_2 d_3 + (j - L_2) d_3 + (k - L_3)\\Big] \\times w$$",
+      "keyPoints": [
+        "In Row-Major Order (RMO), the address calculation scales row index i by total columns n.",
+        "In Column-Major Order (CMO), the address calculation scales column index j by total rows m.",
+        "C compilers store multi-dimensional arrays exclusively in Row-Major Order.",
+        "Arbitrary bound arrays must subtract lower bounds (i - L1, j - L2) before scaling."
+      ],
+      "questions": [
+        {
+          "id": "arr-addr-q1",
+          "title": "1D Negative Lower Bound Addressing",
+          "type": "nat",
+          "question": "An array is declared as `A[-7 ... 7]` where each element occupies 4 bytes. If the base address is 3000, what is the memory address of `A[0]`?",
+          "answer": 3028,
+          "solution": "Using formula $\\text{Loc}(A[K]) = b + (K - \\text{LB}) \\times w$: $\\text{Loc}(A[0]) = 3000 + (0 - (-7)) \\times 4 = 3000 + 28 = 3028$.",
+          "marks": 2,
+          "source": "Solved Example"
+        },
+        {
+          "id": "arr-addr-q2",
+          "title": "2D Row Major Addressing Calculation",
+          "type": "nat",
+          "question": "An array `A[5...15, -8...8]` is stored in row-major order with base address 500 and element size 3 bytes. What is the address of `A[8][5]`?",
+          "answer": 692,
+          "solution": "$m = 15 - 5 + 1 = 11$, $n = 8 - (-8) + 1 = 17$.\n$$\\text{Loc}(A[8][5]) = 500 + [(8 - 5) \\times 17 + (5 - (-8))] \\times 3 = 500 + [3 \\times 17 + 13] \\times 3 = 500 + 64 \\times 3 = 692$$.",
+          "marks": 2,
+          "source": "Solved Example"
+        }
+      ]
+    },
+    {
+      "id": "special-sparse-matrices",
+      "title": "Chapter 2.3 — Arrays: Special & Sparse Matrices",
+      "short": "Special & Sparse Matrices",
+      "summary": "Compaction schemes for lower triangular, upper triangular, strictly lower triangular, and tridiagonal matrices.",
+      "content": "## 2.3 Special & Sparse Matrices\n\nA **Sparse Matrix** is a matrix in which the overwhelming majority of elements are zero. Storing all entries in a standard 2D array wastes memory. Compaction schemes map only non-zero entries into a 1D array.\n\n```mermaid\ngraph TD\n    Mat[Special Square Matrices: n x n] --> Tri[Triangular Matrices]\n    Mat --> TriDiag[Tridiagonal Matrix]\n    \n    Tri --> LT[Lower Triangular: non-zeros on i >= j]\n    Tri --> UT[Upper Triangular: non-zeros on i <= j]\n    Tri --> SLT[Strictly Lower Triangular: non-zeros on i > j]\n```\n\n### Matrix Compaction Formulas (1-indexed, $n \\times n$)\n\n| Matrix Type | Non-Zero Count | Row-Major 1D Address Formula | Column-Major 1D Address Formula |\n| :--- | :---: | :--- | :--- |\n| **Lower Triangular** | $\\frac{n(n+1)}{2}$ | $b + \\left[\\frac{i(i-1)}{2} + (j - 1)\\right] \\times w$ | $b + \\left[(j-1)n - \\frac{(j-1)(j-2)}{2} + (i - j)\\right] \\times w$ |\n| **Upper Triangular** | $\\frac{n(n+1)}{2}$ | $b + \\left[(i-1)n - \\frac{(i-1)(i-2)}{2} + (j - i)\\right] \\times w$ | $b + \\left[\\frac{j(j-1)}{2} + (i - 1)\\right] \\times w$ |\n| **Strictly Lower Triangular** | $\\frac{n(n-1)}{2}$ | $b + \\left[\\frac{(i-1)(i-2)}{2} + (j - 1)\\right] \\times w$ | $b + \\left[(j-1)n - \\frac{j(j-1)}{2} + (i - j - 1)\\right] \\times w$ |\n| **Tridiagonal** | $3n - 2$ | $b + (2i + j - 3) \\times w$ | $b + (i + 2j - 3) \\times w$ |",
+      "keyPoints": [
+        "An n x n triangular matrix has exactly n(n+1)/2 non-zero elements.",
+        "A tridiagonal matrix has non-zeros on only 3 diagonals (main, upper, lower), totaling 3n - 2 non-zeros.",
+        "1D array compaction reduces storage from O(n^2) to O(n) for sparse and structured matrices."
+      ],
+      "questions": [
+        {
+          "id": "sparse-mat-q1",
+          "title": "Non-Zero Count in Tridiagonal Matrix",
+          "type": "mcq",
+          "question": "How many total non-zero elements exist in an $n \\times n$ tridiagonal matrix?",
+          "options": [
+            "3n",
+            "3n - 2",
+            "3n - 1",
+            "n^2 / 3"
+          ],
+          "answer": 1,
+          "solution": "A tridiagonal matrix has non-zeros on the main diagonal ($n$ elements), the sub-diagonal ($n-1$ elements), and the super-diagonal ($n-1$ elements). Total $= n + (n-1) + (n-1) = 3n - 2$.",
+          "marks": 1,
+          "source": "Book Example"
+        }
+      ]
+    },
+
+    {
+      "id": "stack-basics-operations",
+      "title": "Chapter 3.1 — Stacks: Fundamentals, ADT & Operations",
+      "short": "Stack Basics & Operations",
+      "summary": "LIFO abstract data type, push/pop/peek operations, underflow/overflow conditions, and array implementation.",
+      "content": "## 3.1 The Stack Abstract Data Type\n\nA **Stack** is a linear data structure operating under the **LIFO** (Last In, First Out) principle, also called **FILO** (First In, Last Out). All insertions and deletions take place exclusively at a single designated end termed the **top** of the stack.\n\n```mermaid\ngraph TD\n    subgraph Stack LIFO Model\n        Top[Top Pointer] --> D[Element D: Top]\n        D --> C[Element C]\n        C --> B[Element B]\n        B --> A[Element A: Bottom]\n    end\n```\n\n### Fundamental Stack Operations\n- `push(s, x)`: Inserts element $x$ onto the top of stack $s$.\n- `pop(s)`: Removes and returns the element currently at the top of stack $s$.\n- `peek(s)`: Inspects the top element without removing it.\n- `isEmpty(s)`: Returns true if the stack contains no elements.\n- `isFull(s)`: Returns true if static array storage is exhausted.\n\n### Boundary Conditions\n- **Underflow**: Attempting `pop()` or `peek()` on an empty stack (`top == -1`).\n- **Overflow**: Attempting `push()` when the array capacity is reached (`top == MAX_SIZE - 1`).\n\n### C Implementation using Array\n```c\n#define MAX 100\nint stack[MAX];\nint top = -1;\n\nvoid push(int val) {\n    if (top == MAX - 1) { printf(\"Stack Overflow\\n\"); return; }\n    stack[++top] = val;\n}\n\nint pop() {\n    if (top == -1) { printf(\"Stack Underflow\\n\"); return -1; }\n    return stack[top--];\n}\n```",
+      "keyPoints": [
+        "Stacks enforce LIFO ordering; push and pop operations run in O(1) time.",
+        "Underflow occurs when attempting to pop from an empty stack (top == -1).",
+        "Overflow occurs when pushing into a full static array (top == MAX - 1)."
+      ],
+      "questions": [
+        {
+          "id": "stk-op-q1",
+          "title": "Stack Principle",
+          "type": "mcq",
+          "question": "Which principle does the stack data structure strictly operate under?",
+          "options": [
+            "FIFO",
+            "LIFO",
+            "Priority",
+            "Random Access"
+          ],
+          "answer": 1,
+          "solution": "Stack is a Last In First Out (LIFO) or First In Last Out (FILO) data structure.",
+          "marks": 1,
+          "source": "Practice"
+        }
+      ]
+    },
+    {
+      "id": "stack-applications-expressions",
+      "title": "Chapter 3.2 — Stacks: Parentheses Matching & Expressions",
+      "short": "Stack Applications & Expressions",
+      "summary": "Balanced parentheses parsing, infix, prefix, and postfix notations, conversion and evaluation algorithms.",
+      "content": "## 3.2 Stack Applications\n\n### 1. Balanced Parentheses Parsing\nAn arithmetic expression possesses balanced parentheses if every opening bracket `(`, `[`, `{` is closed by its corresponding closing bracket `)`, `]`, `}` in valid nested order.\n- Algorithm: Push opening brackets onto stack. When a closing bracket arrives, verify stack is not empty and pop top bracket; check if they match. Valid iff stack is empty at string termination.\n\n```mermaid\nflowchart LR\n    In[Input Expression] --> Scan[Scan Character]\n    Scan -->|Opening Bracket| Push[Push to Stack]\n    Scan -->|Closing Bracket| PopCheck[Match & Pop Top]\n    PopCheck --> EndCheck{End of Input?}\n    EndCheck -->|Stack Empty| Valid[Balanced]\n    EndCheck -->|Stack Not Empty| Invalid[Imbalanced]\n```\n\n### 2. Expression Notations\n- **Infix**: Operator between operands: $A + B$\n- **Prefix (Polish)**: Operator precedes operands: $+ A B$\n- **Postfix (Reverse Polish)**: Operator follows operands: $A B +$\n\n### Operator Precedence in Expressions\n$$(\\text{Highest}) \\quad \\hat{} \\; (\\text{Exponentiation, Right-to-Left}) \\quad > \\quad *, / \\; (\\text{Left-to-Right}) \\quad > \\quad +, - \\; (\\text{Left-to-Right}) \\quad (\\text{Lowest})$$\n\n### Infix to Postfix Algorithm\n1. Initialize operator stack.\n2. Scan tokens from left to right:\n   - Operands $\\to$ append to output.\n   - `'('` $\\to$ push to stack.\n   - `')'` $\\to$ pop to output until `'('` is reached; discard `'('`.\n   - Operator $\\to$ pop operators with higher/equal precedence from stack to output; push current operator.\n3. Pop remaining operators to output at end.",
+      "keyPoints": [
+        "Balanced parentheses checking runs in O(n) time using a stack.",
+        "Postfix notation eliminates parentheses; order of operations is uniquely determined by operator position.",
+        "Infix to postfix and postfix evaluation both run in O(n) time with a stack."
+      ],
+      "questions": [
+        {
+          "id": "stk-app-q1",
+          "title": "Data Structure for Balanced Parentheses",
+          "type": "mcq",
+          "question": "Which is the best data structure to check whether an arithmetic expression has balanced parentheses?",
+          "options": [
+            "Queue",
+            "Tree",
+            "Stack",
+            "List"
+          ],
+          "answer": 2,
+          "solution": "A stack is the optimal data structure due to LIFO nested structure matching.",
+          "marks": 1,
+          "source": "GATE CSE 2004"
+        },
+        {
+          "id": "stk-app-q2",
+          "title": "Infix to Postfix Conversion",
+          "type": "mcq",
+          "question": "What is the postfix form of $a + b \\times c - d \\;\\hat{}\\; e \\;\\hat{}\\; f$ (where `^` is right-associative)?",
+          "options": [
+            "abc*+def^^-",
+            "abc*+de^f^-",
+            "ab+c*d-e^f^",
+            "-+a*bc^^def"
+          ],
+          "answer": 0,
+          "solution": "$b \\times c = bc*$, $a + bc* = abc*+$. Right-associative $d \\;\\hat{}\\; (e \\;\\hat{}\\; f) = def\\hat{}\\;\\hat{}$. Subtracting yields $abc*+def\\hat{}\\;\\hat{}-$.",
+          "marks": 2,
+          "source": "GATE CSE 2004"
+        }
+      ]
+    },
+    {
+      "id": "queue-basics-operations",
+      "title": "Chapter 3.3 — Queues: Fundamentals, ADT & Linear Queue",
+      "short": "Queue Fundamentals",
+      "summary": "FIFO abstract data type, front and rear pointers, enqueue/dequeue operations, and false overflow.",
+      "content": "## 3.3 The Queue Abstract Data Type\n\nA **Queue** is a linear data structure governed by the **FIFO** (First In, First Out) principle, also called **LILO** (Last In, Last Out).\n- **Front**: The index where deletions (`dequeue`) take place.\n- **Rear**: The index where insertions (`enqueue`) take place.\n\n```mermaid\ngraph LR\n    In[Enqueue] --> Rear[\"Rear: Index 3 (d)\"]\n    Rear --- C[\"Index 2 (c)\"]\n    C --- B[\"Index 1 (b)\"]\n    B --- Front[\"Front: Index 0 (a)\"]\n    Front --> Out[Dequeue]\n```\n\n### Linear Queue Limitation: False Overflow\nIn a linear array queue, `Front` and `Rear` continually increment. Once `Rear == MAX - 1`, no more elements can be enqueued, even if earlier slots ($0 \\dots \\text{Front}-1$) were freed by dequeue operations. This phenomenon is known as **False Overflow**.",
+      "keyPoints": [
+        "Queues operate under FIFO: elements are inserted at Rear and removed from Front.",
+        "Both enqueue and dequeue operate in O(1) time.",
+        "Linear queue suffers from false overflow when Rear hits the end of array storage."
+      ],
+      "questions": [
+        {
+          "id": "que-op-q1",
+          "title": "Queue Time Complexity",
+          "type": "mcq",
+          "question": "A queue is implemented using an array such that ENQUEUE and DEQUEUE operations are performed efficiently. What is the time complexity of both operations?",
+          "options": [
+            "Both O(1)",
+            "One O(1), other O(n)",
+            "Both O(n)",
+            "Both O(log n)"
+          ],
+          "answer": 0,
+          "solution": "Both operations take constant $O(1)$ time by manipulating array indices `Front` and `Rear` directly.",
+          "marks": 1,
+          "source": "GATE CSE 2016"
+        }
+      ]
+    },
+    {
+      "id": "circular-queue-priority-deque",
+      "title": "Chapter 3.4 — Queues: Circular Queue, Priority Queue & Deque",
+      "short": "Circular Queues & Deques",
+      "summary": "Circular queue ring buffer arithmetic, priority queues, and double-ended queues (input/output restricted).",
+      "content": "## 3.4 Advanced Queue Architectures\n\n### 1. Circular Queue\nOvercomes false overflow by connecting the end of the array back to the beginning using modulo arithmetic.\n\n```mermaid\ngraph TD\n    subgraph Circular Queue Ring Buffer\n        0((0)) --- 1((1)) --- 2((2)) --- 3((3))\n        3 --- 4((4)) --- 5((5)) --- 6((6)) --- 7((7))\n        7 --- 0\n    end\n```\n\n- **Enqueue**: $\\text{Rear} = (\\text{Rear} + 1) \\bmod S$\n- **Dequeue**: $\\text{Front} = (\\text{Front} + 1) \\bmod S$\n- **Queue Full Condition** (reserving 1 empty slot):\n  $$(\\text{Rear} + 1) \\bmod S == \\text{Front}$$\n- **Queue Empty Condition**: $\\text{Front} == \\text{Rear}$\n\n### 2. Priority Queue\nElements are inserted in arbitrary order, but deletion is governed by element priority:\n- **Ascending Priority Queue**: Dequeues the minimum element first.\n- **Descending Priority Queue**: Dequeues the maximum element first.\n\n### 3. Double-Ended Queue (Deque)\nAllows insertion and deletion at both Front and Rear ends:\n- **Input-Restricted Deque**: Insertion restricted to Rear; deletion permitted at both Front and Rear.\n- **Output-Restricted Deque**: Deletion restricted to Front; insertion permitted at both Front and Rear.",
+      "keyPoints": [
+        "Circular queue wraps array boundaries using modulo arithmetic: (index + 1) % S.",
+        "Circular queue full condition with one empty sentinel slot is (Rear + 1) % n == Front.",
+        "Deques permit insertion and deletion at both ends; input-restricted allows insertion only at one end."
+      ],
+      "questions": [
+        {
+          "id": "circ-que-q1",
+          "title": "Circular Queue Conditions",
+          "type": "mcq",
+          "question": "Suppose a circular queue of capacity $(n - 1)$ elements is implemented with an array of $n$ elements. What are the conditions to detect full and empty queue?",
+          "options": [
+            "full: (REAR+1) mod n == FRONT; empty: REAR == FRONT",
+            "full: (REAR+1) mod n == FRONT; empty: (FRONT+1) mod n == REAR",
+            "full: REAR == FRONT; empty: (REAR+1) mod n == FRONT",
+            "full: (FRONT+1) mod n == REAR; empty: REAR == FRONT"
+          ],
+          "answer": 0,
+          "solution": "When 1 slot is left unused, full is `(REAR+1) mod n == FRONT` and empty is `REAR == FRONT`.",
+          "marks": 2,
+          "source": "GATE CSE 2012"
+        }
+      ]
+    },
+    {
+      "id": "stack-tower-of-hanoi",
+      "title": "Chapter 3.5 — Stacks: Tower of Hanoi & Two-Stack Queue",
+      "short": "Tower of Hanoi & Queue via Stacks",
+      "summary": "Tower of Hanoi recursion, recurrence relation 2^n - 1, and queue implementation using two stacks.",
+      "content": "## 3.5 Tower of Hanoi & Queue via Two Stacks\n\n### 1. Tower of Hanoi\nThe Tower of Hanoi consists of 3 pegs ($A, B, C$) and $n$ disks of decreasing diameter. The objective is to move all disks from source peg $A$ to destination peg $C$ using auxiliary peg $B$ subject to:\n1. Only one disk can be moved at a time.\n2. Only the top disk on any peg can be shifted.\n3. A larger disk can never be placed on a smaller disk.\n\n```mermaid\nflowchart TD\n    subgraph Tower of Hanoi Recurrence\n        TOH[\"TOH(n, A, C, B)\"] --> S1[\"1. TOH(n-1, A, B, C)\"]\n        TOH --> S2[\"2. Move disk n: A -> C\"]\n        TOH --> S3[\"3. TOH(n-1, B, C, A)\"]\n    end\n```\n\n### Recurrence Relation\n$$T(n) = 2T(n-1) + 1, \\quad T(1) = 1$$\n$$T(n) = 2^n - 1$$\nTotal moves for $n=3$: $2^3 - 1 = 7$ moves.\n\n### 2. Implementing Queue Using Two Stacks\nWe utilize two stacks $S_1$ and $S_2$:\n- **`enqueue(x)`**: Push $x$ onto $S_1$. Time complexity: $O(1)$.\n- **`dequeue()`**: If $S_2$ is empty, pop all elements from $S_1$ and push onto $S_2$ (reversing element order). Then pop from $S_2$. If $S_2$ is not empty, pop top of $S_2$.\n- **Amortized Time Complexity**: Each element is pushed and popped at most twice $\\implies O(1)$ amortized cost.",
+      "keyPoints": [
+        "Tower of Hanoi requires exactly 2^n - 1 moves for n disks.",
+        "Queue implemented with two stacks achieves O(1) amortized time per operation."
+      ],
+      "questions": [
+        {
+          "id": "toh-q1",
+          "title": "Tower of Hanoi Total Moves",
+          "type": "nat",
+          "question": "How many total disk moves are required to solve the Tower of Hanoi problem for 5 disks?",
+          "answer": 31,
+          "solution": "Total moves $= 2^n - 1 = 2^5 - 1 = 32 - 1 = 31$.",
+          "marks": 1,
+          "source": "Practice"
+        },
+        {
+          "id": "q-two-stacks-q1",
+          "title": "Two Stack Queue Operations Bounds",
+          "type": "mcq",
+          "question": "Let n insert and m (m <= n) delete operations be performed on an empty queue implemented with two stacks S1 and S2. Let x and y be total push and pop operations. Which is true?",
+          "options": [
+            "n + m <= x <= 2n and 2m <= y <= n + m",
+            "n + m <= x <= 2n and 2m <= y <= 2n",
+            "2m <= x <= 2n and 2m <= y <= n + m",
+            "2m <= x <= 2n and 2m <= y <= 2n"
+          ],
+          "answer": 0,
+          "solution": "Each insert pushes to $S_1$ ($n$ times). Transferring to $S_2$ pushes and pops between $m$ and $n$ times. Thus $n + m \\le x \\le 2n$ and $2m \\le y \\le n + m$.",
+          "marks": 2,
+          "source": "GATE CSE 2006"
+        }
+      ]
+    },
+    {
+      "id": "linked-list-basics-operations",
+      "title": "Chapter 4.1 — Linked Lists: Singly Linked List & Operations",
+      "short": "Singly Linked Lists",
+      "summary": "Node anatomy, dynamic allocation, pointer manipulation, insertion, deletion, and searching operations.",
+      "content": "## 4.1 Singly Linked Lists\n\nA **Linked List** is a dynamic linear data structure where elements (nodes) are linked using memory pointers.\n\n```mermaid\ngraph LR\n    Head[\"Head (V)\"] --> N1\n    subgraph Singly Linked List\n        N1[\"Data: A | Next\"] --> N2[\"Data: B | Next\"]\n        N2 --> N3[\"Data: C | Next\"]\n        N3 --> Null[\"NULL\"]\n    end\n```\n\n### Node Structure in C\n```c\nstruct Node {\n    int data;\n    struct Node *next;\n};\n```\n\n### Operations & Time Complexities\n1. **Insertion at Beginning**: $O(1)$ time.\n   ```c\n   new_node->next = head; head = new_node;\n   ```\n2. **Insertion at End**:\n   - With only `head`: $O(n)$ time (must traverse to last node).\n   - With `head` and `tail`: $O(1)$ time (`tail->next = new_node; tail = new_node;`).\n3. **Deletion at Beginning**: $O(1)$ time (`head = head->next; free(temp);`).\n4. **Deletion at End**: $O(n)$ time (must find second-to-last node to set `next = NULL`).\n5. **Deletion of Node $X$ Given Only Pointer $Q$ to Node $X$**: $O(1)$ time by copying data from $Q->next$ and bypassing $Q->next$.\n6. **Linear Search**: $O(n)$ time. Binary search is **inefficient** on singly linked lists ($O(n)$) due to lack of random access.",
+      "keyPoints": [
+        "Linked lists provide dynamic sizing and O(1) insertions at known pointer locations.",
+        "Deleting an intermediate node given its direct pointer runs in O(1) time without requiring head pointer.",
+        "Binary search cannot be implemented efficiently in O(log n) on singly linked lists."
+      ],
+      "questions": [
+        {
+          "id": "ll-op-q1",
+          "title": "Intermediate Node Deletion Complexity",
+          "type": "mcq",
+          "question": "Let P be a singly linked list and Q be the pointer to an intermediate node x. What is the worst-case time complexity of the best algorithm to delete x?",
+          "options": [
+            "O(n)",
+            "O(log2 n)",
+            "O(log n)",
+            "O(1)"
+          ],
+          "answer": 3,
+          "solution": "Copy data from `Q->next` to `Q` and remove `Q->next`, running in constant $O(1)$ time.",
+          "marks": 2,
+          "source": "GATE CSE 2004"
+        }
+      ]
+    },
+    {
+      "id": "doubly-circular-linked-lists",
+      "title": "Chapter 4.2 — Linked Lists: Doubly & Circular Linked Lists",
+      "short": "Doubly & Circular Lists",
+      "summary": "Doubly linked lists (DLL), circular singly linked lists (CSLL), and circular doubly linked lists (CDLL).",
+      "content": "## 4.2 Doubly & Circular Linked Lists\n\n```mermaid\ngraph TD\n    LL[Linked List Variations] --> DLL[Doubly Linked List: Prev & Next pointers]\n    LL --> CSLL[Circular Singly Linked List: Last -> First]\n    LL --> CDLL[Circular Doubly Linked List: Bidirectional ring]\n```\n\n### Doubly Linked List (DLL)\nEach node contains two pointers: `prev` and `next`.\n```mermaid\ngraph LR\n    Head --> N1\n    N1[\"Prev: NULL | Data: A | Next\"] <--> N2[\"Prev | Data: B | Next\"]\n    N2 <--> N3[\"Prev | Data: C | Next: NULL\"]\n```\n- **Advantage**: Bidirectional traversal; deleting a node given its pointer takes $O(1)$ without any special tricks.\n\n### Circular Singly Linked List (CSLL)\nThe final node's `next` pointer points back to the first node.\n- **Optimal Queue Representation**: Maintain a single pointer `P` pointing to the **Rear node**!\n  - `P` provides $O(1)$ access to Rear.\n  - `P->next` provides $O(1)$ access to Front.\n  - Both `enqueue` and `dequeue` run in $O(1)$ time!",
+      "keyPoints": [
+        "Doubly linked lists store prev and next pointers, enabling bidirectional traversal.",
+        "In circular singly linked lists, the last node links back to the first node.",
+        "Maintaining a circular singly linked list with a REAR pointer achieves O(1) queue operations."
+      ],
+      "questions": [
+        {
+          "id": "cdll-q1",
+          "title": "Queue with Circular Singly Linked List",
+          "type": "mcq",
+          "question": "A circularly linked list is used to represent a queue with a single pointer `p`. To which node should `p` point for both enqueue and dequeue in O(1) time?",
+          "options": [
+            "Rear node",
+            "Front node",
+            "Not possible",
+            "Node next to front"
+          ],
+          "answer": 0,
+          "solution": "Pointing to Rear gives Rear at `p` and Front at `p->next`, enabling $O(1)$ enqueue and dequeue.",
+          "marks": 2,
+          "source": "GATE CSE 2004"
+        }
+      ]
+    },
    {
-   "id": "ch3",
-   "title": "Chapter 3 — Loops",
-   "short": "Loops",
-   "content": "### 3.1 For Loop\nThe `for` loop is used to execute a block of code repeatedly.\n\n```c\nfor (int i = 0; i < 10; i++) {\n    printf(\"%d\", i);\n}\n```",
-   "questions": [
+      "id": "linked-list-applications",
+      "title": "Chapter 4.3 — Linked Lists: Practical Applications & Graph Representation",
+      "short": "Linked List Applications",
+      "summary": "Graph adjacency list representation, polynomial arithmetic, sparse matrices, and dynamic memory allocation.",
+      "content": "## 4.3 Applications of Linked Lists\\n\\n### 1. Representation of Graphs (Adjacency List)\\nIn graph theory, an **Adjacency List** represents a graph with $|V|$ vertices as an array of $|V|$ linked lists. The $i$-th linked list stores all vertices adjacent to vertex $i$.\\n- **Space Complexity**: $\\\\Theta(V + E)$ for directed and undirected graphs, compared to $\\\\Theta(V^2)$ for an Adjacency Matrix.\\n- **Optimal for Sparse Graphs** where $E \\\\ll V^2$.\\n\\n```mermaid\\ngraph LR\\n    subgraph Adjacency List Representation\\n        A[\"Vertex A\"] --> B[\"B\"] --> D[\"D\"] --> F[\"F\"] --> NullA[\"NULL\"]\\n        B_node[\"Vertex B\"] --> A_b[\"A\"] --> C_b[\"C\"] --> D_b[\"D\"] --> NullB[\"NULL\"]\\n    end\\n```\\n\\n### 2. Additional Core Applications\\n- **Sparse Matrix Representation**: Storing non-zero cells with row, column, and value nodes saves space over dense 2D matrices.\\n- **Dynamic Memory Management**: Operating system heap managers maintain free lists of available memory blocks.\\n- **Polynomial Addition & Multiplication**: Coefficients and powers are maintained in sorted linked lists.",
+      "keyPoints": [
+        "Adjacency lists store graphs in O(V + E) memory, optimal for sparse graph networks.",
+        "Linked lists provide flexible polynomial arithmetic without preallocating dense coefficient arrays.",
+        "Memory free lists in OS memory managers rely on linked list structures."
+      ],
+      "questions": [
+        {
+          "id": "ll-app-q1",
+          "title": "Adjacency List vs Matrix Space",
+          "type": "mcq",
+          "question": "What is the space complexity of representing a graph with V vertices and E edges using an adjacency list?",
+          "options": [
+            "O(V^2)",
+            "O(V + E)",
+            "O(E^2)",
+            "O(V * E)"
+          ],
+          "answer": 1,
+          "solution": "An adjacency list allocates an array of size $V$ and a total of $E$ (or $2E$) edge nodes, taking $O(V + E)$ space.",
+          "marks": 1,
+          "source": "Practice"
+        }
+      ]
+    },
+
     {
-     "id": "3.1",
-     "type": "mcq",
-     "marks": 1,
-     "question": "Which keyword is used for alternative execution in C?",
-     "options": [
-      "then",
-      "else",
-      "elseif",
-      "case"
-     ],
-     "answer": 1,
-     "solution": "`else` is used along with `if` for alternative execution."
+      "id": "tree-terminology-classifications",
+      "title": "Chapter 5.1 — Trees: Terminology & Binary Tree Types",
+      "short": "Tree Terminology & Types",
+      "summary": "Tree hierarchy, root, leaf, height, depth, strict, full, complete, and skewed binary trees.",
+      "content": "## 5.1 Tree Terminology & Classifications\n\nA **Tree** is a non-linear, hierarchical data structure defined recursively as a collection of nodes connected by edges.\n\n```mermaid\ngraph TD\n    A[\"A (Root, Depth: 0, Height: 2)\"] --> B[\"B (Internal, Depth: 1, Height: 1)\"]\n    A --> C[\"C (Leaf, Depth: 1, Height: 0)\"]\n    B --> D[\"D (Leaf, Depth: 2, Height: 0)\"]\n    B --> E[\"E (Leaf, Depth: 2, Height: 0)\"]\n```\n\n### Terminology\n- **Depth of a Node**: Number of edges from root to the node (root depth $= 0$).\n- **Level of a Node**: $\\text{Level} = \\text{Depth} + 1$.\n- **Height of a Node**: Number of edges on the longest downward path from that node to a leaf.\n- **Height of Tree**: Height of the root node.\n\n### Binary Tree Variations\n1. **Strict / Proper Binary Tree**: Every node has either $0$ or $2$ children.\n2. **Full Binary Tree**: All internal nodes have $2$ children, and all leaves are at the exact same last level.\n   - Nodes at height $h$: $n = 2^{h+1} - 1$.\n   - Leaves: $L = 2^h$.\n   - Internal nodes: $I = 2^h - 1 = L - 1$.\n   - **Fundamental Theorem**: In any binary tree, $L = I + 1$ (where $I$ is count of nodes with 2 children).\n3. **Complete Binary Tree (CBT)**: All levels completely filled except possibly the last, which is filled from left to right.\n   - Height of CBT with $n$ nodes: $h = \\lfloor \\log_2 n \\rfloor$.\n   - Internal nodes: $\\lfloor n/2 \\rfloor$, Leaf nodes: $\\lceil n/2 \\rceil$.",
+      "keyPoints": [
+        "In any binary tree, the number of leaf nodes L equals nodes of degree 2 plus one: L = I + 1.",
+        "A full binary tree of height h has exactly 2^(h+1) - 1 nodes.",
+        "Complete binary trees have height floor(log2 n) and pack efficiently into arrays."
+      ],
+      "questions": [
+        {
+          "id": "tree-term-q1",
+          "title": "Complete Binary Tree Internal Nodes",
+          "type": "mcq",
+          "question": "In a complete binary tree with $n$ nodes, the number of internal nodes is:",
+          "options": [
+            "floor(n / 2)",
+            "ceil(n / 2)",
+            "n / 2 - 1",
+            "2^(h-1)"
+          ],
+          "answer": 0,
+          "solution": "In a complete binary tree with $n$ nodes, internal nodes $= \\lfloor n / 2 \\rfloor$.",
+          "marks": 1,
+          "source": "GATE CSE 2006"
+        }
+      ]
+    },
+    {
+      "id": "binary-tree-traversals-catalan",
+      "title": "Chapter 5.2 — Trees: Traversals & Catalan Tree Counts",
+      "short": "Traversals & Catalan Counts",
+      "summary": "Inorder, preorder, postorder, level order, unique tree reconstruction, and Catalan number formula.",
+      "content": "## 5.2 Traversals & Catalan Numbers\n\n### Tree Traversals\n- **Inorder**: Left $\\to$ Root $\\to$ Right\n- **Preorder**: Root $\\to$ Left $\\to$ Right\n- **Postorder**: Left $\\to$ Right $\\to$ Root\n- **Level Order**: Breadth-First Search (BFS) using a FIFO queue.\n\n```mermaid\ngraph LR\n    Traversals[Tree Traversals] --> In[Inorder: L Root R]\n    Traversals --> Pre[Preorder: Root L R]\n    Traversals --> Post[Postorder: L R Root]\n    Traversals --> Lev[Level Order: BFS Queue]\n```\n\n### Unique Tree Reconstruction Theorem\nA unique binary tree can be constructed if and only if **Inorder** traversal is provided along with either **Preorder** or **Postorder**.\n\n### Catalan Numbers (Counting Binary Trees)\nThe number of structurally distinct unlabelled binary trees with $n$ nodes is given by the $n$-th Catalan number:\n$$C_n = \\frac{1}{n+1} \\binom{2n}{n} = \\frac{(2n)!}{(n+1)!\\,n!}$$\nFor labelled binary trees with $n$ distinct keys:\n$$N_{\\text{labelled}} = C_n \\times n! = \\frac{(2n)!}{(n+1)!}$$",
+      "keyPoints": [
+        "Tree traversals visit each node in Theta(n) time and O(h) stack space.",
+        "Inorder together with Preorder or Postorder uniquely specifies a binary tree.",
+        "The number of structurally unique unlabelled binary trees with n nodes is Catalan number C_n = (2n)! / ((n+1)! n!)."
+      ],
+      "questions": [
+        {
+          "id": "tree-cat-q1",
+          "title": "Catalan Tree Count for 4 Nodes",
+          "type": "nat",
+          "question": "What is the number of structurally distinct unlabelled binary trees that can be formed using 4 nodes?",
+          "answer": 14,
+          "solution": "$$C_4 = \\frac{1}{5}\\binom{8}{4} = \\frac{1}{5} \\times 70 = 14$$.",
+          "marks": 1,
+          "source": "Solved Example"
+        }
+      ]
+    },
+    {
+      "id": "binary-search-trees",
+      "title": "Chapter 5.3 — Trees: Binary Search Trees (BST)",
+      "short": "Binary Search Trees",
+      "summary": "BST property, search, insertion, and 3-case deletion using inorder predecessor/successor.",
+      "content": "## 5.3 Binary Search Trees (BST)\n\nA Binary Search Tree is a binary tree satisfying the **BST Property** at every node $x$:\n$$\\forall y \\in \\text{left-subtree}(x), \\; \\text{key}(y) < \\text{key}(x)$$\n$$\\forall z \\in \\text{right-subtree}(x), \\; \\text{key}(z) > \\text{key}(x)$$\n\n> [!IMPORTANT]\n> The **Inorder traversal of any valid BST strictly yields the keys in ascending sorted order**.\n\n```mermaid\ngraph TD\n    50((50)) --> 30((30))\n    50 --> 70((70))\n    30 --> 20((20))\n    30 --> 40((40))\n    70 --> 60((60))\n    70 --> 80((80))\n```\n\n### Deletion in BST (3 Cases)\n1. **Leaf Node**: Simply remove the node and update parent pointer to NULL.\n2. **Node with 1 Child**: Bypass node by connecting parent pointer directly to the single child.\n3. **Node with 2 Children**: Replace node's key with its **Inorder Predecessor** (max in left subtree) or **Inorder Successor** (min in right subtree), then delete that replacement node recursively.",
+      "keyPoints": [
+        "Inorder traversal of a BST produces elements in strictly increasing order.",
+        "Search, insertion, and deletion take O(h) time, which is O(log n) when balanced and O(n) when skewed.",
+        "Deleting a node with two children requires replacing it with its inorder predecessor or successor."
+      ],
+      "questions": [
+        {
+          "id": "bst-del-q1",
+          "title": "Invalid BST Search Trace",
+          "type": "mcq",
+          "question": "Searching for key 55 in a BST from 1 to 100, which sequence CANNOT be valid?",
+          "options": [
+            "{10, 75, 64, 43, 60, 57, 55}",
+            "{90, 12, 68, 34, 62, 45, 55}",
+            "{9, 85, 47, 68, 43, 57, 55}",
+            "{79, 14, 72, 56, 16, 53, 55}"
+          ],
+          "answer": 2,
+          "solution": "After branching right from 47, the lower bound is 47. The sequence `{9, 85, 47, 68, 43, ...}` examines 43, which violates this lower bound.",
+          "marks": 2,
+          "source": "GATE CSE 2006"
+        }
+      ]
+    },
+    {
+      "id": "recursive-tree-algorithms",
+      "title": "Chapter 5.3 — Trees: Recursive Tree Metrics & Algorithms",
+      "short": "Recursive Tree Algorithms",
+      "summary": "Algorithms to count total nodes, leaf nodes, non-leaf nodes, full nodes, and find tree height.",
+      "content": "## 5.3 Recursive Tree Algorithms\n\nBecause trees are recursively defined structures, tree algorithms are naturally expressed using recursive relations.\n\n### 1. Count Total Nodes: $NN(T)$\n$$NN(T) = \\begin{cases} 0 & \\text{if } T = \\text{NULL} \\\\ 1 + NN(T\\to\\text{left}) + NN(T\\to\\text{right}) & \\text{otherwise} \\end{cases}$$\n\n### 2. Count Leaf Nodes: $NL(T)$\n$$NL(T) = \\begin{cases} 0 & \\text{if } T = \\text{NULL} \\\\ 1 & \\text{if } T\\to\\text{left} = \\text{NULL} \\text{ and } T\\to\\text{right} = \\text{NULL} \\\\ NL(T\\to\\text{left}) + NL(T\\to\\text{right}) & \\text{otherwise} \\end{cases}$$\n\n### 3. Count Non-Leaf Nodes: $NNL(T)$\n$$NNL(T) = \\begin{cases} 0 & \\text{if } T = \\text{NULL} \\text{ or is a leaf} \\\\ 1 + NNL(T\\to\\text{left}) + NNL(T\\to\\text{right}) & \\text{otherwise} \\end{cases}$$\n\n### 4. Tree Height: $H(T)$\n$$H(T) = \\begin{cases} 0 & \\text{if } T = \\text{NULL} \\text{ or is a leaf} \\\\ 1 + \\max(H(T\\to\\text{left}), \\; H(T\\to\\text{right})) & \\text{otherwise} \\end{cases}$$\n- **Time Complexity**: $\\Theta(n)$ for all four metrics (each node visited a constant number of times).\n- **Space Complexity**: $O(h)$ for recursion stack ($O(\\log n)$ balanced, $O(n)$ skewed).",
+      "keyPoints": [
+        "Recursive tree algorithms process subtrees independently, yielding Theta(n) time complexity.",
+        "Stack memory space consumed by recursion is bounded by tree height O(h)."
+      ],
+      "questions": [
+        {
+          "id": "tree-rec-q1",
+          "title": "Time Complexity of Tree Height",
+          "type": "mcq",
+          "question": "What is the worst-case time and space complexity of finding the height of a binary tree with n nodes?",
+          "options": [
+            "Time O(n), Space O(n)",
+            "Time O(log n), Space O(1)",
+            "Time O(n log n), Space O(n)",
+            "Time O(n), Space O(1)"
+          ],
+          "answer": 0,
+          "solution": "Every node is visited once ($\\Theta(n)$ time). In a skewed tree of height $n$, the recursion stack requires $O(n)$ space.",
+          "marks": 1,
+          "source": "Practice"
+        }
+      ]
+    },
+    {
+      "id": "avl-trees-rotations",
+      "title": "Chapter 5.4 — Trees: AVL Trees & Height-Balancing Rotations",
+      "short": "AVL Trees & Rotations",
+      "summary": "Balance factors, LL, RR, LR, RL rotations, and minimum node recurrence relations.",
+      "content": "## 5.4 AVL Trees (Height-Balanced BST)\n\nAn **AVL Tree** is a self-balancing BST where the heights of left and right subtrees differ by at most 1 at every node:\n$$\\text{Balance Factor}(x) = \\text{height}(\\text{left}(x)) - \\text{height}(\\text{right}(x)) \\in \\{-1, 0, 1\\}$$\n\n```mermaid\ngraph TD\n    Rot[AVL Balancing Rotations] --> Single[Single Rotations: LL, RR]\n    Rot --> Double[Double Rotations: LR, RL]\n    \n    Single --> LL[LL Rotation: Right rotate at pivot]\n    Single --> RR[RR Rotation: Left rotate at pivot]\n    Double --> LR[LR Rotation: Left on child, Right on pivot]\n    Double --> RL[RL Rotation: Right on child, Left on pivot]\n```\n\n### Minimum Nodes for Height $h$\n$$N(h) = N(h - 1) + N(h - 2) + 1, \\quad N(0)=1, N(1)=2, N(2)=4, N(3)=7, N(4)=12$$\nMaximum height for $n$ nodes is $h \\le 1.44 \\log_2 n = O(\\log n)$.",
+      "keyPoints": [
+        "Balance factor of every node in an AVL tree must be -1, 0, or +1.",
+        "Single rotations (LL, RR) fix outer imbalances; double rotations (LR, RL) fix inner imbalances.",
+        "Search, insertion, and deletion are guaranteed to run in O(log n) worst-case time."
+      ],
+      "questions": [
+        {
+          "id": "avl-ht-q1",
+          "title": "Max Height with 7 Nodes",
+          "type": "mcq",
+          "question": "What is the maximum height of an AVL tree with 7 nodes (single node height = 0)?",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer": 1,
+          "solution": "$N(0)=1, N(1)=2, N(2)=4, N(3)=7$. Exactly 7 nodes are needed for height 3.",
+          "marks": 2,
+          "source": "GATE CSE 2017"
+        }
+      ]
+    },
+    {
+      "id": "binary-heaps-heapsort",
+      "title": "Chapter 5.5 — Trees: Binary Heaps & Heapsort",
+      "short": "Binary Heaps & Heapsort",
+      "summary": "Max-heap, min-heap, array indexing, linear-time Build-Max-Heap O(n), and Heapsort.",
+      "content": "## 5.5 Binary Heaps & Heapsort\n\nA **Binary Heap** is a complete binary tree mapped into an array satisfying the Heap Property.\n- **Max-Heap**: Parent $\\ge$ Children ($A[\\lfloor i/2 \\rfloor] \\ge A[i]$).\n- **Min-Heap**: Parent $\\le$ Children ($A[\\lfloor i/2 \\rfloor] \\le A[i]$).\n\n```mermaid\ngraph TD\n    100((100)) --> 19((19))\n    100 --> 36((36))\n    19 --> 17((17))\n    19 --> 3((3))\n    36 --> 25((25))\n    36 --> 1((1))\n```\n\n### Array Mapping Formulas (1-indexed)\n- $\\text{Parent}(i) = \\lfloor i / 2 \\rfloor$\n- $\\text{Left}(i) = 2i, \\quad \\text{Right}(i) = 2i + 1$\n- Leaves reside at indices $\\lfloor n/2 \\rfloor + 1 \\dots n$.\n\n### `Build-Max-Heap` Linear Time Proof\n$$\\sum_{h=0}^{\\lfloor \\log n \\rfloor} \\left\\lceil \\frac{n}{2^{h+1}} \\right\\rceil O(h) = O\\left( n \\sum_{h=0}^\\infty \\frac{h}{2^h} \\right) = O(2n) = O(n)$$\nBuilding a heap runs in strictly linear $O(n)$ time!\n\n### Heapsort\n1. Build max heap: $O(n)$.\n2. Repeatedly swap root with last element and call `Max-Heapify`: $n \\times O(\\log n)$.\n- **Total Time Complexity**: $O(n \\log n)$ in all cases (in-place, not stable).",
+      "keyPoints": [
+        "A binary heap is a complete binary tree stored in an array without pointers.",
+        "Building a heap takes linear O(n) time via bottom-up heapify.",
+        "Heapsort achieves O(n log n) worst-case time in O(1) auxiliary space."
+      ],
+      "questions": [
+        {
+          "id": "heap-q1",
+          "title": "Build Heap Time Complexity",
+          "type": "mcq",
+          "question": "What is the time complexity to construct a binary heap from an unsorted array of n elements?",
+          "options": [
+            "O(n log n)",
+            "O(n)",
+            "O(n^2)",
+            "O(log n)"
+          ],
+          "answer": 1,
+          "solution": "Bottom-up `Build-Max-Heap` runs in linear $O(n)$ time.",
+          "marks": 1,
+          "source": "Practice"
+        }
+      ]
+    },
+    {
+      "id": "hashing-fundamentals-functions",
+      "title": "Chapter 6.1 — Hashing: Fundamentals & Hash Functions",
+      "short": "Hashing Fundamentals",
+      "summary": "Direct addressing, hash table array, division modulo, mid-square, folding, and digit extraction.",
+      "content": "## 6.1 Principles of Hashing\n\n**Hashing** maps keys to table indices using a **hash function** $h(k)$ to achieve average $O(1)$ dictionary operations.\n\n```mermaid\nflowchart LR\n    Key[Key: k] --> HF[\"Hash Function: h(k)\"]\n    HF --> Index[\"Table Slot: 0 <= h(k) < m\"]\n    Index --> Table[\"Hash Table Array[m]\"]\n```\n\n### Common Hash Functions\n1. **Division Modulo**: $h(k) = k \\bmod m$ (choose prime $m$).\n2. **Digit Extraction**: Extracts selected digit positions from key.\n3. **Mid-Square**: Squares the key ($k^2$) and extracts middle digits.\n4. **Folding**: Partitions key into segments of length $\\log_{10} m$ and sums them.",
+      "keyPoints": [
+        "Hashing computes table indices directly from keys to provide O(1) expected lookup.",
+        "Table size m in division modulo should be a prime number not close to powers of 2.",
+        "Mid-square and folding ensure all digits of the key influence the hash address."
+      ],
+      "questions": [
+        {
+          "id": "hash-fn-q1",
+          "title": "Uniform Hash Distribution",
+          "type": "mcq",
+          "question": "Which hash function on integers will distribute keys most uniformly over 10 buckets numbered 0 to 9 for i in [0, 2020]?",
+          "options": [
+            "h(i) = i^2 mod 10",
+            "h(i) = i^3 mod 10",
+            "h(i) = (11*i^2) mod 10",
+            "h(i) = (12*i) mod 10"
+          ],
+          "answer": 1,
+          "solution": "The mapping $i^3 \\bmod 10$ forms a complete permutation of all 10 digits $0 \\dots 9$, distributing keys uniformly.",
+          "marks": 2,
+          "source": "GATE CSE 2015"
+        }
+      ]
+    },
+    {
+      "id": "hash-collisions-chaining",
+      "title": "Chapter 6.2 — Hashing: Load Factor & Separate Chaining",
+      "short": "Collisions & Chaining",
+      "summary": "Load factor (alpha = n/m), collision definition, and separate chaining with linked lists.",
+      "content": "## 6.2 Load Factor & Separate Chaining\n\n### Load Factor ($\\alpha$ or $\\mu$)\n$$\\alpha = \\frac{n}{m} = \\frac{\\text{Number of Keys}}{\\text{Number of Table Slots}}$$\n\n### Separate Chaining (Open Hashing)\nEach slot in the hash table points to a linked list storing all keys hashing to that index.\n\n```mermaid\ngraph LR\n    subgraph Separate Chaining Layout\n        0[\"Slot 0\"] --> 60[\"60\"] --> 50[\"50\"] --> Null0[\"NULL\"]\n        1[\"Slot 1\"] --> 41[\"41\"] --> Null1[\"NULL\"]\n        2[\"Slot 2\"] --> Null2[\"NULL\"]\n    end\n```\n\n- **Load factor**: Can exceed 1 ($\\alpha \\ge 0$).\n- **Complexity**: Search takes $O(1 + \\alpha)$ on average, $O(n)$ worst case.",
+      "keyPoints": [
+        "Load factor alpha = n / m measures table fullness.",
+        "In separate chaining, the table never fills up and collisions are stored in linked lists.",
+        "Deletion is straightforward in separate chaining without breaking search chains."
+      ],
+      "questions": [
+        {
+          "id": "chain-q1",
+          "title": "Load Factor Calculation",
+          "type": "nat",
+          "question": "Given a hash table with 39 slots storing 250 keys, calculate the load factor (up to 2 decimal places).",
+          "answer": 6.41,
+          "solution": "$$\\mu = \\frac{250}{39} \\approx 6.41$$.",
+          "marks": 1,
+          "source": "Solved Example"
+        }
+      ]
+    },
+    {
+      "id": "open-addressing-probing",
+      "title": "Chapter 6.3 — Hashing: Open Addressing & Probing Techniques",
+      "short": "Open Addressing",
+      "summary": "Linear probing, primary clustering, quadratic probing, secondary clustering, and double hashing.",
+      "content": "## 6.3 Open Addressing (Closed Hashing)\n\nIn Open Addressing, all keys are stored directly within the hash table array ($n \\le m \\implies \\alpha \\le 1$). When collisions occur, alternative slots are probed.\n\n```mermaid\ngraph TD\n    OA[Open Addressing Techniques] --> LP[\"Linear Probing: h(k, i) = (h'(k) + i) mod m\"]\n    OA --> QP[\"Quadratic Probing: h(k, i) = (h'(k) + c1*i + c2*i^2) mod m\"]\n    OA --> DH[\"Double Hashing: h(k, i) = (h1(k) + i * h2(k)) mod m\"]\n```\n\n### 1. Linear Probing\n- Probes sequential slots: $(h'(k) + i) \\bmod m$.\n- **Primary Clustering**: Occupied slots merge into large contiguous blocks, severely degrading search times.\n\n### 2. Quadratic Probing\n- Probes quadratic offsets: $(h'(k) + c_1 i + c_2 i^2) \\bmod m$.\n- Eliminates primary clustering but suffers from **Secondary Clustering** (keys with same initial hash follow identical probe sequence).\n\n### 3. Double Hashing\n- Probes using two hash functions: $(h_1(k) + i \\cdot h_2(k)) \\bmod m$.\n- Eliminates both primary and secondary clustering!",
+      "keyPoints": [
+        "Open addressing stores all keys directly in the array; load factor cannot exceed 1.",
+        "Linear probing suffers from primary clustering.",
+        "Double hashing eliminates both primary and secondary clustering."
+      ],
+      "questions": [
+        {
+          "id": "open-addr-q1",
+          "title": "Linear Probing Table Content",
+          "type": "mcq",
+          "question": "A hash table of size 7 with $h(x) = (3x + 4) \\bmod 7$ inserts sequence 1, 3, 8, 10 using linear probing. What are the table contents?",
+          "options": [
+            "8, _, _, _, _, _, 10",
+            "1, 8, 10, _, _, _, 3",
+            "1, _, _, _, _, _, 3",
+            "1, 10, 8, _, _, _, 3"
+          ],
+          "answer": 1,
+          "solution": "1 hashes to 0; 3 hashes to 6; 8 hashes to 0 (collides, probes to 1); 10 hashes to 6 (probes 0, 1, lands on 2). Contents: `1, 8, 10, _, _, _, 3`.",
+          "marks": 2,
+          "source": "GATE CSE 2007"
+        }
+      ]
     }
-   ]
-  }
- ]
+  ]
 }
