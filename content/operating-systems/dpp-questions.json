@@ -1,4 +1,4360 @@
 {
-  "title": "operating-systems - DPP",
-  "chapters": []
+  "title": "Operating System DPP Questions",
+  "chapters": [
+    {
+      "title": "Intro and Background",
+      "questions": [
+        {
+          "id": "dpp-ib-01-001",
+          "title": "OS Constraints and Utilities",
+          "type": "mcq",
+          "question": "Consider the statements: (i) Operating system implementation has architectural constraints. (ii) Operating system is a set of utilities. Which of the following is true?",
+          "options": [
+            "Only (i) is correct.",
+            "Only (ii) is correct.",
+            "Both (i) and (ii) are correct.",
+            "Neither (i) nor (ii) are correct."
+          ],
+          "answer": 2,
+          "solution": "An OS is implemented for a particular architecture, and it is also a set of utilities that simplifies application development. Both are correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-01-002",
+          "title": "Strict Deadlines",
+          "type": "mcq",
+          "question": "Operating systems working on strict deadlines are ___.",
+          "options": [
+            "Time-sharing OS",
+            "Real-time OS",
+            "Network operating system",
+            "Centralized OS"
+          ],
+          "answer": 1,
+          "solution": "A real-time OS operates under strict time constraints (e.g. pacemakers, air traffic control).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-01-003",
+          "title": "Hard Real-Time Primary Goal",
+          "type": "mcq",
+          "question": "What is/must be the primary goal for a hard real-time operating system?",
+          "options": [
+            "Robustness",
+            "Reliability",
+            "Efficiency",
+            "Convenience"
+          ],
+          "answer": 2,
+          "solution": "As per the DPP key, efficiency is the primary goal of a real-time OS, since even a little inefficiency can cause heavy loss.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-01-004",
+          "title": "Booting and Uni-programming",
+          "type": "msq",
+          "question": "Which of the following statements is/are correct?",
+          "options": [
+            "During booting, OS is loaded into disk from main memory.",
+            "The area of memory where OS is stored is known as the system area.",
+            "Uni-programming can load and execute a single program in memory.",
+            "Uni-programming suffers from idleness of CPU."
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "During booting the OS is loaded from disk into main memory, so (a) is wrong. The OS area is the system area, uni-programming runs one program at a time and the CPU idles during its I/O.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-01-005",
+          "title": "Throughput",
+          "type": "mcq",
+          "question": "Throughput is ___.",
+          "options": [
+            "Executing multiple programs in memory.",
+            "Total number of programs completed per unit time.",
+            "Total number of programs loaded into main memory.",
+            "None of the above."
+          ],
+          "answer": 1,
+          "solution": "Throughput is the number of programs/processes completed per unit time.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-01-006",
+          "title": "Pre-emptive Processes",
+          "type": "mcq",
+          "question": "Pre-emptive processes have ___.",
+          "options": [
+            "Forceful deallocation",
+            "Better response time",
+            "Both (a) and (b)",
+            "None of the above"
+          ],
+          "answer": 2,
+          "solution": "Pre-emptive scheduling forcefully deallocates the CPU and gives better response time.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-01-007",
+          "title": "Non-preemptive Statements",
+          "type": "mcq",
+          "question": "Consider the statements: (i) Non-preemptive processes can lead to starvation. (ii) Non-preemptive processes have good response time. (iii) Non-preemptive processes can release the CPU voluntarily. Which of the following is correct?",
+          "options": [
+            "(i) and (ii) are correct.",
+            "(ii) and (iii) are correct.",
+            "(i) and (iii) are correct.",
+            "All (i), (ii) and (iii) are correct."
+          ],
+          "answer": 2,
+          "solution": "Non-preemptive processes can cause starvation and release the CPU voluntarily, but they do not have good response time.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-01-008",
+          "title": "Functions of an OS",
+          "type": "msq",
+          "question": "Functions of an operating system include ___.",
+          "options": [
+            "Resource Management",
+            "Reliability",
+            "Security",
+            "Control over system performance"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "Resource management, security and controlling system performance are OS functions. Reliability is a goal of an OS, not a function.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-02-001",
+          "title": "Kernel Mode Only Operations",
+          "type": "msq",
+          "question": "Which of the following are allowed in kernel mode only?",
+          "options": [
+            "Enabling / Disabling interrupts",
+            "Reading the system's time",
+            "Context switching",
+            "Clear the memory"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "These are privileged instructions. Reading the system time is non-privileged and can be done in user mode.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-02-002",
+          "title": "Mode Bit Switching",
+          "type": "msq",
+          "question": "Which of the following is/are correct?",
+          "options": [
+            "To switch from kernel mode to user mode, the mode bit should be changed to 1.",
+            "To switch from kernel mode to user mode, the mode bit should be changed to 0.",
+            "To switch from user mode to kernel mode, the mode bit should be changed to 1.",
+            "To switch from user mode to kernel mode, the mode bit should be changed to 0."
+          ],
+          "answer": [
+            0,
+            3
+          ],
+          "solution": "User mode has mode bit 1 and kernel mode has mode bit 0.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-02-003",
+          "title": "Match User and Kernel Mode",
+          "type": "mcq",
+          "question": "Match the following. Modes: (i) User mode, (ii) Kernel mode. Properties: 1) Atomic, 2) Mode bit 0, 3) Privileged, 4) Preemptive.",
+          "options": [
+            "(i) – 2, 3; (ii) – 1, 4",
+            "(i) – 2, 1; (ii) – 3, 4",
+            "(i) – 2, 1, 4; (ii) – 3",
+            "(i) – 4; (ii) – 1, 2, 3"
+          ],
+          "answer": 3,
+          "solution": "User mode is preemptive and non-privileged with mode bit 1. Kernel mode is atomic, privileged and has mode bit 0.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-02-004",
+          "title": "Purpose of System Calls",
+          "type": "mcq",
+          "question": "A system call is used to access ___.",
+          "options": [
+            "Application functionality",
+            "I/O functionality",
+            "Operating system functionality",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "System calls provide the interface to the operating system's functionality.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-02-005",
+          "title": "Function Execution Mode",
+          "type": "mcq",
+          "question": "Consider the statements: (i) Pre-defined functions start executing in kernel mode. (ii) User-defined functions start executing in user mode. Which of the following is correct?",
+          "options": [
+            "Only (i) is correct.",
+            "Only (ii) is correct.",
+            "Both (i) and (ii) are correct.",
+            "Both (i) and (ii) are incorrect."
+          ],
+          "answer": 1,
+          "solution": "All user-defined and pre-defined (library) functions start executing in user mode, so only (ii) is correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-02-006",
+          "title": "fork() Output Count",
+          "type": "nat",
+          "question": "Consider the following program: main() { fork(); fork(); fork(); printf(\"GATE 2023\"); return 0; } How many times will GATE 2023 be printed?",
+          "answer": 8,
+          "solution": "n fork() calls create 2^n processes in total. 2^3 = 8 processes each execute the printf.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-02-007",
+          "title": "Location of Mode Bit",
+          "type": "mcq",
+          "question": "The mode bit is present in ___.",
+          "options": [
+            "Main Memory",
+            "Disk",
+            "Cache",
+            "Register"
+          ],
+          "answer": 3,
+          "solution": "The mode bit is stored in the program status word (PSW) register.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ib-02-008",
+          "title": "Mode at System Boot",
+          "type": "mcq",
+          "question": "At system boot time, the hardware starts in ___.",
+          "options": [
+            "Kernel mode",
+            "User mode",
+            "Operating mode",
+            "Disk mode"
+          ],
+          "answer": 0,
+          "solution": "At boot, the hardware starts in kernel mode and then loads the OS.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Process Management",
+      "questions": [
+        {
+          "id": "dpp-pm-01-001",
+          "title": "Uni- vs Multi-programming",
+          "type": "mcq",
+          "question": "Consider the statements: (i) In uni-programming, the CPU can run only one program at a time. (ii) In multi-programming, the CPU can run multiple programs at a time. Which of the following is correct?",
+          "options": [
+            "(i) is correct, (ii) is incorrect.",
+            "(i) is incorrect, (ii) is correct.",
+            "Both (i) and (ii) are correct.",
+            "Both (i) and (ii) are incorrect."
+          ],
+          "answer": 0,
+          "solution": "A single CPU runs only one process at a time even in multiprogramming; multiple programs are only kept in memory.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-01-002",
+          "title": "Incorrect Multiprogramming Statements",
+          "type": "msq",
+          "question": "Which of the following is/are incorrect?",
+          "options": [
+            "Multiprogramming enhances CPU throughput.",
+            "Non-preemptive processes may have forceful deallocation.",
+            "Non-preemptive multiprogramming is equivalent to uni-programming.",
+            "Multiprogramming is of two types: preemptive and non-preemptive."
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Non-preemptive processes never have forceful deallocation, and non-preemptive multiprogramming is not equivalent to uni-programming.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-01-003",
+          "title": "fork() System Call",
+          "type": "mcq",
+          "question": "The fork system call is converted by the compiler and is also known as a ___.",
+          "options": [
+            "Supervisory call",
+            "Privileged instruction",
+            "Software interrupt instruction",
+            "All of the above"
+          ],
+          "answer": 3,
+          "solution": "A system call is a supervisory call, executed as a software interrupt that runs privileged code.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-01-004",
+          "title": "fork() Statements",
+          "type": "mcq",
+          "question": "Consider the statements: (i) A user program gets blocked when a fork call is executed. (ii) The dispatch table contains information regarding all system calls. (iii) The fork system call can execute non-atomically in the system. Which of the following is/are correct?",
+          "options": [
+            "Only (i) is correct.",
+            "(i) and (ii) are correct.",
+            "(i) and (iii) are correct.",
+            "(ii) and (iii) are correct."
+          ],
+          "answer": 1,
+          "solution": "As per the DPP key, (i) and (ii) are correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-01-005",
+          "title": "Mode Change and ISR",
+          "type": "msq",
+          "question": "Which of the following is/are correct?",
+          "options": [
+            "Changing mode from user to kernel needs an interrupt.",
+            "Changing mode from kernel to user needs an interrupt.",
+            "ISR (Interrupt Service Routine) is responsible for mode shifting (user to kernel).",
+            "ISR is responsible for changing the mode from kernel to user."
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "The switch from user to kernel mode happens through an interrupt/ISR; going back to user mode is done by a normal instruction, not an interrupt.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-01-006",
+          "title": "Static and Dynamic Data",
+          "type": "mcq",
+          "question": "Consider the statements: (i) Static data have fixed size and memory is allocated during run-time. (ii) Dynamic data have different size and memory is allocated during load-time. Which of the following is correct?",
+          "options": [
+            "Only (i) is correct.",
+            "Only (ii) is correct.",
+            "Both (i) and (ii) are correct.",
+            "Both (i) and (ii) are incorrect."
+          ],
+          "answer": 3,
+          "solution": "Static data have fixed size and memory is allocated at load time; dynamic data are allocated at run time. Both statements are swapped, so both are incorrect.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-01-007",
+          "title": "Program vs Process",
+          "type": "mcq",
+          "question": "Match the following. (i) Program, (ii) Process with 1. Active entity, 2. Resides in main memory, 3. Passive entity, 4. Resides in disk.",
+          "options": [
+            "(i) – 1, 3; (ii) – 2, 4",
+            "(i) – 2, 4; (ii) – 1, 3",
+            "(i) – 1, 2; (ii) – 1, 4",
+            "(i) – 3, 4; (ii) – 1, 2"
+          ],
+          "answer": 3,
+          "solution": "A program is a passive entity that resides on disk. A process is an active entity that resides in main memory.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-01-008",
+          "title": "Program Counter",
+          "type": "mcq",
+          "question": "The program counter holds ___.",
+          "options": [
+            "Address of the previously executed instruction.",
+            "Address of the currently executing instruction.",
+            "Address of the next instruction to be executed.",
+            "None of these."
+          ],
+          "answer": 2,
+          "solution": "The PC holds the address of the next instruction to be executed.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-02-001",
+          "title": "Definition of Process",
+          "type": "mcq",
+          "question": "Consider the statements: (i) A program when utilizing the computer's resources is known as a process. (ii) A program performing an I/O operation is considered a process. Which of the following is correct?",
+          "options": [
+            "Only (i) is correct.",
+            "Only (ii) is correct.",
+            "Both (i) and (ii) are correct.",
+            "Both (i) and (ii) are incorrect."
+          ],
+          "answer": 2,
+          "solution": "A program that is executing (using resources, including doing I/O) is a process.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-02-002",
+          "title": "Process and Program",
+          "type": "msq",
+          "question": "Which of the following is/are correct?",
+          "options": [
+            "A process is an instance of a program.",
+            "A program loaded into main memory but not currently running is known as a process.",
+            "A program is created from a process.",
+            "A process is created from a program."
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "A process is an instance of a program created from it. A program is not created from a process.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-02-003",
+          "title": "Match Operations",
+          "type": "mcq",
+          "question": "Match the following: Context switching, Message passing, Degree of multiprogramming, Fork() with 1. Dispatcher, 2. Long term scheduler, 3. Process creation, 4. Inter-process communication.",
+          "options": [
+            "(i)-4, (ii)-1, (iii)-2, (iv)-3",
+            "(i)-4, (ii)-1, (iii)-3, (iv)-2",
+            "(i)-1, (ii)-4, (iii)-3, (iv)-2",
+            "(i)-1, (ii)-4, (iii)-2, (iv)-3"
+          ],
+          "answer": 3,
+          "solution": "Context switching → dispatcher; message passing → IPC; degree of multiprogramming → long-term scheduler; fork() → process creation.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-02-004",
+          "title": "Code Section",
+          "type": "mcq",
+          "question": "The memory area where all instructions of a program are stored is known as ___.",
+          "options": [
+            "Heap",
+            "Program Block",
+            "Code section",
+            "Instruction space"
+          ],
+          "answer": 2,
+          "solution": "The instructions of a program are stored in the code (text) section.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-02-005",
+          "title": "Runtime Stack",
+          "type": "mcq",
+          "question": "The runtime stack contains ___ of function calls.",
+          "options": [
+            "Code",
+            "Activation record",
+            "Dynamic data",
+            "Instructions"
+          ],
+          "answer": 1,
+          "solution": "The runtime stack stores activation records (frames) of function calls.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-02-006",
+          "title": "Operations on a Process",
+          "type": "nat",
+          "question": "How many of the following operations can be performed on a process? Creation, Dispatch, Execute, Block, Terminate.",
+          "answer": 5,
+          "solution": "All five are valid process operations.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-02-007",
+          "title": "Suspended and Blocked Processes",
+          "type": "msq",
+          "question": "Which of the following is/are correct?",
+          "options": [
+            "A suspended process resides in memory.",
+            "A blocked process resides in memory.",
+            "A suspended process resides on disk.",
+            "A blocked process resides on disk."
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Blocked processes are in main memory, suspended processes are swapped out to disk.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-02-008",
+          "title": "Information in PCB",
+          "type": "mcq",
+          "question": "Information stored inside a process control block is known as ___ of the process.",
+          "options": [
+            "Schedule",
+            "Details",
+            "Context",
+            "Data"
+          ],
+          "answer": 2,
+          "solution": "The PCB stores the context of a process.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-03-001",
+          "title": "Process Information",
+          "type": "mcq",
+          "question": "The information about a process is maintained in ___.",
+          "options": [
+            "A Process Context block implemented using an Array",
+            "A Process Control block implemented using a Stack",
+            "A Process Context block implemented using a Linked list",
+            "A Process Control block implemented using a Doubly Linked list"
+          ],
+          "answer": 3,
+          "solution": "Process information is kept in the Process Control Block (PCB), typically implemented as a doubly linked list.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-03-002",
+          "title": "Processes in a System with One CPU",
+          "type": "msq",
+          "question": "Consider a computer with a CPU and N processes. Which of the following is correct regarding the processes?",
+          "options": [
+            "There can be a maximum of N processes in the block state.",
+            "There can be a maximum of N processes in the ready state.",
+            "There can be at most 1 process in the running state.",
+            "There can be at most N processes in the running state."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Only one process can run on a single CPU, while up to N can be blocked or ready.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-03-003",
+          "title": "Dispatch Operation",
+          "type": "mcq",
+          "question": "If the \"Dispatch\" operation is performed on a process, which transition is possible?",
+          "options": [
+            "Running to Ready",
+            "Ready to Running",
+            "Blocked to Ready",
+            "Running to Blocked"
+          ],
+          "answer": 1,
+          "solution": "Dispatch moves a process from Ready to Running.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-03-004",
+          "title": "State Diagram Type",
+          "type": "mcq",
+          "question": "The given process state transition diagram (New, Ready, Running, Exit) represents: (the diagram is not reproduced in this file)",
+          "options": [
+            "UNIX operating system",
+            "Multiprogramming operating system",
+            "Uni-programming operating system",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "As per the DPP key, the diagram represents a uni-programming operating system.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-03-005",
+          "title": "States in Main Memory",
+          "type": "msq",
+          "question": "If a process is in main memory, then it can be in ___.",
+          "options": [
+            "Ready state",
+            "Running state",
+            "Block state",
+            "Suspend state"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Ready, running and blocked processes reside in main memory; suspended processes are on disk.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-03-006",
+          "title": "Suspended from Running",
+          "type": "mcq",
+          "question": "If a process is suspended from the running state, it is moved to ___.",
+          "options": [
+            "Ready state in main memory",
+            "Block state in secondary memory",
+            "Suspend ready state in main memory",
+            "Suspend ready state in secondary memory"
+          ],
+          "answer": 3,
+          "solution": "A suspended process resides in secondary memory; from running it goes to suspend ready in secondary memory.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-03-007",
+          "title": "Queues on Disk",
+          "type": "msq",
+          "question": "Which of the following scheduling queues are present on the disk?",
+          "options": [
+            "Ready queue",
+            "Block queue",
+            "Suspend queue",
+            "Input queue"
+          ],
+          "answer": [
+            2,
+            3
+          ],
+          "solution": "The suspend queue and the input (job) queue reside on disk. Ready and block queues are in main memory.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-03-008",
+          "title": "Multiprogramming-only Transitions",
+          "type": "msq",
+          "question": "Which of the following process state transitions is/are present in a multiprogramming OS but not in a uni-programming OS?",
+          "options": [
+            "Running to Exit",
+            "Ready to Running",
+            "Block to Ready",
+            "Running to Ready"
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "Uni-programming has only New → Ready → Running → Exit; the other transitions appear in multiprogramming.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-04-001",
+          "title": "Long-term Scheduler Queue",
+          "type": "mcq",
+          "question": "The long-term scheduler operates on the ___.",
+          "options": [
+            "Input queue",
+            "Job queue",
+            "Ready queue",
+            "Device queue"
+          ],
+          "answer": 1,
+          "solution": "The long-term scheduler picks processes from the job queue (pool) into main memory.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-04-002",
+          "title": "Scheduler Between Disk and Memory",
+          "type": "msq",
+          "question": "Which of the following schedulers works between disk and main memory?",
+          "options": [
+            "Long term scheduler",
+            "Medium term scheduler",
+            "Short term scheduler",
+            "CPU scheduler"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "The long-term and medium-term schedulers move processes between disk and main memory.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-04-003",
+          "title": "Time Inside CPU",
+          "type": "mcq",
+          "question": "The time spent by a process inside the CPU is known as ___.",
+          "options": [
+            "Waiting time",
+            "Turnaround time",
+            "Completion time",
+            "Burst time"
+          ],
+          "answer": 3,
+          "solution": "Burst time is the time a process spends executing on the CPU.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-04-004",
+          "title": "Context Switching Agent",
+          "type": "mcq",
+          "question": "Context switching is done by ___.",
+          "options": [
+            "Operator",
+            "Scheduler",
+            "Dispatcher",
+            "Loader"
+          ],
+          "answer": 2,
+          "solution": "The dispatcher performs the context switch.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-04-005",
+          "title": "X + Y*Z",
+          "type": "nat",
+          "question": "Consider a system with 5 CPUs and 20 processes. Suppose X is the maximum number of processes that can be in the running state, Y is the minimum number of processes in the ready state, and Z is the maximum number of processes in the block state. Calculate X + Y*Z.",
+          "answer": 5,
+          "solution": "X = 5 (one per CPU). Y = 0 (all processes can be running or blocked). Z = 20. X + Y × Z = 5 + 0 = 5.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-04-006",
+          "title": "Swapping Scheduler",
+          "type": "mcq",
+          "question": "Which scheduler plays an important role in \"swapping\"?",
+          "options": [
+            "Long term scheduler",
+            "Medium term scheduler",
+            "Short term scheduler",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "The medium-term scheduler handles swapping.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-04-007",
+          "title": "Entry into Ready Queue",
+          "type": "msq",
+          "question": "___ is the time when a process first enters the ready queue.",
+          "options": [
+            "Submission time",
+            "Arrival time",
+            "Dispatch time",
+            "Load time"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "The time a process first enters the ready queue is its submission/arrival time.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-pm-04-008",
+          "title": "Time in Ready Queue",
+          "type": "mcq",
+          "question": "If n is the total time spent by a process from arrival till completion, s is the time spent within the CPU and x is the time spent on I/O, which expression gives the total time the process spent in the ready queue?",
+          "options": [
+            "s – (n + x)",
+            "x + (s – n)",
+            "n + (s – x)",
+            "n – (s + x)"
+          ],
+          "answer": 3,
+          "solution": "Time in ready queue = total time − CPU time − I/O time = n − (s + x).",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "CPU Scheduling",
+      "questions": [
+        {
+          "id": "dpp-cs-01-001",
+          "title": "Process Completion State",
+          "type": "mcq",
+          "question": "A process can complete its execution from which state?",
+          "options": [
+            "Ready state",
+            "Running state",
+            "Block state",
+            "All of the above"
+          ],
+          "answer": 1,
+          "solution": "A process can terminate (normally or abnormally) only from the running state.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-01-002",
+          "title": "Average Turnaround Time Formula",
+          "type": "mcq",
+          "question": "Consider a system with n processes, s is the time when each process terminates, and t is the time each process arrives in the ready queue. What will be the average time for the n processes to complete their execution?",
+          "options": [
+            "Σ(tᵢ − sᵢ) / n",
+            "Σ(sᵢ − nᵢ) / n",
+            "Σ(nᵢ − tᵢ) / s",
+            "Σ(sᵢ − tᵢ) / n"
+          ],
+          "answer": 3,
+          "solution": "Time to complete execution is turnaround time = completion time − arrival time = sᵢ − tᵢ. The average is Σ(sᵢ − tᵢ) / n.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-01-003",
+          "title": "Number of Schedules",
+          "type": "msq",
+          "question": "Which of the following statements is/are INCORRECT regarding the total number of schedules if the system has n processes?",
+          "options": [
+            "Total number of schedules possible in a non-preemptive system are n.",
+            "Total number of schedules possible in a non-preemptive system are n².",
+            "Total number of schedules possible in a preemptive system are n².",
+            "Total number of schedules possible in a non-preemptive system are n!."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "A non-preemptive system has n! possible schedules and a preemptive system has infinitely many. So (a), (b) and (c) are incorrect.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-01-004",
+          "title": "Schedule Length plus Idle Time",
+          "type": "nat",
+          "question": "Consider a system with three non-preemptive processes. The first process arrives at time 4 and executes for 12 ms. While the first process is executing, the second process arrives at time 6 with burst time 8 ms, and the third process arrives at time 19 with burst time 8 ms. Assume X is the schedule length of the system and Y is the amount of time the CPU is idle and waiting for processes. Calculate X + Y. (CPU time starts at 0.)",
+          "answer": 32,
+          "solution": "Gantt chart: IDLE (0–4), P1 (4–16), P2 (16–24), P3 (24–32). Schedule length X = 32 − 4 = 28, idle time Y = 4. X + Y = 32.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-01-005",
+          "title": "Process State Transitions",
+          "type": "msq",
+          "question": "Which of the following statements are CORRECT regarding the process state transition diagram?",
+          "options": [
+            "A process can move from ready to suspend blocked state.",
+            "A blocked process can move to suspend ready state.",
+            "A blocked process can move to running state.",
+            "A running process can move to blocked state."
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "A ready process moves to suspend ready (not suspend blocked) and a blocked process cannot go directly to running (it goes to ready). As per the DPP key, (b) and (d) are the correct statements.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-01-006",
+          "title": "Average TAT using FCFS",
+          "type": "nat",
+          "question": "Consider the following processes with their arrival times and burst times: P1 (AT 3, BT 4), P2 (AT 5, BT 6), P3 (AT 2, BT 5), P4 (AT 0, BT 3). Calculate the average turnaround time of all the processes scheduled using First Come First Serve (up to two decimal places). Scheduling overhead is negligible.",
+          "answer": 7.75,
+          "solution": "FCFS order: P4, P3, P1, P2 with completion times 3, 8, 12, 18. TAT = 3, 6, 9, 13. Average = 31/4 = 7.75.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-01-007",
+          "title": "Sum of Avg WT and Avg TAT",
+          "type": "nat",
+          "question": "Consider the following processes with their arrival times and burst times: P1 (AT 2, BT 5), P2 (AT 5, BT 4), P3 (AT 4, BT 6), P4 (AT 0, BT 4). Calculate the sum of average waiting time and average turnaround time of all the processes scheduled using First Come First Serve (up to two decimal places). Scheduling overhead is negligible.",
+          "answer": 13.25,
+          "solution": "FCFS order: P4, P1, P3, P2 with completion times 4, 9, 15, 19. Waiting times 0, 2, 5, 10 (avg 4.25). Turnaround times 4, 7, 11, 14 (avg 9). Sum = 13.25.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-01-008",
+          "title": "Schedule Length of 6 Processes",
+          "type": "nat",
+          "question": "Consider a preemptive system with 6 processes. Each process executes for 2 ms and leaves the system, and enters again (in any order) after all other processes have executed their first 2 ms. Each process has a burst time of 5 ms. What will be the total schedule length, assuming no process went into the blocked state?",
+          "answer": 30,
+          "solution": "First round: 6 × 2 = 12 ms. Each process then has 3 ms remaining; executing all 6 takes 6 × 3 = 18 ms. Total = 12 + 18 = 30 ms.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-02-001",
+          "title": "SRTF with Context Switch",
+          "type": "mcq",
+          "question": "Consider arrival time and execution time for the following processes: P0 (AT 2, BT 5), P1 (AT 7, BT 9), P2 (AT 8, BT 3), P3 (AT 10, BT 4). Assume each context switch requires 1 ms (excluding first and last context switch). Calculate the sum of schedule length, turnaround time of P3, and waiting time of P1 using the SRTF algorithm.",
+          "options": [
+            "39",
+            "34",
+            "40",
+            "25"
+          ],
+          "answer": 2,
+          "solution": "Gantt: IDLE(0–2), P0(2–7), CS, P2(8–11), CS, P3(12–16), CS, P1(17–26). Schedule length = 26 − 2 = 24, TAT of P3 = 6, WT of P1 = 10. Sum = 40.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-02-002",
+          "title": "Context Switches and Throughput (SJF)",
+          "type": "nat",
+          "question": "Consider arrival time and burst time for the following processes on a single CPU: P0 (AT 1, BT 4), P1 (AT 6, BT 3), P2 (AT 7, BT 9), P3 (AT 5, BT 5). Assume X is the total number of context switches and Y is the throughput of the system using SJF scheduling. Find X + Y. (Exclude start and end context switching; round off up to 2 decimals.)",
+          "answer": 3.19,
+          "solution": "SJF order: P0, P3, P1, P2 with idle 0–1 and finishing at 22. Context switches X = 3. Throughput Y = 4 / (22 − 1) = 0.19. X + Y = 3.19.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-02-003",
+          "title": "Average TAT using SRTF",
+          "type": "nat",
+          "question": "Consider the following processes with arrival and CPU burst times (ms): P0 (0, 4), P1 (2, 3), P2 (3, 4), P3 (5, 5), P4 (1, 2). What is the average turnaround time for these processes using SRTF? (If burst times match, follow lowest arrival time; round off to 1 decimal.)",
+          "answer": 7.6,
+          "solution": "Completion times: P0 = 6, P1 = 9, P2 = 13, P3 = 18, P4 = 3. TAT = 6, 7, 10, 13, 2. Average = 38/5 = 7.6.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-02-004",
+          "title": "SJF Job Order",
+          "type": "mcq",
+          "question": "Five jobs are waiting to be run. Their expected running times are 12, 5, 7, 3 and \"X\". Which of the following orders will minimize the average completion time using Shortest Job First (SJF)?",
+          "options": [
+            "3, X, 5, 7, 12",
+            "3, 5, X, 7, 12",
+            "3, 5, 7, X, 12",
+            "3, 5, 7, 12, X"
+          ],
+          "answer": 0,
+          "solution": "SJF runs shorter jobs first, so the order must be increasing. Option (a) places X second, which is optimal when X is the smallest remaining value (X ≤ 3), giving the minimum average completion time (3 + 6 + 11 + 18 + 30)/5 = 13.6 for X = 3. This is the DPP key.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-02-005",
+          "title": "CPU Idle Percentage",
+          "type": "nat",
+          "question": "Consider a preemptive SJF scheduling technique followed by three processes P1, P2, P3. All arrive at t = 0 and their total execution times are 30, 40 and 50 units respectively. Each process spends the first 10% of its execution doing I/O, 80% on CPU and the last 10% doing I/O. What will be the CPU idle percentage to execute all processes? (Assume a uniprocessor, all I/O operations can be overlapped; round off up to 2 decimals.)",
+          "answer": 7.69,
+          "solution": "CPU bursts: 24, 32 and 40. Timeline: IDLE (0–3), P1 (3–27), P2 (27–59), P3 (59–99), IDLE (99–104). Idle = 3 + 5 = 8 out of 104, so 8/104 × 100 = 7.69%.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-02-006",
+          "title": "Throughput using FCFS",
+          "type": "mcq",
+          "question": "Consider the following processes: P0 (AT 3, BT 2), P1 (6, 3), P2 (12, 3), P3 (5, 2), P4 (25, 4). What is the throughput using FCFS, where scheduling overhead requires 2 units (excluding first and last context switch)?",
+          "options": [
+            "0.16",
+            "0.17",
+            "0.18",
+            "0.28"
+          ],
+          "answer": 1,
+          "solution": "Schedule runs from time 3 to 31 (length 28) including idle time and context switches. Throughput = 5 / 28 ≈ 0.17.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-02-007",
+          "title": "Match Scheduling Algorithms",
+          "type": "msq",
+          "question": "Match List I with List II. List I: (i) SJF, (ii) SRTF, (iii) FCFS. List II: 1. Preemptive, 2. Non-Preemptive, 3. Starvation. Select the correct answer(s) using the code below.",
+          "options": [
+            "i) - 1, ii) - 2, iii) - 3",
+            "i) - 3, ii) - 1, iii) - 2",
+            "i) - 2, ii) - 1, iii) - 2",
+            "i) - 3, ii) - 3, iii) - 2"
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "SJF is non-preemptive and has starvation; SRTF is preemptive and has starvation; FCFS is non-preemptive with no starvation. So (b), (c) and (d) are valid matches.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-03-001",
+          "title": "SJF and SRTF Statements",
+          "type": "mcq",
+          "question": "Consider the following statements: (i) SJF is the most optimal algorithm among all other scheduling algorithms. (ii) SRTF is practically non-implementable because it is pre-emptive in nature. (iii) SJF is practically implementable because of its non-preemptive nature. Which of the following is CORRECT?",
+          "options": [
+            "Only (i) and (ii)",
+            "Only (ii) and (iii)",
+            "All (i), (ii), and (iii)",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "Only (i) is correct (SJF is optimal). (ii) and (iii) are incorrect, since SJF and SRTF are both hard to implement because burst time cannot be known in advance. No option lists 'only (i)', so the answer is 'None of these'.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-03-002",
+          "title": "Non-preemptive SJF Averages",
+          "type": "mcq",
+          "question": "Consider the set of processes: A (AT 2, BT 3), B (4, 17), C (2, 4), D (1, 2), E (7, 5). Assume the processes are scheduled using non-preemptive SJF. What are the average turnaround time and average waiting time?",
+          "options": [
+            "13.5, 5.25",
+            "10.0, 3.8",
+            "12.2, 5.6",
+            "8.75, 4.25"
+          ],
+          "answer": 1,
+          "solution": "Order: D, A, C, E, B with completion times 3, 6, 10, 15, 32. Avg TAT = (4 + 28 + 8 + 2 + 8)/5 = 10. Avg WT = (1 + 11 + 4 + 0 + 3)/5 = 3.8.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-03-003",
+          "title": "Medium-term Scheduler",
+          "type": "mcq",
+          "question": "A scheduler that selects partially executed processes from a secondary storage device is called:",
+          "options": [
+            "Medium-term scheduler",
+            "Short-term scheduler",
+            "Long-term scheduler",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "The medium-term scheduler does swapping: it brings partially executed (suspended) processes back from secondary storage into memory.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-03-004",
+          "title": "Throughput plus Avg WT (SRTF)",
+          "type": "nat",
+          "question": "Consider the following processes: P0 (AT 0, BT 3), P1 (2, 5), P2 (3, 4), P3 (4, 2), P4 (6, 1), P5 (6, 2). What is the sum of throughput of the system and average waiting time if SRTF scheduling is used? (up to 2 decimals)",
+          "answer": 3.01,
+          "solution": "Completion times: P0 = 3, P1 = 17, P2 = 12, P3 = 6, P4 = 7, P5 = 9. Waiting times 0, 10, 5, 0, 0, 1 → avg 2.66. Throughput = 6/17 = 0.35. Sum = 3.01.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-03-005",
+          "title": "CPU Overhead with SRTF",
+          "type": "mcq",
+          "question": "Consider the process table: P0 (AT 6, BT 8), P1 (0, 6), P2 (2, 4), P3 (3, 6), P4 (4, 1), P5 (5, 2). Consider a context switching overhead of 1 unit. What is the percentage of CPU overhead activity while using SRTF? Include the context switch to load the first process and save the last process.",
+          "options": [
+            "20.5%",
+            "23.5%",
+            "25%",
+            "27.6%"
+          ],
+          "answer": 2,
+          "solution": "Total context switches = 9 and the schedule length = 36. Overhead = 9/36 = 25%.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-03-006",
+          "title": "CPU Scheduling Statements",
+          "type": "msq",
+          "question": "Which of the following statement(s) is/are correct in the context of CPU scheduling?",
+          "options": [
+            "Turnaround time includes waiting time.",
+            "SRTF can be used even when the CPU time required by each process is not known a priori.",
+            "Implementing preemptive scheduling may need hardware support.",
+            "The goal is to only maximize CPU utilization and minimize throughput."
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "Turnaround time includes waiting time and preemptive scheduling needs a timer (hardware support). SRTF needs known burst times, and the goal is to maximize both CPU utilization and throughput.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-03-007",
+          "title": "Average WT using Non-preemptive SJF",
+          "type": "nat",
+          "question": "Consider the following five processes with arrival and burst times (ms): P0 (1, 3), P1 (0, 2), P2 (4, 4), P3 (3, 6), P4 (6, 2). Using non-preemptive SJF, what will be the average waiting time? (up to 1 decimal)",
+          "answer": 2.6,
+          "solution": "Order: P1, P0, P2, P4, P3 with completion times 2, 5, 9, 11, 17. Waiting times 0, 1, 1, 8, 3 → average 13/5 = 2.6.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-03-008",
+          "title": "Degree of Multiprogramming",
+          "type": "mcq",
+          "question": "Which of the following schedulers can control the degree of multiprogramming?",
+          "options": [
+            "Medium-term scheduler",
+            "Short-term scheduler",
+            "Long-term scheduler",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "The long-term (job) scheduler decides which processes enter memory, so it controls the degree of multiprogramming.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-04-001",
+          "title": "HRRN Statements",
+          "type": "msq",
+          "question": "Which of the following statements is/are correct regarding the HRRN scheduling algorithm?",
+          "options": [
+            "It reduces waiting time for longer processes.",
+            "HRRN is preemptive in nature.",
+            "HRRN's response ratio can be calculated as (S + W)/S, where S is the service time and W is the waiting time.",
+            "HRRN favours jobs with shorter burst time."
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "HRRN is non-preemptive, so (b) is incorrect. The response ratio (S + W)/S ages longer waiting jobs while favouring short jobs, so (a), (c) and (d) are correct.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-04-002",
+          "title": "SJF vs SRTF Comparison",
+          "type": "msq",
+          "question": "Consider the table: P1 (AT 0, BT 7), P2 (2, 4), P3 (4, 1), P4 (5, 4). Schedule the processes using SRTF and SJF, and select the correct option(s).",
+          "options": [
+            "TAT(SJF) > TAT(SRTF).",
+            "Waiting time P4(SJF) > Waiting time P3(SRTF).",
+            "TAT(SRTF) > TAT(SJF).",
+            "Waiting time P2(SRTF) < Waiting time P1(SJF)."
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "SRTF average TAT = 28/4 = 7 and SJF average TAT = 32/4 = 8, so (a) is true and (c) is false. WT P4 in SJF = 7 > WT P3 in SRTF = 0 (true). WT P2 in SRTF = 1 is not less than WT P1 in SJF = 0.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-04-003",
+          "title": "Algorithms Causing Starvation",
+          "type": "nat",
+          "question": "How many of the following scheduling algorithms may cause starvation? First-come-first-serve, Priority, Shortest process next, Shortest remaining time first.",
+          "answer": 3,
+          "solution": "FCFS has no starvation. Priority, Shortest Process Next (SJF) and SRTF can starve long or low-priority processes. Count = 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-04-004",
+          "title": "LRTF Waiting Time plus Avg TAT",
+          "type": "nat",
+          "question": "Consider the processes: P1 (AT 0, BT 5), P2 (1, 5), P3 (2, 5), P4 (3, 5). Calculate the sum of the waiting time of process P4 and the average turnaround time using LRTF scheduling. (If the burst times of two processes are the same, schedule the one with the higher arrival time.)",
+          "answer": 26,
+          "solution": "Completion times: P1 = 20, P2 = 19, P3 = 18, P4 = 17. TAT = 20, 18, 16, 14 → average 17. Waiting time of P4 = 9. Sum = 26.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-04-005",
+          "title": "HRRN: X * Y + Z",
+          "type": "nat",
+          "question": "Consider 5 processes: P0 (AT 0, BT 4), P1 (3, 5), P2 (4, 6), P3 (5, 5), P4 (8, 3). If the CPU scheduling policy is Highest Response Ratio Next, X is the response ratio of the last process scheduled, Y is the average turnaround time, and Z is the average waiting time. Calculate X * Y + Z (up to 1 decimal).",
+          "answer": 34.6,
+          "solution": "Order: P0, P1, P2, P4, P3. The last process P3 had response ratio X = (10 + 5)/5 = 3. Average TAT Y = 49/5 = 9.8 and average WT Z = 26/5 = 5.2. X·Y + Z = 29.4 + 5.2 = 34.6.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-04-006",
+          "title": "Match Scheduling Groups",
+          "type": "mcq",
+          "question": "Match the following groups. Group-I: A. FCFS, B. SJF, C. Priority scheduling. Group-II: 1. Used in time sharing system, 2. Used in real time system, 3. Minimum average waiting time, 4. Convoy effect.",
+          "options": [
+            "A-2, B-1, C-3",
+            "A-4, B-3, C-2",
+            "A-2, B-3, C-1",
+            "A-4, B-2, C-3"
+          ],
+          "answer": 1,
+          "solution": "FCFS suffers from the convoy effect, SJF gives minimum average waiting time, and priority scheduling is used in real-time systems.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-04-007",
+          "title": "SRTF Completion Order",
+          "type": "mcq",
+          "question": "Consider three processes P1, P2, P3 with arrival times 0 ms, 5 ms and 8 ms and processing times 15 ms, 12 ms and 5 ms. They are preemptively scheduled on a single CPU using SRTF. In which order are the processes completed?",
+          "options": [
+            "P2, P1, P3",
+            "P3, P1, P2",
+            "P3, P2, P1",
+            "P1, P2, P3"
+          ],
+          "answer": 1,
+          "solution": "Gantt: P1 (0–8), P3 (8–13), P1 (13–20), P2 (20–32). Completion order: P3, P1, P2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-04-008",
+          "title": "HRRN Average Waiting Time",
+          "type": "nat",
+          "question": "Consider processes: A (AT 0, BT 4), B (2, 1), C (4, 3), D (5, 5), scheduled using Highest Response Ratio Next. The average waiting time of the processes is ___ ms (up to 1 decimal).",
+          "answer": 1.5,
+          "solution": "Order: A, B, C, D with completion times 4, 5, 8, 13. Waiting times 0, 2, 1, 3. Average = 6/4 = 1.5.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-05-001",
+          "title": "Average TAT using SRTF",
+          "type": "nat",
+          "question": "Consider the following table: P1 (AT 0, service time 6), P2 (1, 3), P3 (2, 1), P4 (3, 4). Find the average turnaround time when processes are scheduled with SRTF (up to 2 decimals).",
+          "answer": 6.25,
+          "solution": "Gantt: P1 (0–1), P2 (1–2), P3 (2–3), P2 (3–5), P4 (5–9), P1 (9–14). TAT = 14, 4, 1, 6 → average = 25/4 = 6.25.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-05-002",
+          "title": "SJF, SRTF and FIFO Statements",
+          "type": "mcq",
+          "question": "Consider the statements: (i) If all jobs arrive at the same point in time, an SJF and an SRTF scheduler will behave the same. (ii) If all jobs arrive at the same point in time and have identical run lengths, a FIFO and an SJF scheduler will behave the same. Which of the following statements is true?",
+          "options": [
+            "Only (i) is true.",
+            "Only (ii) is true.",
+            "Both (i) and (ii) are true.",
+            "Both (i) and (ii) are false."
+          ],
+          "answer": 2,
+          "solution": "With equal arrival times SRTF never preempts, so it behaves like SJF. With identical burst times SJF has no shorter job to pick, so it behaves like FIFO. Both are true.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-05-003",
+          "title": "Round Robin Average Waiting Time",
+          "type": "mcq",
+          "question": "Consider the process table: P1 (AT 1, BT 2), P2 (6, 4), P3 (4, 10), P4 (5, 6). What is the average waiting time using Round Robin with time quantum 2?",
+          "options": [
+            "2.25",
+            "6.25",
+            "4.25",
+            "8.25"
+          ],
+          "answer": 1,
+          "solution": "Completion times: P1 = 3, P2 = 16, P3 = 24, P4 = 20. Waiting times: 0, 6, 10, 9. Average = 25/4 = 6.25.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-05-004",
+          "title": "Best Response Time",
+          "type": "mcq",
+          "question": "Which of the following scheduling algorithms is better than the others in terms of response time?",
+          "options": [
+            "SJF (Shortest job first)",
+            "SRTF (Shortest remaining time first)",
+            "FCFS (First come first serve)",
+            "RR (Round Robin)"
+          ],
+          "answer": 3,
+          "solution": "Round Robin gives every process a CPU slice at fixed intervals, which gives the best response time.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-05-005",
+          "title": "Completion Order under FCFS and RR2",
+          "type": "mcq",
+          "question": "Consider the 3 processes: P1 (AT 0, BT 5), P2 (4, 7), P3 (6, 4). The completion order of the 3 processes under FCFS and RR2 (round robin with quantum 2) is:",
+          "options": [
+            "FCFS: P1, P2, P3; RR2: P1, P2, P3",
+            "FCFS: P1, P3, P2; RR2: P1, P3, P2",
+            "FCFS: P1, P2, P3; RR2: P1, P3, P2",
+            "FCFS: P1, P3, P2; RR2: P1, P2, P3"
+          ],
+          "answer": 2,
+          "solution": "FCFS completes P1, P2, P3. With RR2, P3 (4 units) finishes before P2 (7 units), so the order is P1, P3, P2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-05-006",
+          "title": "Round Robin with Context Switch",
+          "type": "msq",
+          "question": "Suppose a system has 5 processes A, B, C, D, E, all arrived at time 0 with burst times 4, 5, 7, 2, 5. The time slice is 2 units and each context switch requires 1 unit (excluding first and last context switch). Which of the following statements is correct?",
+          "options": [
+            "At time 25, Process B is running on the system.",
+            "Process E finishes execution at time 31.",
+            "Total CPU overhead activity is 33%.",
+            "Process B finishes its execution before process E."
+          ],
+          "answer": [
+            3
+          ],
+          "solution": "At time 25 process E is running, E finishes at time 33, and overhead = 12/35 = 34.2%. Process B finishes at time 28, before E at 33, so only (d) is correct.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-05-007",
+          "title": "Large Time Quantum in RR",
+          "type": "mcq",
+          "question": "In the Round Robin scheduling policy, if the time quantum used is more than the maximum time required to execute any process, then the policy will:",
+          "options": [
+            "Behave the same as FCFS.",
+            "Behave the same as SJF.",
+            "Behave the same as HRRN.",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "If the quantum exceeds every burst time, each process runs to completion in its turn, so RR degenerates to FCFS.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cs-05-008",
+          "title": "Equal Treatment of Processes",
+          "type": "mcq",
+          "question": "Which of the following scheduling algorithms treats every process equally?",
+          "options": [
+            "Shortest Job First",
+            "Shortest remaining Time first (SRTF)",
+            "Longest remaining Time first (LRTF)",
+            "Round Robin"
+          ],
+          "answer": 3,
+          "solution": "Round Robin gives every process an equal time slice regardless of burst length.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Process Synchronization",
+      "questions": [
+        {
+          "id": "dpp-ps-01-001",
+          "title": "RR and MLFQ Statements",
+          "type": "mcq",
+          "question": "Consider the statements: S1: If all jobs have identical run lengths, an RR scheduler provides better average turnaround time than FIFO. S2: With an MLFQ scheduler, high priority jobs have longer time-slices than low priority jobs. Which of the following is true?",
+          "options": [
+            "Only S1",
+            "Only S2",
+            "Both S1 and S2",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "With identical run lengths RR is worse than FIFO for turnaround time, and in MLFQ high-priority queues have shorter time slices. Both statements are false.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-01-002",
+          "title": "CPU Efficiency in RR",
+          "type": "mcq",
+          "question": "Suppose a system uses round-robin scheduling. e is the time needed for a process switch, w is the round-robin time quantum and n is the average time a process needs to run. What will be the CPU efficiency if the time quantum is greater than the average run time (w > n)?",
+          "options": [
+            "n",
+            "1/(n + e)",
+            "n/(n + e)",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Each process runs for n and then incurs a switch time e, so efficiency = n / (n + e).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-01-003",
+          "title": "CPU Utilization with I/O Wait",
+          "type": "nat",
+          "question": "A process spends 20% of its execution time waiting for completion of I/O. If there are 8 processes in memory at once, the CPU utilization is ___ % (assume all I/O operations are overlapped; up to 2 decimal places).",
+          "answer": 100,
+          "solution": "Utilization = 1 − p^n = 1 − 0.2^8 = 0.9999974, i.e. ≈ 100.00% (the printed key shows 1.00).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-01-004",
+          "title": "Exponential Average Prediction",
+          "type": "nat",
+          "question": "Considering the exponential average used to predict the next CPU burst, with α = 0.70, τ0 = 30 ms and previous runs (T0, T1, T2, T3) of 10, 12, 15, 20 ms, the predicted value of τ4 is ___ ms (up to 2 decimal places).",
+          "answer": 18.34,
+          "solution": "τ(n+1) = α·Tn + (1 − α)·τn. τ1 = 0.7×10 + 0.3×30 = 16; τ2 = 0.7×12 + 0.3×16 = 13.2; τ3 = 0.7×15 + 0.3×13.2 = 14.46; τ4 = 0.7×20 + 0.3×14.46 = 18.338 ≈ 18.34. (The printed key shows 19, which results from using α = 0.3 instead.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-01-005",
+          "title": "Single Ready Queue Limitations",
+          "type": "msq",
+          "question": "What are the limitations of a single ready queue?",
+          "options": [
+            "All processes have to use the same scheduling technique.",
+            "Lots of searching time is required to select a single process.",
+            "Multiple processes cannot run simultaneously.",
+            "In a single ready queue only a single process can reside."
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "A single ready queue forces one scheduling technique for all processes and needs searching to pick the next process.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-01-006",
+          "title": "MLQ Scheduling",
+          "type": "msq",
+          "question": "Which of the following is/are correct regarding MLQ (multi-level queue) scheduling?",
+          "options": [
+            "Some processes may suffer from starvation.",
+            "Processes are divided into categories and scheduled on different ready queues.",
+            "Multiple scheduling algorithms can be implemented simultaneously.",
+            "It has minimal scheduling overhead."
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "As per the DPP key, all four statements are correct for MLQ.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-01-007",
+          "title": "Process Affected by Others",
+          "type": "mcq",
+          "question": "Which process can be affected by other processes executing in the system?",
+          "options": [
+            "Cooperating process",
+            "Child process",
+            "Parent process",
+            "Independent process"
+          ],
+          "answer": 0,
+          "solution": "A cooperating process can affect or be affected by other processes; an independent one cannot.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-01-008",
+          "title": "Race Condition",
+          "type": "msq",
+          "question": "A race condition:",
+          "options": [
+            "Occurs when two threads enter the critical section at the same time.",
+            "Occurs when one thread is in the critical section and another thread cannot access the critical section.",
+            "Occurs when two threads access a shared variable at the same time.",
+            "None of these"
+          ],
+          "answer": [
+            2
+          ],
+          "solution": "A race condition occurs when two threads access a shared variable concurrently and the result depends on the interleaving.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-02-001",
+          "title": "Intra-process Communication",
+          "type": "mcq",
+          "question": "Intra-process communication is ___.",
+          "options": [
+            "Two processes within the same system sharing resources.",
+            "Two entities within the same process communicating with each other.",
+            "Two variables of two processes communicating with each other.",
+            "None of these."
+          ],
+          "answer": 1,
+          "solution": "Intra-process communication is between entities (threads) inside the same process.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-02-002",
+          "title": "Need for Synchronization",
+          "type": "msq",
+          "question": "In IPC, synchronization is required to eliminate ___.",
+          "options": [
+            "Inconsistency",
+            "Deadlock",
+            "Progress",
+            "Data-loss"
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "Synchronization eliminates inconsistency, deadlock and data loss. Progress is a requirement, not something to eliminate.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-02-003",
+          "title": "User Mode Execution",
+          "type": "mcq",
+          "question": "Consider the statements: (i) User mode execution is non-atomic. (ii) A user process can be preempted after completion of any instruction. Which of the following is correct?",
+          "options": [
+            "Only (i) is correct",
+            "Only (ii) is correct",
+            "Both (i) and (ii) are correct",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "User mode is non-atomic and preemptive, so a process can be preempted after any instruction.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-02-004",
+          "title": "Shared Variable",
+          "type": "mcq",
+          "question": "Consider two processes: P1 { int x; int y; y = x + 1; x + 1; } and P2 { int p; int y; y = p – 1; p – 1; }. What is the shared variable in both processes?",
+          "options": [
+            "x",
+            "y",
+            "p",
+            "All of these"
+          ],
+          "answer": 1,
+          "solution": "As per the DPP key, y is the variable common to both processes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-02-005",
+          "title": "Critical Section",
+          "type": "mcq",
+          "question": "A critical section is ___.",
+          "options": [
+            "Part of the program which does not access a shared resource.",
+            "Complex part of the program which cannot be translated by the compiler.",
+            "A section that will always cause deadlock.",
+            "Part of the program where shared resources are accessed."
+          ],
+          "answer": 3,
+          "solution": "A critical section is the part of a program where shared resources are accessed.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-02-006",
+          "title": "Critical Section Variables",
+          "type": "nat",
+          "question": "Consider the producer-consumer code: #define N 1000, int Buffer[N], int count = 0; producer: itemp = Produce_item(); while (count == N); Buffer[in] = itemp; in = (in + 1) % N; count = count + 1; consumer: while (count == 0); itemc = Buffer[out]; out = (out + 1) % N; count = count - 1; process_item(itemc). How many variables from the above code belong to the critical section?",
+          "answer": 2,
+          "solution": "The shared variables accessed by both producer and consumer are Buffer and count; in and out are private to each process.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-02-007",
+          "title": "Effects of Preemption",
+          "type": "msq",
+          "question": "Preemption during execution can lead to ___.",
+          "options": [
+            "Inconsistency",
+            "Correct result",
+            "Data loss",
+            "Incorrect result"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "Preemption in the middle of a shared-variable update can lead to inconsistency, data loss or incorrect results.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-02-008",
+          "title": "Conditions for Synchronization Problems",
+          "type": "msq",
+          "question": "Necessary conditions for synchronization problems to occur in an inter-process communication environment are:",
+          "options": [
+            "Critical section",
+            "Non-critical section",
+            "Race condition",
+            "Preemption"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "Synchronization problems need a critical section, a race condition and preemption.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-03-001",
+          "title": "Producer-Consumer Problem",
+          "type": "msq",
+          "question": "The producer-consumer problem has ___.",
+          "options": [
+            "Competition",
+            "Co-operation",
+            "Inconsistency",
+            "Data loss"
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "Producer and consumer cooperate (through the buffer) but compete for the shared variable count, which can lead to inconsistency and data loss.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-03-002",
+          "title": "Entry Section",
+          "type": "mcq",
+          "question": "The purpose of the \"entry section\" in a synchronization mechanism is:",
+          "options": [
+            "To allow all processes to access the shared resource concurrently.",
+            "To allow one process at a time to enter the critical section.",
+            "To indicate the program has started.",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "The entry section lets only one of the N processes enter the critical section at a time.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-03-003",
+          "title": "Critical Section Requirements",
+          "type": "msq",
+          "question": "What are the requirements of the critical section problem?",
+          "options": [
+            "Mutual exclusion",
+            "Bounded waiting",
+            "Deadlock",
+            "Consistency"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "A solution must satisfy mutual exclusion, progress and bounded waiting.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-03-004",
+          "title": "Mutual Exclusion",
+          "type": "mcq",
+          "question": "Mutual exclusion is ___.",
+          "options": [
+            "Any number of processes can enter the critical section if it is free.",
+            "No process present in the non-CS should block other processes from entering the CS.",
+            "No two processes may be simultaneously present in the CS.",
+            "None of these."
+          ],
+          "answer": 2,
+          "solution": "Mutual exclusion means no two processes can be in the critical section at the same time.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-03-005",
+          "title": "Two Process Code Analysis",
+          "type": "mcq",
+          "question": "Consider two processes X and Y with shared variables x and y initialized to 0. Process X: while (true) { x = 1; while (y == 1) { // critical section; x = 0; } }. Process Y: while (true) { y = 1; while (x == 1) { // critical section; x = 0; } }. Which of the given conditions are satisfied by the above code?",
+          "options": [
+            "Mutual exclusion and progress",
+            "Mutual exclusion",
+            "Progress",
+            "No mutual exclusion"
+          ],
+          "answer": 3,
+          "solution": "Both processes can be inside the critical section at the same time, so mutual exclusion is not satisfied.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-03-006",
+          "title": "Bounded Waiting Violated",
+          "type": "mcq",
+          "question": "If the bounded waiting condition is not satisfied, it can cause ___.",
+          "options": [
+            "Inconsistency",
+            "Data-loss",
+            "Starvation",
+            "Deadlock"
+          ],
+          "answer": 2,
+          "solution": "Without bounded waiting, one process can enter the CS repeatedly while others starve.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-03-007",
+          "title": "Incorrect Statements about CS",
+          "type": "msq",
+          "question": "Which of the following is/are incorrect?",
+          "options": [
+            "A process cannot be pre-empted from the CS.",
+            "A process can enter the CS without going into the entry section.",
+            "A process can complete/leave the CS without going into the exit section.",
+            "A process can be preempted from the entry, exit and critical sections."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "A process can be preempted anywhere (including the CS), must go through the entry section to enter, and leaves the CS only by completing the exit section.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-03-008",
+          "title": "Software Solutions",
+          "type": "nat",
+          "question": "How many of the following are software-type solutions for synchronization? (i) Lock variable, (ii) Monitor, (iii) Peterson's solution, (iv) Semaphore, (v) Test and Set Lock, (vi) Strict alternation, (vii) Swap.",
+          "answer": 2,
+          "solution": "As per the DPP key, the lock variable and Peterson's algorithm are counted as software solutions. Monitor and semaphore are OS-based and TSL and swap are hardware-based.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-03-009",
+          "title": "Minimum Value of x",
+          "type": "nat",
+          "question": "Two processes P1 and P2 execute concurrently: P1: for (a = 1; a <= 4; ++a) x = x + 1; P2: for (b = 1; b <= 4; ++b) x = x + 1. 'a' and 'b' are not shared and x is shared, starting at 0. If P1 and P2 execute only once and concurrently, the final minimum possible value of x is ___.",
+          "answer": 2,
+          "solution": "Interleave so that P1 reads 0, P2 runs 3 iterations (x = 3), P1 writes 1, P2 reads 1, P1 runs its remaining 3 iterations (x = 4), P2 writes 2. Minimum = 2. (The printed DPP key shows 4.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-04-001",
+          "title": "TSL Lock Code",
+          "type": "mcq",
+          "question": "Consider the program: Bool Lock = False; void Process(int i) { while(1) { <Non-critical section> while (TSL(&Lock) == True); <Critical Section> Lock = False; } }. Which of the following is correct regarding the given code?",
+          "options": [
+            "It guarantees mutual exclusion but not progress.",
+            "It guarantees mutual exclusion and progress but not bounded waiting.",
+            "It guarantees progress but not mutual exclusion.",
+            "It guarantees progress and bounded waiting but not mutual exclusion."
+          ],
+          "answer": 1,
+          "solution": "Test-and-Set Lock gives mutual exclusion and progress but does not guarantee bounded waiting.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-04-002",
+          "title": "SWAP Instruction",
+          "type": "msq",
+          "question": "Which of the following is/are correct regarding \"SWAP\"?",
+          "options": [
+            "It is a software-based synchronization mechanism.",
+            "It is an atomic instruction.",
+            "It is based on the \"Lock Key\" mechanism.",
+            "It is a non-privileged instruction."
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "SWAP is a hardware-based atomic (privileged) instruction using the lock-key mechanism.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-04-003",
+          "title": "Match TSL and SWAP",
+          "type": "mcq",
+          "question": "Match the following: 1. TSL, 2. SWAP with (i) Mutual exclusion, (ii) Progress, (iii) Bounded waiting. Which option is correct?",
+          "options": [
+            "1 – (i); 2 – (ii); 2 – (iii)",
+            "1 – (ii); 1 – (iii); 2 – (ii)",
+            "1 – (i); 2 – (i); 2 – (ii)",
+            "1 – (iii); 2 – (i); 1 – (i)"
+          ],
+          "answer": 2,
+          "solution": "Both TSL and SWAP guarantee mutual exclusion and progress, but not bounded waiting.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-04-004",
+          "title": "TSL and SWAP Issues",
+          "type": "msq",
+          "question": "Which of the following is/are correct?",
+          "options": [
+            "TSL has busy waiting and wastes CPU cycles.",
+            "TSL suffers from priority inversion.",
+            "SWAP has busy waiting and utilizes CPU cycles efficiently.",
+            "SWAP suffers from priority inversion."
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "Both TSL and SWAP busy-wait (wasting CPU cycles) and both suffer from priority inversion.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-04-005",
+          "title": "Solving Priority Inversion",
+          "type": "mcq",
+          "question": "The priority inversion problem can be solved by ___.",
+          "options": [
+            "Preemption",
+            "Priority inheritance",
+            "Preemption followed by priority exchange",
+            "No solution, and priority inversion can cause deadlock"
+          ],
+          "answer": 1,
+          "solution": "Priority inheritance is the standard solution to priority inversion.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-04-006",
+          "title": "Producer with sleep() and wakeup()",
+          "type": "mcq",
+          "question": "Consider the producer code using sleep() and wakeup(): itemp = Produce_item(); X; Buffer[in] = itemp; in = (in + 1) % N; count = count + 1; Y. What will be the values of X and Y respectively?",
+          "options": [
+            "X = if (count == 1) sleep(); Y = if (count == N) wakeup(consumer);",
+            "X = if (count == N) sleep(); Y = if (count == N − 1) wakeup(consumer);",
+            "X = if (count == N) sleep(); Y = if (count == 1) wakeup(consumer);",
+            "X = if (count == N) wakeup(consumer); Y = if (count == 1) sleep();"
+          ],
+          "answer": 2,
+          "solution": "The producer sleeps when the buffer is full (count == N) and wakes the consumer when the buffer goes from empty to one item (count == 1).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-04-007",
+          "title": "Semaphore Operations",
+          "type": "mcq",
+          "question": "Operations performed on semaphores are ___.",
+          "options": [
+            "Wait and signal",
+            "Sleep and wakeup",
+            "Increment and decrement",
+            "All of the above"
+          ],
+          "answer": 0,
+          "solution": "Semaphores support the wait (P) and signal (V) operations.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-04-008",
+          "title": "Types of Semaphore",
+          "type": "msq",
+          "question": "Which of the following are the types of semaphore?",
+          "options": [
+            "Binary",
+            "Bounded",
+            "Counting",
+            "Incremental"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "The two types are binary and counting semaphores.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-05-001",
+          "title": "Hardware Synchronization Solution",
+          "type": "mcq",
+          "question": "Choose the hardware type solution for the synchronization problem from the following.",
+          "options": [
+            "Lock variables",
+            "Strict alternation",
+            "Peterson's solution",
+            "Test and set instructions"
+          ],
+          "answer": 3,
+          "solution": "Test-and-set is a hardware instruction. The others are software solutions.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-05-002",
+          "title": "Two-process Turn Solution",
+          "type": "nat",
+          "question": "Consider a two-process synchronization solution where both processes X and Y execute: while (turn == 1); C.S.; turn = 1; The shared variable turn is initialized to zero. How many of the following statements about the solution are incorrect? (i) It violates mutual exclusion. (ii) It violates progress. (iii) It violates bounded wait.",
+          "answer": 0,
+          "solution": "As per the DPP key, the number of incorrect statements is 0.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-05-003",
+          "title": "Strict Alternation Properties",
+          "type": "msq",
+          "question": "The software solution strict alternation satisfies which of the following?",
+          "options": [
+            "Mutual exclusion",
+            "Progress",
+            "Bounded wait",
+            "All of the above"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "Strict alternation guarantees mutual exclusion and bounded wait but not progress.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-05-004",
+          "title": "Peterson's Algorithm",
+          "type": "msq",
+          "question": "Choose the correct statements regarding Peterson's algorithm.",
+          "options": [
+            "Peterson's algorithm satisfies only mutual exclusion but not progress.",
+            "Peterson's algorithm is a solution for 2 processes.",
+            "Peterson's algorithm satisfies mutual exclusion, progress and bounded wait.",
+            "Peterson's algorithm is a solution for at least 2 processes."
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Peterson's algorithm is a two-process solution that satisfies all three conditions.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-05-005",
+          "title": "Synchronization Solutions",
+          "type": "mcq",
+          "question": "Which of the following is correct regarding solutions to the synchronization problem?",
+          "options": [
+            "Test and set is a 2-process, software based solution.",
+            "Lock variable is a 2-process, hardware based solution.",
+            "Strict alternation is a 2-process, hardware based solution.",
+            "None of these."
+          ],
+          "answer": 3,
+          "solution": "Test-and-set is hardware based and works for n processes; lock variable and strict alternation are software solutions.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-05-006",
+          "title": "Test and Set Characteristics",
+          "type": "msq",
+          "question": "Choose the characteristics of the test-and-set synchronization solution.",
+          "options": [
+            "It ensures mutual exclusion.",
+            "It is deadlock free.",
+            "It does not guarantee bounded wait.",
+            "It may cause starvation."
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "TSL ensures mutual exclusion, is deadlock free, but does not guarantee bounded waiting and so may cause starvation.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-05-007",
+          "title": "Best Algorithm for n Processes",
+          "type": "mcq",
+          "question": "For implementing synchronization for at least 2 processes (satisfying mutual exclusion, progress and bounded wait), which algorithm is best recommended?",
+          "options": [
+            "Dekker's algorithm",
+            "Strict alternation",
+            "Peterson's solution",
+            "None of the above"
+          ],
+          "answer": 3,
+          "solution": "As per the DPP key, none of the listed algorithms is recommended, since they are all two-process solutions.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-05-008",
+          "title": "OS-based Synchronization",
+          "type": "msq",
+          "question": "Which of the following is/are OS-based synchronization mechanisms?",
+          "options": [
+            "Sleep() and wakeup()",
+            "Wait() and signal()",
+            "Monitor",
+            "Swap"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Sleep/wakeup, wait/signal (semaphores) and monitors are OS/language-level mechanisms, while swap is a hardware instruction. (The printed key lists (a, c, d).)",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-06-001",
+          "title": "Counting Semaphore Value",
+          "type": "nat",
+          "question": "A counting semaphore S is initialized to 2 and the following sequence of operations is performed: V V V P V P P P V P P V P V V P. What will be the value of S after these operations?",
+          "answer": 2,
+          "solution": "The sequence has 8 V operations and 8 P operations, so S = 2 + 8 − 8 = 2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-06-002",
+          "title": "Readers-Writers Solution",
+          "type": "msq",
+          "question": "Consider the readers-writers solution: Writer: wait(wrt); writing; signal(wrt). Reader: wait(mutex); readcount++; if (readcount == 1) wait(wrt); signal(mutex); reading; wait(mutex); readcount--; if (readcount == 0) signal(wrt); signal(mutex). Which of the following is/are correct?",
+          "options": [
+            "Multiple readers can read together",
+            "The readers are not starved of access because of the priority of the writers and vice versa.",
+            "A writer gets exclusive access, i.e., while a writer is writing no one can write or read.",
+            "Deadlock is possible."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "As per the DPP key, (a), (b) and (c) are correct; deadlock is not possible.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-06-003",
+          "title": "Number of V Operations",
+          "type": "mcq",
+          "question": "At a particular time the value of a counting semaphore is 9. Then 20 P operations and x V operations are completed on this semaphore. If the final value of the semaphore is 5, x is:",
+          "options": [
+            "19",
+            "18",
+            "16",
+            "20"
+          ],
+          "answer": 2,
+          "solution": "9 − 20 + x = 5 → x = 16.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-06-004",
+          "title": "Final Value of Semaphore",
+          "type": "mcq",
+          "question": "A counting semaphore is initialized to 5. Then 15 P operations and 20 signal operations are performed on S. What is the final value of S?",
+          "options": [
+            "0",
+            "20",
+            "5",
+            "10"
+          ],
+          "answer": 3,
+          "solution": "S = 5 − 15 + 20 = 10.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-06-005",
+          "title": "Classical Reader-Writer Conditions",
+          "type": "msq",
+          "question": "Which of the following conditions must be satisfied in the classical reader-writer problem?",
+          "options": [
+            "Only one writer may write a file at a time.",
+            "Only one reader may read a file at a time.",
+            "If a reader is reading a file, no writer may write to it.",
+            "Any number of readers can read at a time."
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "Many readers can read together, but a writer needs exclusive access.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-06-006",
+          "title": "Awakening a Blocked Thread",
+          "type": "mcq",
+          "question": "A thread that is blocked on a semaphore is awakened when another thread:",
+          "options": [
+            "Tries to block the same semaphore",
+            "Tries to decrement the semaphore value ≤ 0",
+            "Tries to increment the semaphore value ≥ 0",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "A blocked thread is woken by a signal (V) operation, i.e. an increment of the semaphore.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-06-007",
+          "title": "Strict Alternation Limitations",
+          "type": "msq",
+          "question": "Strict alternation:",
+          "options": [
+            "Does not guarantee bounded waiting",
+            "Does not guarantee progress",
+            "Does not guarantee mutual exclusion",
+            "All of these"
+          ],
+          "answer": [
+            1
+          ],
+          "solution": "Strict alternation guarantees mutual exclusion and bounded waiting but not progress.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-06-008",
+          "title": "Bounded Buffer Problem",
+          "type": "mcq",
+          "question": "The bounded buffer problem is also known as the ___.",
+          "options": [
+            "Readers-writers problem",
+            "Producer-consumer problem",
+            "Dining philosophers problem",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "The bounded buffer problem is the producer-consumer problem.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-07-001",
+          "title": "Compulsory Step for Semaphore",
+          "type": "mcq",
+          "question": "What is a compulsory step before using a semaphore?",
+          "options": [
+            "Deciding the final value of the semaphore",
+            "Initialization of the semaphore",
+            "Defining the number of operations to be performed",
+            "All of the above."
+          ],
+          "answer": 1,
+          "solution": "A semaphore must be initialized before use.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-07-002",
+          "title": "Semaphore Nature",
+          "type": "mcq",
+          "question": "Which of the following is correct?",
+          "options": [
+            "Semaphores are atomic in nature and implemented in user mode.",
+            "Semaphores are atomic in nature and implemented in kernel mode.",
+            "Semaphores are non-atomic in nature and implemented in user mode.",
+            "Semaphores are non-atomic in nature and implemented in kernel mode."
+          ],
+          "answer": 1,
+          "solution": "Semaphore operations are atomic and are implemented in kernel mode.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-07-003",
+          "title": "Negative Semaphore Value",
+          "type": "mcq",
+          "question": "If a semaphore's value is \"−3\", what does the magnitude of the negative value indicate?",
+          "options": [
+            "Number of successful up operations.",
+            "Number of successful down operations.",
+            "Number of blocked processes.",
+            "Number of unblocked processes."
+          ],
+          "answer": 2,
+          "solution": "A negative value n means n processes are blocked on the semaphore.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-07-004",
+          "title": "flag_critical Routine",
+          "type": "mcq",
+          "question": "Processes x1 and x2 use flag_critical to achieve mutual exclusion, initialized to FALSE. get_access: if (flag_critical == FALSE) { flag_critical = TRUE; Critical_section(); flag_critical = FALSE; }. Consider the statements: (i) The above routine may lead to deadlock. (ii) It is possible for processes x1 and x2 to access the critical section concurrently.",
+          "options": [
+            "(i) is true and (ii) is false.",
+            "(ii) is true and (i) is false.",
+            "Both (i) and (ii) are true.",
+            "Both (i) and (ii) are false."
+          ],
+          "answer": 1,
+          "solution": "Both can see flag_critical == FALSE before either sets it, so concurrent access is possible. No hold-and-wait arises, so deadlock is not possible.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-07-005",
+          "title": "Boolean Variables P and Q",
+          "type": "mcq",
+          "question": "Processes x1 and x2 use shared Boolean variables P and Q (initially false). x1: while (P == Q); <critical section> P = !(Q); x2: while (P != Q); <critical section> P = Q. Select the true statements: (i) Process x2 can go into the critical section just after one entry by x1. (ii) Mutual exclusion is not ensured. (iii) Process x1 can go into the critical section many times without a single entry of x2.",
+          "options": [
+            "(i) & (ii)",
+            "(ii) & (iii)",
+            "Only (i)",
+            "(i), (ii) & (iii)"
+          ],
+          "answer": 2,
+          "solution": "As per the DPP key, only statement (i) is true.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-07-006",
+          "title": "Possible Values of Q",
+          "type": "nat",
+          "question": "Two functions Pi and Pj share a variable Q with initial value 3 and execute concurrently: Pi: R = Q * 2; Q = R; Pj: S = Q + 1; Q = S. How many different possible values can Q have at the end of execution of both processes?",
+          "answer": 4,
+          "solution": "Pi then Pj gives 7; Pj then Pi gives 8; interleavings can give 6 (R written last) or 4 (S written last). Distinct values are 4, 6, 7, 8, so 4 values.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-07-007",
+          "title": "Match Concurrency Terms",
+          "type": "mcq",
+          "question": "Match the following. A. Critical section, B. Synchronization, C. Mutual exclusion with 1. Ensuring that only one process can execute the C.S., 2. Atomic operations are used to ensure co-operation between processes, 3. Section of code that only one process can access at once.",
+          "options": [
+            "A-1, B-2, C-3",
+            "A-3, B-2, C-1",
+            "A-2, B-3, C-1",
+            "A-1, B-3, C-2"
+          ],
+          "answer": 1,
+          "solution": "Critical section → section of code accessed by one process at a time (3); synchronization → atomic operations ensure cooperation (2); mutual exclusion → only one process executes the C.S. (1).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-07-008",
+          "title": "Blocked Processes on Binary Semaphore",
+          "type": "nat",
+          "question": "Let S be a binary semaphore with S = 1 initially, and assume no blocked processes exist in the system. The following operations are performed on S: 6 P, 8 V, 12 P, 11 V, 19 P. The number of blocked processes after executing these operations is ___.",
+          "answer": 19,
+          "solution": "As per the DPP key, 19 processes remain blocked after the sequence.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-08-001",
+          "title": "Deadlock in Dining Philosophers",
+          "type": "mcq",
+          "question": "In the dining philosophers problem, deadlock can occur when:",
+          "options": [
+            "Two philosophers pick their left fork and get preempted before picking the right fork.",
+            "Two philosophers sitting in front of each other pick their left fork and then their right fork.",
+            "Four philosophers are sitting and doing nothing.",
+            "All philosophers pick their left fork and are preempted before picking the right fork."
+          ],
+          "answer": 3,
+          "solution": "Deadlock occurs when every philosopher holds the left fork and waits for the right fork.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-08-002",
+          "title": "Dining Philosophers Code",
+          "type": "mcq",
+          "question": "Consider the code (N = 6): void p(int i) { while (1) { T(i); T_f(i); T_f((i + 1) % N); x(i); p_f(i); p_f((i + 1) % N); } } where T is think, T_f is take fork, x is eat, p_f is put fork and i is the philosopher. Which of the following is true about the above code?",
+          "options": [
+            "Prevents deadlock but has starvation.",
+            "Has deadlock but does not have starvation.",
+            "Has deadlock and starvation both.",
+            "Does not have deadlock and starvation."
+          ],
+          "answer": 2,
+          "solution": "Every philosopher takes the left fork first, so a circular wait can occur (deadlock), and with deadlock the philosophers starve.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-08-003",
+          "title": "Independent Instructions",
+          "type": "nat",
+          "question": "How many of the following instructions can run independently? I1: p = q * r; I2: q = p + z; I3: l = m + k; I4: n = a + b; I5: m = z + s.",
+          "answer": 3,
+          "solution": "As per the DPP key, the instructions form three independent groups: (I1, I2), (I3, I5) and I4.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-08-004",
+          "title": "Precedence Graph",
+          "type": "mcq",
+          "question": "Consider the instructions I1: a = b + c; I2: d = e * f; I3: k = a + d; I4: l = k + m. Which of the following is the correct precedence graph? (a) I1 → I2 → I3 → I4 in a chain. (b) I3 → I1, I3 → I2 and I3 → I4. (c) I1 → I3, I2 → I3 and I3 → I4. (d) I1 → I2, I2 → I3 and I4 → I3.",
+          "options": [
+            "Chain I1 → I2 → I3 → I4",
+            "I3 → I1, I3 → I2, I3 → I4",
+            "I1 → I3, I2 → I3, I3 → I4",
+            "I1 → I2, I2 → I3, I4 → I3"
+          ],
+          "answer": 2,
+          "solution": "I3 needs the results of I1 (a) and I2 (d), and I4 needs I3 (k). I1 and I2 are independent. This is graph (c).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-08-005",
+          "title": "co-begin / co-end",
+          "type": "msq",
+          "question": "Solve the following code by co-begin and co-end: x = 4; co-begin x = x + 5; x = x + 6; co-end; What could be the possible final value of x?",
+          "options": [
+            "5",
+            "9",
+            "10",
+            "15"
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "Sequential execution gives 15. If the update of x = x + 5 is lost, x = 10; if x = x + 6 is lost, x = 9.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-08-006",
+          "title": "Busy Waiting",
+          "type": "mcq",
+          "question": "Busy waiting is ___.",
+          "options": [
+            "When a process polls on a variable.",
+            "When a process periodically checks a variable.",
+            "When a process issues an interrupt.",
+            "When a process continuously checks a variable."
+          ],
+          "answer": 3,
+          "solution": "Busy waiting means a process continuously checks a variable, wasting CPU cycles.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-08-007",
+          "title": "Levels in Precedence Graph",
+          "type": "nat",
+          "question": "Consider the concurrent program S1; Parbegin begin S2; S3; end; begin S4; begin S5; S6; end; Parbegin S7; begin S8; S9 end; Parend; end; Parend; S10. How many levels are there in its precedence graph?",
+          "answer": 7,
+          "solution": "As per the DPP key, the precedence graph has 7 levels.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-09-001",
+          "title": "Preventing Dining Philosopher Deadlock",
+          "type": "mcq",
+          "question": "Which of the following can prevent deadlock in the dining philosophers problem?",
+          "options": [
+            "Allow at most four philosophers to be sitting simultaneously at the table.",
+            "Allow a philosopher to pick up chopsticks only if both chopsticks are available (picked up in a critical section).",
+            "An odd-numbered philosopher picks up the left chopstick first and then the right, whereas an even-numbered philosopher picks up the right first and then the left.",
+            "All of the above."
+          ],
+          "answer": 3,
+          "solution": "Each of the three techniques breaks the circular wait, so all can prevent deadlock.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-09-002",
+          "title": "Dining Philosophers Problem",
+          "type": "msq",
+          "question": "The dining philosophers problem is ___.",
+          "options": [
+            "A solution to the producer-consumer problem.",
+            "An example of a concurrency-control problem.",
+            "An application of semaphores.",
+            "A classical IPC problem."
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "It is a classical IPC/concurrency-control problem whose solutions use semaphores. It is not a solution to producer-consumer.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-09-003",
+          "title": "Concurrency vs Parallelism",
+          "type": "msq",
+          "question": "Which of the following statements is/are correct?",
+          "options": [
+            "Concurrency is about doing multiple things at once.",
+            "Concurrency is about dealing with multiple things at once.",
+            "Parallelism is about doing multiple things at once.",
+            "Parallelism is about dealing with multiple things at once."
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Concurrency is dealing with many things at once; parallelism is doing many things at once.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-09-004",
+          "title": "Independent Statements",
+          "type": "msq",
+          "question": "Which condition must be satisfied if two statements are concurrent/independent?",
+          "options": [
+            "At least one shared variable should be present.",
+            "No shared variable should be present.",
+            "The output of one statement should serve as input to the other statement.",
+            "The output of one statement should not serve as input to the other statement."
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "Independent statements have no shared variables and neither's output is the other's input.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-09-006",
+          "title": "begin-end Final Values",
+          "type": "mcq",
+          "question": "Consider the code: a = 3; b = 4; begin b = a * b; a = a * b; end; (executed concurrently). What could be the possible final values of a and b?",
+          "options": [
+            "a:{12}; b:{12}",
+            "a:{12}; b:{12, 24}",
+            "a:{12, 24}; b:{12}",
+            "a:{12, 36}; b:{12}"
+          ],
+          "answer": 3,
+          "solution": "b = a·b gives 12. If a = a·b runs before b is updated, a = 12; if after, a = 3·12 = 36. So a ∈ {12, 36} and b = 12.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-09-008",
+          "title": "Largest Initial Semaphore Value",
+          "type": "nat",
+          "question": "Consider a counting semaphore X with the following operations performed: 20P, 6V, 8V, 7P, 12P, 16V. What will be the largest initial value of X to keep 2 processes in the suspended list?",
+          "answer": 7,
+          "solution": "Total P = 39 and total V = 30. Final value = X + 30 − 39 = −2 → X = 7.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-10-001",
+          "title": "Concurrent Program Statements",
+          "type": "msq",
+          "question": "Consider the concurrent program: begin S1; S2; Parbegin S3; S4; S5; Parend; S6; end. Which of the following statements is correct about the above program?",
+          "options": [
+            "S1, S2, S3, S4, S5 run sequentially.",
+            "S3, S4, S5 run concurrently.",
+            "S1, S2, S6 run concurrently.",
+            "S1, S2, S6 run sequentially."
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "S3, S4, S5 are inside Parbegin/Parend so they run concurrently; S1, S2 and S6 are outside, so they run sequentially.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-10-002",
+          "title": "Concurrent Statements after S1",
+          "type": "nat",
+          "question": "Consider the concurrent program: S1; Parbegin begin S2; S3; S4; end; S5; S6; begin S7; S8; S9; end; S10; Parend; S11. After S1, how many statements will start concurrently?",
+          "answer": 5,
+          "solution": "The Parbegin block has five concurrent branches: (S2;S3;S4), S5, S6, (S7;S8;S9) and S10.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-10-003",
+          "title": "Definition of Deadlock",
+          "type": "mcq",
+          "question": "Deadlock is ___.",
+          "options": [
+            "Starvation",
+            "Blocking a process for a defined time",
+            "Infinite waiting",
+            "Utilization of CPU"
+          ],
+          "answer": 2,
+          "solution": "Deadlock is a situation of infinite (indefinite) waiting.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-10-007",
+          "title": "Deadlock and Starvation Statements",
+          "type": "msq",
+          "question": "Which of the following statement is/are correct?",
+          "options": [
+            "Deadlock is indefinite waiting.",
+            "Deadlock is infinite waiting.",
+            "Starvation is infinite waiting.",
+            "Starvation is indefinite waiting."
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "As per the DPP key, deadlock is infinite waiting and starvation is indefinite waiting.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ps-10-008",
+          "title": "Starvation",
+          "type": "mcq",
+          "question": "A problem encountered when a process is perpetually denied necessary resources for an indefinite time because the resource is currently used by another process is known as ___.",
+          "options": [
+            "Deadlock",
+            "Ageing",
+            "Infinite blocking",
+            "Starvation"
+          ],
+          "answer": 3,
+          "solution": "This is starvation (indefinite blocking). Ageing is the technique used to prevent it.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Deadlock",
+      "questions": [
+        {
+          "id": "dpp-dl-01-001",
+          "title": "Hardware Resource",
+          "type": "msq",
+          "question": "Which of the following is not a hardware resource?",
+          "options": [
+            "Semaphore",
+            "Files",
+            "Register",
+            "CPU"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "Semaphores and files are software resources. Registers and the CPU are hardware resources.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dl-01-002",
+          "title": "Blocked Forever",
+          "type": "mcq",
+          "question": "If a process request is denied by the OS and it is blocked forever, then the process is in ___.",
+          "options": [
+            "Starvation",
+            "Deadlock",
+            "Ageing",
+            "Blocking"
+          ],
+          "answer": 1,
+          "solution": "A process whose request is denied and which is blocked forever is in deadlock.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dl-01-003",
+          "title": "Necessary Conditions for Deadlock",
+          "type": "msq",
+          "question": "What are the necessary conditions for deadlock?",
+          "options": [
+            "Mutual exclusion",
+            "Hold and wait",
+            "Circular wait",
+            "Pre-emption"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "The four necessary conditions are mutual exclusion, hold and wait, no pre-emption and circular wait. 'Pre-emption' itself is not a condition.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dl-01-004",
+          "title": "Cycle and Deadlock",
+          "type": "mcq",
+          "question": "Consider the statements: (i) A cycle in a single-instance resource graph is a sufficient and necessary condition for deadlock. (ii) A cycle in a multi-instance resource graph is a necessary and sufficient condition for deadlock. Which of the following is correct?",
+          "options": [
+            "Only (i) is correct",
+            "Only (ii) is correct",
+            "Both (i) and (ii) are correct",
+            "Both (i) and (ii) are incorrect"
+          ],
+          "answer": 0,
+          "solution": "With single instances a cycle is necessary and sufficient. With multiple instances a cycle is necessary but not sufficient.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dl-01-005",
+          "title": "Deadlock Never Occurs",
+          "type": "msq",
+          "question": "In which deadlock handling strategy can deadlock never occur?",
+          "options": [
+            "Deadlock avoidance",
+            "Deadlock recovery",
+            "Deadlock removal",
+            "Deadlock prevention"
+          ],
+          "answer": [
+            0,
+            3
+          ],
+          "solution": "In deadlock prevention and deadlock avoidance, the system never enters a deadlock.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dl-01-006",
+          "title": "Maximum Resources to Cause Deadlock",
+          "type": "nat",
+          "question": "Consider a system having n resources shared between four processes P0, P1, P2, P3 with demands of 6, 9, 7 and 14 respectively. What should be the maximum value of n in order to lead the system to deadlock?",
+          "answer": 32,
+          "solution": "Deadlock happens when every process holds one less than its demand: 5 + 8 + 6 + 13 = 32.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dl-01-007",
+          "title": "Safe Sequences",
+          "type": "msq",
+          "question": "Consider the system state: P1 (allocated 2, maximum 7), P2 (allocated 3, maximum 8), P3 (allocated 4, maximum 6). There are 11 resources in total. Which of the following sequences will lead the system to a safe state?",
+          "options": [
+            "P1 P2 P3",
+            "P1 P3 P2",
+            "P3 P2 P1",
+            "P3 P1 P2"
+          ],
+          "answer": [
+            2,
+            3
+          ],
+          "solution": "Available = 11 − 9 = 2. Needs: P1 = 5, P2 = 5, P3 = 2. Only P3 can run first. After it finishes, available = 6, and P1 or P2 can then run. So P3 P2 P1 and P3 P1 P2 are safe.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dl-01-008",
+          "title": "Minimum Resources to Avoid Deadlock (5 Processes)",
+          "type": "nat",
+          "question": "Consider a system with five processes A, B, C, D and E. The resource requirements to complete execution of A, B, C, D and E are 7, 6, 8, 12 and 11 respectively. What is the minimum number of resources required to avoid deadlock in such a system?",
+          "answer": 40,
+          "solution": "Minimum = Σ(maxᵢ − 1) + 1 = (6 + 5 + 7 + 11 + 10) + 1 = 40.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-dl-01-009",
+          "title": "Maximum Resources for Deadlock",
+          "type": "nat",
+          "question": "If a system has 8 processes, each needing a maximum of 4 instances of a resource R, what is the maximum value of R such that the system is in deadlock?",
+          "answer": 24,
+          "solution": "Deadlock occurs when each process holds (4 − 1) = 3 instances: 8 × 3 = 24. With 25 instances there is no deadlock.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Memory Management",
+      "questions": [
+        {
+          "id": "dpp-mm-01-001",
+          "title": "Abstract View of Memory",
+          "type": "mcq",
+          "question": "According to the abstract view of memory, memory is ___.",
+          "options": [
+            "Non-linear three-dimensional array",
+            "Linear three-dimensional array",
+            "Non-linear one-dimensional array of words",
+            "Linear one-dimensional array of words"
+          ],
+          "answer": 3,
+          "solution": "From the developer's point of view, memory is a linear one-dimensional array of words/locations.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-01-002",
+          "title": "Smallest Addressable Unit",
+          "type": "mcq",
+          "question": "What is the smallest addressable unit in a memory?",
+          "options": [
+            "1 Bit",
+            "1 Byte",
+            "2^10 byte",
+            "2^2 bit"
+          ],
+          "answer": 1,
+          "solution": "A byte is the smallest addressable unit in memory.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-01-003",
+          "title": "Address Bits for 16 Words",
+          "type": "nat",
+          "question": "If there are a total of 16 words in memory and each word has a size of 8 bytes, how many bits of address are required to refer to one word?",
+          "answer": 4,
+          "solution": "Number of address bits = log2(16) = 4.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-01-004",
+          "title": "x * y for Memory Sizes",
+          "type": "nat",
+          "question": "Consider the statements: if there is a memory of size 32 KW, the number of bits required to address one word is x. If the number of bits required to address a memory is 18 bits, the memory capacity is y KW. Calculate x * y.",
+          "answer": 3840,
+          "solution": "x = log2(32 K) = 15. y = 2^18 words = 256 KW. x × y = 15 × 256 = 3840.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-01-005",
+          "title": "Functions of Memory Manager",
+          "type": "nat",
+          "question": "How many of the following are functions of the memory manager? Memory allocation; Protection; Fragmentation; Address Translation; Manage the execution of larger programs in a smaller memory area.",
+          "answer": 3,
+          "solution": "Functions: memory allocation/deallocation, memory protection and address translation. Avoiding fragmentation and running larger programs in smaller memory are goals, not functions.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-01-006",
+          "title": "Banker's Algorithm Requests",
+          "type": "mcq",
+          "question": "An OS uses the Banker's algorithm for deadlock avoidance. There are three resource types A, B, C allocated to processes P0, P1, P2. Allocation (A,B,C) / Max (A,B,C): P0 (1,1,3) / (7,4,8); P1 (5,6,2) / (7,8,4); P2 (3,2,1) / (4,5,2). 2 units of each resource are still available and the system is in a safe state. Request 1: P0 requests (2, 0, 1). Request 2: P1 requests (2, 0, 2). Which one of the following is TRUE?",
+          "options": [
+            "Request 1 can be granted, Request 2 cannot.",
+            "Request 2 can be granted, Request 1 cannot.",
+            "Both Request 1 and Request 2 can be granted.",
+            "Neither of Request 1 and Request 2 can be granted."
+          ],
+          "answer": 1,
+          "solution": "Request 1 leaves Available = (0,2,1) and no process's need is satisfiable, so it is unsafe. Request 2 leaves Available = (0,2,0) and P1 (need 0,2,0) can finish, then P2 and P0 can run. So only Request 2 can be granted.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-01-007",
+          "title": "Resource-Request Algorithm",
+          "type": "mcq",
+          "question": "A request of any process should be granted iff the resulting state is safe, otherwise it is denied. This is known as ___.",
+          "options": [
+            "Resource-Allocation Algorithm",
+            "Resource-Access Algorithm",
+            "Resource-Request Algorithm",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "This is the Resource-Request algorithm used in the Banker's algorithm.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-01-008",
+          "title": "Deadlock Prevention Schemes",
+          "type": "mcq",
+          "question": "Which of the following are deadlock prevention schemes?",
+          "options": [
+            "Each process requests resources either in only increasing order or in only decreasing order.",
+            "Whenever a process requests a resource, it does not hold any other resources.",
+            "If a process is holding some resources and requests another resource that cannot be immediately allocated to it, all resources being held are pre-empted.",
+            "All of these"
+          ],
+          "answer": 3,
+          "solution": "(a) breaks circular wait, (b) breaks hold and wait, (c) allows pre-emption. All are prevention schemes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-01-010",
+          "title": "Deadlock Statements",
+          "type": "msq",
+          "question": "Which of the following statements is/are correct regarding deadlock?",
+          "options": [
+            "If a system is in an unsafe state, the process may complete its execution without entering a deadlock state.",
+            "If a process releases all its resources before requesting a new resource, then deadlock and starvation are both possible.",
+            "Deadlock avoidance is less restrictive than deadlock prevention.",
+            "In deadlock avoidance, the request for resources is always granted if the resulting state is safe."
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "An unsafe state need not lead to deadlock. Releasing all resources before a new request removes hold-and-wait, so deadlock is not possible (b is false). Avoidance grants requests whenever the resulting state is safe, so it is less restrictive than prevention.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-01-011",
+          "title": "Mutual Exclusion",
+          "type": "mcq",
+          "question": "For mutual exclusion to prevail in the system ___.",
+          "options": [
+            "The processor must be a uniprocessor rather than a multiprocessor.",
+            "There must be at least one resource in a sharable mode.",
+            "At least one resource must be held in a non-sharable mode.",
+            "All of these."
+          ],
+          "answer": 2,
+          "solution": "Mutual exclusion requires at least one resource that is held in a non-sharable mode.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-02-001",
+          "title": "Drawback of Static Loading",
+          "type": "mcq",
+          "question": "The drawback of static loading is ___.",
+          "options": [
+            "Ineffective utilization of memory",
+            "Requires more time",
+            "Need to load data before execution",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "Static loading loads all modules, even unused ones, wasting memory.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-02-002",
+          "title": "Loading on Demand",
+          "type": "mcq",
+          "question": "Loading of modules of the program on demand is known as ___.",
+          "options": [
+            "Static loading",
+            "Dynamic loading",
+            "Access loading",
+            "Page loading"
+          ],
+          "answer": 1,
+          "solution": "Dynamic loading loads a module at run time only when it is needed.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-02-003",
+          "title": "Dynamic Link Libraries",
+          "type": "msq",
+          "question": "Dynamic link libraries are ___.",
+          "options": [
+            "Libraries that are linked with the application during loading",
+            "Libraries that are linked with the application after compilation",
+            "Libraries that are linked with the application before execution",
+            "Libraries that are linked with the application at run time on demand"
+          ],
+          "answer": [
+            3
+          ],
+          "solution": "DLLs are linked with the application at run time, on demand.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-02-004",
+          "title": "Address Binding Types",
+          "type": "msq",
+          "question": "Which of the following are address binding?",
+          "options": [
+            "Link time binding",
+            "Compile time binding",
+            "Load time binding",
+            "Dynamic time binding"
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "The three types of address binding are compile-time, load-time and dynamic (execution-time) binding.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-02-005",
+          "title": "Address Bits for 32 MB",
+          "type": "nat",
+          "question": "Consider a memory with a capacity of 32 MB. How many bits are required to address this memory?",
+          "answer": 25,
+          "solution": "32 MB = 2^5 × 2^20 = 2^25 bytes, so 25 bits.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-02-006",
+          "title": "Memory for 28 Address Bits",
+          "type": "msq",
+          "question": "Suppose 28 bits are required to address a memory space. What would be the capacity of the memory?",
+          "options": [
+            "256 MB",
+            "4096 Mb",
+            "512 MB",
+            "2048 Mb"
+          ],
+          "answer": [
+            0,
+            3
+          ],
+          "solution": "2^28 B = 256 MB = 2048 Mb.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-02-007",
+          "title": "Match Memory Size and Address Bits",
+          "type": "mcq",
+          "question": "Match each memory capacity N with the number of bits n required to address it. A: 16 MB, B: 32 KB, C: 8 GB, D: 64 KB with (i) 15 bits, (ii) 16 bits, (iii) 24 bits, (iv) 33 bits.",
+          "options": [
+            "A – (ii); B – (i); C – (iii); D – (iv)",
+            "A – (iii); B – (i); C – (iv); D – (ii)",
+            "A – (iii); B – (ii); C – (iv); D – (i)",
+            "A – (ii); B – (iv); C – (iii); D – (i)"
+          ],
+          "answer": 1,
+          "solution": "16 MB = 2^24 → 24 bits; 32 KB = 2^15 → 15 bits; 8 GB = 2^33 → 33 bits; 64 KB = 2^16 → 16 bits.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-03-001",
+          "title": "Contiguous Allocation Techniques",
+          "type": "msq",
+          "question": "Which of the following are contiguous allocation techniques in memory management?",
+          "options": [
+            "Paging",
+            "Overlays",
+            "Segmentation",
+            "Buddy system"
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "Contiguous techniques: overlays, fixed/variable partitions and the buddy system. Paging and segmentation are non-contiguous.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-03-002",
+          "title": "Overlaying Statements",
+          "type": "mcq",
+          "question": "Consider the statements: (i) Overlaying is only possible when a program can be divided into independent modules. (ii) Overlaying is needed when a process is larger than the amount of memory allocated to it. (iii) Overlaying requires special support from the operating system and is performed in kernel mode. Which of the following is correct?",
+          "options": [
+            "All (i), (ii) and (iii) are correct.",
+            "(ii) and (iii) are correct.",
+            "(i) and (iii) are correct.",
+            "(i) and (ii) are correct."
+          ],
+          "answer": 3,
+          "solution": "Overlays are implemented by the user and need no special OS support, so (iii) is incorrect.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-03-003",
+          "title": "Partitioning Statements",
+          "type": "msq",
+          "question": "Which of the following statements is/are TRUE?",
+          "options": [
+            "In fixed length partition, each memory partition should be of the same size.",
+            "Memory address protection is done with the help of registers.",
+            "Free-space management is done using binary bits.",
+            "In fixed-length partition, two programs can reside in one partition."
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Fixed partitions can have different sizes (a false). Protection uses base and limit registers and a bit map marks partitions as free (0) or used (1). Only one program can reside in a partition (d false).",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-03-005",
+          "title": "Next Fit and Worst Fit",
+          "type": "mcq",
+          "question": "Consider the statements: (i) Next fit may execute faster than first fit. (ii) Worst fit suffers from internal fragmentation. Which of the following statements is CORRECT?",
+          "options": [
+            "Only (i) is correct.",
+            "Only (ii) is correct.",
+            "Both (i) and (ii) are correct.",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Next fit avoids rescanning from the start so it can be faster than first fit, and worst fit leaves leftover space in the partition (internal fragmentation).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-03-006",
+          "title": "Fixed vs Variable Partition",
+          "type": "mcq",
+          "question": "Match the following. Types: (i) Fixed partition, (ii) Variable partition. Features: 1. Suffers from external fragmentation, 2. Suffers from internal fragmentation, 3. Flexible degree of multiprogramming, 4. Preferred allocation policy is worst fit, 5. Preferred allocation policy is best fit.",
+          "options": [
+            "1-(i), 2-(ii), 3-(i), 4-(ii), 5-(i)",
+            "1-(ii), 2-(i), 3-(ii), 4-(ii), 5-(i)",
+            "1-(i), 2-(i), 3-(ii), 4-(i), 5-(ii)",
+            "1-(ii), 2-(ii), 3-(i), 4-(i), 5-(ii)"
+          ],
+          "answer": 1,
+          "solution": "Fixed partition: internal fragmentation, limited multiprogramming, best fit preferred. Variable partition: external fragmentation, flexible multiprogramming, worst fit preferred.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-03-007",
+          "title": "Worst Fit Placement",
+          "type": "mcq",
+          "question": "Given memory partitions in order: P1: 200 KB, P2: 400 KB, P3: 150 KB, P4: 500 KB. How would the worst fit algorithm place processes (in order) requiring 215 KB, 300 KB, 25 KB, 400 KB? (The space left after filling a partition is not used by any process.)",
+          "options": [
+            "P4, P1, P3, 400 KB wait.",
+            "P1, P2, P3, 25 KB wait.",
+            "P4, P2, P3, 400 KB wait.",
+            "P3, P2, P4, 300 KB wait."
+          ],
+          "answer": 2,
+          "solution": "Worst fit uses the largest available partition: 215 → P4, 300 → P2, 25 → the largest remaining partition, then 400 KB has to wait. The DPP key marks option (c) as correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-03-008",
+          "title": "Wastage with Best Fit",
+          "type": "nat",
+          "question": "Consider five memory partitions of size 100 KB, 200 KB, 300 KB, 450 KB and 600 KB. The partitions are to be allotted to processes of size 180 KB, 50 KB, 210 KB, 30 KB and 80 KB. Calculate the memory wastage (in KB) using the best-fit algorithm.",
+          "answer": 1100,
+          "solution": "Best fit (partition leftovers are not reused): 180 → 200 KB (waste 20), 50 → 100 KB (waste 50), 210 → 300 KB (waste 90), 30 → 450 KB (waste 420), 80 → 600 KB (waste 520). Total = 20 + 50 + 90 + 420 + 520 = 1100 KB.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-04-001",
+          "title": "Resolving External Fragmentation",
+          "type": "msq",
+          "question": "The problem of external fragmentation can be resolved by ___.",
+          "options": [
+            "Compaction",
+            "Overlay",
+            "Paging",
+            "Non-contiguous allocation"
+          ],
+          "answer": [
+            0,
+            2,
+            3
+          ],
+          "solution": "Compaction and non-contiguous allocation (e.g. paging) resolve external fragmentation. Overlay does not.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-04-002",
+          "title": "Unallocated Partitions (Best Fit)",
+          "type": "nat",
+          "question": "Consider a memory system having six partitions 400 K, 200 K, 300 K, 250 K, 100 K and 500 K. There are four processes of size 289 K, 458 K, 200 K, 300 K. What is the total size of unallocated partitions using the best fit allocation policy (in K)?",
+          "answer": 350,
+          "solution": "289 → 300, 458 → 500, 200 → 200, 300 → 400. Unallocated partitions are 250 K and 100 K, total 350 K.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-04-003",
+          "title": "Compaction and Binding",
+          "type": "mcq",
+          "question": "Compaction is possible with ___ address binding.",
+          "options": [
+            "Static address binding",
+            "Dynamic address binding",
+            "Load time address binding",
+            "Compile time address binding"
+          ],
+          "answer": 1,
+          "solution": "Compaction relocates processes at run time, which is only possible with dynamic (run-time) binding.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-04-004",
+          "title": "Most Efficient Placement Algorithm",
+          "type": "mcq",
+          "question": "Given five memory partitions of 200 K, 600 K, 300 K, 400 K, 700 K (in order), how would first-fit, best-fit and worst-fit place processes of 312 K, 517 K, 212 K and 526 K (in order)? Which algorithm makes the most efficient use of memory? (Space left after filling a partition is not used by any process.)",
+          "options": [
+            "First fit",
+            "Best fit",
+            "Worst fit",
+            "All perform almost the same."
+          ],
+          "answer": 1,
+          "solution": "First fit and worst fit leave 526 K waiting, while best fit places all four processes (312 → 400, 517 → 600, 212 → 300, 526 → 700).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-04-005",
+          "title": "Internal Fragmentation (First Fit)",
+          "type": "nat",
+          "question": "Consider a memory system with five partitions: 200 K, 250 K, 500 K, 600 K and 300 K (in order). Process requests are of size 200 K, 350 K, 30 K, 25 K, 100 K (in order). How much memory space (in K) will remain unused because of internal fragmentation if first-fit allocation is used?",
+          "answer": 1145,
+          "solution": "Placement: 200 → 200 K (0 wasted), 350 → 500 K (150), 30 → 250 K (220), 25 → 600 K (575), 100 → 300 K (200). Total = 1145 K.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-04-006",
+          "title": "Overlay Memory",
+          "type": "mcq",
+          "question": "Consider a program in which horizontally connected blocks are independent modules and vertically connected blocks are dependent modules. Block sizes: A 10 KB, B 5 KB, C 3 KB, D 2 KB, E 5 KB, F 10 KB, G 3 KB, H 4 KB, I 6 KB. Which of the following memory spaces is sufficient to execute the program using overlays?",
+          "options": [
+            "48 KB",
+            "25 KB",
+            "50 KB",
+            "24 KB"
+          ],
+          "answer": 2,
+          "solution": "The overlay paths are A-B-E = 20 KB, A-B-F = 25 KB, A-C-G = 16 KB, A-D-H = 16 KB and A-D-I = 18 KB, so at least 25 KB is needed and anything of 25 KB or more is sufficient. The DPP key marks option (c) 50 KB.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-04-007",
+          "title": "Allocation Policy Efficiency",
+          "type": "mcq",
+          "question": "A computer has 1000 K of main memory. Jobs arrive and finish in the sequence: Job1 needs 100 K arrives, Job2 needs 250 K arrives, Job3 needs 400 K arrives, Job1 finishes, Job4 needs 40 K arrives, Job5 needs 250 K arrives, Job6 needs 60 K arrives. Which of the following allocation policies performs efficiently?",
+          "options": [
+            "First fit",
+            "Next fit",
+            "Both will perform the same",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "With first fit, Job4 and Job6 reuse the hole left by Job1 and Job5 fits; with next fit Job5 has to wait. So first fit performs better.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-05-001",
+          "title": "Logical Address Bits for 256 MB",
+          "type": "nat",
+          "question": "Consider a paging system with a 256 MB logical address space. How many bits of logical address are required for the given LAS?",
+          "answer": 28,
+          "solution": "256 MB = 2^28 bytes, so 28 bits.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-05-002",
+          "title": "Number of Pages",
+          "type": "nat",
+          "question": "Consider a paging system with 12 bits of logical address where each page is of size 2 KB. Calculate the number of pages in this system.",
+          "answer": 2,
+          "solution": "Page offset = 11 bits, so the number of pages = 2^(12 − 11) = 2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-05-003",
+          "title": "LAS, Pages and Page Size",
+          "type": "msq",
+          "question": "Consider a system with 22 bits of logical address and 12 bits of page offset. Calculate the logical address space, the number of pages, and the page size. Which of the following is correct?",
+          "options": [
+            "4MB, 4KB, 1K",
+            "8MB, 2KB, 2K",
+            "4096KB, 4KB, 1K",
+            "4096MB, 4MB, 2K"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "LAS = 2^22 B = 4 MB = 4096 KB. Page size = 2^12 = 4 KB, number of pages = 2^10 = 1K.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-05-004",
+          "title": "Operation of Paging Hardware",
+          "type": "mcq",
+          "question": "Which among the following is not an operation of paging hardware?",
+          "options": [
+            "Page fault repair",
+            "Memory protection",
+            "Address translation",
+            "None"
+          ],
+          "answer": 0,
+          "solution": "Paging hardware performs address translation and protection. Page fault repair is done by the operating system, not the paging hardware.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-05-005",
+          "title": "Pages and Frames",
+          "type": "mcq",
+          "question": "Consider the statements: S1: In paging, the logical address space is divided into fixed partitions called \"pages\". S2: In paging, the physical address space is divided into fixed partitions called \"frames\". Which of the following is correct?",
+          "options": [
+            "Only S1 is true",
+            "Only S2 is true",
+            "Both S1 and S2 are true",
+            "Both S1 and S2 are false"
+          ],
+          "answer": 2,
+          "solution": "Logical memory is divided into pages and physical memory into frames of the same size.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-05-006",
+          "title": "Number of Pages in LAS",
+          "type": "mcq",
+          "question": "Consider a system with a 32-bit logical address, a page size of 32 KB and a page table entry (PTE) size of 8 bytes. How many pages are there in the logical address space?",
+          "options": [
+            "2^17",
+            "2^19",
+            "2^20",
+            "None"
+          ],
+          "answer": 0,
+          "solution": "Page offset = 15 bits, so pages = 2^(32 − 15) = 2^17.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-05-007",
+          "title": "External Fragmentation Scheme",
+          "type": "mcq",
+          "question": "Which of the memory allocation schemes suffers from external fragmentation?",
+          "options": [
+            "Paging",
+            "Swapping",
+            "Segmentation",
+            "None"
+          ],
+          "answer": 2,
+          "solution": "Segmentation uses variable-sized segments and therefore suffers from external fragmentation. Paging suffers only from internal fragmentation.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-05-008",
+          "title": "Fifty-Percent Rule",
+          "type": "mcq",
+          "question": "There are half as many holes as processes. Let S be the average size of a process and xS be the average size of a hole. If there are n processes in the system, the total memory M is estimated using:",
+          "options": [
+            "nS(1 − x/2)",
+            "nS(1 + x/2)",
+            "xS + n/2",
+            "nS·x²"
+          ],
+          "answer": 1,
+          "solution": "With n/2 holes of average size xS, the total memory is M = nS + (n/2)(xS) = nS(1 + x/2).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-06-001",
+          "title": "Logical Address Space from Page Table Size",
+          "type": "mcq",
+          "question": "A computer system has a physical address of 128 bits and a page size of 32 KB. Each page table entry contains 4 valid and 2 dirty bits along with the translation bits. If the maximum size of the page table of a process is 60 MB, calculate the size of the logical address space supported by the system (in GB).",
+          "options": [
+            "512",
+            "32",
+            "128",
+            "64"
+          ],
+          "answer": 2,
+          "solution": "Frame bits = 128 − 15 = 113. PTE = 113 + 4 + 2 = 119 bits ≈ 15 bytes. Entries = 60 MB / 15 B = 4M = 2^22. LAS = 2^22 × 32 KB = 128 GB.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-06-002",
+          "title": "Levels of Paging",
+          "type": "nat",
+          "question": "Consider a system with a 512 KB page size where each page table entry requires 8 bytes. How many levels of paging are required to map a 30-bit logical address if every page table fits into a single page?",
+          "answer": 1,
+          "solution": "Page offset = 19 bits, so there are 2^11 pages. A page holds 2^19 / 8 = 2^16 entries, which is more than 2^11, so a single level is enough.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-06-003",
+          "title": "Page Table Size",
+          "type": "nat",
+          "question": "A computer system implements a 36-bit virtual address. The page size is 64 KB and the size of physical memory is 34 bits. The approximate size of the page table is ___ MB. (Assume memory is byte addressable.)",
+          "answer": 3,
+          "solution": "Pages = 2^(36 − 16) = 2^20. Frames = 2^(34 − 16) = 2^18, so a PTE needs 18 bits ≈ 3 bytes. Page table = 2^20 × 3 B = 3 MB.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-06-004",
+          "title": "Maximum Internal Fragmentation",
+          "type": "mcq",
+          "question": "If the page size is 4096 bytes in a paging system and a process needs 20 frames, what is the maximum possible internal fragmentation?",
+          "options": [
+            "4096 bytes",
+            "4095 bytes",
+            "2048 bytes",
+            "No internal fragmentation"
+          ],
+          "answer": 1,
+          "solution": "Internal fragmentation can be at most one byte less than a page: 4095 bytes (it occurs only in the last page).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-06-005",
+          "title": "Logical Address Bits",
+          "type": "mcq",
+          "question": "Consider a virtual address space of eight pages of 2048 words each mapped onto a physical memory of 32 frames. How many bits are there in the logical address?",
+          "options": [
+            "13",
+            "14",
+            "10",
+            "11"
+          ],
+          "answer": 1,
+          "solution": "Eight pages need 3 bits and 2048 words need 11 bits of offset: 3 + 11 = 14 bits.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-06-006",
+          "title": "Number of Page Table Levels",
+          "type": "nat",
+          "question": "Consider a virtual memory system with physical memory of 8 GB, a page size of 8 KB and a 46-bit virtual address. Assume every page table exactly fits into a single page. If the page table entry size is 4 bytes, how many levels of page tables would be required?",
+          "answer": 3,
+          "solution": "Virtual pages = 2^(46 − 13) = 2^33. A page holds 8 KB / 4 B = 2^11 entries, so each level resolves 11 bits. Levels = ⌈33 / 11⌉ = 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-06-007",
+          "title": "Count Correct Statements",
+          "type": "nat",
+          "question": "Consider the statements: (i) Overlays are used to increase the size of physical memory. (ii) The size of virtual memory depends on the size of main memory. (iii) Aging is used to keep track of the number of times a page is referenced. How many of the above are correct statements?",
+          "answer": 0,
+          "solution": "All three are incorrect, so the count is 0.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-06-008",
+          "title": "Address Bus Size",
+          "type": "nat",
+          "question": "A processor can support a maximum memory of 8 GB, where the memory is word addressable (each word consists of 4 bytes). The size of the address bus of the processor is at least ___ bits.",
+          "answer": 31,
+          "solution": "8 GB = 2^33 bytes. Words = 2^33 / 4 = 2^31, so 31 address bits.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-06-009",
+          "title": "Paging Statements",
+          "type": "msq",
+          "question": "Which of the following statements is/are correct regarding paging?",
+          "options": [
+            "Paging helps solve the issue of external fragmentation",
+            "Page size has no impact on internal fragmentation",
+            "Paging incurs memory overheads",
+            "Multi-level paging is necessary to support pages of different sizes"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "Paging removes external fragmentation and the page table adds memory overhead. Page size does affect internal fragmentation, and multi-level paging is not needed for different page sizes.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-06-010",
+          "title": "Objective of Hierarchical Paging",
+          "type": "mcq",
+          "question": "What is the basic objective of hierarchical paging?",
+          "options": [
+            "Reduce internal fragmentation.",
+            "Reduce external fragmentation.",
+            "To reduce context-switch overhead.",
+            "Reduce page table size overhead in memory."
+          ],
+          "answer": 3,
+          "solution": "Hierarchical (multi-level) paging reduces the memory overhead of a large page table.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-07-001",
+          "title": "Page Table Register",
+          "type": "mcq",
+          "question": "The page table register should be made of ___.",
+          "options": [
+            "Very high-speed logic",
+            "Secondary memory",
+            "Large memory space",
+            "Very low speed logic"
+          ],
+          "answer": 0,
+          "solution": "The page table base register is consulted on every memory access, so it must be built from very high-speed logic.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-07-002",
+          "title": "Main Memory Access Time from EMAT",
+          "type": "mcq",
+          "question": "Consider a system implementing paging hardware with a TLB. The entire page table and all the pages are in physical memory. The effective memory access time is 400 msec with TLB hit ratio 0.6 and TLB search time 20 msec. The main memory access time is ___ (in msec).",
+          "options": [
+            "275 msec",
+            "271.43 msec",
+            "120.5 msec",
+            "240 msec"
+          ],
+          "answer": 1,
+          "solution": "400 = 0.6(20 + x) + 0.4(20 + 2x) = 20 + 1.4x → x = 380/1.4 = 271.43 msec.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-07-003",
+          "title": "EMAT with Two-level Paging",
+          "type": "mcq",
+          "question": "Consider a 2-level paging system with TLB support. The TLB access time is 20 ns and the main memory access time is 300 ns. The CPU finds 126 page references in the TLB out of a total of 180 references. What is the effective memory access time?",
+          "options": [
+            "545 ns",
+            "440 ns",
+            "420 ns",
+            "500 ns"
+          ],
+          "answer": 3,
+          "solution": "TLB hit ratio = 126/180 = 0.7. EMAT = 0.7 × (20 + 300) + 0.3 × (20 + 3 × 300) = 224 + 276 = 500 ns.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-07-004",
+          "title": "Page Table Size",
+          "type": "nat",
+          "question": "Consider an operating system with a 32-bit virtual address space and 32 MB physical memory. If the page size is 8 KB, what is the approximate size of the page table in MB?",
+          "answer": 1,
+          "solution": "Entries = 2^32 / 2^13 = 2^19. Frames = 2^25 / 2^13 = 2^12, so a PTE needs 12 bits ≈ 2 bytes. Page table = 2^19 × 2 B = 1 MB.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-07-005",
+          "title": "EMAT with TLB",
+          "type": "nat",
+          "question": "Consider a system using paging hardware with a TLB. The entire page table and all pages are in physical memory. It takes 30 ms to search the TLB and 110 ms to access physical memory. If the TLB hit ratio is 0.6, the EMAT (in ms) is ___.",
+          "answer": 184,
+          "solution": "EMAT = 0.6 × (30 + 110) + 0.4 × (30 + 110 + 110) = 84 + 100 = 184 ms.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-07-006",
+          "title": "Demand Paging Average Access Time",
+          "type": "nat",
+          "question": "A demand paging system takes 240 time units to service a page fault and 300 time units to replace a dirty page. The main memory access time is 20 time units. The probability of a page fault is 0.4. In case of a page fault, the probability of the page being dirty is 0.06. The average access time is ___ time units.",
+          "answer": 103.44,
+          "solution": "As per the DPP working: 0.4 × (0.06 × 300 + 0.94 × 240) + 0.6 × 10 = 0.4 × 243.6 + 6 = 103.44 time units.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-07-007",
+          "title": "EMAT with Four-level Paging",
+          "type": "mcq",
+          "question": "Consider a 32-bit machine where a four-level paging scheme is used. The TLB hit ratio is 90%, it takes 30 ns to search the TLB and the main memory access time is 100 ns. What is the effective memory access time in nanoseconds?",
+          "options": [
+            "115 ns",
+            "160 ns",
+            "170 ns",
+            "180 ns"
+          ],
+          "answer": 2,
+          "solution": "EMAT = 0.9 × (30 + 100) + 0.1 × (30 + 5 × 100) = 117 + 53 = 170 ns.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-07-008",
+          "title": "Bits in Page Table Entries",
+          "type": "mcq",
+          "question": "A processor uses a 36-bit physical address and 32-bit virtual addresses, with a page frame size of 4 KB. Each page table entry is 4 bytes. A three-level page table is used, where bits 30–31 index the first level, bits 21–29 the second level, bits 12–20 the third level, and bits 0–11 are the offset. How many bits are required for addressing the next-level page table (or page frame) in the entries of the first, second and third level page tables respectively?",
+          "options": [
+            "20, 20, 20",
+            "24, 24, 24",
+            "24, 24, 20",
+            "25, 25, 24"
+          ],
+          "answer": 3,
+          "solution": "A page frame needs 36 − 12 = 24 bits. Number of third-level tables possible = 2^36 / 2^11 = 2^25 and number of second-level tables = 2^25 as well, so the first and second level entries need 25 bits.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-08-001",
+          "title": "Fragmentation Statements",
+          "type": "nat",
+          "question": "Consider the statements: (i) Paging never suffers from internal fragmentation. (ii) Segmentation never suffers from external fragmentation. (iii) Segmentation may suffer from internal fragmentation. How many of the above statements are correct?",
+          "answer": 0,
+          "solution": "Paging may have internal fragmentation but never external fragmentation. Segmentation has no internal fragmentation but may suffer from external fragmentation. All three statements are false, so the count is 0.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-08-002",
+          "title": "Segment Table Trap",
+          "type": "msq",
+          "question": "Consider the segment table: Segment 0 (base 5519, length 400), 1 (2500, 15), 2 (100, 500), 3 (1257, 600), 4 (1859, 500). Which of the following 13-bit logical addresses (3-bit segment number, 10-bit offset) will generate a trap addressing error?",
+          "options": [
+            "0000110011010",
+            "0010000001111",
+            "0100100101100",
+            "1000111110011"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "(a) segment 0, offset 410 > 400 → trap. (b) segment 1, offset 15 is not less than the length 15 → trap. (c) segment 2, offset 300 < 500 and (d) segment 4, offset 499 < 500 are valid.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-08-003",
+          "title": "Implementing Virtual Memory",
+          "type": "mcq",
+          "question": "Virtual memory can be implemented using ___.",
+          "options": [
+            "Thrashing",
+            "Segmentation",
+            "Demand paging",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Virtual memory is implemented through demand paging, which loads pages on demand at run time.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-08-004",
+          "title": "Access Time Relation",
+          "type": "mcq",
+          "question": "If x is TLB or cache access time, y is main memory access time, and z is page fault service time or disk access time, which of the following relations is correct regarding access time?",
+          "options": [
+            "x > y = z",
+            "x < y = z",
+            "x < y < z",
+            "x > y > z"
+          ],
+          "answer": 2,
+          "solution": "Cache/TLB is faster than main memory, which is faster than disk: x < y < z.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-08-005",
+          "title": "Limit of Virtual Memory Size",
+          "type": "mcq",
+          "question": "The size of virtual memory is limited by ___.",
+          "options": [
+            "Main memory size",
+            "Capacity of page table registers",
+            "Logical address space",
+            "Disk size"
+          ],
+          "answer": 3,
+          "solution": "Virtual memory resides on disk, so its size is limited by the disk size (as per the DPP key).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-08-006",
+          "title": "Levels of Paging for Single-page Table",
+          "type": "mcq",
+          "question": "How many levels of paging are required if it is desired to limit the page table to 1 page, assuming page size = 4 KB, entry size e = 4 B and a 64-bit logical address?",
+          "options": [
+            "1",
+            "2",
+            "4",
+            "6"
+          ],
+          "answer": 3,
+          "solution": "Offset = 12 bits, so 52 bits remain. Each level resolves log2(4 KB / 4 B) = 10 bits. Levels = ⌈52 / 10⌉ = 6.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-08-007",
+          "title": "Segment Table Size",
+          "type": "nat",
+          "question": "Consider a system using segmented paging, where a segment is divided into 16K pages each of size 4 KB and the segment table is divided into 8K pages each of size 2 KB (byte addressable memory). The physical address space is 64 MB. Calculate the size of the segment table (in MB).",
+          "answer": 16,
+          "solution": "Segment table size = 8K pages × 2 KB = 2^13 × 2^11 = 2^24 B = 16 MB (as per the DPP key).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-09-001",
+          "title": "LRU Page Faults",
+          "type": "nat",
+          "question": "Given 3 page frames and page references in the order 2, 3, 4, 5, 2, 3, 6, 2, 3, 4, 5, 6, using the LRU page replacement algorithm, the number of page faults will be ___.",
+          "answer": 10,
+          "solution": "Faults occur on 2, 3, 4, 5, 2, 3, 6, 4, 5, 6 and hits only on the 8th and 9th references: 10 faults. (The printed DPP key shows 9, which is the FIFO count for this string.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-09-002",
+          "title": "Virtual Memory Policies",
+          "type": "msq",
+          "question": "Which of the following are virtual memory policies?",
+          "options": [
+            "Page replacement",
+            "Page reduction",
+            "Page selection",
+            "Page fault"
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "The OS decides page selection (when to bring a page in) and page replacement (what to replace).",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-09-003",
+          "title": "FIFO vs LRU (4 Frames)",
+          "type": "mcq",
+          "question": "Suppose there are 4 frames in memory and consider the reference string A, B, E, D, C, E, F, A, G, E, D, C, A, C, B. Which of the following is correct?",
+          "options": [
+            "FIFO has fewer page faults than LRU.",
+            "LRU has fewer page faults than FIFO.",
+            "Both FIFO and LRU have equal page faults.",
+            "FIFO has 12 page faults."
+          ],
+          "answer": 1,
+          "solution": "FIFO gives 13 page faults and LRU gives 12, so LRU has fewer.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-09-004",
+          "title": "EMAT with Page Faults",
+          "type": "nat",
+          "question": "Consider a system with a page fault service time of 158 ns and a page hit ratio of 75%. If the memory access time is 10 ns, then the effective memory access time (EMAT) is ___ ns.",
+          "answer": 47,
+          "solution": "EMAT = 0.75 × 10 + 0.25 × 158 = 7.5 + 39.5 = 47 ns.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-09-005",
+          "title": "FIFO vs LRU (5 Frames)",
+          "type": "mcq",
+          "question": "Consider a main memory with five page frames and the page reference sequence 4, 9, 3, 4, 10, 2, 7, 4, 9, 10, 4, 7, 3, 2, 4. Which statement is true with respect to FIFO and LRU?",
+          "options": [
+            "Page faults in FIFO are more than LRU.",
+            "Page faults in LRU are more than FIFO.",
+            "Both LRU and FIFO have the same number of page faults.",
+            "Page faults in FIFO are 2 more than LRU."
+          ],
+          "answer": 2,
+          "solution": "Both FIFO and LRU give 9 page faults for this sequence.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-09-006",
+          "title": "Belady's Phenomenon",
+          "type": "msq",
+          "question": "Belady's phenomenon is commonly experienced in:",
+          "options": [
+            "First in first out",
+            "Second chance algorithm",
+            "Random page replacement algorithm",
+            "Least recently used algorithm"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "Belady's anomaly cannot occur in stack algorithms like LRU and optimal, but can occur in FIFO, second chance and random replacement.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-09-007",
+          "title": "Optimal Page Faults (4 Frames)",
+          "type": "nat",
+          "question": "Given the page reference string 1, 10, 1, 2, 9, 2, 9, 8, 9, 8, 2, 3, 9, 3, 8, 9, 3, 4, 9, 3 and 4 page frames, how many page faults will occur with the optimal page replacement policy?",
+          "answer": 7,
+          "solution": "Faults occur for 1, 10, 2, 9, 8, 3 and 4 (7 in total).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-09-008",
+          "title": "Optimal Page Faults (3 Frames)",
+          "type": "nat",
+          "question": "Given 3 page frames and page references in the order 2, 3, 4, 5, 2, 3, 6, 2, 3, 4, 5, 6, using the optimal page replacement algorithm, the number of page faults will be ___.",
+          "answer": 7,
+          "solution": "Optimal replacement evicts the page used farthest in the future, giving 7 page faults.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-10-001",
+          "title": "Virtual Page and Offset",
+          "type": "mcq",
+          "question": "A 32-bit address system uses paged virtual memory with a page size of 2 KB. What are the virtual page number and the offset (in decimal) for the virtual address 0x00030f40 respectively?",
+          "options": [
+            "95, 2008",
+            "97, 1856",
+            "94, 1732",
+            "98, 2112"
+          ],
+          "answer": 1,
+          "solution": "Offset = 11 bits. Page number = 0x30f40 >> 11 = 0x61 = 97 and offset = 0x740 = 1856.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-10-002",
+          "title": "Maximum and Minimum Page Faults",
+          "type": "mcq",
+          "question": "Suppose a page-reference string for a process with x frames (initially all empty) has length s, and y distinct page numbers occur in it. (i) What is the maximum number of page faults? (ii) What is the minimum number of page faults?",
+          "options": [
+            "(i) – x (ii) – y",
+            "(i) – y (ii) – x",
+            "(i) – s (ii) – y",
+            "(i) – s (ii) – x"
+          ],
+          "answer": 2,
+          "solution": "The maximum is every reference faulting (s) and the minimum is one fault per distinct page (y).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-10-003",
+          "title": "Page Faults by Page Hits (MRU)",
+          "type": "nat",
+          "question": "If MRU is used as the page replacement policy with four initially empty page frames for the reference string 4 2 5 1 3 5 6 2 3 2 3 4 5 2 3, what is the value of (number of page faults) / (number of page hits)? (Round off to 3 decimals.)",
+          "answer": 0.875,
+          "solution": "With MRU: faults on 4, 2, 5, 1, 3, 6 and 5 (7 faults) and 8 hits, so 7/8 = 0.875. (The printed DPP key shows 4, using 12 faults and 3 hits.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-10-004",
+          "title": "EMAT with LRU Hit Ratio",
+          "type": "nat",
+          "question": "Consider a system with 3 frames using the LRU page replacement policy for the page reference string 3 2 3 4 1 4 2 4 1 2. What will be the effective memory access time (in ns) if the TLB access time is 30 ns and the main memory access time is 90 ns?",
+          "answer": 165,
+          "solution": "With 3 frames LRU gives 5 faults and 5 hits, so the hit ratio is 0.5. EMAT = 0.5 × (30 + 90) + 0.5 × (30 + 90 + 90) = 60 + 105 = 165 ns. (The printed key shows 156, which corresponds to 4 frames, i.e. a hit ratio of 0.6.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-10-005",
+          "title": "When Does a Page Fault Occur",
+          "type": "mcq",
+          "question": "When will a page fault occur?",
+          "options": [
+            "When a process tries to access a page which is not in the CPU.",
+            "When a process tries to access a page which is not on disk.",
+            "When a process tries to access a page which is not in main memory.",
+            "None of these."
+          ],
+          "answer": 2,
+          "solution": "A page fault occurs when the referenced page is not present in main memory.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-11-001",
+          "title": "Reference String from Addresses",
+          "type": "mcq",
+          "question": "Consider the following virtual addresses: 784, 224, 634, 734, 546, 978, 444, 299, 712, 526. If the page size is 150 bytes, then the reference string will be:",
+          "options": [
+            "7, 2, 6, 7, 5, 9, 4, 2, 7, 5",
+            "7, 2, 6, 5, 9, 4, 6, 5",
+            "6, 1, 3, 4, 5, 9, 7, 6",
+            "5, 1, 4, 3, 6, 2, 1, 4, 3"
+          ],
+          "answer": 3,
+          "solution": "Page number = ⌊address / 150⌋: 5, 1, 4, 4, 3, 6, 2, 1, 4, 3. Consecutive repeats are merged, giving 5, 1, 4, 3, 6, 2, 1, 4, 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-11-002",
+          "title": "Length of Reference String plus Unique Pages",
+          "type": "nat",
+          "question": "Consider the virtual addresses 709, 540, 612, 311, 456, 908, 806, 708, 580, 250, 412. If the page size is 200 B, what is the sum of the length of the corresponding reference string and the number of unique pages in it?",
+          "answer": 14,
+          "solution": "Pages: 3, 2, 3, 1, 2, 4, 4, 3, 2, 1, 2. Merging consecutive repeats gives 3, 2, 3, 1, 2, 4, 3, 2, 1, 2 (length 10) with 4 unique pages. Sum = 10 + 4 = 14.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-11-003",
+          "title": "Excessive Paging",
+          "type": "mcq",
+          "question": "Excessive paging activity results in ___.",
+          "options": [
+            "Compaction",
+            "Thrashing",
+            "Segmentation",
+            "Paging"
+          ],
+          "answer": 1,
+          "solution": "Excessive paging activity (high page fault rate) is called thrashing.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-11-004",
+          "title": "Thrashing Statements",
+          "type": "msq",
+          "question": "Which of the following statements are correct?",
+          "options": [
+            "High thrashing can lead to deadlock.",
+            "Lack of frames in main memory causes thrashing.",
+            "Increasing memory frames can reduce page faults.",
+            "A high degree of multiprogramming can cause poor throughput."
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "As per the DPP key, all four statements are correct.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-11-005",
+          "title": "Minimum Page Demand (Working Set)",
+          "type": "mcq",
+          "question": "If the size of the working set window (Δ) for a set of pages is 4 and the page reference string is 5, 4, 3, 1, 5, 4, 5, 3, 4, 5, what could be the minimum page demand of the process at any time?",
+          "options": [
+            "4",
+            "3",
+            "2",
+            "1"
+          ],
+          "answer": 1,
+          "solution": "Counting distinct pages in each window of 4 references: 4, 4, 4, 3, 3, 3, 3. The minimum is 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-11-006",
+          "title": "Handling Thrashing",
+          "type": "msq",
+          "question": "Which of the following techniques is/are used to handle thrashing and make the system thrashing-free?",
+          "options": [
+            "Decreasing page fault frequency",
+            "Working set model",
+            "Compaction",
+            "Page replacement policy"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "The working set model and controlling the page fault frequency are the techniques used to handle thrashing.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mm-11-007",
+          "title": "Working Set (t, k)",
+          "type": "mcq",
+          "question": "The working set (t, k) at an instant of time t is:",
+          "options": [
+            "The set of k references with high frequency",
+            "The set of k future references that the OS will make in the next t units of time",
+            "The set of k pages that have been referenced in the last t time units",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "Working set at time t is the set of pages referenced in the last k (window) time units, as per the DPP key.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "File System and Device Management",
+      "questions": [
+        {
+          "id": "dpp-fs-01-001",
+          "title": "Cluster in a Disk",
+          "type": "mcq",
+          "question": "What is a cluster in a disk architecture?",
+          "options": [
+            "It is a group of one or more sectors on the same track.",
+            "It is a collection of tracks on the same cylinder.",
+            "It is a group of one or more tracks on the same platter.",
+            "It is a collection of platters on the disk."
+          ],
+          "answer": 0,
+          "solution": "A cluster is a group of one or more sectors on the same track.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-01-002",
+          "title": "Unformatted Disk Capacity",
+          "type": "nat",
+          "question": "Consider the following disk specifications: number of platters = 8, number of tracks per surface = 512, number of sectors per track = 4096, sector offset = 15 bits. Calculate the unformatted capacity (in GB).",
+          "answer": 512,
+          "solution": "Sector size = 2^15 B = 32 KB. Capacity = 8 × 512 × 4096 × 32 KB = 2^3 × 2^9 × 2^12 × 2^15 B = 2^39 B = 512 GB (as per the DPP key).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-01-003",
+          "title": "Disk Data Rate",
+          "type": "nat",
+          "question": "In a computer system, a disk track can hold 32 sectors, each of size 256 bytes. The rotation rate is 2000 rpm. The data rate of the disk is ___ KB per second (approximately).",
+          "answer": 273,
+          "solution": "Track capacity = 32 × 256 B = 8192 B. Rotations per second = 2000/60. Data rate = 8192 × 2000/60 ≈ 273 KB/s.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-01-004",
+          "title": "Time to Read a Sector",
+          "type": "mcq",
+          "question": "A disk rotates at 7200 RPM. It has 500 sectors of 512 bytes each around the outer cylinder. How long does it take to read a sector?",
+          "options": [
+            "14.87 µsec",
+            "15.67 µsec",
+            "13.87 µsec",
+            "16.67 µsec"
+          ],
+          "answer": 3,
+          "solution": "One rotation = 60/7200 s = 8.33 ms and reads all 500 sectors. Time per sector = 8.33 ms / 500 = 16.67 µs.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-01-005",
+          "title": "Average Service Time",
+          "type": "mcq",
+          "question": "Consider a 10 GB disk rotating at 10,000 rpm, data transfer rate 10^7 bytes/sec, average seek time 8 ms and block size 32 KB. What is the average service time to access a single disk block from a random location on the disk?",
+          "options": [
+            "15.38 ms",
+            "14.28 ms",
+            "16.48 ms",
+            "13.18 ms"
+          ],
+          "answer": 1,
+          "solution": "Seek = 8 ms. Average rotational latency = ½ × 6 ms = 3 ms. Transfer time = 32 × 1024 / 10^7 = 3.28 ms. Total = 14.28 ms.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-01-006",
+          "title": "Total Swap Time",
+          "type": "nat",
+          "question": "A hard disk has 20 surfaces with 100 tracks per surface and 16 sectors per track. The disk transfer rate is 10^6 bytes/sec, page size is 512 bytes, the process size is 2048 bytes, and the seek time is 25 ms. The disk rotates at 3000 rpm. What is the total swap time (in ms, up to three decimal places)? (The source text printed 300 rpm; the worked solution uses 3000 rpm.)",
+          "answer": 74.096,
+          "solution": "One rotation = 20 ms, so average rotational latency = 10 ms. Transfer time of 2048 B = 2.048 ms. Swap time = 2 × (25 + 10 + 2.048) = 74.096 ms. (The printed DPP key shows 70.096, which does not match its own working.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-01-007",
+          "title": "Average Read/Write Time",
+          "type": "nat",
+          "question": "Consider a disk that rotates at 20000 RPM with a transfer rate of 32 kBps. If the average seek time is 6 ms and the controller's transfer time is twice the disk transfer time, the average time needed to read or write a 1024-byte sector is ___ ms (up to 1 decimal place).",
+          "answer": 103.5,
+          "solution": "Rotation time = 3 ms, so average rotational latency = 1.5 ms. Disk transfer time = 1024/(32 × 1024) s = 32 ms; controller transfer time = 64 ms. Total = 6 + 1.5 + 32 + 64 = 103.5 ms.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-01-008",
+          "title": "Steps to Use a Disk",
+          "type": "msq",
+          "question": "Two steps performed by the operating system to use a disk to hold its files are:",
+          "options": [
+            "Partitioning",
+            "Logical formatting",
+            "Caching",
+            "Swapping"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "The OS partitions the disk into one or more groups of cylinders and then performs logical formatting (creates the file system).",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-02-001",
+          "title": "SCAN Head Movement",
+          "type": "nat",
+          "question": "Consider a disk queue with I/O requests to blocks on cylinders 53, 98, 140, 59, 115, 185, 197, 86. The SCAN algorithm is used. The head is initially at 100 moving towards the left. The cylinders are numbered 0 to 199. The total head movement incurred while servicing these requests is ___.",
+          "answer": 299,
+          "solution": "Moving left: 100 → 98 → 86 → 59 → 53 → 0 = 100. Then 0 → 115 → 140 → 185 → 197 = 197 more. Total = 100 + 197 = 299 (head goes to 0 before reversing).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-02-002",
+          "title": "Incorrect Statements about Disk and CPU",
+          "type": "mcq",
+          "question": "Consider the statements: S1: Loop instructions cannot be interrupted till they complete. S2: Nearest cylinder next disk scheduling gives the best throughput in comparison to FCFS. S3: Using a large file block size in a fixed block size file system leads to poor disk throughput. Which of the above statements are incorrect?",
+          "options": [
+            "Only S1",
+            "Only S1, S2 and S3",
+            "Only S1 and S3",
+            "Only S2"
+          ],
+          "answer": 2,
+          "solution": "S1 is false: the CPU checks for interrupts after each instruction, so a loop can be interrupted. S2 is true (SSTF has better throughput but may starve). S3 is false: a larger block gives better throughput but poorer space utilization.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-02-003",
+          "title": "SSTF Service Order",
+          "type": "nat",
+          "question": "Consider a disk with cylinders numbered 0 to 99. The disk arm is at cylinder 40 and the queue of disk requests is for cylinders 16, 35, 25, 60, 80, 90 and 20. If Shortest Seek Time First (SSTF) is used, the request for cylinder 60 is serviced after servicing ___ requests.",
+          "answer": 4,
+          "solution": "SSTF order from 40: 35, 25, 20, 16, then 60, 80, 90. So 60 is serviced after 4 requests.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-02-004",
+          "title": "Maximum File Size (I-node)",
+          "type": "nat",
+          "question": "A UNIX-style i-node has 10 direct pointers, two single, 5 double and 2 triple indirect pointers. The disk block size is 8 KB and a disk block address is 32 bits. The maximum possible file size is ___ TB (approximately).",
+          "answer": 128,
+          "solution": "Pointers per block = 8 KB / 4 B = 2^11. The two triple-indirect pointers dominate: 2 × (2^11)^3 × 2^13 B = 2^47 B = 128 TB.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-02-005",
+          "title": "C-LOOK Total Time",
+          "type": "nat",
+          "question": "Consider a disk queue with request sequence 125, 85, 46, 74, 80, 112, 21, 53, 140. The initial head position is 50 and it is moving towards the right. The cylinders are numbered 0 to 150. Calculate the total time (in ms) required to serve these requests if 4 ms are needed to move the head from one cylinder to another and C-LOOK is used.",
+          "answer": 936,
+          "solution": "Head movement: 50 → 140 = 90, jump 140 → 21 = 119, then 21 → 46 = 25. Total = 234 cylinders. Time = 234 × 4 = 936 ms.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-02-006",
+          "title": "File and Record Statements",
+          "type": "msq",
+          "question": "Choose the correct statements from the following.",
+          "options": [
+            "A record is a collection of related fields that can be treated as a unit by some application program.",
+            "A file is a collection of similar records.",
+            "A database is a collection of non-related data.",
+            "A field is the basic element of data."
+          ],
+          "answer": [
+            0,
+            1,
+            3
+          ],
+          "solution": "A database is a collection of related data, so (c) is incorrect.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-02-007",
+          "title": "Maximum File Size (6 direct, 4 single, 3 double)",
+          "type": "mcq",
+          "question": "Each inode in a file system has 6 direct pointers, 4 single-indirect pointers and 3 double-indirect pointers. A disk block is 500 bytes and a pointer to a disk block is 10 bytes. The entire disk consists of at most 17,000,000 bytes. Calculate the maximum size (in bytes) of a file in this file system.",
+          "options": [
+            "3850000",
+            "3853400",
+            "3853200",
+            "3853000"
+          ],
+          "answer": 3,
+          "solution": "Pointers per block = 50. Blocks = 6 + 4 × 50 + 3 × 50 × 50 = 6 + 200 + 7500 = 7706. Size = 7706 × 500 = 3,853,000 bytes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fs-02-008",
+          "title": "Maximum File Size (UNIX, 512-bit Blocks)",
+          "type": "mcq",
+          "question": "In a UNIX OS, each data block is 512 bits and each node has 5 direct data block addresses and three additional addresses: one for a single indirect block, one for a double indirect block and one for a triple indirect block. Each block is addressed with 128 bits. Calculate the maximum size of a file possible in the file system (in k-bits).",
+          "options": [
+            "81.91 to 81.92",
+            "82.91 to 82.92",
+            "80.91 to 80.92",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "Pointers per block = 512/128 = 4. Blocks = 5 + 4 + 4² + 4³ = 89. Size = 89 × 512 = 45,568 bits ≈ 45.568 k-bits, which matches none of the given ranges.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "System Calls and Threads",
+      "questions": [
+        {
+          "id": "dpp-st-01-001",
+          "title": "Total New Processes (switch with fork)",
+          "type": "nat",
+          "question": "Consider the code: #include<stdio.h> int main() { int i; for (i = 0; i < 5; i += 2) { switch(i) { case 0: fork(); case 1: fork(); fork(); case 2: fork(); fork(); break; case 3: fork(); fork(); fork(); break; case 4: for (j = i; j >= 1; j--) fork(); } } return 0; } What will be the number of child (newly created) processes for the above code?",
+          "answer": 2047,
+          "solution": "The cases fall through. i = 0 executes 5 forks (case 0, case 1 and case 2), i = 2 executes 2 forks (case 2) and i = 4 executes 4 forks (case 4). Total forks = 11, so processes = 2^11 = 2048 and new processes = 2047.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-st-01-002",
+          "title": "Child Processes from for Loop",
+          "type": "nat",
+          "question": "Consider the code: main() { for (int i = 1; i <= 5; i++) fork(); }. How many child (newly created) processes are created?",
+          "answer": 31,
+          "solution": "n sequential fork() calls create 2^n processes, so 2^5 − 1 = 31 new processes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-st-01-003",
+          "title": "Match Scheduling Terms",
+          "type": "mcq",
+          "question": "Match List-I and List-II. List-I: A. Context switching, B. Degree of multiprogramming, C. Message passing, D. Fork(). List-II: 1. Process creation, 2. Dispatcher, 3. Long term scheduler, 4. Inter process communication.",
+          "options": [
+            "A-3, B-1, C-2, D-4",
+            "A-2, B-3, C-4, D-1",
+            "A-1, B-3, C-4, D-2",
+            "A-4, B-2, C-1, D-3"
+          ],
+          "answer": 1,
+          "solution": "Context switching → dispatcher; degree of multiprogramming → long-term scheduler; message passing → IPC; fork() → process creation.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-st-01-004",
+          "title": "Interface to OS Services",
+          "type": "mcq",
+          "question": "To access the services of the operating system, the interface is provided by the ___.",
+          "options": [
+            "System call",
+            "API",
+            "Library",
+            "Assembly Instructions"
+          ],
+          "answer": 0,
+          "solution": "System calls provide the interface to the services of the operating system.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-st-01-005",
+          "title": "Output Count of fork()",
+          "type": "mcq",
+          "question": "The following program fragment prints the string \"GATE2023\" how many times? main() { fork(); fork(); printf(\"GATE2023\\n\"); }",
+          "options": [
+            "1",
+            "2",
+            "4",
+            "8"
+          ],
+          "answer": 2,
+          "solution": "Two forks create 2^2 = 4 processes and each prints the string once.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-st-01-006",
+          "title": "Thread Library Scheduling",
+          "type": "mcq",
+          "question": "Which of the following scheduling can be done by the thread library?",
+          "options": [
+            "User thread scheduling",
+            "Process Scheduling",
+            "Kernel thread scheduling",
+            "None of the above."
+          ],
+          "answer": 0,
+          "solution": "A user-level thread library schedules user threads; the kernel schedules processes and kernel threads.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-st-01-007",
+          "title": "Child Processes (k loop)",
+          "type": "mcq",
+          "question": "Consider the code: void main() { for (int k = 1; k < 5; k++) pid[k] = fork(); }. How many child processes are created by the above code?",
+          "options": [
+            "15",
+            "4",
+            "32",
+            "16"
+          ],
+          "answer": 0,
+          "solution": "The loop runs 4 times, creating 2^4 − 1 = 15 child processes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-st-01-008",
+          "title": "User vs Kernel Threads",
+          "type": "mcq",
+          "question": "Consider the statements about user-level and kernel-level threads: S1: Context switching in kernel-level threads is faster than in user-level threads. S2: If one user-level thread gets blocked, the entire process also gets blocked. S3: Kernel-level threads can be scheduled independently.",
+          "options": [
+            "S1 and S3 only",
+            "Only S2",
+            "Only S3",
+            "S2 and S3 only"
+          ],
+          "answer": 3,
+          "solution": "User-level thread switching is faster (S1 false). Blocking of one user-level thread blocks the process (S2) and kernel threads are scheduled independently (S3).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-st-01-009",
+          "title": "Types of System Calls",
+          "type": "msq",
+          "question": "What are the types of system calls in an operating system?",
+          "options": [
+            "Process control, file management",
+            "Device management",
+            "Communication",
+            "Information maintenance"
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "System calls are grouped into process control, file management, device management, information maintenance and communication.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-st-01-010",
+          "title": "Kernel Mode Operations",
+          "type": "mcq",
+          "question": "Which of the following operations requires the executing code to be operating in kernel mode?",
+          "options": [
+            "Performing semaphore 'P' operation",
+            "Making a system call",
+            "Disabling interrupt",
+            "Both (a) and (c)"
+          ],
+          "answer": 2,
+          "solution": "As per the DPP key, disabling interrupts is a privileged operation that needs kernel mode.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    }
+  ]
 }

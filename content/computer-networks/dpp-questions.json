@@ -1,4 +1,1974 @@
 {
-  "title": "computer-networks - DPP",
-  "chapters": []
+  "title": "Computer Networks DPP Questions",
+  "chapters": [
+    {
+      "title": "IPv4 Addressing",
+      "questions": [
+        {
+          "id": "dpp-ipv4-01-q1",
+          "title": "Networks in Class B and C",
+          "type": "nat",
+          "question": "Let $2^p$ and $2^q$ be the number of networks present in class B and class C under IPv4 addressing format, the value of $p+q$ is ________.",
+          "answer": 35,
+          "solution": "Class B has 14 network bits (2^14 networks) and class C has 21 network bits (2^21 networks). So p = 14, q = 21 and p + q = 35.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-01-q2",
+          "title": "Valid Class C Addresses",
+          "type": "msq",
+          "question": "Which of the following is/are VALID IP addresses belonging to class C under IPV4 addressing format?",
+          "options": [
+            "191.82.129.75",
+            "208.21.97.120",
+            "224.82.31.128",
+            "223.32.64.124"
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "Class C addresses have first octet 192 to 223. 208.21.97.120 and 223.32.64.124 are in range; 191.x is class B and 224.x is class D.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-01-q3",
+          "title": "Class D in a 36-bit Address",
+          "type": "mcq",
+          "question": "Consider a hypothetical IPv4 address of 36 bits where class A contain $2^{35}$ IP addresses. Then the number of IP address present in class D will be (Assume classful address is used):",
+          "options": [
+            "$2^{28}$",
+            "$2^{32}$",
+            "$2^{34}$",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "Class A starts with prefix 0 (2^35 addresses). Class B (10) has 2^34, class C (110) has 2^33, class D (1110) has 2^32 and class E (1111) has 2^32 addresses.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-01-q4",
+          "title": "Start of Address Classes",
+          "type": "mcq",
+          "question": "Which of the following is/are correct?",
+          "options": [
+            "Class A IPv4 address start form 0.0.0.0.",
+            "Class B IPv4 address start from 127.0.0.0.",
+            "Class C IPv4 address start from 191.0.0.0.",
+            "None of the above."
+          ],
+          "answer": 0,
+          "solution": "Class A starts at 0.0.0.0 (range 0 to 127), class B starts at 128.0.0.0 and class C starts at 192.0.0.0. Only (a) is correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-01-q5",
+          "title": "Ratios of Address Class Sizes",
+          "type": "mcq",
+          "question": "Consider the following statements:\nI: The ratio of the number of IP addresses contained in class A to that of class E is 8:1.\nII: The number of IP addresses contained in class D is 75% less than the number of IP addresses contained in class B.\nWhich of the above given statement(s) is/are INCORRECT?",
+          "options": [
+            "I only",
+            "II only",
+            "Both I and II",
+            "Neither I nor II"
+          ],
+          "answer": 3,
+          "solution": "Class A has 2^31 and class E has 2^28 addresses, so the ratio is 8:1 (I is correct). Class D has 2^28 and class B has 2^30, so D is 25% of B, i.e. 75% less (II is correct). Neither is incorrect.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-01-q6",
+          "title": "Hosts in Class C from Class B Networks",
+          "type": "mcq",
+          "question": "If the number of networks present in class B are $2^m$ then number of hosts present in class C are: (classful addressing scheme is followed)",
+          "options": [
+            "$2^m - 2$",
+            "$2^{m+2} - 2$",
+            "$\\sqrt{2^{m+2}} - 2$",
+            "$2^m$"
+          ],
+          "answer": 2,
+          "solution": "Class B has 2^14 networks, so m = 14. Class C hosts = 2^8 - 2 = 254. Option (c): sqrt(2^(m+2)) - 2 = sqrt(2^16) - 2 = 2^8 - 2 = 254.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-01-q7",
+          "title": "Relations Between Class Parameters",
+          "type": "msq",
+          "question": "If number of network present in class B and class C are $2^p$ and $2^q$ respectively. And number of hosts present in B and class C are $(2^m - 2)$ and $(2^n - 2)$ respectively. Then which of the following is/are correct?",
+          "options": [
+            "Relation between p and q will be $2q=3p$.",
+            "The number of networks present in class A $2^{n-1} - 2$ possible.",
+            "Relation between m and n will be $m=2n$.",
+            "Relation between p and n will be $4p=7n$."
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "p = 14, q = 21, m = 16, n = 8. (a) 2q = 42 = 3p. (b) Class A networks = 2^7 - 2 = 2^(n-1) - 2. (c) m = 16 = 2n. (d) 4p = 56 = 7n. All are correct.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-01-q8",
+          "title": "Addresses That Cannot Be Assigned to Hosts",
+          "type": "mcq",
+          "question": "Which of the following IP address cannot be assigned to any host?",
+          "options": [
+            "127.10.15.243",
+            "129.46.255.255",
+            "Both (a) and (b)",
+            "None of the above"
+          ],
+          "answer": 2,
+          "solution": "127.x.x.x is the loopback range, reserved and not assignable to a host. 129.46.255.255 is a class B direct broadcast address (host bits all 1s). So both cannot be assigned.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-02-q1",
+          "title": "Types of Communication",
+          "type": "msq",
+          "question": "Which of the following is/are correct?",
+          "options": [
+            "In unicast communication transmitting a packet from one computer to another computer in different class is possible.",
+            "In unicast communication transmitting a packet from one computer to another computer in same class is possible.",
+            "Transmitting a packet from one computer to all computer is called multicast communication.",
+            "Transmitting a packet from one computer to many computer is called broadcast communication."
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "Unicast is one-to-one and can happen between hosts of the same or different classes. One-to-all is broadcast and one-to-many is multicast, so (c) and (d) are swapped and wrong.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-02-q2",
+          "title": "Network ID and Broadcast Addresses",
+          "type": "mcq",
+          "question": "Which of the following is true?",
+          "options": [
+            "Network ID is same for each class in IP address.",
+            "Direct broadcast address (DBA) is same for each class.",
+            "Limited broadcast address (LBA) is same for class A, B and C.",
+            "Limited broadcast address (LBA) for class D is 255.255.255.255."
+          ],
+          "answer": 2,
+          "solution": "The limited broadcast address 255.255.255.255 is the same for classes A, B and C. Network ID and DBA differ by class, and class D has no broadcast address.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-02-q3",
+          "title": "Network ID Bits of a Class C Host",
+          "type": "nat",
+          "question": "Consider a host with IP address 192.11.0.248, how many network ID bits are allocated for given IP?",
+          "answer": 24,
+          "solution": "192 lies in 192 to 223, so this is a class C address with 24 network ID bits.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-02-q4",
+          "title": "ARP and Port Statements",
+          "type": "nat",
+          "question": "Consider the following statements:\n$S_1$: ARP request is always broadcast with in the network.\n$S_2$: ARP reply is unicasting.\n$S_3$: MAC address is of 6 bytes.\n$S_4$: With the help of port number process can be found within the host.\nTotal number of INCORRECT statements is/are ________.",
+          "answer": 0,
+          "solution": "All four statements are correct: ARP request is broadcast, ARP reply is unicast, a MAC address is 48 bits (6 bytes) and port numbers identify processes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-02-q5",
+          "title": "Valid Network ID",
+          "type": "mcq",
+          "question": "Consider a host with IP address 190.11.25.0 which of the following will be a valid network ID?",
+          "options": [
+            "190.11.255.255",
+            "190.0.0.0",
+            "190.11.0.0",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "190 is class B, so the network ID keeps the first two octets and zeroes the host part: 190.11.0.0.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-02-q6",
+          "title": "DBA of a Class D Address",
+          "type": "mcq",
+          "question": "Consider the IP address 224.224.92.69 which of following will be direct broadcast address for the given host IP?",
+          "options": [
+            "224.224.92.255",
+            "224.244.255.225",
+            "255.255.255.255",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "224 lies in 224 to 239, so this is a class D (multicast) address. Class D has no network/host split and therefore no direct broadcast address.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-02-q7",
+          "title": "Properties of 167.0.64.68",
+          "type": "msq",
+          "question": "Consider an IP address 167.0.64.68. Which of the following option is/are correct for given IP address?",
+          "options": [
+            "Limited broadcast address for the given IP address is 255.255.255.255.",
+            "Direct broadcast address for given IP address is 167.255.255.255.",
+            "Network ID for given IP address is 167.0.0.0.",
+            "Limited broadcast address for given IP is same as direct broadcast address."
+          ],
+          "answer": [
+            0,
+            2
+          ],
+          "solution": "167 is class B. Network ID = 167.0.0.0, DBA = 167.0.255.255 and the limited broadcast address is 255.255.255.255 (different from the DBA).",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-02-q8",
+          "title": "Hexadecimal to Dotted Decimal",
+          "type": "mcq",
+          "question": "The correct dotted decimal notation format for given hexadecimal notation (HDN) 162184AF is:",
+          "options": [
+            "175.132.33.22",
+            "22.33.132.174",
+            "22.33.132.175",
+            "None of these"
+          ],
+          "answer": 2,
+          "solution": "16 = 22, 21 = 33, 84 = 132 and AF = 175, giving 22.33.132.175.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-03-q1",
+          "title": "Steps to Reach a Process After Subnetting",
+          "type": "nat",
+          "question": "After subnetting how many steps are needed to communicate with process?",
+          "answer": 4,
+          "solution": "After subnetting the hierarchy is network ID, then subnet ID, then host ID, then the process (port): 4 steps. (Without subnetting it is 3.) This follows the standard lecture convention.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-03-q2",
+          "title": "Purpose of Subnetting",
+          "type": "mcq",
+          "question": "Consider the following statements:\n$S_1$: Subnetting was devised to divide a large block (Network) into smaller ones.\n$S_2$: Subnetting was devised to combine several class C blocks into a large block.\nWhich of the following is/are correct?",
+          "options": [
+            "$S_1$ only",
+            "$S_2$ only",
+            "Both $S_1$ and $S_2$",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "S1 is the definition of subnetting. S2 describes supernetting.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-03-q3",
+          "title": "Subnetting Statements",
+          "type": "mcq",
+          "question": "Consider the following statements:\n$S_1$: In Subnetting subnet bits are borrowed from host ID part.\n$S_2$: In Subnetting subnet bits are borrowed either from HID part or from NID part.\n$S_3$: Subnetting provides security to one network from another network.\nWhich of the following is/are correct?",
+          "options": [
+            "$S_1$ and $S_2$",
+            "$S_1$ and $S_3$",
+            "$S_2$ and $S_3$",
+            "All are correct"
+          ],
+          "answer": 1,
+          "solution": "Subnet bits are borrowed only from the host ID part, so S2 is false. S1 and S3 are true.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-03-q4",
+          "title": "First and Last Subnet",
+          "type": "msq",
+          "question": "Which of the following is/are correct statement?",
+          "options": [
+            "First subnet ID and entire network ID is always same.",
+            "Last subnet ID and entire network ID is always same.",
+            "DBA of the first subnet and DBA of entire network is always same.",
+            "DBA of the last subnet and DBA of entire network is always same."
+          ],
+          "answer": [
+            0,
+            3
+          ],
+          "solution": "The first subnet ID (subnet bits all 0) equals the network ID, and the last subnet's DBA (subnet bits all 1, host bits all 1) equals the network's DBA. The last subnet ID and the first subnet's DBA differ from the network values.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-03-q5",
+          "title": "Number of Possible Subnets",
+          "type": "msq",
+          "question": "Consider a subnet mask 255.255.255.192, the number of subnets is/are possible:",
+          "options": [
+            "$2^{18}$",
+            "$2^{18} - 2$",
+            "$2^2$",
+            "$2^7 - 2$"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "The mask has 26 ones. For class A there are 18 subnet bits (2^18 subnets, or 2^18 - 2 excluding all 0s and all 1s). For class C there are 2 subnet bits (2^2). 2^7 - 2 does not match any class.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-04-q1",
+          "title": "Hosts per Subnet",
+          "type": "nat",
+          "question": "Suppose, a class B network with subnet mask 255.255.224.0 the number of hosts per subnet is ________.",
+          "answer": 8190,
+          "solution": "The mask has 19 ones, so there are 32 - 19 = 13 host bits. Hosts per subnet = 2^13 - 2 = 8190.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-04-q2",
+          "title": "Subnet Mask for 65 Departments",
+          "type": "mcq",
+          "question": "An organization has class B network and wishes to form subnet for 65 departments. The subnet mask would be?",
+          "options": [
+            "255.255.0.0",
+            "255.255.254.0",
+            "255.255.194.0",
+            "255.255.252.0"
+          ],
+          "answer": 1,
+          "solution": "65 subnets need 7 subnet bits (2^7 = 128). Mask = 16 + 7 = 23 ones = 255.255.254.0.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-04-q3",
+          "title": "Hosts at Which the Mask Fails",
+          "type": "nat",
+          "question": "In a class B network on the internet has a subnet mask 255.255.252.0. What is the minimum number of hosts per subnet is/are possible. So, that subnet mask fails?",
+          "answer": 1023,
+          "solution": "The mask has 10 host bits, so a subnet supports at most 2^10 - 2 = 1022 hosts. The smallest requirement that the mask cannot satisfy is 1023 hosts. (The wording of the source is unclear; this is the most natural reading.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-04-q4",
+          "title": "Ratio of Subnets to Borrowed Bits",
+          "type": "nat",
+          "question": "Suppose, network ID of entire network is 176.178.0.0 and subnet mask is 255.255.255.0. If X is the number of bits borrowed from HID and Y is the total number of subnets in network then the value of $\\frac{Y}{X}$ is ________.",
+          "answer": 32,
+          "solution": "176 is class B (16 network bits). The mask has 24 ones, so X = 8 bits are borrowed and Y = 2^8 = 256. Y/X = 32.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-04-q5",
+          "title": "Bits Borrowed from HID",
+          "type": "nat",
+          "question": "Suppose a network ID of network is 160.160.0.0 and subnet mask is 255.255.254.0. The total bits are borrowed from HID part is/are ________.",
+          "answer": 7,
+          "solution": "160 is class B (16 network bits). The mask has 23 ones, so 23 - 16 = 7 bits are borrowed.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-04-q6",
+          "title": "Maximum Hosts per Subnet",
+          "type": "mcq",
+          "question": "If a class B network on the internet has subnet mask of 255.255.252.0. What is the maximum number of hosts/subnets? (Assume classful addressing scheme is followed)?",
+          "options": [
+            "1022",
+            "2046",
+            "1023",
+            "2047"
+          ],
+          "answer": 0,
+          "solution": "The mask has 10 host bits, so hosts per subnet = 2^10 - 2 = 1022.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-04-q7",
+          "title": "Mask for 15 Subnets and 25 Hosts",
+          "type": "mcq",
+          "question": "Consider a class C network 15 subnets and 25 hosts per subnet. An appropriate subnet mask for this network would be?",
+          "options": [
+            "255.255.240.0",
+            "255.255.255.254",
+            "255.255.255.240",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "15 subnets need 4 subnet bits (5 if all-0/all-1 subnets are excluded) and 25 hosts need 5 host bits. 4 + 5 = 9 bits exceed the 8 host bits of class C, so no mask works.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-05-q1",
+          "title": "Mask for 19 Subnets and 6 Hosts",
+          "type": "mcq",
+          "question": "Consider a class C network with 19 subnets and 6 hosts per subnet. Then which of the following is possible subnet mask?",
+          "options": [
+            "255.255.255.241",
+            "255.255.255.244",
+            "Both (a) and (b)",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "19 subnets need 5 bits and 6 hosts need 3 bits (2^3 - 2 = 6), so the only mask is 255.255.255.248. Both 255.255.255.241 and 255.255.255.244 have non-contiguous ones and are invalid.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-05-q2",
+          "title": "Mask for 32 Subnets and 100 Hosts",
+          "type": "msq",
+          "question": "An organization need Class B network with 32 subnet and each subnet need 100 hosts which of the following is/are possible subnet mask?",
+          "options": [
+            "255.255.7.3",
+            "255.255.128.135",
+            "255.255.248.0",
+            "255.255.0.248"
+          ],
+          "answer": [
+            2
+          ],
+          "solution": "32 subnets need at least 5 subnet bits and 100 hosts need at least 7 host bits, so the mask has between 21 and 25 ones and must be contiguous. 255.255.248.0 (21 ones) is valid; the others have non-contiguous ones.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-05-q3",
+          "title": "Hosts with 10 Subnet Bits",
+          "type": "nat",
+          "question": "A physics wallah organization is granted a class B network with IP address 186.24.0.0. For revolution 2.0, 10 bits are fixed for subnet. Then, the total number of hosts in each subnet are ________.",
+          "answer": 62,
+          "solution": "Class B has 16 host bits; 10 are used for the subnet, leaving 6 host bits. Hosts = 2^6 - 2 = 62.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-05-q4",
+          "title": "Subnet with Last Three Bits Borrowed",
+          "type": "mcq",
+          "question": "Consider a class C network 200.200.250.68. If 3 bits are borrowed from HID part, instead of first 3 subnet bits, last 3 bits are borrowed from HID part. Then which of the following is belong to $3^{\\text{rd}}$ subnet ID?",
+          "options": [
+            "200.200.250.96",
+            "200.200.250.64",
+            "200.200.250.3",
+            "200.200.250.2"
+          ],
+          "answer": 3,
+          "solution": "With the last 3 bits as the subnet ID, subnets are numbered 000, 001, 010, ... The 3rd subnet has SID 010, so its subnet ID is 200.200.250.2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-05-q5",
+          "title": "VLSM Masks for Subnets B and C",
+          "type": "mcq",
+          "question": "Consider a class C network address of 220.220.220.0. It is divided into 3 subnets A, B and C each subnet need 90, 40 and 33 hosts respectively. Which of the following is a valid subnet mask for subnet B and C respectively?",
+          "options": [
+            "255.255.255.128 and 255.255.255.192.",
+            "255.255.255.192 and 255.255.255.128.",
+            "Both the subnet mask are same.",
+            "None of these."
+          ],
+          "answer": 2,
+          "solution": "Using VLSM, A (90 hosts) gets a /25 (128 addresses), B (40 hosts) needs 6 host bits and C (33 hosts) also needs 6 host bits. So both B and C use 255.255.255.192.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-05-q6",
+          "title": "VLSM Mask for Subnet R",
+          "type": "mcq",
+          "question": "Suppose, a class C network is divided into 3 subnets P, Q and R. Subnet P need 50 host, subnet Q need 40 hosts and subnet R need 120 hosts. Which of the following is an appropriate subnet mask for R? (Hints: using VLSM technique)",
+          "options": [
+            "255.255.255.128",
+            "255.255.255.224",
+            "255.255.255.0",
+            "255.255.255.192"
+          ],
+          "answer": 0,
+          "solution": "120 hosts need 7 host bits (2^7 - 2 = 126), so R gets a /25: 255.255.255.128.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-05-q7",
+          "title": "DBA of Departments",
+          "type": "mcq",
+          "question": "Suppose, an organization is divided into 6 departments with network 199.198.197.196. For each department 3 bits are borrowed from HID part of given network.\nDepartment Number 1: SID 010\nDepartment Number 2: SID 100\nDepartment Number 3: SID 110\nDepartment Number 4: SID 101\nDepartment Number 5: SID 111\nDepartment Number 6: SID 101\nWhich of the following is direct broadcast address of department number 5 and 4 respectively?",
+          "options": [
+            "199.198.197.191 and 199.198.197.255",
+            "199.198.197.169 and 199.198.197.191",
+            "199.198.197.169 and 199.198.197.255",
+            "199.198.197.255 and 199.198.197.191"
+          ],
+          "answer": 3,
+          "solution": "It is a class C network with 3 subnet bits, so 5 host bits (32 addresses per subnet). SID 111 covers 224 to 255, so DBA = 199.198.197.255. SID 101 covers 160 to 191, so DBA = 199.198.197.191.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-05-q8",
+          "title": "Minimum Subnets with Mask 255.255.240.0",
+          "type": "mcq",
+          "question": "In a class B network. On the internet has a subnet mask 255.255.240.0. How many minimum number of subnets are possible?",
+          "options": [
+            "32",
+            "30",
+            "16",
+            "14"
+          ],
+          "answer": 3,
+          "solution": "The mask gives 4 subnet bits. The maximum number of subnets is 2^4 = 16 and the minimum usable number (excluding all 0s and all 1s) is 2^4 - 2 = 14.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-06-q1",
+          "title": "Host ID from Subnet ID",
+          "type": "mcq",
+          "question": "Consider a class C IP address with decimal notation 212.212.212.X and subnet ID 212.212.212.64. Then which of the following is valid host ID?",
+          "options": [
+            "212.212.212.(64 + X)",
+            "212.212.212.(X - 64)",
+            "212.212.212.(64 - X)",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "The host ID is the IP address minus the subnet ID, so the host ID is 212.212.212.(X - 64).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-06-q2",
+          "title": "IP from Host ID and Subnet ID",
+          "type": "mcq",
+          "question": "Suppose, for a network, HID and subnet ID are 196.196.196.1 and 196.196.196.128 respectively. Then which of the following is a valid IP address for given host ID and subnet ID (Subnet $\\text{mask} = 255.255.255.248$)?",
+          "options": [
+            "196.196.196.127",
+            "196.196.196.129",
+            "196.196.196.0",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "IP address = subnet ID + host ID = 128 + 1 = 129, i.e. 196.196.196.129.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-06-q3",
+          "title": "Subnet ID and Host ID of 197.197.197.117",
+          "type": "mcq",
+          "question": "If IP address of the network is 197.197.197.117 and subnet mask 255.255.255.224. Then which of the following is valid subnet ID and host ID respectively?",
+          "options": [
+            "197.197.197.96 and 197.197.197.53",
+            "197.197.197.96 and 197.197.197.31",
+            "197.197.197.21 and 197.197.197.96",
+            "197.197.197.96 and 197.197.197.21"
+          ],
+          "answer": 3,
+          "solution": "117 = 011 10101. With mask 224 the subnet ID is 011 00000 = 96 and the host ID is 10101 = 21.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-06-q4",
+          "title": "Host ID with 29-bit Mask",
+          "type": "mcq",
+          "question": "Consider IP address of network is 192.192.193.21 and subnet mask contain 29 ones then, what is the host ID?",
+          "options": [
+            "192.192.193.16",
+            "192.192.193.15",
+            "192.192.193.5",
+            "192.192.193.1"
+          ],
+          "answer": 2,
+          "solution": "There are 3 host bits. 21 = 00010 101, so the host ID is 101 = 5, i.e. 192.192.193.5.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-06-q5",
+          "title": "Subnets for a 27-bit Mask in Class B",
+          "type": "mcq",
+          "question": "Suppose, a subnet mask contain 27 ones then how many subnets are possible in class B?",
+          "options": [
+            "$2^{11} - 2$",
+            "$2^3$",
+            "$2^3 - 2$",
+            "$2^{11}$"
+          ],
+          "answer": 3,
+          "solution": "Class B has 16 network bits, so the subnet bits are 27 - 16 = 11, giving 2^11 subnets.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-06-q6",
+          "title": "Mask 255.255.248.0 Statements",
+          "type": "msq",
+          "question": "For subnet mask 255.255.248.0 which of the following is/are correct?",
+          "options": [
+            "Number of subnets in class B are 32.",
+            "Number of hosts per subnet are 1022.",
+            "Number of IP addresses per subnet are 32.",
+            "Number of hosts per subnet are 2046."
+          ],
+          "answer": [
+            0,
+            3
+          ],
+          "solution": "The mask has 21 ones. For class B there are 21 - 16 = 5 subnet bits, so 2^5 = 32 subnets (a is correct). Host bits = 32 - 21 = 11, so each subnet has 2^11 = 2048 addresses and 2^11 - 2 = 2046 hosts. So (d) is correct as well; (b) 1022 and (c) 32 are wrong.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-06-q7",
+          "title": "Subnet ID with a /30 Mask",
+          "type": "mcq",
+          "question": "Consider the following IP address and subnet mask:\n$\\text{IP address} = 198.199.32.17$\n$\\text{Subnet mask} = 255.255.255.252$\nWhich of the following is subnet ID for given IP address and subnet mask?",
+          "options": [
+            "198.199.32.76",
+            "198.199.32.176",
+            "198.199.32.3",
+            "None of these"
+          ],
+          "answer": 3,
+          "solution": "The last octet 17 = 000100 01. With mask 252 the subnet ID last octet is 000100 00 = 16, so the subnet ID is 198.199.32.16, which is not listed.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-06-q8",
+          "title": "Subnets with Mask 255.255.224.0",
+          "type": "nat",
+          "question": "For subnet mask 255.255.224.0. How many subnets are possible for class B?",
+          "answer": 8,
+          "solution": "Mask 255.255.224.0 has 19 ones, so there are 19 - 16 = 3 subnet bits and 2^3 = 8 subnets.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-06-q9",
+          "title": "Possible Masks for a Given DBA",
+          "type": "msq",
+          "question": "Suppose, direct broadcast address of network is 129.129.127.255 then which of the following can be possible subnet mask for given DBA?",
+          "options": [
+            "255.255.128.0",
+            "255.255.255.192",
+            "255.254.0.0"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "The host bits of the mask must all be 1 in the DBA. 255.255.128.0 has 15 host bits: 127.255 has the low 15 bits all 1, so it works. 255.255.255.192 has 6 host bits, all 1 in 255. 255.254.0.0 needs the whole third octet to be 1s, but 127 = 01111111 is not, so it fails. (The source listed 255.254.0.0 twice; the duplicate was removed.)",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-06-q10",
+          "title": "Mask from a Broadcast Address",
+          "type": "mcq",
+          "question": "A subneted of class B network has the following broadcast address 130.21.95.255. It's subnet mask:",
+          "options": [
+            "is necessarily 255.255.128.0",
+            "is necessarily 255.255.192.0",
+            "is necessarily 255.255.255.128",
+            "None of these."
+          ],
+          "answer": 3,
+          "solution": "95 = 01011111. The host part can include at most the low 5 bits of the third octet (bit 5 is 0), so masks from 255.255.224.0 to 255.255.255.0 are all possible. No single mask among (a), (b), (c) is necessary.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-07-q1",
+          "title": "Valid Broadcast Address for Mask 255.255.224.0",
+          "type": "mcq",
+          "question": "Consider the subnet mask 255.255.224.0 then which of the following is a valid broadcast address?",
+          "options": [
+            "180.180.15.255",
+            "180.180.31.0",
+            "180.180.31.255",
+            "180.180.255.31"
+          ],
+          "answer": 2,
+          "solution": "The mask has 13 host bits, so a DBA has all of the last 13 bits equal to 1: the third octet's low 5 bits (e.g. 31) and the fourth octet 255. So 180.180.31.255.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-07-q2",
+          "title": "DBA with Mask 255.255.255.252",
+          "type": "msq",
+          "question": "Consider a subnet mask for a network is 255.255.255.252. Then, which of the following is/are possible direct broadcast address?",
+          "options": [
+            "200.200.200.15",
+            "200.200.200.31",
+            "200.200.200.63",
+            "200.200.200.3"
+          ],
+          "answer": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "solution": "There are 2 host bits, so a DBA must end in binary 11. 15, 31, 63 and 3 all end in 11.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-07-q3",
+          "title": "Mask from DBA 210.210.210.63",
+          "type": "msq",
+          "question": "Suppose, direct broadcast address of network is 210.210.210.63 then which of the following is/are always true, for subnet mask?",
+          "options": [
+            "In subnet mask number of ones are exactly 26.",
+            "In subnet mask number of ones are at most 26.",
+            "In subnet mask number of ones are at least 26.",
+            "In subnet mask Host ID bits are at most 6."
+          ],
+          "answer": [
+            2,
+            3
+          ],
+          "solution": "63 = 00111111, so at most 6 trailing ones are host bits. Hence the host bits are at most 6 and the number of ones in the mask is at least 26.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-07-q4",
+          "title": "Two Computers with Different Masks",
+          "type": "mcq",
+          "question": "Two computers $P_1$ and $P_2$ configured as follows: $P_1$ has IP address 160.170.3.67 and Net mask 255.240.0.0 and $P_2$ has IP address 160.169.80.59 and Net mask 255.248.0.0. Which of the following statement is true?",
+          "options": [
+            "$P_1$ and $P_2$ both assume they are on the same network.",
+            "$P_2$ assume $P_1$ is on same network, but $P_1$ assume $P_2$ is on different network.",
+            "$P_1$ assume $P_2$ is on same network, but $P_2$ assume $P_1$ is on different network.",
+            "$P_1$ and $P_2$ both assume they are on different networks."
+          ],
+          "answer": 0,
+          "solution": "P1 sees network 160.160.0.0 (170 AND 240 = 160) and P2's address gives 169 AND 240 = 160, so P1 thinks P2 is local. P2 sees 169 AND 248 = 168 and P1's address gives 170 AND 248 = 168, so P2 thinks P1 is local. Both assume the same network.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-07-q5",
+          "title": "Routing Table Interface",
+          "type": "nat",
+          "question": "Consider the routing table given below:\n160.168.16.0 | 255.255.224.0 | Interface 1\n160.168.128.0 | 255.255.192.0 | Interface 2\n160.168.48.0 | 255.255.240.0 | Interface 3\nDefault | - | Interface 4\nOn which interface will the router forward the packet if packet bearing a destination address 160.168.63.130? (Answer as the interface number.)",
+          "answer": 3,
+          "solution": "Third octet 63: with mask 224 gives 32 (entry 1 network is 0, no match); with mask 192 gives 0 (entry 2 network is 128, no match); with mask 240 gives 48 (entry 3 network is 48, match). So Interface 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-07-q6",
+          "title": "DBA for Mask 255.224.0.0",
+          "type": "msq",
+          "question": "Consider the subnet mask 255.224.0.0, then which of the following can be direct broadcast address?",
+          "options": [
+            "100.32.255.255",
+            "100.64.255.255",
+            "100.31.255.255",
+            "100.63.255.255"
+          ],
+          "answer": [
+            2,
+            3
+          ],
+          "solution": "The mask leaves 21 host bits, so the low 5 bits of the second octet must be 1 (and the last two octets 255). 31 = 00011111 and 63 = 00111111 qualify; 32 and 64 do not.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-07-q7",
+          "title": "Two Computers and Network Assumptions",
+          "type": "msq",
+          "question": "Consider two computers C1 and C2 are configured as follows:\nC1: IP address 192.198.2.53, Net mask 255.255.224.0\nC2: IP address 192.198.76.99, Net mask 255.255.192.0\nWhich of the following statements is/are false?",
+          "options": [
+            "C1 and C2 both assume they are on the same network.",
+            "C2 assumes C1 is on same network, but C1 assumes C2 is on different network.",
+            "C1 assumes C2 is on same network, but C2 assumes C1 is on a different network.",
+            "C1 and C2 both assume they are on different network."
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "C1's network is 192.198.0.0; C2's address masks to 76 AND 224 = 64, so C1 thinks C2 is remote. C2's network is 76 AND 192 = 64; C1's address masks to 0, so C2 thinks C1 is remote. Both assume different networks, so only (d) is true.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ipv4-07-q8",
+          "title": "DBA with Mask 255.255.192.0",
+          "type": "mcq",
+          "question": "Consider a computer C1 is configured with IP address 203.197.89.99 and netmask 255.255.192.0. The DBA of the network is:",
+          "options": [
+            "203.197.89.0",
+            "203.197.89.255",
+            "203.197.64.0",
+            "203.197.127.255"
+          ],
+          "answer": 3,
+          "solution": "89 = 01011001. With mask 192 the network part of the third octet is 01 000000 = 64 and the host bits are all 1 for the DBA: 01 111111 = 127. DBA = 203.197.127.255.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-01-q1",
+          "title": "Advantage of Classless Addressing",
+          "type": "mcq",
+          "question": "Which of the following is an advantage of classless addressing?",
+          "options": [
+            "Provide the more IP addresses.",
+            "Provide the less IP addresses.",
+            "Reduce the wastage of IP addresses",
+            "Both (a) and (c)"
+          ],
+          "answer": 2,
+          "solution": "Classless addressing reduces the wastage of IP addresses; it does not increase the size of the address space.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-01-q2",
+          "title": "Addresses in a /20 Block",
+          "type": "nat",
+          "question": "Suppose classless addressing notation of network is 160.79.171.76/20. Then, how many IP addresses is/are possible in the network?",
+          "answer": 4096,
+          "solution": "A /20 leaves 32 - 20 = 12 host bits, so the block has 2^12 = 4096 addresses.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-01-q3",
+          "title": "Classless Addressing Statement",
+          "type": "mcq",
+          "question": "Which of the following is correct about classless addressing mode?",
+          "options": [
+            "Network ID bits and Host bits are same.",
+            "Network ID bits are more than the Host ID bits.",
+            "Number of IP addresses are same as number of hosts.",
+            "None of these."
+          ],
+          "answer": 3,
+          "solution": "In classless addressing the split between network and host bits is arbitrary, and the number of addresses is not equal to the number of hosts (2 are reserved). None of (a), (b) or (c) is correct.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-01-q4",
+          "title": "Hosts in a CIDR Block",
+          "type": "nat",
+          "question": "If valid CIDR block is 179.180.190.16, 179.180.190.17, 179.180.190.18, ... , 179.180.190.143. Total number of hosts in above block is/are ______.",
+          "answer": 128,
+          "solution": "The listed addresses run from .16 to .143, which is 143 - 16 + 1 = 128 addresses. The source does not say whether the first and last are excluded; the answer counts the listed addresses.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-01-q5",
+          "title": "Range of 19.19.19.72/28",
+          "type": "mcq",
+          "question": "Suppose, one of the addresses of block is 19.19.19.72/28. What is the range of IP address?",
+          "options": [
+            "19.19.19.0 to 19.19.19.15",
+            "19.19.19.72 to 19.19.19.87",
+            "19.19.19.64 to 19.19.19.79",
+            "19.19.19.64 to 19.19.19.77"
+          ],
+          "answer": 2,
+          "solution": "A /28 has blocks of 16 addresses. 72 lies in 64 to 79, so the range is 19.19.19.64 to 19.19.19.79.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-01-q6",
+          "title": "CIDR Notation p.q.r.s/t",
+          "type": "msq",
+          "question": "Suppose, p.q.r.s/t is valid one of the block. Then which of the following is/are correct about given CIDR notation?",
+          "options": [
+            "Host ID bits are log2(32 - t).",
+            "Host ID bits are (32 - t).",
+            "Number of hosts are ($2^{32-t} - 2$)",
+            "Number of hosts are ($2^{32-t}$)."
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "Host ID bits = 32 - t, and the number of hosts = 2^(32-t) - 2. The number of addresses is 2^(32-t).",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-01-q7",
+          "title": "DBA of 184.175.16.16/20",
+          "type": "mcq",
+          "question": "Consider an IP address of the block is 184.175.16.16/20. What is the DBA of given IP address?",
+          "options": [
+            "184.175.16.31",
+            "184.175.16.255",
+            "184.175.255.255",
+            "184.175.31.255"
+          ],
+          "answer": 3,
+          "solution": "A /20 has 4 network bits in the third octet, so the block is 16 to 31 in the third octet. The DBA is 184.175.31.255.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-02-q1",
+          "title": "Subnet Mask for 4 Subnets of a /26",
+          "type": "nat",
+          "question": "Suppose, a network 102.105.108.79/26 is divided into 4 subnets. Then the subnet mask contains _____ ones.",
+          "answer": 28,
+          "solution": "Four subnets need 2 more bits, so the mask has 26 + 2 = 28 ones.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-02-q2",
+          "title": "First Host in 212.69.78.58/28",
+          "type": "nat",
+          "question": "In the network 212.69.78.58/28. The fourth octet (in decimal) of first IP address of the network which can be assigned to a host is? _________.",
+          "answer": 49,
+          "solution": "A /28 has blocks of 16, so 58 lies in 48 to 63. The network address ends in 48, so the first host is 49.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-02-q3",
+          "title": "Range for GATE Wallah",
+          "type": "mcq",
+          "question": "Consider a hypothetical CIDR based address 212.129.244.87/20. The ISP wants to create 4 subnets for GATE wallah, Physics wallah, Engineers wallah and CA wallah. Which of the following range is possible for GATE Wallah?\nSID bits: 00 Physics wallah, 01 CA wallah, 10 GATE wallah, 11 Engineers wallah",
+          "options": [
+            "212.129.244.254/22 to 212.129.247.255/22",
+            "212.129.240.0/20 to 212.129.248.255/22",
+            "212.129.248.0/22 to 212.129.251.255/22",
+            "212.129.240.0/22 to 212.129.248.255/21"
+          ],
+          "answer": 2,
+          "solution": "The /20 block is 212.129.240.0/20. Splitting it into 4 subnets gives /22 blocks that span 4 in the third octet: 240-243 (00), 244-247 (01), 248-251 (10), 252-255 (11). GATE wallah (10) gets 212.129.248.0/22 to 212.129.251.255/22.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-02-q4",
+          "title": "First Host Address of a 128-address Block",
+          "type": "msq",
+          "question": "Suppose, a block contains 128 IP addresses, which of the following can be first host address of the block?",
+          "options": [
+            "198.174.68.1",
+            "198.174.68.129",
+            "198.174.68.0",
+            "198.174.68.128"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "A 128-address block starts at a multiple of 128 (.0 or .128 in the last octet). The first host is the network address + 1, so .1 or .129.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-02-q5",
+          "title": "First Address of a 2048-address Block",
+          "type": "mcq",
+          "question": "A block contains 2048 IP addresses. Which of the following can be first address of the block?",
+          "options": [
+            "16.15.19.0",
+            "16.15.16.0",
+            "16.15.20.0",
+            "Both (b) and (c)"
+          ],
+          "answer": 1,
+          "solution": "2048 = 2^11, so the first address must have its low 11 bits equal to 0: the third octet must be a multiple of 8 and the fourth octet 0. Only 16.15.16.0 qualifies.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-02-q6",
+          "title": "Host Range Difference for a /28",
+          "type": "nat",
+          "question": "Consider a network 194.193.89.114/28. The last octet (in decimal) of first IP address and last IP address of the network that can be assigned to a host are X and Y respectively then the value of Y - X is _____.",
+          "answer": 13,
+          "solution": "114 lies in the block 112 to 127. The first host is 113 (X) and the last host is 126 (Y), so Y - X = 13.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-02-q7",
+          "title": "Range of 118.1.3.25/20",
+          "type": "mcq",
+          "question": "Suppose a CIDR representation is 118.1.3.25/20 what is the range of IP address in the CIDR block?",
+          "options": [
+            "118.1.0.0 to 118.1.15.255",
+            "118.1.3.0 to 118.1.3.255",
+            "118.1.2.0 to 118.1.3.254",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "A /20 has 4 network bits in the third octet, so the third octet block is 0 to 15. The range is 118.1.0.0 to 118.1.15.255.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-cidr-02-q8",
+          "title": "Allocating a /20 Block",
+          "type": "mcq",
+          "question": "An internet service provider (ISP) has the following chunk of CIDR - based IP addresses available with it: 245.248.128.0/20. The ISP wants to give half of this chunk of addresses to organization A, and quarter to organization B, while retaining the remaining with itself. Which of the following is a valid allocation of addresses to A and B?",
+          "options": [
+            "245.248.136.0/21 and 245.248.128.0/22",
+            "245.248.128.0/21 and 245.248.128.0/22",
+            "245.248.132.0/21 and 245.248.132.0/21",
+            "245.248.136.0/24 and 245.248.132.0/21"
+          ],
+          "answer": 0,
+          "solution": "Half of a /20 is a /21 and a quarter is a /22. Option (a): 245.248.136.0/21 (third octet 136-143) and 245.248.128.0/22 (128-131) are aligned and do not overlap. (b) overlaps, (c) has a misaligned /21 and (d) uses a /24.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "IPv4 Header and Fragmentation",
+      "questions": [
+        {
+          "id": "dpp-iph-01-q1",
+          "title": "Protocol Field Values",
+          "type": "mcq",
+          "question": "The protocol field enables the demultiplexing feature so that the IP protocol can be used to carry payload of more than one protocol type. It most used values are 17 and 06 for ____.",
+          "options": [
+            "UDP and TCP respectively",
+            "TCP and UDP respectively",
+            "ICMP and IAMP respectively",
+            "IGMP and ICMP respectively"
+          ],
+          "answer": 0,
+          "solution": "Protocol number 17 is UDP and 6 is TCP.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-iph-01-q2",
+          "title": "Maximum IPv4 Packet Size",
+          "type": "mcq",
+          "question": "Which of the following will be the maximum size of the IPV4 header data packet.",
+          "options": [
+            "65536 Bytes",
+            "65535 Bytes",
+            "65515 Bytes",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "The total length field is 16 bits, so the maximum IPv4 packet (header + data) is 65535 bytes. (The maximum payload would be 65515 bytes; the source wording is ambiguous.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-iph-01-q3",
+          "title": "Protocol Ordering",
+          "type": "msq",
+          "question": "What will be incorrect order of the following protocol. TCP, UDP, IGMP, ICMP\nIn which router will eliminate the datagram from buffer?",
+          "options": [
+            "ICMP > IGMP > TCP > UDP",
+            "TCP > ICMP > IGMP > UDP",
+            "IGMP > ICMP > TCP > UDP",
+            "ICMP > IGMP > UDP > TCP"
+          ],
+          "answer": [
+            1,
+            2,
+            3
+          ],
+          "solution": "The order by protocol number is ICMP (1) > IGMP (2) > TCP (6) > UDP (17), which is option (a). The other three orders are incorrect. The wording of the source question is garbled, so this follows the protocol-number reading.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-iph-01-q4",
+          "title": "Header Fields That Change",
+          "type": "nat",
+          "question": "Host A sends an IP datagram to host B. Both A and B hosts uses TCP/IPV4 Network. Assume that no error occurred during the transmission of the datagram. When datagram reaches B some of the IP header field may be different from that of original datagram. Consider the following fields (i) VER (ii) HELN (iii) Total length (iv) MF (v) TTL (vi) Checksum (vii) Fragment offset (viii) Services. Assume that among the number of IP header field which will have different values as compare to their original datagram when reached to the destination is x. Then what will be the value of x?",
+          "answer": 5,
+          "solution": "Version, header length and service type stay the same. Total length, MF and fragment offset can change due to fragmentation, TTL decreases at each router and the checksum is recomputed. So x = 5.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-iph-01-q5",
+          "title": "Payload Size from Header Length",
+          "type": "mcq",
+          "question": "An IP Packet of size 4000 byte has the header length field value as (1010)$_2$. Calculate the size of the payload in the IP Packet.",
+          "options": [
+            "4000 Bytes",
+            "4040 Bytes",
+            "3980 Bytes",
+            "3960 Byte"
+          ],
+          "answer": 3,
+          "solution": "Header length field = 10, so the header is 10 x 4 = 40 bytes. Payload = 4000 - 40 = 3960 bytes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-iph-02-q1",
+          "title": "Second Last Fragment Payload",
+          "type": "nat",
+          "question": "An IP router with a maximum transmission unit (MTU) of 1000 bytes has received an IP packet of size 3980 bytes with an IP header of 20 bytes. What will be the value of payload in the second last fragment in bytes.",
+          "answer": 976,
+          "solution": "Total payload = 3960. Each fragment can carry at most 980 bytes, rounded down to a multiple of 8: 976. 3960 = 4 x 976 + 56, so there are 5 fragments and the second last carries 976 bytes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-iph-02-q2",
+          "title": "Bytes Before a Fragment",
+          "type": "mcq",
+          "question": "If the 'fragment offset' field in the IP header has a value of 200 then how many bytes are there before this fragment.",
+          "options": [
+            "400 bytes",
+            "800 bytes",
+            "1600 bytes",
+            "2000 bytes"
+          ],
+          "answer": 2,
+          "solution": "Fragment offset is in units of 8 bytes, so 200 x 8 = 1600 bytes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-iph-02-q3",
+          "title": "Packet Size from Fragment Offsets",
+          "type": "nat",
+          "question": "The fragment offset are given as 0, 40, 80, 120. IP header is given as 20 bytes all fragments are of equal size. Calculate the packet size. (in bytes)",
+          "answer": 1300,
+          "solution": "The offset step of 40 means each fragment carries 40 x 8 = 320 bytes of payload. With 4 fragments the payload is 1280 bytes, so the original packet is 1280 + 20 = 1300 bytes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-iph-02-q4",
+          "title": "Number of Fragments",
+          "type": "mcq",
+          "question": "An IP datagram of size 2000 bytes arrives at a router. The router than forward this packet on a link with MTU 400 bytes. If the IP header is of size 20 bytes then in how many fragment the packet will get divided?",
+          "options": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "answer": 1,
+          "solution": "Payload = 1980 bytes. Each fragment carries at most 380 bytes, rounded down to a multiple of 8: 376. 1980 / 376 = 5.27, so 6 fragments.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-iph-02-q5",
+          "title": "TCP Data Size in a Datagram",
+          "type": "mcq",
+          "question": "In a IP datagram a TCP segments is present header length field of IP datagram is 5 total length of IP datagram is 1000 byte. Header length field in TCP header is 7, then what is the size of TCP data present in the datagram.",
+          "options": [
+            "988",
+            "952",
+            "964",
+            "900"
+          ],
+          "answer": 1,
+          "solution": "IP header = 5 x 4 = 20 bytes and TCP header = 7 x 4 = 28 bytes. TCP data = 1000 - 20 - 28 = 952 bytes.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Error Control",
+      "questions": [
+        {
+          "id": "dpp-ec-01-q1",
+          "title": "Hamming Distance",
+          "type": "mcq",
+          "question": "The Hamming distance between 100 and 001 is",
+          "options": [
+            "2",
+            "0",
+            "1",
+            "None of the above"
+          ],
+          "answer": 0,
+          "solution": "100 and 001 differ in the first and last positions, so the distance is 2.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-01-q2",
+          "title": "Single-bit and Burst Errors",
+          "type": "mcq",
+          "question": "Consider the following statements:\n$S_1$: If the change occurs in single-bit position with respect to whole data, then such error is called single bit error.\n$S_2$: If the change occurs in two or more-bit positions with respect to whole data, then such error is called burst error.",
+          "options": [
+            "Only $S_1$ is true",
+            "Only $S_2$ is true",
+            "Both $S_1$ and $S_2$ are true",
+            "Neither $S_1$ nor $S_2$ is true"
+          ],
+          "answer": 2,
+          "solution": "Both statements match the standard definitions of single-bit error and burst error.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-01-q3",
+          "title": "Error Detection Techniques",
+          "type": "mcq",
+          "question": "Which is/are the error detection techniques?",
+          "options": [
+            "Check sum",
+            "VRC",
+            "CRC",
+            "All of the above"
+          ],
+          "answer": 3,
+          "solution": "Checksum, VRC (vertical redundancy check, i.e. parity) and CRC are all error detection techniques.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-01-q4",
+          "title": "Name of n-bit Blocks",
+          "type": "mcq",
+          "question": "We add $r$ redundant bits to each block to make the length $n = k + r$. The resulting $n$ bit blocks are called",
+          "options": [
+            "Block words",
+            "Code words",
+            "Data words",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "The k-bit blocks are datawords and the n-bit blocks after adding redundancy are codewords.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-01-q5",
+          "title": "Invalid Codewords",
+          "type": "mcq",
+          "question": "In block coding, if $k = 2$ and $n = 3$, we have invalid codewords",
+          "options": [
+            "8",
+            "4",
+            "2",
+            "None of the above"
+          ],
+          "answer": 1,
+          "solution": "There are 2^n = 8 possible words and 2^k = 4 valid codewords, so 8 - 4 = 4 are invalid.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-01-q6",
+          "title": "Parity Check Detection",
+          "type": "mcq",
+          "question": "A parity check can detect",
+          "options": [
+            "1-bit error",
+            "2-bit error",
+            "8-bit error",
+            "None of these"
+          ],
+          "answer": 0,
+          "solution": "A single parity bit detects any odd number of bit errors, including a 1-bit error, but misses even-numbered errors such as 2 or 8 bits.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-01-q7",
+          "title": "2D Parity Corrupted Bit",
+          "type": "mcq",
+          "question": "Assume that data has been transmitted on link using the 2D parity scheme for error detection, each sequence of 32-bits is arranged in a $4\\times8$ matrix (rows $r_0$ through $r_3$ and column $d_0$ through $d_7$) and is padded with a column $d_8$ and row $r_4$ of parity bits computed using the even parity scheme. Each bit of column $d_8$ (respectively, row $r_4$) gives the parity of the corresponding row (respectively column). These 45 bits are transmitted using data link. Assuming the following bits (data) are received on receiver's side:\n101100111101010111011110100110000011100000111\nConsidering that, first bit that is received by receiver is MSB, then which of the following bit has corrupted during the Transmission.",
+          "options": [
+            "$(r_3, D_6)$",
+            "$(r_2, D_6)$",
+            "$(r_1, D_2)$",
+            "None of the bit is corrupted"
+          ],
+          "answer": 1,
+          "solution": "Splitting the 45 bits into 5 rows of 9 gives 101100111, 101010111, 011110100, 110000011, 100000111. Only row r2 has odd parity, and only one column fails its parity check: the third column from the left, which is d6 when the leftmost column is d8. So the corrupted bit is (r2, d6).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-01-q8",
+          "title": "Distance Properties of a Code",
+          "type": "nat",
+          "question": "Assume a binary code that contains only 5 valid code words as given 0000000, 1010110, 0101111, 0101010, 1101001 and assume minimum hamming distance of a code be $x$ and maximum number of erroneous bits that can be detected by the code is $y$ and corrected by code be $z$, then the value of $x+y+z$ is",
+          "answer": 3,
+          "solution": "The pairwise distances are 4, 5, 3, 4, 5, 5, 6, 2, 3, 3, so x = 2. Detectable errors y = x - 1 = 1 and correctable errors z = floor((x - 1)/2) = 0. So x + y + z = 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-01-q9",
+          "title": "Minimum Hamming Distance of a Parity Scheme",
+          "type": "nat",
+          "question": "Considers the following error detection scheme. Every binary codeword (or) message is 2 bit long and for each binary message $[d_1, d_0]$ three parity bits are appended. Corresponding code words are $[d_1, d_0, P_2, P_1, P_0]$. The appended bits are calculated as $P_2 = d_1 + d_0$, $P_1 = d_1$, $P_0 = d_0$ ('+' is a modulo 2 sum). Then the minimum hamming distance $d_{min}$ for this error detection scheme is",
+          "answer": 3,
+          "solution": "The codewords are 00000, 01101, 10110 and 11011. Pairwise distances are 3, 3, 4, 4, 3, 3, so the minimum distance is 3.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-01-q10",
+          "title": "Maximum Hamming Distance for n = 5",
+          "type": "mcq",
+          "question": "In block coding, if $n = 5$, the maximum hamming distance between two codewords is",
+          "options": [
+            "2",
+            "3",
+            "5",
+            "None of the above"
+          ],
+          "answer": 2,
+          "solution": "Two codewords of 5 bits can differ in all 5 positions, so the maximum distance is 5.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-02-q1",
+          "title": "CRC Codeword",
+          "type": "mcq",
+          "question": "The message 1011010110 is to be transmitted using the CRC polynomial $x^3+x^2+1$ to protect it from errors. The codeword that should be transmitted will be:",
+          "options": [
+            "1011010110000",
+            "1011010110011",
+            "1011010110100",
+            "1011010110111"
+          ],
+          "answer": 3,
+          "solution": "The generator is 1101. Appending 3 zeros and dividing 1011010110000 by 1101 leaves the remainder 111, so the codeword is 1011010110111.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-02-q2",
+          "title": "Statements on CRC",
+          "type": "msq",
+          "question": "Which of the following is not false regarding cyclic redundancy check (CRC)?",
+          "options": [
+            "CRC is an error correction method.",
+            "CRC is an error detection method.",
+            "CRC is an error correction & detection method.",
+            "CRC is based on binary division."
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "CRC is an error detection method based on binary (modulo 2) division. It does not correct errors.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-02-q3",
+          "title": "Transmitted CRC Polynomial",
+          "type": "mcq",
+          "question": "Given generator function $G(x)$ and the message function $M(x)$ as follows:\n$G(x) = x^4 + x + 1$\n$M(x) = x^9 + x^8 + x^6 + x^4 + x^3 + x + 1$\nWhat will be transmitted function among the following options:",
+          "options": [
+            "$x^{13}+x^{12}+x^{11}+x^8+x^7+x^6+x^5+x^3+x^2+1$",
+            "$x^{13}+x^{12}+x^{10}+x^8+x^7+x^5+x^4+x^3+x^2+x$",
+            "$x^{13}+x^{12}+x^{11}+x^8+x^7+x^6+x^5+x^3+x^2+x$",
+            "$x^{13}+x^{12}+x^{11}+x^{10}+x^7+x^6+x^5+x^3+x^2+1$"
+          ],
+          "answer": 1,
+          "solution": "M = 1101011011 and G = 10011. Dividing M followed by four zeros by G leaves the remainder 1110 (x^3 + x^2 + x). The transmitted polynomial is x^13 + x^12 + x^10 + x^8 + x^7 + x^5 + x^4 + x^3 + x^2 + x.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-02-q4",
+          "title": "CRC Remainder Polynomial",
+          "type": "mcq",
+          "question": "A $d(x)$ is $x^7+x^5+x^4+x^2+1$ transmitted using CRC polynomial method. The $g(x)$ is $x^3+1$. What is the polynomial of CRC remainder?",
+          "options": [
+            "$x+x^0$",
+            "$x^0$",
+            "$x^2+x^0$",
+            "$x^2+x+x^0$"
+          ],
+          "answer": 1,
+          "solution": "d = 10110101 and g = 1001. Dividing 10110101000 by 1001 leaves the remainder 001, i.e. x^0.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-ec-02-q5",
+          "title": "CRC Remainder in Decimal",
+          "type": "nat",
+          "question": "For the given bits 10101011 and generator polynomial $x^3+1$, calculate the CRC remainder.\nNote: If you are getting 1101 as the answer, write it in decimal (for example $(1101)_2=13$).",
+          "answer": 4,
+          "solution": "Dividing 10101011000 by 1001 gives the remainder 100, which is 4 in decimal.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Flow Control",
+      "questions": [
+        {
+          "id": "dpp-fc-01-q1",
+          "title": "Acknowledgement in Stop and Wait",
+          "type": "mcq",
+          "question": "Which of the following is/are the true statement (s) about the type of acknowledgement in stop & wait protocol?",
+          "options": [
+            "It supports cumulative acknowledgement",
+            "It supports Individual acknowledgement",
+            "It supports cumulative as well as individual acknowledgement",
+            "None of the above"
+          ],
+          "answer": 1,
+          "solution": "Stop and wait acknowledges each frame separately, so it uses individual acknowledgement, not cumulative.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-01-q2",
+          "title": "Link Utilization in Stop and Wait",
+          "type": "mcq",
+          "question": "If the bandwidth of the line is 100 Mbps, RTT is 50 $\\mu$sec and frame size is 50 bits, then find out the link utilization in stop & wait.",
+          "options": [
+            "2%",
+            "4%",
+            "10%",
+            "1%"
+          ],
+          "answer": 3,
+          "solution": "Transmission time = 50 / 100 Mbps = 0.5 microsec. Utilization = 0.5 / (0.5 + 50) = 0.0099, about 1%.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-01-q3",
+          "title": "Packets Sent with Losses",
+          "type": "nat",
+          "question": "In stop & wait protocol, sender wants to transmit 15 data packets to the receiver. Out of these 15 packets, every $5^{\\text{th}}$ data packet is lost. Calculate the total number of packets sent by sender.",
+          "answer": 18,
+          "solution": "Packets 5, 10 and 15 are each lost once and must be sent again, so the sender transmits 15 + 3 = 18 packets.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-01-q4",
+          "title": "Sender Throughput in Stop and Wait ARQ",
+          "type": "nat",
+          "question": "A stop & wait ARQ protocol is used by the sender to send frames in a dependable manner. The frames are transmitted at 100 kbps rate and have a 1000 byte size. The size of acknowledgement is 10 bytes and receiver receives it at 10 kbps transmission rate. The propagation delay in one direction is 50 msec. Calculate the sender throughput in bytes/sec (to the closest integer). Assume that no frame is being lost.",
+          "answer": 5319,
+          "solution": "Frame transmission = 8000 / 100000 = 80 ms. Ack transmission = 80 / 10000 = 8 ms. Cycle = 80 + 50 + 8 + 50 = 188 ms. Throughput = 1000 bytes / 0.188 s = 5319 bytes/s.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-01-q5",
+          "title": "Mean Transmissions in Stop and Wait",
+          "type": "mcq",
+          "question": "Assume that in stop and wait protocol the probability of frame being lost is $N$, then what will be mean number of transmission of a frame?",
+          "options": [
+            "$\\dfrac{1}{N}$",
+            "$\\dfrac{1}{1-N}$",
+            "$\\dfrac{1}{N-1}$",
+            "$N$"
+          ],
+          "answer": 1,
+          "solution": "The number of transmissions is geometric with success probability 1 - N, so the mean is 1 / (1 - N).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-01-q6",
+          "title": "Stop and Wait Statements",
+          "type": "mcq",
+          "question": "Stop and wait protocol is used for transmitting data between two devices over a communication channel. It is a simple protocol. Consider the following statements about stop and wait protocol:\n$S_1$: Stop and wait protocol offers the flow control.\n$S_2$: Sender and receiver window size is 1.\n$S_3$: Sender and receiver window size is $N$.\n$S_4$: Stop and wait protocol is half duplex.\nWhich of the following statement (s) is/are true?",
+          "options": [
+            "$S_1, S_3$",
+            "$S_1, S_2, S_3, S_4$",
+            "$S_1, S_2, S_4$",
+            "$S_2, S_3, S_4$"
+          ],
+          "answer": 2,
+          "solution": "Stop and wait provides flow control, uses window size 1 on both sides and is half duplex. S3 is false.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-01-q7",
+          "title": "Minimum Frame Size for 50% Efficiency",
+          "type": "nat",
+          "question": "The bit rate of a channel is 8 kbps, and one-way propagation delay is 40 msec. The protocol used for the channel is stop and wait. The acknowledgement frame transmission time is negligible. The minimum frame size needed to achieve channel efficiency of at least 50% is ________ bytes.",
+          "answer": 80,
+          "solution": "Efficiency = Tt / (Tt + 2Tp) >= 0.5 gives Tt >= 2Tp = 80 ms. Frame size = 8000 bps x 0.08 s = 640 bits = 80 bytes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-01-q8",
+          "title": "Lost Acknowledgement",
+          "type": "mcq",
+          "question": "Consider the following diagram: (A diagram depicting a data frame transmitted from Sender to Receiver, followed by an acknowledgement going from Receiver toward Sender which is lost midway, marked with an 'X')\nAmong the problems in stop and wait protocol, which of the following problems is represented by the given diagram?",
+          "options": [
+            "Lost data",
+            "Lost acknowledgement",
+            "Delayed acknowledgement",
+            "Delayed data"
+          ],
+          "answer": 1,
+          "solution": "The data frame reaches the receiver but the acknowledgement is lost on its way back, which is the lost acknowledgement problem.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-02-q1",
+          "title": "Go-Back-N Maximum Data Rate",
+          "type": "nat",
+          "question": "A satellite has a propagation delay of 800 ms and the bandwidth of the satellite is 40 Kbps. The transmission uses the \"Go-Back-$N$ ARQ\" protocol with $N$ having a value of 10. If the size of each frame is 100 bytes, then what is the maximum data rate possible in Kbps?",
+          "answer": 4.94,
+          "solution": "Frame = 800 bits, so Tt = 20 ms. Cycle = Tt + 2Tp = 20 + 1600 = 1620 ms. The window (10 frames) is smaller than the 81 frames needed to fill the pipe, so data per cycle = 10 x 800 = 8000 bits. Rate = 8000 / 1.62 s = 4938 bps, about 4.94 Kbps.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-02-q2",
+          "title": "Receiver Window in Go-Back-N",
+          "type": "mcq",
+          "question": "If the maximum sequence number in Go-Back-$N$-ARQ is '$S$', then what will be the receiver window size?",
+          "options": [
+            "$\\dfrac{S+1}{2}$",
+            "$S+1$",
+            "$S$",
+            "1"
+          ],
+          "answer": 3,
+          "solution": "In Go-Back-N the receiver window size is always 1.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-02-q3",
+          "title": "Go-Back-N Statements",
+          "type": "msq",
+          "question": "Which of the following statement(s) is/are correct about Go-Back-$N$-ARQ?",
+          "options": [
+            "In Go-Back-$N$-ARQ if the maximum sequence number is $K$ then sender window size will be $K$.",
+            "Go-Back-$N$-ARQ uses cumulative acknowledgment.",
+            "In Go-Back-$N$-ARQ time out timer is maintained only for the first frame of the window.",
+            "None of the above"
+          ],
+          "answer": [
+            0,
+            1,
+            2
+          ],
+          "solution": "With maximum sequence number K the sender window is K, acknowledgements are cumulative and only a timer for the oldest unacknowledged frame (the first of the window) is kept.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-02-q4",
+          "title": "Sequence Bits from Window Size",
+          "type": "nat",
+          "question": "If the maximum sender window size in Go-Back-$N$-ARQ is 15, then what will be the number of sequence bits?",
+          "answer": 4,
+          "solution": "Maximum sender window = 2^m - 1 = 15, so m = 4 bits.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-fc-02-q5",
+          "title": "Sequence Number Range",
+          "type": "msq",
+          "question": "In Go-Back-N protocol if the maximum window size is 16, then what will be the range of sequence number?\nNote: If the range is from $a$ to $b$, then write the answer in the form $\\dfrac{a+b}{2}$.",
+          "options": [
+            "16",
+            "4",
+            "8",
+            "None of these"
+          ],
+          "answer": [
+            2
+          ],
+          "solution": "A window of 16 needs 17 sequence numbers, 0 to 16. (0 + 16) / 2 = 8.",
+          "marks": 2,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "Medium Access Control",
+      "questions": [
+        {
+          "id": "dpp-mac-01-q1",
+          "title": "Ethernet Source Address",
+          "type": "mcq",
+          "question": "In ethernet, the source address field in the MAC frame is the ________ address.",
+          "options": [
+            "Original sender's Physical",
+            "Previous station's Physical",
+            "Next destination Physical",
+            "Original sender's Service"
+          ],
+          "answer": 0,
+          "solution": "In an Ethernet MAC frame the source address field carries the physical (MAC) address of the original sender.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mac-01-q2",
+          "title": "Ethernet Backoff",
+          "type": "mcq",
+          "question": "After the $k^{\\text{th}}$ consecutive collision, each colliding station waits for a random time chosen for the internal:",
+          "options": [
+            "$(0 \\text{ to } 2k) \\times \\text{RTT}$",
+            "$(0 \\text{ to } 2^k - 1) \\times \\text{RTT}$",
+            "$(0 \\text{ to } 2^k - 1) \\times \\text{maximum propagation Delay}$",
+            "$(0 \\text{ to } 2^{k-1}) \\times \\text{maximum propagation Delay}$"
+          ],
+          "answer": 1,
+          "solution": "In binary exponential backoff, after the k-th collision a station picks a random number from 0 to 2^k - 1 and waits that many slot times, where a slot time is the RTT.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mac-01-q3",
+          "title": "Stations on a Slotted ALOHA Channel",
+          "type": "nat",
+          "question": "A group of $N$ stations share 50 Kbps slotted ALOHA channel. Each station outputs is 500 bits frame on an average of once 5000 ms, even if previous one has not been sent. What is the maximum value of $N$?",
+          "answer": 183,
+          "solution": "Slotted ALOHA's maximum throughput is 1/e of the channel, about 0.368 x 50 kbps = 18394 bps. Each station sends 500 bits / 5 s = 100 bps, so N = 18394 / 100 = 183.9, i.e. at most 183. (If 0.368 is used, the key may give 184.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mac-01-q4",
+          "title": "Ethernet Utilization",
+          "type": "mcq",
+          "question": "Suppose that '$N$' ethernet stations, all trying to sent at the same time, requires $\\frac{N}{2}$ slot times to sort out who transmits next. Assuming the average packet size is 5 slot times, express the utilization of ethernet as a function of $N$.",
+          "options": [
+            "$\\frac{10}{N}$",
+            "$\\frac{10}{5+N}$",
+            "$\\frac{5}{N+10}$",
+            "$\\frac{10}{10+N}$"
+          ],
+          "answer": 3,
+          "solution": "Utilization = useful time / total time = 5 / (5 + N/2) = 10 / (10 + N).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-mac-01-q5",
+          "title": "Slotted ALOHA Statements",
+          "type": "msq",
+          "question": "Which of the following is NOT true about slotted ALOHA?",
+          "options": [
+            "Divide time into discrete intervals.",
+            "Require global time synchronization",
+            "Does not dived time into discrete intervals",
+            "None of the above"
+          ],
+          "answer": [
+            2
+          ],
+          "solution": "Slotted ALOHA divides time into discrete slots and requires global time synchronization. The statement that it does not divide time into discrete intervals is false.",
+          "marks": 2,
+          "source": "DPP"
+        }
+      ]
+    },
+    {
+      "title": "TCP and UDP",
+      "questions": [
+        {
+          "id": "dpp-tcp-01-q1",
+          "title": "TCP Header Length",
+          "type": "msq",
+          "question": "Which of the following statements is/are true regarding TCP header?",
+          "options": [
+            "The range of TCP header length field value is always $[5, 15]$",
+            "The range of TCP header length is always $[20, 60]$",
+            "The range of TCP header length field value is always $[0-15]$",
+            "The range of TCP header length is always $[0-60]$"
+          ],
+          "answer": [
+            0,
+            1
+          ],
+          "solution": "The header length field is 4 bits with a minimum value of 5 (20 bytes) and a maximum of 15 (60 bytes). So the field ranges over [5, 15] and the header length over [20, 60] bytes.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-01-q2",
+          "title": "PSH Bit",
+          "type": "mcq",
+          "question": "What is the purpose of using PSH bit in TCP header?",
+          "options": [
+            "PSH bit is used to treat certain data on an urgent basis.",
+            "PSH bit indicates whether acknowledgement number field is valid or not.",
+            "PSH bit is to push the entire buffer immediately to the receiving application.",
+            "None of the above."
+          ],
+          "answer": 2,
+          "solution": "The PSH bit asks the receiver to push the buffered data immediately to the receiving application.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-01-q3",
+          "title": "RST and SYN Statements",
+          "type": "nat",
+          "question": "Consider the following statements:\n$S_1$: RST bit is used to reset the TCP connection.\n$S_2$: When RST bit is set to 1, it indicates the receiver to terminate the connection immediately.\n$S_3$: When RST bit is set to 1 it may result in the loss of data that is in transit.\n$S_4$: SYN bit us used to synchronize the sequence number.\nHow many are the true statements?",
+          "answer": 4,
+          "solution": "All four statements are true.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-01-q4",
+          "title": "Match TCP Fields with Lengths",
+          "type": "mcq",
+          "question": "Match the Following:\nField in TCP header: 1. Sequence number, 2. Reserved bits, 3. Header length, 4. Advertisement window\nLength in bits: A: 16, B: 4, C: 32, D: 6",
+          "options": [
+            "1-A, 2-B, 3-C, 4-D",
+            "1-C, 2-D, 3-B, 4-A",
+            "1-C, 2-D, 3-A, 4-B",
+            "1-A, 2-B, 3-D, 4-C"
+          ],
+          "answer": 1,
+          "solution": "Sequence number is 32 bits (C), reserved bits are 6 (D), header length is 4 bits (B) and the window is 16 bits (A).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-01-q5",
+          "title": "Field Not in TCP Header",
+          "type": "mcq",
+          "question": "Which of the following is not a field in TCP header?",
+          "options": [
+            "Sequence Number",
+            "Checksum",
+            "Fragment offset",
+            "Window size."
+          ],
+          "answer": 2,
+          "solution": "Fragment offset belongs to the IP header, not the TCP header.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-01-q6",
+          "title": "Maximum TCP Payload",
+          "type": "mcq",
+          "question": "The maximum payload of TCP segment is:",
+          "options": [
+            "65,535",
+            "65,495",
+            "65,515",
+            "65,475"
+          ],
+          "answer": 1,
+          "solution": "The maximum IP packet is 65535 bytes. Subtracting the 20-byte IP header and 20-byte TCP header leaves 65495 bytes.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-02-q1",
+          "title": "Wrap Around Time",
+          "type": "nat",
+          "question": "Given the bandwidth of a network is 512 MB/sec. Calculate the wrap around time? (in sec upto 2 decimal places)",
+          "answer": 8.39,
+          "solution": "The sequence number space is 2^32 bytes. Wrap around time = 2^32 / (512 x 10^6) = 8.39 s. (With MB = 2^20 bytes it would be exactly 8.00 s.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-02-q2",
+          "title": "Meaning of Wrap Around Time",
+          "type": "mcq",
+          "question": "Which of the following statements is true regarding wrap around time in transport layer protocol?",
+          "options": [
+            "It's a time to use upto $2^{32}$ ports number.",
+            "It's a time to use upto $2^{32}$ sequence number.",
+            "It's a time to use upto $2^{32}$ bits of data.",
+            "None of the above."
+          ],
+          "answer": 1,
+          "solution": "Wrap around time is the time taken to use up all 2^32 sequence numbers.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-02-q3",
+          "title": "Minimum Time Before Reuse of a Sequence Number",
+          "type": "nat",
+          "question": "Consider a long-lived TCP session with an end to end bandwidth of 1.5 GB/sec. The session start with a sequence number 8328. The minimum time before this sequence number can be used again is ________ second. (Rounded to the closest integer.)",
+          "answer": 3,
+          "solution": "All 2^32 sequence numbers must be used before reuse: 2^32 / (1.5 x 10^9) = 2.86 s, which rounds to 3 s (with binary GB it is 2.67 s, also 3).",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-02-q4",
+          "title": "Avoiding Wrap Around",
+          "type": "msq",
+          "question": "Which of the following conditions are true to avoid wrap around time? ($B = \\text{Bandwidth}$)",
+          "options": [
+            "Minimum sequence number required to avoid wrap around with in the lifetime $= 2 \\times \\text{lifetime} \\times B$",
+            "Minimum sequence number required to avoid wrap around with in the lifetime $= \\text{lifetime} \\times B$",
+            "Minimum number of bits required in the sequence number field to avoid wrap around with in lifetime $= \\lceil \\log_{2}(\\text{lifetime} \\times B) \\rceil$",
+            "None of the above."
+          ],
+          "answer": [
+            1,
+            2
+          ],
+          "solution": "To avoid wrap around within the packet lifetime, the sequence space must be at least lifetime x B, which needs ceil(log2(lifetime x B)) bits. The factor of 2 in (a) is incorrect.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-02-q5",
+          "title": "Wrap Around Time for a 30-bit Sequence Number",
+          "type": "nat",
+          "question": "Consider 400 Mbps network with a sequence number field 30 bits. The wrap around time of the sequence number is ________ (in seconds, up to 2 decimal places)",
+          "answer": 21.47,
+          "solution": "The sequence space is 2^30 bytes = 2^30 x 8 bits. Time = 2^30 x 8 / (400 x 10^6) = 21.47 s. (The source question had no options, so it is asked as a numeric answer.)",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-03-q1",
+          "title": "No More Data to Send",
+          "type": "mcq",
+          "question": "Which of the following control filed in TCP header is used to specify whether to sender has no more data to transmit?",
+          "options": [
+            "FIN",
+            "RST",
+            "SYN",
+            "PSH"
+          ],
+          "answer": 0,
+          "solution": "The FIN bit indicates that the sender has finished sending data.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-03-q2",
+          "title": "Meaning of an ACK Number",
+          "type": "mcq",
+          "question": "An ACK number of 500 in TCP always means:",
+          "options": [
+            "499 bytes have been successfully received.",
+            "500 bytes have been successfully received.",
+            "501 bytes have been successfully received.",
+            "None of the above."
+          ],
+          "answer": 3,
+          "solution": "An ACK number is the sequence number of the next byte expected. Because initial sequence numbers are not necessarily 0, it does not always mean a specific number of bytes was received.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-03-q3",
+          "title": "SYN Segments",
+          "type": "msq",
+          "question": "Which of the following statement(s) is/are true?",
+          "options": [
+            "A SYN segment can carry data and consumes one sequence number.",
+            "A SYN segment can't carry data, but consumes one sequence number.",
+            "A SYN + ACK segment can carry data, and consumes one sequence number.",
+            "A SYN + ACK segment can't carry data, but consumes one sequence number."
+          ],
+          "answer": [
+            1,
+            3
+          ],
+          "solution": "A SYN or SYN + ACK segment normally carries no data but consumes one sequence number.",
+          "marks": 2,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-03-q4",
+          "title": "Client State Order",
+          "type": "mcq",
+          "question": "In TCP state transition diagram what will be the correct order of states in which the client will move while establishment the connection with TCP secure.",
+          "options": [
+            "SYN-SENT $\\to$ ESTABLISHED $\\to$ FIN-WAIT 1 $\\to$ FIN-WAIT 2 $\\to$ LAST-ACK",
+            "SYN-SENT $\\to$ ESTABLISHED $\\to$ FIN-WAIT 1 $\\to$ FIN-WAIT 2 $\\to$ TIME-WAIT",
+            "SYN-SENT $\\to$ SYN-RCVD $\\to$ FIN-WAIT 1 $\\to$ FIN-WAIT 2 $\\to$ TIME-WAIT",
+            "None of these"
+          ],
+          "answer": 1,
+          "solution": "The client goes SYN-SENT, ESTABLISHED, and on closing FIN-WAIT 1, FIN-WAIT 2 and TIME-WAIT.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-03-q5",
+          "title": "2 MSL Wait State",
+          "type": "mcq",
+          "question": "Consider a TCP state transition diagram which of the following state is also called 2 MSL wait time state? (MSL = Maximum Segment Lifeline)",
+          "options": [
+            "FIN-WAIT 2",
+            "TIME-WAIT",
+            "CLOSE-WAIT",
+            "LAST-ACK"
+          ],
+          "answer": 1,
+          "solution": "The TIME-WAIT state lasts 2 x MSL.",
+          "marks": 1,
+          "source": "DPP"
+        },
+        {
+          "id": "dpp-tcp-03-q6",
+          "title": "TCP Statements",
+          "type": "nat",
+          "question": "Consider the following statements:\n$S_1$: TCP can accept out of order segments but always sends in order acknowledgment.\n$S_2$: TCP connection is full duplex connection for example data can be sent in both the direction.\n$S_3$: In TCP for complete connection establishment 3-way handshaking is required.\n$S_4$: For complete connection establishment and connection release control segment are transmitted where as in data transfer phase data segment are transmitted.\nThe total number of correct statements will be ________.",
+          "answer": 4,
+          "solution": "All four statements are correct.",
+          "marks": 1,
+          "source": "DPP"
+        }
+      ]
+    }
+  ]
 }
