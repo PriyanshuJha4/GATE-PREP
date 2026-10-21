@@ -39,6 +39,15 @@ export default function Sidebar({ nav, siteName, open, onClose }) {
         </Link>
 
         <Link
+          href="/concept-editor/"
+          className={`nav-link nav-home nav-quick ${pathname === '/concept-editor' ? 'active' : ''}`}
+          aria-current={pathname === '/concept-editor' ? 'page' : undefined}
+          onClick={onClose}
+        >
+          Concept Editor
+        </Link>
+
+        <Link
           href="/quick-links/"
           className={`nav-link nav-home nav-quick ${pathname === '/quick-links' ? 'active' : ''}`}
           aria-current={pathname === '/quick-links' ? 'page' : undefined}
