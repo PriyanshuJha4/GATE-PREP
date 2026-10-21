@@ -1,257 +1,356 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import MarkdownRenderer from '@/components/MarkdownRenderer';
+import MarkdownRenderer from './MarkdownRenderer';
+import { downloadText } from '@/lib/download';
 
-const DRAFT_PREFIX = 'gate-concept-editor:draft:';
-const HISTORY_PREFIX = 'gate-concept-editor:history:';
 const clone = (value) => JSON.parse(JSON.stringify(value));
-const pretty = (value) => JSON.stringify(value, null, 2);
+const text = (value) => typeof value === 'string' ? value : value == null ? '' : String(value);
+const CONTENT_TYPES = [
+  { id: 'concepts', label: 'Concepts', file: 'concepts.json' },
+  { id: 'dpp', label: 'DPP Questions', file: 'dpp-questions.json' },
+  { id: 'pyq', label: 'PYQs', file: 'pyq-questions.json' },
+  { id: 'practice', label: 'Practice Questions', file: 'practice-questions.json' },
+];
 
-function validateConcepts(data) {
+function detectType(name, data) {
+  const lower = (name || '').toLowerCase();
+  const found = CONTENT_TYPES.find((t) => lower.endsWith(t.file));
+  if (found) return found.id;
+  if (Array.isArray(data?.sections)) return 'concepts';
+  if (Array.isArray(data?.chapters)) {
+    if (/dpp/.test(lower)) return 'dpp';
+    if (/pyq|previous/.test(lower)) return 'pyq';
+    if (/practice/.test(lower)) return 'practice';
+    return 'practice';
+  }
+  return 'unknown';
+}
+
+function validateDocument(data, type) {
   const errors = [];
   if (!data || typeof data !== 'object' || Array.isArray(data)) return ['Root must be a JSON object.'];
-  if (typeof data.title !== 'string') errors.push('Top-level "title" must be a string.');
-  if (!Array.isArray(data.sections)) errors.push('"sections" must be an array.');
-  else {
+  const isConcepts = type === 'concepts';
+  const collectionKey = isConcepts ? 'sections' : 'chapters';
+  if (!Array.isArray(data[collectionKey])) errors.push(`Root must contain a "${collectionKey}" array.`);
+  const groups = Array.isArray(data[collectionKey]) ? data[collectionKey] : [];
+  const groupIds = new Set();
+  groups.forEach((group, i) => {
+    const label = `${isConcepts ? 'Section' : 'Chapter'} ${i + 1}`;
+    if (!group || typeof group !== 'object' || Array.isArray(group)) { errors.push(`${label} must be an object.`); return; }
+    if (typeof group.title !== 'string' || !group.title.trim()) errors.push(`${label}: title must be a non-empty string.`);
+    if (isConcepts && group.id != null) {
+      const id = String(group.id);
+      if (groupIds.has(id)) errors.push(`${label}: duplicate section id "${id}".`);
+      groupIds.add(id);
+    }
+    if (isConcepts) {
+      if (group.content != null && typeof group.content !== 'string') errors.push(`${label}: content must be a string.`);
+      if (group.keyPoints != null && !Array.isArray(group.keyPoints)) errors.push(`${label}: keyPoints must be an array.`);
+    }
+    if (group.questions != null && !Array.isArray(group.questions)) errors.push(`${label}: questions must be an array.`);
+    const questions = Array.isArray(group.questions) ? group.questions : [];
     const ids = new Set();
-    data.sections.forEach((section, index) => {
-      const at = `sections[${index}]`;
-      if (!section || typeof section !== 'object' || Array.isArray(section)) {
-        errors.push(`${at} must be an object.`); return;
+    questions.forEach((q, qi) => {
+      const qlabel = `${label}, Q${qi + 1}`;
+      if (!q || typeof q !== 'object' || Array.isArray(q)) { errors.push(`${qlabel} must be an object.`); return; }
+      if (q.id != null && String(q.id).trim()) {
+        const id = String(q.id);
+        if (ids.has(id)) errors.push(`${qlabel}: duplicate question id "${id}".`);
+        ids.add(id);
       }
-      if (typeof section.id !== 'string' || !section.id.trim()) errors.push(`${at}.id must be a non-empty string.`);
-      else if (ids.has(section.id)) errors.push(`Duplicate section id "${section.id}".`);
-      else ids.add(section.id);
-      if (typeof section.title !== 'string') errors.push(`${at}.title must be a string.`);
-      for (const field of ['intro', 'summary', 'content', 'short']) {
-        if (section[field] !== undefined && typeof section[field] !== 'string') errors.push(`${at}.${field} must be a string.`);
-      }
-      if (section.keyPoints !== undefined && !Array.isArray(section.keyPoints)) errors.push(`${at}.keyPoints must be an array.`);
-      if (section.questions !== undefined && !Array.isArray(section.questions)) errors.push(`${at}.questions must be an array.`);
+      if (q.options != null && !Array.isArray(q.options)) errors.push(`${qlabel}: options must be an array.`);
+      if (q.question != null && typeof q.question !== 'string') errors.push(`${qlabel}: question must be a string.`);
     });
-  }
-  if (data.intro !== undefined && typeof data.intro !== 'string') errors.push('Top-level "intro" must be a string.');
+  });
   return errors;
 }
 
-function saveHistory(subject, data) {
-  try {
-    const key = HISTORY_PREFIX + subject;
-    const previous = JSON.parse(localStorage.getItem(key) || '[]');
-    const serialized = pretty(data);
-    if (previous[0]?.json === serialized) return;
-    const next = [{ at: new Date().toISOString(), json: serialized }, ...previous].slice(0, 20);
-    localStorage.setItem(key, JSON.stringify(next));
-  } catch {}
+function guessSubject(name, data) {
+  const cleaned = (name || '').replace(/\.json$/i, '').replace(/-(concepts|dpp-questions|pyq-questions|practice-questions)$/i, '').replace(/[-_]+/g, ' ').trim();
+  return cleaned || data?.title || 'Imported content';
 }
 
-export default function ConceptEditor({ subjects }) {
-  const [subject, setSubject] = useState(subjects[0]?.slug || '');
-  const [docs, setDocs] = useState(() => Object.fromEntries(subjects.map((s) => [s.slug, clone(s.data || { title: `${s.title} — Concepts`, sections: [] })])));
-  const [sectionId, setSectionId] = useState('');
+export default function ConceptEditor() {
+  const [documents, setDocuments] = useState([]);
+  const [activeDoc, setActiveDoc] = useState('');
+  const [activeGroup, setActiveGroup] = useState(0);
+  const [activeQuestion, setActiveQuestion] = useState(0);
   const [mode, setMode] = useState('visual');
-  const [status, setStatus] = useState('');
+  const [field, setField] = useState('content');
+  const [message, setMessage] = useState('Import any of the four JSON content files to begin.');
   const [validation, setValidation] = useState(null);
-  const [history, setHistory] = useState([]);
-  const [rawQuestions, setRawQuestions] = useState('');
-  const [rawKeyPoints, setRawKeyPoints] = useState('');
-  const lastAutosavedSubject = useRef(subject);
+  const [previewSelection, setPreviewSelection] = useState('');
+  const [pendingSourceRange, setPendingSourceRange] = useState(null);
+  const [paneLayout, setPaneLayout] = useState('side');
+  const [editorWidth, setEditorWidth] = useState(50);
+  const [editorCollapsed, setEditorCollapsed] = useState(false);
+  const [previewCollapsed, setPreviewCollapsed] = useState(false);
+  const [jsonDraft, setJsonDraft] = useState(null);
+  const fileRef = useRef(null);
+  const editorPanelRef = useRef(null);
 
-  const data = docs[subject] || { title: '', sections: [] };
-  const sections = Array.isArray(data.sections) ? data.sections : [];
-  const selectedIndex = Math.max(0, sections.findIndex((s) => s.id === sectionId));
-  const section = sections[selectedIndex] || null;
-  const subjectTitle = subjects.find((s) => s.slug === subject)?.title || subject;
+  const doc = documents.find((d) => d.key === activeDoc) || null;
+  const type = doc?.type || 'unknown';
+  const isConcepts = type === 'concepts';
+  const collectionKey = isConcepts ? 'sections' : 'chapters';
+  const groups = Array.isArray(doc?.data?.[collectionKey]) ? doc.data[collectionKey] : [];
+  const group = groups[activeGroup] || null;
+  const questions = Array.isArray(group?.questions) ? group.questions : [];
+  const question = questions[activeQuestion] || null;
+  const errors = useMemo(() => doc ? validateDocument(doc.data, doc.type) : [], [doc]);
+  const dirty = Boolean(doc?.dirty);
 
+  useEffect(() => { setJsonDraft(null); }, [activeDoc, activeGroup, activeQuestion, field]);
   useEffect(() => {
-    if (!sectionId || !sections.some((s) => s.id === sectionId)) setSectionId(sections[0]?.id || '');
-  }, [subject, sections, sectionId]);
-
+    if (!previewSelection || mode !== 'visual') return;
+    const escaped = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(previewSelection) : previewSelection.replace(/[^a-zA-Z0-9_-]/g, '');
+    const target = editorPanelRef.current?.querySelector(`[data-editor-field="${escaped}"]`);
+    if (target) {
+      target.focus({ preventScroll: true });
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (pendingSourceRange && pendingSourceRange.field === previewSelection && typeof target.setSelectionRange === 'function') {
+        const valueLength = target.value?.length ?? 0;
+        const start = Math.max(0, Math.min(valueLength, pendingSourceRange.start ?? 0));
+        const end = Math.max(start, Math.min(valueLength, pendingSourceRange.end ?? start));
+        target.setSelectionRange(start, end);
+        setPendingSourceRange(null);
+      }
+      target.classList.add('editor-field-highlight');
+      const removeHighlight = () => target.classList.remove('editor-field-highlight');
+      target.addEventListener('blur', removeHighlight, { once: true });
+    }
+    setPreviewSelection('');
+  }, [field, mode, previewSelection, pendingSourceRange]);
   useEffect(() => {
     try {
-      const draft = localStorage.getItem(DRAFT_PREFIX + subject);
-      if (draft) {
-        const parsed = JSON.parse(draft);
-        if (parsed && Array.isArray(parsed.sections)) {
-          setDocs((old) => ({ ...old, [subject]: parsed }));
-          setStatus('Restored local draft.');
-        }
+      const saved = JSON.parse(localStorage.getItem('gate-content-editor-drafts-v2') || '[]');
+      if (Array.isArray(saved) && saved.length) {
+        setDocuments(saved.map((d) => ({ ...d, dirty: true, restored: true })));
+        setActiveDoc(saved[0].key);
+        setMessage('Recovered browser draft(s). Import the original file to compare or start fresh.');
       }
-      setHistory(JSON.parse(localStorage.getItem(HISTORY_PREFIX + subject) || '[]'));
     } catch {}
-  }, [subject]);
-
+  }, []);
   useEffect(() => {
-    setRawQuestions(pretty(section?.questions || []));
-    setRawKeyPoints(pretty(section?.keyPoints || []));
-  }, [subject, sectionId]);
+    if (!documents.length) return;
+    try { localStorage.setItem('gate-content-editor-drafts-v2', JSON.stringify(documents)); } catch {}
+  }, [documents]);
 
-  const errors = useMemo(() => validateConcepts(data), [data]);
+  const updateDoc = (updater, label = 'Draft updated.') => {
+    setDocuments((prev) => prev.map((d) => {
+      if (d.key !== activeDoc) return d;
+      const nextData = typeof updater === 'function' ? updater(clone(d.data)) : updater;
+      const history = [...(d.history || []), { at: new Date().toISOString(), label, data: clone(d.data) }].slice(-40);
+      return { ...d, data: nextData, history, dirty: true };
+    }));
+    setValidation(null);
+    setMessage(label);
+  };
 
-  // Automatically keep a local draft and a bounded version history after edits.
-  useEffect(() => {
-    if (lastAutosavedSubject.current !== subject) {
-      lastAutosavedSubject.current = subject;
-      return;
-    }
-    const timer = setTimeout(() => {
+  const importFiles = async (event) => {
+    const files = Array.from(event.target.files || []);
+    event.target.value = '';
+    const loaded = [];
+    for (const file of files) {
       try {
-        const serialized = pretty(data);
-        JSON.parse(serialized);
-        localStorage.setItem(DRAFT_PREFIX + subject, serialized);
-        saveHistory(subject, data);
-        setHistory(JSON.parse(localStorage.getItem(HISTORY_PREFIX + subject) || '[]'));
-      } catch {}
-    }, 1200);
-    return () => clearTimeout(timer);
-  }, [subject, data]);
-
-  const updateDoc = (patch) => setDocs((old) => ({ ...old, [subject]: { ...old[subject], ...patch } }));
-  const updateSection = (patch) => {
-    if (!section) return;
-    const nextSections = sections.map((s, i) => i === selectedIndex ? { ...s, ...patch } : s);
-    updateDoc({ sections: nextSections });
-  };
-  const checkJson = () => {
-    try {
-      const parsed = JSON.parse(pretty(data));
-      const issues = validateConcepts(parsed);
-      setValidation({ ok: issues.length === 0, issues });
-      setStatus(issues.length ? 'JSON parsed, but schema validation found issues.' : 'JSON and concepts schema are valid.');
-    } catch (e) {
-      setValidation({ ok: false, issues: [e.message] });
-      setStatus('JSON validation failed.');
+        const data = JSON.parse(await file.text());
+        if (!data || typeof data !== 'object' || Array.isArray(data)) throw new Error('Root must be a JSON object.');
+        const detected = detectType(file.name, data);
+        if (detected === 'unknown') throw new Error('Could not identify the schema. Choose a concepts, DPP, PYQ, or practice JSON file.');
+        const key = `${file.name}:${file.size}:${file.lastModified}`;
+        loaded.push({ key, name: file.name, subject: guessSubject(file.name, data), type: detected, data, original: clone(data), history: [], dirty: false });
+      } catch (e) { setMessage(`${file.name}: ${e.message}`); }
+    }
+    if (loaded.length) {
+      setDocuments((prev) => [...prev.filter((d) => !loaded.some((n) => n.key === d.key)), ...loaded]);
+      setActiveDoc(loaded[0].key); setActiveGroup(0); setActiveQuestion(0);
+      setMessage(`Imported ${loaded.length} file(s). IDs, metadata, and untouched fields are retained.`);
     }
   };
+
+  const patchRoot = (key, value) => updateDoc((data) => { data[key] = value; return data; });
+  const patchGroup = (key, value) => updateDoc((data) => {
+    const item = data[collectionKey][activeGroup];
+    if (key === 'keyPoints') item[key] = value.split('\n').filter((x) => x.trim());
+    else if (key === 'questionsJson') item.questions = JSON.parse(value || '[]');
+    else item[key] = value;
+    return data;
+  });
+  const patchQuestion = (key, value) => updateDoc((data) => {
+    const item = data[collectionKey][activeGroup];
+    if (!Array.isArray(item.questions)) item.questions = [];
+    const q = item.questions[activeQuestion];
+    if (!q) return data;
+    if (key === 'options') q.options = value.split('\n');
+    else if (key === 'answer') {
+      try { q.answer = JSON.parse(value); } catch { q.answer = value; }
+    } else if (key === 'marks') {
+      const parsed = value.trim() === '' ? '' : Number(value);
+      q.marks = parsed === '' || Number.isNaN(parsed) ? value : parsed;
+    } else q[key] = value;
+    return data;
+  });
+  const addQuestion = () => {
+    const nextIndex = questions.length;
+    updateDoc((data) => {
+      const g = data[collectionKey][activeGroup];
+      if (!Array.isArray(g.questions)) g.questions = [];
+      const q = isConcepts
+        ? { id: `new-question-${Date.now()}`, type: 'mcq', question: '', options: ['', '', '', ''], answer: 0, solution: '', marks: 1 }
+        : { id: `new-question-${Date.now()}`, type: 'mcq', question: '', options: ['', '', '', ''], answer: 0, solution: '', marks: 1, source: type === 'dpp' ? 'DPP' : type === 'pyq' ? 'GATE PYQ' : 'Practice' };
+      g.questions.push(q);
+      return data;
+    }, 'Added question.');
+    setActiveQuestion(nextIndex);
+    setField('question');
+  };
+  const deleteQuestion = () => {
+    if (!question || !window.confirm('Delete this question? This change affects only the current draft until exported.')) return;
+    updateDoc((data) => { data[collectionKey][activeGroup].questions.splice(activeQuestion, 1); return data; }, 'Deleted question.');
+    setActiveQuestion(Math.max(0, activeQuestion - 1));
+  };
+  const addGroup = () => {
+    const nextIndex = groups.length;
+    updateDoc((data) => {
+      const item = isConcepts ? { id: `new-section-${Date.now()}`, title: 'New section', content: '', questions: [] } : { title: 'New chapter', questions: [] };
+      if (!Array.isArray(data[collectionKey])) data[collectionKey] = [];
+      data[collectionKey].push(item);
+      return data;
+    }, `Added ${isConcepts ? 'section' : 'chapter'}.`);
+    setActiveGroup(nextIndex);
+    setActiveQuestion(0);
+    setField(isConcepts ? 'content' : 'group');
+  };
+
   const saveDraft = () => {
-    try {
-      const serialized = pretty(data);
-      JSON.parse(serialized);
-      localStorage.setItem(DRAFT_PREFIX + subject, serialized);
-      saveHistory(subject, data);
-      setHistory(JSON.parse(localStorage.getItem(HISTORY_PREFIX + subject) || '[]'));
-      setStatus('Draft saved in this browser.');
-      checkJson();
-    } catch (e) { setStatus(`Could not save draft: ${e.message}`); }
+    try { localStorage.setItem('gate-content-editor-drafts-v2', JSON.stringify(documents)); setMessage('Draft saved in this browser. Export JSON to update the project file.'); }
+    catch { setMessage('Could not save draft; browser storage may be full. Export a backup instead.'); }
   };
-  const exportJson = () => {
-    const issues = validateConcepts(data);
-    if (issues.length) {
-      setValidation({ ok: false, issues });
-      setStatus('Export blocked: fix validation errors first.');
-      return;
-    }
-    const blob = new Blob([pretty(data) + '\n'], { type: 'application/json;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${subject}-concepts.json`;
-    document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    saveHistory(subject, data);
-    setHistory(JSON.parse(localStorage.getItem(HISTORY_PREFIX + subject) || '[]'));
-    setStatus(`Exported ${subject}-concepts.json. Replace content/${subject}/concepts.json, validate, then redeploy.`);
-    setValidation({ ok: true, issues: [] });
+  const validate = () => {
+    if (!doc) return;
+    try { JSON.parse(JSON.stringify(doc.data)); const issues = validateDocument(doc.data, doc.type); setValidation(issues); setMessage(issues.length ? 'Validation found issues.' : 'JSON syntax and content structure checks passed.'); }
+    catch (e) { setValidation([`Invalid JSON: ${e.message}`]); }
   };
-  const importFile = async (file) => {
-    if (!file) return;
-    try {
-      const parsed = JSON.parse(await file.text());
-      const issues = validateConcepts(parsed);
-      if (issues.length) {
-        setValidation({ ok: false, issues });
-        setStatus('File parsed, but schema validation failed. Original editor content was kept.');
-        return;
-      }
-      setDocs((old) => ({ ...old, [subject]: parsed }));
-      setSectionId(parsed.sections[0]?.id || '');
-      setStatus(`Loaded ${file.name} into the editor. Nothing in the project folder has been changed.`);
-      setValidation({ ok: true, issues: [] });
-    } catch (e) {
-      setValidation({ ok: false, issues: [e.message] });
-      setStatus(`Could not import JSON: ${e.message}`);
-    }
+  const exportFile = () => {
+    if (!doc) return;
+    const issues = validateDocument(doc.data, doc.type);
+    if (issues.length) { setValidation(issues); setMessage('Export blocked: fix validation errors first.'); return; }
+    downloadText(doc.name, JSON.stringify(doc.data, null, 2) + '\n', 'application/json');
+    setMessage(`Exported ${doc.name}. Replace the matching file under content/<subject>/ and redeploy.`);
   };
-  const restoreVersion = (item) => {
-    try {
-      const parsed = JSON.parse(item.json);
-      setDocs((old) => ({ ...old, [subject]: parsed }));
-      setSectionId(parsed.sections?.[0]?.id || '');
-      setStatus(`Restored version from ${new Date(item.at).toLocaleString()}. Save or export to keep it.`);
-    } catch { setStatus('That version could not be restored.'); }
-  };
-  const commitArray = (field, raw) => {
-    try {
-      const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) throw new Error('Value must be a JSON array.');
-      updateSection({ [field]: parsed });
-      setStatus(`${field} updated.`);
-    } catch (e) { setStatus(`${field}: ${e.message}`); }
+  const undo = () => {
+    if (!doc?.history?.length) return;
+    const last = doc.history[doc.history.length - 1];
+    setDocuments((prev) => prev.map((d) => d.key === activeDoc ? { ...d, data: clone(last.data), history: d.history.slice(0, -1), dirty: true } : d));
+    setMessage('Restored previous editor version.');
   };
 
-  return (
-    <div className="page concept-editor-page">
-      <header className="page-head">
-        <div><p className="crumb">GATE CSE · Content tools</p><h1>Concept Editor</h1><p className="muted">Edit concepts safely, preview Markdown, validate, and export JSON.</p></div>
-      </header>
-      <div className="editor-notice">
-        <strong>Browser-only editing:</strong> changes are saved to this browser's local storage, not directly to your repository. Import an existing concepts.json to edit it, then export and replace the project file.
-      </div>
-      <div className="editor-toolbar">
-        <label>Subject<select value={subject} onChange={(e) => { setSubject(e.target.value); setValidation(null); }}>{
-          subjects.map((s) => <option key={s.slug} value={s.slug}>{s.title}</option>)
-        }</select></label>
-        <label className="editor-file">Import concepts.json<input type="file" accept=".json,application/json" onChange={(e) => importFile(e.target.files?.[0])} /></label>
-        <div className="editor-actions">
-          <button className="btn" onClick={saveDraft}>Save Draft</button>
-          <button className="btn" onClick={checkJson}>Validate JSON</button>
-          <button className="btn editor-primary" onClick={exportJson}>Export Updated JSON</button>
-        </div>
-      </div>
-      <div className="editor-layout">
-        <aside className="editor-sections">
-          <div className="editor-section-head"><strong>Sections</strong><button className="btn btn-ghost" onClick={() => {
-            const base = 'new-section'; let id = base; let n = 2; while (sections.some((s) => s.id === id)) id = `${base}-${n++}`;
-            updateDoc({ sections: [...sections, { id, title: 'New section', short: 'New section', summary: '', content: '', keyPoints: [], questions: [] }] }); setSectionId(id);
-          }}>+ Add</button></div>
-          {sections.map((s) => <button key={s.id} className={`editor-section-item ${section?.id === s.id ? 'active' : ''}`} onClick={() => setSectionId(s.id)}><span>{s.title || '(Untitled section)'}</span><small>{s.id}</small></button>)}
-          {!sections.length && <p className="muted">No sections yet. Import a file or add a section.</p>}
-          <hr />
-          <label className="editor-field">Document title<input value={data.title || ''} onChange={(e) => updateDoc({ title: e.target.value })} /></label>
-          <label className="editor-field">Document intro (Markdown)<textarea rows={4} value={data.intro || ''} onChange={(e) => updateDoc({ intro: e.target.value })} /></label>
-        </aside>
-        <section className="editor-workspace">
-          {section ? <>
-            <div className="editor-modebar"><strong>{section.title || section.id}</strong><div><button className={`btn ${mode === 'visual' ? 'editor-selected' : ''}`} onClick={() => setMode('visual')}>Visual editor</button><button className={`btn ${mode === 'structured' ? 'editor-selected' : ''}`} onClick={() => setMode('structured')}>Structured fields</button></div></div>
-            {mode === 'visual' ? <>
-              <div className="editor-fields-grid">
-                <label className="editor-field">Section title<input value={section.title || ''} onChange={(e) => updateSection({ title: e.target.value })} /></label>
-                <label className="editor-field">Short label<input value={section.short || ''} onChange={(e) => updateSection({ short: e.target.value })} /></label>
-                <label className="editor-field editor-full">Summary<input value={section.summary || ''} onChange={(e) => updateSection({ summary: e.target.value })} /></label>
-              </div>
-              <label className="editor-field">Content (Markdown, LaTeX, Mermaid, code, tables)<textarea className="editor-markdown-input" value={section.content || ''} onChange={(e) => updateSection({ content: e.target.value })} spellCheck={false} /></label>
-              <div className="editor-preview"><div className="editor-preview-head">Live preview</div><MarkdownRenderer content={section.content || ''} /></div>
-              <div className="editor-fields-grid">
-                <label className="editor-field">Key points (one per line)<textarea rows={5} value={(section.keyPoints || []).join('\n')} onChange={(e) => updateSection({ keyPoints: e.target.value.split('\n').filter((x) => x.trim()) })} /></label>
-                <label className="editor-field">Questions (JSON array)<textarea rows={5} value={rawQuestions} onChange={(e) => setRawQuestions(e.target.value)} onBlur={() => commitArray('questions', rawQuestions)} spellCheck={false} /></label>
-              </div>
-              <p className="muted editor-hint">Question JSON is applied when you leave its field. Use Validate JSON before export.</p>
-            </> : <>
-              <p className="muted">Fields not listed here remain untouched. Paste JSON arrays into keyPoints/questions.</p>
-              {['id', 'title', 'short', 'summary', 'content'].map((field) => <label className="editor-field" key={field}>{field}{field === 'content' ? <textarea rows={12} value={section[field] || ''} onChange={(e) => updateSection({ [field]: e.target.value })} spellCheck={false} /> : <input value={section[field] || ''} onChange={(e) => updateSection({ [field]: e.target.value })} disabled={field === 'id'} />}</label>)}
-              <label className="editor-field">keyPoints — JSON array<textarea rows={5} value={rawKeyPoints} onChange={(e) => setRawKeyPoints(e.target.value)} onBlur={() => commitArray('keyPoints', rawKeyPoints)} spellCheck={false} /></label>
-              <label className="editor-field">questions — JSON array<textarea rows={10} value={rawQuestions} onChange={(e) => setRawQuestions(e.target.value)} onBlur={() => commitArray('questions', rawQuestions)} spellCheck={false} /></label>
-              <div className="editor-preview"><div className="editor-preview-head">Live preview</div><MarkdownRenderer content={section.content || ''} /></div>
-              <div className="editor-preview"><div className="editor-preview-head">Key points preview</div><ul>{(section.keyPoints || []).map((p, i) => <li key={i}><MarkdownRenderer content={String(p)} className="compact" /></li>)}</ul></div>
-            </>}
-            <div className="editor-danger-zone"><button className="btn btn-danger" onClick={() => { if (confirm(`Delete section "${section.title || section.id}"?`)) { const next = sections.filter((_, i) => i !== selectedIndex); updateDoc({ sections: next }); setSectionId(next[0]?.id || ''); } }}>Delete section</button></div>
-          </> : <div className="empty">Select a section or click “Add”.</div>}
-        </section>
-      </div>
-      {status && <p className="editor-status" role="status">{status}</p>}
-      {validation && <div className={`editor-validation ${validation.ok ? 'valid' : 'invalid'}`}><strong>{validation.ok ? 'Validation passed' : 'Validation issues'}</strong>{validation.issues.length ? <ul>{validation.issues.map((e, i) => <li key={i}>{e}</li>)}</ul> : <p>JSON syntax and the basic concepts schema are valid.</p>}</div>}
-      <details className="editor-history" open={history.length > 0}><summary>Automatic backup & version history ({history.length})</summary><p className="muted">Versions are stored locally in this browser when you save or export. Keep exported files as an additional backup.</p>{history.map((item, i) => <div className="editor-history-row" key={`${item.at}-${i}`}><span>{new Date(item.at).toLocaleString()}</span><button className="btn btn-ghost" onClick={() => restoreVersion(item)}>Restore</button><button className="btn btn-ghost" onClick={() => { const blob = new Blob([item.json + '\n'], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `${subject}-concepts-backup-${i + 1}.json`; a.click(); URL.revokeObjectURL(url); }}>Download backup</button></div>)}</details>
-      <div className="editor-deploy-note"><strong>After export</strong><ol><li>Replace <code>content/{subject}/concepts.json</code> with the downloaded file.</li><li>Run <code>npm run validate</code> and <code>npm run build</code>.</li><li>Commit and push to GitHub; your hosting provider can redeploy from the updated repository.</li></ol><p>Directly writing into your laptop's project folder requires a local desktop/file-system integration. Saving changes from the hosted website across devices requires a backend or authenticated storage service; static hosting alone cannot modify repository files.</p></div>
+  const rootFields = ['title', ...(isConcepts && doc?.data?.intro !== undefined ? ['intro'] : [])];
+  const groupFields = isConcepts ? ['sectionTitle', 'short', 'summary', 'content', 'keyPoints', 'questionsJson'] : ['chapterTitle'];
+  const questionFields = question ? ['questionTitle', 'type', 'question', ...(question.options !== undefined ? ['options'] : []), 'answer', 'solution', ...(question.marks !== undefined ? ['marks'] : []), ...(question.source !== undefined ? ['source'] : [])] : [];
+  const fields = field === 'root' ? rootFields : field === 'group' ? groupFields : questionFields;
+  const selectedValue = () => {
+    if (!doc) return '';
+    if (field === 'root') return text(doc.data.title);
+    if (field === 'group') return text(group?.title);
+    if (!question) return '';
+    if (field === 'question') return text(question.question);
+    return text(question[field]);
+  };
+  const fieldValue = (f) => {
+    if (f === 'title') return text(doc?.data?.title);
+    if (f === 'questionTitle') return text(question?.title);
+    if (f === 'intro') return text(doc?.data?.intro);
+    if (f === 'sectionTitle' || f === 'chapterTitle') return text(group?.title);
+    if (f === 'keyPoints') return (group?.keyPoints || []).join('\n');
+    if (f === 'questionsJson') return JSON.stringify(group?.questions || [], null, 2);
+    if (f === 'options') return (question?.options || []).map(text).join('\n');
+    if (f === 'answer') return JSON.stringify(question?.answer ?? '', null, 2);
+    return text(question?.[f] ?? group?.[f]);
+  };
+  const applyField = (f, value) => {
+    if (f === 'title' || f === 'intro') return patchRoot(f, value);
+    if (f === 'questionTitle') return patchQuestion('title', value);
+    if (f === 'sectionTitle' || f === 'chapterTitle') return patchGroup('title', value);
+    if (f === 'questionsJson') return patchGroup('questionsJson', value);
+    if (['short', 'summary', 'content', 'keyPoints'].includes(f)) return patchGroup(f, value);
+    return patchQuestion(f, value);
+  };
+  const jumpToField = (targetField, sourceStart = null, sourceEnd = null) => {
+    setEditorCollapsed(false);
+    setMode('visual');
+    const editorField = targetField === 'group' ? (isConcepts ? 'sectionTitle' : 'chapterTitle') : targetField;
+    setField(targetField);
+    setPendingSourceRange(sourceStart == null ? null : { field: editorField, start: sourceStart, end: sourceEnd ?? sourceStart });
+    setPreviewSelection(editorField);
+    setMessage(sourceStart == null ? `Navigated to ${targetField} in Edit Fields.` : `Navigated to the corresponding source location in ${targetField}. You can edit it now.`);
+  };
+  const fieldPreview = field === 'root' ? (doc?.data?.intro || doc?.data?.title || '') : field === 'group' ? (group?.content || group?.summary || '') : field === 'question' ? (question?.question || '') : field === 'questionsJson' ? (group?.questions || []).map((q, i) => `### ${q.title || `Question ${i + 1}`}\n\n${q.question || ''}\n\n${q.solution || ''}`).join('\n\n') : field === 'content' ? (group?.content || '') : text(question?.[field] ?? group?.[field]);
+
+  return <div className="page concept-editor-page">
+    <header className="page-head"><div><p className="crumb">Study tools</p><h1>Content Editor</h1><p className="muted">One editor for concepts, DPPs, PYQs, and practice questions.</p></div>
+      <button className="btn" onClick={() => fileRef.current?.click()}>Import JSON files</button>
+      <input ref={fileRef} type="file" accept=".json,application/json" multiple hidden onChange={importFiles} />
+    </header>
+    <div className="editor-notice"><strong>Browser-only editing:</strong> import the existing JSON file(s). Drafts stay in this browser; export downloads a replacement file. Hosted edits do not automatically write to GitHub.</div>
+    <div className="editor-toolbar">
+      <label>Subject / file<select value={activeDoc} onChange={(e) => { setActiveDoc(e.target.value); setActiveGroup(0); setActiveQuestion(0); setValidation(null); }} disabled={!documents.length}>
+        {!documents.length && <option value="">Import a JSON file</option>}{documents.map((d) => <option key={d.key} value={d.key}>{d.subject} — {CONTENT_TYPES.find((t) => t.id === d.type)?.label || d.type} ({d.name})</option>)}
+      </select></label>
+      <label>Content type<select value={type} disabled><option>{CONTENT_TYPES.find((t) => t.id === type)?.label || 'Unknown'}</option></select></label>
+      <label>{isConcepts ? 'Chapter / section' : 'Chapter'}<select value={activeGroup} onChange={(e) => { setActiveGroup(Number(e.target.value)); setActiveQuestion(0); setValidation(null); }} disabled={!group}>
+        {groups.map((g, i) => <option key={`${g.id || g.title}-${i}`} value={i}>{g.title || g.id || `${isConcepts ? 'Section' : 'Chapter'} ${i + 1}`}</option>)}
+      </select></label>
+      <label>Editor mode<select value={mode} onChange={(e) => setMode(e.target.value)}><option value="visual">Visual fields</option><option value="structured">Structured JSON</option></select></label>
     </div>
-  );
+
+    {!doc ? <div className="editor-empty"><h2>Start by importing your files</h2><p>Import any combination of <code>concepts.json</code>, <code>dpp-questions.json</code>, <code>pyq-questions.json</code>, and <code>practice-questions.json</code>. The editor detects the file type and reads the existing schema.</p><button className="btn" onClick={() => fileRef.current?.click()}>Choose JSON files</button></div> : <>
+      <div className="editor-actions"><button className="btn btn-ghost" onClick={saveDraft}>Save Draft</button><button className="btn btn-ghost" onClick={validate}>Validate JSON</button><button className="btn" onClick={exportFile}>Export Updated {doc.name}</button><button className="btn btn-ghost" onClick={undo} disabled={!doc.history?.length}>Undo last change</button><span className={`editor-state ${dirty ? 'is-dirty' : ''}`}>{dirty ? 'Unsaved edits' : 'Imported original'}</span></div>
+      <p className="editor-message" role="status">{message}</p>
+      {validation && <div className={`validation-panel ${validation.length ? 'has-errors' : 'is-valid'}`}><strong>{validation.length ? `${validation.length} issue(s)` : 'Validation passed'}</strong>{validation.length > 0 && <ul>{validation.map((e, i) => <li key={i}>{e}</li>)}</ul>}</div>}
+      <div className="editor-actions content-actions"><label>Editing target<select value={field} onChange={(e) => setField(e.target.value)}><option value="root">Document metadata</option><option value="group">{isConcepts ? 'Section fields' : 'Chapter fields'}</option>{question && <option value="question">Question statement</option>}{question && questionFields.filter((f) => !['question'].includes(f)).map((f) => <option key={f} value={f}>{f === 'questionTitle' ? 'title' : f}</option>)}{isConcepts && group?.short !== undefined && <option value="short">short</option>}{isConcepts && group?.summary !== undefined && <option value="summary">summary</option>}{isConcepts && group?.content !== undefined && <option value="content">content (Markdown)</option>}{isConcepts && group?.keyPoints !== undefined && <option value="keyPoints">keyPoints</option>}{isConcepts && <option value="questionsJson">Section questions (JSON)</option>}</select></label>
+        {!isConcepts && <label>Question<select value={activeQuestion} onChange={(e) => { setActiveQuestion(Number(e.target.value)); setField('question'); }} disabled={!questions.length}>{questions.map((q, i) => <option key={`${q.id || i}-${i}`} value={i}>{q.id ? `${q.id} — ` : ''}${q.title || `Question ${i + 1}`}</option>)}</select></label>}
+        <button className="btn btn-ghost" onClick={addGroup}>Add {isConcepts ? 'section' : 'chapter'}</button><button className="btn btn-ghost" onClick={addQuestion} disabled={!group}>Add question</button>{!isConcepts && question && <button className="btn btn-ghost" onClick={deleteQuestion}>Delete question</button>}
+      </div>
+      <div className="editor-layout-controls" aria-label="Editor layout controls"><label>Pane layout<select value={paneLayout} onChange={(e) => setPaneLayout(e.target.value)}><option value="side">Side by side</option><option value="stacked">Stacked</option></select></label>
+        {paneLayout === 'side' && !editorCollapsed && !previewCollapsed && <label className="pane-width-control">Editor width <input type="range" min="30" max="70" step="5" value={editorWidth} onChange={(e) => setEditorWidth(Number(e.target.value))} aria-label="Editor pane width" /><span>{editorWidth}%</span></label>}
+        <div className="pane-toggle-actions"><button type="button" className="btn btn-ghost btn-small" onClick={() => setEditorCollapsed((v) => !v)}>{editorCollapsed ? 'Show editor' : 'Minimize editor'}</button><button type="button" className="btn btn-ghost btn-small" onClick={() => setPreviewCollapsed((v) => !v)}>{previewCollapsed ? 'Show preview' : 'Minimize preview'}</button></div>
+      </div>
+      <div className={`editor-grid ${paneLayout === 'stacked' ? 'is-stacked' : 'is-side'} ${editorCollapsed ? 'editor-is-collapsed' : ''} ${previewCollapsed ? 'preview-is-collapsed' : ''}`} style={paneLayout === 'side' && !editorCollapsed && !previewCollapsed ? { gridTemplateColumns: `${editorWidth}fr ${100 - editorWidth}fr` } : undefined}>
+        {!editorCollapsed && <section ref={editorPanelRef} className="editor-panel"><div className="editor-panel-head"><h2>{mode === 'visual' ? 'Edit fields' : 'Structured JSON'}</h2><span className="muted">{question?.id || group?.id || ''}</span></div>
+          {mode === 'structured' ? <label className="editor-label">Complete document JSON<textarea data-editor-field="structured-json" rows={28} spellCheck={false} value={jsonDraft ?? JSON.stringify(doc.data, null, 2)} onChange={(e) => setJsonDraft(e.target.value)} onBlur={(e) => { try { const parsed = JSON.parse(e.target.value); const issues = validateDocument(parsed, type); if (issues.length) { setValidation(issues); setMessage('JSON parses, but schema validation found issues.'); } else { updateDoc(() => parsed, 'Structured JSON updated.'); setJsonDraft(null); } } catch (err) { setValidation([`Invalid JSON: ${err.message}`]); setMessage('Structured JSON has a syntax error; draft has not been applied.'); } }} /></label> : <>
+            {field === 'root' && <div className="editor-field-stack">{rootFields.map((f) => <label className="editor-label" key={f}>{f}<textarea data-editor-field={f} rows={f === 'intro' ? 6 : 2} value={fieldValue(f)} onChange={(e) => applyField(f, e.target.value)} /></label>)}</div>}
+            {field === 'group' && <div className="editor-field-stack">{(isConcepts ? ['sectionTitle', ...(group?.short !== undefined ? ['short'] : []), ...(group?.summary !== undefined ? ['summary'] : []), ...(group?.content !== undefined ? ['content'] : [])] : ['chapterTitle']).map((f) => <label className="editor-label" key={f}>{f}<textarea data-editor-field={f} rows={f === 'content' ? 18 : 3} value={fieldValue(f)} onChange={(e) => applyField(f, e.target.value)} placeholder="Paste text, Markdown, LaTeX, Mermaid, code, or tables…" /></label>)}</div>}
+            {field === 'keyPoints' && <label className="editor-label">One key point per line<textarea data-editor-field="keyPoints" rows={12} value={fieldValue('keyPoints')} onChange={(e) => applyField('keyPoints', e.target.value)} /></label>}
+            {field === 'questionsJson' && <label className="editor-label">Questions array JSON<textarea data-editor-field="questionsJson" rows={22} spellCheck={false} value={jsonDraft ?? fieldValue('questionsJson')} onChange={(e) => setJsonDraft(e.target.value)} onBlur={(e) => { try { const parsed = JSON.parse(e.target.value || '[]'); if (!Array.isArray(parsed)) throw new Error('Must be a JSON array.'); patchGroup('questionsJson', e.target.value); setJsonDraft(null); } catch (err) { setValidation([`Questions JSON: ${err.message}`]); } }} /></label>}
+            {field !== 'root' && field !== 'group' && field !== 'keyPoints' && field !== 'questionsJson' && <label className="editor-label">{field}<textarea data-editor-field={field} rows={['content', 'question', 'solution'].includes(field) ? 14 : 5} value={fieldValue(field)} onChange={(e) => applyField(field, e.target.value)} placeholder={field === 'options' ? 'One option per line' : 'Paste text, Markdown, LaTeX, Mermaid, code, or tables…'} /></label>}
+            {field === 'answer' && <p className="muted small">Enter a JSON value: for MCQ use an option index (for example 1), for MSQ an array (for example [0,2]), for NAT a number, or a string for self-check questions.</p>}
+          </>}
+        </section>}
+        {!previewCollapsed && <aside className="editor-panel editor-preview-panel"><div className="editor-panel-head"><h2>Live preview</h2><span className="muted small">Click any part to edit its source</span></div>
+          {isConcepts ? <>
+            <h3 className="preview-edit-target" onClick={() => jumpToField('group')} title="Click to edit section title">{group?.title || 'Untitled section'}</h3>
+            {group?.short && <p className="preview-edit-target" onClick={() => jumpToField('short')} title="Click to edit short description">{group.short}</p>}
+            {group?.summary && <p className="muted preview-edit-target" onClick={() => jumpToField('summary')} title="Click to edit summary">{group.summary}</p>}
+            <div className="preview-edit-target" title="Click a rendered block to navigate to its Markdown source"><MarkdownRenderer content={group?.content || '*No content yet.*'} onSourceNavigate={(start, end) => jumpToField('content', start, end)} /></div>
+            {!!group?.keyPoints?.length && <div className="preview-edit-target" onClick={() => jumpToField('keyPoints')} title="Click to edit key points"><h3>Key points</h3><ul>{group.keyPoints.map((p, i) => <li key={i}>{p}</li>)}</ul></div>}
+            {questions.length > 0 && <div className="preview-edit-target" onClick={() => jumpToField('questionsJson')} title="Click to edit this section's questions in JSON"><h3>Questions ({questions.length})</h3>{questions.map((q, i) => <div key={`${q.id || i}-${i}`} className="preview-question"><strong>{q.title || `Q${i + 1}`}</strong><MarkdownRenderer content={q.question || ''} onSourceNavigate={() => jumpToField('questionsJson')} />{q.options && <ol type="A">{q.options.map((o, oi) => <li key={oi}>{o}</li>)}</ol>}<MarkdownRenderer content={q.solution || ''} onSourceNavigate={() => jumpToField('questionsJson')} /></div>)}</div>}
+          </> : <>
+            <h3 className="preview-edit-target" onClick={() => jumpToField('group')} title="Click to edit chapter title">{group?.title || 'Untitled chapter'}</h3>
+            {question ? <div className="preview-question">
+              <strong className="preview-edit-target" onClick={() => jumpToField('questionTitle')} title="Click to edit question title">{question.title || question.id || `Question ${activeQuestion + 1}`}</strong>
+              <div className="preview-edit-target" title="Click a rendered block to navigate to the question source"><MarkdownRenderer content={question.question || '*Question statement is empty.*'} onSourceNavigate={(start, end) => jumpToField('question', start, end)} /></div>
+              {question.options && <div className="preview-edit-target" onClick={() => jumpToField('options')} title="Click to edit options"><ol type="A">{question.options.map((o, i) => <li key={i}><MarkdownRenderer content={text(o)} /></li>)}</ol></div>}
+              <p className="preview-edit-target" onClick={() => jumpToField('answer')} title="Click to edit answer"><strong>Answer:</strong> {Array.isArray(question.answer) ? question.answer.join(', ') : text(question.answer)}</p>
+              <div className="preview-edit-target" title="Click a rendered block to navigate to the solution source"><MarkdownRenderer content={question.solution || '*No solution provided.*'} onSourceNavigate={(start, end) => jumpToField('solution', start, end)} /></div>
+              {question.marks !== undefined && <p className="muted preview-edit-target" onClick={() => jumpToField('marks')} title="Click to edit marks">Marks: {question.marks}</p>}
+              {question.source && <p className="muted preview-edit-target" onClick={() => jumpToField('source')} title="Click to edit source">Source: {question.source}</p>}
+            </div> : <p>No questions in this chapter yet. Use “Add question”.</p>}
+          </>}
+        </aside>}
+      </div>
+      <details className="version-history"><summary>Version history ({doc.history?.length || 0} in this session)</summary>{doc.history?.length ? <ol>{[...doc.history].reverse().map((h, i) => <li key={`${h.at}-${i}`}><strong>{h.label}</strong> <span className="muted">{new Date(h.at).toLocaleString()}</span></li>)}</ol> : <p className="muted">Edit history appears here as you make changes.</p>}</details>
+    </>}
+  </div>;
 }

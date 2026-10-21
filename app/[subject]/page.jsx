@@ -25,11 +25,8 @@ export default function SubjectPage({ params }) {
       {subject.description && <p className="muted">{subject.description}</p>}
       {subject.categories.length === 0 && (
         <p className="empty">
-         <p className="empty">
-  No content available yet. Add the required JSON files
-  to <code>content/{subject.slug}/</code>.
-</p>
-          <code>practice-questions.json</code> to <code>content/{subject.slug}/</code>.
+          No content available yet. Add the required JSON files to{' '}
+          <code>content/{subject.slug}/</code>.
         </p>
       )}
       <div className="category-grid">

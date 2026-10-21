@@ -1,46 +1,53 @@
 {
-  "title": "DBMS — Concepts",
+  "title": "COA — Concepts",
   "sections": [
     {
-      "id": "er-model",
-      "title": "Chapter 1 — ER Model",
-      "short": "ER Model",
-      "content": "## ER Model\n\n_Notes yet to be added._",
+      "id": "introduction-of-coa",
+      "title": "Chapter 1 — Introduction of COA",
+      "short": "Introduction of COA",
+      "content": "## Introduction of COA\n\n_Notes yet to be added._",
       "questions": []
     },
     {
-      "id": "relational-model",
-      "title": "Chapter 2 — Relational Model",
-      "short": "Relational Model",
-      "content": "## Relational Model\n\n_Notes yet to be added._",
+      "id": "instruction-set-and-addressing-modes",
+      "title": "Chapter 2 — Instruction Set and Addressing Modes",
+      "short": "Instruction Set and Addressing Modes",
+      "content": "## Instruction Set and Addressing Modes\n\n_Notes yet to be added._",
       "questions": []
     },
     {
-      "id": "fd-s-normalization",
-      "title": "Chapter 3 — FD's & Normalization",
-      "short": "FD's & Normalization",
-      "content": "## FD's & Normalization\n\n_Notes yet to be added._",
+      "id": "floating-point-number-representation-and-arithmetic",
+      "title": "Chapter 3 — Floating Point & Number Representation and Arithmetic",
+      "short": "Floating Point & Number Representation and Arithmetic",
+      "content": "## Floating Point & Number Representation and Arithmetic\n\n_Notes yet to be added._",
       "questions": []
     },
     {
-      "id": "query-language",
-      "title": "Chapter 4 — Query Language",
-      "short": "Query Language",
-      "content": "## Query Language\n\n_Notes yet to be added._",
+      "id": "alu-control-unit",
+      "title": "Chapter 4 — ALU & Control Unit",
+      "short": "ALU & Control Unit",
+      "content": "## ALU & Control Unit\n\n_Notes yet to be added._",
       "questions": []
     },
     {
-      "id": "file-organization-indexing",
-      "title": "Chapter 5 — File Organization & Indexing",
-      "short": "File Organization & Indexing",
-      "content": "## File Organization & Indexing\n\n_Notes yet to be added._",
+      "id": "instruction-pipelining-pipeline-hazards",
+      "title": "Chapter 5 — Instruction Pipelining & Pipeline Hazards",
+      "short": "Instruction Pipelining & Pipeline Hazards",
+      "content": "## Instruction Pipelining & Pipeline Hazards\n\n_Notes yet to be added._",
       "questions": []
     },
     {
-      "id": "transaction-concurrency-control",
-      "title": "Chapter 6 — Transaction & Concurrency Control",
-      "short": "Transaction & Concurrency Control",
-      "content": "## Transaction & Concurrency Control\n\n_Notes yet to be added._",
+      "id": "cache-memory-memory-interfacing-hierarchy",
+      "title": "Chapter 6 — Cache Memory & Memory Interfacing / Hierarchy",
+      "short": "Cache Memory & Memory Interfacing / Hierarchy",
+      "content": "## Cache Memory & Memory Interfacing / Hierarchy\n\n_Notes yet to be added._",
+      "questions": []
+    },
+    {
+      "id": "i-o-interface",
+      "title": "Chapter 7 — I/O Interface",
+      "short": "I/O Interface",
+      "content": "## I/O Interface\n\n_Notes yet to be added._",
       "questions": []
     }
   ]
