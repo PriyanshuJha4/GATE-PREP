@@ -83,7 +83,7 @@ export default function ConceptEditor() {
   const [previewSelection, setPreviewSelection] = useState('');
   const [pendingSourceRange, setPendingSourceRange] = useState(null);
   const [paneLayout, setPaneLayout] = useState('side');
-  const [editorWidth, setEditorWidth] = useState(50);
+  const [editorWidth, setEditorWidth] = useState(60);
   const [editorCollapsed, setEditorCollapsed] = useState(false);
   const [previewCollapsed, setPreviewCollapsed] = useState(false);
   const [jsonDraft, setJsonDraft] = useState(null);
@@ -314,7 +314,7 @@ export default function ConceptEditor() {
         <button className="btn btn-ghost" onClick={addGroup}>Add {isConcepts ? 'section' : 'chapter'}</button><button className="btn btn-ghost" onClick={addQuestion} disabled={!group}>Add question</button>{!isConcepts && question && <button className="btn btn-ghost" onClick={deleteQuestion}>Delete question</button>}
       </div>
       <div className="editor-layout-controls" aria-label="Editor layout controls"><label>Pane layout<select value={paneLayout} onChange={(e) => setPaneLayout(e.target.value)}><option value="side">Side by side</option><option value="stacked">Stacked</option></select></label>
-        {paneLayout === 'side' && !editorCollapsed && !previewCollapsed && <label className="pane-width-control">Editor width <input type="range" min="30" max="70" step="5" value={editorWidth} onChange={(e) => setEditorWidth(Number(e.target.value))} aria-label="Editor pane width" /><span>{editorWidth}%</span></label>}
+        {paneLayout === 'side' && !editorCollapsed && !previewCollapsed && <label className="pane-width-control">Editor width <input type="range" min="40" max="80" step="5" value={editorWidth} onChange={(e) => setEditorWidth(Number(e.target.value))} aria-label="Editor pane width" /><span>{editorWidth}%</span></label>}
         <div className="pane-toggle-actions"><button type="button" className="btn btn-ghost btn-small" onClick={() => setEditorCollapsed((v) => !v)}>{editorCollapsed ? 'Show editor' : 'Minimize editor'}</button><button type="button" className="btn btn-ghost btn-small" onClick={() => setPreviewCollapsed((v) => !v)}>{previewCollapsed ? 'Show preview' : 'Minimize preview'}</button></div>
       </div>
       <div className={`editor-grid ${paneLayout === 'stacked' ? 'is-stacked' : 'is-side'} ${editorCollapsed ? 'editor-is-collapsed' : ''} ${previewCollapsed ? 'preview-is-collapsed' : ''}`} style={paneLayout === 'side' && !editorCollapsed && !previewCollapsed ? { gridTemplateColumns: `${editorWidth}fr ${100 - editorWidth}fr` } : undefined}>
