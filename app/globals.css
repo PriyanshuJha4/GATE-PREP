@@ -670,3 +670,18 @@ kbd { padding: 1px 6px; border: 1px solid var(--border); border-radius: 5px; bac
 .ce-preview .source-mapped-diagram { padding: 4px; }
 .ce .ce-flash { outline: 2px solid var(--accent) !important; outline-offset: 2px; box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent); transition: outline-color .2s ease, box-shadow .2s ease; }
 @media (max-width: 900px) { .ce-hide-sm { display: none; } }
+
+/* simple-mode polish */
+.ce-steps { display: grid; gap: 10px; max-width: 420px; margin: 18px auto 0; padding: 0; list-style: none; counter-reset: ce-step; text-align: left; }
+.ce-steps li { position: relative; padding: 10px 14px 10px 50px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-soft); counter-increment: ce-step; }
+.ce-steps li::before { content: counter(ce-step); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 13px; font-weight: 700; }
+.ce-details > summary { color: var(--muted); font-weight: 500; }
+.ce-details[open] > summary { color: var(--text); }
+.ce-pane-scroll { padding: 18px 20px 40px; }
+.ce-form { gap: 20px; }
+.ce-label { font-size: 13.5px; }
+.ce-toolbar { gap: 4px; }
+.ce-tool { height: 30px; min-width: 34px; }
+.ce-node-tools .ce-ibtn { min-width: 28px; }
+
+.ce-btn-text { font-size: 13px; }

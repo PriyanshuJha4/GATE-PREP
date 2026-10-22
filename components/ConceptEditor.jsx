@@ -20,7 +20,8 @@ const CONTENT_TYPES = [
   { id: 'practice', label: 'Practice', full: 'Practice Questions', file: 'practice-questions.json' },
 ];
 const QUESTION_TYPES = ['mcq', 'msq', 'nat'];
-const DEFAULT_PREFS = { layout: 'side', split: 60, fontSize: 14, mono: true, spellcheck: false, smart: true, autosave: false, answers: true, outline: true, preview: true };
+const TYPE_NAMES = { mcq: 'Single correct (MCQ)', msq: 'Multiple correct (MSQ)', nat: 'Numerical answer (NAT)' };
+const DEFAULT_PREFS = { layout: 'side', split: 60, fontSize: 14, mono: false, spellcheck: false, smart: true, autosave: true, answers: true, outline: true, preview: true, advanced: false, hideToolbar: false };
 const FENCE = '```';
 const GENERIC_NAME = /^(concepts|dpp[- ]?questions|pyq[- ]?questions|practice[- ]?questions)$/i;
 
@@ -63,6 +64,7 @@ const ICONS = {
   cols: ['M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', 'M12 3v18'],
   rows: ['M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z', 'M3 12h18'],
   link: ['M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71', 'M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'],
+  type: ['M4 7V4h16v3', 'M9 20h6', 'M12 4v16'],
 };
 
 function Icon({ name, size = 16 }) {
@@ -442,11 +444,14 @@ const TOOLS = [
   ['table', 'Table', 'Table'],
 ];
 
-function MdToolbar({ run }) {
+const BASIC_TOOLS = ['bold', 'italic', 'ul', 'ol', 'math', 'table'];
+
+function MdToolbar({ run, advanced }) {
+  const tools = advanced ? TOOLS : TOOLS.filter(([k]) => BASIC_TOOLS.includes(k));
   return <div className="ce-toolbar" role="toolbar" aria-label="Formatting">
-    {TOOLS.map(([k, label, title]) => <button type="button" key={k} className={`ce-tool ce-tool-${k}`} title={title} aria-label={title} onMouseDown={(e) => e.preventDefault()} onClick={() => run(k)}>{label}</button>)}
+    {tools.map(([k, label, title]) => <button type="button" key={k} className={`ce-tool ce-tool-${k}`} title={title} aria-label={title} onMouseDown={(e) => e.preventDefault()} onClick={() => run(k)}>{label}</button>)}
     <select className="ce-snip" value="" aria-label="Insert snippet" onChange={(e) => { if (e.target.value !== '') run(`snip:${e.target.value}`); }}>
-      <option value="">Insert snippet…</option>
+      <option value="">Insert…</option>
       {SNIPPETS.map((s, i) => <option key={s.label} value={i}>{s.label}</option>)}
     </select>
   </div>;
@@ -477,8 +482,8 @@ function MdField({ label, value, onChange, minRows = 4, maxPx, placeholder, pref
     if (t.includes('\t') && t.trim().includes('\n')) { e.preventDefault(); const ta = ref.current; editTextarea(ta, ta.selectionStart, ta.selectionEnd, `${tsvToTable(t.trim())}\n`); }
   };
   return <Field label={label} hint={hint} onRemove={onRemove}>
-    {toolbar && <MdToolbar run={run} />}
-    <AutoArea taRef={ref} data-editor-field={field} value={value} minRows={minRows} maxPx={maxPx} aria-label={label} placeholder={placeholder || 'Markdown, LaTeX ($x^2$), Mermaid and code blocks are supported…'} spellCheck={prefs.spellcheck} onKeyDown={onKeyDown} onPaste={onPaste} onChange={(e) => onChange(e.target.value)} />
+    {toolbar && !prefs.hideToolbar && <MdToolbar run={run} advanced={prefs.advanced} />}
+    <AutoArea taRef={ref} data-editor-field={field} value={value} minRows={minRows} maxPx={maxPx} aria-label={label} placeholder={placeholder || 'Yahan likhiye… (math ke liye $x^2$ use karein)'} spellCheck={prefs.spellcheck} onKeyDown={onKeyDown} onPaste={onPaste} onChange={(e) => onChange(e.target.value)} />
   </Field>;
 }
 
@@ -580,20 +585,17 @@ function QuestionEditor({ q, gi, qi, groups, isConcepts, patch, ops, prefs }) {
   const correctText = idxs.length ? idxs.map(letter).join(', ') : 'none selected';
 
   return <div className="ce-form">
-    <div className="ce-grid ce-grid-meta">
-      <TextInput field="id" label="Question ID" value={text(q.id)} onChange={(v) => typing('id', v)} right={<button type="button" className="ce-inline-btn" title="Generate a unique ID" onClick={() => patch({ id: suggestId(groups[gi], qi) }, 'Generated ID')}>Auto</button>} />
-      <label className="ce-field"><span className="ce-label">Type</span>
+    <div className="ce-grid ce-grid-2">
+      <label className="ce-field"><span className="ce-label">Question type</span>
         <select className="ce-input" value={type ?? ''} onChange={(e) => changeType(e.target.value)}>
           {type == null && <option value="">(not set)</option>}
-          {QUESTION_TYPES.map((t) => <option key={t} value={t}>{t.toUpperCase()}</option>)}
+          {QUESTION_TYPES.map((t) => <option key={t} value={t}>{TYPE_NAMES[t]}</option>)}
           {type != null && !QUESTION_TYPES.includes(type) && <option value={type}>{String(type)}</option>}
         </select>
       </label>
       <NumInput field="marks" label="Marks" value={q.marks} placeholder="1" onCommit={(v) => patch({ marks: v }, 'Edited marks', 'marks')} />
-      <TextInput field="source" label="Source" value={text(q.source)} onChange={(v) => typing('source', v)} placeholder="DPP, GATE 2019…" />
     </div>
-    <TextInput field="title" label="Title (optional)" value={text(q.title)} onChange={(v) => typing('title', v)} />
-    <MdField field="question" label="Question" value={text(q.question)} onChange={(v) => patch({ question: v }, 'Edited question', 'question')} minRows={9} prefs={prefs} />
+    <MdField field="question" label="Question" value={text(q.question)} onChange={(v) => patch({ question: v }, 'Edited question', 'question')} minRows={7} prefs={prefs} />
 
     {showOptions && <Field fieldKey={type === 'nat' ? 'options' : 'answer'} label="Options" hint={type === 'msq' ? 'Click the letters to mark every correct option' : 'Click a letter to mark the correct option'}>
       <div className="ce-opts">
@@ -621,21 +623,30 @@ function QuestionEditor({ q, gi, qi, groups, isConcepts, patch, ops, prefs }) {
     </Field>}
     {type != null && !QUESTION_TYPES.includes(type) && <RawJson label="Answer (JSON)" value={q.answer ?? ''} hint="Number, array, or string" onApply={(v) => { patch({ answer: v }, 'Edited answer'); return ''; }} />}
 
-    <MdField field="solution" label="Solution" value={text(q.solution)} onChange={(v) => patch({ solution: v }, 'Edited solution', 'solution')} minRows={9} prefs={prefs} />
+    <MdField field="solution" label="Solution" value={text(q.solution)} onChange={(v) => patch({ solution: v }, 'Edited solution', 'solution')} minRows={6} prefs={prefs} />
 
     <details className="ce-details">
-      <summary>Other fields and raw JSON for this question</summary>
-      <RawJson label="Whole question (JSON)" value={q} hint="Edit any field, including ones this form does not know about" onApply={(v) => { if (!isObj(v)) return 'A question must be a JSON object.'; patch({ ...Object.fromEntries(Object.keys(q).map((k) => [k, undefined])), ...v }, 'Edited question JSON'); return ''; }} />
-      {Object.keys(others).length > 0 && <p className="ce-hint">Extra fields on this question: {Object.keys(others).join(', ')}</p>}
+      <summary>More details (title, source, ID)</summary>
+      <div className="ce-form">
+        <TextInput field="title" label="Title (optional)" value={text(q.title)} onChange={(v) => typing('title', v)} />
+        <TextInput field="source" label="Source" value={text(q.source)} onChange={(v) => typing('source', v)} placeholder="DPP, GATE 2019…" />
+        <TextInput field="id" label="Question ID" value={text(q.id)} onChange={(v) => typing('id', v)} right={<button type="button" className="ce-inline-btn" title="Generate a unique ID" onClick={() => patch({ id: suggestId(groups[gi], qi) }, 'Generated ID')}>Auto</button>} />
+      </div>
     </details>
 
+    {prefs.advanced && <details className="ce-details">
+      <summary>Advanced: raw JSON for this question</summary>
+      <RawJson label="Whole question (JSON)" value={q} hint="Edit any field, including ones this form does not know about" onApply={(v) => { if (!isObj(v)) return 'A question must be a JSON object.'; patch({ ...Object.fromEntries(Object.keys(q).map((k) => [k, undefined])), ...v }, 'Edited question JSON'); return ''; }} />
+      {Object.keys(others).length > 0 && <p className="ce-hint">Extra fields on this question: {Object.keys(others).join(', ')}</p>}
+    </details>}
+
     <div className="ce-row ce-row-end">
-      <label className="ce-inline-select">Move to {isConcepts ? 'section' : 'chapter'}
+      {prefs.advanced && <label className="ce-inline-select">Move to {isConcepts ? 'section' : 'chapter'}
         <select className="ce-input" value="" onChange={(e) => { if (e.target.value !== '') ops.moveQuestionTo(gi, qi, Number(e.target.value)); }}>
           <option value="">Choose…</option>
           {groups.map((g, i) => (i === gi ? null : <option key={i} value={i}>{groupLabel(g, i, isConcepts)}</option>))}
         </select>
-      </label>
+      </label>}
       <button type="button" className="btn btn-ghost btn-small" onClick={() => ops.duplicateQuestion(gi, qi)}><Icon name="copy" size={14} /> Duplicate</button>
       <button type="button" className="btn btn-ghost btn-small btn-danger" onClick={() => ops.deleteQuestion(gi, qi)}><Icon name="trash" size={14} /> Delete question</button>
     </div>
@@ -668,12 +679,12 @@ function GroupEditor({ g, gi, isConcepts, noun, patch, ops, prefs }) {
       <strong>{qs.length} {qs.length === 1 ? 'question' : 'questions'} in this {noun.toLowerCase()}.</strong>
       <div className="ce-row"><button type="button" className="btn btn-small" onClick={() => ops.addQuestion(gi)}><Icon name="plus" size={14} /> Add question</button></div>
     </div>
-    <details className="ce-details">
-      <summary>Other fields and raw JSON for this {noun.toLowerCase()}</summary>
+    {prefs.advanced && <details className="ce-details">
+      <summary>Advanced: raw JSON for this {noun.toLowerCase()}</summary>
       <RawJson label={`${noun} fields without questions (JSON)`} value={Object.fromEntries(Object.entries(g).filter(([k]) => k !== 'questions'))} onApply={(v) => { if (!isObj(v)) return 'Must be a JSON object.'; patch({ ...Object.fromEntries(Object.keys(g).filter((k) => k !== 'questions').map((k) => [k, undefined])), ...v, questions: g.questions }, 'Edited JSON'); return ''; }} />
       <RawJson label="Questions array (JSON)" hint="Paste many questions at once" value={qs} onApply={(v) => { if (!Array.isArray(v)) return 'Must be a JSON array.'; patch({ questions: v }, 'Edited questions JSON'); return ''; }} />
       {Object.keys(others).length > 0 && <p className="ce-hint">Extra fields: {Object.keys(others).join(', ')}</p>}
-    </details>
+    </details>}
     <div className="ce-row ce-row-end">
       <button type="button" className="btn btn-ghost btn-small" onClick={() => ops.duplicateGroup(gi)}><Icon name="copy" size={14} /> Duplicate {noun.toLowerCase()}</button>
       <button type="button" className="btn btn-ghost btn-small btn-danger" onClick={() => ops.deleteGroup(gi)}><Icon name="trash" size={14} /> Delete {noun.toLowerCase()}</button>
@@ -688,16 +699,16 @@ function RootEditor({ data, gKey, isConcepts, doc, issues, patchRoot, applyRoot,
   return <div className="ce-form">
     <div className="ce-callout">
       <strong>{doc.path}</strong>
-      <span className="ce-hint">{groups.length} {isConcepts ? 'sections' : 'chapters'}, {qCount} questions, {issues.filter((i) => i.level === 'error').length} errors, {issues.filter((i) => i.level === 'warn').length} warnings</span>
+      <span className="ce-hint">{groups.length} {isConcepts ? 'sections' : 'chapters'} · {qCount} questions{issues.length ? ` · ${issues.length} cheezein check karni hain` : ' · sab theek hai'}</span>
     </div>
     <TextInput field="title" label="Document title" value={text(data.title)} onChange={(v) => patchRoot({ title: v }, 'Edited title', 'title')} />
     {data.intro !== undefined
       ? <MdField field="intro" label="Intro" value={text(data.intro)} onChange={(v) => patchRoot({ intro: v }, 'Edited intro', 'intro')} minRows={5} prefs={prefs} onRemove={() => patchRoot({ intro: undefined }, 'Removed intro')} />
       : isConcepts && <div className="ce-row"><button type="button" className="ce-chip" onClick={() => patchRoot({ intro: '' }, 'Added intro')}>+ intro</button></div>}
-    <details className="ce-details">
-      <summary>Other document fields (JSON)</summary>
+    {prefs.advanced && <details className="ce-details">
+      <summary>Advanced: other document fields (JSON)</summary>
       <RawJson label="Document fields without the content list" value={rest} onApply={(v) => { if (!isObj(v)) return 'Must be a JSON object.'; applyRoot(v); return ''; }} />
-    </details>
+    </details>}
   </div>;
 }
 
@@ -888,12 +899,16 @@ function SettingsPanel({ prefs, setPref, fsOk }) {
   const Toggle = (k, label, hint) => <label key={k} className="ce-toggle"><input type="checkbox" checked={!!prefs[k]} onChange={(e) => setPref(k, e.target.checked)} /><span><strong>{label}</strong>{hint && <span className="ce-hint">{hint}</span>}</span></label>;
   return <div className="ce-form">
     <label className="ce-field"><span className="ce-label">Text size ({prefs.fontSize}px)</span><input type="range" min="12" max="20" step="1" value={prefs.fontSize} onChange={(e) => setPref('fontSize', Number(e.target.value))} /></label>
-    {Toggle('mono', 'Monospace editor font', 'Easier for LaTeX, code and tables')}
-    {Toggle('spellcheck', 'Spell check', 'Underlines unknown words, including LaTeX and code')}
-    {Toggle('smart', 'Smart typing', 'Continue lists on Enter; paste spreadsheet cells as a table')}
-    {Toggle('answers', 'Show answers in preview', 'Highlights correct options and shows solutions')}
-    {Toggle('autosave', 'Auto-save to file', fsOk ? 'Writes to the linked file 2 seconds after you stop typing, only when there are no errors' : 'Needs Chrome or Edge on desktop')}
-    <label className="ce-field"><span className="ce-label">Layout</span><select className="ce-input" value={prefs.layout} onChange={(e) => setPref('layout', e.target.value)}><option value="side">Editor and preview side by side</option><option value="stacked">Preview below the editor</option></select></label>
+    {Toggle('autosave', 'Auto-save', fsOk ? 'Likhna band karne ke 2 second baad file mein apne aap save hota hai (jab koi error na ho)' : 'Chrome ya Edge (computer) par hi kaam karta hai')}
+    {Toggle('hideToolbar', 'Formatting toolbar chhupao', 'B, I, List, Table aur Insert wali ribbon har box se hat jaati hai. Upar "Format" button se kabhi bhi wapas laa sakte hain')}
+    {Toggle('answers', 'Preview mein answers dikhao', 'Sahi option aur solution dikhta hai')}
+    {Toggle('advanced', 'Advanced tools', 'JSON editing, extra formatting buttons, layout controls aur aur options dikhata hai')}
+    {prefs.advanced && <>
+      {Toggle('mono', 'Monospace editor font', 'LaTeX, code aur tables ke liye behtar')}
+      {Toggle('spellcheck', 'Spell check')}
+      {Toggle('smart', 'Smart typing', 'Enter par list aage badhti hai; Excel cells paste karne par table ban jaata hai')}
+      <label className="ce-field"><span className="ce-label">Layout</span><select className="ce-input" value={prefs.layout} onChange={(e) => setPref('layout', e.target.value)}><option value="side">Editor aur preview side by side</option><option value="stacked">Preview editor ke neeche</option></select></label>
+    </>}
     <button type="button" className="btn btn-ghost btn-small" onClick={() => Object.entries(DEFAULT_PREFS).forEach(([k, v]) => setPref(k, v))}>Reset preferences</button>
   </div>;
 }
@@ -1308,6 +1323,7 @@ export default function ConceptEditor() {
     const pane = editPaneRef.current;
     const el = pane?.querySelector(`[data-editor-field="${nav.field}"]`);
     if (el) {
+      el.closest('details')?.setAttribute('open', '');
       if (nav.start != null && typeof el.setSelectionRange === 'function') {
         const len = el.value?.length ?? 0;
         const a = clamp(nav.start, 0, len);
@@ -1382,7 +1398,7 @@ export default function ConceptEditor() {
     ? { gridTemplateColumns: showPreview ? `minmax(0, ${prefs.split}fr) 10px minmax(0, ${100 - prefs.split}fr)` : 'minmax(0, 1fr)' }
     : { gridTemplateRows: showPreview ? `minmax(0, ${prefs.split}fr) 10px minmax(0, ${100 - prefs.split}fr)` : 'minmax(0, 1fr)' };
 
-  const editorBody = !doc ? null : mode === 'json'
+  const editorBody = !doc ? null : mode === 'json' && prefs.advanced
     ? <RawJson big label="Complete document JSON" hint="Advanced: every field of this file" value={data} onApply={(v) => { const found = check(v, type).filter((i) => i.level === 'error'); if (found.length) return `Not applied: ${found[0].msg}${found.length > 1 ? ` (+${found.length - 1} more)` : ''}`; updateDoc(() => v, 'Edited document JSON'); return ''; }} />
     : kind === 'root'
       ? <RootEditor key="root" data={data} gKey={gKey} isConcepts={isConcepts} doc={doc} issues={issues} prefs={prefs} patchRoot={patchRoot} applyRoot={(v) => updateDoc((d) => ({ ...v, [gKey]: d[gKey] }), 'Edited document fields')} />
@@ -1391,8 +1407,8 @@ export default function ConceptEditor() {
         : <QuestionEditor key={`q${gi}.${qi}`} q={question} gi={gi} qi={qi} groups={groups} isConcepts={isConcepts} patch={patchQuestion} ops={ops} prefs={prefs} />;
 
   const crumb = kind === 'root' ? 'Document settings' : kind === 'group' ? groupLabel(group, gi, isConcepts) : `${groupLabel(group, gi, isConcepts)} / Question ${qi + 1}`;
-  const saveLabel = doc?.linked ? 'Save to file' : 'Download JSON';
-  const saveState = !doc ? '' : doc.dirty ? 'Unsaved changes' : doc.savedAt ? `Saved ${new Date(doc.savedAt).toLocaleTimeString()}` : 'No changes';
+  const saveLabel = doc?.linked ? 'Save' : 'Download file';
+  const saveState = !doc ? '' : doc.dirty ? 'Unsaved changes' : doc.savedAt ? `Saved ${new Date(doc.savedAt).toLocaleTimeString()}` : 'Sab saved hai';
 
   return <div className="page concept-editor-page ce" style={{ '--ce-fs': `${prefs.fontSize}px` }} data-mono={prefs.mono ? 'on' : 'off'} onDragOver={(e) => e.preventDefault()} onDrop={onDrop}>
     <input ref={fileRef} type="file" accept=".json,application/json" multiple hidden onChange={importFiles} />
@@ -1426,13 +1442,17 @@ export default function ConceptEditor() {
 
     {!doc ? <div className="ce-empty">
       <h1>Content Editor</h1>
-      <p>Edit concepts, DPP, PYQ and practice-question files in one place, with a live preview.</p>
+      <p>Concepts, DPP, PYQ aur practice questions ek hi jagah edit karein, live preview ke saath.</p>
+      <ol className="ce-steps">
+        <li><strong>Open karein</strong> apna content folder ya JSON file</li>
+        <li><strong>Chunein</strong> left side se section ya question</li>
+        <li><strong>Likhein</strong> aur preview mein turant dekhein, phir Save dabayein</li>
+      </ol>
       <div className="ce-empty-actions">
-        {fsOk && <button type="button" className="btn" onClick={openFolder} disabled={busy}><Icon name="folder" /> Open content folder</button>}
-        <button type="button" className="btn btn-ghost" onClick={fsOk ? openFiles : () => fileRef.current?.click()}><Icon name="file" /> {fsOk ? 'Open JSON files' : 'Import JSON files'}</button>
+        {fsOk && <button type="button" className="btn btn-primary" onClick={openFolder} disabled={busy}><Icon name="folder" /> Content folder kholein</button>}
+        <button type="button" className={`btn ${fsOk ? 'btn-ghost' : 'btn-primary'}`} onClick={fsOk ? openFiles : () => fileRef.current?.click()}><Icon name="file" /> {fsOk ? 'JSON file kholein' : 'JSON file import karein'}</button>
       </div>
-      <p className="ce-hint">{fsOk ? 'Pick the content/ folder of your project and every subject opens together. Ctrl+S then saves straight back into the files.' : 'This browser cannot write into your files directly, so you will download each updated file and replace it under content/. Chrome or Edge on a computer can save straight to disk.'}</p>
-      <p className="ce-hint">You can also drag and drop files or folders onto this page.</p>
+      <p className="ce-hint">{fsOk ? 'Files ko yahan drag and drop bhi kar sakte hain. Save karne par changes seedha file mein chale jaate hain.' : 'Is browser mein file seedha save nahi hoti: Save dabane par updated file download hogi, use content/ folder mein replace karein. Chrome ya Edge (computer) par seedha save hota hai.'}</p>
       <p className={`ce-status-line is-${status.tone}`} role="status">{status.text}</p>
     </div> : <>
       {/* ---- action bar ---- */}
@@ -1445,16 +1465,17 @@ export default function ConceptEditor() {
         <IconBtn icon="undo" label={doc.history.length ? `Undo: ${doc.history[doc.history.length - 1].label}` : 'Nothing to undo'} onClick={undo} disabled={!doc.history.length} />
         <IconBtn icon="redo" label={doc.future.length ? `Redo: ${doc.future[doc.future.length - 1].label}` : 'Nothing to redo'} onClick={redo} disabled={!doc.future.length} />
         <span className="ce-sep" />
-        <IconBtn icon="search" label="Find and replace (Ctrl+Shift+F)" active={panel === 'find'} onClick={() => setPanel(panel === 'find' ? null : 'find')} />
-        <IconBtn icon="history" label="Changes since last save" active={panel === 'changes'} onClick={() => setPanel(panel === 'changes' ? null : 'changes')}>{changes.length > 0 && <span className="ce-badge">{changes.length}</span>}</IconBtn>
-        <IconBtn icon="alert" label="Problems" active={panel === 'problems'} onClick={() => setPanel(panel === 'problems' ? null : 'problems')}>{issues.length > 0 && <span className={`ce-badge ${errorCount ? 'is-error' : 'is-warn'}`}>{issues.length}</span>}</IconBtn>
+        <IconBtn icon="search" label="Dhundo aur badlo (Ctrl+Shift+F)" active={panel === 'find'} onClick={() => setPanel(panel === 'find' ? null : 'find')} />
+        {(doc.dirty || prefs.advanced) && <IconBtn icon="history" label="Last save ke baad ke badlav" active={panel === 'changes'} onClick={() => setPanel(panel === 'changes' ? null : 'changes')}>{changes.length > 0 && <span className="ce-badge">{changes.length}</span>}</IconBtn>}
+        {issues.length > 0 && <IconBtn icon="alert" label="Check karne wali cheezein" active={panel === 'problems'} onClick={() => setPanel(panel === 'problems' ? null : 'problems')}><span className={`ce-badge ${errorCount ? 'is-error' : 'is-warn'}`}>{issues.length}</span></IconBtn>}
         <span className="ce-grow" />
-        <div className="ce-seg" role="group" aria-label="Editor mode"><button type="button" aria-pressed={mode === 'visual'} onClick={() => setMode('visual')}>Fields</button><button type="button" aria-pressed={mode === 'json'} onClick={() => setMode('json')}>JSON</button></div>
-        <IconBtn icon="panelL" label="Show or hide outline" active={prefs.outline} onClick={() => setPref('outline', !prefs.outline)} />
-        <IconBtn icon={prefs.layout === 'side' ? 'cols' : 'rows'} label={prefs.layout === 'side' ? 'Preview below editor' : 'Preview beside editor'} onClick={() => setPref('layout', prefs.layout === 'side' ? 'stacked' : 'side')} />
-        <IconBtn icon="panelR" label="Show or hide preview" active={prefs.preview} onClick={() => setPref('preview', !prefs.preview)} />
-        <IconBtn icon="sliders" label="Preferences" active={panel === 'settings'} onClick={() => setPanel(panel === 'settings' ? null : 'settings')} />
-        <IconBtn icon="help" label="Shortcuts and tips (Esc closes)" active={panel === 'help'} onClick={() => setPanel(panel === 'help' ? null : 'help')} />
+        {prefs.advanced && <div className="ce-seg" role="group" aria-label="Editor mode"><button type="button" aria-pressed={mode === 'visual'} onClick={() => setMode('visual')}>Fields</button><button type="button" aria-pressed={mode === 'json'} onClick={() => setMode('json')}>JSON</button></div>}
+        {prefs.advanced && <IconBtn icon={prefs.layout === 'side' ? 'cols' : 'rows'} label={prefs.layout === 'side' ? 'Preview neeche' : 'Preview side mein'} onClick={() => setPref('layout', prefs.layout === 'side' ? 'stacked' : 'side')} />}
+        <IconBtn icon="type" label={prefs.hideToolbar ? 'Formatting toolbar dikhao' : 'Formatting toolbar chhupao'} active={!prefs.hideToolbar} onClick={() => setPref('hideToolbar', !prefs.hideToolbar)}><span className="ce-btn-text">Format</span></IconBtn>
+        <IconBtn icon="panelL" label="Outline dikhao / chhupao" active={prefs.outline} onClick={() => setPref('outline', !prefs.outline)} />
+        <IconBtn icon="panelR" label="Preview dikhao / chhupao" active={prefs.preview} onClick={() => setPref('preview', !prefs.preview)} />
+        <IconBtn icon="sliders" label="Settings" active={panel === 'settings'} onClick={() => setPanel(panel === 'settings' ? null : 'settings')} />
+        <IconBtn icon="help" label="Madad aur shortcuts (Esc se band)" active={panel === 'help'} onClick={() => setPanel(panel === 'help' ? null : 'help')} />
       </div>
 
       <div className="ce-mtabs" role="tablist" aria-label="Panels">
@@ -1504,8 +1525,8 @@ export default function ConceptEditor() {
         <span className={`ce-status-line is-${status.tone}`} role="status">{status.text}</span>
         <span className="ce-grow" />
         <span className={`ce-pill ${doc.dirty ? 'is-warn' : 'is-ok'}`}>{saveState}</span>
-        <span className="ce-pill">{doc.linked ? 'Linked to file' : 'Download mode'}</span>
-        <button type="button" className={`ce-pill ce-pill-btn ${errorCount ? 'is-error' : warnCount ? 'is-warn' : 'is-ok'}`} onClick={() => setPanel('problems')}>{errorCount} errors, {warnCount} warnings</button>
+        {prefs.advanced && <span className="ce-pill">{doc.linked ? 'Linked to file' : 'Download mode'}</span>}
+        {issues.length > 0 && <button type="button" className={`ce-pill ce-pill-btn ${errorCount ? 'is-error' : 'is-warn'}`} onClick={() => setPanel('problems')}>{errorCount ? `${errorCount} error` : `${warnCount} suggestion${warnCount > 1 ? 's' : ''}`}{errorCount && warnCount ? ` · ${warnCount} suggestion${warnCount > 1 ? 's' : ''}` : ''}</button>}
       </div>
     </>}
   </div>;
