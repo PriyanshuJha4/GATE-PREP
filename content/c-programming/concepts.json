@@ -4,7 +4,7 @@
   "sections": [
     {
       "id": "number-systems-and-constants",
-      "title": "Number Systems and Integer Constants",
+      "title": "Chapter 1 - Number Systems and Integer Constants",
       "short": "Number Systems and Integer Constants",
       "summary": "Learn decimal, binary, octal, and hexadecimal notation; convert values between bases; and identify valid C integer constants and their type-selection rules.",
       "content": "## 1. Number systems\n\nA number system uses a base (also called radix) to determine the available digits.\n\n```mermaid\nflowchart TD\n    A[Number Systems] --> B[Decimal: Base 10]\n    A --> C[Binary: Base 2]\n    A --> D[Octal: Base 8]\n    A --> E[Hexadecimal: Base 16]\n```\n\n| Number system | Base | Allowed digits |\n|---|---:|---|\n| Decimal | 10 | 0–9 |\n| Binary | 2 | 0–1 |\n| Octal | 8 | 0–7 |\n| Hexadecimal | 16 | 0–9 and A–F |\n\nIn hexadecimal, A = 10, B = 11, C = 12, D = 13, E = 14, and F = 15.\n\n### Positional value\n\nFor digits $d_n, d_{n-1}, \\dots, d_1, d_0$ in base $b$:\n\n$$\n(d_n d_{n-1} \\dots d_0)_b = \\sum_{i=0}^{n} d_i b^i\n$$\n\nThis is the compact form of the positional-value formula.\n\nExamples:\n- $(1011)_2 = 1(2^3) + 0(2^2) + 1(2^1) + 1(2^0) = 11_{10}$\n- $(55)_8 = 5(8^1) + 5(8^0) = 45_{10}$\n- $(AF)_{16} = 10(16^1) + 15(16^0) = 175_{10}$\n\n**GATE tip:** Identify the base before calculating a number's value.\n\n## 2. Integer constants in C\n\n| C constant | Base | Decimal value |\n|---|---|---:|\n| `12` | Decimal | 12 |\n| `012` | Octal | 10 |\n| `025` | Octal | 21 |\n| `0x12` | Hexadecimal | 18 |\n| `0X1A` | Hexadecimal | 26 |\n| `0` | Integer constant | 0 |\n\nImportant rules:\n- An integer constant beginning with `0` is interpreted as octal, except `0` itself.\n- A constant beginning with `0x` or `0X` is hexadecimal.\n- Octal digits range from `0` to `7`; digits `8` and `9` are not allowed.\n- Hexadecimal digits can be `0`–`9`, `A`–`F`, or `a`–`f`.\n- `08` and `09` are not valid integer constants in standard C because they contain invalid octal digits.\n\nExample:\n\n```c\nint a = 12;   // Decimal 12\nint b = 012;  // Octal 12 = decimal 10\nint c = 0x12; // Hexadecimal 12 = decimal 18\n```\n\n### Unary minus\n\nThe minus sign is a unary operator; it is not part of the integer constant itself.\n\n```c\nint x = -012;\n```\n\n`012` is octal and equals decimal 10. Applying unary minus gives `-10`.\n\n## 3. Base conversion\n\n### A. Binary to octal\n\nGroup bits in groups of three, starting from the right. Add leading zeros to the left if needed.\n\n```mermaid\nflowchart LR\n    A[Binary digits] --> B[Group bits in 3s from right]\n    B --> C[Convert each group to an octal digit]\n    C --> D[Octal result]\n```\n\n$$\n(101101)_2 = (101 \\mid 101)_2 = (55)_8\n$$\n\nEach group, `101`, represents 5 in octal.\n\n### B. Binary to hexadecimal\n\nGroup bits in groups of four, starting from the right. Add leading zeros to the left if needed.\n\n```mermaid\nflowchart LR\n    A[Binary digits] --> B[Group bits in 4s from right]\n    B --> C[Convert each group to a hex digit]\n    C --> D[Hexadecimal result]\n```\n\n$$\n(10101111)_2 = (1010 \\mid 1111)_2 = (AF)_{16}\n$$\n\nThe group `1010` represents A, and `1111` represents F.\n\n### C. Octal or hexadecimal to binary\n\nReplace each octal digit with exactly 3 bits and each hexadecimal digit with exactly 4 bits.\n\n- $(73)_8 = 111\\;011_2 = (111011)_2$\n- $(2F)_{16} = 0010\\;1111_2 = (00101111)_2$\n\nKeep leading zeros while converting individual digits. They may be omitted from the final whole-number representation when they do not affect the value.\n\n### D. Decimal integer to another base\n\nRepeatedly divide by the target base. Record each remainder, then read the remainders from bottom to top.\n\n```mermaid\nflowchart TD\n    A[Start with decimal integer] --> B[Divide by target base]\n    B --> C[Record remainder]\n    C --> D{\"Quotient is zero?\"}\n    D -- No --> E[Use quotient for next division]\n    E --> B\n    D -- Yes --> F[Read remainders bottom to top]\n    F --> G[Converted number]\n```\n\nExample: Convert $13_{10}$ to binary.\n\n| Division | Quotient | Remainder |\n|---|---:|---:|\n| 13 ÷ 2 | 6 | 1 |\n| 6 ÷ 2 | 3 | 0 |\n| 3 ÷ 2 | 1 | 1 |\n| 1 ÷ 2 | 0 | 1 |\n\n$$\n(13)_{10} = (1101)_2\n$$\n\n### E. Binary integer to decimal\n\nMultiply each bit by its positional power of 2 and add the results.\n\n$$\n\\begin{aligned}\n(110101)_2 &= 1(2^5) + 1(2^4) + 0(2^3) + 1(2^2) + 0(2^1) + 1(2^0) \\\\\n&= 32 + 16 + 4 + 1 \\\\\n&= 53_{10}\n\\end{aligned}\n$$\n\n### F. Decimal fraction to binary\n\nRepeatedly multiply the fractional part by 2. Record each result's integer part from top to bottom.\n\n| Multiplication | Integer part |\n|---|---:|\n| $0.625 \\times 2 = 1.25$ | 1 |\n| $0.25 \\times 2 = 0.5$ | 0 |\n| $0.5 \\times 2 = 1.0$ | 1 |\n\n$$\n(0.625)_{10} = (0.101)_2\n$$\n\nSome decimal fractions, such as $0.1_{10}$, have repeating binary representations.\n\n## 4. Integer constant suffixes\n\n| Suffix | Meaning | Example |\n|---|---|---|\n| `U` or `u` | `unsigned` | `10U` |\n| `L` or `l` | `long` | `10L` |\n| `LL` or `ll` | `long long` | `10LL` |\n| `UL` or `LU` | `unsigned long` | `10UL` |\n| `ULL` or `LLU` | `unsigned long long` | `10ULL` |\n\nC permits specified combinations and case variations of these suffixes; use a valid suffix form.\n\nThe type of an integer constant depends on:\n1. Its base: decimal, octal, or hexadecimal.\n2. Its suffix, if any.\n3. The candidate types permitted by the applicable C standard.\n4. Whether its value can be represented by a candidate type.\n\nUnsuffixed decimal constants and unsuffixed octal/hexadecimal constants use different candidate-type rules. Do not assume every integer constant has type `int`.\n\n**GATE tip:** If asked for a constant's type, check its base, suffix, value, and the C standard or assumptions in the question.\n\n## 5. Binary literals and C versions\n\nThe prefixes `0b` and `0B` introduce binary integer constants in C23.\n\n```c\n0b1010\n0B1010\n```\n\nBoth represent decimal 10 in C23.\n\n- **C23:** Binary integer constants are standard syntax.\n- **Older C standards, such as C17:** This syntax is not standard, although some compilers support it as an extension.\n\n**GATE trap:** Check the C version before deciding whether a binary literal is valid standard C.\n\n## 6. Bitwise operators: basic revision\n\nBitwise operators work on integer operands after the relevant integer promotions.\n\n$$\n10_{10} = 1010_2, \\qquad 12_{10} = 1100_2\n$$\n\n| Operator | Name | Rule |\n|---|---|---|\n| `&` | Bitwise AND | Result bit is 1 when both corresponding bits are 1. |\n| `|` | Bitwise OR | Result bit is 1 when at least one corresponding bit is 1. |\n| `^` | Bitwise XOR | Result bit is 1 when corresponding bits differ. |\n| `~` | Bitwise complement | Inverts the bits of the promoted operand. |\n| `<<` | Left shift | Shifts bits left, subject to C's shift rules. |\n| `>>` | Right shift | Shifts bits right, subject to C's shift rules. |\n\nExamples:\n\n```c\n10 & 12  // 8\n10 | 12  // 14\n10 ^ 12  // 6\n```\n\n```text\n  1010     (10)\n& 1100     (12)\n------\n  1000     (8)\n```\n\n```text\n  1010     (10)\n| 1100     (12)\n------\n  1110     (14)\n```\n\n```text\n  1010     (10)\n^ 1100     (12)\n------\n  0110     (6)\n```\n\n**Caution:** Do not assume `x << 1` always means `x * 2` or `x >> 1` always means `x / 2`. Results depend on operand types, integer promotions, widths, values, and applicable C rules. The result of `~x` also depends on the promoted operand type and the rules of the C version.\n\n## 7. Two's-complement basics\n\nFor an $N$-bit two's-complement representation, the range is:\n\n$$\n-2^{N-1} \\text{ to } 2^{N-1}-1\n$$\n\nFor 8 bits, the range is $-128$ to $127$.\n\n### Example 1: Represent −5 using 8 bits\n\n```mermaid\nflowchart TD\n    A[Write positive value in N bits] --> B[Invert every bit]\n    B --> C[Add 1]\n    C --> D[Negative value in two's complement]\n```\n\n**Step 1:** Write +5 in 8-bit binary.\n\n```text\n+5 = 00000101\n```\n\n**Step 2:** Invert every bit.\n\n```text\n00000101\n11111010\n```\n\n**Step 3:** Add 1.\n\n```text\n  11111010\n+ 00000001\n----------\n  11111011\n```\n\nTherefore, in 8-bit two's complement:\n\n$$\n-5 = 11111011_2\n$$\n\n### Example 2: Represent −4 using 8 bits\n\n**Step 1:** Write +4 in 8-bit binary.\n\n```text\n+4 = 00000100\n```\n\n**Step 2:** Invert every bit.\n\n```text\n00000100\n11111011\n```\n\n**Step 3:** Add 1.\n\n```text\n  11111011\n+ 00000001\n----------\n  11111100\n```\n\nTherefore, in 8-bit two's complement:\n\n$$\n-4 = 11111100_2\n$$\n\n**C standard note:** C23 specifies two's-complement representation for signed integers. If a question states a particular representation or uses assumptions from another C version, follow the stated assumptions.\n\n## 8. High-priority GATE exam traps\n\n1. `12`, `012`, and `0x12` represent decimal values 12, 10, and 18, respectively.\n2. `08` and `09` are invalid standard C integer constants because octal digits range from 0 to 7.\n3. `0x10` is hexadecimal 16, not decimal 10.\n4. `10` is an integer constant; `10.0` is a floating-point constant.\n5. Binary-to-octal conversion uses groups of 3 bits; binary-to-hexadecimal conversion uses groups of 4 bits.\n6. Check the suffix, base, value, and applicable C standard before determining a constant's type or validity.\n7. `0b1010` is standard binary-literal syntax in C23, but not in older C standards such as C17.\n8. Evaluate bitwise expressions and shifts using C's type-promotion and operator rules, not only informal bit tricks.\n\n## 9. Practice questions\n\nUse these questions to revise the concepts. Answers and explanations are included for self-checking.",
@@ -181,6 +181,134 @@
           ],
           "answer": 1,
           "solution": "The `0b`/`0B` binary integer-literal syntax became standard in C23. It is not standard syntax in C17, although some compilers support it as an extension.",
+          "marks": 1,
+          "source": "Practice question"
+        },
+        {
+          "id": "nsq-13",
+          "title": "Binary addition: two 4-bit numbers",
+          "type": "mcq",
+          "question": "Add the binary numbers 1011₂ + 1101₂. What is the result in binary?",
+          "options": [
+            "10100",
+            "11000",
+            "11100",
+            "10000"
+          ],
+          "answer": 1,
+          "solution": "1011₂=11 and 1101₂=13. Their sum is 24, which is 11000₂. In column addition, carries are propagated to the next bit.",
+          "marks": 1,
+          "source": "Practice question"
+        },
+        {
+          "id": "nsq-14",
+          "title": "Binary addition with carry",
+          "type": "mcq",
+          "question": "Calculate 1101₂ + 0111₂.",
+          "options": [
+            "10010",
+            "10100",
+            "11000",
+            "11100"
+          ],
+          "answer": 1,
+          "solution": "1101₂=13 and 0111₂=7. The sum is 20, and 20_{10}=10100₂.",
+          "marks": 1,
+          "source": "Practice question"
+        },
+        {
+          "id": "nsq-15",
+          "title": "Binary addition: larger operands",
+          "type": "mcq",
+          "question": "What is 101101₂ + 001111₂? Give the result in binary.",
+          "options": [
+            "110110",
+            "111100",
+            "101100",
+            "100000"
+          ],
+          "answer": 1,
+          "solution": "101101₂=45 and 001111₂=15. Their sum is 60, which is 111100₂.",
+          "marks": 1,
+          "source": "Practice question"
+        },
+        {
+          "id": "nsq-16",
+          "title": "Binary addition overflow into a new bit",
+          "type": "mcq",
+          "question": "Calculate 1111₂ + 0001₂.",
+          "options": [
+            "1110",
+            "10000",
+            "10100",
+            "11000"
+          ],
+          "answer": 1,
+          "solution": "Adding 1 to 1111₂ makes every existing bit roll over with a carry, producing 10000₂ (decimal 16).",
+          "marks": 1,
+          "source": "Practice question"
+        },
+        {
+          "id": "nsq-17",
+          "title": "Binary subtraction with borrowing",
+          "type": "mcq",
+          "question": "Subtract 01011₂ from 11010₂. Give the result as a 5-bit binary number.",
+          "options": [
+            "01111",
+            "01001",
+            "10001",
+            "00111"
+          ],
+          "answer": 0,
+          "solution": "11010₂=26 and 01011₂=11. The difference is 15, whose 5-bit representation is 01111₂. Borrowing is required in the binary columns.",
+          "marks": 1,
+          "source": "Practice question"
+        },
+        {
+          "id": "nsq-18",
+          "title": "Binary subtraction from a power of two",
+          "type": "mcq",
+          "question": "Calculate 10000₂ - 00001₂. Keep the result 5 bits wide.",
+          "options": [
+            "01111",
+            "01000",
+            "11111",
+            "10001"
+          ],
+          "answer": 0,
+          "solution": "10000₂=16 and 00001₂=1. Their difference is 15, written with 5 bits as 01111₂.",
+          "marks": 1,
+          "source": "Practice question"
+        },
+        {
+          "id": "nsq-19",
+          "title": "Binary subtraction: 6-bit operands",
+          "type": "mcq",
+          "question": "Find 101101₂ - 001110₂. Give the result using 6 bits.",
+          "options": [
+            "011111",
+            "010111",
+            "100001",
+            "001111"
+          ],
+          "answer": 0,
+          "solution": "101101₂=45 and 001110₂=14. The difference is 31, represented in 6 bits as 011111₂.",
+          "marks": 1,
+          "source": "Practice question"
+        },
+        {
+          "id": "nsq-20",
+          "title": "Binary subtraction with repeated borrowing",
+          "type": "mcq",
+          "question": "Calculate 100000₂ - 000001₂. Keep the result 6 bits wide.",
+          "options": [
+            "011111",
+            "010000",
+            "111111",
+            "100001"
+          ],
+          "answer": 0,
+          "solution": "100000₂=32 and 000001₂=1. The result is 31, which is 011111₂ in 6 bits. Borrowing passes through the intermediate zero bits.",
           "marks": 1,
           "source": "Practice question"
         }
