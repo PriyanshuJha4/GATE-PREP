@@ -414,15 +414,22 @@ code { overflow-wrap: anywhere; }
   min-width: 550px;
 }
 
-/* Ensure node text and edge labels remain crisp and readable */
-.mermaid .node text,
-.mermaid .label text,
-.mermaid .cluster-label text,
+/* Mermaid measures its text with its own font, then sizes each node box to fit.
+   So do NOT override font-size / font-family / font-weight here, and do NOT let
+   the page's text-wrapping rules (overflow-wrap: anywhere on .prose / .ce-preview)
+   leak in: both make labels wider or taller than their box, so they get clipped. */
+.mermaid,
+.mermaid * {
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+.mermaid foreignObject {
+  overflow: visible !important;
+}
+.mermaid .nodeLabel,
 .mermaid .edgeLabel,
-.mermaid span.nodeLabel {
-  font-size: 15px !important;
-  font-family: inherit !important;
-  font-weight: 500 !important;
+.mermaid .label {
+  white-space: nowrap;
 }
 
 /* ---------- Content Editor ---------- */
