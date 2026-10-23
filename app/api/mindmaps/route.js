@@ -59,7 +59,7 @@ async function allResources(cfg) {
   for (let page = 0; page < 10; page += 1) {
     const query = new URLSearchParams({ prefix: `${FOLDER}/`, max_results: '500' });
     if (cursor) query.set('next_cursor', cursor);
-    const data = await cloudRequest(cfg, `resources/raw?${query.toString()}`);
+    const data = await cloudRequest(cfg, `resources/raw/upload?${query.toString()}`);
     resources.push(...(data.resources || []));
     cursor = data.next_cursor || '';
     if (!cursor) break;
@@ -131,7 +131,7 @@ export async function DELETE(request) {
     const id = new URL(request.url).searchParams.get('id');
     const pid = publicId(id);
     const body = new URLSearchParams(); body.append('public_ids[]', pid);
-    const res = await fetch(`https://api.cloudinary.com/v1_1/${encodeURIComponent(cfg.cloud)}/resources/raw`, { method: 'DELETE', headers: { Authorization: authHeader(cfg), 'Content-Type': 'application/x-www-form-urlencoded' }, body, cache: 'no-store' });
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${encodeURIComponent(cfg.cloud)}/resources/raw/upload`, { method: 'DELETE', headers: { Authorization: authHeader(cfg), 'Content-Type': 'application/x-www-form-urlencoded' }, body, cache: 'no-store' });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) return json({ error: data?.error?.message || `Cloudinary delete failed (HTTP ${res.status}).` }, 502);
     return json({ ok: true, deleted: data.deleted || {} });
