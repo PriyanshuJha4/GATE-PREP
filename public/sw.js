@@ -83,7 +83,7 @@ self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  if (url.origin !== self.location.origin || url.pathname === '/sw.js') return;
+  if (url.origin !== self.location.origin || url.pathname === '/sw.js' || url.pathname.startsWith('/api/')) return;
 
   const isPageData = req.mode === 'navigate' || url.searchParams.has('_rsc') || url.pathname.endsWith('.txt');
   if (isPageData) event.respondWith(networkFirst(req));

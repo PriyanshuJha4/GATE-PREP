@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Static export is used for the production build (`next build` -> ./out, deployed on Vercel).
-  // In `next dev` it is switched off, so adding or replacing content files never breaks the dev server.
-  output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
+  // Mind-map cloud sync uses secure Next.js route handlers on Vercel.
+  // Do not set `output: 'export'`: static export cannot run /api/mindmaps.
   trailingSlash: true,
   images: { unoptimized: true },
   reactStrictMode: true,

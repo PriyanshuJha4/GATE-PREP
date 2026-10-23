@@ -9,8 +9,7 @@
     "validate": "node scripts/validate-content.mjs",
     "prebuild": "node scripts/validate-content.mjs",
     "build": "next build",
-    "start": "npx serve out",
-    "postbuild": "node scripts/postbuild.mjs"
+    "start": "next start"
   },
   "dependencies": {
     "highlight.js": "^11.10.0",

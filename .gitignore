@@ -4,3 +4,7 @@ out
 .vercel
 .DS_Store
 npm-debug.log*
+
+# Secrets for local Cloudinary sync
+.env*
+!.env.example

@@ -1,12 +1,12 @@
 # GATE CSE Notebook
 
-Static study app for GATE CSE (Next.js static export, no database). Everything lives in `content/`.
+GATE CSE study dashboard built with Next.js. Study content lives in `content/`; the Mind Maps workspace uses a server-side API route for optional Cloudinary sync.
 
 ```bash
 npm install
 npm run dev        # http://localhost:3000
 npm run validate   # checks all JSON files (also runs automatically before every build)
-npm run build      # static site in ./out
+npm run build      # Next.js production build (.next)
 ```
 
 ## What is where
@@ -120,4 +120,4 @@ If a page still returns 404, check that the file exists with the exact name (for
 
 ## Deploy on Vercel
 
-Push to GitHub, import the repo in Vercel, no settings needed.
+Push to GitHub and import the repo in Vercel. For permanent Mind Maps cloud sync, configure the four environment variables in `MIND_MAPS_CLOUDINARY_SETUP.md` before redeploying.
