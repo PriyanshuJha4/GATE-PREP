@@ -28,3 +28,7 @@
 ## Important
 
 Static export cannot execute `/api/mindmaps`. This patch therefore changes production deployment to standard Next.js on Vercel. Existing pages and content schemas are preserved in the patch, but the actual `content/` files must be present in your local repository. I could not run a full production build against the uploaded archive because it omitted those content files and the archive did not include installed dependencies.
+
+
+## Additional fix: password input focus
+This patch updates `components/mindmaps/ui.jsx` so the modal autofocus effect runs only when the modal opens. It avoids refocusing the first control after every password keystroke.
