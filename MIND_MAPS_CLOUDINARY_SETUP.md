@@ -25,6 +25,14 @@ Copy the folders over your project (same paths) and keep the existing `@/compone
 - **Undo/redo**, duplicate branch (`Ctrl+D`), colours, fonts, stickers, images (paste or drop them in), connector labels/colours, search across map titles *and* topic text.
 - Templates when creating a map (GATE subject, chapter notes, brainstorm) or **From an outline**.
 
+## Permanent Cloudinary link (all devices)
+
+Open `components/mindmaps/config.js` and fill `cloudName` and `uploadPreset` (or set `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` and `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET` in `.env.local` / Vercel). After that every phone and PC that opens the site is linked automatically, and automatic backup of all maps runs (every 15 min after changes; change `autoBackupMinutes`, 0 = manual only). Only the cloud name and an *unsigned* preset belong there — never an API secret.
+
+## Save to a folder on your computer
+
+Header **⋯ → Save to a folder on this device…** (or the 💾 line in the maps list). Choose a folder once (e.g. Documents/MindMaps); every created/edited map is then also written there as `<name>-<id>.mindmap.json`. Works in Chrome/Edge/Opera on desktop; after a browser restart a **Resume** button re-grants permission. Phones/Safari/Firefox cannot write to a chosen folder — there maps stay in the browser's storage and you can use Export / Cloud backup. Deleting a map in the app never deletes its file; **Load maps from folder…** brings files back in.
+
 ## Phone & full screen
 
 - **⛶ Full screen** (header, or the green button on the canvas) gives the whole screen to the map; **⤡ Minimize** (or `Esc`) returns to the page. Works on phone and Windows.

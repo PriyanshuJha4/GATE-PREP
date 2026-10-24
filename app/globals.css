@@ -925,3 +925,7 @@ kbd { padding: 1px 6px; border: 1px solid var(--border); border-radius: 5px; bac
 @media(max-width:600px) { .mm-lbl { display:none; } .mm-page-actions .mm-lbl { display:inline; } .mm-toast { bottom:calc(76px + env(safe-area-inset-bottom,0px)); } }
 @media(min-width:951px) { .mindmaps-page.fs .mm-workarea { display:grid; grid-template-columns:minmax(0,1fr) 250px; } .mindmaps-page.fs .mm-properties { overflow-y:auto; } }
 @media(pointer:coarse) { .mm-node { padding:10px 13px; } }
+
+.mm-message.warn { background:#fef3c7; color:#422006; align-items:center; }
+:root[data-theme="dark"] .mm-message.warn { background:#43361a; color:#fde68a; }
+.mm-message button.btn { border:1px solid var(--border); background:var(--bg); color:var(--text); font-size:12px; line-height:1.4; flex:none; }
