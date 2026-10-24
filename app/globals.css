@@ -847,8 +847,8 @@ kbd { padding: 1px 6px; border: 1px solid var(--border); border-radius: 5px; bac
   .mm-layout { grid-template-columns:1fr; }
   .mm-library { position:static; min-height:0; max-height:none; }
   .mm-lib-toggle { display:flex; justify-content:space-between; gap:8px; width:100%; border:0; background:transparent; padding:12px 14px; font-weight:600; font-size:14px; }
-  .mm-library:not(.open) > :not(.mm-lib-toggle) { display:none; }
-  .mm-library-top { display:none; } .mm-map-list { max-height:220px; }
+  .mindmaps-page:not(.fs) .mm-library:not(.open) > :not(.mm-lib-toggle) { display:none; }
+  .mindmaps-page:not(.fs) .mm-library-top { display:none; } .mm-map-list { max-height:220px; }
   .mm-editor-head { flex-wrap:wrap; }
   .mm-workarea { grid-template-columns:minmax(0,1fr); }
   .mm-properties { border-left:0; border-top:1px solid var(--border); max-height:none; }
@@ -863,8 +863,65 @@ kbd { padding: 1px 6px; border: 1px solid var(--border); border-radius: 5px; bac
   .mm-cloud-fields { grid-template-columns:1fr; } .mm-restore-row { flex-direction:column; align-items:stretch; }
   .mm-editor-footer { flex-direction:column; } .mm-tip-line,.mm-canvas-hint { display:none; }
   .mm-log li { flex-direction:column; align-items:flex-start; }
-  .mm-dd-menu { position:fixed; left:12px; right:12px; top:auto; bottom:12px; max-height:70vh; } .mm-dd-menu.right { left:12px; right:12px; }
   .mm-handle { width:32px; height:32px; bottom:-18px; } .mm-resize { width:20px; height:20px; right:-10px; bottom:-10px; }
 }
 @media print { .mm-library,.mm-toolbar,.mm-properties,.mm-page-heading,.mm-editor-head { display:none; } }
 
+/* ---------- Mind maps: phone-friendly + full screen ---------- */
+.mm-icon-btn,.mm-min-btn { flex:none; min-height:36px; min-width:36px; border:1px solid var(--border); border-radius:9px; background:var(--bg); color:var(--text); font-size:15px; padding:0 10px; }
+.mm-min-btn { background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600; font-size:14px; }
+.mm-fs-fab { position:absolute; right:12px; bottom:12px; z-index:7; border:0; border-radius:999px; background:var(--accent); color:#fff; font-weight:600; font-size:13px; padding:10px 16px; box-shadow:0 4px 14px rgba(0,0,0,.28); }
+.mm-lib-new { margin-left:auto; } .mm-library-top .mm-x { margin-left:6px; }
+.mm-toolbar-group > button.mm-tb-del { color:var(--bad); }
+.mm-canvas-viewport { overscroll-behavior:none; -webkit-touch-callout:none; }
+.mm-drawer-backdrop { position:fixed; inset:0; z-index:94; background:rgba(0,0,0,.4); }
+
+/* full screen overlay (works on phone & desktop) */
+.mindmaps-page.fs { position:fixed; inset:0; z-index:90; max-width:none; margin:0; padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0); background:var(--bg); overflow:hidden; height:100dvh; }
+.mindmaps-page.fs .mm-page-heading { display:none; }
+.mindmaps-page.fs .mm-layout { display:block; height:100%; }
+.mindmaps-page.fs .mm-editor { height:100%; min-height:0; border:0; border-radius:0; }
+.mindmaps-page.fs .mm-workarea { flex:1; min-height:0; position:relative; }
+.mindmaps-page.fs .mm-canvas-viewport { height:100%; min-height:0; }
+.mindmaps-page.fs .mm-properties { max-height:none; height:100%; }
+.mindmaps-page.fs .mm-editor-footer { padding:5px 12px; }
+.mindmaps-page.fs .mm-fs-fab { display:none; }
+.mindmaps-page.fs .mm-library { position:fixed; z-index:95; top:0; bottom:0; left:0; width:min(330px,88vw); max-height:none; min-height:0; border-radius:0 14px 14px 0; transform:translateX(-105%); transition:transform .22s ease; padding-top:env(safe-area-inset-top,0); box-shadow:none; overflow:hidden; }
+.mindmaps-page.fs .mm-library.open { transform:none; box-shadow:0 0 40px rgba(0,0,0,.35); }
+.mindmaps-page.fs .mm-lib-toggle { display:none; }
+.mindmaps-page.fs .mm-library-top { display:flex; }
+.mindmaps-page.fs .mm-map-list { max-height:none; }
+.mindmaps-page.fs .mm-library > * { visibility:visible; }
+
+/* phone & tablet */
+@media(max-width:950px) {
+  .mm-dd-menu,.mm-dd-menu.right { position:fixed; left:12px; right:12px; top:auto; bottom:calc(12px + env(safe-area-inset-bottom,0px)); max-height:68vh; z-index:130; }
+  .mm-dd-item { padding:12px 12px; font-size:14px; }
+  .mm-toolbar { flex-wrap:nowrap; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; gap:14px; padding:8px; }
+  .mm-toolbar::-webkit-scrollbar { display:none; }
+  .mm-toolbar-group { flex:none; flex-wrap:nowrap; }
+  .mm-toolbar-group > button,.mm-toolbar .mm-dd-btn { min-height:42px; padding:8px 12px; font-size:13px; }
+  .mm-canvas-hint { display:none; }
+  .mindmaps-page.fs .mm-editor-head { padding:8px 10px; gap:8px; flex-wrap:nowrap; }
+  .mindmaps-page.fs .mm-map-title-wrap { flex:1; min-width:0; gap:6px; flex-basis:auto; }
+  .mindmaps-page.fs .mm-title-input { flex:1; min-width:0; font-size:15px; padding:6px 4px; }
+  .mindmaps-page.fs .mm-save-label { display:none; }
+  .mindmaps-page.fs .mm-head-actions { gap:4px; flex:none; }
+  .mindmaps-page.fs .mm-head-actions .btn,.mindmaps-page.fs .mm-head-actions .mm-dd-btn { min-height:38px; padding:6px 9px; }
+  .mindmaps-page.fs .mm-editor { display:flex; flex-direction:column; }
+  .mindmaps-page.fs .mm-toolbar { order:3; border-bottom:0; border-top:1px solid var(--border); padding-bottom:max(8px,env(safe-area-inset-bottom,0px)); background:var(--bg); }
+  .mindmaps-page.fs .mm-message { order:2; } .mindmaps-page.fs .mm-workarea { order:2; }
+  .mindmaps-page.fs .mm-editor-footer { display:none; }
+  .mindmaps-page.fs .mm-workarea { display:block; }
+  .mindmaps-page.fs .mm-properties { display:none; position:absolute; left:0; right:0; bottom:0; height:auto; max-height:52%; z-index:8; border:1px solid var(--border); border-bottom:0; border-radius:16px 16px 0 0; box-shadow:0 -8px 28px rgba(0,0,0,.22); padding:4px 14px 18px; }
+  .mindmaps-page.fs .mm-properties.sheet-open { display:block; }
+  .mindmaps-page.fs .mm-color-grid button,.mindmaps-page.fs .mm-color-custom { height:38px; }
+  .mindmaps-page.fs .mm-prop-buttons .btn { min-height:42px; }
+  .mindmaps-page.fs .mm-handle { width:34px; height:34px; bottom:-20px; font-size:20px; }
+  .mindmaps-page.fs .mm-resize { width:22px; height:22px; right:-11px; bottom:-11px; }
+  .mindmaps-page.fs .mm-collapse { min-width:30px; height:30px; right:-17px; }
+  .mindmaps-page:not(.fs) .mm-canvas-viewport,.mindmaps-page:not(.fs) .mm-node { touch-action:pan-y pinch-zoom; }
+}
+@media(max-width:600px) { .mm-lbl { display:none; } .mm-page-actions .mm-lbl { display:inline; } .mm-toast { bottom:calc(76px + env(safe-area-inset-bottom,0px)); } }
+@media(min-width:951px) { .mindmaps-page.fs .mm-workarea { display:grid; grid-template-columns:minmax(0,1fr) 250px; } .mindmaps-page.fs .mm-properties { overflow-y:auto; } }
+@media(pointer:coarse) { .mm-node { padding:10px 13px; } }

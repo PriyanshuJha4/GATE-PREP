@@ -3,16 +3,14 @@ import { useEffect, useRef, useState } from 'react';
 
 export function Modal({ title, onClose, children, wide = false, footer }) {
   const ref = useRef(null);
-  const onCloseRef = useRef(onClose);
-  onCloseRef.current = onClose;
   useEffect(() => {
     const prev = document.activeElement;
     const first = ref.current?.querySelector('[data-autofocus], input, textarea, button');
     first?.focus();
-    const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); onCloseRef.current?.(); } };
+    const onKey = (e) => { if (e.key === 'Escape') { e.stopPropagation(); onClose(); } };
     document.addEventListener('keydown', onKey, true);
     return () => { document.removeEventListener('keydown', onKey, true); prev?.focus?.(); };
-  }, []);
+  }, [onClose]);
   return (
     <div className="mm-modal-backdrop" onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className={`mm-modal ${wide ? 'wide' : ''}`} role="dialog" aria-modal="true" aria-label={title} ref={ref}>
