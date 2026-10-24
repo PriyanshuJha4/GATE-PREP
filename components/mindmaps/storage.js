@@ -2,8 +2,6 @@
 const DB_NAME = 'gate-notebook-mindmaps'; const STORE = 'maps';
 export const LEGACY_KEY = 'gate-notebook-mindmaps-v1';
 export const META_KEY = 'gate-notebook-mindmaps-meta-v2';
-export const CLOUD_KEY = 'gate-notebook-cloudinary-settings-v1';
-export const CLOUD_LOG_KEY = 'gate-notebook-cloudinary-log-v1';
 
 const lsGet = (k, fb) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch { return fb; } };
 const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } };

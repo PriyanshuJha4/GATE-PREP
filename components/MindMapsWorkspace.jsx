@@ -9,17 +9,15 @@ import {
   compressImage, downloadBlob, exportFreemind, exportMarkdown, exportOpml, mapToSvg, parseAnyToMaps, parseOutline, slug, svgToPngBlob,
 } from './mindmaps/formats';
 import {
-  CLOUD_KEY, CLOUD_LOG_KEY, META_KEY, createStorage, formatBytes, readJson, requestPersistence, storageEstimate, writeJson,
+  META_KEY, createStorage, formatBytes, readJson, requestPersistence, storageEstimate, writeJson,
 } from './mindmaps/storage';
-import { CLOUD_FOLDER, cloudReady, fetchBackup, makeSetupCode, parseSetupCode, uploadBackup } from './mindmaps/cloud';
 import { Dropdown, Modal, Toast } from './mindmaps/ui';
-import { CLOUDINARY_CONFIG, CLOUD_LINKED } from './mindmaps/config';
 import { clearHandle, diskSupported, loadHandle, permission, pickFolder, readFolder, saveHandle, writeMaps, getNames } from './mindmaps/diskSync';
 
 const WELCOME = [
   { text: 'Add ideas', children: [{ text: 'Select a topic, press Tab → child' }, { text: 'Press Enter → sibling' }, { text: 'Double-click or F2 → edit text' }] },
   { text: 'Move around', children: [{ text: 'Drag empty space to pan' }, { text: 'Ctrl + scroll or pinch to zoom' }, { text: 'Shift + drag → select several' }] },
-  { text: 'Keep it safe', children: [{ text: 'Saved automatically in this browser' }, { text: 'Export ▾ and Import ▾ in the header' }, { text: '☁ Cloud → back up to Cloudinary' }] },
+  { text: 'Keep it safe', children: [{ text: 'Saved automatically in this browser' }, { text: 'Export ▾ and Import ▾ in the header' }, { text: 'Optional folder copy: ⋯ → Save to a folder' }] },
 ];
 const ZMIN = 0.25; const ZMAX = 2;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
@@ -87,10 +85,7 @@ export default function MindMapsWorkspace() {
   const [saveState, setSaveState] = useState({ s: 'loading' });
   const [storageMode, setStorageMode] = useState('');
   const [usage, setUsage] = useState(null);
-  const [meta, setMeta] = useState({ wheelZoom: false, lastExportAt: null, lastCloudAt: null, autoMinutes: 0, propsOpen: true });
-  const [cloud, setCloud] = useState({ cloudName: '', uploadPreset: '' });
-  const [cloudLog, setCloudLog] = useState([]);
-  const [busy, setBusy] = useState('');
+  const [meta, setMeta] = useState({ wheelZoom: false, lastExportAt: null, propsOpen: true });
   const [libOpen, setLibOpen] = useState(false);
   const [linkMode, setLinkMode] = useState(false);
   const [marquee, setMarquee] = useState(null);
@@ -110,7 +105,6 @@ export default function MindMapsWorkspace() {
   const selRef = useRef([]); selRef.current = sel;
   const histRef = useRef(hist); histRef.current = hist;
   const metaRef = useRef(meta); metaRef.current = meta;
-  const cloudRef = useRef(cloud); cloudRef.current = cloud;
   const storageRef = useRef(null);
   const savedRef = useRef(new Map());
   const sizeCacheRef = useRef(new Map());
@@ -119,7 +113,7 @@ export default function MindMapsWorkspace() {
   const fileRef = useRef(null); const imageRef = useRef(null); const dragDepth = useRef(0);
   const lastHist = useRef({ key: '', t: 0 });
   const ptrs = useRef(new Map()); const pinch = useRef(null); const panRef = useRef(null);
-  const lastChangeRef = useRef(0); const lastAutoRef = useRef(0); const interacted = useRef(false); const lastTap = useRef({ id: null, t: 0 }); const nativeFs = useRef(false);
+  const lastChangeRef = useRef(0); const interacted = useRef(false); const lastTap = useRef({ id: null, t: 0 }); const nativeFs = useRef(false);
   const L = useRef({}); // always-latest handlers for native listeners / stable callbacks
 
   const activeMap = useMemo(() => maps.find((m) => m.id === activeId) || null, [maps, activeId]);
@@ -140,15 +134,14 @@ export default function MindMapsWorkspace() {
       if (!alive) return;
       storageRef.current = storage; setStorageMode(storage?.mode || '');
       let list = (loaded || []).map((m) => normalizeMap(m)).filter(Boolean);
-      const m0 = readJson(META_KEY, {}); const c0 = readJson(CLOUD_KEY, {}); const log0 = readJson(CLOUD_LOG_KEY, []);
+      const m0 = readJson(META_KEY, {});
       let seedFlush = false;
       if (!list.length) { const w = mapFromTree('Welcome to Mind Maps', WELCOME); w.autoLayout = true; list = [w]; seedFlush = true; }
       list = list.map((m) => ({ ...m, autoLayout: m.autoLayout ?? false }));
       savedRef.current = new Map(seedFlush ? [] : list.map((m) => [m.id, m]));
       setMaps(list); const first = list.find((m) => m.id === m0.activeId) || list[0]; setActiveId(first.id);
-      setMeta((o) => ({ ...o, ...m0, autoMinutes: m0.autoMinutes ?? (CLOUD_LINKED ? CLOUDINARY_CONFIG.autoBackupMinutes : 0) }));
-      setCloud(CLOUD_LINKED ? { cloudName: CLOUDINARY_CONFIG.cloudName, uploadPreset: CLOUDINARY_CONFIG.uploadPreset } : { cloudName: c0.cloudName || '', uploadPreset: c0.uploadPreset || '' });
-      (async () => { const sup = diskSupported(); const h = sup ? await loadHandle() : null; const perm = h ? await permission(h) : 'none'; if (!alive) return; diskRef.current = { handle: h, ok: perm === 'granted' }; setDisk({ supported: sup, linked: !!h, ok: perm === 'granted', name: h?.name || '', status: perm === 'granted' ? 'ok' : h ? 'paused' : '', at: 0 }); })(); setCloudLog(Array.isArray(log0) ? log0 : []);
+      setMeta((o) => ({ ...o, ...m0 }));
+      (async () => { const sup = diskSupported(); const h = sup ? await loadHandle() : null; const perm = h ? await permission(h) : 'none'; if (!alive) return; diskRef.current = { handle: h, ok: perm === 'granted' }; setDisk({ supported: sup, linked: !!h, ok: perm === 'granted', name: h?.name || '', status: perm === 'granted' ? 'ok' : h ? 'paused' : '', at: 0 }); })();
       setReady(true); setSaveState({ s: 'saved', at: Date.now() });
       requestPersistence(); storageEstimate().then((u) => alive && setUsage(u));
     })();
@@ -180,8 +173,6 @@ export default function MindMapsWorkspace() {
     return () => { document.removeEventListener('visibilitychange', onHide); window.removeEventListener('pagehide', flush); };
   }, [flush]);
   useEffect(() => { if (ready) writeJson(META_KEY, { ...meta, activeId }); }, [meta, activeId, ready]);
-  useEffect(() => { if (ready) writeJson(CLOUD_KEY, cloud); }, [cloud, ready]);
-  useEffect(() => { if (ready) writeJson(CLOUD_LOG_KEY, cloudLog.slice(0, 40)); }, [cloudLog, ready]);
 
   /* ------------------------------------------------------------- mutation */
   const snap = (m) => ({ nodes: m.nodes, edges: m.edges, title: m.title, autoLayout: m.autoLayout });
@@ -486,7 +477,7 @@ export default function MindMapsWorkspace() {
     map.autoLayout = true; addMapToLibrary(map); setModal(null); say(`Created “${name}”`);
   };
   const duplicateMap = () => {
-    if (!activeMap) return; const copy = normalizeMap(JSON.parse(JSON.stringify(activeMap)), { fresh: true }); copy.title = `${activeMap.title} (copy)`; copy.createdAt = now(); copy.updatedAt = now(); copy.cloudBackup = null; copy.autoLayout = activeMap.autoLayout;
+    if (!activeMap) return; const copy = normalizeMap(JSON.parse(JSON.stringify(activeMap)), { fresh: true }); copy.title = `${activeMap.title} (copy)`; copy.createdAt = now(); copy.updatedAt = now(); copy.autoLayout = activeMap.autoLayout;
     addMapToLibrary(copy); say('Duplicated');
   };
   const deleteMap = () => {
@@ -600,33 +591,6 @@ export default function MindMapsWorkspace() {
     } catch (e) { if (e?.name !== 'AbortError') say(`Could not read folder: ${e.message}`, { kind: 'bad' }); }
   };
 
-  /* --------------------------------------------------------------- cloud */
-  const logBackup = (entry) => setCloudLog((l) => [{ id: uid(), at: Date.now(), ...entry }, ...l].slice(0, 40));
-  const markCloud = (ids, url) => { const t = now(); mapsRef.current = mapsRef.current.map((m) => (ids.includes(m.id) ? { ...m, cloudBackup: { url, backedUpAt: t } } : m)); setMaps(mapsRef.current); setMeta((o) => ({ ...o, lastCloudAt: Date.now() })); };
-  const needCloud = () => { if (cloudReady(cloudRef.current)) return true; setModal({ type: 'cloud', tab: 'setup' }); say('Set up Cloudinary first (2 minutes)'); return false; };
-  const backupMap = async () => {
-    if (!activeMap || !needCloud()) return; setBusy('map');
-    try { const r = await uploadBackup(cloud, { name: activeMap.title, payload: { format: 'gate-notebook-mindmap', version: 1, backedUpAt: now(), map: activeMap }, tags: ['mindmap'] }); markCloud([activeMap.id], r.url); logBackup({ scope: 'map', label: activeMap.title, url: r.url, bytes: r.bytes, count: 1 }); say('Backed up to Cloudinary ☁'); }
-    catch (err) { say(err.message, { kind: 'bad' }); } finally { setBusy(''); }
-  };
-  const backupAll = async (silent = false) => {
-    if (!mapsRef.current.length || !cloudReady(cloudRef.current)) { if (!silent) needCloud(); return; } setBusy('all'); const list = mapsRef.current;
-    try { const r = await uploadBackup(cloudRef.current, { name: 'library', payload: { format: 'gate-notebook-mindmaps', version: 1, backedUpAt: now(), maps: list }, tags: ['mindmap-library'] }); markCloud(list.map((m) => m.id), r.url); logBackup({ scope: 'all', label: `All maps (${list.length})`, url: r.url, bytes: r.bytes, count: list.length, auto: silent }); lastAutoRef.current = Date.now(); if (!silent) say('All maps backed up to Cloudinary ☁'); }
-    catch (err) { if (!silent) say(err.message, { kind: 'bad' }); } finally { setBusy(''); }
-  };
-  const restoreUrl = async (url) => {
-    setBusy('restore'); try { const text = await fetchBackup(url); const maps2 = parseAnyToMaps(text, 'backup.json'); setModal(null); finishImport(maps2, 'Restored'); } catch (err) { say(`Restore failed: ${err.message}`, { kind: 'bad' }); } finally { setBusy(''); }
-  };
-  const testCloud = async () => {
-    if (!cloudReady(cloud)) { say('Enter both cloud name and preset first', { kind: 'bad' }); return; } setBusy('test');
-    try { await uploadBackup(cloud, { name: 'connection-test', payload: { format: 'gate-notebook-test', at: now() }, tags: ['test'] }); say('Connection works ✓ Cloudinary accepted the test upload'); } catch (err) { say(err.message, { kind: 'bad' }); } finally { setBusy(''); }
-  };
-  useEffect(() => { // optional automatic cloud backup of the whole library
-    if (!ready || !meta.autoMinutes || !cloudReady(cloud)) return undefined;
-    const t = setInterval(() => { if (lastChangeRef.current > lastAutoRef.current && Date.now() - lastAutoRef.current >= meta.autoMinutes * 60000 && !document.hidden) backupAll(true); }, 30000);
-    return () => clearInterval(t);
-  }, [ready, meta.autoMinutes, cloud]); // eslint-disable-line react-hooks/exhaustive-deps
-
   /* ---------------------------------------------------------- stable handlers */
   L.current = { down: nodeDown, edit: startEdit, commit: commitEdit, text: changeText, toggle: toggleCollapse, linkStart, resizeStart };
   const on = useMemo(() => ({
@@ -642,9 +606,8 @@ export default function MindMapsWorkspace() {
     return { d: `M ${sx} ${sy} C ${mid} ${sy}, ${mid} ${ey}, ${ex} ${ey}`, mx: mid, my: (sy + ey) / 2 };
   };
   const hiddenCountOf = (id) => descendants(activeMap, id, idx).length;
-  const hasBackupNote = maps.length && !(meta.lastExportAt && Date.now() - meta.lastExportAt < 14 * DAY) && !(meta.lastCloudAt && Date.now() - meta.lastCloudAt < 14 * DAY);
+  const hasBackupNote = maps.length && !(meta.lastExportAt && Date.now() - meta.lastExportAt < 14 * DAY);
   const ago = (t) => { const s = Math.round((Date.now() - t) / 1000); return s < 60 ? 'just now' : s < 3600 ? `${Math.round(s / 60)} min ago` : s < 86400 ? `${Math.round(s / 3600)} h ago` : new Date(t).toLocaleDateString(); };
-  const cloudState = (m) => (!m.cloudBackup ? null : String(m.cloudBackup.backedUpAt) >= String(m.updatedAt) ? 'ok' : 'stale');
   const approxBytes = [...sizeCacheRef.current.values()].reduce((a, b) => a + b, 0);
 
   const exportItems = [
@@ -658,8 +621,6 @@ export default function MindMapsWorkspace() {
   const importItems = [
     { icon: '📂', label: 'From file… (JSON, MD, OPML, MM)', onClick: () => fileRef.current?.click() },
     { icon: '📋', label: 'Paste an outline…', onClick: () => setModal({ type: 'paste', text: '', parent: primary?.id || null }) },
-    { icon: '🔗', label: 'From a web link…', onClick: () => setModal({ type: 'link' }) },
-    { icon: '☁', label: 'Restore from cloud backup…', onClick: () => setModal({ type: 'cloud', tab: 'backups' }) },
   ];
   const moreItems = [
     { icon: '＋', label: 'New mind map…', onClick: () => setModal({ type: 'new' }) }, { icon: '☰', label: 'All my maps', onClick: () => (fs ? setLibOpen(true) : document.querySelector('.mm-library')?.scrollIntoView({ behavior: 'smooth' })) }, { sep: true },
@@ -693,19 +654,18 @@ export default function MindMapsWorkspace() {
           <div className="mm-library-top"><strong>Your maps</strong><span>{maps.length}</span><button className="btn btn-small mm-lib-new" onClick={() => setModal({ type: 'new' })}>＋ New</button>{fs && <button className="mm-x" onClick={() => setLibOpen(false)} aria-label="Close maps list">×</button>}</div>
           <div className="mm-search-row"><input className="mm-search" type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search maps & topics…" aria-label="Search mind maps" /><select className="mm-sort" value={sort} onChange={(e) => setSort(e.target.value)} aria-label="Sort maps"><option value="recent">Recent</option><option value="name">A–Z</option></select></div>
           <div className="mm-map-list" role="list">
-            {visibleMaps.map((m) => { const cs = cloudState(m); return (
+            {visibleMaps.map((m) => (
               <button key={m.id} role="listitem" className={`mm-map-item ${m.id === activeId ? 'active' : ''}`} onClick={() => openMap(m.id)}>
                 <span className="mm-map-icon">🧠</span><span className="mm-map-item-copy"><strong>{m.title}</strong><small>{m.nodes.length} objects · {new Date(m.updatedAt || m.createdAt).toLocaleDateString()}</small></span>
-                {cs && <span className={`mm-cloud-dot ${cs}`} title={cs === 'ok' ? 'Cloud backup is up to date' : 'Changed since last cloud backup'}>{cs === 'ok' ? '☁✓' : '☁!'}</span>}
-              </button>); })}
+              </button>))}
             {!visibleMaps.length && <p className="mm-empty-small">{query ? 'No maps match your search.' : 'No maps yet — create one to begin.'}</p>}
           </div>
-          <div className="mm-library-actions"><button className="btn btn-ghost" onClick={() => doExport('all')} disabled={!maps.length}>⬇ Backup all</button><button className="btn btn-ghost" onClick={() => setModal({ type: 'cloud', tab: 'backups' })}>☁ Cloud</button></div>
+          <div className="mm-library-actions"><button className="btn btn-ghost" onClick={() => doExport('all')} disabled={!maps.length}>⬇ Backup all</button></div>
           <div className="mm-storage-note">
             <div className="mm-status-line"><span className={`mm-status-dot ${saveState.s}`} /><span>{saveState.s === 'saving' ? 'Saving…' : saveState.s === 'error' ? saveState.msg : saveState.s === 'loading' ? 'Loading…' : `Saved in this browser ${storageMode === 'indexeddb' ? '' : '(basic mode)'}`}</span></div>
             <button className="mm-link" onClick={() => setModal({ type: 'disk' })}>{disk.linked ? (disk.ok ? `💾 Also saving to folder “${disk.name}” ✓` : `💾 Folder “${disk.name}” paused — fix`) : '💾 Save a copy to a folder on this device'}</button>
             {usage && <small>{formatBytes(approxBytes || usage.used)} used{usage.quota ? ` of ${formatBytes(usage.quota)} available` : ''}</small>}
-            {hasBackupNote ? <button className="mm-link" onClick={() => doExport('all')}>⚠ No backup yet — download one</button> : <small>Last backup: {ago(Math.max(meta.lastExportAt || 0, meta.lastCloudAt || 0))}</small>}
+            {hasBackupNote ? <button className="mm-link" onClick={() => doExport('all')}>⚠ No backup yet — download one</button> : <small>Last backup: {ago(meta.lastExportAt || 0)}</small>}
           </div>
         </aside>
 
@@ -721,7 +681,6 @@ export default function MindMapsWorkspace() {
               <div className="mm-head-actions">
                 {fs && <Dropdown label={<><span>⬆</span><span className="mm-lbl"> Import</span></>} items={importItems} align="right" title="Import" />}
                 <Dropdown label={<><span>⬇</span><span className="mm-lbl"> Export</span></>} items={exportItems} align="right" title="Export or print this map" />
-                <button className="btn mm-cloud-btn" onClick={() => setModal({ type: 'cloud', tab: cloudReady(cloud) ? 'backups' : 'setup' })} title="Cloud backup">☁<span className="mm-lbl"> Cloud</span>{cloudState(activeMap) === 'stale' ? ' •' : ''}</button>
                 {!fs && <button className="btn mm-fs-btn" onClick={enterFs} title="Edit in full screen">⛶<span className="mm-lbl"> Full screen</span></button>}
                 <Dropdown label="⋯" items={moreItems} align="right" title="More map actions" className="mm-dd-icon" />
               </div>
@@ -793,14 +752,11 @@ export default function MindMapsWorkspace() {
       <input ref={imageRef} type="file" accept="image/*" hidden onChange={(e) => { if (e.target.files?.[0]) addImageFile(e.target.files[0]); e.target.value = ''; }} />
       <Toast toast={toast} onClose={() => setToast(null)} />
       {modal?.type === 'new' && <NewMapModal onClose={() => setModal(null)} onCreate={createFromTemplate} />}
-      {modal?.type === 'delete' && activeMap && <Modal title="Delete this mind map?" onClose={() => setModal(null)} footer={<><button className="btn" onClick={() => setModal(null)}>Cancel</button><button className="btn btn-danger-solid" onClick={deleteMap}>Delete map</button></>}><p>“<strong>{activeMap.title}</strong>” will be removed from this browser. You can undo right after. {activeMap.cloudBackup ? 'Its Cloudinary backup is not deleted.' : 'It has no cloud backup — consider exporting it first.'}</p></Modal>}
+      {modal?.type === 'delete' && activeMap && <Modal title="Delete this mind map?" onClose={() => setModal(null)} footer={<><button className="btn" onClick={() => setModal(null)}>Cancel</button><button className="btn btn-danger-solid" onClick={deleteMap}>Delete map</button></>}><p>“<strong>{activeMap.title}</strong>” will be removed from this browser. You can undo right after. Consider exporting it first if you may need it again.</p></Modal>}
       {modal?.type === 'conflict' && <Modal title="Some maps already exist" onClose={() => setModal(null)} footer={<><button className="btn" onClick={() => setModal(null)}>Cancel</button><button className="btn" onClick={() => commitImport(modal.incoming, 'skip', modal.label)}>Skip duplicates</button><button className="btn" onClick={() => commitImport(modal.incoming, 'replace', modal.label)}>Replace existing</button><button className="btn btn-primary" data-autofocus onClick={() => commitImport(modal.incoming, 'keep', modal.label)}>Keep both</button></>}><p><strong>{modal.conflicts.length}</strong> of {modal.incoming.length} map(s) in this file are already in your library: {modal.conflicts.slice(0, 4).map((m) => `“${m.title}”`).join(', ')}{modal.conflicts.length > 4 ? '…' : ''}</p><p className="muted">“Keep both” is the safest choice — it adds the file’s copy without touching your current map.</p></Modal>}
       {modal?.type === 'paste' && <PasteModal key="paste" initial={modal.text} parent={modal.parent ? nodeById(modal.parent) : null} onClose={() => setModal(null)} onImport={pasteIntoMap} />}
-      {modal?.type === 'link' && <LinkModal busy={busy === 'restore'} onClose={() => setModal(null)} onRestore={restoreUrl} />}
       {modal?.type === 'disk' && <DiskModal disk={disk} onClose={() => setModal(null)} onLink={linkFolder} onResume={reconnectFolder} onSync={syncDiskNow} onUnlink={unlinkFolder} onLoad={loadFromFolder} onExportAll={() => doExport('all')} ago={ago} />}
       {modal?.type === 'help' && <HelpModal onClose={() => setModal(null)} />}
-      {modal?.type === 'cloud' && <CloudModal tab={modal.tab} setTab={(tab) => setModal({ type: 'cloud', tab })} onClose={() => setModal(null)} cloud={cloud} setCloud={setCloud} log={cloudLog} setLog={setCloudLog} busy={busy} activeMap={activeMap} mapCount={maps.length}
-        linked={CLOUD_LINKED} onBackupMap={backupMap} onBackupAll={() => backupAll(false)} onRestore={restoreUrl} onTest={testCloud} meta={meta} setMeta={setMeta} say={say} ago={ago} cloudState={activeMap ? cloudState(activeMap) : null} />}
     </div>
   );
 }
@@ -836,7 +792,7 @@ function EdgePanel({ edge, apply, onDelete }) {
 function MapPanel({ map, addSticker }) {
   return (<>
     <div className="mm-property-empty"><span>👆</span><p>Select a topic to edit it.</p><small>Click a line to style it. Hold <kbd>Shift</kbd> and drag to select many.</small></div>
-    <dl className="mm-map-facts"><div><dt>Created</dt><dd>{new Date(map.createdAt).toLocaleDateString()}</dd></div><div><dt>Edited</dt><dd>{new Date(map.updatedAt).toLocaleString()}</dd></div><div><dt>Cloud</dt><dd>{map.cloudBackup ? new Date(map.cloudBackup.backedUpAt).toLocaleString() : 'Not backed up'}</dd></div></dl>
+    <dl className="mm-map-facts"><div><dt>Created</dt><dd>{new Date(map.createdAt).toLocaleDateString()}</dd></div><div><dt>Edited</dt><dd>{new Date(map.updatedAt).toLocaleString()}</dd></div></dl>
     <div className="mm-sticker-palette"><strong>Quick stickers</strong><div>{STICKERS.map((s) => <button key={s} onClick={() => addSticker(s)} aria-label={`Add ${s}`}>{s}</button>)}</div></div>
   </>);
 }
@@ -870,51 +826,9 @@ function PasteModal({ initial, parent, onClose, onImport }) {
     </Modal>
   );
 }
-function LinkModal({ busy, onClose, onRestore }) {
-  const [url, setUrl] = useState('');
-  return (
-    <Modal title="Import from a web link" onClose={onClose} footer={<><button className="btn" onClick={onClose}>Cancel</button><button className="btn btn-primary" disabled={busy || !url.trim()} onClick={() => onRestore(url)}>{busy ? 'Downloading…' : 'Import'}</button></>}>
-      <p className="muted">Paste a public https link to a mind map JSON, Markdown or OPML file (for example a Cloudinary backup link).</p>
-      <input className="mm-prop-input" data-autofocus value={url} onChange={(e) => setUrl(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && url.trim() && onRestore(url)} placeholder="https://res.cloudinary.com/…/map.json" />
-    </Modal>
-  );
-}
 function HelpModal({ onClose }) {
   const rows = [['Tab', 'Add child topic'], ['Enter', 'Add sibling topic'], ['F2 / double-click', 'Edit text (Enter to finish)'], ['Space', 'Collapse / expand branch'], ['Delete', 'Delete topic with its branch'], ['Shift + Delete', 'Delete only this topic'], ['Arrow keys', 'Move between topics'], ['Shift + click', 'Add to selection'], ['Shift + drag', 'Box-select'], ['Ctrl + A', 'Select all'], ['Ctrl + D', 'Duplicate branch'], ['Ctrl + Z / Y', 'Undo / redo'], ['Ctrl + 0', 'Fit map to screen'], ['Ctrl + scroll / pinch', 'Zoom'], ['Ctrl + V', 'Paste text outline or image'], ['Drop a file', 'Import JSON, MD, OPML, MM or image']];
   return (<Modal title="Keyboard shortcuts & gestures" onClose={onClose} wide footer={<button className="btn btn-primary" onClick={onClose}>Got it</button>}><table className="mm-keys"><tbody>{rows.map(([k, d]) => <tr key={k}><td><kbd>{k}</kbd></td><td>{d}</td></tr>)}</tbody></table></Modal>);
-}
-function CloudModal({ linked, tab, setTab, onClose, cloud, setCloud, log, setLog, busy, activeMap, mapCount, onBackupMap, onBackupAll, onRestore, onTest, meta, setMeta, say, ago, cloudState }) {
-  const ready = cloudReady(cloud); const [url, setUrl] = useState(''); const [code, setCode] = useState('');
-  const copy = async (text, msg) => { try { await navigator.clipboard.writeText(text); say(msg); } catch { say('Could not copy — select and copy manually', { kind: 'bad' }); } };
-  return (
-    <Modal title="☁ Cloud backup (Cloudinary)" onClose={onClose} wide>
-      <div className="mm-tabs" role="tablist"><button role="tab" aria-selected={tab === 'backups'} className={tab === 'backups' ? 'on' : ''} onClick={() => setTab('backups')}>Backups & restore</button><button role="tab" aria-selected={tab === 'setup'} className={tab === 'setup' ? 'on' : ''} onClick={() => setTab('setup')}>{ready ? 'Settings' : 'Set up'}{!ready && ' •'}</button></div>
-      {tab === 'backups' ? (<>
-        {!ready && <div className="mm-callout">Cloud backup isn’t set up yet. <button className="mm-link" onClick={() => setTab('setup')}>Set it up in 2 minutes →</button> (Restoring from a link works without setup.)</div>}
-        <div className="mm-cloud-actions">
-          <button className="btn btn-primary" disabled={!ready || !!busy || !activeMap} onClick={onBackupMap}>{busy === 'map' ? 'Uploading…' : '☁ Back up this map'}</button>
-          <button className="btn" disabled={!ready || !!busy || !mapCount} onClick={onBackupAll}>{busy === 'all' ? 'Uploading…' : `☁ Back up all ${mapCount} maps`}</button>
-        </div>
-        {activeMap && <p className="mm-cloud-status muted">“{activeMap.title}”: {cloudState === 'ok' ? '✓ cloud copy is up to date' : cloudState === 'stale' ? '• changed since last cloud backup' : 'never backed up to the cloud'}</p>}
-        <label className="mm-prop-label">Automatic backup of all maps<select className="mm-prop-input" disabled={!ready} value={meta.autoMinutes} onChange={(e) => setMeta((o) => ({ ...o, autoMinutes: Number(e.target.value) }))}><option value={0}>Off (manual only)</option><option value={15}>At most every 15 minutes after changes</option><option value={60}>At most every hour after changes</option></select></label>
-        <h4 className="mm-h4">Restore from a link</h4>
-        <div className="mm-restore-row"><input className="mm-prop-input" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="Paste a backup link (https://res.cloudinary.com/…)" aria-label="Backup link" /><button className="btn" disabled={!!busy || !url.trim()} onClick={() => onRestore(url)}>{busy === 'restore' ? 'Restoring…' : 'Restore'}</button></div>
-        <h4 className="mm-h4">Recent backups from this browser</h4>
-        {log.length ? <ul className="mm-log">{log.slice(0, 8).map((l) => (<li key={l.id}><div><strong>{l.scope === 'all' ? '🗂' : '🧠'} {l.label}</strong>{l.auto && <em> · auto</em>}<small>{ago(l.at)} · {formatBytes(l.bytes || 0)}</small></div><div className="mm-log-actions"><button className="btn btn-small" disabled={!!busy} onClick={() => onRestore(l.url)}>Restore</button><button className="btn btn-small" onClick={() => copy(l.url, 'Backup link copied')}>Copy link</button><button className="btn btn-small" onClick={() => setLog((x) => x.filter((i) => i.id !== l.id))} aria-label="Forget this entry" title="Remove from this list (the cloud file stays)">✕</button></div></li>))}</ul> : <p className="muted">Nothing yet. After you back up, links appear here so you can restore with one click — or copy a link to open your maps on another device.</p>}
-      </>) : (<>
-        {linked ? <div className="mm-callout">✓ Cloudinary is <strong>permanently linked</strong> for this site (<code>{cloud.cloudName}</code> / <code>{cloud.uploadPreset}</code>). Every device that opens this site uses it automatically.</div> : <ol className="mm-steps">
-          <li>In Cloudinary open <strong>Settings → Upload → Upload presets → Add upload preset</strong>.</li>
-          <li>Set <strong>Signing mode: Unsigned</strong> and give it a name (for example <code>mindmaps</code>). Allow <strong>raw</strong> files if asked.</li>
-          <li>Copy your <strong>Cloud name</strong> (top-left of the dashboard) and the preset name here. To link it permanently for all devices, put them in <code>components/mindmaps/config.js</code>.</li>
-        </ol>}
-        <div className="mm-cloud-fields"><label>Cloud name<input className="mm-prop-input" data-autofocus disabled={linked} value={cloud.cloudName} onChange={(e) => setCloud((c) => ({ ...c, cloudName: e.target.value.trim() }))} placeholder="your-cloud-name" autoComplete="off" /></label><label>Unsigned upload preset<input className="mm-prop-input" disabled={linked} value={cloud.uploadPreset} onChange={(e) => setCloud((c) => ({ ...c, uploadPreset: e.target.value.trim() }))} placeholder="mindmaps" autoComplete="off" /></label></div>
-        <div className="mm-toolbar-row"><button className="btn btn-primary" disabled={!ready || !!busy} onClick={onTest}>{busy === 'test' ? 'Testing…' : 'Test connection'}</button>{ready && <button className="btn" onClick={() => setTab('backups')}>Done →</button>}</div>
-        <h4 className="mm-h4">Use on another device</h4>
-        <div className="mm-restore-row"><button className="btn" disabled={!ready} onClick={() => copy(makeSetupCode(cloud), 'Setup code copied — paste it on your other device')}>Copy setup code</button><input className="mm-prop-input" value={code} onChange={(e) => setCode(e.target.value)} placeholder="Paste a setup code here" aria-label="Setup code" /><button className="btn" disabled={!code.trim()} onClick={() => { try { setCloud(parseSetupCode(code)); setCode(''); say('Cloudinary settings applied'); } catch (err) { say(err.message, { kind: 'bad' }); } }}>Apply</button></div>
-        <p className="mm-cloud-help muted">Settings stay in this browser only. Never enter your API secret — it isn’t needed. Backups go to the <code>{CLOUD_FOLDER}</code> folder as JSON files that anyone with the link can open, so avoid private information. Delete old backups in the Cloudinary Media Library whenever you like.</p>
-      </>)}
-    </Modal>
-  );
 }
 
 function DiskModal({ disk, onClose, onLink, onResume, onSync, onUnlink, onLoad, onExportAll, ago }) {
