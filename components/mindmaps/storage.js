@@ -2,10 +2,14 @@
 const DB_NAME = 'gate-notebook-mindmaps'; const STORE = 'maps';
 export const LEGACY_KEY = 'gate-notebook-mindmaps-v1';
 export const META_KEY = 'gate-notebook-mindmaps-meta-v2';
+export const CLOUD_KEY = 'gate-notebook-cloudinary-settings-v1';
+export const CLOUD_LOG_KEY = 'gate-notebook-cloudinary-log-v1';
 
 const lsGet = (k, fb) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch { return fb; } };
 const lsSet = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } };
 export const readJson = lsGet; export const writeJson = lsSet;
+export function readSessionJson(key, fallback) { try { const v = sessionStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; } }
+export function writeSessionJson(key, value) { try { sessionStorage.setItem(key, JSON.stringify(value)); return true; } catch { return false; } }
 
 function openDb() {
   return new Promise((resolve, reject) => {
